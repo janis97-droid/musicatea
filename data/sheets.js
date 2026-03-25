@@ -12,6 +12,42 @@ const sheets = [
     pdf: "pdfs/samai-nahawand-do.pdf"
   },
 
+   {
+    title: "مينا يافا",
+    system: "arabic",
+    type: "song",
+    composer: "اخوين رحباني",
+    performer: null,
+    maqam: "كرد",
+    scale: null,
+    tonic: "ري",
+    pdf: "pdfs/yafa-re.pdf"
+  },
+
+  {
+    title: "وحدن بيبقوا",
+    system: "arabic",
+    type: "song",
+    composer: "اخوين رحباني",
+    performer: null,
+    maqam: "عجم",
+    scale: null,
+    tonic: "دو",
+    pdf: "pdfs/wahdon.pdf"
+  },
+  
+ {
+    title: "مينا يافا",
+    system: "arabic",
+    type: "song",
+    composer: "اخوين رحباني",
+    performer: null,
+    maqam: "كرد",
+    scale: null,
+    tonic: "دو",
+    pdf: "pdfs/yafa-do.pdf"
+  },
+  
   {
     title: "سماعي نهاوند (ري)",
     system: "arabic",
@@ -36,6 +72,18 @@ const sheets = [
     pdf: "pdfs/shukran.pdf"
   },
 
+{
+    title: "ومشينا يا حبيبي",
+    system: "arabic",
+    type: "song",
+    composer: "امجد العاطفي",
+    performer: "جورج وسوف",
+    maqam: "سيكا",
+    scale: null,
+    tonic: "سي نصف بيمول",
+    pdf: "pdfs/w-mshina.pdf"
+  },
+  
   {
     title: "Cinema Paradiso",
     system: "western",
@@ -204,6 +252,18 @@ const sheets = [
     pdf: "pdfs/om-ahmad.pdf"
   },
 
+{
+    title: "وحياة قلبي وافراحه",
+    system: "arabic",
+    type: "song",
+    composer: "منير مراد",
+    performer: "عبد الحليم حافظ",
+    maqam: "عجم",
+    scale: null,
+    tonic: "فا",
+    pdf: "pdfs/whyat-qalbi.pdf"
+  }
+  
   {
     title: "صحاك الشوق",
     system: "arabic",
