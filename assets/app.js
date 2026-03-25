@@ -25,13 +25,13 @@ function render(data) {
     const div = document.createElement('div');
     div.className = 'card';
 
-    div.innerHTML = `
-      <h3>${s.title}</h3>
-      <p>${s.composer}</p>
-      <p>${s.system === 'arabic' ? (s.maqam || '') : (s.scale || '')}</p>
-      <p>${s.tonic || ''}</p>
-    `;
-
+   div.innerHTML = `
+  <h3>${s.title}</h3>
+  <p>${s.composer}</p>
+  <p>${s.system === 'arabic' ? (s.maqam || '') : (s.scale || '')}</p>
+  <p>${s.tonic || ''}</p>
+  <a href="${s.pdf}" target="_blank" class="download">تحميل النوتة</a>
+`;
     list.appendChild(div);
   });
 }
