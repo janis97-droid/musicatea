@@ -8,7 +8,7 @@ const sheets = [
     maqam: "نهاوند",
     scale: null,
     tonic: "دو",
-    pdf: "pdfs/samai-nahawand.pdf"
+    pdf: "pdfs/samai-nahawand-do.pdf"
   },
   {
     title: "شكراً",
