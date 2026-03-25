@@ -30,8 +30,7 @@ function render(data) {
   <p>${s.composer}</p>
   <p>${s.system === 'arabic' ? (s.maqam || '') : (s.scale || '')}</p>
   <p>${s.tonic || ''}</p>
-  <a href="${s.pdf}" target="_blank" class="download">تحميل النوتة</a>
-`;
+<a href="${s.pdf}" target="_blank" class="download">📄 تحميل النوتة</a>`;
     list.appendChild(div);
   });
 }
