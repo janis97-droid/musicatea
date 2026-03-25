@@ -21,7 +21,7 @@ const sheets = [
   performer: null,
   maqam: "نهاوند",
   tonic: "دو",
-  pdf: "pdfs/samai-nahawand.pdf"
+  pdf: "pdfs/samai-nahawand-do.pdf"
 },
 
 {
