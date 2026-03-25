@@ -13,6 +13,39 @@ const sheets = [
     pdf: "pdfs/alrozana.pdf"
   },
 
+{
+  title: "سماعي نهاوند",
+  system: "arabic",
+  type: "instrumental",
+  composer: "مسعود جميل",
+  performer: null,
+  maqam: "نهاوند",
+  tonic: "دو",
+  pdf: "pdfs/samai-nahawand.pdf"
+},
+
+{
+  title: "شكراً",
+  system: "arabic",
+  type: "song",
+  composer: "وليد سعد",
+  performer: "جورج وسوف",
+  maqam: "كرد",
+  tonic: "صول",
+  pdf: "pdfs/shukran.pdf"
+},
+
+{
+  title: "Cinema Paradiso",
+  system: "western",
+  type: "instrumental",
+  composer: "Ennio Morricone",
+  performer: null,
+  scale: "Bb Major",
+  tonic: "Bb",
+  pdf: "pdfs/cinema-paradiso.pdf"
+}
+  
   {
     title: "وحياة قلبي وأفراحه",
     system: "arabic",
