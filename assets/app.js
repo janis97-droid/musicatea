@@ -1,0 +1,1 @@
+const list=document.getElementById('list');function render(data){list.innerHTML='';data.forEach(s=>{let div=document.createElement('div');div.className='card';div.innerHTML=`<h3>${s.title}</h3><p>${s.composer}</p>`;list.appendChild(div);});}render(sheets);
