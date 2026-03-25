@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مقام — موسيقتي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ── Maqam page styles ───────────────────── */
+    .maqam-page { max-width: 820px; margin: 0 auto; padding: 48px 5% 80px; }
+ 
+    /* Back link */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--text-dim); font-size: 0.85rem; margin-bottom: 36px;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold); }
+    .back-link svg { transition: transform 0.2s; }
+    .back-link:hover svg { transform: translateX(3px); }
+ 
+    /* Header */
+    .maqam-header { margin-bottom: 36px; }
+    .maqam-type-tag {
+      font-size: 0.72rem; letter-spacing: 0.14em; color: var(--gold);
+      text-transform: uppercase; font-weight: 700; margin-bottom: 10px;
+      display: block;
+    }
+    .maqam-title-row {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px;
+    }
+    .maqam-title-ar { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; }
+    .maqam-title-lat { font-size: 1.1rem; color: var(--text-dim); font-style: italic; }
+    .maqam-feeling-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .feeling-pill {
+      font-size: 0.8rem; padding: 5px 14px; border-radius: 100px;
+      background: var(--gold-dim); border: 1px solid rgba(200,164,90,0.22);
+      color: var(--gold-light);
+    }
+ 
+    /* Info grid */
+    .maqam-info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      margin-bottom: 36px;
+    }
+    .info-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 18px;
+    }
+    .info-box-label {
+      font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 6px; display: block;
+    }
+    .info-box-value { font-size: 0.92rem; color: var(--text); font-weight: 600; line-height: 1.5; }
+ 
+    /* Notes */
+    .notes-section { margin-bottom: 36px; }
+    .notes-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+    .tonic-selector { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .tonic-btn {
+      padding: 6px 16px; border-radius: 100px; font-size: 0.82rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; font-family: inherit;
+      transition: all 0.2s;
+    }
+    .tonic-btn.active {
+      background: var(--gold-dim); border-color: rgba(200,164,90,0.35);
+      color: var(--gold-light);
+    }
+    .notes-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .note-pill {
+      padding: 8px 16px; border-radius: 10px; font-size: 0.88rem;
+      background: var(--surface2); border: 1px solid var(--border2);
+      color: var(--text); font-weight: 600; transition: background 0.2s;
+    }
+    .note-pill.tonic-note {
+      background: var(--gold-dim); border-color: rgba(200,164,90,0.4);
+      color: var(--gold-light);
+    }
+ 
+    /* Description */
+    .maqam-desc-section { margin-bottom: 36px; }
+    .maqam-desc-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+    .maqam-desc-text {
+      color: var(--text-muted); line-height: 1.9; font-size: 0.95rem;
+    }
+ 
+    /* Audio player */
+    .audio-section {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 36px;
+    }
+    .audio-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .audio-placeholder {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--surface); border: 1px dashed var(--border2);
+      border-radius: 10px; padding: 16px 18px;
+      color: var(--text-dim); font-size: 0.88rem;
+    }
+    .audio-placeholder svg { flex-shrink: 0; opacity: 0.4; }
+    .custom-audio { width: 100%; }
+    audio {
+      width: 100%; height: 36px;
+      filter: invert(1) sepia(1) saturate(0) hue-rotate(0deg) brightness(0.6);
+    }
+ 
+    /* Related sheets */
+    .related-section { margin-bottom: 36px; }
+    .related-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+    #related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 14px; }
+ 
+    /* Examples */
+    .examples-section { margin-bottom: 36px; }
+    .examples-section h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+    .examples-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .examples-list li {
+      padding: 10px 16px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.9rem; color: var(--text-muted);
+      border-inline-start: 3px solid var(--gold-dim);
+    }
+ 
+    @media (max-width: 600px) {
+      .maqam-info-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">موسيقتي</a>
+    <div class="nav-links">
+      <a href="library.html">المكتبة</a>
+      <a href="wiki.html" class="active">الموسوعة</a>
+      <a href="index.html#about">عن المشروع</a>
+    </div>
+  </nav>
+ 
+  <div class="maqam-page" id="maqam-page">
+    <!-- Content injected by JS -->
+    <div id="maqam-content"></div>
+  </div>
+ 
+  <script src="data/maqamat.js"></script>
+  <script src="data/sheets.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    // ── Load maqam from URL param ──────────────
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const maqam = maqamat.find(m => m.id === id);
+ 
+    if (!maqam) {
+      document.getElementById('maqam-content').innerHTML = `
+        <a href="wiki.html" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          العودة للموسوعة
+        </a>
+        <p style="color:var(--text-muted);margin-top:40px">المقام غير موجود.</p>`;
+    } else {
+      document.title = `مقام ${maqam.name} — موسيقتي`;
+      renderMaqamPage(maqam);
+    }
+ 
+    function renderMaqamPage(m) {
+      // Get first available tonic
+      const firstTonic = Object.keys(m.notes)[0];
+ 
+      // Related sheets
+      const related = sheets.filter(s => s.maqam === m.name);
+ 
+      // Audio
+      const audioBlock = m.audio
+        ? `<div class="custom-audio">
+             <audio controls>
+               <source src="${m.audio}" type="audio/mpeg">
+               متصفحك لا يدعم تشغيل الصوت.
+             </audio>
+           </div>`
+        : `<div class="audio-placeholder">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+               <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+               <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+             </svg>
+             <span>ملف الصوت قيد الإضافة — سيتوفر قريباً</span>
+           </div>`;
+ 
+      // Examples list
+      const examplesHtml = m.examples.map(e => `<li>${e}</li>`).join('');
+ 
+      // Feelings
+      const feelingsHtml = m.feeling.map(f =>
+        `<span class="feeling-pill">${f}</span>`
+      ).join('');
+ 
+      // Tonic selector
+      const tonicKeys = Object.keys(m.notes);
+      const tonicBtns = tonicKeys.map((t, i) =>
+        `<button class="tonic-btn${i===0?' active':''}" onclick="switchTonic('${t}', this)">${t}</button>`
+      ).join('');
+ 
+      // Notes for first tonic
+      const notesHtml = buildNotes(m.notes[firstTonic]);
+ 
+      document.getElementById('maqam-content').innerHTML = `
+        <a href="wiki.html" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          العودة للموسوعة
+        </a>
+ 
+        <div class="maqam-header">
+          <span class="maqam-type-tag">مقام</span>
+          <div class="maqam-title-row">
+            <span class="maqam-title-ar">${m.name}</span>
+            <span class="maqam-title-lat">${m.latin}</span>
+          </div>
+          <div class="maqam-feeling-row">${feelingsHtml}</div>
+        </div>
+ 
+        <div class="maqam-info-grid">
+          <div class="info-box">
+            <span class="info-box-label">الطابع</span>
+            <span class="info-box-value">${m.feeling.join(' · ')}</span>
+          </div>
+          <div class="info-box">
+            <span class="info-box-label">الفواصل</span>
+            <span class="info-box-value" style="font-size:0.82rem">${m.intervals}</span>
+          </div>
+          <div class="info-box">
+            <span class="info-box-label">درجات القرار المتاحة</span>
+            <span class="info-box-value">${m.tonic_options.join(' · ')}</span>
+          </div>
+          <div class="info-box">
+            <span class="info-box-label">نوتات في المكتبة</span>
+            <span class="info-box-value">${related.length} نوتة</span>
+          </div>
+        </div>
+ 
+        <div class="notes-section">
+          <h3>درجات المقام</h3>
+          <div class="tonic-selector">${tonicBtns}</div>
+          <div class="notes-row" id="notes-row">${notesHtml}</div>
+        </div>
+ 
+        <div class="maqam-desc-section">
+          <h3>وصف المقام</h3>
+          <p class="maqam-desc-text">${m.description}</p>
+        </div>
+ 
+        <div class="audio-section">
+          <h3>مثال صوتي</h3>
+          ${audioBlock}
+        </div>
+ 
+        <div class="examples-section">
+          <h3>أبرز الأعمال في هذا المقام</h3>
+          <ul class="examples-list">${examplesHtml}</ul>
+        </div>
+ 
+        ${related.length > 0 ? `
+        <div class="related-section">
+          <h3>نوتات من مكتبتنا — مقام ${m.name}</h3>
+          <div id="related-grid"></div>
+        </div>` : ''}
+      `;
+ 
+      // Render related sheet cards
+      if (related.length > 0) {
+        const grid = document.getElementById('related-grid');
+        related.forEach(s => grid.appendChild(createSheetCard(s)));
+      }
+    }
+ 
+    function buildNotes(notesArray) {
+      return notesArray.map((n, i) =>
+        `<span class="note-pill${i===0?' tonic-note':''}">${n}</span>`
+      ).join('');
+    }
+ 
+    function switchTonic(key, btn) {
+      document.querySelectorAll('.tonic-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const notes = maqam.notes[key];
+      if (notes) {
+        document.getElementById('notes-row').innerHTML = buildNotes(notes);
+      }
+    }
+  </script>
+</body>
+</html>
