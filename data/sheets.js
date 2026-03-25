@@ -262,7 +262,7 @@ const sheets = [
     scale: null,
     tonic: "فا",
     pdf: "pdfs/whyat-qalbi.pdf"
-  }
+  },
   
   {
     title: "صحاك الشوق",
