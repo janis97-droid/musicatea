@@ -39,67 +39,101 @@
     }
     
     .rhythms-content {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 60px 5% 100px;
+      padding: 40px 5% 100px;
     }
     
-    .coming-soon {
-      text-align: center;
-      padding: 80px 20px;
+    /* Search */
+    .rhythms-search-wrap {
+      padding: 20px 0 40px;
     }
     
-    .coming-soon-icon {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      opacity: 0.3;
-    }
-    
-    .coming-soon h2 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-    
-    .coming-soon p {
-      font-size: 1rem;
-      color: var(--text-muted);
+    .rhythms-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 18px;
       max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.8;
+      transition: all 0.3s var(--ease);
     }
     
-    .rhythm-preview-grid {
+    .rhythms-search-bar:focus-within {
+      border-color: rgba(200,164,90,0.45);
+      box-shadow: 0 0 0 3px rgba(200,164,90,0.07);
+    }
+    
+    .rhythms-search-bar svg {
+      flex-shrink: 0;
+      color: var(--text-dim);
+    }
+    
+    .rhythms-search-bar input {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+    
+    .rhythms-search-bar input::placeholder {
+      color: var(--text-dim);
+    }
+    
+    /* Rhythms Grid */
+    #rhythms-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 20px;
-      margin-top: 40px;
     }
     
-    .rhythm-preview-card {
+    .rhythm-card {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 28px;
+      padding: 24px;
       transition: all 0.4s var(--ease);
-      opacity: 0.5;
+      cursor: pointer;
     }
     
-    .rhythm-preview-card:hover {
-      opacity: 0.7;
+    .rhythm-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(200,164,90,0.2);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+      border-color: rgba(200,164,90,0.3);
     }
     
-    .rhythm-preview-card h3 {
-      font-size: 1.2rem;
+    .rhythm-card-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    
+    .rhythm-card h3 {
+      font-size: 1.3rem;
       font-weight: 800;
-      margin-bottom: 8px;
       color: var(--gold-light);
+      margin: 0;
     }
     
-    .rhythm-preview-card .latin {
+    .rhythm-card .time-sig {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      background: var(--surface);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    
+    .rhythm-card .latin {
       font-size: 0.85rem;
       color: var(--text-dim);
       font-style: italic;
@@ -107,22 +141,45 @@
       display: block;
     }
     
-    .rhythm-preview-card .pattern {
+    .rhythm-card .pattern {
       font-family: monospace;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.95rem;
+      color: var(--text);
       background: var(--surface);
-      padding: 10px 14px;
+      padding: 12px 16px;
       border-radius: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       direction: ltr;
       text-align: center;
+      border: 1px solid var(--border2);
     }
     
-    .rhythm-preview-card .desc {
+    .rhythm-card .desc {
       font-size: 0.88rem;
-      color: var(--text-dim);
-      line-height: 1.6;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    
+    .rhythm-card .tempo {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--gold-dim);
+      color: var(--gold);
+      border: 1px solid rgba(200,164,90,0.2);
+      margin-top: 4px;
+    }
+    
+    @media (max-width: 640px) {
+      #rhythms-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .rhythms-content {
+        padding: 30px 4% 80px;
+      }
     }
   </style>
 </head>
@@ -151,43 +208,18 @@
   <!-- CONTENT -->
   <div class="rhythms-content">
     
-    <div class="coming-soon">
-      <div class="coming-soon-icon">🥁</div>
-      <h2>قريباً</h2>
-      <p>
-        نعمل حالياً على إعداد موسوعة شاملة للإيقاعات العربية — سنضيف قريباً الضروب الرئيسية مع الشرح والأمثلة الصوتية.
-      </p>
-      
-      <div class="rhythm-preview-grid">
-        <div class="rhythm-preview-card">
-          <h3>مقسوم</h3>
-          <span class="latin">Maqsum</span>
-          <div class="pattern">D _ T _ D D T _</div>
-          <p class="desc">إيقاع شائع في 4/4 — يُستخدم في الأغاني الشعبية والدبكات</p>
-        </div>
-        
-        <div class="rhythm-preview-card">
-          <h3>ملفوف</h3>
-          <span class="latin">Malfuf</span>
-          <div class="pattern">D _ T D _ T</div>
-          <p class="desc">إيقاع سريع في 2/4 — مناسب للرقصات والمقطوعات الحيوية</p>
-        </div>
-        
-        <div class="rhythm-preview-card">
-          <h3>سماعي ثقيل</h3>
-          <span class="latin">Sama'i Thaqil</span>
-          <div class="pattern">D _ D T _ T D _ _ T</div>
-          <p class="desc">إيقاع كلاسيكي في 10/8 — يُستخدم في القوالب الآلية</p>
-        </div>
-        
-        <div class="rhythm-preview-card">
-          <h3>فالس</h3>
-          <span class="latin">Waltz</span>
-          <div class="pattern">D T T</div>
-          <p class="desc">إيقاع في 3/4 — نسخة شرقية من الفالس الغربي</p>
-        </div>
+    <!-- Search -->
+    <div class="rhythms-search-wrap">
+      <div class="rhythms-search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input id="rhythm-search" type="text" placeholder="ابحث عن إيقاع...">
       </div>
     </div>
+
+    <!-- Rhythms Grid -->
+    <div id="rhythms-grid"></div>
 
   </div>
 
@@ -196,6 +228,56 @@
     <span class="footer-logo">موسيقتي</span>
     <span>© 2025 Musicatea</span>
   </footer>
+
+  <!-- SCRIPTS -->
+  <script src="data/rhythms.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    // Render rhythms
+    const rhythmsGrid = document.getElementById('rhythms-grid');
+    const searchInput = document.getElementById('rhythm-search');
+    
+    function createRhythmCard(r) {
+      const card = document.createElement('div');
+      card.className = 'rhythm-card';
+      
+      card.innerHTML = `
+        <div class="rhythm-card-header">
+          <h3>${r.name}</h3>
+          <span class="time-sig">${r.time_signature}</span>
+        </div>
+        <span class="latin">${r.latin}</span>
+        <div class="pattern">${r.pattern}</div>
+        <p class="desc">${r.description}</p>
+        <span class="tempo">الإيقاع: ${r.tempo}</span>
+      `;
+      
+      return card;
+    }
+    
+    function renderRhythms(filter) {
+      rhythmsGrid.innerHTML = '';
+      const q = normalize(filter || '');
+      
+      const filtered = rhythms.filter(r =>
+        !q ||
+        normalize(r.name).includes(q) ||
+        normalize(r.latin).includes(q) ||
+        normalize(r.description).includes(q)
+      );
+      
+      if (!filtered.length) {
+        rhythmsGrid.appendChild(createEmptyState('لا توجد إيقاعات مطابقة'));
+        return;
+      }
+      
+      filtered.forEach(r => rhythmsGrid.appendChild(createRhythmCard(r)));
+    }
+    
+    // Init
+    searchInput.addEventListener('input', e => renderRhythms(e.target.value));
+    renderRhythms();
+  </script>
 
 </body>
 </html>
