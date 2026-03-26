@@ -7,31 +7,19 @@ const scaleSelect = document.getElementById('scale');
 const tonicSelect = document.getElementById('tonic');
 const searchInput = document.getElementById('search');
 
-// ===== normalize Arabic text =====
-function normalize(text) {
-  return (text || "")
-    .toLowerCase()
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ة/g, "ه")
-    .replace(/ً|ٌ|ٍ|َ|ُ|ِ|ّ|ْ/g, "");
-}
-
 // ===== Render =====
 function render(data) {
   list.innerHTML = '';
 
-  data.forEach(s => {
-    const div = document.createElement('div');
-    div.className = 'card';
+  if (data.length === 0) {
+    list.appendChild(createEmptyState('لا توجد نوتات مطابقة للفلتر'));
+    return;
+  }
 
-   div.innerHTML = `
-  <h3>${s.title}</h3>
-  <p>${s.composer}</p>
-  <p>${s.system === 'arabic' ? (s.maqam || '') : (s.scale || '')}</p>
-  <p>${s.tonic || ''}</p>
-<a href="${s.pdf}" target="_blank" class="download">📄 تحميل النوتة</a>`;
-    list.appendChild(div);
+  data.forEach((s, index) => {
+    const card = createSheetCard(s);
+    card.style.setProperty('--card-index', index);
+    list.appendChild(card);
   });
 }
 
@@ -121,7 +109,7 @@ function applyFilters() {
     filtered = filtered.filter(s => s.tonic === tonicVal);
   }
 
-  // search (fixed)
+  // search
   if (searchVal) {
     filtered = filtered.filter(s =>
       normalize(s.title).includes(searchVal) ||
