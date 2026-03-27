@@ -1,90 +1,91 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مكتبة النوتات — موسيقتي</title>
+  <title>Sheet Music Library — Musicatea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
+  <style>
+    body { direction: ltr; }
+  </style>
 </head>
-<body>
- 
+<body dir="ltr">
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
         <div class="nav-top-right">
-          <a href="index.html" class="nav-logo">موسيقتي</a>
+          <a href="index-en.html" class="nav-logo">Musicatea</a>
         </div>
-
         <div class="nav-top-left">
-          <a href="index-en.html" class="lang-toggle" aria-label="Switch to English">
+          <a href="library.html" class="lang-toggle" aria-label="Switch to Arabic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <line x1="2" y1="12" x2="22" y2="12"/>
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
-            <span>EN</span>
+            <span>AR</span>
           </a>
         </div>
       </div>
-
       <div class="nav-bottom">
         <div class="nav-links">
-          <a href="index.html">الصفحة الرئيسية</a>
-          <a href="library.html" class="active">مكتبة النوتات</a>
-          <a href="maqamat.html">مقاماتي</a>
-          <a href="rhythms.html">إيقاعاتي</a>
-          <a href="history.html">تاريخ الموسيقى</a>
-          <a href="ensemble.html">إنسامبل الأنغام</a>
+          <a href="index-en.html">Home</a>
+          <a href="library-en.html" class="active">Sheet Library</a>
+          <a href="maqamat-en.html">Maqamatea</a>
+          <a href="rhythms-en.html">Iqaatea</a>
+          <a href="history-en.html">Music History</a>
+          <a href="ensemble-en.html">Melodies Ensemble</a>
         </div>
       </div>
     </div>
   </nav>
- 
+
   <header class="page-hero">
-    <h1>مكتبة النوتات</h1>
-    <p>نوتات موسيقية عربية وغربية — قابلة للتصفية والتحميل المجاني.</p>
+    <h1>Sheet Music Library</h1>
+    <p>Arabic and Western sheet music — filterable and free to download.</p>
   </header>
- 
+
   <div class="filters">
     <select id="system">
-      <option>نوتات شرقية</option>
-      <option>نوتات غربية</option>
+      <option>Eastern Notation</option>
+      <option>Western Notation</option>
     </select>
- 
+
     <select id="type">
-      <option>الكل</option>
-      <option>أغنية</option>
-      <option>معزوفة</option>
+      <option>All</option>
+      <option>Song</option>
+      <option>Instrumental</option>
     </select>
- 
+
     <select id="maqam">
-      <option value="">كل المقامات</option>
+      <option value="">All Maqamat</option>
     </select>
- 
+
     <select id="scale" style="display:none;">
       <option value="">All Scales</option>
     </select>
- 
+
     <select id="tonic">
-      <option value="">الدرجة</option>
+      <option value="">Tonic</option>
     </select>
- 
-    <input id="search" type="text" placeholder="بحث بالاسم أو الملحن...">
+
+    <input id="search" type="text" placeholder="Search by name or composer...">
   </div>
- 
+
   <div id="list" class="grid"></div>
- 
+
   <footer class="site-footer">
-    <span class="footer-logo">موسيقتي</span>
+    <span class="footer-logo">Musicatea</span>
     <span>© 2025 Musicatea</span>
   </footer>
- 
+
   <script src="data/sheets.js"></script>
   <script src="data/maqamat.js"></script>
   <script src="assets/ui.js"></script>
   <script src="assets/app.js"></script>
- 
+
 </body>
 </html>
