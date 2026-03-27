@@ -90,7 +90,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .lang-toggle {
   position: absolute;
   top: 12px;
-  left: 5%; /* Right side in RTL */
+  left: 5%; /* Left side in RTL */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -132,7 +132,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .nav-links { 
   display: flex; 
-  align-items: center; 
+  align-items: Right; 
   gap: 4px;
   order: 2; /* Links appear after logo */
 }
