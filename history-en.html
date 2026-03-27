@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music History | Musicatea</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body[dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .history-hero {
+      padding: 60px 5% 48px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+    }
+
+    .history-hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .history-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .history-hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 640px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .history-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 5% 100px;
+    }
+
+    #history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .history-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+    }
+
+    .history-item:hover {
+      border-color: rgba(200,164,90,0.2);
+    }
+
+    .history-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--bg2);
+      padding: 20px 22px;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      color: var(--text);
+      font-family: inherit;
+      transition: background 0.3s;
+    }
+
+    .history-toggle:hover,
+    .history-toggle[aria-expanded="true"] {
+      background: var(--bg3);
+    }
+
+    .history-toggle-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .history-index {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      opacity: 0.5;
+      min-width: 32px;
+    }
+
+    .history-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .history-title {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .history-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .history-toggle-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .history-period {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    .history-chevron {
+      color: var(--text-dim);
+      transition: transform 0.3s ease;
+    }
+
+    .history-content {
+      padding: 24px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .history-text {
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .history-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .history-highlight {
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.2);
+      color: var(--gold-light);
+    }
+
+    html[dir="ltr"] .nav-top {
+      flex-direction: row;
+    }
+
+    html[dir="ltr"] .nav-bottom {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .nav-links {
+      flex-direction: row;
+    }
+
+    @media (max-width: 600px) {
+      .history-period {
+        display: none;
+      }
+
+      .history-container {
+        padding: 40px 4% 80px;
+      }
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top">
+        <div class="nav-top-right">
+          <a href="index-en.html" class="nav-logo">Musicatea</a>
+        </div>
+
+        <div class="nav-top-left">
+          <a href="history.html" class="lang-toggle" aria-label="Switch to Arabic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span>AR</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <div class="nav-links">
+          <a href="index-en.html">Home</a>
+          <a href="library-en.html">Sheet Library</a>
+          <a href="maqamat-en.html">Maqamatea</a>
+          <a href="rhythms-en.html">Iqaatea</a>
+          <a href="history-en.html" class="active">Music History</a>
+          <a href="ensemble-en.html">Melodies Ensemble</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="history-hero">
+    <span class="history-hero-tag">History</span>
+    <h1>History of Arabic Music</h1>
+    <p>
+      A concise historical journey through Arabic music — from early foundations to major modern transformations.
+    </p>
+  </header>
+
+  <div class="history-container">
+    <div id="history-list"></div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="footer-logo">Musicatea</span>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+  <script src="data/history-en.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    function renderHistory() {
+      const historyList = document.getElementById('history-list');
+      historyList.innerHTML = '';
+      history.forEach((h, i) => historyList.appendChild(createHistorySection(h, i)));
+    }
+
+    renderHistory();
+  </script>
+</body>
+</html>
