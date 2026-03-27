@@ -3,45 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arabic Maqamat | Musicatea</title>
+  <title>Maqamatea | Musicatea</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <style>
-    body { direction: ltr; }
+    body[dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+    }
+
     .maqamat-hero {
       padding: 60px 5% 48px;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
     }
-    
+
     .maqamat-hero h1 {
       font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 900;
       margin-bottom: 16px;
       line-height: 1.2;
     }
-    
+
     .maqamat-hero p {
       color: var(--text-muted);
       font-size: 1.05rem;
-      max-width: 640px;
+      max-width: 700px;
       line-height: 1.8;
       margin-bottom: 0;
     }
-    
+
     .maqamat-content {
       max-width: 1300px;
       margin: 0 auto;
       padding: 40px 5% 100px;
     }
-    
+
     .maqamat-search {
       padding: 0 0 40px;
     }
-    
+
     .search-bar {
       display: flex;
       align-items: center;
@@ -53,17 +57,17 @@
       max-width: 520px;
       transition: all 0.3s var(--ease);
     }
-    
+
     .search-bar:focus-within {
       border-color: rgba(200,164,90,0.5);
       box-shadow: 0 0 0 4px rgba(200,164,90,0.08);
     }
-    
+
     .search-bar svg {
       flex-shrink: 0;
       color: var(--text-dim);
     }
-    
+
     .search-bar input {
       background: none;
       border: none;
@@ -73,17 +77,17 @@
       font-size: 1rem;
       width: 100%;
     }
-    
+
     .search-bar input::placeholder {
       color: var(--text-dim);
     }
-    
+
     #maqamat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 24px;
     }
-    
+
     .maqam-family-card {
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -94,7 +98,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .maqam-family-card::before {
       content: '';
       position: absolute;
@@ -107,25 +111,25 @@
       transform-origin: left;
       transition: transform 0.4s var(--ease);
     }
-    
+
     .maqam-family-card:hover::before {
       transform: scaleX(1);
       transform-origin: right;
     }
-    
+
     .maqam-family-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 48px rgba(0,0,0,0.45);
       border-color: rgba(200,164,90,0.35);
     }
-    
+
     .maqam-family-card h3 {
       font-size: 1.6rem;
       font-weight: 900;
       color: var(--gold-light);
       margin: 0 0 8px 0;
     }
-    
+
     .maqam-family-card .latin {
       font-size: 0.9rem;
       color: var(--text-dim);
@@ -133,21 +137,21 @@
       margin-bottom: 16px;
       display: block;
     }
-    
+
     .maqam-family-card .desc {
       font-size: 0.94rem;
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 18px;
     }
-    
+
     .maqam-family-card .meta {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 14px;
     }
-    
+
     .meta-item {
       display: flex;
       align-items: center;
@@ -155,18 +159,18 @@
       font-size: 0.88rem;
       color: var(--text-dim);
     }
-    
+
     .meta-item svg {
       width: 14px;
       height: 14px;
     }
-    
+
     .tonic-options {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
     }
-    
+
     .tonic-badge {
       background: var(--surface);
       border: 1px solid var(--border2);
@@ -176,7 +180,7 @@
       font-weight: 600;
       color: var(--text-muted);
     }
-    
+
     .family-badge {
       display: inline-flex;
       align-items: center;
@@ -189,7 +193,7 @@
       color: var(--gold);
       border: 1px solid rgba(200,164,90,0.25);
     }
-    
+
     .sub-count {
       font-size: 0.82rem;
       color: var(--text-dim);
@@ -197,12 +201,24 @@
       padding-top: 12px;
       border-top: 1px solid var(--border2);
     }
-    
+
+    html[dir="ltr"] .nav-top {
+      flex-direction: row;
+    }
+
+    html[dir="ltr"] .nav-bottom {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .nav-links {
+      flex-direction: row;
+    }
+
     @media (max-width: 768px) {
       #maqamat-grid {
         grid-template-columns: 1fr;
       }
-      
+
       .maqamat-content {
         padding: 30px 4% 80px;
       }
@@ -217,6 +233,7 @@
         <div class="nav-top-right">
           <a href="index-en.html" class="nav-logo">Musicatea</a>
         </div>
+
         <div class="nav-top-left">
           <a href="maqamat.html" class="lang-toggle" aria-label="Switch to Arabic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -228,6 +245,7 @@
           </a>
         </div>
       </div>
+
       <div class="nav-bottom">
         <div class="nav-links">
           <a href="index-en.html">Home</a>
@@ -244,9 +262,7 @@
   <div class="maqamat-hero">
     <h1>Arabic Maqamat</h1>
     <p>
-      Maqamat are the foundation of Arabic music — each maqam has a unique scale and emotional character. 
-      Maqamat are built from ajnas (tetrachords) and organized into families that share a common lower jins.
-      Explore the nine main families and their variations.
+      Maqamat are the modal foundation of Arabic music. Each maqam has its own scale, tonal center, emotional character, and melodic pathway. Explore the principal maqam families and their branches.
     </p>
   </div>
 
@@ -268,9 +284,74 @@
     <span>© 2025 Musicatea</span>
   </footer>
 
-  <script src="data/maqamat.js"></script>
+  <script src="data/maqamat-en.js"></script>
   <script src="assets/ui.js"></script>
-  <script src="assets/maqamat.js"></script>
+  <script>
+    const maqamatGrid = document.getElementById('maqamat-grid');
+    const searchInput = document.getElementById('maqam-search');
 
+    function createFamilyCard(maqam) {
+      const card = document.createElement('div');
+      card.className = 'maqam-family-card';
+      card.style.setProperty('--family-color', maqam.mood_color);
+
+      const subCount = maqam.sub_maqamat ? maqam.sub_maqamat.length : 0;
+      const totalInFamily = subCount + 1;
+
+      card.innerHTML = `
+        <h3>${maqam.name}</h3>
+        <span class="latin">${maqam.latin}</span>
+
+        <p class="desc">${maqam.description}</p>
+
+        <div class="meta">
+          <div class="meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13M9 13l12-2"/>
+            </svg>
+            <div class="tonic-options">
+              ${(maqam.tonic_options || []).map(t => `<span class="tonic-badge">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="family-badge">
+          Family: ${maqam.name}
+        </div>
+
+        ${subCount > 0 ? `<div class="sub-count">${totalInFamily} maqamat in this family</div>` : ''}
+      `;
+
+      card.addEventListener('click', () => {
+        window.location.href = `maqam-family-en.html?family=${maqam.family}`;
+      });
+
+      return card;
+    }
+
+    function renderMaqamat(filter) {
+      maqamatGrid.innerHTML = '';
+      const q = normalize(filter || '');
+
+      const mainMaqamat = getMainMaqamat();
+      const filtered = mainMaqamat.filter(m =>
+        !q ||
+        normalize(m.name).includes(q) ||
+        normalize(m.latin).includes(q) ||
+        normalize(m.description).includes(q) ||
+        normalize(m.family).includes(q)
+      );
+
+      if (!filtered.length) {
+        maqamatGrid.appendChild(createEmptyState('No matching maqamat found'));
+        return;
+      }
+
+      filtered.forEach(m => maqamatGrid.appendChild(createFamilyCard(m)));
+    }
+
+    searchInput.addEventListener('input', e => renderMaqamat(e.target.value));
+    renderMaqamat();
+  </script>
 </body>
 </html>
