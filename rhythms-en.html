@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arabic Rhythms — Musicatea</title>
+  <title>Iqaatea | Musicatea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    body { direction: ltr; }
+    body[dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+    }
+
     .rhythms-hero {
       padding: 60px 5% 48px;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
     }
+
     .rhythms-hero-tag {
       font-size: 0.72rem;
       letter-spacing: 0.14em;
@@ -23,26 +28,32 @@
       margin-bottom: 10px;
       display: block;
     }
+
     .rhythms-hero h1 {
       font-size: clamp(1.8rem, 4vw, 3rem);
       font-weight: 900;
       margin-bottom: 12px;
       line-height: 1.2;
     }
+
     .rhythms-hero p {
       color: var(--text-muted);
       font-size: 1rem;
-      max-width: 540px;
-      line-height: 1.7;
+      max-width: 700px;
+      line-height: 1.8;
+      margin: 0;
     }
+
     .rhythms-content {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px 5% 100px;
     }
+
     .rhythms-search-wrap {
       padding: 20px 0 40px;
     }
+
     .rhythms-search-bar {
       display: flex;
       align-items: center;
@@ -54,14 +65,17 @@
       max-width: 480px;
       transition: all 0.3s var(--ease);
     }
+
     .rhythms-search-bar:focus-within {
       border-color: rgba(200,164,90,0.45);
       box-shadow: 0 0 0 3px rgba(200,164,90,0.07);
     }
+
     .rhythms-search-bar svg {
       flex-shrink: 0;
       color: var(--text-dim);
     }
+
     .rhythms-search-bar input {
       background: none;
       border: none;
@@ -71,14 +85,17 @@
       font-size: 0.95rem;
       width: 100%;
     }
+
     .rhythms-search-bar input::placeholder {
       color: var(--text-dim);
     }
+
     #rhythms-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 20px;
     }
+
     .rhythm-card {
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -87,11 +104,13 @@
       transition: all 0.4s var(--ease);
       cursor: pointer;
     }
+
     .rhythm-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 36px rgba(0,0,0,0.4);
       border-color: rgba(200,164,90,0.3);
     }
+
     .rhythm-card-header {
       display: flex;
       align-items: baseline;
@@ -99,12 +118,14 @@
       margin-bottom: 12px;
       gap: 12px;
     }
+
     .rhythm-card h3 {
       font-size: 1.3rem;
       font-weight: 800;
       color: var(--gold-light);
       margin: 0;
     }
+
     .rhythm-card .time-sig {
       font-size: 0.9rem;
       color: var(--text-dim);
@@ -115,6 +136,7 @@
       white-space: nowrap;
       direction: ltr;
     }
+
     .rhythm-card .latin {
       font-size: 0.85rem;
       color: var(--text-dim);
@@ -122,6 +144,7 @@
       margin-bottom: 14px;
       display: block;
     }
+
     .rhythm-card .pattern {
       font-family: monospace;
       font-size: 0.95rem;
@@ -134,12 +157,14 @@
       text-align: center;
       border: 1px solid var(--border2);
     }
+
     .rhythm-card .desc {
       font-size: 0.88rem;
       color: var(--text-muted);
       line-height: 1.7;
       margin-bottom: 12px;
     }
+
     .rhythm-card .tempo {
       display: inline-block;
       font-size: 0.75rem;
@@ -150,9 +175,27 @@
       border: 1px solid rgba(200,164,90,0.2);
       margin-top: 4px;
     }
+
+    html[dir="ltr"] .nav-top {
+      flex-direction: row;
+    }
+
+    html[dir="ltr"] .nav-bottom {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .nav-links {
+      flex-direction: row;
+    }
+
     @media (max-width: 640px) {
-      #rhythms-grid { grid-template-columns: 1fr; }
-      .rhythms-content { padding: 30px 4% 80px; }
+      #rhythms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rhythms-content {
+        padding: 30px 4% 80px;
+      }
     }
   </style>
 </head>
@@ -164,6 +207,7 @@
         <div class="nav-top-right">
           <a href="index-en.html" class="nav-logo">Musicatea</a>
         </div>
+
         <div class="nav-top-left">
           <a href="rhythms.html" class="lang-toggle" aria-label="Switch to Arabic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -175,6 +219,7 @@
           </a>
         </div>
       </div>
+
       <div class="nav-bottom">
         <div class="nav-links">
           <a href="index-en.html">Home</a>
@@ -189,9 +234,11 @@
   </nav>
 
   <header class="rhythms-hero">
-    <span class="rhythms-hero-tag">Encyclopedia</span>
+    <span class="rhythms-hero-tag">Rhythm</span>
     <h1>Arabic Rhythms</h1>
-    <p>A comprehensive guide to Arabic musical rhythms</p>
+    <p>
+      A practical guide to common Arabic rhythmic cycles, their basic patterns, time signatures, and musical character.
+    </p>
   </header>
 
   <div class="rhythms-content">
@@ -212,7 +259,7 @@
     <span>© 2025 Musicatea</span>
   </footer>
 
-  <script src="data/rhythms.js"></script>
+  <script src="data/rhythms-en.js"></script>
   <script src="assets/ui.js"></script>
   <script>
     const rhythmsGrid = document.getElementById('rhythms-grid');
@@ -245,7 +292,7 @@
       );
 
       if (!filtered.length) {
-        rhythmsGrid.appendChild(createEmptyState('No matching rhythms'));
+        rhythmsGrid.appendChild(createEmptyState('No matching rhythms found'));
         return;
       }
 
@@ -255,6 +302,5 @@
     searchInput.addEventListener('input', e => renderRhythms(e.target.value));
     renderRhythms();
   </script>
-
 </body>
 </html>
