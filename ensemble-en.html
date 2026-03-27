@@ -8,7 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    body { direction: ltr; }
+    body[dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+    }
 
     .ensemble-hero {
       padding: 60px 5% 48px;
@@ -16,6 +19,7 @@
       background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
       text-align: center;
     }
+
     .ensemble-badge {
       display: inline-block;
       font-size: 0.9rem;
@@ -29,6 +33,7 @@
       padding: 6px 16px;
       border-radius: 100px;
     }
+
     .ensemble-hero h1 {
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 900;
@@ -38,18 +43,21 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     .ensemble-hero .subtitle {
       font-size: 1.1rem;
       color: var(--text-muted);
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto 28px;
       line-height: 1.8;
     }
+
     .ensemble-content {
       max-width: 900px;
       margin: 0 auto;
       padding: 60px 5% 80px;
     }
+
     .section-block {
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -58,30 +66,38 @@
       margin-bottom: 32px;
       transition: all 0.4s var(--ease);
     }
+
     .section-block:hover {
       border-color: rgba(200,164,90,0.2);
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
+
     .section-block h2 {
       font-size: 1.5rem;
       font-weight: 800;
       margin-bottom: 18px;
       color: var(--gold-light);
     }
+
     .section-block p {
       color: var(--text-muted);
       line-height: 1.95;
       font-size: 1rem;
       margin-bottom: 14px;
     }
-    .section-block p:last-child { margin-bottom: 0; }
+
+    .section-block p:last-child {
+      margin-bottom: 0;
+    }
+
     .goals-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 18px;
       margin-top: 24px;
     }
+
     .goal-item {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -90,11 +106,13 @@
       border-left: 3px solid var(--gold-dim);
       transition: all 0.3s var(--ease);
     }
+
     .goal-item:hover {
       background: var(--surface2);
       border-left-color: var(--gold);
       transform: translateX(4px);
     }
+
     .goal-item::before {
       content: '✓';
       display: inline-block;
@@ -109,13 +127,20 @@
       margin-right: 10px;
       font-size: 0.85rem;
     }
-    .goal-item p { font-size: 0.92rem; margin: 0; color: var(--text); }
+
+    .goal-item p {
+      font-size: 0.92rem;
+      margin: 0;
+      color: var(--text);
+    }
+
     .instruments-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: 14px;
       margin-top: 24px;
     }
+
     .instrument-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -124,13 +149,25 @@
       text-align: center;
       transition: all 0.3s var(--ease);
     }
+
     .instrument-card:hover {
       background: var(--gold-dim);
       border-color: rgba(200,164,90,0.3);
       transform: translateY(-4px);
     }
-    .instrument-card .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
-    .instrument-card .name { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+
+    .instrument-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .instrument-card .name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
     .contact-section {
       background: linear-gradient(135deg, var(--bg3), var(--bg2));
       border: 1px solid var(--border);
@@ -138,9 +175,27 @@
       padding: 40px;
       text-align: center;
     }
-    .contact-section h2 { font-size: 1.6rem; font-weight: 900; margin-bottom: 12px; color: var(--text); }
-    .contact-section p { color: var(--text-muted); margin-bottom: 28px; font-size: 1rem; }
-    .contact-methods { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+    .contact-section h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: 1rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     .contact-btn {
       display: inline-flex;
       align-items: center;
@@ -155,12 +210,14 @@
       text-decoration: none;
       transition: all 0.3s var(--ease);
     }
+
     .contact-btn:hover {
       background: rgba(200,164,90,0.2);
       border-color: rgba(200,164,90,0.45);
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(200,164,90,0.2);
     }
+
     .director-card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -171,6 +228,7 @@
       align-items: start;
       gap: 24px;
     }
+
     .director-avatar {
       width: 80px;
       height: 80px;
@@ -185,15 +243,64 @@
       font-weight: 900;
       flex-shrink: 0;
     }
-    .director-info h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; color: var(--text); }
-    .director-info .title { font-size: 0.9rem; color: var(--gold); margin-bottom: 14px; display: block; }
-    .director-info p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin: 0; }
+
+    .director-info h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .director-info .title {
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .director-info p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    html[dir="ltr"] .nav-top {
+      flex-direction: row;
+    }
+
+    html[dir="ltr"] .nav-bottom {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .nav-links {
+      flex-direction: row;
+    }
+
     @media (max-width: 640px) {
-      .ensemble-content { padding: 40px 4% 60px; }
-      .section-block { padding: 28px 20px; }
-      .goals-grid, .instruments-grid { grid-template-columns: 1fr; }
-      .contact-methods { flex-direction: column; align-items: stretch; }
-      .director-card { flex-direction: column; text-align: center; align-items: center; }
+      .ensemble-content {
+        padding: 40px 4% 60px;
+      }
+
+      .section-block {
+        padding: 28px 20px;
+      }
+
+      .goals-grid,
+      .instruments-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-methods {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .director-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
     }
   </style>
 </head>
@@ -232,7 +339,7 @@
   <header class="ensemble-hero">
     <span class="ensemble-badge">Program No. 53576</span>
     <h1>Melodies Ensemble</h1>
-    <p class="subtitle">An accredited music education program for spreading Arabic musical culture among the next generation</p>
+    <p class="subtitle">An accredited music education program for spreading Arabic musical culture among the next generation.</p>
   </header>
 
   <div class="ensemble-content">
@@ -240,7 +347,7 @@
     <div class="section-block">
       <h2>About the Program</h2>
       <p>
-        Melodies Ensemble is an accredited and licensed music education program, aimed at spreading Arabic musical culture among the next generation through a modern educational methodology that combines authenticity and creativity.
+        Melodies Ensemble is an accredited and licensed music education program aimed at spreading Arabic musical culture among the next generation through a modern educational methodology that combines authenticity and creativity.
       </p>
       <p>
         The program operates within a comprehensive educational framework that believes music is a right for every child and student, and that it is an effective tool for building character and developing emotional and social intelligence.
@@ -250,18 +357,18 @@
     <div class="section-block">
       <h2>Program Goals</h2>
       <div class="goals-grid">
-        <div class="goal-item"><p>Spreading Arabic musical culture and reinforcing musical identity</p></div>
-        <div class="goal-item"><p>Teaching instrument playing using modern educational methods</p></div>
-        <div class="goal-item"><p>Developing sheet music reading and musical ear skills</p></div>
-        <div class="goal-item"><p>Introducing maqamat and Eastern rhythms</p></div>
-        <div class="goal-item"><p>Building student confidence through musical performances</p></div>
-        <div class="goal-item"><p>Developing teamwork and listening skills</p></div>
+        <div class="goal-item"><p>Spreading Arabic musical culture and strengthening musical identity.</p></div>
+        <div class="goal-item"><p>Teaching instrument playing through modern educational methods.</p></div>
+        <div class="goal-item"><p>Developing sheet music reading and ear-training skills.</p></div>
+        <div class="goal-item"><p>Introducing students to maqamat and Eastern rhythms.</p></div>
+        <div class="goal-item"><p>Building students’ confidence through musical performance.</p></div>
+        <div class="goal-item"><p>Developing teamwork, listening, and ensemble skills.</p></div>
       </div>
     </div>
 
     <div class="section-block">
       <h2>Musical Instruments</h2>
-      <p>Eastern and Western instruments taught to our students in the program</p>
+      <p>Eastern and Western instruments taught to our students in the program.</p>
       <div class="instruments-grid">
         <div class="instrument-card"><span class="icon">🎵</span><span class="name">Oud</span></div>
         <div class="instrument-card"><span class="icon">🎻</span><span class="name">Violin</span></div>
@@ -280,7 +387,7 @@
           <h3>Jawad Abu Younes</h3>
           <span class="title">Oud Player &amp; Music Educator</span>
           <p>
-            Holds a Bachelor's and Master's degree in Music from the Academy of Music and Dance in Jerusalem, with over fifteen years of experience in music education. He founded Melodies Ensemble out of his belief that every child deserves a high-quality music education.
+            He holds a Bachelor's and Master's degree in Music from the Academy of Music and Dance in Jerusalem, with more than fifteen years of experience in music education. He founded Melodies Ensemble from the belief that every child deserves access to serious, high-quality music education.
           </p>
         </div>
       </div>
@@ -288,7 +395,7 @@
 
     <div class="contact-section">
       <h2>Contact Us</h2>
-      <p>For inquiries and program registration</p>
+      <p>For inquiries and registration.</p>
       <div class="contact-methods">
         <a href="tel:+972545046911" class="contact-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
