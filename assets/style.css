@@ -2,9 +2,9 @@
    style.css — Musicatea Enhanced
    Premium dark theme with smooth UX
    Font: Cairo (Arabic-first)
-============================================================ */
- 
-/* ── Variables ─────────────────────────────────────────── */
+*============================================================= */
+
+/* ── Variables ─┐ ──────────────────*/
 :root {
   --bg:         #09090b;
   --bg2:        #0f0f12;
@@ -12,7 +12,7 @@
   --surface:    rgba(255,255,255,0.035);
   --surface2:   rgba(255,255,255,0.06);
   --border:     rgba(255,255,255,0.07);
-  --border2:    rgba(255,255,255,0.12);
+  --border2:     rgba(255,255,255,0.12);
   --gold:       #c8a45a;
   --gold-light: #e2c07a;
   --gold-dim:   rgba(200,164,90,0.12);
@@ -26,9 +26,9 @@
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
  
-/* ── Reset ─────────────────────────────────────────────── */
+/* ─┐ Reset ──────────────────*/
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { 
+html {
   font-size: 16px; 
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
@@ -43,8 +43,8 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-a { 
-  text-decoration: none; 
+a {
+  text-decoration: none;
   color: inherit;
   transition: color 0.3s var(--ease);
 }
@@ -52,54 +52,72 @@ img { display: block; max-width: 100%; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { 
-  background: rgba(200,164,90,0.3); 
+:::-webkit-scrollbar-thumb {
+  background: rgba(200,164,90,0.3);
   border-radius: 3px;
   transition: background 0.3s;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(200,164,90,0.5); }
+:::-webkit-scrollbar-thumb:hover { background: rgba(200,164,90,0.5); }
 ::selection { background: var(--gold-dim); color: var(--gold-light); }
  
-/* ── Navigation ────────────────────────────────────────── */
+/* ── Navigation ──────────────────*/
 .site-nav {
-  position: sticky; top: 0; z-index: 200;
-  padding: 0 5%; height: 70px;
-  background: rgba(9,9,11,0.9);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(9,9,11,0.92);
   backdrop-filter: blur(24px) saturate(1.5);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
   transition: all 0.3s var(--ease);
 }
 
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end; /* Everything to the right */
-  gap: 32px; /* Space between logo and links */
-  width: 100%;
-  height: 100%;
-}
-
 .site-nav.scrolled {
-  height: 64px;
-  background: rgba(9,9,11,0.95);
+  background: rgba(9,9,11,0.96);
   box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-/* Language toggle - top right corner */
-.lang-toggle {
-  position: absolute;
-  top: 12px;
-  left: 5%; /* Left side in RTL */
+.nav-shell {
+  padding: 0 5%;
+}
+
+.nav-top {
+  min-height: 76px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-top-right,
+.nav-top-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.95rem;
+  font-weight: 900;
+  color: var(--gold-light);
+  letter-spacing: 0.02em;
+  transition: transform 0.3s var(--ease);
+}
+
+.nav-logo:hover {
+  transform: scale(1.04);
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 7px 14px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--text-muted);
   transition: all 0.3s var(--ease);
   cursor: pointer;
@@ -108,7 +126,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .lang-toggle:hover {
   background: var(--surface2);
-  border-color: rgba(200,164,90,0.3);
+  border-color: rgba(200,164,90,0.35);
   color: var(--gold);
 }
 
@@ -117,31 +135,24 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 14px;
 }
 
-.nav-logo {
-  font-size: 1.75rem; /* BIGGER */
-  font-weight: 900; 
-  color: var(--gold-light);
-  letter-spacing: 0.02em;
-  transition: transform 0.3s var(--ease);
-  order: 1; /* Logo appears first on the right */
+.nav-bottom {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
 }
 
-.nav-logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-links { 
-  display: flex; 
-  align-items: Right; 
+.nav-links {
+  display: flex;
+  align-items: center;
   gap: 4px;
-  order: 2; /* Links appear after logo */
+  flex-wrap: wrap;
 }
 
 .nav-links a {
-  color: var(--text-muted); 
-  font-size: 0.9rem; 
+  color: var(--text-muted);
+  font-size: 0.9rem;
   font-weight: 500;
-  padding: 8px 16px; 
+  padding: 8px 16px;
   border-radius: 9px;
   transition: all 0.3s var(--ease);
   position: relative;
@@ -159,21 +170,31 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: transform 0.3s var(--ease);
 }
 
-.nav-links a:hover { 
-  color: var(--text); 
+.nav-links a:hover {
+  color: var(--text);
   background: var(--surface2);
 }
 
-.nav-links a.active { 
-  color: var(--gold-light); 
+.nav-links a.active {
+  color: var(--gold-light);
   background: var(--gold-dim);
 }
 
 .nav-links a.active::after {
   transform: translateX(-50%) scaleX(1);
 }
+
+html[dir="rtl"] .nav-top,
+html[dir="ltr"] .nav-top {
+  flex-direction: row;
+}
+
+html[dir="rtl"] .nav-bottom,
+html[dir="ltr"] .nav-bottom {
+  justify-content: flex-start;
+}
  
-/* ── Page hero areas ───────────────────────────────────── */
+/* ── Page hero areas ─┐ ────────────────*/
 .page-hero {
   padding: 60px 5% 48px;
   border-bottom: 1px solid var(--border);
@@ -202,14 +223,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-clip: text;
 }
 
-.page-hero p { 
+.page-hero p {
   color: var(--text-muted); 
   max-width: 580px; 
   font-size: 1rem;
   line-height: 1.8;
 }
  
-/* ── Filters bar ───────────────────────────────────────── */
+/* ── Filters bar ────────────────── */
 .filters {
   display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
   padding: 20px 5%; border-bottom: 1px solid var(--border);
@@ -219,14 +240,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .filters select,
 .filters input[type="text"] {
-  background: var(--surface); 
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px; 
+  border-radius: 10px;
   padding: 10px 16px;
-  color: var(--text); 
-  font-family: inherit; 
+  color: var(--text);
+  font-family: inherit;
   font-size: 0.9rem;
-  outline: none; 
+  outline: none;
   transition: all 0.3s var(--ease);
   -webkit-appearance: none;
 }
@@ -246,7 +267,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .filters select option { background: var(--bg3); }
  
-/* ── List / grid ───────────────────────────────────────── */
+/* ── List / grid ─┐ ─────────────────*/
 #list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -254,14 +275,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 32px 5%;
 }
  
-/* ── Card ──────────────────────────────────────────────── */
+/* ── Card ──────────────────*/
 .card {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 22px;
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   gap: 0;
   transition: all 0.4s var(--ease);
   animation: fadeInScale 0.5s var(--ease) backwards;
@@ -287,16 +308,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .card-header { margin-bottom: 14px; }
 
 .card-title-row {
-  display: flex; 
+  display: flex;
   align-items: flex-start;
-  justify-content: space-between; 
-  gap: 10px; 
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 8px;
 }
 
 .card-title {
-  font-size: 1.05rem; 
-  font-weight: 700; 
+  font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.35;
   color: var(--text);
   transition: color 0.3s;
@@ -306,8 +327,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--gold-light);
 }
 
-.card-composer { 
-  font-size: 0.85rem; 
+.card-composer {
+  font-size: 0.85rem;
   color: var(--text-muted);
   transition: color 0.3s;
 }
@@ -316,30 +337,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text);
 }
 
-.card-performer { 
-  font-size: 0.8rem; 
-  color: var(--text-dim); 
+.card-performer {
+  font-size: 0.8rem;
+  color: var(--text-dim);
   margin-top: 3px;
 }
 
 .card-meta {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 16px; 
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
-.card-maqam { 
-  font-size: 0.85rem; 
+.card-maqam {
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .card-tonic {
-  font-size: 0.76rem; 
-  padding: 3px 10px; 
+  font-size: 0.76rem;
+  padding: 3px 10px;
   border-radius: 100px;
-  background: var(--surface2); 
+  background: var(--surface2);
   border: 1px solid var(--border2);
   color: var(--text-dim);
   transition: all 0.3s;
@@ -353,7 +374,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  
 /* Maqam link in cards */
 .maqam-link {
-  color: var(--gold); 
+  color: var(--gold);
   text-decoration: none;
   transition: color 0.3s;
   position: relative;
@@ -370,7 +391,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: width 0.3s var(--ease);
 }
 
-.maqam-link:hover { 
+.maqam-link:hover {
   color: var(--gold-light);
 }
 
@@ -380,18 +401,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  
 /* Badges */
 .badge {
-  font-size: 0.7rem; 
-  font-weight: 700; 
+  font-size: 0.7rem;
+  font-weight: 700;
   padding: 4px 10px;
-  border-radius: 100px; 
-  white-space: nowrap; 
+  border-radius: 100px;
+  white-space: nowrap;
   flex-shrink: 0;
   letter-spacing: 0.04em;
   transition: all 0.3s var(--ease);
 }
 
 .badge-song {
-  background: rgba(200,164,90,0.12); 
+  background: rgba(200,164,90,0.12);
   color: var(--gold);
   border: 1px solid rgba(200,164,90,0.22);
 }
@@ -402,7 +423,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .badge-inst {
-  background: rgba(126,207,160,0.1); 
+  background: rgba(126,207,160,0.1);
   color: var(--green);
   border: 1px solid rgba(126,207,160,0.2);
 }
@@ -414,18 +435,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  
 /* Download button */
 .download-btn {
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-top: auto; 
+  margin-top: auto;
   padding: 11px 0;
-  background: var(--gold-dim); 
+  background: var(--gold-dim);
   border: 1px solid rgba(200,164,90,0.22);
-  border-radius: 10px; 
+  border-radius: 10px;
   color: var(--gold-light);
-  font-size: 0.88rem; 
-  font-weight: 600; 
+  font-size: 0.88rem;
+  font-weight: 600;
   font-family: inherit;
   text-decoration: none;
   transition: all 0.3s var(--ease);
@@ -448,17 +469,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
  
 /* Legacy download class */
 a.download {
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-top: 14px; 
+  margin-top: 14px;
   padding: 11px 0;
-  background: var(--gold-dim); 
+  background: var(--gold-dim);
   border: 1px solid rgba(200,164,90,0.22);
-  border-radius: 10px; 
+  border-radius: 10px;
   color: var(--gold-light);
-  font-size: 0.88rem; 
+  font-size: 0.88rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s var(--ease);
@@ -470,15 +491,15 @@ a.download:hover {
   transform: translateY(-2px);
 }
  
-/* ── Empty state ───────────────────────────────────────── */
+/* ─┐ Empty state ──────────────────*/
 .empty-state {
   grid-column: 1 / -1;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 14px;
-  padding: 80px 20px; 
-  color: var(--text-dim); 
+  padding: 80px 20px;
+  color: var(--text-dim);
   font-size: 0.95rem;
   text-align: center;
   animation: fadeIn 0.5s var(--ease);
@@ -489,25 +510,25 @@ a.download:hover {
   to { opacity: 1; }
 }
  
-/* ── System toggle ─────────────────────────────────────── */
+/* ── System toggle ──────────────────*/
 .system-toggle {
-  display: flex; 
-  gap: 4px; 
+  display: flex;
+  gap: 4px;
   background: var(--surface);
-  border: 1px solid var(--border); 
-  border-radius: 11px; 
+  border: 1px solid var(--border);
+  border-radius: 11px;
   padding: 5px;
 }
 
 .system-toggle-btn {
-  padding: 8px 20px; 
-  border-radius: 8px; 
+  padding: 8px 20px;
+  border-radius: 8px;
   font-size: 0.9rem;
-  font-family: inherit; 
+  font-family: inherit;
   color: var(--text-muted);
-  transition: all 0.3s var(--ease); 
-  cursor: pointer; 
-  border: none; 
+  transition: all 0.3s var(--ease);
+  cursor: pointer;
+  border: none;
   background: none;
 }
 
@@ -517,68 +538,72 @@ a.download:hover {
 }
 
 .system-toggle-btn.active {
-  background: var(--gold-dim); 
+  background: var(--gold-dim);
   color: var(--gold-light);
   border: 1px solid rgba(200,164,90,0.25);
   transform: scale(1.02);
 }
  
-/* ── Footer ────────────────────────────────────────────── */
+/* ── Footer ─┐ ──────────────────*/
 .site-footer {
   border-top: 1px solid var(--border);
-  padding: 40px 5%; 
+  padding: 40px 5%;
   margin-top: 80px;
-  display: flex; 
+  display: flex;
   align-items: center;
-  justify-content: space-between; 
-  flex-wrap: wrap; 
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 16px;
-  color: var(--text-dim); 
+  color: var(--text-dim);
   font-size: 0.85rem;
   background: var(--bg2);
 }
 
-.footer-logo { 
-  font-weight: 900; 
-  font-size: 1.1rem; 
+.footer-logo {
+  font-weight: 900;
+  font-size: 1.1rem;
   color: var(--gold-light);
 }
  
-/* ── Responsive ────────────────────────────────────────── */
+/* ─┐ Responsive ─┐ ─────────────────*/
 @media (max-width: 640px) {
-  #list { 
-    grid-template-columns: 1fr; 
-    padding: 24px 4%; 
+  #list {
+    grid-template-columns: 1fr;
+    padding: 24px 4%;
     gap: 16px;
   }
-  .filters { 
-    padding: 16px 4%; 
+  .filters {
+    padding: 16px 4%;
     top: 64px;
     gap: 10px;
   }
-  .site-nav { 
+  .site-nav {
+    padding: 0;
+  }
+  .nav-shell {
     padding: 0 4%;
-    height: 64px;
   }
-  .nav-container {
-    gap: 16px;
+  .nav-top {
+    min-height: 70px;
   }
-  .nav-links a { 
-    padding: 7px 10px; 
-    font-size: 0.82rem;
+  .nav-bottom {
+    min-height: 54px;
+    padding: 8px 0;
   }
   .nav-logo {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
   }
   .lang-toggle {
-    top: 8px;
-    left: 4%;
     font-size: 0.75rem;
-    padding: 5px 10px;
+    padding: 6px 10px;
+  }
+  .nav-links a {
+    padding: 7px 10px;
+    font-size: 0.82rem;
   }
 }
 
-/* ── Smooth scroll animations ─────────────────────────── */
+/* ─┐ Smooth scroll animations ────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   .card {
     animation-delay: calc(var(--card-index, 0) * 0.05s);
