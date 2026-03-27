@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عائلة الراست | موسيقتي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────── */
+    :root {
+      --bg:        #0e0d0b;
+      --bg2:       #131210;
+      --surface:   #1a1916;
+      --surface2:  #1f1e1b;
+      --border:    rgba(255,255,255,0.07);
+      --border2:   rgba(255,255,255,0.04);
+      --text:      #f0ece4;
+      --text-muted:#b8b0a0;
+      --text-dim:  #6e6860;
+      --gold:      #c8a45a;
+      --gold-light:#e0c07a;
+      --gold-dim:  rgba(200,164,90,0.10);
+      --ease:      cubic-bezier(0.22,1,0.36,1);
+      --rast:      #c8a45a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14,13,11,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-shell { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+
+    .nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0 10px;
+    }
+
+    .nav-logo {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold-light);
+      letter-spacing: -0.02em;
+    }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.25s ease;
+    }
+    .lang-toggle svg { width: 14px; height: 14px; }
+    .lang-toggle:hover { color: var(--gold); border-color: rgba(200,164,90,0.3); }
+
+    .nav-bottom { padding-bottom: 10px; }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--text-muted); background: var(--surface); }
+    .nav-links a.active { color: var(--gold); background: var(--gold-dim); }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .family-hero {
+      position: relative;
+      padding: 64px 5% 52px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .family-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 85% 50%, rgba(200,164,90,0.06) 0%, transparent 70%),
+        linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    .family-hero::after {
+      content: 'راست';
+      position: absolute;
+      left: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 900;
+      color: rgba(200,164,90,0.04);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      font-size: 0.84rem;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+    }
+
+    .breadcrumbs a { transition: color 0.2s ease; }
+    .breadcrumbs a:hover { color: var(--gold); }
+    .breadcrumbs .sep { color: var(--border); }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-top h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--gold-light);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-top h1 span {
+      display: block;
+      font-size: 0.38em;
+      font-weight: 400;
+      color: var(--text-dim);
+      font-style: italic;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.22);
+      color: var(--gold);
+      font-size: 0.84rem;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .hero-desc {
+      max-width: 780px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    /* ─── STAT STRIP ──────────────────────────────── */
+    .stat-strip {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 28px 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .stat-label {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .stat-value.gold { color: var(--gold); }
+
+    /* ─── CONTENT ─────────────────────────────────── */
+    .content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 44px 5% 100px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .section-header .count {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── MAQAM GRID ──────────────────────────────── */
+    .maqam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .maqam-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s var(--ease);
+      cursor: pointer;
+    }
+
+    .maqam-card.is-main {
+      border-color: rgba(200,164,90,0.28);
+      grid-column: span 2;
+    }
+
+    @media (max-width: 720px) {
+      .maqam-card.is-main { grid-column: span 1; }
+    }
+
+    .maqam-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.55);
+      border-color: rgba(200,164,90,0.35);
+    }
+
+    .card-accent {
+      height: 4px;
+      background: var(--rast);
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .maqam-card.is-main .card-accent { opacity: 1; }
+    .maqam-card:hover .card-accent { opacity: 1; }
+
+    .card-body { padding: 24px; }
+
+    .main-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(200,164,90,0.2);
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .card-name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .card-name {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text);
+    }
+
+    .maqam-card.is-main .card-name { font-size: 1.8rem; color: var(--gold-light); }
+
+    .card-latin {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    /* ─── SCALE DISPLAY ───────────────────────────── */
+    .scale-block {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+
+    .scale-label {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .scale-notes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .note-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .note-pill.tonic {
+      background: var(--gold-dim);
+      border-color: rgba(200,164,90,0.35);
+      color: var(--gold);
+    }
+
+    .note-pill.half-flat {
+      color: var(--text);
+      border-color: rgba(200,164,90,0.15);
+    }
+
+    .note-sep {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+
+    /* ─── JINS ROW ────────────────────────────────── */
+    .jins-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .jins-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .jins-badge .jins-role {
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── FEELINGS ────────────────────────────────── */
+    .feelings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .feeling-tag {
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+
+    /* ─── CARD FOOTER ─────────────────────────────── */
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--border2);
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .card-footer .dominant {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-footer .dominant span:first-child {
+      color: var(--text-dim);
+    }
+
+    .card-footer .dominant strong {
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    /* ─── FAMILY TRAIT BOX ────────────────────────── */
+    .trait-box {
+      background: var(--surface);
+      border: 1px solid rgba(200,164,90,0.15);
+      border-radius: 16px;
+      padding: 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trait-box::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(200,164,90,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .trait-box h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .trait-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .trait-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .trait-list li::before {
+      content: '◆';
+      color: var(--gold);
+      font-size: 0.5rem;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    .footer-logo { font-weight: 900; color: var(--gold); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 768px) {
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .maqam-grid { grid-template-columns: 1fr; }
+      .hero-top h1 { font-size: 2.4rem; }
+      .content { padding: 32px 4% 80px; }
+      .family-hero { padding: 48px 4% 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top">
+        <div class="nav-top-right">
+          <a href="index.html" class="nav-logo">موسيقتي</a>
+        </div>
+        <div class="nav-top-left">
+          <a href="rast-family-en.html" class="lang-toggle" aria-label="Switch to English">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span>EN</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-bottom">
+        <div class="nav-links">
+          <a href="index.html">الصفحة الرئيسية</a>
+          <a href="library.html">مكتبة النوتات</a>
+          <a href="maqamat.html" class="active">مقاماتي</a>
+          <a href="rhythms.html">إيقاعاتي</a>
+          <a href="history.html">تاريخ الموسيقى</a>
+          <a href="ensemble.html">إنسامبل الأنغام</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="family-hero">
+    <div class="hero-inner">
+      <nav class="breadcrumbs" aria-label="مسار التنقل">
+        <a href="index.html">الرئيسية</a>
+        <span class="sep">›</span>
+        <a href="maqamat.html">المقامات</a>
+        <span class="sep">›</span>
+        <span>عائلة الراست</span>
+      </nav>
+
+      <div class="hero-top">
+        <h1>
+          عائلة الراست
+          <span>Rast Family</span>
+        </h1>
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+          </svg>
+          ٨ مقامات
+        </div>
+      </div>
+
+      <p class="hero-desc">
+        عائلة الراست من أعرق عائلات المقامات العربية، وتُعدّ «أمّ المقامات» لكثرة ما يُشتقّ منها.
+        تقوم جميع مقاماتها على جنس الراست كجنس أساسي في القرار،
+        ثم تتنوع في أجناسها العليا لتُنتج ألواناً لحنية متعددة — من الرصانة والقوة إلى البهجة والدراما.
+      </p>
+    </div>
+  </header>
+
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-card">
+      <div class="stat-label">الجنس الأساسي</div>
+      <div class="stat-value gold">جنس الراست</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">درجة القرار الرئيسية</div>
+      <div class="stat-value">دو (C)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">الدرجة الغالبة</div>
+      <div class="stat-value">صول (G)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">الطابع العام</div>
+      <div class="stat-value">استقرار · رصانة · تنوع</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">عدد المقامات</div>
+      <div class="stat-value gold">٨ مقامات</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- MAQAMAT SECTION -->
+    <div class="section-header">
+      <h2>مقامات العائلة</h2>
+      <span class="count">8 مقامات</span>
+    </div>
+
+    <div class="maqam-grid">
+
+      <!-- ① RAST (MAIN) -->
+      <div class="maqam-card is-main">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="main-tag">★ المقام الأساسي</div>
+          <div class="card-name-row">
+            <span class="card-name">راست</span>
+            <span class="card-latin">Rast</span>
+          </div>
+          <p class="card-desc">
+            يُلقَّب بـ«أبو المقامات» — مستقر، متوازن، وأساسي في الموسيقى العربية الكلاسيكية.
+            يرتبط بالرصانة والقوة، ويُعدّ المرجع الذي تُقاس إليه بقية مقامات العائلة.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">سي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس راست — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">توازن</span>
+            <span class="feeling-tag">رصانة</span>
+            <span class="feeling-tag">قوة</span>
+            <span class="feeling-tag">استقرار</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>ري · فا · دو</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ② KIRDAN -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">كردان</span>
+            <span class="card-latin">Kirdan</span>
+          </div>
+          <p class="card-desc">
+            جواب مقام الراست — نفس السلّم تماماً لكنه يبدأ من أوكتاف أعلى (دو العلوي).
+            يُستخدم لرفع الطاقة والتوهج في النهايات الموسيقية.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو العلوي</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">سي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو↑</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس راست — صول↑</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">بهجة</span>
+            <span class="feeling-tag">توهج</span>
+            <span class="feeling-tag">ارتفاع</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>أوكتاف الراست</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ SUZNAK -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">سوزناك</span>
+            <span class="card-latin">Suznak</span>
+          </div>
+          <p class="card-desc">
+            راست في القرار، حجاز على درجة الصول. يمزج بين استقرار الراست وحدة الحجاز،
+            مما يُعطيه طابعاً درامياً ومؤثراً.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">سي</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس حجاز — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">دراما</span>
+            <span class="feeling-tag">قوة</span>
+            <span class="feeling-tag">تأثير</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>دو · صول</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ MAHUR -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">ماهور</span>
+            <span class="card-latin">Mahur</span>
+          </div>
+          <p class="card-desc">
+            شبيه بالراست لكنه يستخدم «سي بيمول» (عجم) عوضاً عن «سي نصف بيمول».
+            أقرب إلى السلّم الكبير (ماجور)، إضاءته أشد وطابعه احتفالي.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">سي♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس عجم — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">بهجة</span>
+            <span class="feeling-tag">احتفال</span>
+            <span class="feeling-tag">إضاءة</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>دو · فا</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ SAZKAR -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">سازكار</span>
+            <span class="card-latin">Sazkar</span>
+          </div>
+          <p class="card-desc">
+            مقام من عائلة الراست يتميز بجنس حجازكار في الأعلى، مما يُضفي عليه
+            طابعاً شرقياً أعمق مع الحفاظ على استقرار القرار الراستي.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">سي</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس حجازكار — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">شرقي</span>
+            <span class="feeling-tag">عمق</span>
+            <span class="feeling-tag">أصالة</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>دو · صول</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑥ NAIRUZ -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">نيروز</span>
+            <span class="card-latin">Nairuz</span>
+          </div>
+          <p class="card-desc">
+            مقام احتفالي ومبهج، مرتبط تاريخياً بمناسبات الربيع والأفراح.
+            يبدأ براست ثم يُطوَّر في الجواب بأجناس تُضفي خفة ونشاطاً.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على ري</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">مي</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">فا#½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">سي♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">دو#</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">ري</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — ري</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس نهاوند — لا</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">بهجة</span>
+            <span class="feeling-tag">احتفال</span>
+            <span class="feeling-tag">نشاط</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>لا</strong>
+            </div>
+            <span>دو · ري</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑦ DELANSHIN -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">دلنشين</span>
+            <span class="card-latin">Delanshin</span>
+          </div>
+          <p class="card-desc">
+            اسمه يعني «الذي يُسكن القلب» — مقام ناعم وغنائي من عائلة الراست،
+            يمتاز بلمسات حنينية عميقة تجعله مفضلاً في الموسيقى الغزلية.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">سي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس بيات — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">حنين</span>
+            <span class="feeling-tag">نعومة</span>
+            <span class="feeling-tag">غزل</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>دو · صول</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑧ SUZDELARA -->
+      <div class="maqam-card">
+        <div class="card-accent"></div>
+        <div class="card-body">
+          <div class="card-name-row">
+            <span class="card-name">سوزدلارا</span>
+            <span class="card-latin">Suzdelara</span>
+          </div>
+          <p class="card-desc">
+            يمزج بين جنس الراست في القرار وجنس الحجاز على الدرجة الخامسة،
+            فيجمع بين الاستقرار الراستي والحدة الحجازية لينتج طابعاً مختلطاً فريداً.
+          </p>
+          <div class="scale-block">
+            <div class="scale-label">السلّم — على دو</div>
+            <div class="scale-notes">
+              <span class="note-pill tonic">دو</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">ري</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill half-flat">مي½♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">فا</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">صول</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">لا♭</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill">سي</span>
+              <span class="note-sep">—</span>
+              <span class="note-pill tonic">دو</span>
+            </div>
+          </div>
+          <div class="jins-row">
+            <div class="jins-badge">
+              <span class="jins-role">قرار</span>
+              <span>جنس راست — دو</span>
+            </div>
+            <div class="jins-badge">
+              <span class="jins-role">جواب</span>
+              <span>جنس حجاز — صول</span>
+            </div>
+          </div>
+          <div class="feelings">
+            <span class="feeling-tag">قوة</span>
+            <span class="feeling-tag">درامية</span>
+            <span class="feeling-tag">تنوع</span>
+          </div>
+          <div class="card-footer">
+            <div class="dominant">
+              <span>درجة الغالب:</span>
+              <strong>صول</strong>
+            </div>
+            <span>دو · صول</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /maqam-grid -->
+
+    <!-- FAMILY TRAITS -->
+    <div class="section-header">
+      <h2>مميزات عائلة الراست</h2>
+    </div>
+
+    <div class="trait-box">
+      <h3>ما يجمع هذه المقامات</h3>
+      <ul class="trait-list">
+        <li>تعتمد جميعها على <strong>جنس الراست كجنس أول</strong> في القرار (دو — ري — مي½♭ — فا).</li>
+        <li>تتمايز فيما بينها في <strong>الجنس العلوي</strong>: راست / حجاز / عجم / نهاوند / بيات — كل جنس يمنحها طابعها الخاص.</li>
+        <li>درجة «مي نصف بيمول» هي البصمة الأساسية التي تُميّز عائلة الراست عن غيرها.</li>
+        <li>تتشارك في <strong>درجة الغالب صول</strong> (الدرجة الخامسة)، وهو محور التطوير اللحني.</li>
+        <li>تصلح للتعبير عن طيف واسع من المشاعر: من الرصانة والقوة (راست، سازكار) إلى البهجة (ماهور، نيروز) إلى الدراما (سوزناك، سوزدلارا).</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-logo">موسيقتي</span>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+</body>
+</html>
