@@ -1,20 +1,21 @@
 // data/interactive-maqamat.js
-// Initial generic interactive maqam data layer
+// Corrected generic interactive maqam data layer
+// Aligned with the corrected data/maqamat.js structure.
+//
 // Purpose:
 // - hold transposition-ready maqam formulas
-// - define which branch maqam uses which interval model
+// - define which maqam uses which interval model
 // - support dynamic display names by tonic through data/maqamat.js
 //
 // Notes:
-// 1) This file is intentionally formula-based, not hardcoded per-tonic note lists.
+// 1) This file is formula-based, not hardcoded tonic-by-tonic note lists.
 // 2) Quarter-tone math:
 //    whole tone = 4
 //    semitone   = 2
 //    half-flat / half-sharp adjustment = 1
-//    octave = 24
-// 3) Branch maqamat that still need precise interval verification can temporarily
-//    inherit their family/core formula. That keeps the system generic and usable now.
-// 4) Exact Arabic note spelling/rendering will be handled later in assets/interactive-scale.js.
+//    octave     = 24
+// 3) Exact branch formulas can be refined later when you send the final note data.
+// 4) Right now this file is corrected structurally to match the new families.
 
 const INTERACTIVE_TONIC_ORDER_STANDARD = [
   "do",
@@ -35,25 +36,26 @@ const INTERACTIVE_TONIC_ORDER_HALF_FLAT = [
 ];
 
 const INTERACTIVE_TONIC_META = {
-  do:            { label_ar: "دو",           label_en: "C",  pitch_class: 0,  accidental: null,        family_mode: "standard" },
-  re:            { label_ar: "ري",           label_en: "D",  pitch_class: 2,  accidental: null,        family_mode: "standard" },
-  mi_flat:       { label_ar: "مي بيمول",     label_en: "Eb", pitch_class: 3,  accidental: "flat",      family_mode: "standard" },
-  fa:            { label_ar: "فا",           label_en: "F",  pitch_class: 5,  accidental: null,        family_mode: "standard" },
-  sol:           { label_ar: "صول",          label_en: "G",  pitch_class: 7,  accidental: null,        family_mode: "standard" },
-  la_flat:       { label_ar: "لا بيمول",     label_en: "Ab", pitch_class: 8,  accidental: "flat",      family_mode: "standard" },
-  la:            { label_ar: "لا",           label_en: "A",  pitch_class: 9,  accidental: null,        family_mode: "standard" },
-  si_flat:       { label_ar: "سي بيمول",     label_en: "Bb", pitch_class: 10, accidental: "flat",      family_mode: "standard" },
-  si:            { label_ar: "سي",           label_en: "B",  pitch_class: 11, accidental: null,        family_mode: "standard" },
+  do:            { label_ar: "دو",           label_en: "C",    pitch_class: 0,  accidental: null,         family_mode: "standard" },
+  re:            { label_ar: "ري",           label_en: "D",    pitch_class: 2,  accidental: null,         family_mode: "standard" },
+  mi_flat:       { label_ar: "مي بيمول",     label_en: "Eb",   pitch_class: 3,  accidental: "flat",       family_mode: "standard" },
+  fa:            { label_ar: "فا",           label_en: "F",    pitch_class: 5,  accidental: null,         family_mode: "standard" },
+  sol:           { label_ar: "صول",          label_en: "G",    pitch_class: 7,  accidental: null,         family_mode: "standard" },
+  la_flat:       { label_ar: "لا بيمول",     label_en: "Ab",   pitch_class: 8,  accidental: "flat",       family_mode: "standard" },
+  la:            { label_ar: "لا",           label_en: "A",    pitch_class: 9,  accidental: null,         family_mode: "standard" },
+  si_flat:       { label_ar: "سي بيمول",     label_en: "Bb",   pitch_class: 10, accidental: "flat",       family_mode: "standard" },
+  si:            { label_ar: "سي",           label_en: "B",    pitch_class: 11, accidental: null,         family_mode: "standard" },
 
-  mi_half_flat:  { label_ar: "مي نصف بيمول", label_en: "E♭½", pitch_class: 4,  accidental: "half_flat", family_mode: "half_flat_only" },
-  la_half_flat:  { label_ar: "لا نصف بيمول", label_en: "A♭½", pitch_class: 9,  accidental: "half_flat", family_mode: "half_flat_only" },
-  si_half_flat:  { label_ar: "سي نصف بيمول", label_en: "B♭½", pitch_class: 11, accidental: "half_flat", family_mode: "half_flat_only" }
+  mi_half_flat:  { label_ar: "مي نصف بيمول", label_en: "E♭½",  pitch_class: 4,  accidental: "half_flat",  family_mode: "half_flat_only" },
+  la_half_flat:  { label_ar: "لا نصف بيمول", label_en: "A♭½",  pitch_class: 9,  accidental: "half_flat",  family_mode: "half_flat_only" },
+  si_half_flat:  { label_ar: "سي نصف بيمول", label_en: "B♭½",  pitch_class: 11, accidental: "half_flat",  family_mode: "half_flat_only" }
 };
 
 // Formula library in quarter-tone offsets from tonic
-// degree 1 always = 0
-// last degree = 24 (octave)
+// degree 1 = 0
+// degree 8 = 24
 const INTERACTIVE_FORMULA_LIBRARY = {
+  // Main core families
   rast:                 [0, 4, 7, 10, 14, 18, 21, 24],
   bayati:               [0, 3, 7, 10, 14, 17, 21, 24],
   ajam:                 [0, 4, 8, 10, 14, 18, 22, 24],
@@ -64,38 +66,51 @@ const INTERACTIVE_FORMULA_LIBRARY = {
   saba:                 [0, 3, 6, 8, 14, 16, 20, 24],
   nawa_athar:           [0, 4, 6, 10, 12, 16, 20, 24],
 
-  // Family/branch draft formulas
-  suzdilara:            [0, 4, 7, 10, 14, 16, 20, 24],
+  // Rast family branches
+  suznak:               [0, 4, 7, 10, 14, 16, 20, 24],
+  mahur:                [0, 4, 8, 10, 14, 18, 22, 24],
   nairuz:               [0, 4, 7, 10, 14, 16, 20, 24],
-  yakah:                [0, 4, 7, 10, 14, 18, 21, 24],
+  bashayer:             [0, 4, 7, 10, 14, 18, 20, 24],
+  sazkar:               [0, 4, 7, 10, 14, 16, 20, 24],
+  dalanshin:            [0, 4, 7, 10, 14, 16, 21, 24],
 
+  // Bayati family branches
   bayati_shuri:         [0, 3, 7, 10, 14, 16, 20, 24],
   husayni:              [0, 3, 7, 10, 14, 17, 21, 24],
   muhayyar:             [0, 3, 7, 10, 14, 17, 21, 24],
   bayatin:              [0, 3, 7, 10, 14, 17, 21, 24],
   nahuft:               [0, 4, 6, 10, 14, 16, 20, 24],
 
+  // Ajam family branches
   ajam_ushayran:        [0, 4, 8, 10, 14, 18, 22, 24],
   shawq_afza:           [0, 4, 8, 10, 14, 18, 22, 24],
   suznal:               [0, 4, 8, 10, 14, 16, 20, 24],
   ajam_murassa:         [0, 4, 8, 10, 14, 17, 21, 24],
   jaharkah:             [0, 4, 8, 10, 14, 18, 22, 24],
 
+  // Hijaz family branches
+  hijazkar:             [0, 2, 6, 10, 14, 18, 22, 24],
+  shadd_araban:         [0, 2, 6, 10, 14, 16, 20, 24],
+  suzdil:               [0, 2, 6, 10, 14, 16, 20, 24],
+  shahnaz:              [0, 2, 6, 10, 14, 16, 20, 24],
   hijazayn:             [0, 2, 6, 10, 14, 16, 20, 24],
   zanjaran:             [0, 2, 6, 10, 14, 16, 20, 24],
   hijaz_ajami:          [0, 2, 6, 10, 14, 18, 22, 24],
 
+  // Nahawand family branches
   nahawand_murassa:     [0, 4, 6, 10, 14, 17, 21, 24],
   ushshaq_masri:        [0, 4, 6, 10, 14, 17, 21, 24],
   tarz_jadid:           [0, 4, 6, 10, 14, 16, 20, 24],
   nahawand_kabir:       [0, 4, 6, 10, 14, 18, 22, 24],
   nahawand_kurdi:       [0, 2, 6, 10, 14, 16, 20, 24],
 
+  // Kurd family branches
   tarz_nawin:           [0, 2, 6, 10, 14, 16, 20, 24],
   shahnaz_kurdi:        [0, 2, 6, 10, 14, 16, 20, 24],
   lami:                 [0, 2, 6, 10, 14, 16, 20, 24],
   athar_kurd:           [0, 2, 6, 10, 14, 16, 20, 24],
 
+  // Sikah family branches
   huzam:                [0, 3, 6, 10, 14, 17, 20, 24],
   rahat_al_arwah:       [0, 3, 6, 10, 14, 17, 20, 24],
   iraq:                 [0, 3, 6, 10, 14, 17, 20, 24],
@@ -106,15 +121,17 @@ const INTERACTIVE_FORMULA_LIBRARY = {
   shaar:                [0, 3, 6, 10, 14, 17, 20, 24],
   rahat_faza:           [0, 3, 6, 10, 14, 17, 20, 24],
 
+  // Saba family branches
   saba_jadid:           [0, 3, 6, 8, 14, 16, 20, 24],
   zamzama:              [0, 2, 6, 8, 14, 16, 20, 24],
 
+  // Nawa Athar family branches
   nikriz:               [0, 4, 6, 10, 12, 16, 20, 24],
   basandida:            [0, 4, 6, 10, 12, 16, 20, 24]
 };
 
-// Generic per-maqam interactive configuration
 const INTERACTIVE_MAQAM_DATA = {
+  // Rast family
   rast: {
     formula_key: "rast",
     tonic_mode: "standard",
@@ -124,8 +141,17 @@ const INTERACTIVE_MAQAM_DATA = {
     upper_jins_degree_range: [5, 8],
     playback_octave_base: 4
   },
-  suzdilara: {
-    formula_key: "suzdilara",
+  suznak: {
+    formula_key: "suznak",
+    tonic_mode: "standard",
+    default_tonic: "do",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  mahur: {
+    formula_key: "mahur",
     tonic_mode: "standard",
     default_tonic: "do",
     available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
@@ -142,16 +168,35 @@ const INTERACTIVE_MAQAM_DATA = {
     upper_jins_degree_range: [5, 8],
     playback_octave_base: 4
   },
-  yakah: {
-    formula_key: "yakah",
+  bashayer: {
+    formula_key: "bashayer",
     tonic_mode: "standard",
-    default_tonic: "sol",
+    default_tonic: "do",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  sazkar: {
+    formula_key: "sazkar",
+    tonic_mode: "standard",
+    default_tonic: "do",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  dalanshin: {
+    formula_key: "dalanshin",
+    tonic_mode: "standard",
+    default_tonic: "do",
     available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
     lower_jins_degree_range: [1, 4],
     upper_jins_degree_range: [5, 8],
     playback_octave_base: 4
   },
 
+  // Bayati family
   bayati: {
     formula_key: "bayati",
     tonic_mode: "standard",
@@ -207,6 +252,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Ajam family
   ajam: {
     formula_key: "ajam",
     tonic_mode: "standard",
@@ -262,8 +308,45 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Hijaz family
   hijaz: {
     formula_key: "hijaz",
+    tonic_mode: "standard",
+    default_tonic: "re",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  hijazkar: {
+    formula_key: "hijazkar",
+    tonic_mode: "standard",
+    default_tonic: "do",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  shadd_araban: {
+    formula_key: "shadd_araban",
+    tonic_mode: "standard",
+    default_tonic: "sol",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  suzdil: {
+    formula_key: "suzdil",
+    tonic_mode: "standard",
+    default_tonic: "la",
+    available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
+    lower_jins_degree_range: [1, 4],
+    upper_jins_degree_range: [5, 8],
+    playback_octave_base: 4
+  },
+  shahnaz: {
+    formula_key: "shahnaz",
     tonic_mode: "standard",
     default_tonic: "re",
     available_tonics: [...INTERACTIVE_TONIC_ORDER_STANDARD],
@@ -299,6 +382,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Nahawand family
   nahawand: {
     formula_key: "nahawand",
     tonic_mode: "standard",
@@ -354,6 +438,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Kurd family
   kurd: {
     formula_key: "kurd",
     tonic_mode: "standard",
@@ -400,6 +485,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Sikah family
   sikah: {
     formula_key: "sikah",
     tonic_mode: "half_flat_only",
@@ -491,6 +577,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Saba family
   saba: {
     formula_key: "saba",
     tonic_mode: "standard",
@@ -519,6 +606,7 @@ const INTERACTIVE_MAQAM_DATA = {
     playback_octave_base: 4
   },
 
+  // Nawa Athar family
   nawa_athar: {
     formula_key: "nawa_athar",
     tonic_mode: "standard",
@@ -548,7 +636,6 @@ const INTERACTIVE_MAQAM_DATA = {
   }
 };
 
-// Helpers for later use in assets/interactive-scale.js
 function getInteractiveFormulaKey(maqamId) {
   const config = INTERACTIVE_MAQAM_DATA[maqamId];
   return config ? config.formula_key : null;
