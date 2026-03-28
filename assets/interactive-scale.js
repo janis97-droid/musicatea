@@ -1,22 +1,17 @@
 // assets/interactive-scale.js
-// Generic interactive maqam page controller
+// Corrected generic interactive maqam page controller
 // Depends on:
 // - data/maqamat.js
 // - data/interactive-maqamat.js
 //
-// This file:
-// - reads family + maqam from URL
-// - builds sidebar dynamically
-// - builds hero/info dynamically
-// - renders tonic buttons dynamically
-// - computes scale notes from formula data
-// - updates displayed maqam name when tonic changes
-// - updates URL without page reload
-//
-// Notes:
-// - Audio playback is left as a placeholder for now.
-// - Arabic note spelling here is a practical UI layer, not a full notation engine.
-// - You can refine note naming later without changing the generic structure.
+// Fixes in this version:
+// - prevents family/maqam mismatch
+// - keeps note names under keyboard
+// - removes Arabic degree numbers from staff and keyboard
+// - adds main-family switcher above the sidebar
+// - removes "نمط الطبقات" and tonic count from maqam info
+// - adds "other maqam names by tonic" info
+// - keeps page generic for all families
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -53,8 +48,6 @@
     si_half_flat: 21
   };
 
-  const DEGREE_LABELS_AR = ["١", "٢", "٣", "٤", "٥", "٦", "٧", "٨"];
-
   let state = {
     familyId: null,
     maqamId: null,
@@ -67,8 +60,9 @@
   function bootstrap() {
     const requestedFamily = URL_PARAMS.get("family");
     const requestedMaqam = URL_PARAMS.get("maqam");
+    const requestedTonic = URL_PARAMS.get("tonic");
 
-    const resolved = resolveInitialSelection(requestedFamily, requestedMaqam);
+    const resolved = resolveInitialSelection(requestedFamily, requestedMaqam, requestedTonic);
     state.familyId = resolved.familyId;
     state.maqamId = resolved.maqamId;
     state.tonic = resolved.tonic;
@@ -77,7 +71,7 @@
     bindGlobalEvents();
   }
 
-  function resolveInitialSelection(familyId, maqamId) {
+  function resolveInitialSelection(familyId, maqamId, tonic) {
     let resolvedFamily = familyId;
     let resolvedMaqam = maqamId;
 
@@ -94,20 +88,25 @@
     const familyItems = getInteractiveFamily(resolvedFamily);
     const familyMain = getFamilyMainMaqam(resolvedFamily);
 
-    if (!resolvedMaqam || !getInteractiveMaqamById(resolvedMaqam)) {
+    if (!resolvedMaqam) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
 
     const maqamObj = getMaqamById(resolvedMaqam);
-    if (!maqamObj || maqamObj.family !== resolvedFamily) {
+
+    // Fix mismatch: if maqam doesn't belong to family, force family main maqam
+    if (!maqamObj || maqamObj.family !== resolvedFamily || !getInteractiveMaqamById(resolvedMaqam)) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
 
+    const allowedTonics = getInteractiveTonicsForMaqam(resolvedMaqam);
     const defaultTonic = getInteractiveDefaultTonic(resolvedMaqam);
+    const resolvedTonic = allowedTonics.includes(tonic) ? tonic : defaultTonic;
+
     return {
       familyId: resolvedFamily,
       maqamId: resolvedMaqam,
-      tonic: defaultTonic
+      tonic: resolvedTonic
     };
   }
 
@@ -118,18 +117,29 @@
   }
 
   function renderSidebar() {
-    const items = getInteractiveFamily(state.familyId);
+    const familyItems = getInteractiveFamily(state.familyId);
     const familyMain = getFamilyMainMaqam(state.familyId);
     const familyName = familyMain ? familyMain.name : "";
+    const mainFamilies = getInteractiveMainMaqamat();
 
     sidebar.innerHTML = `
       <div class="sidebar-header">
-        <div class="sidebar-family-label">العائلة الموسيقية</div>
+        <div class="sidebar-family-label">تنقّل بين العائلات</div>
+        <div class="family-switcher" id="family-switcher">
+          ${mainFamilies.map(item => `
+            <button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-family-id="${item.family}" data-maqam-id="${item.id}">
+              ${item.name}
+            </button>
+          `).join("")}
+        </div>
+
+        <div class="sidebar-family-label" style="margin-top:12px;">العائلة الموسيقية</div>
         <div class="sidebar-family-name">${familyName}</div>
-        <div class="sidebar-family-sub">${items.length} مقامات</div>
+        <div class="sidebar-family-sub">${familyItems.length} مقامات</div>
       </div>
+
       <ul class="sidebar-list">
-        ${items.map(item => `
+        ${familyItems.map(item => `
           <li class="sidebar-item">
             <button class="sidebar-btn ${item.id === state.maqamId ? "active" : ""} ${item.is_main ? "main-maqam" : ""}" data-maqam-id="${item.id}">
               <span class="sidebar-dot"></span>
@@ -142,6 +152,13 @@
     `;
 
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const maqamId = btn.dataset.maqamId;
+        setActiveMaqam(maqamId);
+      });
+    });
+
+    sidebar.querySelectorAll(".family-switch-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const maqamId = btn.dataset.maqamId;
         setActiveMaqam(maqamId);
@@ -212,11 +229,49 @@
       </section>
     `;
 
+    injectFamilySwitcherStyles();
     renderTonicSelector();
     renderInfoGrid();
     renderStaff();
     renderKeys();
     bindPageEvents();
+  }
+
+  function injectFamilySwitcherStyles() {
+    if (document.getElementById("family-switcher-style")) return;
+
+    const style = document.createElement("style");
+    style.id = "family-switcher-style";
+    style.textContent = `
+      .family-switcher {
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px;
+        margin-top:8px;
+      }
+      .family-switch-btn {
+        border:1px solid rgba(255,255,255,0.08);
+        background:rgba(255,255,255,0.03);
+        color:var(--text-dim);
+        border-radius:999px;
+        padding:4px 10px;
+        font-family:inherit;
+        font-size:.72rem;
+        font-weight:700;
+        cursor:pointer;
+        transition:all .2s ease;
+      }
+      .family-switch-btn:hover {
+        color:var(--text-muted);
+        border-color:rgba(200,164,90,.25);
+      }
+      .family-switch-btn.active {
+        color:var(--gold-light);
+        background:rgba(200,164,90,.10);
+        border-color:rgba(200,164,90,.35);
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   function renderTonicSelector() {
@@ -246,8 +301,8 @@
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
     const baseTonic = getTonicLabelAr(maqam.base_tonic);
     const currentTonic = getTonicLabelAr(state.tonic);
-    const tonicMode = maqam.tonic_mode === "half_flat_only" ? "أنصاف بيمول فقط" : "طبقات قياسية";
     const familyMain = getFamilyMainMaqam(maqam.family);
+    const otherNames = buildOtherNamesByTonic(maqam);
 
     grid.innerHTML = `
       <div class="info-card">
@@ -266,15 +321,23 @@
         <div class="info-label">العائلة</div>
         <div class="info-value">${familyMain ? familyMain.name : maqam.family}</div>
       </div>
-      <div class="info-card">
-        <div class="info-label">نمط الطبقات</div>
-        <div class="info-value">${tonicMode}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">عدد الطبقات المتاحة</div>
-        <div class="info-value">${(maqam.available_tonics || []).length}</div>
-      </div>
+      ${otherNames ? `
+      <div class="info-card" style="grid-column:1 / -1;">
+        <div class="info-label">أسماء أخرى بحسب الطبقة</div>
+        <div class="info-value">${otherNames}</div>
+      </div>` : ""}
     `;
+  }
+
+  function buildOtherNamesByTonic(maqam) {
+    const map = maqam.display_name_by_tonic || {};
+    const entries = Object.entries(map).filter(([tonic, name]) => {
+      return tonic !== maqam.base_tonic && name && name !== maqam.name;
+    });
+
+    if (!entries.length) return "";
+
+    return entries.map(([tonic, name]) => `${getTonicLabelAr(tonic)} = ${name}`).join(" · ");
   }
 
   function bindPageEvents() {
@@ -284,9 +347,7 @@
     }
   }
 
-  function bindGlobalEvents() {
-    // reserved for later if needed
-  }
+  function bindGlobalEvents() {}
 
   function setActiveMaqam(maqamId) {
     const maqam = getMaqamById(maqamId);
@@ -373,9 +434,6 @@
         <g class="note-btn ${active ? "active" : ""}" data-note-idx="${i}" role="button" tabindex="0" style="cursor:pointer">
           <line x1="${x + 7}" y1="${y}" x2="${x + 7}" y2="${y - 38}" stroke="${color}" stroke-width="1.8"></line>
           <ellipse cx="${x}" cy="${y}" rx="8" ry="5.5" fill="${color}" transform="rotate(-18,${x},${y})"></ellipse>
-          <text x="${x}" y="${y + 48}" text-anchor="middle" font-family="Cairo,sans-serif" font-size="11" font-weight="700" fill="${color}">
-            ${DEGREE_LABELS_AR[i] || ""}
-          </text>
         </g>
       `);
     });
@@ -403,10 +461,9 @@
       return `
         <div class="note-key ${active ? "active" : ""} ${isTonic ? "is-tonic" : ""}" data-note-idx="${i}">
           <div class="note-key-face">
-            <span>${note.label_ar}</span>
+            <span dir="ltr">${note.label_ar}</span>
             ${note.acc_label ? `<span class="acc">${note.acc_label}</span>` : ""}
           </div>
-          <div class="note-key-deg">${DEGREE_LABELS_AR[i] || ""}</div>
         </div>
       `;
     }).join("");
@@ -457,7 +514,7 @@
       renderKeys();
 
       if (status) {
-        status.textContent = `▶ ${notes[i].label_ar} — درجة ${DEGREE_LABELS_AR[i] || ""}`;
+        status.textContent = `▶ ${notes[i].label_ar}`;
       }
 
       await wait(560);
@@ -531,13 +588,11 @@
     if (best.diff === 1) accLabel = "½#";
     if (best.diff === 2) accLabel = "#";
 
-    const labelAr = accLabel ? `${best.ar}` : best.ar;
-
     return {
       degree_index: degreeIdx,
       quarter_tone_value: mod24,
       base_name_ar: best.ar,
-      label_ar: labelAr,
+      label_ar: best.ar,
       acc_label: accLabel
     };
   }
