@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سلّم الراست — نوتة تفاعلية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0c0b09; --surface:#181610; --surface2:#1e1c14;
+      --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.04);
+      --text:#ede8df; --text-muted:#b0a890; --text-dim:#645e50;
+      --gold:#c8a45a; --gold-light:#e2c47e; --gold-dim:rgba(200,164,90,0.12);
+      --staff:#3a3420; --staff-line:#5a5038;
+      --note-idle:#c8bfa8; --note-tonic:#d4bc84; --note-active:#c8a45a;
+      --ease:cubic-bezier(0.22,1,0.36,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    .wrap{width:100%;max-width:900px}
+    .sec-title{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:16px;text-align:center}
+
+    .scale-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px 28px 26px}
+    .scale-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+    .scale-title{font-size:1.1rem;font-weight:800;color:var(--gold-light)}
+    .tonic-selector{display:flex;gap:6px}
+    .tonic-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text-dim);font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s}
+    .tonic-btn:hover{border-color:rgba(200,164,90,.3);color:var(--text-muted)}
+    .tonic-btn.active{background:var(--gold-dim);border-color:rgba(200,164,90,.5);color:var(--gold)}
+
+    /* STAFF */
+    .staff-wrap{width:100%;overflow-x:auto;padding-bottom:8px;background:var(--staff);border-radius:12px;padding:20px 0}
+    .staff-svg{display:block;width:100%;min-width:580px;overflow:visible}
+
+    /* NOTE KEYS */
+    .note-keys-row{display:flex;gap:6px;margin-top:18px}
+    .note-key{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;user-select:none}
+    .note-key-face{width:100%;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:10px;border:1.5px solid var(--border);background:var(--surface2);font-size:.88rem;font-weight:700;color:var(--text-muted);transition:all .2s var(--ease);padding:6px 4px;gap:2px}
+    .note-key-face .acc{font-size:.62rem;color:var(--text-dim);line-height:1}
+    .note-key:hover .note-key-face{border-color:rgba(200,164,90,.4);background:rgba(200,164,90,.07);color:var(--text);transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+    .note-key.active .note-key-face{background:var(--gold-dim);border-color:rgba(200,164,90,.6);color:var(--gold-light);transform:translateY(-5px);box-shadow:0 10px 26px rgba(200,164,90,.18)}
+    .note-key.jins-l .note-key-face { border-color: rgba(200,164,90,0.3); }
+    .note-key.jins-u .note-key-face { border-color: rgba(123,168,212,0.3); }
+    .note-key.jins-l.active .note-key-face { background:rgba(200,164,90,0.15); border-color:rgba(200,164,90,.6); color:#e2c47e; transform:translateY(-5px); box-shadow:0 10px 26px rgba(200,164,90,.18); }
+    .note-key.jins-u.active .note-key-face { background:rgba(123,168,212,0.15); border-color:rgba(123,168,212,.6); color:#a8ccee; transform:translateY(-5px); box-shadow:0 10px 26px rgba(123,168,212,.18); }
+    .note-key.jins-l.is-tonic .note-key-face { background:rgba(200,164,90,.14); border-color:var(--gold); color:var(--gold-light); font-weight:900; }
+    .note-key.jins-u.is-tonic .note-key-face { background:rgba(123,168,212,.14); border-color:#7ba8d4; color:#a8ccee; font-weight:900; }
+    .note-key.playing .note-key-face{background:var(--gold);color:#0c0b09;border-color:var(--gold)}
+    .note-key-deg{font-size:.64rem;color:var(--text-dim);font-weight:600}
+    .note-key.active .note-key-deg{color:var(--gold)}
+
+    /* PLAYBAR */
+    .playbar{display:flex;align-items:center;gap:12px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
+    .play-btn{display:flex;align-items:center;gap:8px;padding:8px 18px;border-radius:10px;border:1px solid rgba(200,164,90,.3);background:var(--gold-dim);color:var(--gold);font-family:inherit;font-size:.82rem;font-weight:800;cursor:pointer;transition:all .2s}
+    .play-btn:hover{background:rgba(200,164,90,.2)}
+    .play-btn:disabled{opacity:.4;cursor:not-allowed}
+    .clear-btn{font-size:.76rem;color:var(--text-dim);background:none;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-family:inherit;padding:7px 14px;transition:all .2s}
+    .clear-btn:hover{color:var(--text-muted)}
+    .status-bar{margin-top:12px;font-size:.78rem;color:var(--text-dim);text-align:center;min-height:18px;transition:color .3s}
+    .status-bar.on{color:var(--gold)}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="sec-title">السلّم الموسيقي التفاعلي — مقام الراست</div>
+  <div class="scale-box">
+    <div class="scale-header">
+      <div class="scale-title">مقام الراست</div>
+      <div class="tonic-selector">
+        <button class="tonic-btn active" data-tonic="do">دو</button>
+        <button class="tonic-btn" data-tonic="re">ري</button>
+        <button class="tonic-btn" data-tonic="fa">فا</button>
+      </div>
+    </div>
+
+    <div class="staff-wrap">
+      <svg class="staff-svg" id="staff-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 170"></svg>
+    </div>
+
+    <div class="note-keys-row" id="note-keys-row"></div>
+
+    <div class="playbar">
+      <button class="play-btn" id="play-btn">
+        <svg id="play-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        <span id="play-label">تشغيل السلّم</span>
+      </button>
+    </div>
+    <div class="status-bar" id="status-bar"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// STAFF CONSTANTS
+// 5 lines. Space between lines = 14px.
+// Bottom line y=138, then 124,110,96,82 (top line)
+// One step (line to space) = 7px
+// Middle C (C4) = ledger line below staff = y=152
+// ═══════════════════════════════════════════════════
+const LINES = [138, 124, 110, 96, 82]; // bottom→top
+const LINE_STEP = 7;   // px per pitch step (line or space)
+const STAFF_Y = {
+  // C4=152(ledger), D4=145, E4=138(line1), F4=131, G4=124(line2),
+  // A4=117, B4=110(line3), C5=103, D5=96(line4), E5=89, F5=82(line5), G5=75(above)
+  C4:152, D4:145, E4:138, F4:131, G4:124, A4:117, B4:110,
+  C5:103, D5:96,  E5:89,  F5:82,  G5:75
+};
+
+// ── SCALE DATA ──────────────────────────────────────
+// acc: null | 'hf' (half-flat) | 'f' (flat) | 's#hf' (sharp+halfflat)
+const SCALES = {
+  do: [
+    {ar:'دو',  pitch:'C4', acc:null, jins:'l', deg:'١', src:''},
+    {ar:'ري',  pitch:'D4', acc:null, jins:'l', deg:'٢', src:''},
+    {ar:'مي',  pitch:'E4', acc:'hf', jins:'l', deg:'٣', src:''},
+    {ar:'فا',  pitch:'F4', acc:null, jins:'l', deg:'٤', src:''},
+    {ar:'صول', pitch:'G4', acc:null, jins:'u', deg:'٥', src:''},
+    {ar:'لا',  pitch:'A4', acc:null, jins:'u', deg:'٦', src:''},
+    {ar:'سي',  pitch:'B4', acc:'hf', jins:'u', deg:'٧', src:''},
+    {ar:'دو',  pitch:'C5', acc:null, jins:'u', deg:'٨', src:''},
+  ],
+  re: [
+    {ar:'ري',  pitch:'D4', acc:null, jins:'l', deg:'١', src:''},
+    {ar:'مي',  pitch:'E4', acc:null, jins:'l', deg:'٢', src:''},
+    {ar:'فا#', pitch:'F4', acc:'shf',jins:'l', deg:'٣', src:''},
+    {ar:'صول', pitch:'G4', acc:null, jins:'l', deg:'٤', src:''},
+    {ar:'لا',  pitch:'A4', acc:null, jins:'u', deg:'٥', src:''},
+    {ar:'سي',  pitch:'B4', acc:null, jins:'u', deg:'٦', src:''},
+    {ar:'دو#', pitch:'C5', acc:'shf',jins:'u', deg:'٧', src:''},
+    {ar:'ري',  pitch:'D5', acc:null, jins:'u', deg:'٨', src:''},
+  ],
+  fa: [
+    {ar:'فا',  pitch:'F4', acc:null, jins:'l', deg:'١', src:''},
+    {ar:'صول', pitch:'G4', acc:null, jins:'l', deg:'٢', src:''},
+    {ar:'لا',  pitch:'A4', acc:'hf', jins:'l', deg:'٣', src:''},
+    {ar:'سي♭', pitch:'B4', acc:'f',  jins:'l', deg:'٤', src:''},
+    {ar:'دو',  pitch:'C5', acc:null, jins:'u', deg:'٥', src:''},
+    {ar:'ري',  pitch:'D5', acc:null, jins:'u', deg:'٦', src:''},
+    {ar:'مي',  pitch:'E5', acc:'hf', jins:'u', deg:'٧', src:''},
+    {ar:'فا',  pitch:'F5', acc:null, jins:'u', deg:'٨', src:''},
+  ]
+};
+
+// ── STATE ───────────────────────────────────────────
+let tonic = 'do';
+let active = new Set();
+let playing = false;
+
+// ── SVG HELPERS ─────────────────────────────────────
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(SVG_NS, tag);
+  for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// ── TREBLE CLEF — sculpted stroke-based, not filled blob ─────────────────
+// Drawn as a proper outlined shape using stroke + fill with inner cutouts
+// Scale: fits staff span y=82..152 (70px tall staff), clef taller ~y=60..165
+function drawTrebleClef(svg) {
+  // We draw in a local 100×280 coord space then scale+translate to fit
+  // The clef: center spine x=50, G line (2nd line = y=124) maps to local y=168
+  const g = el('g', {transform:'translate(2, 42) scale(0.235, 0.235)'}, svg);
+
+  // ── Main body: single continuous stroke path (no fill, pure outline) ──
+  // This gives the "sculpted" look — light reflects off the curves
+  el('path', {
+    d:`
+      M 55 18
+      C 55 18 38 35 32 60
+      C 26 85 34 108 50 122
+      C 60 130 68 134 68 134
+      L 68 196
+      C 54 200 40 212 34 228
+      C 26 248 30 272 44 284
+      C 52 290 62 292 70 290
+      L 70 318
+      C 70 330 66 340 58 346
+      C 50 352 40 348 36 340
+      C 32 332 36 322 44 322
+      C 48 322 50 326 48 330
+    `,
+    stroke:'#b89a5a', fill:'none',
+    'stroke-width':'9',
+    'stroke-linecap':'round',
+    'stroke-linejoin':'round'
+  }, g);
+
+  // ── Upper loop (the oval/leaf at top) ──
+  el('path', {
+    d:`
+      M 55 18
+      C 68 8 86 12 92 28
+      C 100 50 88 78 68 94
+      C 60 100 52 104 50 108
+      C 48 112 50 120 50 122
+    `,
+    stroke:'#b89a5a', fill:'none',
+    'stroke-width':'9',
+    'stroke-linecap':'round',
+    'stroke-linejoin':'round'
+  }, g);
+
+  // inner highlight of upper loop (thinner, lighter)
+  el('path', {
+    d:`
+      M 60 26
+      C 70 20 82 26 84 40
+      C 87 56 76 76 62 88
+    `,
+    stroke:'#d4aa6a', fill:'none',
+    'stroke-width':'3.5',
+    'stroke-linecap':'round',
+    opacity:'0.7'
+  }, g);
+
+  // ── Lower curl (the big G spiral) ──
+  el('path', {
+    d:`
+      M 50 122
+      C 36 128 18 144 16 168
+      C 14 192 26 214 46 222
+      C 62 228 80 222 88 208
+      C 96 194 92 176 80 168
+      C 68 160 52 164 46 174
+      C 40 184 44 196 52 200
+      C 58 203 64 199 65 194
+    `,
+    stroke:'#b89a5a', fill:'none',
+    'stroke-width':'9',
+    'stroke-linecap':'round',
+    'stroke-linejoin':'round'
+  }, g);
+
+  // inner highlight of lower curl
+  el('path', {
+    d:`
+      M 46 136
+      C 30 146 22 164 26 182
+      C 30 196 42 206 56 206
+    `,
+    stroke:'#d4aa6a', fill:'none',
+    'stroke-width':'3.5',
+    'stroke-linecap':'round',
+    opacity:'0.6'
+  }, g);
+
+  // ── Spine (vertical center line) ──
+  el('line', {
+    x1:'68', y1:'134', x2:'68', y2:'290',
+    stroke:'#b89a5a', 'stroke-width':'7',
+    'stroke-linecap':'round'
+  }, g);
+
+  // spine highlight
+  el('line', {
+    x1:'65', y1:'140', x2:'65', y2:'280',
+    stroke:'#d4aa6a', 'stroke-width':'2.5',
+    'stroke-linecap':'round',
+    opacity:'0.5'
+  }, g);
+
+  // ── Bottom curl / tail ──
+  el('path', {
+    d:`
+      M 68 290
+      C 68 305 62 316 52 322
+      C 42 328 30 324 26 314
+      C 22 304 28 293 38 293
+      C 46 293 50 300 47 307
+    `,
+    stroke:'#b89a5a', fill:'none',
+    'stroke-width':'8',
+    'stroke-linecap':'round',
+    'stroke-linejoin':'round'
+  }, g);
+
+  // ── Serif / foot dot at bottom ──
+  el('circle', {
+    cx:'40', cy:'314', r:'9',
+    fill:'#b89a5a'
+  }, g);
+  // highlight on foot dot
+  el('circle', {
+    cx:'37', cy:'311', r:'3.5',
+    fill:'#d4aa6a', opacity:'0.6'
+  }, g);
+}
+
+// ── HALF-FLAT ACCIDENTAL ─────────────────────────────
+// Shape: a flat symbol (vertical bar + curved flag body)
+// CROSSED by a short horizontal bar through the middle of the stem
+// This is the standard Arabic mujannab / half-flat notation
+function drawHalfFlat(g, cx, cy, color) {
+  const ag = el('g', {transform:`translate(${cx},${cy})`}, g);
+  // Vertical stem (same as a flat)
+  el('rect', {x:'-1', y:'-13', width:'2', height:'21', fill:color, rx:'0.5'}, ag);
+  // Curved body (the flag / bulge of a ♭)
+  el('path', {
+    d:`M 1 -2 C 8 0 8 5 8 6 C 8 12 4 13 1 13 L 1 13 L -1 13 L -1 -2 Z`,
+    fill: color
+  }, ag);
+  // SHORT HORIZONTAL crossbar — passes through the stem, extending both sides
+  // This is the defining feature distinguishing ½♭ from ♭
+  el('rect', {x:'-5', y:'-5.5', width:'11', height:'2', fill:color, rx:'0.8'}, ag);
+}
+
+// ── FLAT ACCIDENTAL ──────────────────────────────────
+function drawFlat(g, cx, cy, color) {
+  const ag = el('g', {transform:`translate(${cx},${cy})`, fill:color}, g);
+  el('rect', {x:'-1',y:'-14',width:'2',height:'20',fill:color}, ag);
+  el('path', {d:`M 1 -3 C 8 0 8 5 8 6 C 8 12 4 14 1 14 L 1 14 L -1 14 L -1 -3 Z`,fill:color}, ag);
+}
+
+// ── SHARP + HALF-FLAT (for فا# in ري tonic, دو# in ري) ──
+// We show a sharp sign followed by half-flat = "sharpened then lowered quarter"
+// In practice for display: show a natural-ish marker — here we show '#' text
+function drawSharpHalfFlat(g, cx, cy, color) {
+  // Sharp
+  const ag = el('g', {transform:`translate(${cx-10},${cy})`,fill:color}, g);
+  el('rect', {x:'-4',y:'-9',width:'1.8',height:'18',fill:color},ag);
+  el('rect', {x:'2', y:'-9',width:'1.8',height:'18',fill:color},ag);
+  el('rect', {x:'-5',y:'-5',width:'12',height:'1.8',fill:color,transform:'rotate(-8)'},ag);
+  el('rect', {x:'-5',y:'1', width:'12',height:'1.8',fill:color,transform:'rotate(-8)'},ag);
+  // then half-flat to the right
+  drawHalfFlat(g, cx+8, cy, color);
+}
+
+// ── DRAW STAFF + NOTES ───────────────────────────────
+const NOTE_RX = 8;
+const NOTE_RY = 5.5;
+const CLEF_W  = 48;
+const X_START = CLEF_W + 30;
+const X_GAP   = (820 - X_START - 20) / 8; // distribute evenly
+
+function render() {
+  const svg = document.getElementById('staff-svg');
+  svg.innerHTML = '';
+
+  const notes = SCALES[tonic];
+
+  // ── staff lines ──
+  LINES.forEach(y => {
+    el('line', {x1:'0',y1:y,x2:'820',y2:y, stroke:'#5a5038', 'stroke-width':'1.4'}, svg);
+  });
+
+  // ── treble clef ──
+  drawTrebleClef(svg);
+
+  // ── notes ──
+  notes.forEach((note, i) => {
+    const x = X_START + i * X_GAP + X_GAP * 0.5;
+    const y = STAFF_Y[note.pitch];
+    const isActive = active.has(i);
+    const isTonic = i === 0 || i === 7;
+    const isLower = note.jins === 'l';
+
+    // jins-based colors
+    const jinsFill   = isLower ? '#c8a45a' : '#7ba8d4';   // gold | blue
+    const jinsActive = isLower ? '#e2c47e' : '#a8ccee';   // brighter when active
+    const jinsStem   = isLower ? '#a07830' : '#4a7aaa';
+    const jinsDeg    = isLower ? '#9a7828' : '#4a7aaa';
+    const jinsAcc    = isLower ? '#c8a45a' : '#7ba8d4';
+
+    const fillIdle   = jinsFill;
+    const fill       = isActive ? jinsActive : fillIdle;
+    const accColor   = isActive ? jinsActive : jinsAcc;
+    const stemColor  = isActive ? jinsActive : jinsStem;
+    const degColor   = isActive ? jinsActive : jinsDeg;
+
+    const g = el('g', {
+      class: 'note-btn' + (isActive ? ' active' : ''),
+      'data-idx': i,
+      'data-jins': note.jins,
+      role:'button',
+      tabindex:'0',
+      'aria-label': note.ar,
+      style:'cursor:pointer'
+    }, svg);
+
+    // ledger line below staff (middle C)
+    if (y >= 145) {
+      el('line', {
+        x1:x-NOTE_RX-5, y1:152, x2:x+NOTE_RX+5, y2:152,
+        stroke:'#6a6048','stroke-width':'1.4'
+      }, g);
+    }
+    // ledger line above staff
+    if (y <= 75) {
+      el('line', {
+        x1:x-NOTE_RX-5, y1:75, x2:x+NOTE_RX+5, y2:75,
+        stroke:'#6a6048','stroke-width':'1.4'
+      }, g);
+    }
+
+    // stem — up if note is on or below middle line (B4=line3=y110), down if above
+    const stemUp = y >= 110;
+    el('line', {
+      x1: stemUp ? x+NOTE_RX-1 : x-NOTE_RX+1,
+      y1: y,
+      x2: stemUp ? x+NOTE_RX-1 : x-NOTE_RX+1,
+      y2: stemUp ? y-38 : y+38,
+      stroke: stemColor, 'stroke-width':'1.8',
+      class:'note-stem'
+    }, g);
+
+    // accidental — offset upward so the flag centre sits on the note's Y
+    if (note.acc === 'hf')   drawHalfFlat(g, x-NOTE_RX-13, y-6, accColor);
+    if (note.acc === 'f')    drawFlat(g,     x-NOTE_RX-13, y-6, accColor);
+    if (note.acc === 'shf')  drawSharpHalfFlat(g, x-NOTE_RX-20, y-6, accColor);
+
+    // notehead (filled quarter note, slightly tilted)
+    el('ellipse', {
+      cx:x, cy:y, rx:NOTE_RX, ry:NOTE_RY,
+      fill:fill, transform:`rotate(-18,${x},${y})`,
+      class:'notehead'
+    }, g);
+
+    // degree label
+    el('text', {
+      x:x, y: stemUp ? y-45 : y+50,
+      'text-anchor':'middle',
+      'font-family':'Cairo,sans-serif',
+      'font-size':'11',
+      'font-weight':'700',
+      fill: degColor,
+      class:'note-deg'
+    }, g).textContent = note.deg;
+
+    // invisible click-target (larger hit area)
+    el('ellipse', {
+      cx:x, cy:y, rx:NOTE_RX+8, ry:NOTE_RY+14,
+      fill:'transparent', class:'note-hit'
+    }, g);
+
+    g.addEventListener('click', () => toggleNote(i));
+    g.addEventListener('keydown', e => {
+      if (e.key==='Enter'||e.key===' ') { e.preventDefault(); toggleNote(i); }
+    });
+  });
+}
+
+// ── KEY BUTTONS ──────────────────────────────────────
+function renderKeys() {
+  const notes = SCALES[tonic];
+  const row = document.getElementById('note-keys-row');
+  row.innerHTML = '';
+  notes.forEach((note, i) => {
+    const isTonic = i===0||i===7;
+    const isActive = active.has(i);
+    const accLabel = note.acc==='hf'?'½♭': note.acc==='f'?'♭': note.acc==='shf'?'#½':'';
+    const div = document.createElement('div');
+    div.className='note-key jins-'+(note.jins==='l'?'l':'u')+(isTonic?' is-tonic':'')+(isActive?' active':'');
+    div.dataset.idx=i;
+    div.innerHTML=`<div class="note-key-face"><span>${note.ar}</span>${accLabel?`<span class="acc">${accLabel}</span>`:''}</div><div class="note-key-deg">${note.deg}</div>`;
+    div.addEventListener('click',()=>toggleNote(i));
+    row.appendChild(div);
+  });
+}
+
+// ── TOGGLE ───────────────────────────────────────────
+function toggleNote(idx) {
+  if (active.has(idx)) active.delete(idx);
+  else { active.add(idx); playNote(idx); }
+  syncActive();
+}
+
+function syncActive() {
+  const notes = SCALES[tonic];
+  // staff
+  document.querySelectorAll('.note-btn').forEach(g => {
+    const i   = parseInt(g.dataset.idx);
+    const on  = active.has(i);
+    const isL = g.dataset.jins === 'l';
+    const idleColor   = isL ? '#c8a45a' : '#7ba8d4';
+    const activeColor = isL ? '#e2c47e' : '#a8ccee';
+    const stemIdle    = isL ? '#a07830' : '#4a7aaa';
+    const degIdle     = isL ? '#9a7828' : '#4a7aaa';
+    const color = on ? activeColor : idleColor;
+
+    g.classList.toggle('active', on);
+    const nh = g.querySelector('.notehead');
+    if (nh) nh.setAttribute('fill', color);
+    const stem = g.querySelector('.note-stem');
+    if (stem) stem.setAttribute('stroke', on ? activeColor : stemIdle);
+    const deg = g.querySelector('.note-deg');
+    if (deg) deg.setAttribute('fill', on ? activeColor : degIdle);
+    // accidentals
+    const accG = g.querySelector('g');
+    if (accG) {
+      accG.setAttribute('fill', color);
+      accG.querySelectorAll('rect,path').forEach(el => el.setAttribute('fill', color));
+    }
+  });
+  // keys
+  document.querySelectorAll('.note-key').forEach(k => {
+    const i = parseInt(k.dataset.idx);
+    const on = active.has(i);
+    k.classList.toggle('active', on);
+  });
+}
+
+// ── AUDIO ────────────────────────────────────────────
+function playNote(idx) {
+  const note = SCALES[tonic][idx];
+  if (note.src) {
+    const a = new Audio(note.src);
+    a.play().catch(()=>{});
+  }
+  flashNote(idx);
+}
+
+function flashNote(idx) {
+  const nb=document.querySelector(`.note-btn[data-idx="${idx}"]`);
+  if(nb){ nb.classList.add('playing'); setTimeout(()=>nb.classList.remove('playing'),550); }
+  const kb=document.querySelector(`.note-key[data-idx="${idx}"]`);
+  if(kb){ kb.classList.add('playing'); setTimeout(()=>kb.classList.remove('playing'),550); }
+}
+
+// ── PLAY / STOP SCALE ────────────────────────────────
+let stopRequested = false;
+
+function setPlayBtn(isPlaying) {
+  const icon  = document.getElementById('play-icon');
+  const label = document.getElementById('play-label');
+  if (isPlaying) {
+    icon.innerHTML = '<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
+    label.textContent = 'إيقاف التشغيل';
+  } else {
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+    label.textContent = 'تشغيل السلّم';
+  }
+}
+
+async function playScale() {
+  if (playing) {
+    // stop
+    stopRequested = true;
+    return;
+  }
+  playing = true;
+  stopRequested = false;
+  setPlayBtn(true);
+  const status = document.getElementById('status-bar');
+  status.className = 'status-bar on';
+  const notes = SCALES[tonic];
+  for (let i = 0; i < notes.length; i++) {
+    if (stopRequested) break;
+    flashNote(i);
+    status.textContent = `▶ ${notes[i].ar} — درجة ${notes[i].deg}`;
+    await new Promise(r => setTimeout(r, 560));
+  }
+  status.textContent = '';
+  status.className = 'status-bar';
+  playing = false;
+  stopRequested = false;
+  setPlayBtn(false);
+}
+
+// ── TONIC SWITCH ─────────────────────────────────────
+document.querySelectorAll('.tonic-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tonic-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    tonic=btn.dataset.tonic;
+    active.clear();
+    render();
+    renderKeys();
+  });
+});
+
+document.getElementById('play-btn').addEventListener('click', playScale);
+
+// ── INIT ─────────────────────────────────────────────
+render();
+renderKeys();
+</script>
+</body>
+</html>
