@@ -1,11 +1,5 @@
 // data/maqamat.js
-// Generic maqamat structure for the interactive maqam system
-// This file contains:
-// - families
-// - main maqamat
-// - real branch maqamat
-// - tonic rules
-// - display-name changes by tonic only where explicitly needed
+// Corrected generic maqamat structure for the interactive maqam system
 
 const STANDARD_TONICS = [
   "do",
@@ -41,9 +35,6 @@ const TONIC_LABELS_AR = {
 };
 
 const maqamat = [
-  // ========================================
-  // RAST FAMILY
-  // ========================================
   {
     id: "rast",
     family: "rast",
@@ -56,19 +47,33 @@ const maqamat = [
     tonic_mode: "standard",
     base_tonic: "do",
     available_tonics: [...STANDARD_TONICS],
-    display_name_by_tonic: {
-      do: "راست"
-    },
-    branch_ids: ["suzdilara", "nairuz", "yakah"],
+    display_name_by_tonic: { do: "راست" },
+    branch_ids: ["suznak", "mahur", "nairuz", "bashayer", "sazkar", "dalanshin"],
     description: ""
   },
   {
-    id: "suzdilara",
+    id: "suznak",
     family: "rast",
     family_main_id: "rast",
     family_order: 2,
-    name: "سوزدلارا",
-    latin: "Suzdilara",
+    name: "سوزناك",
+    latin: "Suznak",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "do",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "mahur",
+    family: "rast",
+    family_main_id: "rast",
+    family_order: 3,
+    name: "ماهور",
+    latin: "Mahur",
     is_main: false,
     interactive: true,
     tonic_mode: "standard",
@@ -82,7 +87,7 @@ const maqamat = [
     id: "nairuz",
     family: "rast",
     family_main_id: "rast",
-    family_order: 3,
+    family_order: 4,
     name: "نيروز",
     latin: "Nairuz",
     is_main: false,
@@ -95,25 +100,54 @@ const maqamat = [
     description: ""
   },
   {
-    id: "yakah",
+    id: "bashayer",
     family: "rast",
     family_main_id: "rast",
-    family_order: 4,
-    name: "يكاه",
-    latin: "Yakah",
+    family_order: 5,
+    name: "بشائر",
+    latin: "Bashayer",
     is_main: false,
     interactive: true,
     tonic_mode: "standard",
-    base_tonic: "sol",
+    base_tonic: "do",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "sazkar",
+    family: "rast",
+    family_main_id: "rast",
+    family_order: 6,
+    name: "سازكار",
+    latin: "Sazkar",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "do",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "dalanshin",
+    family: "rast",
+    family_main_id: "rast",
+    family_order: 7,
+    name: "دلنشين",
+    latin: "Dalanshin",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
     description: ""
   },
 
-  // ========================================
-  // BAYATI FAMILY
-  // ========================================
   {
     id: "bayati",
     family: "bayati",
@@ -126,9 +160,7 @@ const maqamat = [
     tonic_mode: "standard",
     base_tonic: "re",
     available_tonics: [...STANDARD_TONICS],
-    display_name_by_tonic: {
-      re: "بياتي"
-    },
+    display_name_by_tonic: { re: "بياتي" },
     branch_ids: ["bayati_shuri", "husayni", "muhayyar", "bayatin", "nahuft"],
     description: ""
   },
@@ -213,9 +245,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // AJAM FAMILY
-  // ========================================
   {
     id: "ajam",
     family: "ajam",
@@ -228,9 +257,7 @@ const maqamat = [
     tonic_mode: "standard",
     base_tonic: "do",
     available_tonics: [...STANDARD_TONICS],
-    display_name_by_tonic: {
-      do: "عجم"
-    },
+    display_name_by_tonic: { do: "عجم" },
     branch_ids: ["ajam_ushayran", "shawq_afza", "suznal", "ajam_murassa", "jaharkah"],
     description: ""
   },
@@ -315,9 +342,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // HIJAZ FAMILY
-  // ========================================
   {
     id: "hijaz",
     family: "hijaz",
@@ -330,20 +354,79 @@ const maqamat = [
     tonic_mode: "standard",
     base_tonic: "re",
     available_tonics: [...STANDARD_TONICS],
-    display_name_by_tonic: {
-      re: "شهناز",
-      do: "حجازكار",
-      sol: "شد عربان",
-      la: "سوزدل"
-    },
-    branch_ids: ["hijazayn", "zanjaran", "hijaz_ajami"],
+    display_name_by_tonic: { re: "حجاز" },
+    branch_ids: ["hijazkar", "shadd_araban", "suzdil", "shahnaz", "hijazayn", "zanjaran", "hijaz_ajami"],
+    description: ""
+  },
+  {
+    id: "hijazkar",
+    family: "hijaz",
+    family_main_id: "hijaz",
+    family_order: 2,
+    name: "حجازكار",
+    latin: "Hijazkar",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "do",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "shadd_araban",
+    family: "hijaz",
+    family_main_id: "hijaz",
+    family_order: 3,
+    name: "شد عربان",
+    latin: "Shadd Araban",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "sol",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "suzdil",
+    family: "hijaz",
+    family_main_id: "hijaz",
+    family_order: 4,
+    name: "سوزدل",
+    latin: "Suzdil",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "la",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
+    description: ""
+  },
+  {
+    id: "shahnaz",
+    family: "hijaz",
+    family_main_id: "hijaz",
+    family_order: 5,
+    name: "شهناز",
+    latin: "Shahnaz",
+    is_main: false,
+    interactive: true,
+    tonic_mode: "standard",
+    base_tonic: "re",
+    available_tonics: [...STANDARD_TONICS],
+    display_name_by_tonic: {},
+    branch_ids: [],
     description: ""
   },
   {
     id: "hijazayn",
     family: "hijaz",
     family_main_id: "hijaz",
-    family_order: 2,
+    family_order: 6,
     name: "حجازين",
     latin: "Hijazayn",
     is_main: false,
@@ -359,7 +442,7 @@ const maqamat = [
     id: "zanjaran",
     family: "hijaz",
     family_main_id: "hijaz",
-    family_order: 3,
+    family_order: 7,
     name: "زنجران",
     latin: "Zanjaran",
     is_main: false,
@@ -375,7 +458,7 @@ const maqamat = [
     id: "hijaz_ajami",
     family: "hijaz",
     family_main_id: "hijaz",
-    family_order: 4,
+    family_order: 8,
     name: "حجاز عجمي",
     latin: "Hijaz Ajami",
     is_main: false,
@@ -388,9 +471,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // NAHAWAND FAMILY
-  // ========================================
   {
     id: "nahawand",
     family: "nahawand",
@@ -496,9 +576,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // KURD FAMILY
-  // ========================================
   {
     id: "kurd",
     family: "kurd",
@@ -583,9 +660,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // SIKAH FAMILY
-  // ========================================
   {
     id: "sikah",
     family: "sikah",
@@ -598,20 +672,8 @@ const maqamat = [
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
     available_tonics: [...HALF_FLAT_TONICS],
-    display_name_by_tonic: {
-      mi_half_flat: "سيكاه"
-    },
-    branch_ids: [
-      "huzam",
-      "rahat_al_arwah",
-      "iraq",
-      "awj_iraq",
-      "basta_nikar",
-      "mustaar",
-      "farahnak",
-      "shaar",
-      "rahat_faza"
-    ],
+    display_name_by_tonic: { mi_half_flat: "سيكاه" },
+    branch_ids: ["huzam", "rahat_al_arwah", "iraq", "awj_iraq", "basta_nikar", "mustaar", "farahnak", "shaar", "rahat_faza"],
     description: ""
   },
   {
@@ -759,9 +821,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // SABA FAMILY
-  // ========================================
   {
     id: "saba",
     family: "saba",
@@ -774,9 +833,7 @@ const maqamat = [
     tonic_mode: "standard",
     base_tonic: "re",
     available_tonics: [...STANDARD_TONICS],
-    display_name_by_tonic: {
-      re: "صبا"
-    },
+    display_name_by_tonic: { re: "صبا" },
     branch_ids: ["saba_jadid", "zamzama"],
     description: ""
   },
@@ -813,9 +870,6 @@ const maqamat = [
     description: ""
   },
 
-  // ========================================
-  // NAWA ATHAR FAMILY
-  // ========================================
   {
     id: "nawa_athar",
     family: "nawa_athar",
@@ -868,10 +922,6 @@ const maqamat = [
     description: ""
   }
 ];
-
-// ========================================
-// Helpers
-// ========================================
 
 function getMaqamatByFamily(familyId) {
   return maqamat
@@ -930,11 +980,9 @@ function getAvailableTonicsForMaqam(maqamId) {
 function getDisplayNameForTonic(maqamId, tonic) {
   const maqam = getMaqamById(maqamId);
   if (!maqam) return "";
-
   if (maqam.display_name_by_tonic && maqam.display_name_by_tonic[tonic]) {
     return maqam.display_name_by_tonic[tonic];
   }
-
   return maqam.name;
 }
 
