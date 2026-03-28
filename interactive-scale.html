@@ -22,26 +22,26 @@
     body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
     a{color:inherit;text-decoration:none}
 
-    /* ── NAV ── */
     .site-nav{position:fixed;top:0;right:0;left:0;z-index:200;background:rgba(12,11,9,0.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center}
     .nav-inner{width:100%;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .nav-right{display:flex;align-items:center;gap:20px}
     .nav-logo{font-size:1.15rem;font-weight:900;color:var(--gold-light)}
     .nav-breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--text-dim)}
-    .nav-breadcrumb a{transition:color .2s}.nav-breadcrumb a:hover{color:var(--gold)}
-    .nav-breadcrumb .sep{color:var(--border)}.nav-breadcrumb .current{color:var(--text-muted);font-weight:700}
+    .nav-breadcrumb a{transition:color .2s}
+    .nav-breadcrumb a:hover{color:var(--gold)}
+    .nav-breadcrumb .sep{color:var(--border)}
+    .nav-breadcrumb .current{color:var(--text-muted);font-weight:700}
     .nav-links{display:flex;gap:2px}
     .nav-links a{font-size:0.8rem;color:var(--text-dim);padding:5px 10px;border-radius:7px;font-weight:600;transition:all .2s}
     .nav-links a:hover{color:var(--text-muted);background:var(--surface)}
     .nav-links a.active{color:var(--gold);background:var(--gold-dim)}
     .mobile-toggle{display:none;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text-muted);font-family:inherit;font-size:0.8rem;font-weight:700;cursor:pointer}
 
-    /* ── SHELL ── */
     .shell{display:flex;padding-top:56px;min-height:100vh}
 
-    /* ── SIDEBAR ── */
     .sidebar{position:fixed;top:56px;right:0;width:var(--sidebar-w);height:calc(100vh - 56px);overflow-y:auto;border-left:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-    .sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+    .sidebar::-webkit-scrollbar{width:4px}
+    .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
     .sidebar-header{padding:20px 18px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
     .sidebar-family-label{font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
     .sidebar-family-name{font-size:1.1rem;font-weight:900}
@@ -54,18 +54,16 @@
     .sidebar-btn.active::before{content:'';position:absolute;right:0;top:20%;height:60%;width:3px;background:var(--gold);border-radius:2px 0 0 2px}
     .sidebar-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:0.5;transition:opacity .2s}
     .sidebar-btn.active .sidebar-dot{opacity:1}
-    .sidebar-btn.main-maqam{color:var(--gold)}.sidebar-btn.main-maqam .sidebar-dot{background:var(--gold)}
+    .sidebar-btn.main-maqam{color:var(--gold)}
+    .sidebar-btn.main-maqam .sidebar-dot{background:var(--gold)}
     .sidebar-main-tag{font-size:0.6rem;letter-spacing:0.08em;background:var(--gold-dim);color:var(--gold);border:1px solid rgba(200,164,90,0.2);padding:2px 6px;border-radius:4px;margin-right:auto;font-weight:800}
 
-    /* ── MAIN ── */
     .main{margin-right:var(--sidebar-w);flex:1;min-height:calc(100vh - 56px);overflow-y:auto}
 
-    /* ── MAQAM VIEW ── */
     .maqam-view{display:none;animation:fadeSlide .35s var(--ease)}
     .maqam-view.active{display:block}
     @keyframes fadeSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ── HERO ── */
     .maqam-hero{padding:52px 5% 40px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;background:linear-gradient(160deg,var(--bg2) 0%,var(--bg) 100%)}
     .maqam-hero::after{content:attr(data-name);position:absolute;left:-1%;top:50%;transform:translateY(-50%);font-size:clamp(6rem,16vw,13rem);font-weight:900;color:rgba(200,164,90,0.04);line-height:1;pointer-events:none;user-select:none}
     .maqam-hero-inner{position:relative;max-width:860px}
@@ -74,11 +72,9 @@
     .maqam-latin{font-size:1rem;color:var(--text-dim);font-style:italic;font-weight:400}
     .maqam-desc{color:var(--text-muted);font-size:1rem;line-height:1.85;max-width:680px}
 
-    /* ── BODY ── */
     .maqam-body{padding:36px 5% 80px;max-width:900px}
     .sec-title{font-size:0.72rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:14px}
 
-    /* ── STAFF SCALE BOX ── */
     .staff-scale-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 22px 20px;margin-bottom:28px}
     .staff-scale-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
     .staff-scale-title{font-size:0.9rem;font-weight:800;color:var(--text-muted)}
@@ -87,11 +83,9 @@
     .tonic-btn:hover{border-color:rgba(200,164,90,.3);color:var(--text-muted)}
     .tonic-btn.active{background:var(--gold-dim);border-color:rgba(200,164,90,.45);color:var(--gold)}
 
-    /* staff svg wrapper */
     .staff-wrap{width:100%;overflow-x:auto;background:#181408;border-radius:10px;padding:16px 0 10px}
     .staff-svg{display:block;width:100%;min-width:560px;overflow:visible}
 
-    /* note key buttons */
     .note-keys-row{display:flex;gap:5px;margin-top:14px}
     .note-key{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;user-select:none}
     .note-key-face{width:100%;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:9px;border:1.5px solid var(--border);background:var(--surface2);font-size:.82rem;font-weight:700;color:var(--text-muted);transition:all .2s var(--ease);padding:5px 3px;gap:1px}
@@ -109,7 +103,6 @@
     .note-key-deg{font-size:.6rem;color:var(--text-dim);font-weight:600}
     .note-key.active .note-key-deg{color:var(--gold)}
 
-    /* playbar */
     .playbar{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
     .play-btn{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:9px;border:1px solid rgba(200,164,90,.3);background:var(--gold-dim);color:var(--gold);font-family:inherit;font-size:.8rem;font-weight:800;cursor:pointer;transition:all .2s}
     .play-btn:hover{background:rgba(200,164,90,.2)}
@@ -117,12 +110,10 @@
     .status-bar{font-size:.74rem;color:var(--text-dim);min-height:16px;transition:color .3s;margin-right:auto}
     .status-bar.on{color:var(--gold)}
 
-    /* jins legend */
     .jins-legend{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
     .jins-chip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:6px;font-size:.72rem;font-weight:700;color:var(--text-dim);border:1px solid var(--border2);background:var(--surface2)}
     .jins-chip .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 
-    /* info / feelings / jins detail (unchanged from before) */
     .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-bottom:28px}
     .info-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:15px 17px}
     .info-label{font-size:.68rem;color:var(--text-dim);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
@@ -133,7 +124,8 @@
     .jins-detail{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
     .jins-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
     .jins-card-label{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;margin-bottom:7px}
-    .jins-card-label.lo{color:var(--gold)}.jins-card-label.up{color:var(--blue)}
+    .jins-card-label.lo{color:var(--gold)}
+    .jins-card-label.up{color:var(--blue)}
     .jins-card-name{font-size:.95rem;font-weight:800;margin-bottom:9px}
     .jins-notes{display:flex;gap:5px;flex-wrap:wrap}
     .jins-note{padding:3px 8px;border-radius:6px;background:var(--surface2);border:1px solid var(--border2);font-size:.76rem;font-weight:700;color:var(--text-muted)}
@@ -154,10 +146,12 @@
   <div class="nav-inner">
     <div class="nav-right">
       <a href="index.html" class="nav-logo">موسيقتي</a>
-      <nav class="nav-breadcrumb">
+      <nav class="nav-breadcrumb" id="family-breadcrumb">
         <a href="maqamat.html">المقامات</a>
         <span class="sep">›</span>
-        <span class="current">عائلة الراست</span>
+        <a href="maqam-family.html?family=rast" id="family-link">عائلة الراست</a>
+        <span class="sep">›</span>
+        <span class="current" id="current-maqam-label">راست</span>
       </nav>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
@@ -197,7 +191,6 @@
 
   <main class="main" id="main-panel">
 
-    <!-- ═══ RAST ═══ -->
     <div class="maqam-view active" id="view-rast">
       <div class="maqam-hero" data-name="راست">
         <div class="maqam-hero-inner">
@@ -247,7 +240,6 @@
       </div>
     </div>
 
-    <!-- ═══ KIRDAN ═══ -->
     <div class="maqam-view" id="view-kirdan">
       <div class="maqam-hero" data-name="كردان"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">كردان</h1><span class="maqam-latin">Kirdan</span></div><p class="maqam-desc">جواب مقام الراست — نفس السلّم لكنه يبدأ من أوكتاف أعلى. يُستخدم لرفع الطاقة في الختامات.</p></div></div>
       <div class="maqam-body">
@@ -263,7 +255,6 @@
       </div>
     </div>
 
-    <!-- ═══ SUZNAK ═══ -->
     <div class="maqam-view" id="view-suznak">
       <div class="maqam-hero" data-name="سوزناك"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">سوزناك</h1><span class="maqam-latin">Suznak</span></div><p class="maqam-desc">راست في القرار، حجاز على درجة الصول. يمزج استقرار الراست بحدة الحجاز.</p></div></div>
       <div class="maqam-body">
@@ -279,7 +270,6 @@
       </div>
     </div>
 
-    <!-- ═══ MAHUR ═══ -->
     <div class="maqam-view" id="view-mahur">
       <div class="maqam-hero" data-name="ماهور"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">ماهور</h1><span class="maqam-latin">Mahur</span></div><p class="maqam-desc">شبيه بالراست لكنه يستخدم «سي بيمول» بدلاً من «سي نصف بيمول». أكثر إشراقاً واحتفالاً.</p></div></div>
       <div class="maqam-body">
@@ -295,7 +285,6 @@
       </div>
     </div>
 
-    <!-- ═══ SAZKAR ═══ -->
     <div class="maqam-view" id="view-sazkar">
       <div class="maqam-hero" data-name="سازكار"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">سازكار</h1><span class="maqam-latin">Sazkar</span></div><p class="maqam-desc">راست في القرار، حجازكار في الأعلى. طابع شرقي عميق مع استقرار راستي.</p></div></div>
       <div class="maqam-body">
@@ -311,7 +300,6 @@
       </div>
     </div>
 
-    <!-- ═══ NAIRUZ ═══ -->
     <div class="maqam-view" id="view-nairuz">
       <div class="maqam-hero" data-name="نيروز"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">نيروز</h1><span class="maqam-latin">Nairuz</span></div><p class="maqam-desc">مقام احتفالي مرتبط بالربيع والأفراح. راست في القرار، نهاوند في الجواب.</p></div></div>
       <div class="maqam-body">
@@ -327,7 +315,6 @@
       </div>
     </div>
 
-    <!-- ═══ DELANSHIN ═══ -->
     <div class="maqam-view" id="view-delanshin">
       <div class="maqam-hero" data-name="دلنشين"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">دلنشين</h1><span class="maqam-latin">Delanshin</span></div><p class="maqam-desc">«الذي يُسكن القلب» — ناعم وغنائي، لمسات حنينية عميقة.</p></div></div>
       <div class="maqam-body">
@@ -343,7 +330,6 @@
       </div>
     </div>
 
-    <!-- ═══ SUZDELARA ═══ -->
     <div class="maqam-view" id="view-suzdelara">
       <div class="maqam-hero" data-name="سوزدلارا"><div class="maqam-hero-inner"><div class="maqam-name-wrap"><h1 class="maqam-name">سوزدلارا</h1><span class="maqam-latin">Suzdelara</span></div><p class="maqam-desc">راست في القرار، حجاز على الخامسة. يجمع استقرار الراست وحدة الحجاز.</p></div></div>
       <div class="maqam-body">
@@ -363,12 +349,6 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// SCALE DATA — per maqam, per tonic
-// pitch keys match STAFF_Y table
-// acc: null | 'hf' (half-flat) | 'f' (flat) | 'shf' (sharp+half-flat)
-// jins: 'l' (lower/gold) | 'u' (upper/blue)
-// ═══════════════════════════════════════════════════════
 const MAQAM_SCALES = {
   rast: {
     do:[{ar:'دو',p:'C4',acc:null,j:'l',d:'١',src:''},{ar:'ري',p:'D4',acc:null,j:'l',d:'٢',src:''},{ar:'مي',p:'E4',acc:'hf',j:'l',d:'٣',src:''},{ar:'فا',p:'F4',acc:null,j:'l',d:'٤',src:''},{ar:'صول',p:'G4',acc:null,j:'u',d:'٥',src:''},{ar:'لا',p:'A4',acc:null,j:'u',d:'٦',src:''},{ar:'سي',p:'B4',acc:'hf',j:'u',d:'٧',src:''},{ar:'دو',p:'C5',acc:null,j:'u',d:'٨',src:''}],
@@ -406,13 +386,11 @@ const SVG_NS  = 'http://www.w3.org/2000/svg';
 const NOTE_RX = 8, NOTE_RY = 5.5;
 const X_START = 82, X_GAP = (820 - X_START - 16) / 8;
 
-// per-maqam state
 const STATE = {};
 ['rast','kirdan','suznak','mahur','sazkar','nairuz','delanshin','suzdelara'].forEach(m => {
   STATE[m] = { tonic: Object.keys(MAQAM_SCALES[m])[0], active: new Set(), playing: false, stop: false };
 });
 
-// ── SVG helper ──────────────────────────────────────
 function svgEl(tag, attrs, parent) {
   const e = document.createElementNS(SVG_NS, tag);
   for (const [k,v] of Object.entries(attrs)) e.setAttribute(k, v);
@@ -420,7 +398,6 @@ function svgEl(tag, attrs, parent) {
   return e;
 }
 
-// ── TREBLE CLEF ─────────────────────────────────────
 function drawClef(svg) {
   const g = svgEl('g', {transform:'translate(2,42) scale(0.235,0.235)'}, svg);
   const S = (d,sw,lc) => svgEl('path',{d,stroke:'#b89a5a',fill:'none','stroke-width':sw,'stroke-linecap':lc||'round','stroke-linejoin':'round'},g);
@@ -437,7 +414,6 @@ function drawClef(svg) {
   svgEl('circle',{cx:'37',cy:'311',r:'3.5',fill:'#d4aa6a',opacity:'0.6'},g);
 }
 
-// ── ACCIDENTALS ──────────────────────────────────────
 function drawHalfFlat(g, cx, cy, color) {
   const a = svgEl('g',{transform:`translate(${cx},${cy})`},g);
   svgEl('rect',{x:'-1',y:'-13',width:'2',height:'21',fill:color,rx:'0.5'},a);
@@ -458,7 +434,6 @@ function drawSharpHalfFlat(g, cx, cy, color) {
   drawHalfFlat(g, cx+8, cy, color);
 }
 
-// ── COLOR HELPERS ────────────────────────────────────
 function noteColor(jins, on) {
   if (jins==='l') return on ? '#e2c47e' : '#c8a45a';
   return on ? '#a8ccee' : '#7ba8d4';
@@ -472,14 +447,12 @@ function degColor(jins, on) {
   return on ? '#a8ccee' : '#3a6090';
 }
 
-// ── RENDER STAFF ─────────────────────────────────────
 function renderStaff(maqam) {
   const { tonic, active } = STATE[maqam];
   const notes = MAQAM_SCALES[maqam][tonic];
   const svg = document.getElementById('staff-' + maqam);
   svg.innerHTML = '';
 
-  // staff lines
   LINES.forEach(y => svgEl('line',{x1:'0',y1:y,x2:'820',y2:y,stroke:'#5a5038','stroke-width':'1.4'},svg));
   drawClef(svg);
 
@@ -487,7 +460,6 @@ function renderStaff(maqam) {
     const x = X_START + i * X_GAP + X_GAP * 0.4;
     const y = STAFF_Y[note.p];
     const on = active.has(i);
-    const isTonic = i===0||i===7;
     const fill = noteColor(note.j, on);
     const sc   = stemColor(note.j, on);
     const dc   = degColor(note.j, on);
@@ -495,26 +467,19 @@ function renderStaff(maqam) {
 
     const g = svgEl('g',{'data-idx':i,'data-jins':note.j,'data-maqam':maqam,class:'note-btn'+(on?' active':''),role:'button',tabindex:'0','aria-label':note.ar,style:'cursor:pointer'},svg);
 
-    // ledger lines
     if (y >= 145) svgEl('line',{x1:x-NOTE_RX-5,y1:152,x2:x+NOTE_RX+5,y2:152,stroke:'#6a6048','stroke-width':'1.4'},g);
     if (y <= 75)  svgEl('line',{x1:x-NOTE_RX-5,y1:75, x2:x+NOTE_RX+5,y2:75, stroke:'#6a6048','stroke-width':'1.4'},g);
 
-    // stem
     const up = y >= 110;
     svgEl('line',{x1:up?x+NOTE_RX-1:x-NOTE_RX+1,y1:y,x2:up?x+NOTE_RX-1:x-NOTE_RX+1,y2:up?y-38:y+38,stroke:sc,'stroke-width':'1.8',class:'note-stem'},g);
 
-    // accidental (offset -6 so flag centre = note Y)
     if (note.acc==='hf')  drawHalfFlat(g,     x-NOTE_RX-13, y-6, ac);
     if (note.acc==='f')   drawFlat(g,          x-NOTE_RX-13, y-6, ac);
     if (note.acc==='shf') drawSharpHalfFlat(g, x-NOTE_RX-20, y-6, ac);
 
-    // notehead
     svgEl('ellipse',{cx:x,cy:y,rx:NOTE_RX,ry:NOTE_RY,fill:fill,transform:`rotate(-18,${x},${y})`,class:'notehead'},g);
 
-    // degree
     svgEl('text',{x:x,y:up?y-46:y+50,'text-anchor':'middle','font-family':'Cairo,sans-serif','font-size':'11','font-weight':'700',fill:dc,class:'note-deg'},g).textContent = note.d;
-
-    // hit area
     svgEl('ellipse',{cx:x,cy:y,rx:NOTE_RX+8,ry:NOTE_RY+14,fill:'transparent'},g);
 
     g.addEventListener('click', () => toggleNote(maqam, i));
@@ -522,7 +487,6 @@ function renderStaff(maqam) {
   });
 }
 
-// ── RENDER KEY BUTTONS ───────────────────────────────
 function renderKeys(maqam) {
   const { tonic, active } = STATE[maqam];
   const notes = MAQAM_SCALES[maqam][tonic];
@@ -541,7 +505,6 @@ function renderKeys(maqam) {
   });
 }
 
-// ── TOGGLE ───────────────────────────────────────────
 function toggleNote(maqam, idx) {
   const s = STATE[maqam];
   if (s.active.has(idx)) s.active.delete(idx);
@@ -551,7 +514,6 @@ function toggleNote(maqam, idx) {
 
 function syncColors(maqam) {
   const { active } = STATE[maqam];
-  const notes = MAQAM_SCALES[maqam][STATE[maqam].tonic];
 
   document.querySelectorAll(`#staff-${maqam} .note-btn`).forEach(g => {
     const i = parseInt(g.dataset.idx);
@@ -564,9 +526,6 @@ function syncColors(maqam) {
     if (st) st.setAttribute('stroke', stemColor(jins, on));
     const dg = g.querySelector('.note-deg');
     if (dg) dg.setAttribute('fill', degColor(jins, on));
-    const ac = on ? (jins==='l'?'#e2c47e':'#a8ccee') : (jins==='l'?'#c8a45a':'#7ba8d4');
-    const ag = g.querySelector('g');
-    if (ag) ag.querySelectorAll('rect,path').forEach(el => el.setAttribute('fill', ac));
   });
 
   document.querySelectorAll(`#keys-${maqam} .note-key`).forEach(k => {
@@ -575,7 +534,6 @@ function syncColors(maqam) {
   });
 }
 
-// ── AUDIO ────────────────────────────────────────────
 function playNote(maqam, idx) {
   const note = MAQAM_SCALES[maqam][STATE[maqam].tonic][idx];
   if (note.src) { const a = new Audio(note.src); a.play().catch(()=>{}); }
@@ -589,7 +547,6 @@ function flashNote(maqam, idx) {
   if (kb) { kb.classList.add('playing'); setTimeout(()=>kb.classList.remove('playing'),550); }
 }
 
-// ── PLAY / STOP ───────────────────────────────────────
 function setPlayBtn(maqam, isPlaying) {
   document.getElementById('playicon-'+maqam).innerHTML = isPlaying
     ? '<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>'
@@ -618,7 +575,6 @@ async function playScale(maqam) {
   setPlayBtn(maqam, false);
 }
 
-// ── TONIC SWITCH ─────────────────────────────────────
 document.querySelectorAll('.tonic-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const maqam = btn.dataset.maqam;
@@ -632,12 +588,10 @@ document.querySelectorAll('.tonic-btn').forEach(btn => {
   });
 });
 
-// ── PLAY BUTTONS ─────────────────────────────────────
 ['rast','kirdan','suznak','mahur','sazkar','nairuz','delanshin','suzdelara'].forEach(m => {
   document.getElementById('playbtn-'+m).addEventListener('click', () => playScale(m));
 });
 
-// ── SIDEBAR NAV ───────────────────────────────────────
 document.querySelectorAll('.sidebar-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const id = btn.dataset.maqam;
@@ -651,13 +605,55 @@ document.querySelectorAll('.sidebar-btn').forEach(btn => {
   });
 });
 
-// ── INIT ─────────────────────────────────────────────
 ['rast','kirdan','suznak','mahur','sazkar','nairuz','delanshin','suzdelara'].forEach(m => {
   renderStaff(m);
   renderKeys(m);
 });
 
-// ── URL PARAM: ?maqam=suznak ─────────────────────────
+const pageParams = new URLSearchParams(window.location.search);
+const pageFamily = pageParams.get('family') || 'rast';
+const pageMaqam = pageParams.get('maqam') || 'rast';
+
+const FAMILY_NAMES = {
+  rast: 'عائلة الراست',
+  bayat: 'عائلة البيات',
+  nahawand: 'عائلة النهاوند',
+  ajam: 'عائلة العجم',
+  kurd: 'عائلة الكرد',
+  hijaz: 'عائلة الحجاز',
+  sikah: 'عائلة السيكاه',
+  saba: 'عائلة الصبا',
+  nawa_athar: 'عائلة نوى أثر'
+};
+
+const familyLinkEl = document.getElementById('family-link');
+const currentMaqamLabelEl = document.getElementById('current-maqam-label');
+
+if (familyLinkEl) {
+  familyLinkEl.href = `maqam-family.html?family=${pageFamily}`;
+  familyLinkEl.textContent = FAMILY_NAMES[pageFamily] || 'عائلة المقام';
+}
+
+document.querySelectorAll('.sidebar-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const maqamId = btn.dataset.maqam;
+    const maqamText = btn.textContent.replace('أساسي', '').trim();
+    if (currentMaqamLabelEl) currentMaqamLabelEl.textContent = maqamText;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('family', pageFamily);
+    url.searchParams.set('maqam', maqamId);
+    window.history.replaceState({}, '', url);
+  });
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const activeBtn = document.querySelector(`.sidebar-btn[data-maqam="${pageMaqam}"]`);
+  if (activeBtn && currentMaqamLabelEl) {
+    currentMaqamLabelEl.textContent = activeBtn.textContent.replace('أساسي', '').trim();
+  }
+});
+
 (function() {
   const m = new URLSearchParams(window.location.search).get('maqam');
   if (m) {
