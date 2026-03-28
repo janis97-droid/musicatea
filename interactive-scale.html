@@ -656,6 +656,15 @@ document.querySelectorAll('.sidebar-btn').forEach(btn => {
   renderStaff(m);
   renderKeys(m);
 });
+
+// ── URL PARAM: ?maqam=suznak ─────────────────────────
+(function() {
+  const m = new URLSearchParams(window.location.search).get('maqam');
+  if (m) {
+    const btn = document.querySelector(`.sidebar-btn[data-maqam="${m}"]`);
+    if (btn) btn.click();
+  }
+})();
 </script>
 </body>
 </html>
