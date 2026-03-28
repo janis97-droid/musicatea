@@ -24,7 +24,7 @@
 
     .site-nav{position:fixed;top:0;right:0;left:0;z-index:200;background:rgba(12,11,9,0.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center}
     .nav-inner{width:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .nav-right{display:flex;align-items:center;gap:16px;min-width:0}
+    .nav-right{display:flex;align-items:center;gap:16px;min-width:0;flex:1}
     .nav-logo{font-size:1.15rem;font-weight:900;color:var(--gold-light);flex-shrink:0}
     .nav-breadcrumb{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(--text-dim);padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid var(--border2);min-width:0}
     .nav-breadcrumb a,.nav-breadcrumb span{display:inline-flex;align-items:center}
@@ -32,7 +32,7 @@
     .nav-breadcrumb a:hover{color:var(--gold)}
     .nav-breadcrumb .sep{color:var(--border)}
     .nav-breadcrumb .current{color:var(--gold-light);font-weight:800}
-    .nav-links{display:flex;gap:2px}
+    .nav-links{display:flex;gap:2px;flex-shrink:0}
     .nav-links a{font-size:0.8rem;color:var(--text-dim);padding:5px 10px;border-radius:7px;font-weight:600;transition:all .2s}
     .nav-links a:hover{color:var(--text-muted);background:var(--surface)}
     .nav-links a.active{color:var(--gold);background:var(--gold-dim)}
