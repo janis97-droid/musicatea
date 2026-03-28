@@ -25,12 +25,11 @@
       --gold-dim:rgba(200,164,90,0.10);
       --blue:#7ba8d4;
       --blue-light:#a8ccee;
-      --blue-dim:rgba(123,168,212,0.10);
       --ease:cubic-bezier(0.22,1,0.36,1);
-      --sidebar-w:260px;
+      --sidebar-w:280px;
     }
 
-    *,*::before,*::after {
+    *, *::before, *::after {
       box-sizing:border-box;
       margin:0;
       padding:0;
@@ -131,10 +130,6 @@
     .nav-breadcrumb span {
       display:inline-flex;
       align-items:center;
-    }
-
-    .nav-breadcrumb a {
-      transition:color .2s;
     }
 
     .nav-breadcrumb a:hover {
@@ -369,7 +364,7 @@
 
     .maqam-body {
       padding:28px 5% 80px;
-      max-width:900px;
+      max-width:980px;
     }
 
     .sec-title {
@@ -453,6 +448,7 @@
       display:flex;
       gap:5px;
       margin-top:14px;
+      direction:ltr;
     }
 
     .note-key {
@@ -507,16 +503,6 @@
       border-color:var(--gold);
       color:var(--gold-light);
       font-weight:900;
-    }
-
-    .note-key-deg {
-      font-size:.6rem;
-      color:var(--text-dim);
-      font-weight:600;
-    }
-
-    .note-key.active .note-key-deg {
-      color:var(--gold);
     }
 
     .playbar {
