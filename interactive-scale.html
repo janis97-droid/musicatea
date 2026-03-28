@@ -630,8 +630,7 @@ const familyLinkEl = document.getElementById('family-link');
 const currentMaqamLabelEl = document.getElementById('current-maqam-label');
 
 if (familyLinkEl) {
-  familyLinkEl.href = `maqam-family.html?family=${pageFamily}`;
-  familyLinkEl.textContent = FAMILY_NAMES[pageFamily] || 'عائلة المقام';
+  familyLinkEl.textContent = 'الراست';
 }
 
 document.querySelectorAll('.sidebar-btn').forEach(btn => {
