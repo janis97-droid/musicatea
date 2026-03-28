@@ -11,6 +11,8 @@
 // - adds main-family switcher above the sidebar
 // - removes "نمط الطبقات" and tonic count from maqam info
 // - adds "other maqam names by tonic" info
+// - restores G-clef drawing on staff
+// - restores accidental drawing on staff
 // - keeps page generic for all families
 
 (function () {
@@ -21,6 +23,7 @@
   if (!root || !sidebar) return;
 
   const URL_PARAMS = new URLSearchParams(window.location.search);
+  const SVG_NS = "http://www.w3.org/2000/svg";
 
   const NATURAL_BASE = {
     C: 0,
@@ -46,6 +49,23 @@
     mi_half_flat: 7,
     la_half_flat: 17,
     si_half_flat: 21
+  };
+
+  const Y_MAP = {
+    C4: 152,
+    D4: 145,
+    E4: 138,
+    F4: 131,
+    G4: 124,
+    A4: 117,
+    B4: 110,
+    C5: 103,
+    D5: 96,
+    E5: 89,
+    F5: 82,
+    G5: 75,
+    A5: 68,
+    B5: 61
   };
 
   let state = {
@@ -94,7 +114,6 @@
 
     const maqamObj = getMaqamById(resolvedMaqam);
 
-    // Fix mismatch: if maqam doesn't belong to family, force family main maqam
     if (!maqamObj || maqamObj.family !== resolvedFamily || !getInteractiveMaqamById(resolvedMaqam)) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
@@ -152,17 +171,11 @@
     `;
 
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const maqamId = btn.dataset.maqamId;
-        setActiveMaqam(maqamId);
-      });
+      btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId));
     });
 
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const maqamId = btn.dataset.maqamId;
-        setActiveMaqam(maqamId);
-      });
+      btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId));
     });
   }
 
@@ -287,9 +300,7 @@
     `).join("");
 
     container.querySelectorAll(".tonic-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        setActiveTonic(btn.dataset.tonic);
-      });
+      btn.addEventListener("click", () => setActiveTonic(btn.dataset.tonic));
     });
   }
 
@@ -336,15 +347,12 @@
     });
 
     if (!entries.length) return "";
-
     return entries.map(([tonic, name]) => `${getTonicLabelAr(tonic)} = ${name}`).join(" · ");
   }
 
   function bindPageEvents() {
     const playBtn = document.getElementById("playbtn-current");
-    if (playBtn) {
-      playBtn.addEventListener("click", playScale);
-    }
+    if (playBtn) playBtn.addEventListener("click", playScale);
   }
 
   function bindGlobalEvents() {}
@@ -417,25 +425,54 @@
 
     const staffLines = [138, 124, 110, 96, 82];
     staffLines.forEach(y => {
-      svg.insertAdjacentHTML("beforeend", `<line x1="0" y1="${y}" x2="820" y2="${y}" stroke="#5a5038" stroke-width="1.4"></line>`);
+      svg.appendChild(svgEl("line", {
+        x1: "0", y1: String(y), x2: "820", y2: String(y),
+        stroke: "#5a5038", "stroke-width": "1.4"
+      }));
     });
+
+    drawClef(svg);
 
     const xStart = 82;
     const xGap = (820 - xStart - 16) / 8;
-    const yPositions = [152, 145, 138, 131, 124, 117, 110, 103];
 
     notes.forEach((note, i) => {
       const x = xStart + i * xGap + xGap * 0.4;
-      const y = yPositions[i] || 110;
+      const y = note.staff_y;
       const active = state.activeNotes.has(i);
       const color = active ? "#e2c47e" : (i < 4 ? "#c8a45a" : "#7ba8d4");
+      const stemColor = active ? color : (i < 4 ? "#8a6020" : "#3a6090");
 
-      svg.insertAdjacentHTML("beforeend", `
-        <g class="note-btn ${active ? "active" : ""}" data-note-idx="${i}" role="button" tabindex="0" style="cursor:pointer">
-          <line x1="${x + 7}" y1="${y}" x2="${x + 7}" y2="${y - 38}" stroke="${color}" stroke-width="1.8"></line>
-          <ellipse cx="${x}" cy="${y}" rx="8" ry="5.5" fill="${color}" transform="rotate(-18,${x},${y})"></ellipse>
-        </g>
-      `);
+      const g = svgEl("g", {
+        class: `note-btn ${active ? "active" : ""}`,
+        "data-note-idx": String(i),
+        role: "button",
+        tabindex: "0",
+        style: "cursor:pointer"
+      }, svg);
+
+      drawLedgerLines(g, x, y);
+
+      const up = y >= 110;
+      svgEl("line", {
+        x1: String(up ? x + 7 : x - 7),
+        y1: String(y),
+        x2: String(up ? x + 7 : x - 7),
+        y2: String(up ? y - 38 : y + 38),
+        stroke: stemColor,
+        "stroke-width": "1.8"
+      }, g);
+
+      drawAccidental(g, x - 22, y - 6, note.acc_label, active ? "#e2c47e" : color);
+
+      svgEl("ellipse", {
+        cx: String(x),
+        cy: String(y),
+        rx: "8",
+        ry: "5.5",
+        fill: color,
+        transform: `rotate(-18,${x},${y})`
+      }, g);
     });
 
     svg.querySelectorAll(".note-btn").forEach(node => {
@@ -474,11 +511,8 @@
   }
 
   function toggleNote(idx) {
-    if (state.activeNotes.has(idx)) {
-      state.activeNotes.delete(idx);
-    } else {
-      state.activeNotes.add(idx);
-    }
+    if (state.activeNotes.has(idx)) state.activeNotes.delete(idx);
+    else state.activeNotes.add(idx);
     renderStaff();
     renderKeys();
   }
@@ -498,9 +532,7 @@
     state.isPlaying = true;
     state.stopRequested = false;
 
-    if (playIcon) {
-      playIcon.innerHTML = '<rect x="5" y="3" width="4" height="18"></rect><rect x="15" y="3" width="4" height="18"></rect>';
-    }
+    if (playIcon) playIcon.innerHTML = '<rect x="5" y="3" width="4" height="18"></rect><rect x="15" y="3" width="4" height="18"></rect>';
     if (playLabel) playLabel.textContent = "إيقاف التشغيل";
     if (playBtn) playBtn.classList.add("is-playing");
     if (status) status.className = "status-bar on";
@@ -513,10 +545,7 @@
       renderStaff();
       renderKeys();
 
-      if (status) {
-        status.textContent = `▶ ${notes[i].label_ar}`;
-      }
-
+      if (status) status.textContent = `▶ ${notes[i].label_ar}${notes[i].acc_label ? " " + notes[i].acc_label : ""}`;
       await wait(560);
     }
 
@@ -528,9 +557,7 @@
       status.textContent = "";
       status.className = "status-bar";
     }
-    if (playIcon) {
-      playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
-    }
+    if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
     if (playLabel) playLabel.textContent = "تشغيل السلّم";
     if (playBtn) playBtn.classList.remove("is-playing");
 
@@ -545,10 +572,10 @@
   function buildScaleNotes(maqamId, tonic) {
     const formula = getInteractiveFormula(maqamId);
     const tonicMeta = INTERACTIVE_TONIC_META[tonic];
-
     if (!formula || !tonicMeta) return [];
 
     const tonicQt = TONIC_TO_BASE_QT[tonic];
+
     return formula.map((offsetQt, idx) => {
       const absoluteQt = tonicQt + offsetQt;
       return quarterToneToArabicNote(absoluteQt, idx);
@@ -556,16 +583,18 @@
   }
 
   function quarterToneToArabicNote(quarterToneValue, degreeIdx) {
-    const mod24 = ((quarterToneValue % 24) + 24) % 24;
+    const absQt = quarterToneValue;
+    const mod24 = ((absQt % 24) + 24) % 24;
+    const octaveOffset = Math.floor(absQt / 24);
 
     const candidates = [
-      { ar: "دو", base: NATURAL_BASE.C },
-      { ar: "ري", base: NATURAL_BASE.D },
-      { ar: "مي", base: NATURAL_BASE.E },
-      { ar: "فا", base: NATURAL_BASE.F },
-      { ar: "صول", base: NATURAL_BASE.G },
-      { ar: "لا", base: NATURAL_BASE.A },
-      { ar: "سي", base: NATURAL_BASE.B }
+      { ar: "دو", en: "C", base: NATURAL_BASE.C },
+      { ar: "ري", en: "D", base: NATURAL_BASE.D },
+      { ar: "مي", en: "E", base: NATURAL_BASE.E },
+      { ar: "فا", en: "F", base: NATURAL_BASE.F },
+      { ar: "صول", en: "G", base: NATURAL_BASE.G },
+      { ar: "لا", en: "A", base: NATURAL_BASE.A },
+      { ar: "سي", en: "B", base: NATURAL_BASE.B }
     ];
 
     let best = candidates[0];
@@ -588,13 +617,112 @@
     if (best.diff === 1) accLabel = "½#";
     if (best.diff === 2) accLabel = "#";
 
+    const midiLike = noteNameToMidiLike(best.en, 4 + octaveOffset);
+    const staffY = Y_MAP[midiLike] || 110;
+
     return {
       degree_index: degreeIdx,
       quarter_tone_value: mod24,
       base_name_ar: best.ar,
       label_ar: best.ar,
-      acc_label: accLabel
+      acc_label: accLabel,
+      staff_y: staffY
     };
+  }
+
+  function noteNameToMidiLike(name, octave) {
+    return `${name}${octave}`;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    const e = document.createElementNS(SVG_NS, tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  function drawClef(svg) {
+    const g = svgEl("g", { transform: "translate(2,42) scale(0.235,0.235)" }, svg);
+    const pathA = (d, sw) => svgEl("path", {
+      d,
+      stroke: "#b89a5a",
+      fill: "none",
+      "stroke-width": String(sw),
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }, g);
+    const pathB = (d, sw) => svgEl("path", {
+      d,
+      stroke: "#d4aa6a",
+      fill: "none",
+      "stroke-width": String(sw),
+      "stroke-linecap": "round"
+    }, g);
+
+    pathA("M 55 18 C 38 35 32 60 32 85 C 32 108 46 124 55 130 C 62 134 68 136 68 136 L 68 196 C 52 202 36 216 32 234 C 26 254 32 276 46 286 C 54 292 64 292 70 290 L 70 318 C 70 332 64 342 56 348 C 46 354 38 348 34 340 C 30 330 36 320 44 320 C 48 320 50 326 48 330", 9);
+    pathA("M 55 18 C 70 6 88 12 94 30 C 102 52 88 80 68 96 C 60 102 52 108 50 114 C 48 118 50 124 52 128", 9);
+    pathB("M 62 26 C 72 18 84 26 86 42 C 88 58 76 78 62 90", 3.5);
+    pathA("M 50 130 C 34 138 16 156 16 178 C 16 200 30 220 50 226 C 66 232 82 224 90 210 C 98 196 92 178 80 170 C 68 162 52 166 46 176 C 40 186 46 198 54 202 C 60 205 66 200 66 194", 9);
+    pathB("M 44 138 C 28 150 20 170 26 188 C 30 200 42 210 56 210", 3.5);
+    svgEl("line", { x1: "68", y1: "136", x2: "68", y2: "290", stroke: "#b89a5a", "stroke-width": "7", "stroke-linecap": "round" }, g);
+    svgEl("line", { x1: "65", y1: "142", x2: "65", y2: "280", stroke: "#d4aa6a", "stroke-width": "2.5", "stroke-linecap": "round", opacity: "0.5" }, g);
+    pathA("M 68 290 C 68 308 60 320 50 324 C 40 328 30 322 26 312 C 22 302 28 292 38 292 C 46 292 50 300 47 308", 8);
+    svgEl("circle", { cx: "40", cy: "314", r: "9", fill: "#b89a5a" }, g);
+    svgEl("circle", { cx: "37", cy: "311", r: "3.5", fill: "#d4aa6a", opacity: "0.6" }, g);
+  }
+
+  function drawLedgerLines(parent, x, y) {
+    if (y >= 145) {
+      svgEl("line", {
+        x1: String(x - 13), y1: "152",
+        x2: String(x + 13), y2: "152",
+        stroke: "#6a6048", "stroke-width": "1.4"
+      }, parent);
+    }
+    if (y <= 75) {
+      svgEl("line", {
+        x1: String(x - 13), y1: "75",
+        x2: String(x + 13), y2: "75",
+        stroke: "#6a6048", "stroke-width": "1.4"
+      }, parent);
+    }
+  }
+
+  function drawAccidental(parent, x, y, accLabel, color) {
+    if (!accLabel) return;
+    if (accLabel === "♭") return drawFlat(parent, x, y, color);
+    if (accLabel === "½♭") return drawHalfFlat(parent, x, y, color);
+    if (accLabel === "#") return drawSharp(parent, x, y, color);
+    if (accLabel === "½#") return drawHalfSharp(parent, x, y, color);
+  }
+
+  function drawFlat(parent, x, y, color) {
+    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
+    svgEl("rect", { x: "-1", y: "-14", width: "2", height: "20", fill: color, rx: "0.5" }, g);
+    svgEl("path", { d: "M 1 -3 C 8 0 8 5 8 6 C 8 12 4 14 1 14 L 1 14 L -1 14 L -1 -3 Z", fill: color }, g);
+  }
+
+  function drawHalfFlat(parent, x, y, color) {
+    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
+    svgEl("rect", { x: "-1", y: "-13", width: "2", height: "21", fill: color, rx: "0.5" }, g);
+    svgEl("path", { d: "M 1 -2 C 8 0 8 5 8 6 C 8 12 4 13 1 13 L 1 13 L -1 13 L -1 -2 Z", fill: color }, g);
+    svgEl("rect", { x: "-5", y: "-5.5", width: "11", height: "2", fill: color, rx: "0.8" }, g);
+  }
+
+  function drawSharp(parent, x, y, color) {
+    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
+    svgEl("rect", { x: "-4", y: "-9", width: "1.8", height: "18", fill: color }, g);
+    svgEl("rect", { x: "2", y: "-9", width: "1.8", height: "18", fill: color }, g);
+    svgEl("rect", { x: "-5", y: "-5", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
+    svgEl("rect", { x: "-5", y: "1", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
+  }
+
+  function drawHalfSharp(parent, x, y, color) {
+    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
+    svgEl("rect", { x: "-4", y: "-9", width: "1.8", height: "18", fill: color }, g);
+    svgEl("rect", { x: "2", y: "-9", width: "1.8", height: "18", fill: color }, g);
+    svgEl("rect", { x: "-5", y: "-5", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
+    svgEl("rect", { x: "-5", y: "1", width: "8", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
   }
 
   bootstrap();
