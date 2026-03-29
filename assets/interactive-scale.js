@@ -5,12 +5,15 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// This version fixes:
-// - exact canonical note spelling from explicit per-maqam scale templates
-// - exact transposition by quarter-tone offset
-// - exact staff rendering from the spelled note token, not nearest-natural heuristic
-// - exact mp3 hookup through data/note-audio-map.js
-// - lower starting octave for tonic families above Do as required
+// Visual fixes:
+// - correct staff-step placement and ledger lines
+// - octave flow based on ascending scale degrees
+// - accidental glyphs in note boxes instead of raw /b /#
+// - jins-based colors:
+//   lower jins = yellow
+//   upper jins = blue
+//   first note of each jins is brighter in idle state
+// - single active note only
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -21,39 +24,74 @@
 
   const URL_PARAMS = new URLSearchParams(window.location.search);
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const ACCIDENTAL_COLOR_IDLE = "#f0d28a";
-  const ACCIDENTAL_COLOR_ACTIVE = "#fff0bf";
+
+  const COLORS = {
+    lower: {
+      note: "#c8a45a",
+      note_bright: "#e2c47e",
+      stem: "#8a6020",
+      acc: "#f0d28a",
+      active: "#f7dc94",
+      active_acc: "#fff0bf",
+      box_bg: "rgba(200,164,90,0.08)",
+      box_border: "rgba(200,164,90,0.25)",
+      box_text: "#d8bb74",
+      box_bg_bright: "rgba(200,164,90,0.14)",
+      box_border_bright: "rgba(200,164,90,0.5)",
+      box_text_bright: "#f0d28a",
+      box_bg_active: "rgba(247,220,148,0.18)",
+      box_border_active: "rgba(247,220,148,0.75)",
+      box_text_active: "#fff0bf"
+    },
+    upper: {
+      note: "#7ba8d4",
+      note_bright: "#a8ccee",
+      stem: "#3a6090",
+      acc: "#a8ccee",
+      active: "#8fd1ff",
+      active_acc: "#cdeaff",
+      box_bg: "rgba(123,168,212,0.08)",
+      box_border: "rgba(123,168,212,0.25)",
+      box_text: "#8dbde4",
+      box_bg_bright: "rgba(123,168,212,0.15)",
+      box_border_bright: "rgba(123,168,212,0.52)",
+      box_text_bright: "#c8e4ff",
+      box_bg_active: "rgba(143,209,255,0.18)",
+      box_border_active: "rgba(143,209,255,0.78)",
+      box_text_active: "#e9f7ff"
+    }
+  };
 
   const NOTE_TOKEN_META = {
-    "Do":   { letter: "C", acc_label: "",    ar: "دو" },
-    "Dob":  { letter: "C", acc_label: "♭",   ar: "دو" },
-    "Do#":  { letter: "C", acc_label: "#",   ar: "دو" },
-    "Do/#": { letter: "C", acc_label: "½#",  ar: "دو" },
+    "Do":   { letter: "C", acc_label: "",    ar: "دو",  display: "Do" },
+    "Dob":  { letter: "C", acc_label: "♭",   ar: "دو",  display: "Do♭" },
+    "Do#":  { letter: "C", acc_label: "♯",   ar: "دو",  display: "Do♯" },
+    "Do/#": { letter: "C", acc_label: "𝄲",   ar: "دو",  display: "Do𝄲" },
 
-    "Re":   { letter: "D", acc_label: "",    ar: "ري" },
-    "Reb":  { letter: "D", acc_label: "♭",   ar: "ري" },
-    "Re/b": { letter: "D", acc_label: "½♭",  ar: "ري" },
-    "Re#":  { letter: "D", acc_label: "#",   ar: "ري" },
+    "Re":   { letter: "D", acc_label: "",    ar: "ري",  display: "Re" },
+    "Reb":  { letter: "D", acc_label: "♭",   ar: "ري",  display: "Re♭" },
+    "Re/b": { letter: "D", acc_label: "𝄳",   ar: "ري",  display: "Re𝄳" },
+    "Re#":  { letter: "D", acc_label: "♯",   ar: "ري",  display: "Re♯" },
 
-    "Mi":   { letter: "E", acc_label: "",    ar: "مي" },
-    "Mib":  { letter: "E", acc_label: "♭",   ar: "مي" },
-    "Mi/b": { letter: "E", acc_label: "½♭",  ar: "مي" },
+    "Mi":   { letter: "E", acc_label: "",    ar: "مي",  display: "Mi" },
+    "Mib":  { letter: "E", acc_label: "♭",   ar: "مي",  display: "Mi♭" },
+    "Mi/b": { letter: "E", acc_label: "𝄳",   ar: "مي",  display: "Mi𝄳" },
 
-    "Fa":   { letter: "F", acc_label: "",    ar: "فا" },
-    "Fa#":  { letter: "F", acc_label: "#",   ar: "فا" },
-    "Fa/#": { letter: "F", acc_label: "½#",  ar: "فا" },
+    "Fa":   { letter: "F", acc_label: "",    ar: "فا",  display: "Fa" },
+    "Fa#":  { letter: "F", acc_label: "♯",   ar: "فا",  display: "Fa♯" },
+    "Fa/#": { letter: "F", acc_label: "𝄲",   ar: "فا",  display: "Fa𝄲" },
 
-    "Sol":  { letter: "G", acc_label: "",    ar: "صول" },
-    "Solb": { letter: "G", acc_label: "♭",   ar: "صول" },
-    "Sol#": { letter: "G", acc_label: "#",   ar: "صول" },
+    "Sol":  { letter: "G", acc_label: "",    ar: "صول", display: "Sol" },
+    "Solb": { letter: "G", acc_label: "♭",   ar: "صول", display: "Sol♭" },
+    "Sol#": { letter: "G", acc_label: "♯",   ar: "صول", display: "Sol♯" },
 
-    "La":   { letter: "A", acc_label: "",    ar: "لا" },
-    "Lab":  { letter: "A", acc_label: "♭",   ar: "لا" },
-    "La/b": { letter: "A", acc_label: "½♭",  ar: "لا" },
+    "La":   { letter: "A", acc_label: "",    ar: "لا",  display: "La" },
+    "Lab":  { letter: "A", acc_label: "♭",   ar: "لا",  display: "La♭" },
+    "La/b": { letter: "A", acc_label: "𝄳",   ar: "لا",  display: "La𝄳" },
 
-    "Si":   { letter: "B", acc_label: "",    ar: "سي" },
-    "Sib":  { letter: "B", acc_label: "♭",   ar: "سي" },
-    "Si/b": { letter: "B", acc_label: "½♭",  ar: "سي" }
+    "Si":   { letter: "B", acc_label: "",    ar: "سي",  display: "Si" },
+    "Sib":  { letter: "B", acc_label: "♭",   ar: "سي",  display: "Si♭" },
+    "Si/b": { letter: "B", acc_label: "𝄳",   ar: "سي",  display: "Si𝄳" }
   };
 
   const LETTER_BASE_STEPS = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
@@ -75,7 +113,7 @@
     familyId: null,
     maqamId: null,
     tonic: null,
-    activeNotes: new Set(),
+    activeNoteIndex: null,
     isPlaying: false,
     stopRequested: false,
     lastAudioErrorToken: null
@@ -338,6 +376,10 @@
         background:rgba(200,164,90,.10);
         border-color:rgba(200,164,90,.35);
       }
+      .note-key-face.note-key-face-colored {
+        min-height:58px;
+        border-width:1.5px;
+      }
     `;
     document.head.appendChild(style);
   }
@@ -425,7 +467,7 @@
     state.maqamId = maqamId;
     state.familyId = maqam.family;
     state.tonic = getInteractiveDefaultTonic(maqamId);
-    state.activeNotes.clear();
+    state.activeNoteIndex = null;
     state.isPlaying = false;
     state.stopRequested = false;
     state.lastAudioErrorToken = null;
@@ -438,7 +480,7 @@
     stopAllAudio();
 
     state.tonic = tonic;
-    state.activeNotes.clear();
+    state.activeNoteIndex = null;
     state.isPlaying = false;
     state.stopRequested = false;
     state.lastAudioErrorToken = null;
@@ -506,10 +548,12 @@
     notes.forEach((note, i) => {
       const x = xStart + i * xGap + xGap * 0.4;
       const y = note.staff_y;
-      const active = state.activeNotes.has(i);
-      const color = active ? "#e2c47e" : (i < 4 ? "#c8a45a" : "#7ba8d4");
-      const stemColor = active ? color : (i < 4 ? "#8a6020" : "#3a6090");
-      const accidentalColor = active ? ACCIDENTAL_COLOR_ACTIVE : ACCIDENTAL_COLOR_IDLE;
+      const palette = getPaletteForNote(note, i);
+      const active = state.activeNoteIndex === i;
+
+      const noteColor = active ? palette.active : palette.idle;
+      const stemColor = active ? palette.active : palette.stem;
+      const accidentalColor = active ? palette.active_acc : palette.acc;
 
       const g = svgEl("g", {
         class: `note-btn ${active ? "active" : ""}`,
@@ -538,7 +582,7 @@
         cy: String(y),
         rx: "8",
         ry: "5.5",
-        fill: color,
+        fill: noteColor,
         transform: `rotate(-18,${x},${y})`
       }, g);
     });
@@ -546,17 +590,17 @@
     svg.querySelectorAll(".note-btn").forEach(node => {
       node.addEventListener("click", async () => {
         const idx = Number(node.dataset.noteIdx);
-        toggleNote(idx);
-        const notes = buildScaleNotes(state.maqamId, state.tonic);
-        if (notes[idx]) await playSingleNote(notes[idx].token);
+        setActiveNote(idx);
+        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
+        if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
       });
       node.addEventListener("keydown", async e => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           const idx = Number(node.dataset.noteIdx);
-          toggleNote(idx);
-          const notes = buildScaleNotes(state.maqamId, state.tonic);
-          if (notes[idx]) await playSingleNote(notes[idx].token);
+          setActiveNote(idx);
+          const notesNow = buildScaleNotes(state.maqamId, state.tonic);
+          if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
         }
       });
     });
@@ -567,14 +611,19 @@
     if (!row) return;
 
     const notes = buildScaleNotes(state.maqamId, state.tonic);
+
     row.innerHTML = notes.map((note, i) => {
-      const isTonic = i === 0 || i === 7;
-      const active = state.activeNotes.has(i);
+      const palette = getPaletteForNote(note, i);
+      const active = state.activeNoteIndex === i;
+
+      const bg = active ? palette.box_bg_active : palette.box_bg;
+      const border = active ? palette.box_border_active : palette.box_border;
+      const text = active ? palette.box_text_active : palette.box_text;
+
       return `
-        <div class="note-key ${active ? "active" : ""} ${isTonic ? "is-tonic" : ""}" data-note-idx="${i}">
-          <div class="note-key-face">
-            <span dir="ltr">${note.token}</span>
-            ${note.acc_label ? `<span class="acc">${note.acc_label}</span>` : ""}
+        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}">
+          <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${toShadowColor(border)}` : "none"};">
+            <span dir="ltr" style="font-weight:800">${note.display_label}</span>
           </div>
         </div>
       `;
@@ -583,16 +632,15 @@
     row.querySelectorAll(".note-key").forEach(node => {
       node.addEventListener("click", async () => {
         const idx = Number(node.dataset.noteIdx);
-        toggleNote(idx);
-        const notes = buildScaleNotes(state.maqamId, state.tonic);
-        if (notes[idx]) await playSingleNote(notes[idx].token);
+        setActiveNote(idx);
+        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
+        if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
       });
     });
   }
 
-  function toggleNote(idx) {
-    if (state.activeNotes.has(idx)) state.activeNotes.delete(idx);
-    else state.activeNotes.add(idx);
+  function setActiveNote(idx) {
+    state.activeNoteIndex = idx;
     renderStaff();
     renderKeys();
   }
@@ -621,17 +669,16 @@
     for (let i = 0; i < notes.length; i++) {
       if (state.stopRequested) break;
 
-      state.activeNotes.clear();
-      state.activeNotes.add(i);
+      state.activeNoteIndex = i;
       renderStaff();
       renderKeys();
 
-      if (status) status.textContent = `▶ ${notes[i].token}`;
+      if (status) status.textContent = `▶ ${notes[i].display_label}`;
       await playSingleNote(notes[i].token);
       await wait(120);
     }
 
-    state.activeNotes.clear();
+    state.activeNoteIndex = null;
     renderStaff();
     renderKeys();
 
@@ -662,6 +709,7 @@
     const tonicOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
     const transposedTokens = transposeTemplateToTonic(baseTemplate, tonicCanonical);
     const rootLetter = NOTE_TOKEN_META[transposedTokens[0]] ? NOTE_TOKEN_META[transposedTokens[0]].letter : "C";
+    const jinsInfo = getJinsInfo(maqamId);
 
     return transposedTokens.map((token, idx) => {
       const spelled = buildSpelledScaleNote(token, idx, tonicOctave, rootLetter);
@@ -669,11 +717,61 @@
         degree_index: idx,
         quarter_tone_value: getQuarterForCanonicalNote(token),
         token,
+        display_label: getDisplayLabel(token),
         label_ar: spelled.label_ar,
         acc_label: spelled.acc_label,
-        staff_y: spelled.staff_y
+        staff_y: spelled.staff_y,
+        jins_zone: getJinsZone(idx, jinsInfo),
+        is_jins_start: isJinsStart(idx, jinsInfo)
       };
     });
+  }
+
+  function getJinsInfo(maqamId) {
+    const config = getInteractiveConfig(maqamId) || {};
+    return {
+      lower: normalizeDegreeRange(config.lower_jins_degree_range || [1, 4]),
+      upper: normalizeDegreeRange(config.upper_jins_degree_range || [5, 8])
+    };
+  }
+
+  function normalizeDegreeRange(range) {
+    const start = Math.max(0, (range[0] || 1) - 1);
+    const end = Math.max(start, (range[1] || 8) - 1);
+    return { start, end };
+  }
+
+  function getJinsZone(idx, jinsInfo) {
+    if (idx >= jinsInfo.upper.start && idx <= jinsInfo.upper.end) return "upper";
+    return "lower";
+  }
+
+  function isJinsStart(idx, jinsInfo) {
+    return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
+  }
+
+  function getPaletteForNote(note, idx) {
+    const zone = note.jins_zone === "upper" ? "upper" : "lower";
+    const colorSet = COLORS[zone];
+    const isStart = !!note.is_jins_start;
+
+    return {
+      idle: isStart ? colorSet.note_bright : colorSet.note,
+      stem: colorSet.stem,
+      acc: colorSet.acc,
+      active: colorSet.active,
+      active_acc: colorSet.active_acc,
+      box_bg: isStart ? colorSet.box_bg_bright : colorSet.box_bg,
+      box_border: isStart ? colorSet.box_border_bright : colorSet.box_border,
+      box_text: isStart ? colorSet.box_text_bright : colorSet.box_text,
+      box_bg_active: colorSet.box_bg_active,
+      box_border_active: colorSet.box_border_active,
+      box_text_active: colorSet.box_text_active
+    };
+  }
+
+  function getDisplayLabel(token) {
+    return NOTE_TOKEN_META[token] ? NOTE_TOKEN_META[token].display : token;
   }
 
   function transposeTemplateToTonic(baseTemplate, targetTonicToken) {
@@ -730,7 +828,7 @@
       return { label_ar: "", acc_label: "", staff_y: 110 };
     }
 
-    const octave = resolveDisplayOctave(meta.letter, degreeIdx, tonicOctave, rootLetter);
+    const octave = resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter);
     const staffY = Y_MAP[`${meta.letter}${octave}`] || 110;
 
     return {
@@ -740,15 +838,9 @@
     };
   }
 
-  function resolveDisplayOctave(letter, degreeIdx, tonicOctave, rootLetter) {
-    const firstStep = LETTER_BASE_STEPS[rootLetter];
-    const currentStep = LETTER_BASE_STEPS[letter];
-
-    let relative = currentStep - firstStep;
-    while (relative < 0) relative += 7;
-
-    const crossingOctave = degreeIdx === 7 || (relative === 0 && degreeIdx > 0);
-    return tonicOctave + (crossingOctave ? 1 : 0);
+  function resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter) {
+    const rootStep = LETTER_BASE_STEPS[rootLetter];
+    return tonicOctave + Math.floor((rootStep + degreeIdx) / 7);
   }
 
   async function playSingleNote(token) {
@@ -802,6 +894,10 @@
     });
   }
 
+  function toShadowColor(borderColor) {
+    return borderColor.replace(/rgba?\(([^)]+)\)/, "rgba($1,0.16)");
+  }
+
   function svgEl(tag, attrs, parent) {
     const e = document.createElementNS(SVG_NS, tag);
     Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
@@ -813,7 +909,7 @@
     const g = svgEl("g", { transform: "translate(18,62) scale(2.15,2.15)" }, svg);
     svgEl("path", {
       d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
-      fill: ACCIDENTAL_COLOR_IDLE,
+      fill: "#f0d28a",
       stroke: "none"
     }, g);
   }
@@ -833,9 +929,9 @@
   function drawAccidental(parent, x, y, accLabel, color) {
     if (!accLabel) return;
     if (accLabel === "♭") return drawFlat(parent, x, y, color);
-    if (accLabel === "½♭") return drawHalfFlat(parent, x, y, color);
-    if (accLabel === "#") return drawSharp(parent, x, y, color);
-    if (accLabel === "½#") return drawHalfSharp(parent, x, y, color);
+    if (accLabel === "𝄳") return drawHalfFlat(parent, x, y, color);
+    if (accLabel === "♯") return drawSharp(parent, x, y, color);
+    if (accLabel === "𝄲") return drawHalfSharp(parent, x, y, color);
   }
 
   function drawFlat(parent, x, y, color) {
