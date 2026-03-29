@@ -14,7 +14,8 @@
 // - restores G-clef drawing on staff using supplied SVG path
 // - restores accidental drawing on staff
 // - brightens accidentals for better visibility
-// - uses supplied half-sharp style
+// - aligns sharp / half-sharp symbols to the note line
+// - lowers Sol / La / any Si roots by one octave so they begin under middle C staff position
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -53,7 +54,12 @@
     si_half_flat: 21
   };
 
+  const LOWER_OCTAVE_TONICS = new Set([
+    "sol", "la_flat", "la", "si_flat", "si", "la_half_flat", "si_half_flat"
+  ]);
+
   const Y_MAP = {
+    C3: 208, D3: 201, E3: 194, F3: 187, G3: 180, A3: 173, B3: 166,
     C4: 152, D4: 145, E4: 138, F4: 131, G4: 124, A4: 117, B4: 110,
     C5: 103, D5: 96, E5: 89, F5: 82, G5: 75, A5: 68, B5: 61
   };
@@ -211,7 +217,7 @@
           </div>
 
           <div class="staff-wrap">
-            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 170"></svg>
+            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220"></svg>
           </div>
 
           <div class="note-keys-row" id="keys-current"></div>
@@ -445,13 +451,13 @@
       svgEl("line", {
         x1: String(up ? x + 7 : x - 7),
         y1: String(y),
-        x2: String(up ? y ? x + 7 : x - 7 : x - 7),
+        x2: String(up ? x + 7 : x - 7),
         y2: String(up ? y - 38 : y + 38),
         stroke: stemColor,
         "stroke-width": "1.8"
       }, g);
 
-      drawAccidental(g, x - 22, y - 6, note.acc_label, accidentalColor);
+      drawAccidental(g, x - 22, y, note.acc_label, accidentalColor);
 
       svgEl("ellipse", {
         cx: String(x),
@@ -563,13 +569,15 @@
     if (!formula || !tonicMeta) return [];
 
     const tonicQt = TONIC_TO_BASE_QT[tonic];
+    const tonicOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
+
     return formula.map((offsetQt, idx) => {
       const absoluteQt = tonicQt + offsetQt;
-      return quarterToneToArabicNote(absoluteQt, idx);
+      return quarterToneToArabicNote(absoluteQt, idx, tonicOctave);
     });
   }
 
-  function quarterToneToArabicNote(quarterToneValue, degreeIdx) {
+  function quarterToneToArabicNote(quarterToneValue, degreeIdx, tonicOctave) {
     const absQt = quarterToneValue;
     const mod24 = ((absQt % 24) + 24) % 24;
     const octaveOffset = Math.floor(absQt / 24);
@@ -604,7 +612,8 @@
     if (best.diff === 1) accLabel = "½#";
     if (best.diff === 2) accLabel = "#";
 
-    const midiLike = `${best.en}${4 + octaveOffset}`;
+    const octave = tonicOctave + octaveOffset;
+    const midiLike = `${best.en}${octave}`;
     const staffY = Y_MAP[midiLike] || 110;
 
     return {
@@ -625,7 +634,7 @@
   }
 
   function drawClef(svg) {
-    const g = svgEl("g", { transform: "translate(20,14) scale(2.25,2.25)" }, svg);
+    const g = svgEl("g", { transform: "translate(18,20) scale(2.15,2.15)" }, svg);
     svgEl("path", {
       d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
       fill: ACCIDENTAL_COLOR_IDLE,
@@ -634,20 +643,16 @@
   }
 
   function drawLedgerLines(parent, x, y) {
-    if (y >= 145) {
-      svgEl("line", {
-        x1: String(x - 13), y1: "152",
-        x2: String(x + 13), y2: "152",
-        stroke: "#6a6048", "stroke-width": "1.4"
-      }, parent);
-    }
-    if (y <= 75) {
-      svgEl("line", {
-        x1: String(x - 13), y1: "75",
-        x2: String(x + 13), y2: "75",
-        stroke: "#6a6048", "stroke-width": "1.4"
-      }, parent);
-    }
+    const lines = [152, 166, 180, 194, 208, 75, 61];
+    lines.forEach(lineY => {
+      if (Math.abs(y - lineY) < 0.1) {
+        svgEl("line", {
+          x1: String(x - 13), y1: String(lineY),
+          x2: String(x + 13), y2: String(lineY),
+          stroke: "#6a6048", "stroke-width": "1.4"
+        }, parent);
+      }
+    });
   }
 
   function drawAccidental(parent, x, y, accLabel, color) {
@@ -659,24 +664,24 @@
   }
 
   function drawFlat(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
-    svgEl("rect", { x: "-1", y: "-14", width: "2", height: "20", fill: color, rx: "0.5" }, g);
+    const g = svgEl("g", { transform: `translate(${x},${y - 6})` }, parent);
+    svgEl("rect", { x: "-1.2", y: "-14", width: "2.4", height: "20", fill: color, rx: "0.6" }, g);
     svgEl("path", { d: "M 1 -3 C 8 0 8 5 8 6 C 8 12 4 14 1 14 L 1 14 L -1 14 L -1 -3 Z", fill: color }, g);
   }
 
   function drawHalfFlat(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
-    svgEl("rect", { x: "-1", y: "-13", width: "2", height: "21", fill: color, rx: "0.5" }, g);
+    const g = svgEl("g", { transform: `translate(${x},${y - 6})` }, parent);
+    svgEl("rect", { x: "-1.2", y: "-13", width: "2.4", height: "21", fill: color, rx: "0.6" }, g);
     svgEl("path", { d: "M 1 -2 C 8 0 8 5 8 6 C 8 12 4 13 1 13 L 1 13 L -1 13 L -1 -2 Z", fill: color }, g);
-    svgEl("rect", { x: "-5", y: "-5.5", width: "11", height: "2", fill: color, rx: "0.8" }, g);
+    svgEl("rect", { x: "-5", y: "-5.5", width: "11", height: "2.4", fill: color, rx: "0.8" }, g);
   }
 
   function drawSharp(parent, x, y, color) {
     const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
-    svgEl("rect", { x: "-4", y: "-9", width: "1.8", height: "18", fill: color }, g);
-    svgEl("rect", { x: "2", y: "-9", width: "1.8", height: "18", fill: color }, g);
-    svgEl("rect", { x: "-5", y: "-5", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
-    svgEl("rect", { x: "-5", y: "1", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
+    svgEl("rect", { x: "-4.2", y: "-9", width: "2.2", height: "18", fill: color }, g);
+    svgEl("rect", { x: "2.2", y: "-9", width: "2.2", height: "18", fill: color }, g);
+    svgEl("rect", { x: "-6", y: "-4.8", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
+    svgEl("rect", { x: "-6", y: "1.4", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
   }
 
   function drawHalfSharp(parent, x, y, color) {
@@ -687,26 +692,23 @@
       stroke: color,
       "stroke-width": "1.8",
       "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4"
+      "stroke-linejoin": "miter"
     }, g);
     svgEl("path", {
       d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
       fill: "none",
       stroke: color,
-      "stroke-width": "2.5",
+      "stroke-width": "2.6",
       "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4"
+      "stroke-linejoin": "miter"
     }, g);
     svgEl("path", {
       d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
       fill: "none",
       stroke: color,
-      "stroke-width": "2.5",
+      "stroke-width": "2.6",
       "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4"
+      "stroke-linejoin": "miter"
     }, g);
   }
 
