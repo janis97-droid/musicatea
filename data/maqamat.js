@@ -1,5 +1,65 @@
 // data/maqamat.js
-// Corrected generic maqamat structure for the interactive maqam system
+// Repo-compatible maqamat registry
+// This file keeps the current family / branch structure stable
+// and prepares the system for the stricter interactive note engine.
+
+/* ============================================================
+   Canonical note system for the interactive maqam engine
+   Allowed display spellings only:
+   Do, Dob, Do#, Do/#,
+   Re, Reb, Re/b, Re#,
+   Mi, Mib, Mi/b,
+   Fa, Fa#, Fa/#,
+   Sol, Solb, Sol#,
+   La, Lab, La/b,
+   Si, Sib, Si/b
+============================================================ */
+
+const CANONICAL_NOTE_TOKENS = [
+  "Do", "Dob", "Do#", "Do/#",
+  "Re", "Reb", "Re/b", "Re#",
+  "Mi", "Mib", "Mi/b",
+  "Fa", "Fa#", "Fa/#",
+  "Sol", "Solb", "Sol#",
+  "La", "Lab", "La/b",
+  "Si", "Sib", "Si/b"
+];
+
+const CANONICAL_NOTE_LABELS_AR = {
+  "Do": "دو",
+  "Dob": "دو بيمول",
+  "Do#": "دو دييز",
+  "Do/#": "دو نصف دييز",
+
+  "Re": "ري",
+  "Reb": "ري بيمول",
+  "Re/b": "ري نصف بيمول",
+  "Re#": "ري دييز",
+
+  "Mi": "مي",
+  "Mib": "مي بيمول",
+  "Mi/b": "مي نصف بيمول",
+
+  "Fa": "فا",
+  "Fa#": "فا دييز",
+  "Fa/#": "فا نصف دييز",
+
+  "Sol": "صول",
+  "Solb": "صول بيمول",
+  "Sol#": "صول دييز",
+
+  "La": "لا",
+  "Lab": "لا بيمول",
+  "La/b": "لا نصف بيمول",
+
+  "Si": "سي",
+  "Sib": "سي بيمول",
+  "Si/b": "سي نصف بيمول"
+};
+
+/* ============================================================
+   Internal tonic ids used by the current repo
+============================================================ */
 
 const STANDARD_TONICS = [
   "do",
@@ -34,6 +94,29 @@ const TONIC_LABELS_AR = {
   si_half_flat: "سي نصف بيمول"
 };
 
+const TONIC_TO_CANONICAL_NOTE = {
+  do: "Do",
+  re: "Re",
+  mi_flat: "Mib",
+  fa: "Fa",
+  sol: "Sol",
+  la_flat: "Lab",
+  la: "La",
+  si_flat: "Sib",
+  si: "Si",
+  mi_half_flat: "Mi/b",
+  la_half_flat: "La/b",
+  si_half_flat: "Si/b"
+};
+
+const CANONICAL_NOTE_TO_TONIC = Object.fromEntries(
+  Object.entries(TONIC_TO_CANONICAL_NOTE).map(([k, v]) => [v, k])
+);
+
+/* ============================================================
+   Maqamat registry
+============================================================ */
+
 const maqamat = [
   {
     id: "rast",
@@ -46,6 +129,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: { do: "راست" },
     branch_ids: ["suznak", "mahur", "nairuz", "bashayer", "sazkar", "dalanshin"],
@@ -62,6 +146,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -78,6 +163,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -94,6 +180,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -110,6 +197,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -126,6 +214,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -142,6 +231,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -159,6 +249,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: { re: "بياتي" },
     branch_ids: ["bayati_shuri", "husayni", "muhayyar", "bayatin", "nahuft"],
@@ -175,6 +266,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -191,6 +283,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -207,6 +300,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -223,6 +317,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -239,6 +334,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "la",
+    base_note: "La",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -256,6 +352,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: { do: "عجم" },
     branch_ids: ["ajam_ushayran", "shawq_afza", "suznal", "ajam_murassa", "jaharkah"],
@@ -272,6 +369,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "si_flat",
+    base_note: "Sib",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -288,6 +386,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "si_flat",
+    base_note: "Sib",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -304,6 +403,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -320,6 +420,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "si_flat",
+    base_note: "Sib",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -336,6 +437,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "fa",
+    base_note: "Fa",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -353,6 +455,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: { re: "حجاز" },
     branch_ids: ["hijazkar", "shadd_araban", "suzdil", "shahnaz", "hijazayn", "zanjaran", "hijaz_ajami"],
@@ -369,6 +472,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -385,6 +489,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "sol",
+    base_note: "Sol",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -401,6 +506,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "la",
+    base_note: "La",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -417,6 +523,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -433,6 +540,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -449,6 +557,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -465,6 +574,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -482,6 +592,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {
       do: "نهاوند",
@@ -502,6 +613,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -518,6 +630,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -534,6 +647,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -550,6 +664,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -566,6 +681,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {
       do: "نهاوند كردي",
@@ -587,6 +703,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {
       re: "كرد",
@@ -606,6 +723,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -622,6 +740,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -638,6 +757,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -654,6 +774,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -671,6 +792,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
+    base_note: "Mi/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: { mi_half_flat: "سيكاه" },
     branch_ids: ["huzam", "rahat_al_arwah", "iraq", "awj_iraq", "basta_nikar", "mustaar", "farahnak", "shaar", "rahat_faza"],
@@ -687,6 +809,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
+    base_note: "Mi/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -703,6 +826,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "si_half_flat",
+    base_note: "Si/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -719,6 +843,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "si_half_flat",
+    base_note: "Si/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -735,6 +860,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "si_half_flat",
+    base_note: "Si/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -751,6 +877,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "si_half_flat",
+    base_note: "Si/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -767,6 +894,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
+    base_note: "Mi/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -783,6 +911,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "si_half_flat",
+    base_note: "Si/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -799,6 +928,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
+    base_note: "Mi/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -815,6 +945,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "half_flat_only",
     base_tonic: "mi_half_flat",
+    base_note: "Mi/b",
     available_tonics: [...HALF_FLAT_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -832,6 +963,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: { re: "صبا" },
     branch_ids: ["saba_jadid", "zamzama"],
@@ -848,6 +980,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -864,6 +997,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "re",
+    base_note: "Re",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -881,6 +1015,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {
       do: "نواأثر",
@@ -900,6 +1035,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -916,6 +1052,7 @@ const maqamat = [
     interactive: true,
     tonic_mode: "standard",
     base_tonic: "do",
+    base_note: "Do",
     available_tonics: [...STANDARD_TONICS],
     display_name_by_tonic: {},
     branch_ids: [],
@@ -988,6 +1125,22 @@ function getDisplayNameForTonic(maqamId, tonic) {
 
 function getTonicLabelAr(tonic) {
   return TONIC_LABELS_AR[tonic] || tonic;
+}
+
+function getCanonicalNoteForTonic(tonic) {
+  return TONIC_TO_CANONICAL_NOTE[tonic] || null;
+}
+
+function getTonicFromCanonicalNote(note) {
+  return CANONICAL_NOTE_TO_TONIC[note] || null;
+}
+
+function getCanonicalNoteLabelAr(note) {
+  return CANONICAL_NOTE_LABELS_AR[note] || note;
+}
+
+function isAllowedCanonicalNote(note) {
+  return CANONICAL_NOTE_TOKENS.includes(note);
 }
 
 function isHalfFlatOnlyMaqam(maqamId) {
