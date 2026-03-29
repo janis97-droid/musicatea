@@ -92,6 +92,7 @@
   // A3 lowest ledger line, B3 space, C4 upper ledger line, D4 space below staff,
   // E4 first staff line, F4 first space, G4 second line, A4 second space...
   const Y_MAP = {
+    G3: 222,
     A3: 208,
     B3: 194,
     C4: 180,
@@ -104,7 +105,8 @@
     C5: 82,
     D5: 68,
     E5: 54,
-    F5: 40
+    F5: 40,
+    G5: 26
   };
 
   const LOWER_OCTAVE_TONICS = new Set([
@@ -544,7 +546,7 @@
       return `
         <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}">
           <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${toShadowColor(border)}` : "none"};">
-            <span dir="ltr" style="font-weight:800">${note.display_label}</span>
+            <span style="font-weight:800">${note.display_label}</span>
           </div>
         </div>
       `;
@@ -629,7 +631,7 @@
         degree_index: idx,
         quarter_tone_value: getQuarterForCanonicalNote(token),
         token,
-        display_label: getDisplayLabel(token),
+        display_label: getArabicDisplayLabel(token, spelled.octave),
         label_ar: spelled.label_ar,
         acc_label: spelled.acc_label,
         staff_y: spelled.staff_y,
@@ -681,8 +683,13 @@
     };
   }
 
-  function getDisplayLabel(token) {
-    return NOTE_TOKEN_META[token] ? NOTE_TOKEN_META[token].display : token;
+  function getArabicDisplayLabel(token, octave) {
+    const meta = NOTE_TOKEN_META[token];
+    if (!meta) return token;
+    let base = meta.ar;
+    if (octave <= 3) base += " قرار";
+    if (octave >= 5) base += " جواب";
+    return base;
   }
 
   function transposeTemplateToTonic(baseTemplate, targetTonicToken) {
@@ -733,10 +740,10 @@
 
   function buildSpelledScaleNote(token, degreeIdx, tonicOctave, rootLetter) {
     const meta = NOTE_TOKEN_META[token];
-    if (!meta) return { label_ar: "", acc_label: "", staff_y: 124 };
+    if (!meta) return { label_ar: "", acc_label: "", staff_y: 124, octave: 4 };
     const octave = resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter);
     const staffY = Y_MAP[`${meta.letter}${octave}`] || 124;
-    return { label_ar: meta.ar, acc_label: meta.acc_label, staff_y: staffY };
+    return { label_ar: meta.ar, acc_label: meta.acc_label, staff_y: staffY, octave };
   }
 
   function resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter) {
@@ -815,10 +822,23 @@
   }
 
   function drawLedgerLines(parent, x, y) {
-    [180, 208, 82, 54].forEach(lineY => {
-      if (Math.abs(y - lineY) < 0.1) {
-        svgEl("line", { x1: String(x - 13), y1: String(lineY), x2: String(x + 13), y2: String(lineY), stroke: "#6a6048", "stroke-width": "1.4" }, parent);
-      }
+    const lowerLines = [];
+    if (y >= 194) lowerLines.push(180);
+    if (y >= 208) lowerLines.push(208);
+
+    const upperLines = [];
+    if (y <= 82) upperLines.push(82);
+    if (y <= 54) upperLines.push(54);
+
+    [...new Set([...lowerLines, ...upperLines])].forEach(lineY => {
+      svgEl("line", {
+        x1: String(x - 13),
+        y1: String(lineY),
+        x2: String(x + 13),
+        y2: String(lineY),
+        stroke: "#6a6048",
+        "stroke-width": "1.4"
+      }, parent);
     });
   }
 
