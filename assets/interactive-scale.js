@@ -821,45 +821,47 @@
   }
 
   function drawHalfSharp(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x},${y}) scale(0.62,0.62)`
-  }, parent);
+    const visibleColor = "#f7dc94";
+    const g = svgEl("g", {
+      transform: `translate(${x - 1.5},${y + 0.5}) scale(0.82,0.82)`
+    }, parent);
 
-  svgEl("path", {
-    d: "m 0.5,1037.831 0,14.0625",
-    fill: "none",
-    stroke: color,
-    "stroke-width": "1",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
+    svgEl("path", {
+      d: "m 0.5,1037.831 0,14.0625",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "1.5",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
 
-  svgEl("path", {
-    d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
-    fill: "none",
-    stroke: color,
-    "stroke-width": "1.7598561",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
+    svgEl("path", {
+      d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "2.35",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
 
-  svgEl("path", {
-    d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
-    fill: "none",
-    stroke: color,
-    "stroke-width": "1.7598561",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
-}
+    svgEl("path", {
+      d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "2.35",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
+  }
+
   bootstrap();
 })();
