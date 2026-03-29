@@ -5,15 +5,13 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// Visual fixes:
-// - correct staff-step placement and ledger lines
-// - octave flow based on ascending scale degrees
-// - accidental glyphs in note boxes instead of raw /b /#
-// - jins-based colors:
-//   lower jins = yellow
-//   upper jins = blue
-//   first note of each jins is brighter in idle state
-// - single active note only
+// This version fixes:
+// - exact root transposition from base maqam templates
+// - exact canonical note spelling preservation after transposition
+// - rendering from exact tokens instead of re-guessing from pitch
+// - note box accidental glyphs
+// - jins-based color logic
+// - single active note behavior
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -67,28 +65,22 @@
     "Dob":  { letter: "C", acc_label: "♭",   ar: "دو",  display: "Do♭" },
     "Do#":  { letter: "C", acc_label: "♯",   ar: "دو",  display: "Do♯" },
     "Do/#": { letter: "C", acc_label: "𝄲",   ar: "دو",  display: "Do𝄲" },
-
     "Re":   { letter: "D", acc_label: "",    ar: "ري",  display: "Re" },
     "Reb":  { letter: "D", acc_label: "♭",   ar: "ري",  display: "Re♭" },
     "Re/b": { letter: "D", acc_label: "𝄳",   ar: "ري",  display: "Re𝄳" },
     "Re#":  { letter: "D", acc_label: "♯",   ar: "ري",  display: "Re♯" },
-
     "Mi":   { letter: "E", acc_label: "",    ar: "مي",  display: "Mi" },
     "Mib":  { letter: "E", acc_label: "♭",   ar: "مي",  display: "Mi♭" },
     "Mi/b": { letter: "E", acc_label: "𝄳",   ar: "مي",  display: "Mi𝄳" },
-
     "Fa":   { letter: "F", acc_label: "",    ar: "فا",  display: "Fa" },
     "Fa#":  { letter: "F", acc_label: "♯",   ar: "فا",  display: "Fa♯" },
     "Fa/#": { letter: "F", acc_label: "𝄲",   ar: "فا",  display: "Fa𝄲" },
-
     "Sol":  { letter: "G", acc_label: "",    ar: "صول", display: "Sol" },
     "Solb": { letter: "G", acc_label: "♭",   ar: "صول", display: "Sol♭" },
     "Sol#": { letter: "G", acc_label: "♯",   ar: "صول", display: "Sol♯" },
-
     "La":   { letter: "A", acc_label: "",    ar: "لا",  display: "La" },
     "Lab":  { letter: "A", acc_label: "♭",   ar: "لا",  display: "La♭" },
     "La/b": { letter: "A", acc_label: "𝄳",   ar: "لا",  display: "La𝄳" },
-
     "Si":   { letter: "B", acc_label: "",    ar: "سي",  display: "Si" },
     "Sib":  { letter: "B", acc_label: "♭",   ar: "سي",  display: "Si♭" },
     "Si/b": { letter: "B", acc_label: "𝄳",   ar: "سي",  display: "Si𝄳" }
@@ -188,12 +180,10 @@
     const requestedFamily = URL_PARAMS.get("family");
     const requestedMaqam = URL_PARAMS.get("maqam");
     const requestedTonic = URL_PARAMS.get("tonic");
-
     const resolved = resolveInitialSelection(requestedFamily, requestedMaqam, requestedTonic);
     state.familyId = resolved.familyId;
     state.maqamId = resolved.maqamId;
     state.tonic = resolved.tonic;
-
     renderAll();
   }
 
@@ -289,14 +279,7 @@
     const notes = buildScaleNotes(state.maqamId, state.tonic);
 
     if (!maqam || !notes.length) {
-      root.innerHTML = `
-        <section class="maqam-body">
-          <div class="staff-scale-box">
-            <div class="sec-title">غير متاح</div>
-            <p class="maqam-desc">هذا المقام لا يملك بيانات تفاعلية جاهزة بعد.</p>
-          </div>
-        </section>
-      `;
+      root.innerHTML = `<section class="maqam-body"><div class="staff-scale-box"><div class="sec-title">غير متاح</div><p class="maqam-desc">هذا المقام لا يملك بيانات تفاعلية جاهزة بعد.</p></div></section>`;
       if (breadcrumbLabel) breadcrumbLabel.textContent = maqam ? maqam.name : "";
       return;
     }
@@ -316,19 +299,15 @@
 
       <section class="maqam-body">
         <div class="sec-title">السلّم التفاعلي</div>
-
         <div class="staff-scale-box">
           <div class="staff-scale-header">
             <div class="staff-scale-title">اضغط على نوتة أو زر للاستماع</div>
             <div class="tonic-selector" id="tonic-selector-current"></div>
           </div>
-
           <div class="staff-wrap">
             <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220"></svg>
           </div>
-
           <div class="note-keys-row" id="keys-current"></div>
-
           <div class="playbar">
             <button class="play-btn" id="playbtn-current">
               <svg id="playicon-current" width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
@@ -339,7 +318,6 @@
             <div class="status-bar" id="status-current"></div>
           </div>
         </div>
-
         <div class="sec-title">معلومات المقام</div>
         <div class="info-grid" id="maqam-info-grid"></div>
       </section>
@@ -356,31 +334,7 @@
     if (document.getElementById("family-switcher-style")) return;
     const style = document.createElement("style");
     style.id = "family-switcher-style";
-    style.textContent = `
-      .family-switcher { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-      .family-switch-btn {
-        border:1px solid rgba(255,255,255,0.08);
-        background:rgba(255,255,255,0.03);
-        color:var(--text-dim);
-        border-radius:999px;
-        padding:4px 10px;
-        font-family:inherit;
-        font-size:.72rem;
-        font-weight:700;
-        cursor:pointer;
-        transition:all .2s ease;
-      }
-      .family-switch-btn:hover { color:var(--text-muted); border-color:rgba(200,164,90,.25); }
-      .family-switch-btn.active {
-        color:var(--gold-light);
-        background:rgba(200,164,90,.10);
-        border-color:rgba(200,164,90,.35);
-      }
-      .note-key-face.note-key-face-colored {
-        min-height:58px;
-        border-width:1.5px;
-      }
-    `;
+    style.textContent = `.family-switcher { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; } .family-switch-btn { border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); color:var(--text-dim); border-radius:999px; padding:4px 10px; font-family:inherit; font-size:.72rem; font-weight:700; cursor:pointer; transition:all .2s ease; } .family-switch-btn:hover { color:var(--text-muted); border-color:rgba(200,164,90,.25); } .family-switch-btn.active { color:var(--gold-light); background:rgba(200,164,90,.10); border-color:rgba(200,164,90,.35); } .note-key-face.note-key-face-colored { min-height:58px; border-width:1.5px; }`;
     document.head.appendChild(style);
   }
 
@@ -389,15 +343,8 @@
     if (!container) return;
 
     const tonics = getInteractiveTonicsForMaqam(state.maqamId);
-    container.innerHTML = tonics.map(tonic => `
-      <button class="tonic-btn ${tonic === state.tonic ? "active" : ""}" data-tonic="${tonic}">
-        ${getTonicLabelAr(tonic)}
-      </button>
-    `).join("");
-
-    container.querySelectorAll(".tonic-btn").forEach(btn => {
-      btn.addEventListener("click", () => setActiveTonic(btn.dataset.tonic));
-    });
+    container.innerHTML = tonics.map(tonic => `<button class="tonic-btn ${tonic === state.tonic ? "active" : ""}" data-tonic="${tonic}">${getTonicLabelAr(tonic)}</button>`).join("");
+    container.querySelectorAll(".tonic-btn").forEach(btn => btn.addEventListener("click", () => setActiveTonic(btn.dataset.tonic)));
   }
 
   function renderInfoGrid() {
@@ -414,35 +361,13 @@
     const otherNames = buildOtherNamesByTonic(maqam);
 
     grid.innerHTML = `
-      <div class="info-card">
-        <div class="info-label">الاسم الظاهر</div>
-        <div class="info-value gold">${displayName}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">الطبقة الحالية</div>
-        <div class="info-value">${currentTonic}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">الطبقة الأساسية</div>
-        <div class="info-value">${baseTonic}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">النوتة المرجعية</div>
-        <div class="info-value" dir="ltr">${baseNote}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">النوتة الحالية</div>
-        <div class="info-value" dir="ltr">${currentCanonical}</div>
-      </div>
-      <div class="info-card">
-        <div class="info-label">العائلة</div>
-        <div class="info-value">${familyMain ? familyMain.name : maqam.family}</div>
-      </div>
-      ${otherNames ? `
-      <div class="info-card" style="grid-column:1 / -1;">
-        <div class="info-label">أسماء أخرى بحسب الطبقة</div>
-        <div class="info-value">${otherNames}</div>
-      </div>` : ""}
+      <div class="info-card"><div class="info-label">الاسم الظاهر</div><div class="info-value gold">${displayName}</div></div>
+      <div class="info-card"><div class="info-label">الطبقة الحالية</div><div class="info-value">${currentTonic}</div></div>
+      <div class="info-card"><div class="info-label">الطبقة الأساسية</div><div class="info-value">${baseTonic}</div></div>
+      <div class="info-card"><div class="info-label">النوتة المرجعية</div><div class="info-value" dir="ltr">${baseNote}</div></div>
+      <div class="info-card"><div class="info-label">النوتة الحالية</div><div class="info-value" dir="ltr">${currentCanonical}</div></div>
+      <div class="info-card"><div class="info-label">العائلة</div><div class="info-value">${familyMain ? familyMain.name : maqam.family}</div></div>
+      ${otherNames ? `<div class="info-card" style="grid-column:1 / -1;"><div class="info-label">أسماء أخرى بحسب الطبقة</div><div class="info-value">${otherNames}</div></div>` : ""}
     `;
   }
 
@@ -461,9 +386,7 @@
   function setActiveMaqam(maqamId) {
     const maqam = getMaqamById(maqamId);
     if (!maqam) return;
-
     stopAllAudio();
-
     state.maqamId = maqamId;
     state.familyId = maqam.family;
     state.tonic = getInteractiveDefaultTonic(maqamId);
@@ -471,20 +394,17 @@
     state.isPlaying = false;
     state.stopRequested = false;
     state.lastAudioErrorToken = null;
-
     renderAll();
     scrollMainToTop();
   }
 
   function setActiveTonic(tonic) {
     stopAllAudio();
-
     state.tonic = tonic;
     state.activeNoteIndex = null;
     state.isPlaying = false;
     state.stopRequested = false;
     state.lastAudioErrorToken = null;
-
     updateDisplayedName();
     renderTonicSelector();
     renderInfoGrid();
@@ -499,14 +419,11 @@
     const subtitle = document.getElementById("maqam-subtitle");
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
     const tonicLabel = getTonicLabelAr(state.tonic);
-
     if (title) title.textContent = displayName;
     if (subtitle) subtitle.textContent = `الطبقة الحالية: ${tonicLabel}`;
     if (breadcrumbLabel) breadcrumbLabel.textContent = displayName;
-
     const hero = root.querySelector(".maqam-hero");
     if (hero) hero.setAttribute("data-name", displayName);
-
     if (maqam && maqam.latin) {
       const latin = root.querySelector(".maqam-latin");
       if (latin) latin.textContent = maqam.latin;
@@ -529,15 +446,11 @@
   function renderStaff() {
     const svg = document.getElementById("staff-current");
     if (!svg) return;
-
     const notes = buildScaleNotes(state.maqamId, state.tonic);
     svg.innerHTML = "";
 
     [138, 124, 110, 96, 82].forEach(y => {
-      svg.appendChild(svgEl("line", {
-        x1: "0", y1: String(y), x2: "820", y2: String(y),
-        stroke: "#5a5038", "stroke-width": "1.4"
-      }));
+      svg.appendChild(svgEl("line", { x1: "0", y1: String(y), x2: "820", y2: String(y), stroke: "#5a5038", "stroke-width": "1.4" }));
     });
 
     drawClef(svg);
@@ -548,43 +461,19 @@
     notes.forEach((note, i) => {
       const x = xStart + i * xGap + xGap * 0.4;
       const y = note.staff_y;
-      const palette = getPaletteForNote(note, i);
+      const palette = getPaletteForNote(note);
       const active = state.activeNoteIndex === i;
-
       const noteColor = active ? palette.active : palette.idle;
       const stemColor = active ? palette.active : palette.stem;
       const accidentalColor = active ? palette.active_acc : palette.acc;
 
-      const g = svgEl("g", {
-        class: `note-btn ${active ? "active" : ""}`,
-        "data-note-idx": String(i),
-        role: "button",
-        tabindex: "0",
-        style: "cursor:pointer"
-      }, svg);
-
+      const g = svgEl("g", { class: `note-btn ${active ? "active" : ""}`, "data-note-idx": String(i), role: "button", tabindex: "0", style: "cursor:pointer" }, svg);
       drawLedgerLines(g, x, y);
 
       const up = y >= 110;
-      svgEl("line", {
-        x1: String(up ? x + 7 : x - 7),
-        y1: String(y),
-        x2: String(up ? x + 7 : x - 7),
-        y2: String(up ? y - 38 : y + 38),
-        stroke: stemColor,
-        "stroke-width": "1.8"
-      }, g);
-
+      svgEl("line", { x1: String(up ? x + 7 : x - 7), y1: String(y), x2: String(up ? x + 7 : x - 7), y2: String(up ? y - 38 : y + 38), stroke: stemColor, "stroke-width": "1.8" }, g);
       drawAccidental(g, x - 22, y, note.acc_label, accidentalColor);
-
-      svgEl("ellipse", {
-        cx: String(x),
-        cy: String(y),
-        rx: "8",
-        ry: "5.5",
-        fill: noteColor,
-        transform: `rotate(-18,${x},${y})`
-      }, g);
+      svgEl("ellipse", { cx: String(x), cy: String(y), rx: "8", ry: "5.5", fill: noteColor, transform: `rotate(-18,${x},${y})` }, g);
     });
 
     svg.querySelectorAll(".note-btn").forEach(node => {
@@ -611,11 +500,9 @@
     if (!row) return;
 
     const notes = buildScaleNotes(state.maqamId, state.tonic);
-
     row.innerHTML = notes.map((note, i) => {
-      const palette = getPaletteForNote(note, i);
+      const palette = getPaletteForNote(note);
       const active = state.activeNoteIndex === i;
-
       const bg = active ? palette.box_bg_active : palette.box_bg;
       const border = active ? palette.box_border_active : palette.box_border;
       const text = active ? palette.box_text_active : palette.box_text;
@@ -668,14 +555,12 @@
 
     for (let i = 0; i < notes.length; i++) {
       if (state.stopRequested) break;
-
       state.activeNoteIndex = i;
       renderStaff();
       renderKeys();
-
       if (status) status.textContent = `▶ ${notes[i].display_label}`;
       await playSingleNote(notes[i].token);
-      await wait(120);
+      await new Promise(resolve => setTimeout(resolve, 120));
     }
 
     state.activeNoteIndex = null;
@@ -683,9 +568,7 @@
     renderKeys();
 
     if (status) {
-      status.textContent = state.lastAudioErrorToken
-        ? `ملف الصوت غير موجود: ${state.lastAudioErrorToken}`
-        : "";
+      status.textContent = state.lastAudioErrorToken ? `ملف الصوت غير موجود: ${state.lastAudioErrorToken}` : "";
       status.className = state.lastAudioErrorToken ? "status-bar on" : "status-bar";
     }
     if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
@@ -696,14 +579,9 @@
     state.stopRequested = false;
   }
 
-  function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   function buildScaleNotes(maqamId, tonic) {
     const baseTemplate = MAQAM_SCALE_TEMPLATES[maqamId];
     const tonicCanonical = getCanonicalInteractiveNoteForTonic(tonic);
-
     if (!baseTemplate || !tonicCanonical) return [];
 
     const tonicOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
@@ -750,11 +628,10 @@
     return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
   }
 
-  function getPaletteForNote(note, idx) {
+  function getPaletteForNote(note) {
     const zone = note.jins_zone === "upper" ? "upper" : "lower";
     const colorSet = COLORS[zone];
     const isStart = !!note.is_jins_start;
-
     return {
       idle: isStart ? colorSet.note_bright : colorSet.note,
       stem: colorSet.stem,
@@ -778,11 +655,9 @@
     const sourceTonic = baseTemplate[0];
     const sourceQt = getQuarterForCanonicalNote(sourceTonic);
     const targetQt = getQuarterForCanonicalNote(targetTonicToken);
-
     if (sourceQt === null || targetQt === null) return baseTemplate.slice();
 
     const delta = ((targetQt - sourceQt) % 24 + 24) % 24;
-
     const sourceRootLetter = NOTE_TOKEN_META[sourceTonic].letter;
     const targetRootLetter = NOTE_TOKEN_META[targetTonicToken].letter;
     const sourceRootStep = LETTER_BASE_STEPS[sourceRootLetter];
@@ -824,18 +699,10 @@
 
   function buildSpelledScaleNote(token, degreeIdx, tonicOctave, rootLetter) {
     const meta = NOTE_TOKEN_META[token];
-    if (!meta) {
-      return { label_ar: "", acc_label: "", staff_y: 110 };
-    }
-
+    if (!meta) return { label_ar: "", acc_label: "", staff_y: 110 };
     const octave = resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter);
     const staffY = Y_MAP[`${meta.letter}${octave}`] || 110;
-
-    return {
-      label_ar: meta.ar,
-      acc_label: meta.acc_label,
-      staff_y: staffY
-    };
+    return { label_ar: meta.ar, acc_label: meta.acc_label, staff_y: staffY };
   }
 
   function resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter) {
@@ -862,7 +729,6 @@
         audio.preload = "auto";
         audioCache.set(token, audio);
       }
-
       audio.pause();
       audio.currentTime = 0;
       await audio.play();
@@ -917,11 +783,7 @@
   function drawLedgerLines(parent, x, y) {
     [152, 166, 180, 194, 208, 75, 61].forEach(lineY => {
       if (Math.abs(y - lineY) < 0.1) {
-        svgEl("line", {
-          x1: String(x - 13), y1: String(lineY),
-          x2: String(x + 13), y2: String(lineY),
-          stroke: "#6a6048", "stroke-width": "1.4"
-        }, parent);
+        svgEl("line", { x1: String(x - 13), y1: String(lineY), x2: String(x + 13), y2: String(lineY), stroke: "#6a6048", "stroke-width": "1.4" }, parent);
       }
     });
   }
@@ -957,30 +819,9 @@
 
   function drawHalfSharp(parent, x, y, color) {
     const g = svgEl("g", { transform: `translate(${x},${y}) scale(0.62,0.62)` }, parent);
-    svgEl("path", {
-      d: "m 0.5,1037.831 0,14.0625",
-      fill: "none",
-      stroke: color,
-      "stroke-width": "1.8",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter"
-    }, g);
-    svgEl("path", {
-      d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
-      fill: "none",
-      stroke: color,
-      "stroke-width": "2.6",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter"
-    }, g);
-    svgEl("path", {
-      d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
-      fill: "none",
-      stroke: color,
-      "stroke-width": "2.6",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter"
-    }, g);
+    svgEl("path", { d: "m 0.5,1037.831 0,14.0625", fill: "none", stroke: color, "stroke-width": "1.8", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
+    svgEl("path", { d: "m -2.1200719,1048.4823 5.2401438,-2.0686", fill: "none", stroke: color, "stroke-width": "2.6", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
+    svgEl("path", { d: "m 3.1200719,1041.2421 -5.2401438,2.0686", fill: "none", stroke: color, "stroke-width": "2.6", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
   }
 
   bootstrap();
