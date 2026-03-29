@@ -10,11 +10,12 @@
 // - exact token generation from cumulative pitch positions
 // - Arabic labels in Arabic page
 // - current jins colors preserved
-// - design kept simple and testable
+// - visual grid fixed to the confirmed 7px spacing
 //
 // Notes:
-// - visual engraving is still not final
-// - user can manually correct maqam templates/intervals in this file
+// - interval engine stays as-is for this test
+// - visual engraving now follows confirmed anchors:
+//   Mi=152, Fa=145, Sol=138, La=131, Si=124, Re=159, Do=166
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -98,24 +99,25 @@
   const LETTER_SEQUENCE = ["C", "D", "E", "F", "G", "A", "B"];
   const LETTER_TO_INDEX = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
 
-  // Visual slots: testable fixed mapping
   const SLOT_MAP = {
-    G3: { y: 222, ledger: [208, 180] },
-    A3: { y: 208, ledger: [208, 180] },
-    B3: { y: 194, ledger: [208, 180] },
-    C4: { y: 180, ledger: [180] },
-    D4: { y: 166, ledger: [] },
+    G3: { y: 187, ledger: [180, 166] },
+    A3: { y: 180, ledger: [180, 166] },
+    B3: { y: 173, ledger: [180, 166] },
+    C4: { y: 166, ledger: [166] },
+    D4: { y: 159, ledger: [] },
     E4: { y: 152, ledger: [] },
-    F4: { y: 138, ledger: [] },
-    G4: { y: 124, ledger: [] },
-    A4: { y: 110, ledger: [] },
-    B4: { y: 96,  ledger: [] },
-    C5: { y: 82,  ledger: [82] },
-    D5: { y: 68,  ledger: [] },
-    E5: { y: 54,  ledger: [54] },
-    F5: { y: 40,  ledger: [] },
-    G5: { y: 26,  ledger: [] }
+    F4: { y: 145, ledger: [] },
+    G4: { y: 138, ledger: [] },
+    A4: { y: 131, ledger: [] },
+    B4: { y: 124, ledger: [] },
+    C5: { y: 117, ledger: [] },
+    D5: { y: 110, ledger: [] },
+    E5: { y: 103, ledger: [] },
+    F5: { y: 96,  ledger: [] },
+    G5: { y: 89,  ledger: [96] }
   };
+
+  const STAFF_LINES_Y = [152, 138, 124, 110, 96];
 
   const LOWER_OCTAVE_TONICS = new Set([
     "sol", "la_flat", "la", "si_flat", "si", "la_half_flat", "si_half_flat"
@@ -133,8 +135,6 @@
     lastAudioErrorToken: null
   };
 
-  // Base spelling is user-editable.
-  // Intervals are quartertone distances between consecutive degrees.
   const MAQAM_MODELS = {
     rast:             { base_spelling: ["Do","Re","Mi/b","Fa","Sol","La","Si/b","Do"], intervals: [4,3,3,4,4,3,3] },
     suznak:           { base_spelling: ["Do","Re","Mi/b","Fa","Sol","Lab","Sib","Do"], intervals: [4,3,3,4,2,2,6] },
@@ -455,7 +455,7 @@
     const notes = buildScaleNotes(state.maqamId, state.tonic);
     svg.innerHTML = "";
 
-    [152, 138, 124, 110, 96].forEach(y => {
+    STAFF_LINES_Y.forEach(y => {
       svg.appendChild(svgEl("line", {
         x1: "0", y1: String(y), x2: "820", y2: String(y),
         stroke: "#5a5038", "stroke-width": "1.4"
@@ -487,7 +487,7 @@
       const noteColor = active ? palette.active : palette.idle;
       const stemColor = active ? palette.active : palette.stem;
       const accidentalColor = active ? palette.active_acc : palette.acc;
-      const up = y >= 124;
+      const up = y >= 138;
 
       svgEl("line", {
         x1: String(up ? x + 7 : x - 7),
@@ -609,9 +609,7 @@
     const tonicToken = getCanonicalInteractiveNoteForTonic(tonic);
     if (!model || !tonicToken) return [];
 
-    const baseRootToken = model.base_spelling[0];
     const tonicQt = getQuarterForToken(tonicToken);
-    const baseLetter = NOTE_TOKEN_META[baseRootToken].letter;
     const targetLetter = NOTE_TOKEN_META[tonicToken].letter;
     const targetRootOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
     const jinsInfo = getJinsInfo(maqamId);
@@ -823,11 +821,45 @@
   }
 
   function drawHalfSharp(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y}) scale(0.62,0.62)` }, parent);
-    svgEl("path", { d: "m 0.5,1037.831 0,14.0625", fill: "none", stroke: color, "stroke-width": "1.8", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
-    svgEl("path", { d: "m -2.1200719,1048.4823 5.2401438,-2.0686", fill: "none", stroke: color, "stroke-width": "2.6", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
-    svgEl("path", { d: "m 3.1200719,1041.2421 -5.2401438,2.0686", fill: "none", stroke: color, "stroke-width": "2.6", "stroke-linecap": "square", "stroke-linejoin": "miter" }, g);
-  }
+  const g = svgEl("g", {
+    transform: `translate(${x},${y}) scale(0.62,0.62)`
+  }, parent);
 
+  svgEl("path", {
+    d: "m 0.5,1037.831 0,14.0625",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "1",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+
+  svgEl("path", {
+    d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "1.7598561",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+
+  svgEl("path", {
+    d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "1.7598561",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+}
   bootstrap();
 })();
