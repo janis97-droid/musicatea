@@ -1,21 +1,13 @@
 // assets/interactive-scale.js
-// Corrected generic interactive maqam page controller
+// Repo-compatible interactive maqam page controller
 // Depends on:
 // - data/maqamat.js
 // - data/interactive-maqamat.js
 //
-// Fixes in this version:
-// - prevents family/maqam mismatch
-// - keeps note names under keyboard
-// - removes Arabic degree numbers from staff and keyboard
-// - adds main-family switcher above the sidebar
-// - removes "نمط الطبقات" and tonic count from maqam info
-// - adds "other maqam names by tonic" info
-// - restores G-clef drawing on staff using supplied SVG path
-// - restores accidental drawing on staff
-// - brightens accidentals for better visibility
-// - aligns sharp / half-sharp symbols to the note line
-// - lowers Sol / La / any Si roots by one octave so they begin under middle C staff position
+// This version keeps the current page working while preparing for:
+// - strict canonical note names
+// - mp3 per-note playback later
+// - safer tonic / family / maqam switching
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -84,7 +76,6 @@
     state.tonic = resolved.tonic;
 
     renderAll();
-    bindGlobalEvents();
   }
 
   function resolveInitialSelection(familyId, maqamId, tonic) {
@@ -109,7 +100,6 @@
     }
 
     const maqamObj = getMaqamById(resolvedMaqam);
-
     if (!maqamObj || maqamObj.family !== resolvedFamily || !getInteractiveMaqamById(resolvedMaqam)) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
@@ -118,11 +108,7 @@
     const defaultTonic = getInteractiveDefaultTonic(resolvedMaqam);
     const resolvedTonic = allowedTonics.includes(tonic) ? tonic : defaultTonic;
 
-    return {
-      familyId: resolvedFamily,
-      maqamId: resolvedMaqam,
-      tonic: resolvedTonic
-    };
+    return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
 
   function renderAll() {
@@ -173,6 +159,8 @@
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => {
       btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId));
     });
+
+    injectFamilySwitcherStyles();
   }
 
   function renderPageShell() {
@@ -238,7 +226,6 @@
       </section>
     `;
 
-    injectFamilySwitcherStyles();
     renderTonicSelector();
     renderInfoGrid();
     renderStaff();
@@ -248,16 +235,10 @@
 
   function injectFamilySwitcherStyles() {
     if (document.getElementById("family-switcher-style")) return;
-
     const style = document.createElement("style");
     style.id = "family-switcher-style";
     style.textContent = `
-      .family-switcher {
-        display:flex;
-        flex-wrap:wrap;
-        gap:6px;
-        margin-top:8px;
-      }
+      .family-switcher { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
       .family-switch-btn {
         border:1px solid rgba(255,255,255,0.08);
         background:rgba(255,255,255,0.03);
@@ -270,10 +251,7 @@
         cursor:pointer;
         transition:all .2s ease;
       }
-      .family-switch-btn:hover {
-        color:var(--text-muted);
-        border-color:rgba(200,164,90,.25);
-      }
+      .family-switch-btn:hover { color:var(--text-muted); border-color:rgba(200,164,90,.25); }
       .family-switch-btn.active {
         color:var(--gold-light);
         background:rgba(200,164,90,.10);
@@ -288,7 +266,6 @@
     if (!container) return;
 
     const tonics = getInteractiveTonicsForMaqam(state.maqamId);
-
     container.innerHTML = tonics.map(tonic => `
       <button class="tonic-btn ${tonic === state.tonic ? "active" : ""}" data-tonic="${tonic}">
         ${getTonicLabelAr(tonic)}
@@ -308,6 +285,8 @@
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
     const baseTonic = getTonicLabelAr(maqam.base_tonic);
     const currentTonic = getTonicLabelAr(state.tonic);
+    const baseNote = maqam.base_note || getCanonicalNoteForTonic(maqam.base_tonic) || "";
+    const currentCanonical = getCanonicalInteractiveNoteForTonic(state.tonic) || "";
     const familyMain = getFamilyMainMaqam(maqam.family);
     const otherNames = buildOtherNamesByTonic(maqam);
 
@@ -323,6 +302,14 @@
       <div class="info-card">
         <div class="info-label">الطبقة الأساسية</div>
         <div class="info-value">${baseTonic}</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">النوتة المرجعية</div>
+        <div class="info-value" dir="ltr">${baseNote}</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">النوتة الحالية</div>
+        <div class="info-value" dir="ltr">${currentCanonical}</div>
       </div>
       <div class="info-card">
         <div class="info-label">العائلة</div>
@@ -347,8 +334,6 @@
     const playBtn = document.getElementById("playbtn-current");
     if (playBtn) playBtn.addEventListener("click", playScale);
   }
-
-  function bindGlobalEvents() {}
 
   function setActiveMaqam(maqamId) {
     const maqam = getMaqamById(maqamId);
@@ -416,8 +401,7 @@
     const notes = buildScaleNotes(state.maqamId, state.tonic);
     svg.innerHTML = "";
 
-    const staffLines = [138, 124, 110, 96, 82];
-    staffLines.forEach(y => {
+    [138, 124, 110, 96, 82].forEach(y => {
       svg.appendChild(svgEl("line", {
         x1: "0", y1: String(y), x2: "820", y2: String(y),
         stroke: "#5a5038", "stroke-width": "1.4"
@@ -485,14 +469,13 @@
     if (!row) return;
 
     const notes = buildScaleNotes(state.maqamId, state.tonic);
-
     row.innerHTML = notes.map((note, i) => {
       const isTonic = i === 0 || i === 7;
       const active = state.activeNotes.has(i);
       return `
         <div class="note-key ${active ? "active" : ""} ${isTonic ? "is-tonic" : ""}" data-note-idx="${i}">
           <div class="note-key-face">
-            <span dir="ltr">${note.label_ar}</span>
+            <span dir="ltr">${note.token}</span>
             ${note.acc_label ? `<span class="acc">${note.acc_label}</span>` : ""}
           </div>
         </div>
@@ -539,8 +522,8 @@
       renderStaff();
       renderKeys();
 
-      if (status) status.textContent = `▶ ${notes[i].label_ar}${notes[i].acc_label ? " " + notes[i].acc_label : ""}`;
-      await wait(560);
+      if (status) status.textContent = `▶ ${notes[i].token}`;
+      await wait(520);
     }
 
     state.activeNotes.clear();
@@ -573,11 +556,11 @@
 
     return formula.map((offsetQt, idx) => {
       const absoluteQt = tonicQt + offsetQt;
-      return quarterToneToArabicNote(absoluteQt, idx, tonicOctave);
+      return quarterToneToScaleNote(absoluteQt, idx, tonicOctave);
     });
   }
 
-  function quarterToneToArabicNote(quarterToneValue, degreeIdx, tonicOctave) {
+  function quarterToneToScaleNote(quarterToneValue, degreeIdx, tonicOctave) {
     const absQt = quarterToneValue;
     const mod24 = ((absQt % 24) + 24) % 24;
     const octaveOffset = Math.floor(absQt / 24);
@@ -612,18 +595,28 @@
     if (best.diff === 1) accLabel = "½#";
     if (best.diff === 2) accLabel = "#";
 
+    const token = chooseCanonicalToken(mod24, best.en);
     const octave = tonicOctave + octaveOffset;
-    const midiLike = `${best.en}${octave}`;
-    const staffY = Y_MAP[midiLike] || 110;
+    const staffY = Y_MAP[`${best.en}${octave}`] || 110;
 
     return {
       degree_index: degreeIdx,
       quarter_tone_value: mod24,
-      base_name_ar: best.ar,
+      token,
       label_ar: best.ar,
       acc_label: accLabel,
       staff_y: staffY
     };
+  }
+
+  function chooseCanonicalToken(mod24, naturalEn) {
+    const allowed = getAllowedCanonicalSpellingsForQuarter(mod24);
+    if (allowed && allowed.length) return allowed[0];
+
+    const fallbackMap = {
+      C: "Do", D: "Re", E: "Mi", F: "Fa", G: "Sol", A: "La", B: "Si"
+    };
+    return fallbackMap[naturalEn] || "Do";
   }
 
   function svgEl(tag, attrs, parent) {
@@ -643,8 +636,7 @@
   }
 
   function drawLedgerLines(parent, x, y) {
-    const lines = [152, 166, 180, 194, 208, 75, 61];
-    lines.forEach(lineY => {
+    [152, 166, 180, 194, 208, 75, 61].forEach(lineY => {
       if (Math.abs(y - lineY) < 0.1) {
         svgEl("line", {
           x1: String(x - 13), y1: String(lineY),
