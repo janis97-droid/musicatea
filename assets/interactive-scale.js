@@ -822,8 +822,9 @@
 
   function drawHalfSharp(parent, x, y, color) {
     const visibleColor = "#f7dc94";
+
     const g = svgEl("g", {
-      transform: `translate(${x - 1.5},${y + 0.5}) scale(0.82,0.82)`
+      transform: `translate(${x - 7},${y + 6}) scale(0.82,0.82) translate(-0.5,-1044.8)`
     }, parent);
 
     svgEl("path", {
