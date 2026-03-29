@@ -11,9 +11,10 @@
 // - adds main-family switcher above the sidebar
 // - removes "نمط الطبقات" and tonic count from maqam info
 // - adds "other maqam names by tonic" info
-// - restores G-clef drawing on staff
+// - restores G-clef drawing on staff using supplied SVG path
 // - restores accidental drawing on staff
-// - keeps page generic for all families
+// - brightens accidentals for better visibility
+// - uses supplied half-sharp style
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -24,6 +25,8 @@
 
   const URL_PARAMS = new URLSearchParams(window.location.search);
   const SVG_NS = "http://www.w3.org/2000/svg";
+  const ACCIDENTAL_COLOR_IDLE = "#f0d28a";
+  const ACCIDENTAL_COLOR_ACTIVE = "#fff0bf";
 
   const NATURAL_BASE = {
     C: 0,
@@ -45,27 +48,14 @@
     la: 18,
     si_flat: 20,
     si: 22,
-
     mi_half_flat: 7,
     la_half_flat: 17,
     si_half_flat: 21
   };
 
   const Y_MAP = {
-    C4: 152,
-    D4: 145,
-    E4: 138,
-    F4: 131,
-    G4: 124,
-    A4: 117,
-    B4: 110,
-    C5: 103,
-    D5: 96,
-    E5: 89,
-    F5: 82,
-    G5: 75,
-    A5: 68,
-    B5: 61
+    C4: 152, D4: 145, E4: 138, F4: 131, G4: 124, A4: 117, B4: 110,
+    C5: 103, D5: 96, E5: 89, F5: 82, G5: 75, A5: 68, B5: 61
   };
 
   let state = {
@@ -146,7 +136,7 @@
         <div class="sidebar-family-label">تنقّل بين العائلات</div>
         <div class="family-switcher" id="family-switcher">
           ${mainFamilies.map(item => `
-            <button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-family-id="${item.family}" data-maqam-id="${item.id}">
+            <button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-maqam-id="${item.id}">
               ${item.name}
             </button>
           `).join("")}
@@ -342,10 +332,7 @@
 
   function buildOtherNamesByTonic(maqam) {
     const map = maqam.display_name_by_tonic || {};
-    const entries = Object.entries(map).filter(([tonic, name]) => {
-      return tonic !== maqam.base_tonic && name && name !== maqam.name;
-    });
-
+    const entries = Object.entries(map).filter(([tonic, name]) => tonic !== maqam.base_tonic && name && name !== maqam.name);
     if (!entries.length) return "";
     return entries.map(([tonic, name]) => `${getTonicLabelAr(tonic)} = ${name}`).join(" · ");
   }
@@ -442,6 +429,7 @@
       const active = state.activeNotes.has(i);
       const color = active ? "#e2c47e" : (i < 4 ? "#c8a45a" : "#7ba8d4");
       const stemColor = active ? color : (i < 4 ? "#8a6020" : "#3a6090");
+      const accidentalColor = active ? ACCIDENTAL_COLOR_ACTIVE : ACCIDENTAL_COLOR_IDLE;
 
       const g = svgEl("g", {
         class: `note-btn ${active ? "active" : ""}`,
@@ -457,13 +445,13 @@
       svgEl("line", {
         x1: String(up ? x + 7 : x - 7),
         y1: String(y),
-        x2: String(up ? x + 7 : x - 7),
+        x2: String(up ? y ? x + 7 : x - 7 : x - 7),
         y2: String(up ? y - 38 : y + 38),
         stroke: stemColor,
         "stroke-width": "1.8"
       }, g);
 
-      drawAccidental(g, x - 22, y - 6, note.acc_label, active ? "#e2c47e" : color);
+      drawAccidental(g, x - 22, y - 6, note.acc_label, accidentalColor);
 
       svgEl("ellipse", {
         cx: String(x),
@@ -575,7 +563,6 @@
     if (!formula || !tonicMeta) return [];
 
     const tonicQt = TONIC_TO_BASE_QT[tonic];
-
     return formula.map((offsetQt, idx) => {
       const absoluteQt = tonicQt + offsetQt;
       return quarterToneToArabicNote(absoluteQt, idx);
@@ -617,7 +604,7 @@
     if (best.diff === 1) accLabel = "½#";
     if (best.diff === 2) accLabel = "#";
 
-    const midiLike = noteNameToMidiLike(best.en, 4 + octaveOffset);
+    const midiLike = `${best.en}${4 + octaveOffset}`;
     const staffY = Y_MAP[midiLike] || 110;
 
     return {
@@ -630,10 +617,6 @@
     };
   }
 
-  function noteNameToMidiLike(name, octave) {
-    return `${name}${octave}`;
-  }
-
   function svgEl(tag, attrs, parent) {
     const e = document.createElementNS(SVG_NS, tag);
     Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
@@ -642,33 +625,12 @@
   }
 
   function drawClef(svg) {
-    const g = svgEl("g", { transform: "translate(2,42) scale(0.235,0.235)" }, svg);
-    const pathA = (d, sw) => svgEl("path", {
-      d,
-      stroke: "#b89a5a",
-      fill: "none",
-      "stroke-width": String(sw),
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+    const g = svgEl("g", { transform: "translate(20,14) scale(2.25,2.25)" }, svg);
+    svgEl("path", {
+      d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
+      fill: ACCIDENTAL_COLOR_IDLE,
+      stroke: "none"
     }, g);
-    const pathB = (d, sw) => svgEl("path", {
-      d,
-      stroke: "#d4aa6a",
-      fill: "none",
-      "stroke-width": String(sw),
-      "stroke-linecap": "round"
-    }, g);
-
-    pathA("M 55 18 C 38 35 32 60 32 85 C 32 108 46 124 55 130 C 62 134 68 136 68 136 L 68 196 C 52 202 36 216 32 234 C 26 254 32 276 46 286 C 54 292 64 292 70 290 L 70 318 C 70 332 64 342 56 348 C 46 354 38 348 34 340 C 30 330 36 320 44 320 C 48 320 50 326 48 330", 9);
-    pathA("M 55 18 C 70 6 88 12 94 30 C 102 52 88 80 68 96 C 60 102 52 108 50 114 C 48 118 50 124 52 128", 9);
-    pathB("M 62 26 C 72 18 84 26 86 42 C 88 58 76 78 62 90", 3.5);
-    pathA("M 50 130 C 34 138 16 156 16 178 C 16 200 30 220 50 226 C 66 232 82 224 90 210 C 98 196 92 178 80 170 C 68 162 52 166 46 176 C 40 186 46 198 54 202 C 60 205 66 200 66 194", 9);
-    pathB("M 44 138 C 28 150 20 170 26 188 C 30 200 42 210 56 210", 3.5);
-    svgEl("line", { x1: "68", y1: "136", x2: "68", y2: "290", stroke: "#b89a5a", "stroke-width": "7", "stroke-linecap": "round" }, g);
-    svgEl("line", { x1: "65", y1: "142", x2: "65", y2: "280", stroke: "#d4aa6a", "stroke-width": "2.5", "stroke-linecap": "round", opacity: "0.5" }, g);
-    pathA("M 68 290 C 68 308 60 320 50 324 C 40 328 30 322 26 312 C 22 302 28 292 38 292 C 46 292 50 300 47 308", 8);
-    svgEl("circle", { cx: "40", cy: "314", r: "9", fill: "#b89a5a" }, g);
-    svgEl("circle", { cx: "37", cy: "311", r: "3.5", fill: "#d4aa6a", opacity: "0.6" }, g);
   }
 
   function drawLedgerLines(parent, x, y) {
@@ -718,11 +680,34 @@
   }
 
   function drawHalfSharp(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
-    svgEl("rect", { x: "-4", y: "-9", width: "1.8", height: "18", fill: color }, g);
-    svgEl("rect", { x: "2", y: "-9", width: "1.8", height: "18", fill: color }, g);
-    svgEl("rect", { x: "-5", y: "-5", width: "12", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
-    svgEl("rect", { x: "-5", y: "1", width: "8", height: "1.8", fill: color, transform: "rotate(-8)" }, g);
+    const g = svgEl("g", { transform: `translate(${x},${y}) scale(0.62,0.62)` }, parent);
+    svgEl("path", {
+      d: "m 0.5,1037.831 0,14.0625",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "1.8",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4"
+    }, g);
+    svgEl("path", {
+      d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4"
+    }, g);
+    svgEl("path", {
+      d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "2.5",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4"
+    }, g);
   }
 
   bootstrap();
