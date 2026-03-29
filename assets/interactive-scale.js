@@ -824,7 +824,7 @@
     const visibleColor = "#fff0bf";
 
     const g = svgEl("g", {
-      transform: `translate(${x - 5.5},${y + 7.5}) scale(-1.12,1.12) translate(-0.5,-1044.8)`
+      transform: `translate(${x - 5.5},${y - 0.5}) scale(-1.12,1.12) translate(-0.5,-1044.8)`
     }, parent);
 
     svgEl("path", {
