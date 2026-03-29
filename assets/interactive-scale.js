@@ -4,10 +4,21 @@
 // - data/maqamat.js
 // - data/interactive-maqamat.js
 //
-// This version keeps the current page working while preparing for:
-// - strict canonical note names
-// - mp3 per-note playback later
-// - safer tonic / family / maqam switching
+// This version adds:
+// - canonical note token rendering
+// - mp3 note playback layer
+// - graceful fallback when note audio files are missing
+//
+// Expected note audio path pattern:
+// assets/audio/notes/<TOKEN>.mp3
+//
+// Example filenames:
+// Do.mp3
+// Dob.mp3
+// Do#.mp3
+// Do-#.mp3 is NOT used
+// Do-/#.mp3 is NOT used
+// Use exact token names from NOTE_AUDIO_FILE_MAP below.
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -56,13 +67,54 @@
     C5: 103, D5: 96, E5: 89, F5: 82, G5: 75, A5: 68, B5: 61
   };
 
+  // ==========================================================
+  // MP3 note playback layer
+  // ==========================================================
+
+  const NOTE_AUDIO_BASE_PATH = "assets/audio/notes/";
+
+  const NOTE_AUDIO_FILE_MAP = {
+    "Do": "Do.mp3",
+    "Dob": "Dob.mp3",
+    "Do#": "DoSharp.mp3",
+    "Do/#": "DoHalfSharp.mp3",
+
+    "Re": "Re.mp3",
+    "Reb": "Reb.mp3",
+    "Re/b": "ReHalfFlat.mp3",
+    "Re#": "ReSharp.mp3",
+
+    "Mi": "Mi.mp3",
+    "Mib": "Mib.mp3",
+    "Mi/b": "MiHalfFlat.mp3",
+
+    "Fa": "Fa.mp3",
+    "Fa#": "FaSharp.mp3",
+    "Fa/#": "FaHalfSharp.mp3",
+
+    "Sol": "Sol.mp3",
+    "Solb": "Solb.mp3",
+    "Sol#": "SolSharp.mp3",
+
+    "La": "La.mp3",
+    "Lab": "Lab.mp3",
+    "La/b": "LaHalfFlat.mp3",
+
+    "Si": "Si.mp3",
+    "Sib": "Sib.mp3",
+    "Si/b": "SiHalfFlat.mp3"
+  };
+
+  const audioCache = new Map();
+
   let state = {
     familyId: null,
     maqamId: null,
     tonic: null,
     activeNotes: new Set(),
     isPlaying: false,
-    stopRequested: false
+    stopRequested: false,
+    lastAudioErrorToken: null
   };
 
   function bootstrap() {
@@ -339,20 +391,29 @@
     const maqam = getMaqamById(maqamId);
     if (!maqam) return;
 
+    stopAllAudio();
+
     state.maqamId = maqamId;
     state.familyId = maqam.family;
     state.tonic = getInteractiveDefaultTonic(maqamId);
     state.activeNotes.clear();
     state.isPlaying = false;
     state.stopRequested = false;
+    state.lastAudioErrorToken = null;
 
     renderAll();
     scrollMainToTop();
   }
 
   function setActiveTonic(tonic) {
+    stopAllAudio();
+
     state.tonic = tonic;
     state.activeNotes.clear();
+    state.isPlaying = false;
+    state.stopRequested = false;
+    state.lastAudioErrorToken = null;
+
     updateDisplayedName();
     renderTonicSelector();
     renderInfoGrid();
@@ -454,11 +515,19 @@
     });
 
     svg.querySelectorAll(".note-btn").forEach(node => {
-      node.addEventListener("click", () => toggleNote(Number(node.dataset.noteIdx)));
-      node.addEventListener("keydown", e => {
+      node.addEventListener("click", async () => {
+        const idx = Number(node.dataset.noteIdx);
+        toggleNote(idx);
+        const notes = buildScaleNotes(state.maqamId, state.tonic);
+        if (notes[idx]) await playSingleNote(notes[idx].token);
+      });
+      node.addEventListener("keydown", async e => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          toggleNote(Number(node.dataset.noteIdx));
+          const idx = Number(node.dataset.noteIdx);
+          toggleNote(idx);
+          const notes = buildScaleNotes(state.maqamId, state.tonic);
+          if (notes[idx]) await playSingleNote(notes[idx].token);
         }
       });
     });
@@ -483,7 +552,12 @@
     }).join("");
 
     row.querySelectorAll(".note-key").forEach(node => {
-      node.addEventListener("click", () => toggleNote(Number(node.dataset.noteIdx)));
+      node.addEventListener("click", async () => {
+        const idx = Number(node.dataset.noteIdx);
+        toggleNote(idx);
+        const notes = buildScaleNotes(state.maqamId, state.tonic);
+        if (notes[idx]) await playSingleNote(notes[idx].token);
+      });
     });
   }
 
@@ -497,6 +571,7 @@
   async function playScale() {
     if (state.isPlaying) {
       state.stopRequested = true;
+      stopAllAudio();
       return;
     }
 
@@ -523,7 +598,8 @@
       renderKeys();
 
       if (status) status.textContent = `▶ ${notes[i].token}`;
-      await wait(520);
+      await playSingleNote(notes[i].token);
+      await wait(120);
     }
 
     state.activeNotes.clear();
@@ -531,8 +607,10 @@
     renderKeys();
 
     if (status) {
-      status.textContent = "";
-      status.className = "status-bar";
+      status.textContent = state.lastAudioErrorToken
+        ? `ملف الصوت غير موجود: ${state.lastAudioErrorToken}`
+        : "";
+      status.className = state.lastAudioErrorToken ? "status-bar on" : "status-bar";
     }
     if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
     if (playLabel) playLabel.textContent = "تشغيل السلّم";
@@ -617,6 +695,57 @@
       C: "Do", D: "Re", E: "Mi", F: "Fa", G: "Sol", A: "La", B: "Si"
     };
     return fallbackMap[naturalEn] || "Do";
+  }
+
+  function getAudioUrlForToken(token) {
+    const filename = NOTE_AUDIO_FILE_MAP[token];
+    return filename ? `${NOTE_AUDIO_BASE_PATH}${filename}` : null;
+  }
+
+  async function playSingleNote(token) {
+    const url = getAudioUrlForToken(token);
+    if (!url) {
+      state.lastAudioErrorToken = token;
+      return false;
+    }
+
+    try {
+      let audio = audioCache.get(token);
+      if (!audio) {
+        audio = new Audio(url);
+        audio.preload = "auto";
+        audioCache.set(token, audio);
+      }
+
+      audio.pause();
+      audio.currentTime = 0;
+      await audio.play();
+      state.lastAudioErrorToken = null;
+
+      await new Promise(resolve => {
+        const done = () => {
+          audio.removeEventListener("ended", done);
+          audio.removeEventListener("error", done);
+          resolve();
+        };
+        audio.addEventListener("ended", done, { once: true });
+        audio.addEventListener("error", done, { once: true });
+      });
+
+      return true;
+    } catch (err) {
+      state.lastAudioErrorToken = token;
+      return false;
+    }
+  }
+
+  function stopAllAudio() {
+    audioCache.forEach(audio => {
+      try {
+        audio.pause();
+        audio.currentTime = 0;
+      } catch (e) {}
+    });
   }
 
   function svgEl(tag, attrs, parent) {
