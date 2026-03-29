@@ -1,16 +1,20 @@
 // assets/interactive-scale.js
-// Repo-compatible interactive maqam page controller
+// Interval-first maqam engine
 // Depends on:
 // - data/maqamat.js
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// This version keeps the root/spelling engine intact and fixes:
-// - lower ledger-line placement from real staff-step anchors
-// - accidentals not affecting vertical position
-// - note boxes showing accidental glyphs
-// - jins-based yellow/blue color logic
-// - single active note behavior
+// Focus of this version:
+// - maqam/root generation from quartertone interval patterns
+// - exact token generation from cumulative pitch positions
+// - Arabic labels in Arabic page
+// - current jins colors preserved
+// - design kept simple and testable
+//
+// Notes:
+// - visual engraving is still not final
+// - user can manually correct maqam templates/intervals in this file
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -60,53 +64,57 @@
   };
 
   const NOTE_TOKEN_META = {
-    "Do":   { letter: "C", acc_label: "",    ar: "دو",  display: "Do" },
-    "Dob":  { letter: "C", acc_label: "♭",   ar: "دو",  display: "Do♭" },
-    "Do#":  { letter: "C", acc_label: "♯",   ar: "دو",  display: "Do♯" },
-    "Do/#": { letter: "C", acc_label: "𝄲",   ar: "دو",  display: "Do𝄲" },
-    "Re":   { letter: "D", acc_label: "",    ar: "ري",  display: "Re" },
-    "Reb":  { letter: "D", acc_label: "♭",   ar: "ري",  display: "Re♭" },
-    "Re/b": { letter: "D", acc_label: "𝄳",   ar: "ري",  display: "Re𝄳" },
-    "Re#":  { letter: "D", acc_label: "♯",   ar: "ري",  display: "Re♯" },
-    "Mi":   { letter: "E", acc_label: "",    ar: "مي",  display: "Mi" },
-    "Mib":  { letter: "E", acc_label: "♭",   ar: "مي",  display: "Mi♭" },
-    "Mi/b": { letter: "E", acc_label: "𝄳",   ar: "مي",  display: "Mi𝄳" },
-    "Fa":   { letter: "F", acc_label: "",    ar: "فا",  display: "Fa" },
-    "Fa#":  { letter: "F", acc_label: "♯",   ar: "فا",  display: "Fa♯" },
-    "Fa/#": { letter: "F", acc_label: "𝄲",   ar: "فا",  display: "Fa𝄲" },
-    "Sol":  { letter: "G", acc_label: "",    ar: "صول", display: "Sol" },
-    "Solb": { letter: "G", acc_label: "♭",   ar: "صول", display: "Sol♭" },
-    "Sol#": { letter: "G", acc_label: "♯",   ar: "صول", display: "Sol♯" },
-    "La":   { letter: "A", acc_label: "",    ar: "لا",  display: "La" },
-    "Lab":  { letter: "A", acc_label: "♭",   ar: "لا",  display: "La♭" },
-    "La/b": { letter: "A", acc_label: "𝄳",   ar: "لا",  display: "La𝄳" },
-    "Si":   { letter: "B", acc_label: "",    ar: "سي",  display: "Si" },
-    "Sib":  { letter: "B", acc_label: "♭",   ar: "سي",  display: "Si♭" },
-    "Si/b": { letter: "B", acc_label: "𝄳",   ar: "سي",  display: "Si𝄳" }
+    "Do":   { letter: "C", acc_label: "",   ar: "دو",  en: "Do",  qt: 0  },
+    "Dob":  { letter: "C", acc_label: "♭",  ar: "دو",  en: "Do♭", qt: 22 },
+    "Do#":  { letter: "C", acc_label: "♯",  ar: "دو",  en: "Do♯", qt: 2  },
+    "Do/#": { letter: "C", acc_label: "𝄲",  ar: "دو",  en: "Do𝄲", qt: 1  },
+
+    "Re":   { letter: "D", acc_label: "",   ar: "ري",  en: "Re",  qt: 4  },
+    "Reb":  { letter: "D", acc_label: "♭",  ar: "ري",  en: "Re♭", qt: 2  },
+    "Re/b": { letter: "D", acc_label: "𝄳",  ar: "ري",  en: "Re𝄳", qt: 3  },
+    "Re#":  { letter: "D", acc_label: "♯",  ar: "ري",  en: "Re♯", qt: 6  },
+
+    "Mi":   { letter: "E", acc_label: "",   ar: "مي",  en: "Mi",  qt: 8  },
+    "Mib":  { letter: "E", acc_label: "♭",  ar: "مي",  en: "Mi♭", qt: 6  },
+    "Mi/b": { letter: "E", acc_label: "𝄳",  ar: "مي",  en: "Mi𝄳", qt: 7  },
+
+    "Fa":   { letter: "F", acc_label: "",   ar: "فا",  en: "Fa",  qt: 10 },
+    "Fa#":  { letter: "F", acc_label: "♯",  ar: "فا",  en: "Fa♯", qt: 12 },
+    "Fa/#": { letter: "F", acc_label: "𝄲",  ar: "فا",  en: "Fa𝄲", qt: 11 },
+
+    "Sol":  { letter: "G", acc_label: "",   ar: "صول", en: "Sol", qt: 14 },
+    "Solb": { letter: "G", acc_label: "♭",  ar: "صول", en: "Sol♭",qt: 12 },
+    "Sol#": { letter: "G", acc_label: "♯",  ar: "صول", en: "Sol♯",qt: 16 },
+
+    "La":   { letter: "A", acc_label: "",   ar: "لا",  en: "La",  qt: 18 },
+    "Lab":  { letter: "A", acc_label: "♭",  ar: "لا",  en: "La♭", qt: 16 },
+    "La/b": { letter: "A", acc_label: "𝄳",  ar: "لا",  en: "La𝄳", qt: 17 },
+
+    "Si":   { letter: "B", acc_label: "",   ar: "سي",  en: "Si",  qt: 22 },
+    "Sib":  { letter: "B", acc_label: "♭",  ar: "سي",  en: "Si♭", qt: 20 },
+    "Si/b": { letter: "B", acc_label: "𝄳",  ar: "سي",  en: "Si𝄳", qt: 21 }
   };
 
-  const LETTER_BASE_STEPS = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
-  const STEP_TO_LETTER = ["C", "D", "E", "F", "G", "A", "B"];
+  const LETTER_SEQUENCE = ["C", "D", "E", "F", "G", "A", "B"];
+  const LETTER_TO_INDEX = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
 
-  // Correct treble-clef vertical mapping:
-  // A3 lowest ledger line, B3 space, C4 upper ledger line, D4 space below staff,
-  // E4 first staff line, F4 first space, G4 second line, A4 second space...
-  const Y_MAP = {
-    G3: 222,
-    A3: 208,
-    B3: 194,
-    C4: 180,
-    D4: 166,
-    E4: 152,
-    F4: 138,
-    G4: 124,
-    A4: 110,
-    B4: 96,
-    C5: 82,
-    D5: 68,
-    E5: 54,
-    F5: 40,
-    G5: 26
+  // Visual slots: testable fixed mapping
+  const SLOT_MAP = {
+    G3: { y: 222, ledger: [208, 180] },
+    A3: { y: 208, ledger: [208, 180] },
+    B3: { y: 194, ledger: [208, 180] },
+    C4: { y: 180, ledger: [180] },
+    D4: { y: 166, ledger: [] },
+    E4: { y: 152, ledger: [] },
+    F4: { y: 138, ledger: [] },
+    G4: { y: 124, ledger: [] },
+    A4: { y: 110, ledger: [] },
+    B4: { y: 96,  ledger: [] },
+    C5: { y: 82,  ledger: [82] },
+    D5: { y: 68,  ledger: [] },
+    E5: { y: 54,  ledger: [54] },
+    F5: { y: 40,  ledger: [] },
+    G5: { y: 26,  ledger: [] }
   };
 
   const LOWER_OCTAVE_TONICS = new Set([
@@ -125,69 +133,71 @@
     lastAudioErrorToken: null
   };
 
-  const MAQAM_SCALE_TEMPLATES = {
-    rast:             ["Do", "Re", "Mi/b", "Fa", "Sol", "La", "Si/b", "Do"],
-    suznak:           ["Do", "Re", "Mi/b", "Fa", "Sol", "Lab", "Sib", "Do"],
-    mahur:            ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si", "Do"],
-    nairuz:           ["Do", "Re", "Mi/b", "Fa", "Sol", "Lab", "Sib", "Do"],
-    bashayer:         ["Do", "Re", "Mi/b", "Fa", "Sol", "La", "Sib", "Do"],
-    sazkar:           ["Do", "Re", "Mi/b", "Fa", "Sol", "Lab", "Sib", "Do"],
-    dalanshin:        ["Do", "Re", "Mi/b", "Fa", "Sol", "Lab", "Si/b", "Do"],
+  // Base spelling is user-editable.
+  // Intervals are quartertone distances between consecutive degrees.
+  const MAQAM_MODELS = {
+    rast:             { base_spelling: ["Do","Re","Mi/b","Fa","Sol","La","Si/b","Do"], intervals: [4,3,3,4,4,3,3] },
+    suznak:           { base_spelling: ["Do","Re","Mi/b","Fa","Sol","Lab","Sib","Do"], intervals: [4,3,3,4,2,2,6] },
+    mahur:            { base_spelling: ["Do","Re","Mi","Fa","Sol","La","Si","Do"], intervals: [4,4,2,4,4,4,2] },
+    nairuz:           { base_spelling: ["Do","Re","Mi/b","Fa","Sol","Lab","Sib","Do"], intervals: [4,3,3,4,2,4,4] },
+    bashayer:         { base_spelling: ["Do","Re","Mi/b","Fa","Sol","La","Sib","Do"], intervals: [4,3,3,4,4,2,4] },
+    sazkar:           { base_spelling: ["Do","Re","Mi/b","Fa","Sol","Lab","Sib","Do"], intervals: [4,3,3,4,2,4,4] },
+    dalanshin:        { base_spelling: ["Do","Re","Mi/b","Fa","Sol","Lab","Si/b","Do"], intervals: [4,3,3,4,2,5,3] },
 
-    bayati:           ["Re", "Mi/b", "Fa", "Sol", "La", "Si/b", "Do", "Re"],
-    bayati_shuri:     ["Re", "Mi/b", "Fa", "Sol", "La", "Sib", "Do", "Re"],
-    husayni:          ["Re", "Mi/b", "Fa", "Sol", "La", "Si/b", "Do", "Re"],
-    muhayyar:         ["Re", "Mi/b", "Fa", "Sol", "La", "Si/b", "Do", "Re"],
-    bayatin:          ["Re", "Mi/b", "Fa", "Sol", "La", "Si/b", "Do", "Re"],
-    nahuft:           ["La", "Si", "Do", "Re", "Mi", "Fa", "Sol", "La"],
+    bayati:           { base_spelling: ["Re","Mi/b","Fa","Sol","La","Si/b","Do","Re"], intervals: [3,3,4,4,3,3,4] },
+    bayati_shuri:     { base_spelling: ["Re","Mi/b","Fa","Sol","La","Sib","Do","Re"], intervals: [3,3,4,4,2,4,4] },
+    husayni:          { base_spelling: ["Re","Mi/b","Fa","Sol","La","Si/b","Do","Re"], intervals: [3,3,4,4,3,3,4] },
+    muhayyar:         { base_spelling: ["Re","Mi/b","Fa","Sol","La","Si/b","Do","Re"], intervals: [3,3,4,4,3,3,4] },
+    bayatin:          { base_spelling: ["Re","Mi/b","Fa","Sol","La","Si/b","Do","Re"], intervals: [3,3,4,4,3,3,4] },
+    nahuft:           { base_spelling: ["La","Si","Do","Re","Mi","Fa","Sol","La"], intervals: [4,2,4,4,2,4,4] },
 
-    ajam:             ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si", "Do"],
-    ajam_ushayran:    ["Sib", "Do", "Re", "Mib", "Fa", "Sol", "La", "Sib"],
-    shawq_afza:       ["Sib", "Do", "Re", "Mib", "Fa", "Sol", "La", "Sib"],
-    suznal:           ["Do", "Re", "Mi", "Fa", "Sol", "Lab", "Sib", "Do"],
-    ajam_murassa:     ["Sib", "Do", "Re", "Mib", "Fa", "Sol", "La/b", "Sib"],
-    jaharkah:         ["Fa", "Sol", "La", "Sib", "Do", "Re", "Mi", "Fa"],
+    ajam:             { base_spelling: ["Do","Re","Mi","Fa","Sol","La","Si","Do"], intervals: [4,4,2,4,4,4,2] },
+    ajam_ushayran:    { base_spelling: ["Sib","Do","Re","Mib","Fa","Sol","La","Sib"], intervals: [4,4,2,4,4,4,2] },
+    shawq_afza:       { base_spelling: ["Sib","Do","Re","Mib","Fa","Sol","La","Sib"], intervals: [4,4,2,4,4,4,2] },
+    suznal:           { base_spelling: ["Do","Re","Mi","Fa","Sol","Lab","Sib","Do"], intervals: [4,4,2,4,2,4,4] },
+    ajam_murassa:     { base_spelling: ["Sib","Do","Re","Mib","Fa","Sol","La/b","Sib"], intervals: [4,4,2,4,4,3,3] },
+    jaharkah:         { base_spelling: ["Fa","Sol","La","Sib","Do","Re","Mi","Fa"], intervals: [4,4,2,4,4,4,2] },
 
-    hijaz:            ["Re", "Mib", "Fa#", "Sol", "La", "Sib", "Do", "Re"],
-    hijazkar:         ["Do", "Reb", "Mi", "Fa", "Sol", "La", "Si", "Do"],
-    shadd_araban:     ["Sol", "Lab", "Si", "Do", "Re", "Mib", "Fa", "Sol"],
-    suzdil:           ["La", "Sib", "Do#", "Re", "Mi", "Fa", "Sol", "La"],
-    shahnaz:          ["Re", "Mib", "Fa#", "Sol", "La", "Sib", "Do", "Re"],
-    hijazayn:         ["Re", "Mib", "Fa#", "Sol", "La", "Sib", "Do", "Re"],
-    zanjaran:         ["Re", "Mib", "Fa#", "Sol", "La", "Sib", "Do", "Re"],
-    hijaz_ajami:      ["Re", "Mib", "Fa#", "Sol", "La", "Si", "Do#", "Re"],
+    hijaz:            { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijazkar:         { base_spelling: ["Do","Reb","Mi","Fa","Sol","La","Si","Do"], intervals: [2,6,2,4,4,4,2] },
+    shadd_araban:     { base_spelling: ["Sol","Lab","Si","Do","Re","Mib","Fa","Sol"], intervals: [2,6,2,4,2,2,6] },
+    suzdil:           { base_spelling: ["La","Sib","Do#","Re","Mi","Fa","Sol","La"], intervals: [2,6,2,4,2,4,4] },
+    shahnaz:          { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijazayn:         { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    zanjaran:         { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijaz_ajami:      { base_spelling: ["Re","Mib","Fa#","Sol","La","Si","Do#","Re"], intervals: [2,6,2,4,4,4,2] },
 
-    nahawand:         ["Do", "Re", "Mib", "Fa", "Sol", "Lab", "Sib", "Do"],
-    nahawand_murassa: ["Do", "Re", "Mib", "Fa", "Sol", "La/b", "Si/b", "Do"],
-    ushshaq_masri:    ["Do", "Re", "Mib", "Fa", "Sol", "La/b", "Si/b", "Do"],
-    tarz_jadid:       ["Do", "Re", "Mib", "Fa", "Sol", "Lab", "Sib", "Do"],
-    nahawand_kabir:   ["Do", "Re", "Mib", "Fa", "Sol", "La", "Si", "Do"],
-    nahawand_kurdi:   ["Do", "Reb", "Mib", "Fa", "Sol", "Lab", "Sib", "Do"],
+    nahawand:         { base_spelling: ["Do","Re","Mib","Fa","Sol","Lab","Sib","Do"], intervals: [4,2,4,4,2,4,4] },
+    nahawand_murassa: { base_spelling: ["Do","Re","Mib","Fa","Sol","La/b","Si/b","Do"], intervals: [4,2,4,4,3,4,3] },
+    ushshaq_masri:    { base_spelling: ["Do","Re","Mib","Fa","Sol","La/b","Si/b","Do"], intervals: [4,2,4,4,3,4,3] },
+    tarz_jadid:       { base_spelling: ["Do","Re","Mib","Fa","Sol","Lab","Sib","Do"], intervals: [4,2,4,4,2,4,4] },
+    nahawand_kabir:   { base_spelling: ["Do","Re","Mib","Fa","Sol","La","Si","Do"], intervals: [4,2,4,4,4,4,2] },
+    nahawand_kurdi:   { base_spelling: ["Do","Reb","Mib","Fa","Sol","Lab","Sib","Do"], intervals: [2,4,4,4,2,4,4] },
 
-    kurd:             ["Re", "Mib", "Fa", "Sol", "La", "Sib", "Do", "Re"],
-    tarz_nawin:       ["Re", "Mib", "Fa", "Sol", "La", "Sib", "Do", "Re"],
-    shahnaz_kurdi:    ["Re", "Mib", "Fa", "Sol", "La", "Sib", "Do", "Re"],
-    lami:             ["Re", "Mib", "Fa", "Sol", "La", "Sib", "Do", "Re"],
-    athar_kurd:       ["Re", "Mib", "Fa", "Sol", "La", "Sib", "Do", "Re"],
+    kurd:             { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do","Re"], intervals: [2,4,4,4,2,4,4] },
+    tarz_nawin:       { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do","Re"], intervals: [2,4,4,4,2,4,4] },
+    shahnaz_kurdi:    { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do","Re"], intervals: [2,4,4,4,2,4,4] },
+    lami:             { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do","Re"], intervals: [2,4,4,4,2,4,4] },
+    athar_kurd:       { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do","Re"], intervals: [2,4,4,4,2,4,4] },
 
-    sikah:            ["Mi/b", "Fa/#", "Sol", "La/b", "Si/b", "Do", "Re", "Mi/b"],
-    huzam:            ["Mi/b", "Fa/#", "Sol", "La/b", "Si/b", "Do", "Re", "Mi/b"],
-    rahat_al_arwah:   ["Si/b", "Do/#", "Re", "Mi/b", "Fa/#", "Sol", "La", "Si/b"],
-    iraq:             ["Si/b", "Do/#", "Re", "Mi/b", "Fa/#", "Sol", "La", "Si/b"],
-    awj_iraq:         ["Si/b", "Do/#", "Re", "Mi/b", "Fa/#", "Sol", "La", "Si/b"],
-    basta_nikar:      ["Si/b", "Do/#", "Re", "Mi/b", "Fa/#", "Sol", "La", "Si/b"],
-    mustaar:          ["Mi/b", "Fa/#", "Sol", "La/b", "Si/b", "Do", "Re", "Mi/b"],
-    farahnak:         ["Si/b", "Do/#", "Re", "Mi/b", "Fa/#", "Sol", "La", "Si/b"],
-    shaar:            ["Mi/b", "Fa/#", "Sol", "La/b", "Si/b", "Do", "Re", "Mi/b"],
-    rahat_faza:       ["Mi/b", "Fa/#", "Sol", "La/b", "Si/b", "Do", "Re", "Mi/b"],
+    sikah:            { base_spelling: ["Mi/b","Fa/#","Sol","La/b","Si/b","Do","Re","Mi/b"], intervals: [4,3,3,4,3,4,3] },
+    huzam:            { base_spelling: ["Mi/b","Fa/#","Sol","La/b","Si/b","Do","Re","Mi/b"], intervals: [4,3,3,4,3,4,3] },
+    rahat_al_arwah:   { base_spelling: ["Si/b","Do/#","Re","Mi/b","Fa/#","Sol","La","Si/b"], intervals: [4,3,3,4,3,4,3] },
+    iraq:             { base_spelling: ["Si/b","Do/#","Re","Mi/b","Fa/#","Sol","La","Si/b"], intervals: [4,3,3,4,3,4,3] },
+    awj_iraq:         { base_spelling: ["Si/b","Do/#","Re","Mi/b","Fa/#","Sol","La","Si/b"], intervals: [4,3,3,4,3,4,3] },
+    basta_nikar:      { base_spelling: ["Si/b","Do/#","Re","Mi/b","Fa/#","Sol","La","Si/b"], intervals: [4,3,3,4,3,4,3] },
+    mustaar:          { base_spelling: ["Mi/b","Fa/#","Sol","La/b","Si/b","Do","Re","Mi/b"], intervals: [4,3,3,4,3,4,3] },
+    farahnak:         { base_spelling: ["Si/b","Do/#","Re","Mi/b","Fa/#","Sol","La","Si/b"], intervals: [4,3,3,4,3,4,3] },
+    shaar:            { base_spelling: ["Mi/b","Fa/#","Sol","La/b","Si/b","Do","Re","Mi/b"], intervals: [4,3,3,4,3,4,3] },
+    rahat_faza:       { base_spelling: ["Mi/b","Fa/#","Sol","La/b","Si/b","Do","Re","Mi/b"], intervals: [4,3,3,4,3,4,3] },
 
-    saba:             ["Re", "Mi/b", "Fa", "Solb", "La", "Sib", "Do", "Re"],
-    saba_jadid:       ["Re", "Mi/b", "Fa", "Solb", "La", "Sib", "Do", "Re"],
-    zamzama:          ["Re", "Mib", "Fa", "Solb", "La", "Sib", "Do", "Re"],
+    saba:             { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Re"], intervals: [3,3,2,6,2,4,4] },
+    saba_jadid:       { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Re"], intervals: [3,3,2,6,2,4,4] },
+    zamzama:          { base_spelling: ["Re","Mib","Fa","Solb","La","Sib","Do","Re"], intervals: [2,4,2,6,2,4,4] },
 
-    nawa_athar:       ["Do", "Re", "Mib", "Fa#", "Sol", "Lab", "Sib", "Do"],
-    nikriz:           ["Do", "Re", "Mib", "Fa#", "Sol", "Lab", "Sib", "Do"],
-    basandida:        ["Do", "Re", "Mib", "Fa#", "Sol", "Lab", "Sib", "Do"]
+    nawa_athar:       { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] },
+    nikriz:           { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] },
+    basandida:        { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] }
   };
 
   function bootstrap() {
@@ -256,7 +266,6 @@
             </button>
           `).join("")}
         </div>
-
         <div class="sidebar-family-label" style="margin-top:12px;">العائلة الموسيقية</div>
         <div class="sidebar-family-name">${familyName}</div>
         <div class="sidebar-family-sub">${familyItems.length} مقامات</div>
@@ -277,7 +286,6 @@
 
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
-
     injectFamilySwitcherStyles();
   }
 
@@ -314,7 +322,7 @@
             <div class="tonic-selector" id="tonic-selector-current"></div>
           </div>
           <div class="staff-wrap">
-            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 230"></svg>
+            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 250"></svg>
           </div>
           <div class="note-keys-row" id="keys-current"></div>
           <div class="playbar">
@@ -327,6 +335,7 @@
             <div class="status-bar" id="status-current"></div>
           </div>
         </div>
+
         <div class="sec-title">معلومات المقام</div>
         <div class="info-grid" id="maqam-info-grid"></div>
       </section>
@@ -343,7 +352,7 @@
     if (document.getElementById("family-switcher-style")) return;
     const style = document.createElement("style");
     style.id = "family-switcher-style";
-    style.textContent = `.family-switcher { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; } .family-switch-btn { border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); color:var(--text-dim); border-radius:999px; padding:4px 10px; font-family:inherit; font-size:.72rem; font-weight:700; cursor:pointer; transition:all .2s ease; } .family-switch-btn:hover { color:var(--text-muted); border-color:rgba(200,164,90,.25); } .family-switch-btn.active { color:var(--gold-light); background:rgba(200,164,90,.10); border-color:rgba(200,164,90,.35); } .note-key-face.note-key-face-colored { min-height:58px; border-width:1.5px; }`;
+    style.textContent = `.family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}.family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}.family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}.note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}`;
     document.head.appendChild(style);
   }
 
@@ -360,30 +369,15 @@
     const grid = document.getElementById("maqam-info-grid");
     if (!maqam || !grid) return;
 
+    const model = MAQAM_MODELS[state.maqamId];
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
-    const baseTonic = getTonicLabelAr(maqam.base_tonic);
-    const currentTonic = getTonicLabelAr(state.tonic);
-    const baseNote = maqam.base_note || getCanonicalNoteForTonic(maqam.base_tonic) || "";
-    const currentCanonical = getCanonicalInteractiveNoteForTonic(state.tonic) || "";
-    const familyMain = getFamilyMainMaqam(maqam.family);
-    const otherNames = buildOtherNamesByTonic(maqam);
 
     grid.innerHTML = `
       <div class="info-card"><div class="info-label">الاسم الظاهر</div><div class="info-value gold">${displayName}</div></div>
-      <div class="info-card"><div class="info-label">الطبقة الحالية</div><div class="info-value">${currentTonic}</div></div>
-      <div class="info-card"><div class="info-label">الطبقة الأساسية</div><div class="info-value">${baseTonic}</div></div>
-      <div class="info-card"><div class="info-label">النوتة المرجعية</div><div class="info-value" dir="ltr">${baseNote}</div></div>
-      <div class="info-card"><div class="info-label">النوتة الحالية</div><div class="info-value" dir="ltr">${currentCanonical}</div></div>
-      <div class="info-card"><div class="info-label">العائلة</div><div class="info-value">${familyMain ? familyMain.name : maqam.family}</div></div>
-      ${otherNames ? `<div class="info-card" style="grid-column:1 / -1;"><div class="info-label">أسماء أخرى بحسب الطبقة</div><div class="info-value">${otherNames}</div></div>` : ""}
+      <div class="info-card"><div class="info-label">الطبقة الحالية</div><div class="info-value">${getTonicLabelAr(state.tonic)}</div></div>
+      <div class="info-card"><div class="info-label">النموذج الأساسي</div><div class="info-value" dir="ltr">${model ? model.base_spelling.join(" - ") : ""}</div></div>
+      <div class="info-card"><div class="info-label">الفواصل</div><div class="info-value" dir="ltr">${model ? model.intervals.join(" / ") : ""}</div></div>
     `;
-  }
-
-  function buildOtherNamesByTonic(maqam) {
-    const map = maqam.display_name_by_tonic || {};
-    const entries = Object.entries(map).filter(([tonic, name]) => tonic !== maqam.base_tonic && name && name !== maqam.name);
-    if (!entries.length) return "";
-    return entries.map(([tonic, name]) => `${getTonicLabelAr(tonic)} = ${name}`).join(" · ");
   }
 
   function bindPageEvents() {
@@ -427,11 +421,14 @@
     const subtitle = document.getElementById("maqam-subtitle");
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
     const tonicLabel = getTonicLabelAr(state.tonic);
+
     if (title) title.textContent = displayName;
     if (subtitle) subtitle.textContent = `الطبقة الحالية: ${tonicLabel}`;
     if (breadcrumbLabel) breadcrumbLabel.textContent = displayName;
+
     const hero = root.querySelector(".maqam-hero");
     if (hero) hero.setAttribute("data-name", displayName);
+
     if (maqam && maqam.latin) {
       const latin = root.querySelector(".maqam-latin");
       if (latin) latin.textContent = maqam.latin;
@@ -472,13 +469,10 @@
 
     notes.forEach((note, i) => {
       const x = xStart + i * xGap + xGap * 0.4;
-      const y = note.staff_y;
       const palette = getPaletteForNote(note);
       const active = state.activeNoteIndex === i;
-
-      const noteColor = active ? palette.active : palette.idle;
-      const stemColor = active ? palette.active : palette.stem;
-      const accidentalColor = active ? palette.active_acc : palette.acc;
+      const slot = SLOT_MAP[note.slot_key] || SLOT_MAP["E4"];
+      const y = slot.y;
 
       const g = svgEl("g", {
         class: `note-btn ${active ? "active" : ""}`,
@@ -488,9 +482,13 @@
         style: "cursor:pointer"
       }, svg);
 
-      drawLedgerLines(g, x, y);
+      drawLedgerLines(g, x, slot.ledger);
 
+      const noteColor = active ? palette.active : palette.idle;
+      const stemColor = active ? palette.active : palette.stem;
+      const accidentalColor = active ? palette.active_acc : palette.acc;
       const up = y >= 124;
+
       svgEl("line", {
         x1: String(up ? x + 7 : x - 7),
         y1: String(y),
@@ -519,15 +517,6 @@
         const notesNow = buildScaleNotes(state.maqamId, state.tonic);
         if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
       });
-      node.addEventListener("keydown", async e => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const idx = Number(node.dataset.noteIdx);
-          setActiveNote(idx);
-          const notesNow = buildScaleNotes(state.maqamId, state.tonic);
-          if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
-        }
-      });
     });
   }
 
@@ -545,8 +534,8 @@
 
       return `
         <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}">
-          <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${toShadowColor(border)}` : "none"};">
-            <span style="font-weight:800">${note.display_label}</span>
+          <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};">
+            <span>${note.display_label}</span>
           </div>
         </div>
       `;
@@ -616,25 +605,37 @@
   }
 
   function buildScaleNotes(maqamId, tonic) {
-    const baseTemplate = MAQAM_SCALE_TEMPLATES[maqamId];
-    const tonicCanonical = getCanonicalInteractiveNoteForTonic(tonic);
-    if (!baseTemplate || !tonicCanonical) return [];
+    const model = MAQAM_MODELS[maqamId];
+    const tonicToken = getCanonicalInteractiveNoteForTonic(tonic);
+    if (!model || !tonicToken) return [];
 
-    const tonicOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
-    const transposedTokens = transposeTemplateToTonic(baseTemplate, tonicCanonical);
-    const rootLetter = NOTE_TOKEN_META[transposedTokens[0]] ? NOTE_TOKEN_META[transposedTokens[0]].letter : "C";
+    const baseRootToken = model.base_spelling[0];
+    const tonicQt = getQuarterForToken(tonicToken);
+    const baseLetter = NOTE_TOKEN_META[baseRootToken].letter;
+    const targetLetter = NOTE_TOKEN_META[tonicToken].letter;
+    const targetRootOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
     const jinsInfo = getJinsInfo(maqamId);
 
-    return transposedTokens.map((token, idx) => {
-      const spelled = buildSpelledScaleNote(token, idx, tonicOctave, rootLetter);
+    const absoluteQuarterValues = [tonicQt];
+    let running = tonicQt;
+    model.intervals.forEach(interval => {
+      running += interval;
+      absoluteQuarterValues.push(running);
+    });
+
+    return absoluteQuarterValues.map((absQt, idx) => {
+      const targetLetterIdx = (LETTER_TO_INDEX[targetLetter] + idx) % 7;
+      const expectedLetter = LETTER_SEQUENCE[targetLetterIdx];
+      const token = spellQuarterWithExpectedLetter(absQt, expectedLetter);
+      const octave = targetRootOctave + Math.floor((LETTER_TO_INDEX[targetLetter] + idx) / 7);
+      const slotKey = `${expectedLetter}${octave}`;
+      const meta = NOTE_TOKEN_META[token] || NOTE_TOKEN_META[tonicToken];
+
       return {
-        degree_index: idx,
-        quarter_tone_value: getQuarterForCanonicalNote(token),
         token,
-        display_label: getArabicDisplayLabel(token, spelled.octave),
-        label_ar: spelled.label_ar,
-        acc_label: spelled.acc_label,
-        staff_y: spelled.staff_y,
+        slot_key: slotKey,
+        acc_label: meta.acc_label,
+        display_label: getArabicDisplayLabel(meta.ar, octave),
         jins_zone: getJinsZone(idx, jinsInfo),
         is_jins_start: isJinsStart(idx, jinsInfo)
       };
@@ -683,72 +684,28 @@
     };
   }
 
-  function getArabicDisplayLabel(token, octave) {
+  function getQuarterForToken(token) {
     const meta = NOTE_TOKEN_META[token];
-    if (!meta) return token;
-    let base = meta.ar;
-    if (octave <= 3) base += " قرار";
-    if (octave >= 5) base += " جواب";
-    return base;
+    return meta ? meta.qt : null;
   }
 
-  function transposeTemplateToTonic(baseTemplate, targetTonicToken) {
-    const sourceTonic = baseTemplate[0];
-    const sourceQt = getQuarterForCanonicalNote(sourceTonic);
-    const targetQt = getQuarterForCanonicalNote(targetTonicToken);
-    if (sourceQt === null || targetQt === null) return baseTemplate.slice();
-
-    const delta = ((targetQt - sourceQt) % 24 + 24) % 24;
-    const sourceRootLetter = NOTE_TOKEN_META[sourceTonic].letter;
-    const targetRootLetter = NOTE_TOKEN_META[targetTonicToken].letter;
-    const sourceRootStep = LETTER_BASE_STEPS[sourceRootLetter];
-    const targetRootStep = LETTER_BASE_STEPS[targetRootLetter];
-    const letterShift = ((targetRootStep - sourceRootStep) % 7 + 7) % 7;
-
-    return baseTemplate.map(token => transposeToken(token, delta, letterShift));
-  }
-
-  function transposeToken(token, quarterDelta, letterShift) {
-    const sourceMeta = NOTE_TOKEN_META[token];
-    if (!sourceMeta) return token;
-
-    const sourceQt = getQuarterForCanonicalNote(token);
-    if (sourceQt === null) return token;
-
-    const targetQt = ((sourceQt + quarterDelta) % 24 + 24) % 24;
-    const sourceStep = LETTER_BASE_STEPS[sourceMeta.letter];
-    const targetStep = (sourceStep + letterShift) % 7;
-    const targetLetter = STEP_TO_LETTER[targetStep];
-
-    const targetToken = findTokenForLetterAndQuarter(targetLetter, targetQt);
-    if (targetToken) return targetToken;
-
-    const allowed = getAllowedCanonicalSpellingsForQuarter(targetQt);
-    if (allowed && allowed.length) return allowed[0];
-
-    return token;
-  }
-
-  function findTokenForLetterAndQuarter(letter, targetQt) {
-    const entry = Object.entries(NOTE_TOKEN_META).find(([token, meta]) => {
-      if (meta.letter !== letter) return false;
-      const qt = getQuarterForCanonicalNote(token);
-      return qt === targetQt;
+  function spellQuarterWithExpectedLetter(absQuarter, expectedLetter) {
+    const q = ((absQuarter % 24) + 24) % 24;
+    const token = Object.keys(NOTE_TOKEN_META).find(key => {
+      const meta = NOTE_TOKEN_META[key];
+      return meta.letter === expectedLetter && meta.qt === q;
     });
-    return entry ? entry[0] : null;
+    if (token) return token;
+
+    const fallback = getAllowedCanonicalSpellingsForQuarter(q);
+    if (fallback && fallback.length) return fallback[0];
+    return "Do";
   }
 
-  function buildSpelledScaleNote(token, degreeIdx, tonicOctave, rootLetter) {
-    const meta = NOTE_TOKEN_META[token];
-    if (!meta) return { label_ar: "", acc_label: "", staff_y: 124, octave: 4 };
-    const octave = resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter);
-    const staffY = Y_MAP[`${meta.letter}${octave}`] || 124;
-    return { label_ar: meta.ar, acc_label: meta.acc_label, staff_y: staffY, octave };
-  }
-
-  function resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter) {
-    const rootStep = LETTER_BASE_STEPS[rootLetter];
-    return tonicOctave + Math.floor((rootStep + degreeIdx) / 7);
+  function getArabicDisplayLabel(base, octave) {
+    if (octave <= 3) return `${base} قرار`;
+    if (octave >= 5) return `${base} جواب`;
+    return base;
   }
 
   async function playSingleNote(token) {
@@ -756,7 +713,6 @@
       state.lastAudioErrorToken = token;
       return false;
     }
-
     const url = getNoteAudioUrl(token);
     if (!url) {
       state.lastAudioErrorToken = token;
@@ -801,8 +757,11 @@
     });
   }
 
-  function toShadowColor(borderColor) {
-    return borderColor.replace(/rgba?\(([^)]+)\)/, "rgba($1,0.16)");
+  function shadowColorForBorder(borderColor) {
+    if (borderColor.startsWith("rgba(")) {
+      return borderColor.replace(/rgba\(([^,]+),([^,]+),([^,]+),([^)]+)\)/, "rgba($1,$2,$3,0.16)");
+    }
+    return "rgba(0,0,0,0.16)";
   }
 
   function svgEl(tag, attrs, parent) {
@@ -821,16 +780,8 @@
     }, g);
   }
 
-  function drawLedgerLines(parent, x, y) {
-    const lowerLines = [];
-    if (y >= 194) lowerLines.push(180);
-    if (y >= 208) lowerLines.push(208);
-
-    const upperLines = [];
-    if (y <= 82) upperLines.push(82);
-    if (y <= 54) upperLines.push(54);
-
-    [...new Set([...lowerLines, ...upperLines])].forEach(lineY => {
+  function drawLedgerLines(parent, x, ledgers) {
+    (ledgers || []).forEach(lineY => {
       svgEl("line", {
         x1: String(x - 13),
         y1: String(lineY),
