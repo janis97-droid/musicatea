@@ -3,22 +3,12 @@
 // Depends on:
 // - data/maqamat.js
 // - data/interactive-maqamat.js
+// - data/note-audio-map.js
 //
-// This version adds:
-// - canonical note token rendering
-// - mp3 note playback layer
-// - graceful fallback when note audio files are missing
-//
-// Expected note audio path pattern:
-// assets/audio/notes/<TOKEN>.mp3
-//
-// Example filenames:
-// Do.mp3
-// Dob.mp3
-// Do#.mp3
-// Do-#.mp3 is NOT used
-// Do-/#.mp3 is NOT used
-// Use exact token names from NOTE_AUDIO_FILE_MAP below.
+// This version:
+// - reads note audio URLs from data/note-audio-map.js
+// - removes the duplicated internal audio map
+// - keeps current playback behavior
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -65,44 +55,6 @@
     C3: 208, D3: 201, E3: 194, F3: 187, G3: 180, A3: 173, B3: 166,
     C4: 152, D4: 145, E4: 138, F4: 131, G4: 124, A4: 117, B4: 110,
     C5: 103, D5: 96, E5: 89, F5: 82, G5: 75, A5: 68, B5: 61
-  };
-
-  // ==========================================================
-  // MP3 note playback layer
-  // ==========================================================
-
-  const NOTE_AUDIO_BASE_PATH = "assets/audio/notes/";
-
-  const NOTE_AUDIO_FILE_MAP = {
-    "Do": "Do.mp3",
-    "Dob": "Dob.mp3",
-    "Do#": "DoSharp.mp3",
-    "Do/#": "DoHalfSharp.mp3",
-
-    "Re": "Re.mp3",
-    "Reb": "Reb.mp3",
-    "Re/b": "ReHalfFlat.mp3",
-    "Re#": "ReSharp.mp3",
-
-    "Mi": "Mi.mp3",
-    "Mib": "Mib.mp3",
-    "Mi/b": "MiHalfFlat.mp3",
-
-    "Fa": "Fa.mp3",
-    "Fa#": "FaSharp.mp3",
-    "Fa/#": "FaHalfSharp.mp3",
-
-    "Sol": "Sol.mp3",
-    "Solb": "Solb.mp3",
-    "Sol#": "SolSharp.mp3",
-
-    "La": "La.mp3",
-    "Lab": "Lab.mp3",
-    "La/b": "LaHalfFlat.mp3",
-
-    "Si": "Si.mp3",
-    "Sib": "Sib.mp3",
-    "Si/b": "SiHalfFlat.mp3"
   };
 
   const audioCache = new Map();
@@ -697,13 +649,13 @@
     return fallbackMap[naturalEn] || "Do";
   }
 
-  function getAudioUrlForToken(token) {
-    const filename = NOTE_AUDIO_FILE_MAP[token];
-    return filename ? `${NOTE_AUDIO_BASE_PATH}${filename}` : null;
-  }
-
   async function playSingleNote(token) {
-    const url = getAudioUrlForToken(token);
+    if (typeof getNoteAudioUrl !== "function") {
+      state.lastAudioErrorToken = token;
+      return false;
+    }
+
+    const url = getNoteAudioUrl(token);
     if (!url) {
       state.lastAudioErrorToken = token;
       return false;
