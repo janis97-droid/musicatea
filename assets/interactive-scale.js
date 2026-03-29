@@ -5,12 +5,11 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// This version fixes:
-// - exact root transposition from base maqam templates
-// - exact canonical note spelling preservation after transposition
-// - rendering from exact tokens instead of re-guessing from pitch
-// - note box accidental glyphs
-// - jins-based color logic
+// This version keeps the root/spelling engine intact and fixes:
+// - lower ledger-line placement from real staff-step anchors
+// - accidentals not affecting vertical position
+// - note boxes showing accidental glyphs
+// - jins-based yellow/blue color logic
 // - single active note behavior
 
 (function () {
@@ -89,10 +88,23 @@
   const LETTER_BASE_STEPS = { C: 0, D: 1, E: 2, F: 3, G: 4, A: 5, B: 6 };
   const STEP_TO_LETTER = ["C", "D", "E", "F", "G", "A", "B"];
 
+  // Correct treble-clef vertical mapping:
+  // A3 lowest ledger line, B3 space, C4 upper ledger line, D4 space below staff,
+  // E4 first staff line, F4 first space, G4 second line, A4 second space...
   const Y_MAP = {
-    C3: 208, D3: 201, E3: 194, F3: 187, G3: 180, A3: 173, B3: 166,
-    C4: 152, D4: 145, E4: 138, F4: 131, G4: 124, A4: 117, B4: 110,
-    C5: 103, D5: 96,  E5: 89,  F5: 82,  G5: 75,  A5: 68,  B5: 61
+    A3: 208,
+    B3: 194,
+    C4: 180,
+    D4: 166,
+    E4: 152,
+    F4: 138,
+    G4: 124,
+    A4: 110,
+    B4: 96,
+    C5: 82,
+    D5: 68,
+    E5: 54,
+    F5: 40
   };
 
   const LOWER_OCTAVE_TONICS = new Set([
@@ -261,13 +273,8 @@
       </ul>
     `;
 
-    sidebar.querySelectorAll(".sidebar-btn").forEach(btn => {
-      btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId));
-    });
-
-    sidebar.querySelectorAll(".family-switch-btn").forEach(btn => {
-      btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId));
-    });
+    sidebar.querySelectorAll(".sidebar-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
+    sidebar.querySelectorAll(".family-switch-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
 
     injectFamilySwitcherStyles();
   }
@@ -305,7 +312,7 @@
             <div class="tonic-selector" id="tonic-selector-current"></div>
           </div>
           <div class="staff-wrap">
-            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 220"></svg>
+            <svg class="staff-svg" id="staff-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 230"></svg>
           </div>
           <div class="note-keys-row" id="keys-current"></div>
           <div class="playbar">
@@ -341,7 +348,6 @@
   function renderTonicSelector() {
     const container = document.getElementById("tonic-selector-current");
     if (!container) return;
-
     const tonics = getInteractiveTonicsForMaqam(state.maqamId);
     container.innerHTML = tonics.map(tonic => `<button class="tonic-btn ${tonic === state.tonic ? "active" : ""}" data-tonic="${tonic}">${getTonicLabelAr(tonic)}</button>`).join("");
     container.querySelectorAll(".tonic-btn").forEach(btn => btn.addEventListener("click", () => setActiveTonic(btn.dataset.tonic)));
@@ -446,11 +452,15 @@
   function renderStaff() {
     const svg = document.getElementById("staff-current");
     if (!svg) return;
+
     const notes = buildScaleNotes(state.maqamId, state.tonic);
     svg.innerHTML = "";
 
-    [138, 124, 110, 96, 82].forEach(y => {
-      svg.appendChild(svgEl("line", { x1: "0", y1: String(y), x2: "820", y2: String(y), stroke: "#5a5038", "stroke-width": "1.4" }));
+    [152, 138, 124, 110, 96].forEach(y => {
+      svg.appendChild(svgEl("line", {
+        x1: "0", y1: String(y), x2: "820", y2: String(y),
+        stroke: "#5a5038", "stroke-width": "1.4"
+      }));
     });
 
     drawClef(svg);
@@ -463,17 +473,41 @@
       const y = note.staff_y;
       const palette = getPaletteForNote(note);
       const active = state.activeNoteIndex === i;
+
       const noteColor = active ? palette.active : palette.idle;
       const stemColor = active ? palette.active : palette.stem;
       const accidentalColor = active ? palette.active_acc : palette.acc;
 
-      const g = svgEl("g", { class: `note-btn ${active ? "active" : ""}`, "data-note-idx": String(i), role: "button", tabindex: "0", style: "cursor:pointer" }, svg);
+      const g = svgEl("g", {
+        class: `note-btn ${active ? "active" : ""}`,
+        "data-note-idx": String(i),
+        role: "button",
+        tabindex: "0",
+        style: "cursor:pointer"
+      }, svg);
+
       drawLedgerLines(g, x, y);
 
-      const up = y >= 110;
-      svgEl("line", { x1: String(up ? x + 7 : x - 7), y1: String(y), x2: String(up ? x + 7 : x - 7), y2: String(up ? y - 38 : y + 38), stroke: stemColor, "stroke-width": "1.8" }, g);
+      const up = y >= 124;
+      svgEl("line", {
+        x1: String(up ? x + 7 : x - 7),
+        y1: String(y),
+        x2: String(up ? x + 7 : x - 7),
+        y2: String(up ? y - 38 : y + 38),
+        stroke: stemColor,
+        "stroke-width": "1.8"
+      }, g);
+
       drawAccidental(g, x - 22, y, note.acc_label, accidentalColor);
-      svgEl("ellipse", { cx: String(x), cy: String(y), rx: "8", ry: "5.5", fill: noteColor, transform: `rotate(-18,${x},${y})` }, g);
+
+      svgEl("ellipse", {
+        cx: String(x),
+        cy: String(y),
+        rx: "8",
+        ry: "5.5",
+        fill: noteColor,
+        transform: `rotate(-18,${x},${y})`
+      }, g);
     });
 
     svg.querySelectorAll(".note-btn").forEach(node => {
@@ -699,9 +733,9 @@
 
   function buildSpelledScaleNote(token, degreeIdx, tonicOctave, rootLetter) {
     const meta = NOTE_TOKEN_META[token];
-    if (!meta) return { label_ar: "", acc_label: "", staff_y: 110 };
+    if (!meta) return { label_ar: "", acc_label: "", staff_y: 124 };
     const octave = resolveDisplayOctave(degreeIdx, tonicOctave, rootLetter);
-    const staffY = Y_MAP[`${meta.letter}${octave}`] || 110;
+    const staffY = Y_MAP[`${meta.letter}${octave}`] || 124;
     return { label_ar: meta.ar, acc_label: meta.acc_label, staff_y: staffY };
   }
 
@@ -772,7 +806,7 @@
   }
 
   function drawClef(svg) {
-    const g = svgEl("g", { transform: "translate(18,62) scale(2.15,2.15)" }, svg);
+    const g = svgEl("g", { transform: "translate(18,78) scale(2.15,2.15)" }, svg);
     svgEl("path", {
       d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
       fill: "#f0d28a",
@@ -781,7 +815,7 @@
   }
 
   function drawLedgerLines(parent, x, y) {
-    [152, 166, 180, 194, 208, 75, 61].forEach(lineY => {
+    [180, 208, 82, 54].forEach(lineY => {
       if (Math.abs(y - lineY) < 0.1) {
         svgEl("line", { x1: String(x - 13), y1: String(lineY), x2: String(x + 13), y2: String(lineY), stroke: "#6a6048", "stroke-width": "1.4" }, parent);
       }
