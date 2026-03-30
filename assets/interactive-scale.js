@@ -820,14 +820,14 @@
     const visibleColor = "#fff0bf";
 
     const g = svgEl("g", {
-      transform: `translate(${x - 5.5},${y + 7.5}) scale(-1.12,1.12) translate(-0.5,-1044.8)`
+      transform: `translate(${x - 6.5},${y - 0.5}) scale(-1.35,1.35) translate(-0.5,-1044.8)`
     }, parent);
 
     svgEl("path", {
       d: "m 0.5,1037.831 0,14.0625",
       fill: "none",
       stroke: visibleColor,
-      "stroke-width": "1.7",
+      "stroke-width": "1.9",
       "stroke-linecap": "square",
       "stroke-linejoin": "miter",
       "stroke-miterlimit": "4",
@@ -839,7 +839,7 @@
       d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
       fill: "none",
       stroke: visibleColor,
-      "stroke-width": "2.7",
+      "stroke-width": "3.1",
       "stroke-linecap": "square",
       "stroke-linejoin": "miter",
       "stroke-miterlimit": "4",
@@ -851,7 +851,7 @@
       d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
       fill: "none",
       stroke: visibleColor,
-      "stroke-width": "2.7",
+      "stroke-width": "3.1",
       "stroke-linecap": "square",
       "stroke-linejoin": "miter",
       "stroke-miterlimit": "4",
