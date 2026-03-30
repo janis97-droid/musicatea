@@ -11,13 +11,11 @@
 const INTERACTIVE_TONIC_ORDER_STANDARD = [
   "do",
   "re",
-  "mi_flat",
+  "mi",
   "fa",
   "sol",
-  "la_flat",
   "la",
-  "si_flat",
-  "si"
+  "si_flat"
 ];
 
 const INTERACTIVE_TONIC_ORDER_HALF_FLAT = [
@@ -26,9 +24,19 @@ const INTERACTIVE_TONIC_ORDER_HALF_FLAT = [
   "si_half_flat"
 ];
 
+const INTERACTIVE_TONIC_ORDER_SIKAH = [
+  "mi_half_flat",
+  "la_half_flat",
+  "si_half_flat",
+  "do",
+  "re",
+  "sol"
+];
+
 const INTERACTIVE_TONIC_META = {
   do:            { label_ar: "دو",           label_en: "Do",   canonical_note: "Do",   quarter_base: 0,  accidental: null,        family_mode: "standard" },
   re:            { label_ar: "ري",           label_en: "Re",   canonical_note: "Re",   quarter_base: 4,  accidental: null,        family_mode: "standard" },
+  mi:            { label_ar: "مي",           label_en: "Mi",   canonical_note: "Mi",   quarter_base: 8,  accidental: null,        family_mode: "standard" },
   mi_flat:       { label_ar: "مي بيمول",     label_en: "Mib",  canonical_note: "Mib",  quarter_base: 6,  accidental: "flat",      family_mode: "standard" },
   fa:            { label_ar: "فا",           label_en: "Fa",   canonical_note: "Fa",   quarter_base: 10, accidental: null,        family_mode: "standard" },
   sol:           { label_ar: "صول",          label_en: "Sol",  canonical_note: "Sol",  quarter_base: 14, accidental: null,        family_mode: "standard" },
@@ -241,16 +249,16 @@ const INTERACTIVE_MAQAM_DATA = {
   athar_kurd:           maqamConfig("athar_kurd", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [5, 8], 4),
 
   // sikah
-  sikah:                maqamConfig("sikah", "half_flat_only", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  huzam:                maqamConfig("huzam", "half_flat_only", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  rahat_al_arwah:       maqamConfig("rahat_al_arwah", "half_flat_only", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  iraq:                 maqamConfig("iraq", "half_flat_only", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  awj_iraq:             maqamConfig("awj_iraq", "half_flat_only", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  basta_nikar:          maqamConfig("basta_nikar", "half_flat_only", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  mustaar:              maqamConfig("mustaar", "half_flat_only", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  farahnak:             maqamConfig("farahnak", "half_flat_only", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  shaar:                maqamConfig("shaar", "half_flat_only", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
-  rahat_faza:           maqamConfig("rahat_faza", "half_flat_only", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_HALF_FLAT], [1, 3], [4, 8], 4),
+  sikah:                maqamConfig("sikah", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  huzam:                maqamConfig("huzam", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  rahat_al_arwah:       maqamConfig("rahat_al_arwah", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  iraq:                 maqamConfig("iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  awj_iraq:             maqamConfig("awj_iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  basta_nikar:          maqamConfig("basta_nikar", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  mustaar:              maqamConfig("mustaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  farahnak:             maqamConfig("farahnak", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  shaar:                maqamConfig("shaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  rahat_faza:           maqamConfig("rahat_faza", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
 
   // saba
   saba:                 maqamConfig("saba", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [5, 8], 4),
