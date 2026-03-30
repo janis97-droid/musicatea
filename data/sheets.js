@@ -1,5 +1,29 @@
 const sheets = [
 
+ {
+    title: "ليالي الأنس في فيينا",
+    system: "arabic",
+    type: "song",
+    composer: "فريد الأطرش",
+    performer: "أسمهان",
+    maqam: "نهاوند",
+    scale: null,
+    tonic: "دو",
+    pdf: "pdfs/Layali-Eluns-Fi-Viena.pdf"
+  },
+
+{
+    title: "قطف الزيتون",
+    system: "arabic",
+    type: "instrumental",
+    composer: "سيمون شاهين",
+    performer: null,
+    maqam: "بيات",
+    scale: null,
+    tonic: "صول",
+    pdf: "pdfs/olive-harvest.pdf"
+  },
+  
   {
     title: "سماعي نهاوند (دو)",
     system: "arabic",
@@ -17,7 +41,7 @@ const sheets = [
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
-    performer: null,
+    performer: "جوزيف عازر",
     maqam: "كرد",
     scale: null,
     tonic: "ري",
@@ -29,7 +53,7 @@ const sheets = [
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
-    performer: null,
+    performer: "فيروز",
     maqam: "عجم",
     scale: null,
     tonic: "دو",
@@ -41,7 +65,7 @@ const sheets = [
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
-    performer: null,
+    performer: "جوزيف عازر",
     maqam: "كرد",
     scale: null,
     tonic: "دو",
