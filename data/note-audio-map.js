@@ -16,7 +16,7 @@
 // Re, Reb, Re/b, Re#,
 // Mi, Mib, Mi/b,
 // Fa, Fa#, Fa/#,
-// Sol, Solb, Sol#,
+// Sol, Solb, Sol#, Sol/#
 // La, Lab, La/b,
 // Si, Sib, Si/b
 
@@ -44,6 +44,7 @@ const NOTE_AUDIO_FILE_MAP = {
   "Sol": "Sol.mp3",
   "Solb": "Solb.mp3",
   "Sol#": "SolSharp.mp3",
+  "Sol/#": "Sol/#.mp3",
 
   "La": "La.mp3",
   "Lab": "Lab.mp3",
