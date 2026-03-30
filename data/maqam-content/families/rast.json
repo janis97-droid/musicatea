@@ -1,0 +1,78 @@
+{
+  "id": "rast",
+  "title_ar": "عائلة الراست",
+  "title_en": "Rast Family",
+  "hero_summary": "The Rast family is one of the central modal families in Arabic music. It combines structural balance, strong tonal identity, and broad flexibility in modulation and melodic development.",
+  "family_identity": "This family is anchored by Jins Rast and is often treated as one of the foundational reference families for understanding Arabic maqam structure, color, and modulation behavior.",
+  "main_maqam": "rast",
+  "core_jins": "Jins Rast",
+  "overview": "In practical listening and performance, the Rast family presents a stable lower jins with multiple possibilities in the upper register. Its sub-maqamat are often distinguished by the nature of the upper jins, the melodic route toward the jawab, and the expressive coloring created by those changes.",
+  "navigation_intro": "Start with Rast as the primary maqam of the family, then explore the branch maqamat through their upper-jins changes and melodic behavior.",
+  "members": [
+    "rast",
+    "suznak",
+    "mahur",
+    "nairuz",
+    "bashayer",
+    "sazkar",
+    "dalanshin"
+  ],
+  "member_cards": [
+    {
+      "id": "rast",
+      "short_identity": "The principal maqam of the family and the reference point for its tonal and jins logic.",
+      "role": "main"
+    },
+    {
+      "id": "suznak",
+      "short_identity": "A Rast-family branch commonly identified by a Hijaz-oriented upper development.",
+      "role": "branch"
+    },
+    {
+      "id": "mahur",
+      "short_identity": "A bright Rast-family branch with an upper area closer in effect to Ajam coloration.",
+      "role": "branch"
+    },
+    {
+      "id": "nairuz",
+      "short_identity": "A branch associated with a Rast base and a distinct upper-path identity in performance and teaching traditions.",
+      "role": "branch"
+    },
+    {
+      "id": "bashayer",
+      "short_identity": "A Rast-family branch differentiated by its upper-register treatment and resulting color.",
+      "role": "branch"
+    },
+    {
+      "id": "sazkar",
+      "short_identity": "A branch of the Rast family whose identity depends on upper-jins structure and melodic motion.",
+      "role": "branch"
+    },
+    {
+      "id": "dalanshin",
+      "short_identity": "A Rast-family branch with a more specific upper-register profile and branch-like modal identity.",
+      "role": "branch"
+    }
+  ],
+  "family_logic": [
+    "The family is defined by a Rast-based lower structure.",
+    "Branch maqamat are mainly distinguished by upper-jins choice and melodic pathway.",
+    "The fifth degree often acts as a key point for upper development and modulation.",
+    "The expressive identity of each branch depends less on raw scale listing alone and more on jins behavior, note function, and sayr."
+  ],
+  "historical_notes": [
+    "Modern pedagogical treatments often place Rast at the center of maqam-family explanation because it offers a clear model for jins-based construction and branch formation.",
+    "Twentieth-century scholarly and pedagogical sources frequently present Rast as a foundational family for understanding modulation, upper-jins variation, and modal hierarchy."
+  ],
+  "ui_notes": {
+    "family_badge": "Foundational Family",
+    "featured_label": "Start here",
+    "color_mode": "gold-blue"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
