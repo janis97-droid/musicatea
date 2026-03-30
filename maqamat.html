@@ -10,39 +10,253 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
-  
+
   <style>
     .maqamat-hero {
-      padding: 60px 5% 48px;
+      padding: 68px 5% 54px;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      background:
+        radial-gradient(circle at top left, rgba(200,164,90,0.10) 0%, transparent 32%),
+        radial-gradient(circle at top right, rgba(123,168,212,0.07) 0%, transparent 28%),
+        linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      position: relative;
+      overflow: hidden;
     }
-    
+
+    .maqamat-hero::after {
+      content: "Maqamat";
+      position: absolute;
+      left: -1%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: clamp(5rem, 16vw, 12rem);
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(200,164,90,0.035);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .maqamat-hero-inner {
+      position: relative;
+      max-width: 1040px;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,164,90,0.22);
+      background: rgba(200,164,90,0.08);
+      color: var(--gold-light);
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
     .maqamat-hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2.3rem, 5vw, 4rem);
       font-weight: 900;
       margin-bottom: 16px;
-      line-height: 1.2;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
     }
-    
+
     .maqamat-hero p {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 640px;
-      line-height: 1.8;
-      margin-bottom: 0;
+      font-size: 1.03rem;
+      max-width: 760px;
+      line-height: 1.95;
+      margin-bottom: 18px;
     }
-    
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .hero-point {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .hero-point svg {
+      width: 15px;
+      height: 15px;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
     .maqamat-content {
-      max-width: 1300px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 40px 5% 100px;
+      padding: 34px 5% 100px;
     }
-    
+
+    .overview-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .overview-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+    }
+
+    .overview-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .overview-value {
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .overview-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .maqamat-intro-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .intro-card,
+    .guide-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 22px 20px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.06rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .panel-title .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .intro-card p,
+    .guide-card p,
+    .guide-card li {
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-size: 0.95rem;
+    }
+
+    .guide-card ul {
+      padding-right: 18px;
+      margin-top: 4px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .intro-mini {
+      padding: 12px 12px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border2);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .intro-mini .name {
+      color: var(--gold-light);
+      font-size: 0.87rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .intro-mini .text {
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .section-title-wrap h2 {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .section-title-wrap p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
     .maqamat-search {
-      padding: 0 0 40px;
+      padding: 0 0 34px;
     }
-    
+
+    .search-box-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 560px;
+    }
+
     .search-bar {
       display: flex;
       align-items: center;
@@ -51,20 +265,19 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 14px 20px;
-      max-width: 520px;
       transition: all 0.3s var(--ease);
     }
-    
+
     .search-bar:focus-within {
       border-color: rgba(200,164,90,0.5);
       box-shadow: 0 0 0 4px rgba(200,164,90,0.08);
     }
-    
+
     .search-bar svg {
       flex-shrink: 0;
       color: var(--text-dim);
     }
-    
+
     .search-bar input {
       background: none;
       border: none;
@@ -74,28 +287,34 @@
       font-size: 1rem;
       width: 100%;
     }
-    
+
     .search-bar input::placeholder {
       color: var(--text-dim);
     }
-    
+
+    .search-help {
+      color: var(--text-dim);
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
     #maqamat-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 24px;
     }
-    
+
     .maqam-family-card {
-      background: var(--bg2);
+      background: linear-gradient(180deg, rgba(255,255,255,0.018) 0%, rgba(255,255,255,0.01) 100%), var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 28px;
       transition: all 0.4s var(--ease);
       cursor: pointer;
       position: relative;
       overflow: hidden;
     }
-    
+
     .maqam-family-card::before {
       content: '';
       position: absolute;
@@ -108,25 +327,25 @@
       transform-origin: right;
       transition: transform 0.4s var(--ease);
     }
-    
+
     .maqam-family-card:hover::before {
       transform: scaleX(1);
       transform-origin: left;
     }
-    
+
     .maqam-family-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+      box-shadow: 0 18px 52px rgba(0,0,0,0.46);
       border-color: rgba(200,164,90,0.35);
     }
-    
+
     .maqam-family-card h3 {
       font-size: 1.6rem;
       font-weight: 900;
       color: var(--gold-light);
       margin: 0 0 8px 0;
     }
-    
+
     .maqam-family-card .latin {
       font-size: 0.9rem;
       color: var(--text-dim);
@@ -134,21 +353,21 @@
       margin-bottom: 16px;
       display: block;
     }
-    
+
     .maqam-family-card .desc {
       font-size: 0.94rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.78;
       margin-bottom: 18px;
     }
-    
+
     .maqam-family-card .meta {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 14px;
     }
-    
+
     .meta-item {
       display: flex;
       align-items: center;
@@ -156,18 +375,18 @@
       font-size: 0.88rem;
       color: var(--text-dim);
     }
-    
+
     .meta-item svg {
       width: 14px;
       height: 14px;
     }
-    
+
     .tonic-options {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
     }
-    
+
     .tonic-badge {
       background: var(--surface);
       border: 1px solid var(--border2);
@@ -177,7 +396,7 @@
       font-weight: 600;
       color: var(--text-muted);
     }
-    
+
     .family-badge {
       display: inline-flex;
       align-items: center;
@@ -190,7 +409,7 @@
       color: var(--gold);
       border: 1px solid rgba(200,164,90,0.25);
     }
-    
+
     .sub-count {
       font-size: 0.82rem;
       color: var(--text-dim);
@@ -198,14 +417,38 @@
       padding-top: 12px;
       border-top: 1px solid var(--border2);
     }
-    
+
+    .empty-state {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .maqamat-intro-panel,
+      .overview-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       #maqamat-grid {
         grid-template-columns: 1fr;
       }
-      
+
       .maqamat-content {
         padding: 30px 4% 80px;
+      }
+
+      .maqamat-hero {
+        padding: 52px 4% 42px;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -243,21 +486,146 @@
   </nav>
 
   <div class="maqamat-hero">
-    <h1>المقامات العربية</h1>
-    <p>
-      المقامات هي أساس الموسيقى العربية — كل مقام يتميز بسلم موسيقي خاص وطابع عاطفي مميز. 
-      تبنى المقامات من أجناس (tetrachords) وتتوزع على عائلات, وكل عائلة تشترك في جنس القرار.
-      استكشف التسع عائلات الرئيسية وفروعها.
-    </p>
+    <div class="maqamat-hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>Interactive maqam families and branches</span>
+      </div>
+
+      <h1>المقامات العربية</h1>
+
+      <p>
+        هذا القسم يجمع العائلات المقامية الرئيسية في الموسيقى العربية ضمن مدخل واضح وعملي. 
+        كل بطاقة تقودك إلى المقام الرئيسي للعائلة، ومنه تستطيع استكشاف الجذور المختلفة، المقامات الفرعية، 
+        وبنية الجنس الأساسي والمنطقة العليا بصورة تفاعلية أكثر دقة.
+      </p>
+
+      <div class="hero-points">
+        <span class="hero-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+          </svg>
+          <span>9 main maqam families</span>
+        </span>
+
+        <span class="hero-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12h18"/>
+            <path d="M12 3v18"/>
+          </svg>
+          <span>Interactive roots and transposition</span>
+        </span>
+
+        <span class="hero-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7h16"/>
+            <path d="M4 12h16"/>
+            <path d="M4 17h10"/>
+          </svg>
+          <span>Main maqamat and branch maqamat</span>
+        </span>
+      </div>
+    </div>
   </div>
 
   <div class="maqamat-content">
+    <section class="overview-strip">
+      <div class="overview-card">
+        <div class="overview-label">Main families</div>
+        <div class="overview-value">Nine reference families</div>
+        <div class="overview-desc">
+          The page begins from the principal maqam of each family, then opens the path toward branches, upper-jins changes, and related modal movement.
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-label">How to read the section</div>
+        <div class="overview-value">Family first, then maqam</div>
+        <div class="overview-desc">
+          Start from the family card, enter the principal maqam, then explore the family branches through roots, jins structure, and melodic behavior.
+        </div>
+      </div>
+
+      <div class="overview-card">
+        <div class="overview-label">What you will find</div>
+        <div class="overview-value">Theory + interaction</div>
+        <div class="overview-desc">
+          The maqam pages combine the interactive scale with root transpose, quick facts, family context, theory notes, and linked branch maqamat.
+        </div>
+      </div>
+    </section>
+
+    <section class="maqamat-intro-panel">
+      <div class="intro-card">
+        <div class="panel-title">
+          <span class="dot"></span>
+          <span>كيف يعمل هذا القسم؟</span>
+        </div>
+
+        <p>
+          لا تتعامل هذه الصفحة مع المقامات كقائمة أسماء فقط، بل كشبكة عائلات مقامية. 
+          لكل عائلة مقام رئيسي يشكّل المدخل النظري والسمعي، ومنه تتفرع المقامات الفرعية 
+          التي تختلف غالباً في الجنس العلوي، أو في مسار السير اللحني، أو في التلوين الناتج عن ذلك.
+        </p>
+
+        <div class="intro-grid">
+          <div class="intro-mini">
+            <div class="name">العائلة</div>
+            <div class="text">مجموعة مقامات تشترك في منطق بنيوي وجنس أساسي أو محور نظري مشترك.</div>
+          </div>
+          <div class="intro-mini">
+            <div class="name">المقام الرئيسي</div>
+            <div class="text">هو نقطة الدخول الأفضل لفهم العائلة واستيعاب جذورها وفروعها.</div>
+          </div>
+          <div class="intro-mini">
+            <div class="name">المقامات الفرعية</div>
+            <div class="text">تعكس اختلافات في المنطقة العليا أو مسار التطور المقامي داخل العائلة نفسها.</div>
+          </div>
+          <div class="intro-mini">
+            <div class="name">الجذور</div>
+            <div class="text">توضح كيف ينتقل نفس المنطق المقامي إلى درجات مختلفة مع تغيّر الرسم والوظيفة الظاهرة.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <div class="panel-title">
+          <span class="dot"></span>
+          <span>أفضل طريقة للاستعمال</span>
+        </div>
+
+        <ul>
+          <li>ابدأ من بطاقة العائلة، لا من المقام الفرعي.</li>
+          <li>ادخل إلى المقام الرئيسي أولاً لفهم منطق العائلة.</li>
+          <li>جرّب الجذور المختلفة داخل الصفحة التفاعلية.</li>
+          <li>راقب الفرق بين الجنس الأساسي والمنطقة العليا.</li>
+          <li>بعد ذلك انتقل إلى الفروع لتفهم كيف يتغير اللون المقامي داخل العائلة نفسها.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <div class="section-title-wrap">
+        <h2>العائلات المقامية</h2>
+        <p>
+          اختر العائلة التي تريد دراستها. كل بطاقة تقود إلى المقام الرئيسي للعائلة، ثم تفتح لك باقي المقامات الفرعية المرتبطة بها داخل الصفحة التفاعلية.
+        </p>
+      </div>
+    </div>
+
     <div class="maqamat-search">
-      <div class="search-bar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-        </svg>
-        <input id="maqam-search" type="text" placeholder="ابحث عن مقام أو عائلة...">
+      <div class="search-box-wrap">
+        <div class="search-bar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input id="maqam-search" type="text" placeholder="ابحث عن مقام أو عائلة...">
+        </div>
+        <div class="search-help">
+          يمكنك البحث باسم العائلة أو بالمقام الرئيسي أو بالوصف العام للعائلة.
+        </div>
       </div>
     </div>
 
