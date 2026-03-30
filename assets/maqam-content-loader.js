@@ -1,10 +1,18 @@
 // assets/maqam-content-loader.js
 // Shared content loader for maqam/family JSON content.
-// Repo-compatible for static GitHub Pages usage.
+// Supports localized content files:
+// - *.ar.json for Arabic pages
+// - *.en.json for English pages
+// Falls back to plain *.json when localized files do not exist.
 
 (function () {
   const CONTENT_ROOT = "data/maqam-content";
   const cache = new Map();
+
+  function getPageLanguage() {
+    const lang = (document.documentElement.getAttribute("lang") || "ar").toLowerCase();
+    return lang.startsWith("en") ? "en" : "ar";
+  }
 
   async function fetchJson(path) {
     const normalizedPath = String(path || "").replace(/^\.\//, "");
@@ -32,6 +40,33 @@
     return promise;
   }
 
+  async function fetchJsonWithFallback(paths) {
+    const normalized = Array.isArray(paths) ? paths.filter(Boolean) : [];
+    if (!normalized.length) {
+      throw new Error("Missing JSON path candidates.");
+    }
+
+    let lastError = null;
+
+    for (const path of normalized) {
+      try {
+        return await fetchJson(path);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    throw lastError || new Error("Failed to load any candidate JSON path.");
+  }
+
+  function buildLocalizedCandidates(relativePathWithoutExtension) {
+    const lang = getPageLanguage();
+    return [
+      `${CONTENT_ROOT}/${relativePathWithoutExtension}.${lang}.json`,
+      `${CONTENT_ROOT}/${relativePathWithoutExtension}.json`
+    ];
+  }
+
   function deepClone(value) {
     return JSON.parse(JSON.stringify(value));
   }
@@ -52,14 +87,14 @@
     if (!familyId) {
       throw new Error("Missing familyId.");
     }
-    return fetchJson(`${CONTENT_ROOT}/families/${familyId}.json`);
+    return fetchJsonWithFallback(buildLocalizedCandidates(`families/${familyId}`));
   }
 
   async function loadMaqamContent(maqamId) {
     if (!maqamId) {
       throw new Error("Missing maqamId.");
     }
-    return fetchJson(`${CONTENT_ROOT}/maqamat/${maqamId}.json`);
+    return fetchJsonWithFallback(buildLocalizedCandidates(`maqamat/${maqamId}`));
   }
 
   async function getReferenceById(referenceId) {
@@ -121,6 +156,7 @@
   window.MaqamContentLoader = {
     CONTENT_ROOT,
     fetchJson,
+    fetchJsonWithFallback,
     loadBibliography,
     loadFamilyContent,
     loadMaqamContent,
@@ -128,6 +164,7 @@
     getReferencesByIds,
     buildFamilyContentModel,
     buildMaqamContentModel,
-    clearContentCache
+    clearContentCache,
+    getPageLanguage
   };
 })();
