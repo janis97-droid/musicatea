@@ -232,42 +232,13 @@
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
 
-    const allowedTonics = getRenderableTonicsForMaqam(resolvedMaqam);
-    const defaultTonicRaw = getInteractiveDefaultTonic(resolvedMaqam);
-    const defaultTonic = allowedTonics.includes(defaultTonicRaw) ? defaultTonicRaw : (allowedTonics[0] || defaultTonicRaw);
+    const allowedTonics = getInteractiveTonicsForMaqam(resolvedMaqam);
+    const defaultTonic = getInteractiveDefaultTonic(resolvedMaqam);
     const resolvedTonic = allowedTonics.includes(tonic) ? tonic : defaultTonic;
 
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
 
-
-  function getRenderableTonicsForMaqam(maqamId) {
-    const tonics = getInteractiveTonicsForMaqam(maqamId);
-    return tonics.filter(tonic => isRenderableScaleForTonic(maqamId, tonic));
-  }
-
-  function isRenderableScaleForTonic(maqamId, tonic) {
-    const model = MAQAM_MODELS[maqamId];
-    const tonicToken = getCanonicalInteractiveNoteForTonic(tonic);
-    if (!model || !tonicToken) return false;
-
-    const tonicQt = getQuarterForToken(tonicToken);
-    const targetLetter = NOTE_TOKEN_META[tonicToken].letter;
-    if (tonicQt === null || !targetLetter) return false;
-
-    const absoluteQuarterValues = [tonicQt];
-    let running = tonicQt;
-    model.intervals.forEach(interval => {
-      running += interval;
-      absoluteQuarterValues.push(running);
-    });
-
-    return absoluteQuarterValues.every((absQt, idx) => {
-      const targetLetterIdx = (LETTER_TO_INDEX[targetLetter] + idx) % 7;
-      const expectedLetter = LETTER_SEQUENCE[targetLetterIdx];
-      return !!spellQuarterWithExpectedLetter(absQt, expectedLetter, true);
-    });
-  }
 
   function renderAll() {
     renderSidebar();
@@ -384,7 +355,7 @@
   function renderTonicSelector() {
     const container = document.getElementById("tonic-selector-current");
     if (!container) return;
-    const tonics = getRenderableTonicsForMaqam(state.maqamId);
+    const tonics = getInteractiveTonicsForMaqam(state.maqamId);
     container.innerHTML = tonics.map(tonic => `<button class="tonic-btn ${tonic === state.tonic ? "active" : ""}" data-tonic="${tonic}">${getTonicLabelAr(tonic)}</button>`).join("");
     container.querySelectorAll(".tonic-btn").forEach(btn => btn.addEventListener("click", () => setActiveTonic(btn.dataset.tonic)));
   }
@@ -426,7 +397,6 @@
   }
 
   function setActiveTonic(tonic) {
-    if (!getRenderableTonicsForMaqam(state.maqamId).includes(tonic)) return;
     stopAllAudio();
     state.tonic = tonic;
     state.activeNoteIndex = null;
@@ -634,7 +604,6 @@
     const model = MAQAM_MODELS[maqamId];
     const tonicToken = getCanonicalInteractiveNoteForTonic(tonic);
     if (!model || !tonicToken) return [];
-    if (!isRenderableScaleForTonic(maqamId, tonic)) return [];
 
     const tonicQt = getQuarterForToken(tonicToken);
     const targetLetter = NOTE_TOKEN_META[tonicToken].letter;
@@ -714,14 +683,13 @@
     return meta ? meta.qt : null;
   }
 
-  function spellQuarterWithExpectedLetter(absQuarter, expectedLetter, strict = false) {
+  function spellQuarterWithExpectedLetter(absQuarter, expectedLetter) {
     const q = ((absQuarter % 24) + 24) % 24;
     const token = Object.keys(NOTE_TOKEN_META).find(key => {
       const meta = NOTE_TOKEN_META[key];
       return meta.letter === expectedLetter && meta.qt === q;
     });
     if (token) return token;
-    if (strict) return null;
 
     const fallback = getAllowedCanonicalSpellingsForQuarter(q);
     if (fallback && fallback.length) return fallback[0];
@@ -848,49 +816,49 @@
     svgEl("rect", { x: "-6", y: "1.4", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
   }
 
-function drawHalfSharp(parent, x, y, color) {
-  const visibleColor = "#fff0bf";
+  function drawHalfSharp(parent, x, y, color) {
+    const visibleColor = "#fff0bf";
 
-  const g = svgEl("g", {
-    transform: `translate(${x - 6.5},${y - 0.5}) scale(-1.35,1.35) translate(-0.5,-1044.8)`
-  }, parent);
+    const g = svgEl("g", {
+      transform: `translate(${x - 5.5},${y + 7.5}) scale(-1.12,1.12) translate(-0.5,-1044.8)`
+    }, parent);
 
-  svgEl("path", {
-    d: "m 0.5,1037.831 0,14.0625",
-    fill: "none",
-    stroke: visibleColor,
-    "stroke-width": "1.9",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
+    svgEl("path", {
+      d: "m 0.5,1037.831 0,14.0625",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "1.7",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
 
-  svgEl("path", {
-    d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
-    fill: "none",
-    stroke: visibleColor,
-    "stroke-width": "3.1",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
+    svgEl("path", {
+      d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "2.7",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
 
-  svgEl("path", {
-    d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
-    fill: "none",
-    stroke: visibleColor,
-    "stroke-width": "3.1",
-    "stroke-linecap": "square",
-    "stroke-linejoin": "miter",
-    "stroke-miterlimit": "4",
-    "stroke-opacity": "1",
-    "stroke-dasharray": "none"
-  }, g);
-}
+    svgEl("path", {
+      d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+      fill: "none",
+      stroke: visibleColor,
+      "stroke-width": "2.7",
+      "stroke-linecap": "square",
+      "stroke-linejoin": "miter",
+      "stroke-miterlimit": "4",
+      "stroke-opacity": "1",
+      "stroke-dasharray": "none"
+    }, g);
+  }
 
   bootstrap();
 })();
