@@ -1,0 +1,85 @@
+{
+  "id": "rast",
+  "family": "rast",
+  "title_ar": "راست",
+  "title_en": "Rast",
+  "latin": "Rast",
+  "hero_summary": "Rast is one of the most central maqamat in Arabic music and is often treated as a foundational reference point for understanding jins construction, maqam families, and melodic development.",
+  "short_identity": "A balanced, foundational maqam built on Jins Rast, known for tonal stability, modal clarity, and broad flexibility in upper-register development.",
+  "quick_facts": {
+    "karar": "The tonic of the selected root",
+    "ghammaz": "Often the fifth degree in practical development",
+    "lower_jins": "Jins Rast",
+    "upper_jins": "Often Rast or Nahawand in broad practice, depending on context",
+    "character": "Balanced, stable, foundational",
+    "common_start": "Often approached from the lower jins before expanding upward"
+  },
+  "what_is_it": "Maqam Rast is often presented as one of the core modal references in Arabic music theory and practice. It is especially important because it gives a clear example of how a maqam is formed through jins structure, note function, and melodic movement rather than scale listing alone.",
+  "jins_architecture": {
+    "lower": {
+      "name": "Jins Rast",
+      "starts_on": "The selected tonic",
+      "description": "The lower jins defines the essential identity of the maqam and gives Rast its characteristic lower structure and tonal grounding."
+    },
+    "upper": {
+      "name": "Upper development varies by treatment",
+      "starts_on": "Often around the fifth degree",
+      "description": "The upper region may remain close to Rast logic or move toward another jins-based coloration depending on performance, modulation, and branch interpretation."
+    },
+    "transition_note": "The fifth degree is often a key point of upper expansion."
+  },
+  "sayr": {
+    "summary": "Rast typically establishes its lower jins clearly before rising toward the upper register. Its melodic identity depends on stable lower emphasis, controlled upward expansion, and clear return to tonal center.",
+    "resting_tones": [
+      "Tonic / karar",
+      "Important lower-jins support tones",
+      "Upper resting points depending on the melodic route"
+    ],
+    "motion_notes": [
+      "The third degree is structurally important to the identity of the maqam",
+      "The fifth degree often serves as a point of upper development"
+    ],
+    "common_path": [
+      "Establish the lower jins",
+      "Move gradually upward",
+      "Open the upper region through the fifth degree",
+      "Return and confirm the tonic"
+    ]
+  },
+  "transpose_explainer": "When Rast is transposed to a new root, its modal identity should remain based on the same internal interval logic, but the visible note spelling, accidental distribution, and staff register may change. In practice, the root transpose should preserve maqam function, not only note names.",
+  "historical_notes": [
+    "Rast is regularly treated in modern pedagogy as one of the principal maqamat for explaining modal construction, maqam families, and upper-jins branching.",
+    "Its theoretical importance is reinforced by its role in teaching jins-based analysis and in explaining the distinction between scalar listing and melodic modal practice."
+  ],
+  "school_differences": [
+    "Descriptions of the upper register may vary by pedagogical tradition, performance school, and analytical method.",
+    "Some traditions emphasize a more stable upper continuation, while others stress branch-oriented upper development and related family movement."
+  ],
+  "related_maqamat": [
+    "suznak",
+    "mahur",
+    "nairuz",
+    "bashayer",
+    "sazkar",
+    "dalanshin"
+  ],
+  "common_confusions": [
+    "Rast should not be reduced to a raw scalar template without jins behavior and melodic function.",
+    "Branch maqamat in the Rast family may share the same lower identity while differing significantly in upper-jins behavior and modal color."
+  ],
+  "listening_notes": [
+    "Listen for the confirmation of the lower jins before judging the upper development.",
+    "The identity of Rast is established through note function and melodic emphasis, not only through written accidentals."
+  ],
+  "ui_notes": {
+    "hero_badge": "Foundational Maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
