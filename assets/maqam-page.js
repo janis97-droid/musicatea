@@ -370,7 +370,7 @@
       links.forEach(item => {
         const a = createEl("a", "maqam-related-card");
         a.href = item.href;
-        a.innerHTML = `<div class="name">${item.name}</div><div class="meta">Open maqam page</div>`;
+        a.innerHTML = `<div class="name">${item.name}</div><div class="meta">فتح صفحة المقام</div>`;
         grid.appendChild(a);
       });
       card.appendChild(grid);
