@@ -1,0 +1,44 @@
+{
+  "ref-cairo-1932": {
+    "id": "ref-cairo-1932",
+    "title": "Cairo Congress of Arab Music (1932)",
+    "type": "conference_proceedings",
+    "year": "1932",
+    "public_label": "Cairo Congress of Arab Music (1932)",
+    "short_label": "Cairo 1932",
+    "visibility": "public",
+    "notes": "Foundational reference for early modern institutional discussions of Arab music theory, maqam classification, tuning, notation, and performance practice."
+  },
+  "ref-mishaqa": {
+    "id": "ref-mishaqa",
+    "title": "Al-Risala al-Shihabiyya fi al-Sina'a al-Musiqiyya",
+    "author": "Mikhail Mishaqa",
+    "type": "book",
+    "public_label": "Mikhail Mishaqa, Al-Risala al-Shihabiyya fi al-Sina'a al-Musiqiyya",
+    "short_label": "Mishaqa",
+    "visibility": "public",
+    "notes": "Historical theoretical source used for interval theory, octave division, and early modern Arab music theory."
+  },
+  "ref-inside-arabic-music": {
+    "id": "ref-inside-arabic-music",
+    "title": "Inside Arabic Music: Arabic Maqam Performance and Theory in the 20th Century",
+    "author": "Johnny Farraj and Sami Abu Shumays",
+    "type": "book",
+    "year": "2019",
+    "public_label": "Johnny Farraj and Sami Abu Shumays, Inside Arabic Music",
+    "short_label": "Inside Arabic Music",
+    "visibility": "public",
+    "notes": "Primary modern practical-theoretical reference for maqam families, ajnas, sayr, modulation, notation, and performance practice."
+  },
+  "ref-touma": {
+    "id": "ref-touma",
+    "title": "The Music of the Arabs",
+    "author": "Habib Hassan Touma",
+    "type": "book",
+    "year": "1996",
+    "public_label": "Habib Hassan Touma, The Music of the Arabs",
+    "short_label": "Touma",
+    "visibility": "public",
+    "notes": "Scholarly overview used for historical, aesthetic, and structural framing of Arab music and maqam."
+  }
+}
