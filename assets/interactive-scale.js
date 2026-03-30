@@ -80,6 +80,7 @@
 
     "Sol":  { letter: "G", acc_label: "",   ar: "صول", en: "Sol", qt: 14 },
     "Solb": { letter: "G", acc_label: "♭",  ar: "صول", en: "Sol♭",qt: 12 },
+    "Sol/#": { letter: "G", acc_label: "𝄲",  ar: "صول", en: "Sol𝄲",qt: 15 },
     "Sol#": { letter: "G", acc_label: "♯",  ar: "صول", en: "Sol♯",qt: 16 },
 
     "La":   { letter: "A", acc_label: "",   ar: "لا",  en: "La",  qt: 18 },
