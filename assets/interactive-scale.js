@@ -904,16 +904,6 @@
     if (accLabel === "𝄲") return drawHalfSharp(parent, x, y, color);
   }
 
-function drawFlat(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
-  }, parent);
-
-  svgEl("path", {
-    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
-    fill: color
-  }, g);
-}
 
 function drawAccidental(parent, x, y, accLabel, color) {
   if (!accLabel) return;
@@ -929,7 +919,7 @@ function drawAccidental(parent, x, y, accLabel, color) {
 
 function drawFlat(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
+    transform: `translate(${x - 19.5},${y - 22}) scale(0.060,0.060)`
   }, parent);
 
   svgEl("path", {
@@ -940,7 +930,7 @@ function drawFlat(parent, x, y, color) {
 
 function drawHalfFlat(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 21.5},${y - 22}) scale(0.060,0.060)`
+    transform: `translate(${x - 19.5},${y - 22}) scale(0.060,0.060)`
   }, parent);
 
   // Flat body
@@ -951,11 +941,11 @@ function drawHalfFlat(parent, x, y, color) {
 
   // Quarter-tone marker
   svgEl("rect", {
-    x: "60",
-    y: "130",
-    width: "200",
+    x: "40",
+    y: "90",
+    width: "300",
     height: "26",
-    rx: "8",
+    rx: "20",
     fill: color
   }, g);
 }
