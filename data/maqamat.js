@@ -83,7 +83,7 @@ const HALF_FLAT_TONICS = [
 const TONIC_LABELS_AR = {
   do: "دو",
   re: "ري",
-  mi: "ري", 
+  mi: "مي", 
   mi_flat: "مي بيمول",
   fa: "فا",
   sol: "صول",
