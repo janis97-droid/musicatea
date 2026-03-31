@@ -5,15 +5,12 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// Focus of this version:
-// - maqam/root generation from quartertone interval patterns
-// - exact token generation from cumulative pitch positions
-// - Arabic labels in Arabic page
-// - current jins colors preserved
-// - visual grid fixed to the confirmed 7px spacing
-// - generic note-role hover descriptions on buttons
-// - background hover labels on staff only for قرار / غمّاز / جواب
-// - jins grouping based on general maqam rules
+// Working version restored from repo structure, with:
+// - current maqam/root generation
+// - current accidentals
+// - current descending Awj Iraq display
+// - generic note-role hover text on buttons
+// - staff background hover labels only for قرار / غمّاز / جواب
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -201,26 +198,51 @@
     basandida:        { base_spelling: ["Do","Re","Mib","Fa#","Sol","La","Si/b","Do"], intervals: [4,2,6,2,4,3,3] }
   };
 
-  const MAQAM_DISPLAY_LABELS_AR = {
-    hijaz: "حجاز (مصري)"
-  };
-
+  const MAQAM_DISPLAY_LABELS_AR = { hijaz: "حجاز (مصري)" };
   const MAQAM_DESCENDING_CONFIG = {
-    awj_iraq: {
-      direction: "descending",
-      display_tokens: ["Re","Do","Si/b","La#","Sol","Fa#","Mib","Re","Do","Si/b"]
-    }
+    awj_iraq: { direction: "descending", display_tokens: ["Re","Do","Si/b","La#","Sol","Fa#","Mib","Re","Do","Si/b"] }
   };
 
-  function bootstrap() {
-    const requestedFamily = URL_PARAMS.get("family");
-    const requestedMaqam = URL_PARAMS.get("maqam");
-    const requestedTonic = URL_PARAMS.get("tonic");
-    const resolved = resolveInitialSelection(requestedFamily, requestedMaqam, requestedTonic);
-    state.familyId = resolved.familyId;
-    state.maqamId = resolved.maqamId;
-    state.tonic = resolved.tonic;
-    renderAll();
+  function injectStyles() {
+    if (document.getElementById("interactive-scale-extra-style")) return;
+    const style = document.createElement("style");
+    style.id = "interactive-scale-extra-style";
+    style.textContent = `
+      .family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+      .family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}
+      .family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}
+      .family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}
+      .note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}
+      .note-key-face[title]{cursor:pointer}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function getMaqamDisplayTitle(maqam) {
+    if (!maqam) return "";
+    return MAQAM_DISPLAY_LABELS_AR[maqam.id] || maqam.name || "";
+  }
+
+  function getDisplayNameForTonicSafe(maqamId, tonic) {
+    const maqam = getMaqamById(maqamId);
+    if (!maqam) return "";
+    if (MAQAM_DISPLAY_LABELS_AR[maqamId]) return MAQAM_DISPLAY_LABELS_AR[maqamId];
+    if (typeof getDisplayNameForTonic === "function") {
+      try { return getDisplayNameForTonic(maqamId, tonic) || maqam.name; } catch (e) {}
+    }
+    return maqam.name;
+  }
+
+  function getMaqamDirection(maqamId) {
+    return (MAQAM_DESCENDING_CONFIG[maqamId] && MAQAM_DESCENDING_CONFIG[maqamId].direction) || "ascending";
+  }
+
+  function getScaleSectionLabel(maqamId) {
+    return getMaqamDirection(maqamId) === "descending" ? "السلم التفاعلي (عرض هابط)" : "اضغط على نوتة أو زر للاستماع";
+  }
+
+  function getPlayButtonLabel(maqamId) {
+    return getMaqamDirection(maqamId) === "descending" ? "تشغيل المسار الهابط" : "تشغيل السلّم";
   }
 
   function resolveInitialSelection(familyId, maqamId, tonic) {
@@ -256,12 +278,6 @@
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
 
-  function renderAll() {
-    renderSidebar();
-    renderPageShell();
-    syncUrl();
-  }
-
   function renderSidebar() {
     const familyItems = getInteractiveFamily(state.familyId);
     const familyMain = getFamilyMainMaqam(state.familyId);
@@ -272,17 +288,12 @@
       <div class="sidebar-header">
         <div class="sidebar-family-label">تنقّل بين العائلات</div>
         <div class="family-switcher" id="family-switcher">
-          ${mainFamilies.map(item => `
-            <button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-maqam-id="${item.id}">
-              ${getMaqamDisplayTitle(item)}
-            </button>
-          `).join("")}
+          ${mainFamilies.map(item => `<button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-maqam-id="${item.id}">${getMaqamDisplayTitle(item)}</button>`).join("")}
         </div>
         <div class="sidebar-family-label" style="margin-top:12px;">العائلة الموسيقية</div>
         <div class="sidebar-family-name">${familyName}</div>
         <div class="sidebar-family-sub">${familyItems.length} مقامات</div>
       </div>
-
       <ul class="sidebar-list">
         ${familyItems.map(item => `
           <li class="sidebar-item">
@@ -299,21 +310,6 @@
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
     injectStyles();
-  }
-
-  function injectStyles() {
-    if (document.getElementById("interactive-scale-extra-style")) return;
-    const style = document.createElement("style");
-    style.id = "interactive-scale-extra-style";
-    style.textContent = `
-      .family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-      .family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}
-      .family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}
-      .family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}
-      .note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}
-      .note-key-face[title]{cursor:pointer}
-    `;
-    document.head.appendChild(style);
   }
 
   function renderPageShell() {
@@ -354,15 +350,12 @@
           <div class="note-keys-row" id="keys-current"></div>
           <div class="playbar">
             <button class="play-btn" id="playbtn-current">
-              <svg id="playicon-current" width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5,3 19,12 5,21"></polygon>
-              </svg>
+              <svg id="playicon-current" width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"></polygon></svg>
               <span id="playlabel-current">${getPlayButtonLabel(state.maqamId)}</span>
             </button>
             <div class="status-bar" id="status-current"></div>
           </div>
         </div>
-
         <div class="sec-title">معلومات المقام</div>
         <div class="info-grid" id="maqam-info-grid"></div>
       </section>
@@ -373,20 +366,6 @@
     renderStaff();
     renderKeys();
     bindPageEvents();
-  }
-
-  function getDisplayNameForTonicSafe(maqamId, tonic) {
-    const maqam = getMaqamById(maqamId);
-    if (!maqam) return "";
-    if (MAQAM_DISPLAY_LABELS_AR[maqamId]) return MAQAM_DISPLAY_LABELS_AR[maqamId];
-    if (typeof getDisplayNameForTonic === "function") {
-      try {
-        return getDisplayNameForTonic(maqamId, tonic) || maqam.name;
-      } catch (e) {
-        return maqam.name;
-      }
-    }
-    return maqam.name;
   }
 
   function renderTonicSelector() {
@@ -470,14 +449,10 @@
     }
 
     const playLabel = document.getElementById("playlabel-current");
-    if (playLabel && !state.isPlaying) {
-      playLabel.textContent = getPlayButtonLabel(state.maqamId);
-    }
+    if (playLabel && !state.isPlaying) playLabel.textContent = getPlayButtonLabel(state.maqamId);
 
     const headerLabel = root.querySelector(".staff-scale-title");
-    if (headerLabel) {
-      headerLabel.textContent = getScaleSectionLabel(state.maqamId);
-    }
+    if (headerLabel) headerLabel.textContent = getScaleSectionLabel(state.maqamId);
   }
 
   function syncUrl() {
@@ -493,178 +468,99 @@
     if (panel) panel.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function renderStaff() {
-    const svg = document.getElementById("staff-current");
-    if (!svg) return;
-
-    const notes = buildScaleNotes(state.maqamId, state.tonic);
-    svg.innerHTML = "";
-
-    STAFF_LINES_Y.forEach(y => {
-      svg.appendChild(svgEl("line", {
-        x1: "0", y1: String(y), x2: "820", y2: String(y),
-        stroke: "#8a7440", "stroke-width": "1.6"
-      }));
-    });
-
-    drawClef(svg);
-
-    const xStart = 82;
-    const count = Math.max(notes.length, 1);
-    const xGap = (820 - xStart - 16) / count;
-
-    notes.forEach((note, i) => {
-      const x = xStart + i * xGap + xGap * 0.4;
-      const palette = getPaletteForNote(note);
-      const active = state.activeNoteIndex === i;
-      const slot = SLOT_MAP[note.slot_key] || SLOT_MAP["E4"];
-      const y = slot.y;
-
-      const g = svgEl("g", {
-        class: `note-btn ${active ? "active" : ""}`,
-        "data-note-idx": String(i),
-        role: "button",
-        tabindex: "0",
-        "aria-label": note.role_description || note.display_label,
-        style: "cursor:pointer"
-      }, svg);
-
-      drawLedgerLines(g, x, slot.ledger);
-
-      const noteColor = active ? palette.active : palette.idle;
-      const stemColor = active ? palette.active : palette.stem;
-      const accidentalColor = active ? palette.active_acc : palette.acc;
-      const up = y >= 138;
-
-      svgEl("line", {
-        x1: String(up ? x + 7 : x - 7),
-        y1: String(y),
-        x2: String(up ? x + 7 : x - 7),
-        y2: String(up ? y - 38 : y + 38),
-        stroke: stemColor,
-        "stroke-width": "1.8"
-      }, g);
-
-      drawAccidental(g, x - 22, y, note.acc_label, accidentalColor);
-
-      svgEl("ellipse", {
-        cx: String(x),
-        cy: String(y),
-        rx: "8",
-        ry: "5.5",
-        fill: noteColor,
-        transform: `rotate(-18,${x},${y})`
-      }, g);
-
-      const hintGroup = drawStaffHint(g, note, x, y);
-
-      g.addEventListener("mouseenter", () => {
-        if (hintGroup) hintGroup.setAttribute("opacity", "1");
-      });
-
-      g.addEventListener("mouseleave", () => {
-        if (hintGroup) hintGroup.setAttribute("opacity", "0");
-      });
-
-      g.addEventListener("click", async () => {
-        setActiveNote(i);
-        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
-        if (notesNow[i]) await playSingleNote(notesNow[i].token);
-      });
-    });
+  function getLowerJinsCount(maqamId) {
+    if (maqamId === "sikah") return 3;
+    if (maqamId === "nawa_athar") return 5;
+    return 4;
   }
 
-  function renderKeys() {
-    const row = document.getElementById("keys-current");
-    if (!row) return;
-
-    const notes = buildScaleNotes(state.maqamId, state.tonic);
-    row.innerHTML = notes.map((note, i) => {
-      const palette = getPaletteForNote(note);
-      const active = state.activeNoteIndex === i;
-      const bg = active ? palette.box_bg_active : palette.box_bg;
-      const border = active ? palette.box_border_active : palette.box_border;
-      const text = active ? palette.box_text_active : palette.box_text;
-
-      return `
-        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description || note.display_label)}" aria-label="${escapeHtml(note.role_description || note.display_label)}">
-          <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};">
-            <span>${note.display_label}</span>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    row.querySelectorAll(".note-key").forEach(node => {
-      node.addEventListener("click", async () => {
-        const idx = Number(node.dataset.noteIdx);
-        setActiveNote(idx);
-        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
-        if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
-      });
-    });
+  function normalizeDegreeRange(range) {
+    const start = Math.max(0, (range[0] || 1) - 1);
+    const end = Math.max(start, (range[1] || 8) - 1);
+    return { start, end };
   }
 
-  function setActiveNote(idx) {
-    state.activeNoteIndex = idx;
-    renderStaff();
-    renderKeys();
+  function getJinsInfo(maqamId) {
+    const lowerCount = getLowerJinsCount(maqamId);
+    return {
+      lower: normalizeDegreeRange([1, lowerCount]),
+      upper: normalizeDegreeRange([lowerCount + 1, 8])
+    };
   }
 
-  async function playScale() {
-    if (state.isPlaying) {
-      state.stopRequested = true;
-      stopAllAudio();
-      return;
-    }
-
-    const notes = buildScaleNotes(state.maqamId, state.tonic);
-    const status = document.getElementById("status-current");
-    const playIcon = document.getElementById("playicon-current");
-    const playLabel = document.getElementById("playlabel-current");
-    const playBtn = document.getElementById("playbtn-current");
-
-    state.isPlaying = true;
-    state.stopRequested = false;
-
-    if (playIcon) playIcon.innerHTML = '<rect x="5" y="3" width="4" height="18"></rect><rect x="15" y="3" width="4" height="18"></rect>';
-    if (playLabel) playLabel.textContent = "إيقاف التشغيل";
-    if (playBtn) playBtn.classList.add("is-playing");
-    if (status) status.className = "status-bar on";
-
-    for (let i = 0; i < notes.length; i++) {
-      if (state.stopRequested) break;
-      state.activeNoteIndex = i;
-      renderStaff();
-      renderKeys();
-      if (status) status.textContent = `▶ ${notes[i].display_label}`;
-      await playSingleNote(notes[i].token);
-      await new Promise(resolve => setTimeout(resolve, 120));
-    }
-
-    state.activeNoteIndex = null;
-    renderStaff();
-    renderKeys();
-
-    if (status) {
-      status.textContent = state.lastAudioErrorToken ? `ملف الصوت غير موجود: ${state.lastAudioErrorToken}` : "";
-      status.className = state.lastAudioErrorToken ? "status-bar on" : "status-bar";
-    }
-    if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
-    if (playLabel) playLabel.textContent = getPlayButtonLabel(state.maqamId);
-    if (playBtn) playBtn.classList.remove("is-playing");
-
-    state.isPlaying = false;
-    state.stopRequested = false;
+  function getJinsZone(idx, jinsInfo) {
+    if (idx >= jinsInfo.upper.start && idx <= jinsInfo.upper.end) return "upper";
+    return "lower";
   }
 
-  function buildScaleNotes(maqamId, tonic) {
-    const descendingConfig = MAQAM_DESCENDING_CONFIG[maqamId];
-    if (descendingConfig && descendingConfig.direction === "descending") {
-      return buildDescendingDisplayNotes(maqamId, tonic, descendingConfig);
-    }
+  function isJinsStart(idx, jinsInfo) {
+    return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
+  }
 
-    return buildAscendingModelNotes(maqamId, tonic);
+  function getStructuralRoleData(idx, totalCount, jinsInfo, displayLabel) {
+    if (idx === 0) return { kind: "karar", text: `${displayLabel} — قرار المقام` };
+    if (idx === totalCount - 1) return { kind: "jawab", text: `${displayLabel} — جواب المقام` };
+    if (idx === jinsInfo.upper.start) return { kind: "ghammaz", text: `${displayLabel} — غمّاز المقام` };
+    return null;
+  }
+
+  function getPaletteForNote(note) {
+    const zone = note.jins_zone === "upper" ? "upper" : "lower";
+    const colorSet = COLORS[zone];
+    const isStart = !!note.is_jins_start;
+    return {
+      idle: isStart ? colorSet.note_bright : colorSet.note,
+      stem: colorSet.stem,
+      acc: colorSet.acc,
+      active: colorSet.active,
+      active_acc: colorSet.active_acc,
+      box_bg: isStart ? colorSet.box_bg_bright : colorSet.box_bg,
+      box_border: isStart ? colorSet.box_border_bright : colorSet.box_border,
+      box_text: isStart ? colorSet.box_text_bright : colorSet.box_text,
+      box_bg_active: colorSet.box_bg_active,
+      box_border_active: colorSet.box_border_active,
+      box_text_active: colorSet.box_text_active
+    };
+  }
+
+  function getQuarterForToken(token) {
+    const meta = NOTE_TOKEN_META[token];
+    return meta ? meta.qt : null;
+  }
+
+  function spellQuarterWithExpectedLetter(absQuarter, expectedLetter) {
+    const q = ((absQuarter % 24) + 24) % 24;
+    const token = Object.keys(NOTE_TOKEN_META).find(key => NOTE_TOKEN_META[key].letter === expectedLetter && NOTE_TOKEN_META[key].qt === q);
+    if (token) return token;
+
+    const fallback = getAllowedCanonicalSpellingsForQuarter(q);
+    if (fallback && fallback.length) return fallback[0];
+    return "Do";
+  }
+
+  function getArabicDisplayLabel(base, octave) {
+    if (octave <= 3) return `${base} قرار`;
+    if (octave >= 5) return `${base} جواب`;
+    return base;
+  }
+
+  function getDescendingSlotKey(letter, idx, rootOctave) {
+    const sequence = ["D5","C5","B4","A4","G4","F4","E4","D4","C4","B3"];
+    const fallbackLetterMap = {
+      C: rootOctave >= 4 ? "C4" : "C3",
+      D: rootOctave >= 4 ? "D4" : "D3",
+      E: rootOctave >= 4 ? "E4" : "E3",
+      F: rootOctave >= 4 ? "F4" : "F3",
+      G: rootOctave >= 4 ? "G4" : "G3",
+      A: rootOctave >= 4 ? "A4" : "A3",
+      B: rootOctave >= 4 ? "B4" : "B3"
+    };
+    return sequence[idx] || fallbackLetterMap[letter] || "E4";
+  }
+
+  function getOctaveFromSlotKey(slotKey) {
+    const match = String(slotKey || "").match(/(\d+)$/);
+    return match ? Number(match[1]) : 4;
   }
 
   function buildAscendingModelNotes(maqamId, tonic) {
@@ -679,10 +575,7 @@
 
     const absoluteQuarterValues = [tonicQt];
     let running = tonicQt;
-    model.intervals.forEach(interval => {
-      running += interval;
-      absoluteQuarterValues.push(running);
-    });
+    model.intervals.forEach(interval => { running += interval; absoluteQuarterValues.push(running); });
 
     return absoluteQuarterValues.map((absQt, idx) => {
       const targetLetterIdx = (LETTER_TO_INDEX[targetLetter] + idx) % 7;
@@ -736,202 +629,190 @@
     });
   }
 
-  function getDescendingSlotKey(letter, idx, rootOctave) {
-    const sequence = ["D5","C5","B4","A4","G4","F4","E4","D4","C4","B3"];
-    const fallbackLetterMap = {
-      C: rootOctave >= 4 ? "C4" : "C3",
-      D: rootOctave >= 4 ? "D4" : "D3",
-      E: rootOctave >= 4 ? "E4" : "E3",
-      F: rootOctave >= 4 ? "F4" : "F3",
-      G: rootOctave >= 4 ? "G4" : "G3",
-      A: rootOctave >= 4 ? "A4" : "A3",
-      B: rootOctave >= 4 ? "B4" : "B3"
-    };
-    return sequence[idx] || fallbackLetterMap[letter] || "E4";
-  }
-
-  function getOctaveFromSlotKey(slotKey) {
-    const match = String(slotKey || "").match(/(\d+)$/);
-    return match ? Number(match[1]) : 4;
-  }
-
-  function getJinsInfo(maqamId) {
-    const lowerCount = getLowerJinsCount(maqamId);
-    return {
-      lower: normalizeDegreeRange([1, lowerCount]),
-      upper: normalizeDegreeRange([lowerCount + 1, 8])
-    };
-  }
-
-  function getLowerJinsCount(maqamId) {
-    if (maqamId === "sikah") return 3;
-    if (maqamId === "nawa_athar") return 5;
-    return 4;
-  }
-
-  function normalizeDegreeRange(range) {
-    const start = Math.max(0, (range[0] || 1) - 1);
-    const end = Math.max(start, (range[1] || 8) - 1);
-    return { start, end };
-  }
-
-  function getJinsZone(idx, jinsInfo) {
-    if (idx >= jinsInfo.upper.start && idx <= jinsInfo.upper.end) return "upper";
-    return "lower";
-  }
-
-  function isJinsStart(idx, jinsInfo) {
-    return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
-  }
-
-  function getStructuralRoleData(idx, totalCount, jinsInfo, displayLabel) {
-    if (idx === 0) {
-      return {
-        kind: "karar",
-        text: `${displayLabel} — قرار المقام`
-      };
+  function buildScaleNotes(maqamId, tonic) {
+    const descendingConfig = MAQAM_DESCENDING_CONFIG[maqamId];
+    if (descendingConfig && descendingConfig.direction === "descending") {
+      return buildDescendingDisplayNotes(maqamId, tonic, descendingConfig);
     }
-
-    if (idx === totalCount - 1) {
-      return {
-        kind: "jawab",
-        text: `${displayLabel} — جواب المقام`
-      };
-    }
-
-    if (idx === jinsInfo.upper.start) {
-      return {
-        kind: "ghammaz",
-        text: `${displayLabel} — غمّاز المقام`
-      };
-    }
-
-    return null;
+    return buildAscendingModelNotes(maqamId, tonic);
   }
 
   function drawStaffHint(parent, note, x, y) {
     if (!note || !note.show_staff_hint || !note.role_description) return null;
 
     const palette = note.jins_zone === "upper"
-      ? {
-          bg: "rgba(123,168,212,0.22)",
-          border: "rgba(123,168,212,0.62)",
-          text: "#e4f4ff"
-        }
-      : {
-          bg: "rgba(200,164,90,0.22)",
-          border: "rgba(200,164,90,0.62)",
-          text: "#fff3c8"
-        };
+      ? { bg: "rgba(123,168,212,0.22)", border: "rgba(123,168,212,0.62)", text: "#e4f4ff" }
+      : { bg: "rgba(200,164,90,0.22)", border: "rgba(200,164,90,0.62)", text: "#fff3c8" };
 
     const labelWidth = Math.max(96, note.role_description.length * 6.1);
     const hintX = x - (labelWidth / 2);
     const hintY = Math.min(y + 22, 206);
 
-    const g = svgEl("g", {
-      opacity: "0",
-      "pointer-events": "none"
-    }, parent);
+    const g = svgEl("g", { opacity: "0", "pointer-events": "none" }, parent);
 
     svgEl("rect", {
-      x: String(hintX),
-      y: String(hintY),
-      rx: "8",
-      ry: "8",
-      width: String(labelWidth),
-      height: "24",
-      fill: palette.bg,
-      stroke: palette.border,
-      "stroke-width": "1"
+      x: String(hintX), y: String(hintY), rx: "8", ry: "8",
+      width: String(labelWidth), height: "24",
+      fill: palette.bg, stroke: palette.border, "stroke-width": "1"
     }, g);
 
     const text = svgEl("text", {
-      x: String(x),
-      y: String(hintY + 16),
-      "text-anchor": "middle",
-      "font-size": "11.5",
-      "font-weight": "700",
-      fill: palette.text,
+      x: String(x), y: String(hintY + 16), "text-anchor": "middle",
+      "font-size": "11.5", "font-weight": "700", fill: palette.text,
       "font-family": "Cairo, sans-serif"
     }, g);
     text.textContent = note.role_description;
-
     return g;
   }
 
-  function getPaletteForNote(note) {
-    const zone = note.jins_zone === "upper" ? "upper" : "lower";
-    const colorSet = COLORS[zone];
-    const isStart = !!note.is_jins_start;
-    return {
-      idle: isStart ? colorSet.note_bright : colorSet.note,
-      stem: colorSet.stem,
-      acc: colorSet.acc,
-      active: colorSet.active,
-      active_acc: colorSet.active_acc,
-      box_bg: isStart ? colorSet.box_bg_bright : colorSet.box_bg,
-      box_border: isStart ? colorSet.box_border_bright : colorSet.box_border,
-      box_text: isStart ? colorSet.box_text_bright : colorSet.box_text,
-      box_bg_active: colorSet.box_bg_active,
-      box_border_active: colorSet.box_border_active,
-      box_text_active: colorSet.box_text_active
-    };
-  }
+  function renderStaff() {
+    const svg = document.getElementById("staff-current");
+    if (!svg) return;
 
-  function getQuarterForToken(token) {
-    const meta = NOTE_TOKEN_META[token];
-    return meta ? meta.qt : null;
-  }
+    const notes = buildScaleNotes(state.maqamId, state.tonic);
+    svg.innerHTML = "";
 
-  function spellQuarterWithExpectedLetter(absQuarter, expectedLetter) {
-    const q = ((absQuarter % 24) + 24) % 24;
-    const token = Object.keys(NOTE_TOKEN_META).find(key => {
-      const meta = NOTE_TOKEN_META[key];
-      return meta.letter === expectedLetter && meta.qt === q;
+    STAFF_LINES_Y.forEach(y => {
+      svg.appendChild(svgEl("line", { x1: "0", y1: String(y), x2: "820", y2: String(y), stroke: "#8a7440", "stroke-width": "1.6" }));
     });
-    if (token) return token;
 
-    const fallback = getAllowedCanonicalSpellingsForQuarter(q);
-    if (fallback && fallback.length) return fallback[0];
-    return "Do";
+    drawClef(svg);
+
+    const xStart = 82;
+    const count = Math.max(notes.length, 1);
+    const xGap = (820 - xStart - 16) / count;
+
+    notes.forEach((note, i) => {
+      const x = xStart + i * xGap + xGap * 0.4;
+      const palette = getPaletteForNote(note);
+      const active = state.activeNoteIndex === i;
+      const slot = SLOT_MAP[note.slot_key] || SLOT_MAP["E4"];
+      const y = slot.y;
+
+      const g = svgEl("g", {
+        class: `note-btn ${active ? "active" : ""}`,
+        "data-note-idx": String(i),
+        role: "button",
+        tabindex: "0",
+        "aria-label": note.role_description || note.display_label,
+        style: "cursor:pointer"
+      }, svg);
+
+      drawLedgerLines(g, x, slot.ledger);
+
+      const noteColor = active ? palette.active : palette.idle;
+      const stemColor = active ? palette.active : palette.stem;
+      const accidentalColor = active ? palette.active_acc : palette.acc;
+      const up = y >= 138;
+
+      svgEl("line", {
+        x1: String(up ? x + 7 : x - 7),
+        y1: String(y),
+        x2: String(up ? x + 7 : x - 7),
+        y2: String(up ? y - 38 : y + 38),
+        stroke: stemColor, "stroke-width": "1.8"
+      }, g);
+
+      drawAccidental(g, x - 22, y, note.acc_label, accidentalColor);
+
+      svgEl("ellipse", {
+        cx: String(x), cy: String(y), rx: "8", ry: "5.5",
+        fill: noteColor, transform: `rotate(-18,${x},${y})`
+      }, g);
+
+      const hintGroup = drawStaffHint(g, note, x, y);
+      g.addEventListener("mouseenter", () => { if (hintGroup) hintGroup.setAttribute("opacity", "1"); });
+      g.addEventListener("mouseleave", () => { if (hintGroup) hintGroup.setAttribute("opacity", "0"); });
+      g.addEventListener("click", async () => {
+        setActiveNote(i);
+        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
+        if (notesNow[i]) await playSingleNote(notesNow[i].token);
+      });
+    });
   }
 
-  function getArabicDisplayLabel(base, octave) {
-    if (octave <= 3) return `${base} قرار`;
-    if (octave >= 5) return `${base} جواب`;
-    return base;
+  function renderKeys() {
+    const row = document.getElementById("keys-current");
+    if (!row) return;
+
+    const notes = buildScaleNotes(state.maqamId, state.tonic);
+    row.innerHTML = notes.map((note, i) => {
+      const palette = getPaletteForNote(note);
+      const active = state.activeNoteIndex === i;
+      const bg = active ? palette.box_bg_active : palette.box_bg;
+      const border = active ? palette.box_border_active : palette.box_border;
+      const text = active ? palette.box_text_active : palette.box_text;
+
+      return `
+        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description || note.display_label)}" aria-label="${escapeHtml(note.role_description || note.display_label)}">
+          <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};">
+            <span>${note.display_label}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    row.querySelectorAll(".note-key").forEach(node => {
+      node.addEventListener("click", async () => {
+        const idx = Number(node.dataset.noteIdx);
+        setActiveNote(idx);
+        const notesNow = buildScaleNotes(state.maqamId, state.tonic);
+        if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
+      });
+    });
   }
 
-  function getMaqamDisplayTitle(maqam) {
-    if (!maqam) return "";
-    return MAQAM_DISPLAY_LABELS_AR[maqam.id] || maqam.name || "";
+  function setActiveNote(idx) {
+    state.activeNoteIndex = idx;
+    renderStaff();
+    renderKeys();
   }
 
-  function getDisplayNameForTonic(maqamId, tonic) {
-    const maqam = getMaqamById(maqamId);
-    if (!maqam) return "";
-    const override = MAQAM_DISPLAY_LABELS_AR[maqamId];
-    if (override) return override;
-    if (maqam.display_name_by_tonic && maqam.display_name_by_tonic[tonic]) {
-      return maqam.display_name_by_tonic[tonic];
+  async function playSingleNote(token) {
+    if (typeof getNoteAudioUrl !== "function") { state.lastAudioErrorToken = token; return false; }
+    const url = getNoteAudioUrl(token);
+    if (!url) { state.lastAudioErrorToken = token; return false; }
+
+    try {
+      let audio = audioCache.get(token);
+      if (!audio) {
+        audio = new Audio(url);
+        audio.preload = "auto";
+        audioCache.set(token, audio);
+      }
+      audio.pause();
+      audio.currentTime = 0;
+      await audio.play();
+      state.lastAudioErrorToken = null;
+
+      await new Promise(resolve => {
+        const done = () => {
+          audio.removeEventListener("ended", done);
+          audio.removeEventListener("error", done);
+          resolve();
+        };
+        audio.addEventListener("ended", done, { once: true });
+        audio.addEventListener("error", done, { once: true });
+      });
+
+      return true;
+    } catch (err) {
+      state.lastAudioErrorToken = token;
+      return false;
     }
-    return maqam.name;
   }
 
-  function getMaqamDirection(maqamId) {
-    return (MAQAM_DESCENDING_CONFIG[maqamId] && MAQAM_DESCENDING_CONFIG[maqamId].direction) || "ascending";
+  function stopAllAudio() {
+    audioCache.forEach(audio => {
+      try { audio.pause(); audio.currentTime = 0; } catch (e) {}
+    });
   }
 
-  function getScaleSectionLabel(maqamId) {
-    return getMaqamDirection(maqamId) === "descending"
-      ? "السلم التفاعلي (عرض هابط)"
-      : "اضغط على نوتة أو زر للاستماع";
-  }
-
-  function getPlayButtonLabel(maqamId) {
-    return getMaqamDirection(maqamId) === "descending"
-      ? "تشغيل المسار الهابط"
-      : "تشغيل السلّم";
+  function shadowColorForBorder(borderColor) {
+    if (borderColor.startsWith("rgba(")) {
+      return borderColor.replace(/rgba\(([^,]+),([^,]+),([^,]+),([^)]+)\)/, "rgba($1,$2,$3,0.16)");
+    }
+    return "rgba(0,0,0,0.16)";
   }
 
   function escapeHtml(value) {
@@ -943,103 +824,83 @@
       .replaceAll("'", "&#39;");
   }
 
-  function drawLedgerLines(parent, x, ledgers) {
-    (ledgers || []).forEach(lineY => {
-      svgEl("line", {
-        x1: String(x - 13),
-        y1: String(lineY),
-        x2: String(x + 13),
-        y2: String(lineY),
-        stroke: "#9a844a",
-        "stroke-width": "1.6"
-      }, parent);
-    });
+  function svgEl(tag, attrs, parent) {
+    const e = document.createElementNS(SVG_NS, tag);
+    Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
+    if (parent) parent.appendChild(e);
+    return e;
   }
 
-  function drawAccidental(parent, x, y, accLabel, color) {
-    if (!accLabel) return;
-    if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
-    if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
-    if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
-    if (accLabel === "𝄲") return drawHalfSharp(parent, x + 2, y, color);
-  }
-
-  function drawFlat(parent, x, y, color) {
-    const g = svgEl("g", {
-      transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
-    }, parent);
-
+  function drawClef(svg) {
+    const g = svgEl("g", { transform: "translate(18,78) scale(2.15,2.15)" }, svg);
     svgEl("path", {
-      d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
-      fill: color
+      d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
+      fill: "#f0d28a", stroke: "none"
     }, g);
   }
 
-  function drawHalfFlat(parent, x, y, color) {
-    const g = svgEl("g", {
-      transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
-    }, parent);
+  async function playScale() {
+    if (state.isPlaying) {
+      state.stopRequested = true;
+      stopAllAudio();
+      return;
+    }
 
-    svgEl("path", {
-      d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
-      fill: color
-    }, g);
+    const notes = buildScaleNotes(state.maqamId, state.tonic);
+    const status = document.getElementById("status-current");
+    const playIcon = document.getElementById("playicon-current");
+    const playLabel = document.getElementById("playlabel-current");
+    const playBtn = document.getElementById("playbtn-current");
 
-    svgEl("rect", {
-      x: "40",
-      y: "90",
-      width: "300",
-      height: "26",
-      rx: "20",
-      fill: color
-    }, g);
+    state.isPlaying = true;
+    state.stopRequested = false;
+
+    if (playIcon) playIcon.innerHTML = '<rect x="5" y="3" width="4" height="18"></rect><rect x="15" y="3" width="4" height="18"></rect>';
+    if (playLabel) playLabel.textContent = "إيقاف التشغيل";
+    if (playBtn) playBtn.classList.add("is-playing");
+    if (status) status.className = "status-bar on";
+
+    for (let i = 0; i < notes.length; i++) {
+      if (state.stopRequested) break;
+      state.activeNoteIndex = i;
+      renderStaff();
+      renderKeys();
+      if (status) status.textContent = `▶ ${notes[i].display_label}`;
+      await playSingleNote(notes[i].token);
+      await new Promise(resolve => setTimeout(resolve, 120));
+    }
+
+    state.activeNoteIndex = null;
+    renderStaff();
+    renderKeys();
+
+    if (status) {
+      status.textContent = state.lastAudioErrorToken ? `ملف الصوت غير موجود: ${state.lastAudioErrorToken}` : "";
+      status.className = state.lastAudioErrorToken ? "status-bar on" : "status-bar";
+    }
+    if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
+    if (playLabel) playLabel.textContent = getPlayButtonLabel(state.maqamId);
+    if (playBtn) playBtn.classList.remove("is-playing");
+
+    state.isPlaying = false;
+    state.stopRequested = false;
   }
 
-  function drawSharp(parent, x, y, color) {
-    const g = svgEl("g", {
-      transform: `translate(${x - 7.5},${y - 12.5}) scale(0.046,0.046)`
-    }, parent);
-
-    svgEl("path", {
-      d: "M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z",
-      fill: color
-    }, g);
+  function renderAll() {
+    renderSidebar();
+    renderPageShell();
+    syncUrl();
   }
 
-  function drawHalfSharp(parent, x, y, color) {
-    const g = svgEl("g", {
-      transform: `translate(${x - 1},${y - 0.5})`
-    }, parent);
-
-    svgEl("line", {
-      x1: "0",
-      y1: "-10",
-      x2: "0",
-      y2: "10",
-      stroke: color,
-      "stroke-width": "3.1",
-      "stroke-linecap": "round"
-    }, g);
-
-    svgEl("line", {
-      x1: "-7",
-      y1: "-4",
-      x2: "8",
-      y2: "-7",
-      stroke: color,
-      "stroke-width": "3.1",
-      "stroke-linecap": "round"
-    }, g);
-
-    svgEl("line", {
-      x1: "-7",
-      y1: "6",
-      x2: "7",
-      y2: "3",
-      stroke: color,
-      "stroke-width": "3.1",
-      "stroke-linecap": "round"
-    }, g);
+  function bootstrap() {
+    const requestedFamily = URL_PARAMS.get("family");
+    const requestedMaqam = URL_PARAMS.get("maqam");
+    const requestedTonic = URL_PARAMS.get("tonic");
+    const resolved = resolveInitialSelection(requestedFamily, requestedMaqam, requestedTonic);
+    state.familyId = resolved.familyId;
+    state.maqamId = resolved.maqamId;
+    state.tonic = resolved.tonic;
+    renderAll();
   }
 
   bootstrap();
