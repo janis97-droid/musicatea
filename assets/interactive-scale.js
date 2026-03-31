@@ -1013,29 +1013,29 @@
     x2: "0",
     y2: "10",
     stroke: color,
-    "stroke-width": "3.2",
+    "stroke-width": "3.1",
     "stroke-linecap": "round"
   }, g);
 
   // upper horizontal/slanted line
   svgEl("line", {
-    x1: "-8",
+    x1: "-7",
     y1: "-4",
     x2: "8",
     y2: "-7",
     stroke: color,
-    "stroke-width": "3.2",
+    "stroke-width": "3.1",
     "stroke-linecap": "round"
   }, g);
 
   // lower horizontal/slanted line
   svgEl("line", {
-    x1: "-8",
+    x1: "-7",
     y1: "6",
-    x2: "8",
+    x2: "7",
     y2: "3",
     stroke: color,
-    "stroke-width": "3.2",
+    "stroke-width": "3.1",
     "stroke-linecap": "round"
   }, g);
 }
