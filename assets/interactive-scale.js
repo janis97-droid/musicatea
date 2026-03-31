@@ -940,7 +940,7 @@ function drawFlat(parent, x, y, color) {
 
 function drawHalfFlat(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
+    transform: `translate(${x - 21.5},${y - 22}) scale(0.060,0.060)`
   }, parent);
 
   // Flat body
