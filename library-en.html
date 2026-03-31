@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheet Music Library — Musicatea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
+  
+  <style>
+    body[dir="ltr"] {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .page-hero {
+      padding: 60px 5% 48px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+    }
+
+    .page-hero h1 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .page-hero p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 720px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .filters {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 30px 5% 22px;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .filters select,
+    .filters input {
+      width: 100%;
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.94rem;
+      outline: none;
+      transition: all 0.25s var(--ease);
+    }
+
+    .filters select:focus,
+    .filters input:focus {
+      border-color: rgba(200,164,90,0.45);
+      box-shadow: 0 0 0 3px rgba(200,164,90,0.07);
+    }
+
+    #list.grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 5% 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.35s var(--ease);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.38);
+      border-color: rgba(200,164,90,0.28);
+    }
+
+    .card-header {
+      display: grid;
+      gap: 8px;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .card-composer,
+    .card-performer {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+    }
+
+    .badge-song {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-color: rgba(200,164,90,0.2);
+    }
+
+    .badge-inst {
+      background: var(--surface);
+      color: var(--text-dim);
+      border-color: var(--border2);
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .card-maqam,
+    .card-tonic {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .maqam-link {
+      text-decoration: none;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .download-btn {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      background: var(--gold);
+      color: var(--bg);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 800;
+      transition: all 0.25s var(--ease);
+    }
+
+    .download-btn:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(200,164,90,0.25);
+    }
+
+    html[dir="ltr"] .nav-top {
+      flex-direction: row;
+    }
+
+    html[dir="ltr"] .nav-bottom {
+      justify-content: flex-start;
+    }
+
+    html[dir="ltr"] .nav-links {
+      flex-direction: row;
+    }
+
+    @media (max-width: 1100px) {
+      .filters {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .filters {
+        grid-template-columns: 1fr;
+        padding: 24px 4% 18px;
+      }
+
+      #list.grid {
+        padding: 0 4% 80px;
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body dir="ltr">
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top">
+        <div class="nav-top-right">
+          <a href="index-en.html" class="nav-logo">Musicatea</a>
+        </div>
+        <div class="nav-top-left">
+          <a href="library.html" class="lang-toggle" aria-label="Switch to Arabic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span>AR</span>
+          </a>
+        </div>
+      </div>
+      <div class="nav-bottom">
+        <div class="nav-links">
+          <a href="index-en.html">Home</a>
+          <a href="library-en.html" class="active">Sheet Library</a>
+          <a href="maqamat-en.html">Maqamatea</a>
+          <a href="rhythms-en.html">Iqaatea</a>
+          <a href="history-en.html">Music History</a>
+          <a href="ensemble-en.html">Melodies Ensemble</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <h1>Sheet Music Library</h1>
+    <p>Arabic and Western sheet music with searchable filters and direct PDF download.</p>
+  </header>
+
+  <div class="filters">
+    <select id="system">
+      <option value="arabic">Eastern Notation</option>
+      <option value="western">Western Notation</option>
+    </select>
+
+    <select id="type">
+      <option value="">All Types</option>
+      <option value="song">Song</option>
+      <option value="instrumental">Instrumental</option>
+    </select>
+
+    <select id="maqam">
+      <option value="">All Maqamat</option>
+    </select>
+
+    <select id="scale" style="display:none;">
+      <option value="">All Scales</option>
+    </select>
+
+    <select id="tonic">
+      <option value="">All Tonics</option>
+    </select>
+
+    <input id="search" type="text" placeholder="Search by title, composer, or performer...">
+  </div>
+
+  <div id="list" class="grid"></div>
+
+  <footer class="site-footer">
+    <span class="footer-logo">Musicatea</span>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+  <script src="data/sheets.js"></script>
+  <script src="data/maqamat-en.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>
+    function createSheetCard(s) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.dataset.system = s.system;
+      card.dataset.maqam = s.maqam || '';
+
+      const maqamDisplay = s.system === 'arabic' && s.maqam
+        ? `<a href="maqam-en.html?id=${slugify(s.maqam)}" class="maqam-link" onclick="event.stopPropagation()">${s.maqam}</a>`
+        : (s.scale || '');
+
+      const performerLine = s.performer
+        ? `<p class="card-performer">${s.performer}</p>`
+        : '';
+
+      const badge = s.type === 'song'
+        ? `<span class="badge badge-song">Song</span>`
+        : `<span class="badge badge-inst">Instrumental</span>`;
+
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="card-title-row">
+            <h3 class="card-title">${s.title}</h3>
+            ${badge}
+          </div>
+          <p class="card-composer">${s.composer || ''}</p>
+          ${performerLine}
+        </div>
+        <div class="card-meta">
+          ${maqamDisplay ? `<span class="card-maqam">${maqamDisplay}</span>` : ''}
+          ${s.tonic ? `<span class="card-tonic">${s.tonic}</span>` : ''}
+        </div>
+        <a href="${s.pdf}" target="_blank" class="download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Sheet
+        </a>
+      `;
+
+      return card;
+    }
+  </script>
+  <script src="assets/app-en.js"></script>
+</body>
+</html>

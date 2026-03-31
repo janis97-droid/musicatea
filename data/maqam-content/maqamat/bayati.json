@@ -1,0 +1,72 @@
+{
+  "id": "bayati",
+  "title_ar": "عائلة البياتي",
+  "title_en": "Bayati Family",
+  "hero_summary": "The Bayati family is one of the most widely used maqam families in Arabic music. It is closely associated with warmth, vocal expressiveness, and strong presence in traditional singing, religious recitation, and melodic improvisation.",
+  "family_identity": "This family is anchored by Jins Bayati and is often treated as one of the most accessible and expressive entry points into Arabic maqam practice.",
+  "main_maqam": "bayati",
+  "core_jins": "Jins Bayati",
+  "overview": "In performance and teaching, the Bayati family is recognized through its characteristic lower jins and its flexible upper development. Its branches are often distinguished by upper-jins treatment, melodic emphasis, and the route taken toward the jawab.",
+  "navigation_intro": "Start with Bayati as the principal maqam of the family, then move to the branch maqamat through their upper-region differences, expressive color, and melodic behavior.",
+  "members": [
+    "bayati",
+    "bayati_shuri",
+    "husayni",
+    "muhayyar",
+    "bayatin",
+    "nahuft"
+  ],
+  "member_cards": [
+    {
+      "id": "bayati",
+      "short_identity": "The principal maqam of the family and the main reference point for Bayati jins logic and melodic character.",
+      "role": "main"
+    },
+    {
+      "id": "bayati_shuri",
+      "short_identity": "A Bayati-family branch associated with a darker or more tense upper treatment in practical tradition.",
+      "role": "branch"
+    },
+    {
+      "id": "husayni",
+      "short_identity": "A closely related branch associated with characteristic melodic emphasis and practical vocal usage.",
+      "role": "branch"
+    },
+    {
+      "id": "muhayyar",
+      "short_identity": "A Bayati-family branch linked to upper-register emphasis and jawab-oriented melodic handling.",
+      "role": "branch"
+    },
+    {
+      "id": "bayatin",
+      "short_identity": "A Bayati-family variant whose identity remains close to the family core while differing in melodic route and treatment.",
+      "role": "branch"
+    },
+    {
+      "id": "nahuft",
+      "short_identity": "A related branch whose color and identity are shaped by its upper structure and modal development.",
+      "role": "branch"
+    }
+  ],
+  "family_logic": [
+    "The family is defined by a Bayati-based lower structure.",
+    "Its branch maqamat are primarily differentiated by upper-jins choice, melodic emphasis, and route toward the upper register.",
+    "The fourth and fifth degrees often become important points in practical development.",
+    "The expressive identity of the family depends strongly on jins behavior and vocal-style melodic motion, not on scale listing alone."
+  ],
+  "historical_notes": [
+    "Modern pedagogical and performance traditions regularly treat Bayati as one of the most essential maqam families for understanding Arabic vocal expression.",
+    "The family holds a central place in many Arab regional practices because of its strong presence in singing, improvisation, and semi-improvised melodic forms."
+  ],
+  "ui_notes": {
+    "family_badge": "Expressive Core Family",
+    "featured_label": "Start here",
+    "color_mode": "gold-blue"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
