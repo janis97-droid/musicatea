@@ -69,7 +69,9 @@
     "Reb":  { letter: "D", acc_label: "♭",  ar: "ري",  en: "Re♭", qt: 2  },
     "Re/b": { letter: "D", acc_label: "𝄳",  ar: "ري",  en: "Re𝄳", qt: 3  },
     "Re#":  { letter: "D", acc_label: "♯",  ar: "ري",  en: "Re♯", qt: 6  },
+    "Re/#": { letter: "D", acc_label: "𝄲",  ar: "ري",  en: "Re𝄲", qt: 5  },
 
+    
     "Mi":   { letter: "E", acc_label: "",   ar: "مي",  en: "Mi",  qt: 8  },
     "Mib":  { letter: "E", acc_label: "♭",  ar: "مي",  en: "Mi♭", qt: 6  },
     "Mi/b": { letter: "E", acc_label: "𝄳",  ar: "مي",  en: "Mi𝄳", qt: 7  },
@@ -86,7 +88,8 @@
     "La":   { letter: "A", acc_label: "",   ar: "لا",  en: "La",  qt: 18 },
     "Lab":  { letter: "A", acc_label: "♭",  ar: "لا",  en: "La♭", qt: 16 },
     "La/b": { letter: "A", acc_label: "𝄳",  ar: "لا",  en: "La𝄳", qt: 17 },
-
+    "La#": { letter: "A", acc_label: "♯",  ar: "لا",  en: "La♯", qt: 20 },
+      
     "Si":   { letter: "B", acc_label: "",   ar: "سي",  en: "Si",  qt: 22 },
     "Sib":  { letter: "B", acc_label: "♭",  ar: "سي",  en: "Si♭", qt: 20 },
     "Si/b": { letter: "B", acc_label: "𝄳",  ar: "سي",  en: "Si𝄳", qt: 21 }
