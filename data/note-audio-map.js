@@ -13,11 +13,11 @@
 //
 // Canonical allowed note tokens:
 // Do, Dob, Do#, Do/#,
-// Re, Reb, Re/b, Re#,
+// Re, Reb, Re/b, Re#, Re/#,
 // Mi, Mib, Mi/b,
 // Fa, Fa#, Fa/#,
-// Sol, Solb, Sol#, Sol/#
-// La, Lab, La/b,
+// Sol, Solb, Sol#, Sol/#,
+// La, Lab, La/b, La#,
 // Si, Sib, Si/b
 
 const NOTE_AUDIO_BASE_PATH = "assets/audio/notes/";
@@ -32,6 +32,7 @@ const NOTE_AUDIO_FILE_MAP = {
   "Reb": "Reb.mp3",
   "Re/b": "ReHalfFlat.mp3",
   "Re#": "ReSharp.mp3",
+  "Re/#": "ReHalfSharp.mp3",
 
   "Mi": "Mi.mp3",
   "Mib": "Mib.mp3",
@@ -49,6 +50,7 @@ const NOTE_AUDIO_FILE_MAP = {
   "La": "La.mp3",
   "Lab": "Lab.mp3",
   "La/b": "LaHalfFlat.mp3",
+  "La#": "LaSharp.mp3",
 
   "Si": "Si.mp3",
   "Sib": "Sib.mp3",
