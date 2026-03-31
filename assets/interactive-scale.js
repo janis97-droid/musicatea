@@ -190,9 +190,9 @@
     shaar:            { base_spelling: ["Mi/b","Fa","Sol","La","Sib","Do","Re","Mi/b"], intervals: [3,4,4,2,4,4,3] },
     rahat_faza:       { base_spelling: ["Mi/b","Fa","Sol","Lab","Sib","Do","Re","Mi/b"], intervals: [3,4,2,4,4,4,3] },
 
-    saba:             { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Reb"], intervals: [3,3,2,6,2,4,2] },
+    saba:             { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Reb","Mi","Fa"], intervals: [3,3,2,6,2,4,2,6,2] },
     saba_jadid:       { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do#","Re"], intervals: [3,3,2,6,2,6,2] },
-    zamzama:          { base_spelling: ["Re","Mib","Fa","Solb","La","Sib","Do","Reb"], intervals: [2,4,2,6,2,4,2] },
+    zamzama:          { base_spelling: ["Re","Mib","Fa","Solb","La","Sib","Do","Reb","Mi","Fa"], intervals: [2,4,2,6,2,4,2,6,2] },
 
     nawa_athar:       { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Si","Do"], intervals: [4,2,6,2,2,6,2] },
     nikriz:           { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] },
