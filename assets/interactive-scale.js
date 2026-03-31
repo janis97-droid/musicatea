@@ -11,7 +11,8 @@
 // - Arabic labels in Arabic page
 // - current jins colors preserved
 // - visual grid fixed to the confirmed 7px spacing
-// - generic note-role hover descriptions
+// - generic note-role hover descriptions on buttons
+// - background hover labels on staff only for قرار / غمّاز / جواب
 // - jins grouping based on general maqam rules
 
 (function () {
@@ -310,7 +311,7 @@
       .family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}
       .family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}
       .note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}
-      .note-key-face[title], .note-btn[title]{cursor:pointer}
+      .note-key-face[title]{cursor:pointer}
     `;
     document.head.appendChild(style);
   }
@@ -524,8 +525,7 @@
         "data-note-idx": String(i),
         role: "button",
         tabindex: "0",
-        title: note.role_description,
-        "aria-label": note.role_description,
+        "aria-label": note.role_description || note.display_label,
         style: "cursor:pointer"
       }, svg);
 
@@ -555,14 +555,21 @@
         fill: noteColor,
         transform: `rotate(-18,${x},${y})`
       }, g);
-    });
 
-    svg.querySelectorAll(".note-btn").forEach(node => {
-      node.addEventListener("click", async () => {
-        const idx = Number(node.dataset.noteIdx);
-        setActiveNote(idx);
+      const hintGroup = drawStaffHint(g, note, x, y);
+
+      g.addEventListener("mouseenter", () => {
+        if (hintGroup) hintGroup.setAttribute("opacity", "1");
+      });
+
+      g.addEventListener("mouseleave", () => {
+        if (hintGroup) hintGroup.setAttribute("opacity", "0");
+      });
+
+      g.addEventListener("click", async () => {
+        setActiveNote(i);
         const notesNow = buildScaleNotes(state.maqamId, state.tonic);
-        if (notesNow[idx]) await playSingleNote(notesNow[idx].token);
+        if (notesNow[i]) await playSingleNote(notesNow[i].token);
       });
     });
   }
@@ -580,7 +587,7 @@
       const text = active ? palette.box_text_active : palette.box_text;
 
       return `
-        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description)}" aria-label="${escapeHtml(note.role_description)}">
+        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description || note.display_label)}" aria-label="${escapeHtml(note.role_description || note.display_label)}">
           <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};">
             <span>${note.display_label}</span>
           </div>
@@ -685,6 +692,7 @@
       const slotKey = `${expectedLetter}${octave}`;
       const meta = NOTE_TOKEN_META[token] || NOTE_TOKEN_META[tonicToken];
       const displayLabel = getArabicDisplayLabel(meta.ar, octave);
+      const roleData = getStructuralRoleData(idx, absoluteQuarterValues.length, jinsInfo, displayLabel);
 
       return {
         token,
@@ -693,7 +701,9 @@
         display_label: displayLabel,
         jins_zone: getJinsZone(idx, jinsInfo),
         is_jins_start: isJinsStart(idx, jinsInfo),
-        role_description: getGenericNoteRoleDescription(idx, absoluteQuarterValues.length, displayLabel, jinsInfo)
+        role_kind: roleData ? roleData.kind : null,
+        role_description: roleData ? roleData.text : `${displayLabel}: نغمة ضمن البناء المقامي`,
+        show_staff_hint: !!roleData
       };
     });
   }
@@ -710,6 +720,7 @@
       const slotKey = getDescendingSlotKey(meta.letter, idx, targetRootOctave);
       const octave = getOctaveFromSlotKey(slotKey);
       const displayLabel = getArabicDisplayLabel(meta.ar, octave);
+      const roleData = getStructuralRoleData(idx, displayTokens.length, jinsInfo, displayLabel);
 
       return {
         token,
@@ -718,7 +729,9 @@
         display_label: displayLabel,
         jins_zone: getJinsZone(Math.min(idx, jinsInfo.upper.end), jinsInfo),
         is_jins_start: isJinsStart(idx, jinsInfo),
-        role_description: getGenericNoteRoleDescription(idx, displayTokens.length, displayLabel, jinsInfo)
+        role_kind: roleData ? roleData.kind : null,
+        role_description: roleData ? roleData.text : `${displayLabel}: نغمة ضمن البناء المقامي`,
+        show_staff_hint: !!roleData
       };
     });
   }
@@ -771,14 +784,79 @@
     return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
   }
 
-  function getGenericNoteRoleDescription(idx, totalCount, displayLabel, jinsInfo) {
-    if (idx === 0) return `${displayLabel}: قرار المقام / الجذر`;
-    if (idx === totalCount - 1) return `${displayLabel}: جواب المقام`;
-    if (idx === jinsInfo.upper.start) return `${displayLabel}: غمّاز المقام وبداية الجنس العلوي`;
-    if (idx === jinsInfo.lower.start) return `${displayLabel}: بداية الجنس الأساسي`;
-    if (idx > jinsInfo.lower.start && idx <= jinsInfo.lower.end) return `${displayLabel}: ضمن الجنس الأساسي`;
-    if (idx > jinsInfo.upper.start && idx <= jinsInfo.upper.end) return `${displayLabel}: ضمن الجنس العلوي`;
-    return `${displayLabel}: نغمة ضمن البناء المقامي`;
+  function getStructuralRoleData(idx, totalCount, jinsInfo, displayLabel) {
+    if (idx === 0) {
+      return {
+        kind: "karar",
+        text: `${displayLabel} — قرار المقام`
+      };
+    }
+
+    if (idx === totalCount - 1) {
+      return {
+        kind: "jawab",
+        text: `${displayLabel} — جواب المقام`
+      };
+    }
+
+    if (idx === jinsInfo.upper.start) {
+      return {
+        kind: "ghammaz",
+        text: `${displayLabel} — غمّاز المقام`
+      };
+    }
+
+    return null;
+  }
+
+  function drawStaffHint(parent, note, x, y) {
+    if (!note || !note.show_staff_hint || !note.role_description) return null;
+
+    const palette = note.jins_zone === "upper"
+      ? {
+          bg: "rgba(123,168,212,0.22)",
+          border: "rgba(123,168,212,0.62)",
+          text: "#e4f4ff"
+        }
+      : {
+          bg: "rgba(200,164,90,0.22)",
+          border: "rgba(200,164,90,0.62)",
+          text: "#fff3c8"
+        };
+
+    const labelWidth = Math.max(96, note.role_description.length * 6.1);
+    const hintX = x - (labelWidth / 2);
+    const hintY = Math.min(y + 22, 206);
+
+    const g = svgEl("g", {
+      opacity: "0",
+      "pointer-events": "none"
+    }, parent);
+
+    svgEl("rect", {
+      x: String(hintX),
+      y: String(hintY),
+      rx: "8",
+      ry: "8",
+      width: String(labelWidth),
+      height: "24",
+      fill: palette.bg,
+      stroke: palette.border,
+      "stroke-width": "1"
+    }, g);
+
+    const text = svgEl("text", {
+      x: String(x),
+      y: String(hintY + 16),
+      "text-anchor": "middle",
+      "font-size": "11.5",
+      "font-weight": "700",
+      fill: palette.text,
+      "font-family": "Cairo, sans-serif"
+    }, g);
+    text.textContent = note.role_description;
+
+    return g;
   }
 
   function getPaletteForNote(note) {
@@ -865,78 +943,6 @@
       .replaceAll("'", "&#39;");
   }
 
-  async function playSingleNote(token) {
-    if (typeof getNoteAudioUrl !== "function") {
-      state.lastAudioErrorToken = token;
-      return false;
-    }
-    const url = getNoteAudioUrl(token);
-    if (!url) {
-      state.lastAudioErrorToken = token;
-      return false;
-    }
-
-    try {
-      let audio = audioCache.get(token);
-      if (!audio) {
-        audio = new Audio(url);
-        audio.preload = "auto";
-        audioCache.set(token, audio);
-      }
-      audio.pause();
-      audio.currentTime = 0;
-      await audio.play();
-      state.lastAudioErrorToken = null;
-
-      await new Promise(resolve => {
-        const done = () => {
-          audio.removeEventListener("ended", done);
-          audio.removeEventListener("error", done);
-          resolve();
-        };
-        audio.addEventListener("ended", done, { once: true });
-        audio.addEventListener("error", done, { once: true });
-      });
-
-      return true;
-    } catch (err) {
-      state.lastAudioErrorToken = token;
-      return false;
-    }
-  }
-
-  function stopAllAudio() {
-    audioCache.forEach(audio => {
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-      } catch (e) {}
-    });
-  }
-
-  function shadowColorForBorder(borderColor) {
-    if (borderColor.startsWith("rgba(")) {
-      return borderColor.replace(/rgba\(([^,]+),([^,]+),([^,]+),([^)]+)\)/, "rgba($1,$2,$3,0.16)");
-    }
-    return "rgba(0,0,0,0.16)";
-  }
-
-  function svgEl(tag, attrs, parent) {
-    const e = document.createElementNS(SVG_NS, tag);
-    Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
-    if (parent) parent.appendChild(e);
-    return e;
-  }
-
-  function drawClef(svg) {
-    const g = svgEl("g", { transform: "translate(18,78) scale(2.15,2.15)" }, svg);
-    svgEl("path", {
-      d: "m12.049 3.5296c0.305 3.1263-2.019 5.6563-4.0772 7.7014-0.9349 0.897-0.155 0.148-0.6437 0.594-0.1022-0.479-0.2986-1.731-0.2802-2.11 0.1304-2.6939 2.3198-6.5875 4.2381-8.0236 0.309 0.5767 0.563 0.6231 0.763 1.8382zm0.651 16.142c-1.232-0.906-2.85-1.144-4.3336-0.885-0.1913-1.255-0.3827-2.51-0.574-3.764 2.3506-2.329 4.9066-5.0322 5.0406-8.5394 0.059-2.232-0.276-4.6714-1.678-6.4836-1.7004 0.12823-2.8995 2.156-3.8019 3.4165-1.4889 2.6705-1.1414 5.9169-0.57 8.7965-0.8094 0.952-1.9296 1.743-2.7274 2.734-2.3561 2.308-4.4085 5.43-4.0046 8.878 0.18332 3.334 2.5894 6.434 5.8702 7.227 1.2457 0.315 2.5639 0.346 3.8241 0.099 0.2199 2.25 1.0266 4.629 0.0925 6.813-0.7007 1.598-2.7875 3.004-4.3325 2.192-0.5994-0.316-0.1137-0.051-0.478-0.252 1.0698-0.257 1.9996-1.036 2.26-1.565 0.8378-1.464-0.3998-3.639-2.1554-3.358-2.262 0.046-3.1904 3.14-1.7356 4.685 1.3468 1.52 3.833 1.312 5.4301 0.318 1.8125-1.18 2.0395-3.544 1.8325-5.562-0.07-0.678-0.403-2.67-0.444-3.387 0.697-0.249 0.209-0.059 1.193-0.449 2.66-1.053 4.357-4.259 3.594-7.122-0.318-1.469-1.044-2.914-2.302-3.792zm0.561 5.757c0.214 1.991-1.053 4.321-3.079 4.96-0.136-0.795-0.172-1.011-0.2626-1.475-0.4822-2.46-0.744-4.987-1.116-7.481 1.6246-0.168 3.4576 0.543 4.0226 2.184 0.244 0.577 0.343 1.197 0.435 1.812zm-5.1486 5.196c-2.5441 0.141-4.9995-1.595-5.6343-4.081-0.749-2.153-0.5283-4.63 0.8207-6.504 1.1151-1.702 2.6065-3.105 4.0286-4.543 0.183 1.127 0.366 2.254 0.549 3.382-2.9906 0.782-5.0046 4.725-3.215 7.451 0.5324 0.764 1.9765 2.223 2.7655 1.634-1.102-0.683-2.0033-1.859-1.8095-3.227-0.0821-1.282 1.3699-2.911 2.6513-3.198 0.4384 2.869 0.9413 6.073 1.3797 8.943-0.5054 0.1-1.0211 0.143-1.536 0.143z",
-      fill: "#f0d28a",
-      stroke: "none"
-    }, g);
-  }
-
   function drawLedgerLines(parent, x, ledgers) {
     (ledgers || []).forEach(lineY => {
       svgEl("line", {
@@ -952,7 +958,6 @@
 
   function drawAccidental(parent, x, y, accLabel, color) {
     if (!accLabel) return;
-
     if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
     if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
     if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
@@ -1002,43 +1007,40 @@
   }
 
   function drawHalfSharp(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 1},${y - 0.5})`
-  }, parent);
+    const g = svgEl("g", {
+      transform: `translate(${x - 1},${y - 0.5})`
+    }, parent);
 
-  // centered vertical line
-  svgEl("line", {
-    x1: "0",
-    y1: "-10",
-    x2: "0",
-    y2: "10",
-    stroke: color,
-    "stroke-width": "3.1",
-    "stroke-linecap": "round"
-  }, g);
+    svgEl("line", {
+      x1: "0",
+      y1: "-10",
+      x2: "0",
+      y2: "10",
+      stroke: color,
+      "stroke-width": "3.1",
+      "stroke-linecap": "round"
+    }, g);
 
-  // upper horizontal/slanted line
-  svgEl("line", {
-    x1: "-7",
-    y1: "-4",
-    x2: "8",
-    y2: "-7",
-    stroke: color,
-    "stroke-width": "3.1",
-    "stroke-linecap": "round"
-  }, g);
+    svgEl("line", {
+      x1: "-7",
+      y1: "-4",
+      x2: "8",
+      y2: "-7",
+      stroke: color,
+      "stroke-width": "3.1",
+      "stroke-linecap": "round"
+    }, g);
 
-  // lower horizontal/slanted line
-  svgEl("line", {
-    x1: "-7",
-    y1: "6",
-    x2: "7",
-    y2: "3",
-    stroke: color,
-    "stroke-width": "3.1",
-    "stroke-linecap": "round"
-  }, g);
-}
+    svgEl("line", {
+      x1: "-7",
+      y1: "6",
+      x2: "7",
+      y2: "3",
+      stroke: color,
+      "stroke-width": "3.1",
+      "stroke-linecap": "round"
+    }, g);
+  }
 
   bootstrap();
 })();
