@@ -968,7 +968,6 @@ function drawHalfSharp(parent, x, y, color) {
   
    svgEl("path", {
       d: "M 5 -17 L 1 17 M -9 -5 L 9 -9 M -7 9 L 11 5",
-
       stroke: "#8a6020",
       stroke-width: "2",
       stroke-linecap: "round",
@@ -976,6 +975,5 @@ function drawHalfSharp(parent, x, y, color) {
       fill: color
   }, g);
 }
-
   bootstrap();
 })();
