@@ -5,12 +5,13 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// Focus of this version:
-// - maqam/root generation from quartertone interval patterns
-// - exact token generation from cumulative pitch positions
-// - Arabic labels in Arabic page
-// - current jins colors preserved
-// - visual grid fixed to the confirmed 7px spacing
+// Phase 1 notes:
+// - keep maqam/root generation from quartertone interval patterns
+// - keep exact token generation from cumulative pitch positions
+// - keep Arabic labels in Arabic page
+// - keep tonic transpose logic intact
+// - add descending display/playback support where needed
+// - keep visual grid fixed to the confirmed 7px spacing
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -71,7 +72,6 @@
     "Re#":  { letter: "D", acc_label: "♯",  ar: "ري",  en: "Re♯", qt: 6  },
     "Re/#": { letter: "D", acc_label: "𝄲",  ar: "ري",  en: "Re𝄲", qt: 5  },
 
-    
     "Mi":   { letter: "E", acc_label: "",   ar: "مي",  en: "Mi",  qt: 8  },
     "Mib":  { letter: "E", acc_label: "♭",  ar: "مي",  en: "Mi♭", qt: 6  },
     "Mi/b": { letter: "E", acc_label: "𝄳",  ar: "مي",  en: "Mi𝄳", qt: 7  },
@@ -80,16 +80,16 @@
     "Fa#":  { letter: "F", acc_label: "♯",  ar: "فا",  en: "Fa♯", qt: 12 },
     "Fa/#": { letter: "F", acc_label: "𝄲",  ar: "فا",  en: "Fa𝄲", qt: 11 },
 
-    "Sol":  { letter: "G", acc_label: "",   ar: "صول", en: "Sol", qt: 14 },
-    "Solb": { letter: "G", acc_label: "♭",  ar: "صول", en: "Sol♭",qt: 12 },
-    "Sol/#": { letter: "G", acc_label: "𝄲",  ar: "صول", en: "Sol𝄲",qt: 15 },
-    "Sol#": { letter: "G", acc_label: "♯",  ar: "صول", en: "Sol♯",qt: 16 },
+    "Sol":   { letter: "G", acc_label: "",   ar: "صول", en: "Sol",  qt: 14 },
+    "Solb":  { letter: "G", acc_label: "♭",  ar: "صول", en: "Sol♭", qt: 12 },
+    "Sol/#": { letter: "G", acc_label: "𝄲",  ar: "صول", en: "Sol𝄲", qt: 15 },
+    "Sol#":  { letter: "G", acc_label: "♯",  ar: "صول", en: "Sol♯", qt: 16 },
 
     "La":   { letter: "A", acc_label: "",   ar: "لا",  en: "La",  qt: 18 },
     "Lab":  { letter: "A", acc_label: "♭",  ar: "لا",  en: "La♭", qt: 16 },
     "La/b": { letter: "A", acc_label: "𝄳",  ar: "لا",  en: "La𝄳", qt: 17 },
-    "La#": { letter: "A", acc_label: "♯",  ar: "لا",  en: "La♯", qt: 20 },
-      
+    "La#":  { letter: "A", acc_label: "♯",  ar: "لا",  en: "La♯", qt: 20 },
+
     "Si":   { letter: "B", acc_label: "",   ar: "سي",  en: "Si",  qt: 22 },
     "Sib":  { letter: "B", acc_label: "♭",  ar: "سي",  en: "Si♭", qt: 20 },
     "Si/b": { letter: "B", acc_label: "𝄳",  ar: "سي",  en: "Si𝄳", qt: 21 }
@@ -178,7 +178,7 @@
     shahnaz_kurdi:    { base_spelling: ["Re","Mib","Fa","Sol","La","Sib","Do#","Re"], intervals: [2,4,4,4,2,6,2] },
     lami:             { base_spelling: ["Re","Mib","Fa","Sol","Lab","Sib","Do","Re"], intervals: [2,4,4,2,4,4,4] },
     athar_kurd:       { base_spelling: ["Do","Reb","Mib","Fa#","Sol","Lab","Si","Do"], intervals: [2,4,6,2,2,6,2] },
-    
+
     sikah:            { base_spelling: ["Mi/b","Fa","Sol","La","Si/b","Do","Re","Mi/b"], intervals: [3,4,4,3,3,4,3] },
     huzam:            { base_spelling: ["Mi/b","Fa","Sol","Lab","Si","Do","Re","Mi/b"], intervals: [3,4,2,6,2,4,3] },
     rahat_al_arwah:   { base_spelling: ["Si/b","Do","Re","Mib","Fa#","Sol","La","Si/b"], intervals: [3,4,2,6,2,4,3] },
@@ -197,6 +197,17 @@
     nawa_athar:       { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Si","Do"], intervals: [4,2,6,2,2,6,2] },
     nikriz:           { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] },
     basandida:        { base_spelling: ["Do","Re","Mib","Fa#","Sol","La","Si/b","Do"], intervals: [4,2,6,2,4,3,3] }
+  };
+
+  const MAQAM_DISPLAY_LABELS_AR = {
+    hijaz: "حجاز (مصري)"
+  };
+
+  const MAQAM_DESCENDING_CONFIG = {
+    awj_iraq: {
+      direction: "descending",
+      display_tokens: ["Re","Do","Si/b","La#","Sol","Fa#","Mib","Re","Do","Si/b"]
+    }
   };
 
   function bootstrap() {
@@ -243,7 +254,6 @@
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
 
-
   function renderAll() {
     renderSidebar();
     renderPageShell();
@@ -262,7 +272,7 @@
         <div class="family-switcher" id="family-switcher">
           ${mainFamilies.map(item => `
             <button class="family-switch-btn ${item.family === state.familyId ? "active" : ""}" data-maqam-id="${item.id}">
-              ${item.name}
+              ${getMaqamDisplayTitle(item)}
             </button>
           `).join("")}
         </div>
@@ -276,7 +286,7 @@
           <li class="sidebar-item">
             <button class="sidebar-btn ${item.id === state.maqamId ? "active" : ""} ${item.is_main ? "main-maqam" : ""}" data-maqam-id="${item.id}">
               <span class="sidebar-dot"></span>
-              ${item.name}
+              ${getMaqamDisplayTitle(item)}
               ${item.is_main ? '<span class="sidebar-main-tag">أساسي</span>' : ""}
             </button>
           </li>
@@ -297,7 +307,7 @@
 
     if (!maqam || !notes.length) {
       root.innerHTML = `<section class="maqam-body"><div class="staff-scale-box"><div class="sec-title">غير متاح</div><p class="maqam-desc">هذا المقام لا يملك بيانات تفاعلية جاهزة بعد.</p></div></section>`;
-      if (breadcrumbLabel) breadcrumbLabel.textContent = maqam ? maqam.name : "";
+      if (breadcrumbLabel) breadcrumbLabel.textContent = maqam ? getMaqamDisplayTitle(maqam) : "";
       return;
     }
 
@@ -318,7 +328,7 @@
         <div class="sec-title">السلّم التفاعلي</div>
         <div class="staff-scale-box">
           <div class="staff-scale-header">
-            <div class="staff-scale-title">اضغط على نوتة أو زر للاستماع</div>
+            <div class="staff-scale-title">${getScaleSectionLabel(state.maqamId)}</div>
             <div class="tonic-selector" id="tonic-selector-current"></div>
           </div>
           <div class="staff-wrap">
@@ -330,7 +340,7 @@
               <svg id="playicon-current" width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5,3 19,12 5,21"></polygon>
               </svg>
-              <span id="playlabel-current">تشغيل السلّم</span>
+              <span id="playlabel-current">${getPlayButtonLabel(state.maqamId)}</span>
             </button>
             <div class="status-bar" id="status-current"></div>
           </div>
@@ -371,12 +381,14 @@
 
     const model = MAQAM_MODELS[state.maqamId];
     const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
+    const direction = getMaqamDirection(state.maqamId);
 
     grid.innerHTML = `
       <div class="info-card"><div class="info-label">الاسم الظاهر</div><div class="info-value gold">${displayName}</div></div>
       <div class="info-card"><div class="info-label">الطبقة الحالية</div><div class="info-value">${getTonicLabelAr(state.tonic)}</div></div>
       <div class="info-card"><div class="info-label">النموذج الأساسي</div><div class="info-value" dir="ltr">${model ? model.base_spelling.join(" - ") : ""}</div></div>
       <div class="info-card"><div class="info-label">الفواصل</div><div class="info-value" dir="ltr">${model ? model.intervals.join(" / ") : ""}</div></div>
+      <div class="info-card"><div class="info-label">اتجاه العرض</div><div class="info-value">${direction === "descending" ? "هابط" : "صاعد"}</div></div>
     `;
   }
 
@@ -433,6 +445,16 @@
       const latin = root.querySelector(".maqam-latin");
       if (latin) latin.textContent = maqam.latin;
     }
+
+    const playLabel = document.getElementById("playlabel-current");
+    if (playLabel && !state.isPlaying) {
+      playLabel.textContent = getPlayButtonLabel(state.maqamId);
+    }
+
+    const headerLabel = root.querySelector(".staff-scale-title");
+    if (headerLabel) {
+      headerLabel.textContent = getScaleSectionLabel(state.maqamId);
+    }
   }
 
   function syncUrl() {
@@ -465,7 +487,8 @@
     drawClef(svg);
 
     const xStart = 82;
-    const xGap = (820 - xStart - 16) / 8;
+    const count = Math.max(notes.length, 1);
+    const xGap = (820 - xStart - 16) / count;
 
     notes.forEach((note, i) => {
       const x = xStart + i * xGap + xGap * 0.4;
@@ -597,7 +620,7 @@
       status.className = state.lastAudioErrorToken ? "status-bar on" : "status-bar";
     }
     if (playIcon) playIcon.innerHTML = '<polygon points="5,3 19,12 5,21"></polygon>';
-    if (playLabel) playLabel.textContent = "تشغيل السلّم";
+    if (playLabel) playLabel.textContent = getPlayButtonLabel(state.maqamId);
     if (playBtn) playBtn.classList.remove("is-playing");
 
     state.isPlaying = false;
@@ -605,6 +628,15 @@
   }
 
   function buildScaleNotes(maqamId, tonic) {
+    const descendingConfig = MAQAM_DESCENDING_CONFIG[maqamId];
+    if (descendingConfig && descendingConfig.direction === "descending") {
+      return buildDescendingDisplayNotes(maqamId, tonic, descendingConfig);
+    }
+
+    return buildAscendingModelNotes(maqamId, tonic);
+  }
+
+  function buildAscendingModelNotes(maqamId, tonic) {
     const model = MAQAM_MODELS[maqamId];
     const tonicToken = getCanonicalInteractiveNoteForTonic(tonic);
     if (!model || !tonicToken) return [];
@@ -638,6 +670,47 @@
         is_jins_start: isJinsStart(idx, jinsInfo)
       };
     });
+  }
+
+  function buildDescendingDisplayNotes(maqamId, tonic, config) {
+    const displayTokens = Array.isArray(config.display_tokens) ? config.display_tokens : [];
+    if (!displayTokens.length) return buildAscendingModelNotes(maqamId, tonic);
+
+    const targetRootOctave = LOWER_OCTAVE_TONICS.has(tonic) ? 3 : 4;
+    const jinsInfo = getJinsInfo(maqamId);
+
+    return displayTokens.map((token, idx) => {
+      const meta = NOTE_TOKEN_META[token] || NOTE_TOKEN_META["Do"];
+      const slotKey = getDescendingSlotKey(meta.letter, idx, targetRootOctave);
+
+      return {
+        token,
+        slot_key: slotKey,
+        acc_label: meta.acc_label,
+        display_label: getArabicDisplayLabel(meta.ar, getOctaveFromSlotKey(slotKey)),
+        jins_zone: getJinsZone(Math.min(idx, jinsInfo.upper.end), jinsInfo),
+        is_jins_start: isJinsStart(idx, jinsInfo)
+      };
+    });
+  }
+
+  function getDescendingSlotKey(letter, idx, rootOctave) {
+    const sequence = ["D5","C5","B4","A4","G4","F4","E4","D4","C4","B3"];
+    const fallbackLetterMap = {
+      C: rootOctave >= 4 ? "C4" : "C3",
+      D: rootOctave >= 4 ? "D4" : "D3",
+      E: rootOctave >= 4 ? "E4" : "E3",
+      F: rootOctave >= 4 ? "F4" : "F3",
+      G: rootOctave >= 4 ? "G4" : "G3",
+      A: rootOctave >= 4 ? "A4" : "A3",
+      B: rootOctave >= 4 ? "B4" : "B3"
+    };
+    return sequence[idx] || fallbackLetterMap[letter] || "E4";
+  }
+
+  function getOctaveFromSlotKey(slotKey) {
+    const match = String(slotKey || "").match(/(\d+)$/);
+    return match ? Number(match[1]) : 4;
   }
 
   function getJinsInfo(maqamId) {
@@ -704,6 +777,38 @@
     if (octave <= 3) return `${base} قرار`;
     if (octave >= 5) return `${base} جواب`;
     return base;
+  }
+
+  function getMaqamDisplayTitle(maqam) {
+    if (!maqam) return "";
+    return MAQAM_DISPLAY_LABELS_AR[maqam.id] || maqam.name || "";
+  }
+
+  function getDisplayNameForTonic(maqamId, tonic) {
+    const maqam = getMaqamById(maqamId);
+    if (!maqam) return "";
+    const override = MAQAM_DISPLAY_LABELS_AR[maqamId];
+    if (override) return override;
+    if (maqam.display_name_by_tonic && maqam.display_name_by_tonic[tonic]) {
+      return maqam.display_name_by_tonic[tonic];
+    }
+    return maqam.name;
+  }
+
+  function getMaqamDirection(maqamId) {
+    return (MAQAM_DESCENDING_CONFIG[maqamId] && MAQAM_DESCENDING_CONFIG[maqamId].direction) || "ascending";
+  }
+
+  function getScaleSectionLabel(maqamId) {
+    return getMaqamDirection(maqamId) === "descending"
+      ? "السلم التفاعلي (عرض هابط)"
+      : "اضغط على نوتة أو زر للاستماع";
+  }
+
+  function getPlayButtonLabel(maqamId) {
+    return getMaqamDirection(maqamId) === "descending"
+      ? "تشغيل المسار الهابط"
+      : "تشغيل السلّم";
   }
 
   async function playSingleNote(token) {
