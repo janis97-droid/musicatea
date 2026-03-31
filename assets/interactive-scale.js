@@ -5,13 +5,14 @@
 // - data/interactive-maqamat.js
 // - data/note-audio-map.js
 //
-// Phase 1 notes:
-// - keep maqam/root generation from quartertone interval patterns
-// - keep exact token generation from cumulative pitch positions
-// - keep Arabic labels in Arabic page
-// - keep tonic transpose logic intact
-// - add descending display/playback support where needed
-// - keep visual grid fixed to the confirmed 7px spacing
+// Focus of this version:
+// - maqam/root generation from quartertone interval patterns
+// - exact token generation from cumulative pitch positions
+// - Arabic labels in Arabic page
+// - current jins colors preserved
+// - visual grid fixed to the confirmed 7px spacing
+// - generic note-role hover descriptions
+// - jins grouping based on general maqam rules
 
 (function () {
   const root = document.getElementById("interactive-page-root");
@@ -164,7 +165,7 @@
     shahnaz:          { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do#","Re"], intervals: [2,6,2,4,2,6,2] },
     hijazayn:         { base_spelling: ["Re","Mib","Fa#","Sol","Lab","Si","Do","Re"], intervals: [2,6,2,2,6,2,4] },
     zanjaran:         { base_spelling: ["Do","Reb","Mi","Fa","Sol","La","Sib","Do"], intervals: [2,6,2,4,4,2,4] },
-    hijaz_ajami:      { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijaz_ajami:      { base_spelling: ["Re","Mib","Fa#","Sol","La","Si/b","Do","Re"], intervals: [2,6,2,4,2,4,4] },
 
     nahawand:         { base_spelling: ["Do","Re","Mib","Fa","Sol","Lab","Si","Do"], intervals: [4,2,4,4,2,6,2] },
     nahawand_murassa: { base_spelling: ["Do","Re","Mib","Fa","Solb","La","Sib","Do"], intervals: [4,2,4,2,6,2,4] },
@@ -296,12 +297,27 @@
 
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => btn.addEventListener("click", () => setActiveMaqam(btn.dataset.maqamId)));
-    injectFamilySwitcherStyles();
+    injectStyles();
+  }
+
+  function injectStyles() {
+    if (document.getElementById("interactive-scale-extra-style")) return;
+    const style = document.createElement("style");
+    style.id = "interactive-scale-extra-style";
+    style.textContent = `
+      .family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+      .family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}
+      .family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}
+      .family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}
+      .note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}
+      .note-key-face[title], .note-btn[title]{cursor:pointer}
+    `;
+    document.head.appendChild(style);
   }
 
   function renderPageShell() {
     const maqam = getMaqamById(state.maqamId);
-    const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
+    const displayName = getDisplayNameForTonicSafe(state.maqamId, state.tonic);
     const tonicLabel = getTonicLabelAr(state.tonic);
     const notes = buildScaleNotes(state.maqamId, state.tonic);
 
@@ -358,12 +374,18 @@
     bindPageEvents();
   }
 
-  function injectFamilySwitcherStyles() {
-    if (document.getElementById("family-switcher-style")) return;
-    const style = document.createElement("style");
-    style.id = "family-switcher-style";
-    style.textContent = `.family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}.family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}.family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}.note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}`;
-    document.head.appendChild(style);
+  function getDisplayNameForTonicSafe(maqamId, tonic) {
+    const maqam = getMaqamById(maqamId);
+    if (!maqam) return "";
+    if (MAQAM_DISPLAY_LABELS_AR[maqamId]) return MAQAM_DISPLAY_LABELS_AR[maqamId];
+    if (typeof getDisplayNameForTonic === "function") {
+      try {
+        return getDisplayNameForTonic(maqamId, tonic) || maqam.name;
+      } catch (e) {
+        return maqam.name;
+      }
+    }
+    return maqam.name;
   }
 
   function renderTonicSelector() {
@@ -380,7 +402,7 @@
     if (!maqam || !grid) return;
 
     const model = MAQAM_MODELS[state.maqamId];
-    const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
+    const displayName = getDisplayNameForTonicSafe(state.maqamId, state.tonic);
     const direction = getMaqamDirection(state.maqamId);
 
     grid.innerHTML = `
@@ -431,7 +453,7 @@
     const maqam = getMaqamById(state.maqamId);
     const title = document.getElementById("maqam-title");
     const subtitle = document.getElementById("maqam-subtitle");
-    const displayName = getDisplayNameForTonic(state.maqamId, state.tonic);
+    const displayName = getDisplayNameForTonicSafe(state.maqamId, state.tonic);
     const tonicLabel = getTonicLabelAr(state.tonic);
 
     if (title) title.textContent = displayName;
@@ -502,6 +524,8 @@
         "data-note-idx": String(i),
         role: "button",
         tabindex: "0",
+        title: note.role_description,
+        "aria-label": note.role_description,
         style: "cursor:pointer"
       }, svg);
 
@@ -556,7 +580,7 @@
       const text = active ? palette.box_text_active : palette.box_text;
 
       return `
-        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}">
+        <div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description)}" aria-label="${escapeHtml(note.role_description)}">
           <div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};">
             <span>${note.display_label}</span>
           </div>
@@ -660,14 +684,16 @@
       const octave = targetRootOctave + Math.floor((LETTER_TO_INDEX[targetLetter] + idx) / 7);
       const slotKey = `${expectedLetter}${octave}`;
       const meta = NOTE_TOKEN_META[token] || NOTE_TOKEN_META[tonicToken];
+      const displayLabel = getArabicDisplayLabel(meta.ar, octave);
 
       return {
         token,
         slot_key: slotKey,
         acc_label: meta.acc_label,
-        display_label: getArabicDisplayLabel(meta.ar, octave),
+        display_label: displayLabel,
         jins_zone: getJinsZone(idx, jinsInfo),
-        is_jins_start: isJinsStart(idx, jinsInfo)
+        is_jins_start: isJinsStart(idx, jinsInfo),
+        role_description: getGenericNoteRoleDescription(idx, absoluteQuarterValues.length, displayLabel, jinsInfo)
       };
     });
   }
@@ -682,14 +708,17 @@
     return displayTokens.map((token, idx) => {
       const meta = NOTE_TOKEN_META[token] || NOTE_TOKEN_META["Do"];
       const slotKey = getDescendingSlotKey(meta.letter, idx, targetRootOctave);
+      const octave = getOctaveFromSlotKey(slotKey);
+      const displayLabel = getArabicDisplayLabel(meta.ar, octave);
 
       return {
         token,
         slot_key: slotKey,
         acc_label: meta.acc_label,
-        display_label: getArabicDisplayLabel(meta.ar, getOctaveFromSlotKey(slotKey)),
+        display_label: displayLabel,
         jins_zone: getJinsZone(Math.min(idx, jinsInfo.upper.end), jinsInfo),
-        is_jins_start: isJinsStart(idx, jinsInfo)
+        is_jins_start: isJinsStart(idx, jinsInfo),
+        role_description: getGenericNoteRoleDescription(idx, displayTokens.length, displayLabel, jinsInfo)
       };
     });
   }
@@ -714,11 +743,17 @@
   }
 
   function getJinsInfo(maqamId) {
-    const config = getInteractiveConfig(maqamId) || {};
+    const lowerCount = getLowerJinsCount(maqamId);
     return {
-      lower: normalizeDegreeRange(config.lower_jins_degree_range || [1, 4]),
-      upper: normalizeDegreeRange(config.upper_jins_degree_range || [5, 8])
+      lower: normalizeDegreeRange([1, lowerCount]),
+      upper: normalizeDegreeRange([lowerCount + 1, 8])
     };
+  }
+
+  function getLowerJinsCount(maqamId) {
+    if (maqamId === "sikah") return 3;
+    if (maqamId === "nawa_athar") return 5;
+    return 4;
   }
 
   function normalizeDegreeRange(range) {
@@ -734,6 +769,16 @@
 
   function isJinsStart(idx, jinsInfo) {
     return idx === jinsInfo.lower.start || idx === jinsInfo.upper.start;
+  }
+
+  function getGenericNoteRoleDescription(idx, totalCount, displayLabel, jinsInfo) {
+    if (idx === 0) return `${displayLabel}: قرار المقام / الجذر`;
+    if (idx === totalCount - 1) return `${displayLabel}: جواب المقام`;
+    if (idx === jinsInfo.upper.start) return `${displayLabel}: غمّاز المقام وبداية الجنس العلوي`;
+    if (idx === jinsInfo.lower.start) return `${displayLabel}: بداية الجنس الأساسي`;
+    if (idx > jinsInfo.lower.start && idx <= jinsInfo.lower.end) return `${displayLabel}: ضمن الجنس الأساسي`;
+    if (idx > jinsInfo.upper.start && idx <= jinsInfo.upper.end) return `${displayLabel}: ضمن الجنس العلوي`;
+    return `${displayLabel}: نغمة ضمن البناء المقامي`;
   }
 
   function getPaletteForNote(note) {
@@ -809,6 +854,15 @@
     return getMaqamDirection(maqamId) === "descending"
       ? "تشغيل المسار الهابط"
       : "تشغيل السلّم";
+  }
+
+  function escapeHtml(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
   }
 
   async function playSingleNote(token) {
@@ -898,82 +952,69 @@
 
   function drawAccidental(parent, x, y, accLabel, color) {
     if (!accLabel) return;
-    if (accLabel === "♭") return drawFlat(parent, x, y, color);
-    if (accLabel === "𝄳") return drawHalfFlat(parent, x, y, color);
-    if (accLabel === "♯") return drawSharp(parent, x, y, color);
-    if (accLabel === "𝄲") return drawHalfSharp(parent, x, y, color);
+
+    if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
+    if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
+    if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
+    if (accLabel === "𝄲") return drawHalfSharp(parent, x + 1, y, color);
   }
 
+  function drawFlat(parent, x, y, color) {
+    const g = svgEl("g", {
+      transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
+    }, parent);
 
-function drawAccidental(parent, x, y, accLabel, color) {
-  if (!accLabel) return;
+    svgEl("path", {
+      d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
+      fill: color
+    }, g);
+  }
 
-  // x here is already the accidental anchor position from renderStaff().
-  // These small per-symbol offsets bring each accidental visually closer
-  // to the notehead in a balanced way.
-  if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
-  if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
-  if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
-  if (accLabel === "𝄲") return drawHalfSharp(parent, x + 1, y, color);
-}
+  function drawHalfFlat(parent, x, y, color) {
+    const g = svgEl("g", {
+      transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
+    }, parent);
 
-function drawFlat(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
-  }, parent);
+    svgEl("path", {
+      d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
+      fill: color
+    }, g);
 
-  svgEl("path", {
-    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
-    fill: color
-  }, g);
-}
+    svgEl("rect", {
+      x: "40",
+      y: "90",
+      width: "300",
+      height: "26",
+      rx: "20",
+      fill: color
+    }, g);
+  }
 
-function drawHalfFlat(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
-  }, parent);
+  function drawSharp(parent, x, y, color) {
+    const g = svgEl("g", {
+      transform: `translate(${x - 7.5},${y - 12.5}) scale(0.046,0.046)`
+    }, parent);
 
-  // Flat body
-  svgEl("path", {
-    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
-    fill: color
-  }, g);
+    svgEl("path", {
+      d: "M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z",
+      fill: color
+    }, g);
+  }
 
-  // Quarter-tone marker
-  svgEl("rect", {
-    x: "40",
-    y: "90",
-    width: "300",
-    height: "26",
-    rx: "20",
-    fill: color
-  }, g);
-}
+  function drawHalfSharp(parent, x, y, color) {
+    const g = svgEl("g", {
+      transform: `translate(${x - 4},${y})`
+    }, parent);
 
-function drawSharp(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 7.5},${y - 12.5}) scale(0.046,0.046)`
-  }, parent);
+    svgEl("path", {
+      d: "M -1 -15 L 2 13 M -8 -5 L 7 -9 M -7 9 L 11 5",
+      fill: "none",
+      stroke: color,
+      "stroke-width": "3.5",
+      "stroke-linecap": "round",
+      "stroke-linejoin": "round"
+    }, g);
+  }
 
-  svgEl("path", {
-    d: "M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z",
-    fill: color
-  }, g);
-}
-
-function drawHalfSharp(parent, x, y, color) {
-  const g = svgEl("g", {
-    transform: `translate(${x - 4},${y})`
-  }, parent);
-
-  svgEl("path", {
-    d: "M -1 -15 L 2 13 M -8 -5 L 7 -9 M -7 9 L 11 5",
-    fill: "none",
-    stroke: color,
-    "stroke-width": "3.5",
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round"
-  }, g);
-}
   bootstrap();
 })();
