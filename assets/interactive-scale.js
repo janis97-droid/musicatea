@@ -919,7 +919,7 @@ function drawAccidental(parent, x, y, accLabel, color) {
 
 function drawFlat(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 19.5},${y - 22}) scale(0.060,0.060)`
+    transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
   }, parent);
 
   svgEl("path", {
@@ -930,7 +930,7 @@ function drawFlat(parent, x, y, color) {
 
 function drawHalfFlat(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 19.5},${y - 22}) scale(0.060,0.060)`
+    transform: `translate(${x - 19.5},${y - 21}) scale(0.060,0.060)`
   }, parent);
 
   // Flat body
@@ -963,7 +963,7 @@ function drawSharp(parent, x, y, color) {
 
 function drawHalfSharp(parent, x, y, color) {
   const g = svgEl("g", {
-    transform: `translate(${x - 6},${y})`
+    transform: `translate(${x - 4},${y})`
   }, parent);
 
   svgEl("path", {
