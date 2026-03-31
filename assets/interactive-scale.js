@@ -157,7 +157,7 @@
     ajam_murassa:     { base_spelling: ["Sib","Do","Re","Mi/b","Fa","Sol","La","Sib"], intervals: [4,4,3,3,4,4,2] },
     jaharkah:         { base_spelling: ["Fa","Sol","La","Sib","Do","Re","Mi/b","Fa"], intervals: [4,4,2,4,4,3,3] },
 
-    hijaz:            { base_spelling: ["Re","Mib","Fa#","Sol","La","Sib","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijaz:            { base_spelling: ["Re","Mib","Fa#","Sol","La","Si/b","Do","Re"], intervals: [2,6,2,4,2,4,4] },
     hijazkar:         { base_spelling: ["Do","Reb","Mi","Fa","Sol","Lab","Si","Do"], intervals: [2,6,2,4,2,6,2] },
     shadd_araban:     { base_spelling: ["Sol","Lab","Si","Do","Re","Mib","Fa#","Sol"], intervals: [2,6,2,4,2,6,2] },
     suzdil:           { base_spelling: ["La","Sib","Do#","Re","Mi","Fa","Sol#","La"], intervals: [2,6,2,4,2,6,2] },
@@ -183,16 +183,16 @@
     huzam:            { base_spelling: ["Mi/b","Fa","Sol","Lab","Si","Do","Re","Mi/b"], intervals: [3,4,2,6,2,4,3] },
     rahat_al_arwah:   { base_spelling: ["Si/b","Do","Re","Mib","Fa#","Sol","La","Si/b"], intervals: [3,4,2,6,2,4,3] },
     iraq:             { base_spelling: ["Si/b","Do","Re","Mi/b","Fa","Sol","La","Si/b"], intervals: [3,4,3,3,4,4,3] },
-    awj_iraq:         { base_spelling: ["Re","Do","Si/b","La#","Sol","Fa#","Mib","Re","Do","Si/b"], intervals: [4,3,1,6,2,6,2,4] },
+    awj_iraq:         { base_spelling: ["Si/b","Do","Re","Mib","Fa#","Sol","La#","Si/b"], intervals: [3,4,2,6,2,6,1] },
     basta_nikar:      { base_spelling: ["Si/b","Do","Re","Mi/b","Fa","Solb","La","Si/b"], intervals: [3,4,3,3,2,6,3] },
     mustaar:          { base_spelling: ["Mi/b","Fa#","Sol","La","Sib","Do","Re","Mi/b"], intervals: [5,2,4,2,4,4,3] },
     farahnak:         { base_spelling: ["Si/b","Do","Re","Mi","Fa#","Sol","La","Si/b"], intervals: [3,4,4,4,2,4,3] },
     shaar:            { base_spelling: ["Mi/b","Fa","Sol","La","Sib","Do","Re","Mi/b"], intervals: [3,4,4,2,4,4,3] },
     rahat_faza:       { base_spelling: ["Mi/b","Fa","Sol","Lab","Sib","Do","Re","Mi/b"], intervals: [3,4,2,4,4,4,3] },
 
-    saba:             { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Reb","Mi","Fa"], intervals: [3,3,2,6,2,4,2,6,2] },
+    saba:             { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do","Reb"], intervals: [3,3,2,6,2,4,2] },
     saba_jadid:       { base_spelling: ["Re","Mi/b","Fa","Solb","La","Sib","Do#","Re"], intervals: [3,3,2,6,2,6,2] },
-    zamzama:          { base_spelling: ["Re","Mib","Fa","Solb","La","Sib","Do","Reb","Mi","Fa"], intervals: [2,4,2,6,2,4,2,6,2] },
+    zamzama:          { base_spelling: ["Re","Mib","Fa","Solb","La","Sib","Do","Reb"], intervals: [2,4,2,6,2,4,2] },
 
     nawa_athar:       { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Si","Do"], intervals: [4,2,6,2,2,6,2] },
     nikriz:           { base_spelling: ["Do","Re","Mib","Fa#","Sol","Lab","Sib","Do"], intervals: [4,2,6,2,2,4,4] },
