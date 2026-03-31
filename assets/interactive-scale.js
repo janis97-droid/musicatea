@@ -904,18 +904,80 @@
     if (accLabel === "𝄲") return drawHalfSharp(parent, x, y, color);
   }
 
-  function drawFlat(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y - 6})` }, parent);
-    svgEl("rect", { x: "-1.2", y: "-14", width: "2.4", height: "20", fill: color, rx: "0.6" }, g);
-    svgEl("path", { d: "M 1 -3 C 8 0 8 5 8 6 C 8 12 4 14 1 14 L 1 14 L -1 14 L -1 -3 Z", fill: color }, g);
-  }
+function drawFlat(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
+  }, parent);
 
-  function drawHalfFlat(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y - 6})` }, parent);
-    svgEl("rect", { x: "-1.2", y: "-13", width: "2.4", height: "21", fill: color, rx: "0.6" }, g);
-    svgEl("path", { d: "M 1 -2 C 8 0 8 5 8 6 C 8 12 4 13 1 13 L 1 13 L -1 13 L -1 -2 Z", fill: color }, g);
-    svgEl("rect", { x: "-5", y: "-5.5", width: "11", height: "2.4", fill: color, rx: "0.8" }, g);
-  }
+  svgEl("path", {
+    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
+    fill: color
+  }, g);
+}
+
+function drawHalfFlat(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
+  }, parent);
+
+  // Flat body
+  svgEl("path", {
+    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
+    fill: color
+  }, g);
+
+  // Quarter-tone half-flat marker
+  svgEl("rect", {
+    x: "66",
+    y: "222",
+    width: "176",
+    height: "26",
+    rx: "8",
+    fill: color
+  }, g);
+}
+
+function drawHalfSharp(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 6.5},${y - 0.5}) scale(-1.35,1.35) translate(-0.5,-1044.8)`
+  }, parent);
+
+  svgEl("path", {
+    d: "m 0.5,1037.831 0,14.0625",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "1.9",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+
+  svgEl("path", {
+    d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "3.1",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+
+  svgEl("path", {
+    d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "3.1",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+}
 
   function drawSharp(parent, x, y, color) {
     const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
@@ -925,49 +987,7 @@
     svgEl("rect", { x: "-6", y: "1.4", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
   }
 
-  function drawHalfSharp(parent, x, y, color) {
-    const visibleColor = "#fff0bf";
 
-    const g = svgEl("g", {
-      transform: `translate(${x - 6.5},${y - 0.5}) scale(-1.35,1.35) translate(-0.5,-1044.8)`
-    }, parent);
-
-    svgEl("path", {
-      d: "m 0.5,1037.831 0,14.0625",
-      fill: "none",
-      stroke: visibleColor,
-      "stroke-width": "1.9",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4",
-      "stroke-opacity": "1",
-      "stroke-dasharray": "none"
-    }, g);
-
-    svgEl("path", {
-      d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
-      fill: "none",
-      stroke: visibleColor,
-      "stroke-width": "3.1",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4",
-      "stroke-opacity": "1",
-      "stroke-dasharray": "none"
-    }, g);
-
-    svgEl("path", {
-      d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
-      fill: "none",
-      stroke: visibleColor,
-      "stroke-width": "3.1",
-      "stroke-linecap": "square",
-      "stroke-linejoin": "miter",
-      "stroke-miterlimit": "4",
-      "stroke-opacity": "1",
-      "stroke-dasharray": "none"
-    }, g);
-  }
 
   bootstrap();
 })();
