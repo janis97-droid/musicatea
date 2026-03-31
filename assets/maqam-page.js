@@ -7,6 +7,7 @@
   const ENHANCER_STYLE_ID = "maqam-page-enhancer-style";
   const ENHANCED_ATTR = "data-maqam-enhanced";
   const STAFF_NOTE_BOUND_ATTR = "data-staff-hover-bound";
+  const JINS_GUIDE_ROW_ID = "maqam-jins-guide-row";
   let staffObserver = null;
 
   function injectStyles() {
@@ -208,6 +209,47 @@
         color: var(--text-muted);
         line-height: 1.85;
         font-size: 0.9rem;
+      }
+
+      .maqam-jins-guide {
+        display: grid;
+        gap: 7px;
+        margin-top: 10px;
+        direction: ltr;
+      }
+
+      .maqam-jins-guide-seg {
+        min-height: 34px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 6px 8px;
+        font-size: 0.76rem;
+        font-weight: 800;
+        line-height: 1.25;
+        border: 1px solid transparent;
+      }
+
+      .maqam-jins-guide-seg.lower {
+        background: rgba(200,164,90,0.10);
+        border-color: rgba(200,164,90,0.32);
+        color: #f0d28a;
+      }
+
+      .maqam-jins-guide-seg.upper {
+        background: rgba(123,168,212,0.10);
+        border-color: rgba(123,168,212,0.34);
+        color: #c8e4ff;
+      }
+
+      .maqam-jins-guide-seg span {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
       }
 
       @media (max-width: 900px) {
@@ -558,6 +600,50 @@
     });
   }
 
+  function getLowerJinsSpan(maqamId, noteCount) {
+    if (typeof getInteractiveConfig === "function") {
+      const config = getInteractiveConfig(maqamId);
+      const range = config && Array.isArray(config.lower_jins_degree_range)
+        ? config.lower_jins_degree_range
+        : null;
+      const endDegree = range && range.length > 1 ? Number(range[1]) : NaN;
+      if (Number.isFinite(endDegree) && endDegree > 0) {
+        return Math.max(1, Math.min(endDegree, Math.max(1, noteCount - 1)));
+      }
+    }
+    return Math.max(1, Math.min(4, Math.max(1, noteCount - 1)));
+  }
+
+  function ensureJinsGuide(model, maqamId) {
+    const keysRow = document.getElementById("keys-current");
+    if (!keysRow) return;
+
+    const noteCount = keysRow.querySelectorAll(".note-key").length;
+    if (!noteCount) return;
+
+    const lowerName = textOrFallback(model?.jins_architecture?.lower?.name, "الجنس الأساسي");
+    const upperName = textOrFallback(model?.jins_architecture?.upper?.name, "الجنس العلوي");
+    const lowerCount = getLowerJinsSpan(maqamId, noteCount);
+    const upperCount = Math.max(1, noteCount - lowerCount);
+
+    let guideRow = document.getElementById(JINS_GUIDE_ROW_ID);
+    if (!guideRow) {
+      guideRow = createEl("div", "maqam-jins-guide");
+      guideRow.id = JINS_GUIDE_ROW_ID;
+      keysRow.insertAdjacentElement("afterend", guideRow);
+    }
+
+    guideRow.style.gridTemplateColumns = `repeat(${noteCount}, minmax(0,1fr))`;
+    guideRow.innerHTML = `
+      <div class="maqam-jins-guide-seg lower" style="grid-column:1 / span ${lowerCount}">
+        <span>${lowerName}</span>
+      </div>
+      <div class="maqam-jins-guide-seg upper" style="grid-column:${lowerCount + 1} / span ${upperCount}">
+        <span>${upperName}</span>
+      </div>
+    `;
+  }
+
   async function enhancePage() {
     injectStyles();
 
@@ -609,7 +695,10 @@
       maqamBody.appendChild(renderReferencesSection(maqamModel));
 
       window.requestAnimationFrame(() => {
-        setTimeout(enhanceStaffHoverLabels, 40);
+        setTimeout(() => {
+          enhanceStaffHoverLabels();
+          ensureJinsGuide(maqamModel, state.maqamId);
+        }, 40);
       });
     } catch (error) {
       console.warn("Maqam page enhancement skipped:", error);
