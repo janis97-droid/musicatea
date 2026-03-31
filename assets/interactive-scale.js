@@ -928,9 +928,9 @@ function drawHalfFlat(parent, x, y, color) {
 
   // Quarter-tone half-flat marker
   svgEl("rect", {
-    x: "66",
-    y: "222",
-    width: "176",
+    x: "60",
+    y: "130",
+    width: "200",
     height: "26",
     rx: "8",
     fill: color
