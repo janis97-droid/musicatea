@@ -1013,7 +1013,7 @@
     x2: "0",
     y2: "12",
     stroke: color,
-    "stroke-width": "2.5",
+    "stroke-width": "3.7",
     "stroke-linecap": "round"
   }, g);
 
@@ -1024,7 +1024,7 @@
     x2: "8",
     y2: "-7",
     stroke: color,
-    "stroke-width": "2.5",
+    "stroke-width": "3.7",
     "stroke-linecap": "round"
   }, g);
 
@@ -1035,7 +1035,7 @@
     x2: "8",
     y2: "3",
     stroke: color,
-    "stroke-width": "2.5",
+    "stroke-width": "3.7",
     "stroke-linecap": "round"
   }, g);
 }
