@@ -967,10 +967,10 @@ function drawHalfSharp(parent, x, y, color) {
   }, parent);
 
   svgEl("path", {
-    d: "M 5 -17 L 1 17 M -9 -5 L 9 -9 M -7 9 L 11 5",
+    d: "M -1 -15 L 2 13 M -8 -5 L 7 -9 M -7 9 L 11 5",
     fill: "none",
     stroke: color,
-    "stroke-width": "2",
+    "stroke-width": "3.5",
     "stroke-linecap": "round",
     "stroke-linejoin": "round"
   }, g);
