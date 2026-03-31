@@ -158,7 +158,7 @@
     ajam_murassa:     { base_spelling: ["Sib","Do","Re","Mi/b","Fa","Sol","La","Sib"], intervals: [4,4,3,3,4,4,2] },
     jaharkah:         { base_spelling: ["Fa","Sol","La","Sib","Do","Re","Mi/b","Fa"], intervals: [4,4,2,4,4,3,3] },
 
-    hijaz:            { base_spelling: ["Re","Mib","Fa#","Sol","La","Si/b","Do","Re"], intervals: [2,6,2,4,2,4,4] },
+    hijaz:            { base_spelling: ["Re","Mib","Fa#","Sol","La","Si/b","Do","Re"], intervals: [2,6,2,4,3,3,4] },
     hijazkar:         { base_spelling: ["Do","Reb","Mi","Fa","Sol","Lab","Si","Do"], intervals: [2,6,2,4,2,6,2] },
     shadd_araban:     { base_spelling: ["Sol","Lab","Si","Do","Re","Mib","Fa#","Sol"], intervals: [2,6,2,4,2,6,2] },
     suzdil:           { base_spelling: ["La","Sib","Do#","Re","Mi","Fa","Sol#","La"], intervals: [2,6,2,4,2,6,2] },
