@@ -915,6 +915,29 @@ function drawFlat(parent, x, y, color) {
   }, g);
 }
 
+function drawAccidental(parent, x, y, accLabel, color) {
+  if (!accLabel) return;
+
+  // x here is already the accidental anchor position from renderStaff().
+  // These small per-symbol offsets bring each accidental visually closer
+  // to the notehead in a balanced way.
+  if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
+  if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
+  if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
+  if (accLabel === "𝄲") return drawHalfSharp(parent, x + 1, y, color);
+}
+
+function drawFlat(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
+  }, parent);
+
+  svgEl("path", {
+    d: "M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z",
+    fill: color
+  }, g);
+}
+
 function drawHalfFlat(parent, x, y, color) {
   const g = svgEl("g", {
     transform: `translate(${x - 1.5},${y - 6}) scale(0.060,0.060)`
@@ -926,13 +949,24 @@ function drawHalfFlat(parent, x, y, color) {
     fill: color
   }, g);
 
-  // Quarter-tone half-flat marker
+  // Quarter-tone marker
   svgEl("rect", {
     x: "60",
     y: "130",
     width: "200",
     height: "26",
     rx: "8",
+    fill: color
+  }, g);
+}
+
+function drawSharp(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 7.5},${y - 12.5}) scale(0.046,0.046)`
+  }, parent);
+
+  svgEl("path", {
+    d: "M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z",
     fill: color
   }, g);
 }
@@ -978,16 +1012,48 @@ function drawHalfSharp(parent, x, y, color) {
     "stroke-dasharray": "none"
   }, g);
 }
+  
+function drawHalfSharp(parent, x, y, color) {
+  const g = svgEl("g", {
+    transform: `translate(${x - 6.5},${y - 0.5}) scale(-1.35,1.35) translate(-0.5,-1044.8)`
+  }, parent);
 
-  function drawSharp(parent, x, y, color) {
-    const g = svgEl("g", { transform: `translate(${x},${y})` }, parent);
-    svgEl("rect", { x: "-4.2", y: "-9", width: "2.2", height: "18", fill: color }, g);
-    svgEl("rect", { x: "2.2", y: "-9", width: "2.2", height: "18", fill: color }, g);
-    svgEl("rect", { x: "-6", y: "-4.8", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
-    svgEl("rect", { x: "-6", y: "1.4", width: "13", height: "2.2", fill: color, transform: "rotate(-8)" }, g);
-  }
+  svgEl("path", {
+    d: "m 0.5,1037.831 0,14.0625",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "1.9",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
 
+  svgEl("path", {
+    d: "m -2.1200719,1048.4823 5.2401438,-2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "3.1",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
 
+  svgEl("path", {
+    d: "m 3.1200719,1041.2421 -5.2401438,2.0686",
+    fill: "none",
+    stroke: color,
+    "stroke-width": "3.1",
+    "stroke-linecap": "square",
+    "stroke-linejoin": "miter",
+    "stroke-miterlimit": "4",
+    "stroke-opacity": "1",
+    "stroke-dasharray": "none"
+  }, g);
+}
 
   bootstrap();
 })();
