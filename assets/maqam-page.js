@@ -6,6 +6,8 @@
   const PAGE_ROOT_ID = "interactive-page-root";
   const ENHANCER_STYLE_ID = "maqam-page-enhancer-style";
   const ENHANCED_ATTR = "data-maqam-enhanced";
+  const STAFF_NOTE_BOUND_ATTR = "data-staff-hover-bound";
+  let staffObserver = null;
 
   function injectStyles() {
     if (document.getElementById(ENHANCER_STYLE_ID)) return;
@@ -440,6 +442,122 @@
     heroInner.appendChild(p);
   }
 
+  function getStaffRoleLabel(description) {
+    const text = String(description || "");
+    if (!text) return "";
+    if (text.includes("قرار المقام")) return "قرار";
+    if (text.includes("جواب المقام")) return "جواب";
+    if (text.includes("غمّاز المقام")) return "غمّاز";
+    return "";
+  }
+
+  function getStaffHoverPalette(label) {
+    if (label === "غمّاز") {
+      return {
+        bg: "rgba(123,168,212,0.15)",
+        border: "rgba(123,168,212,0.52)",
+        text: "#c8e4ff"
+      };
+    }
+    return {
+      bg: "rgba(200,164,90,0.14)",
+      border: "rgba(200,164,90,0.5)",
+      text: "#f0d28a"
+    };
+  }
+
+  function buildStaffHoverLabel(noteBtn, label) {
+    if (!noteBtn || !label) return null;
+
+    const ellipse = noteBtn.querySelector("ellipse");
+    if (!ellipse) return null;
+
+    const x = Number(ellipse.getAttribute("cx")) || 0;
+    const y = Number(ellipse.getAttribute("cy")) || 0;
+    const width = label === "غمّاز" ? 66 : 58;
+    const labelY = Math.min(214, y + 30);
+    const palette = getStaffHoverPalette(label);
+    const svgNs = "http://www.w3.org/2000/svg";
+
+    const g = document.createElementNS(svgNs, "g");
+    g.setAttribute("class", "staff-hover-label");
+    g.setAttribute("style", "pointer-events:none;opacity:0;transition:opacity .14s ease");
+
+    const rect = document.createElementNS(svgNs, "rect");
+    rect.setAttribute("x", String(x - width / 2));
+    rect.setAttribute("y", String(labelY - 12));
+    rect.setAttribute("width", String(width));
+    rect.setAttribute("height", "24");
+    rect.setAttribute("rx", "12");
+    rect.setAttribute("fill", palette.bg);
+    rect.setAttribute("stroke", palette.border);
+    rect.setAttribute("stroke-width", "1.1");
+    g.appendChild(rect);
+
+    const text = document.createElementNS(svgNs, "text");
+    text.setAttribute("x", String(x));
+    text.setAttribute("y", String(labelY + 4));
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("font-size", "12");
+    text.setAttribute("font-weight", "800");
+    text.setAttribute("fill", palette.text);
+    text.setAttribute("font-family", "Cairo, sans-serif");
+    text.textContent = label;
+    g.appendChild(text);
+
+    return g;
+  }
+
+  function bindStaffHoverNote(noteBtn) {
+    if (!noteBtn || noteBtn.getAttribute(STAFF_NOTE_BOUND_ATTR) === "1") return;
+
+    const description = noteBtn.getAttribute("aria-label") || noteBtn.getAttribute("title") || "";
+    const label = getStaffRoleLabel(description);
+
+    noteBtn.removeAttribute("title");
+    noteBtn.setAttribute(STAFF_NOTE_BOUND_ATTR, "1");
+
+    if (!label) return;
+
+    const hoverLabel = buildStaffHoverLabel(noteBtn, label);
+    if (!hoverLabel) return;
+
+    noteBtn.appendChild(hoverLabel);
+
+    const show = () => {
+      hoverLabel.style.opacity = "1";
+    };
+
+    const hide = () => {
+      hoverLabel.style.opacity = "0";
+    };
+
+    noteBtn.addEventListener("mouseenter", show);
+    noteBtn.addEventListener("mouseleave", hide);
+    noteBtn.addEventListener("focus", show);
+    noteBtn.addEventListener("blur", hide);
+  }
+
+  function enhanceStaffHoverLabels() {
+    const svg = document.getElementById("staff-current");
+    if (!svg) return;
+
+    svg.querySelectorAll(".note-btn").forEach(bindStaffHoverNote);
+
+    if (staffObserver) {
+      staffObserver.disconnect();
+    }
+
+    staffObserver = new MutationObserver(() => {
+      svg.querySelectorAll(".note-btn").forEach(bindStaffHoverNote);
+    });
+
+    staffObserver.observe(svg, {
+      childList: true,
+      subtree: true
+    });
+  }
+
   async function enhancePage() {
     injectStyles();
 
@@ -489,6 +607,10 @@
       maqamBody.appendChild(renderSimpleBulletsSection("التباسات شائعة", "ما الذي يجب الانتباه له", maqamModel.common_confusions));
       maqamBody.appendChild(renderRelatedSection(maqamModel));
       maqamBody.appendChild(renderReferencesSection(maqamModel));
+
+      window.requestAnimationFrame(() => {
+        setTimeout(enhanceStaffHoverLabels, 40);
+      });
     } catch (error) {
       console.warn("Maqam page enhancement skipped:", error);
     }
@@ -514,6 +636,10 @@
   function init() {
     enhancePage();
     setupObserver();
+
+    window.requestAnimationFrame(() => {
+      setTimeout(enhanceStaffHoverLabels, 40);
+    });
   }
 
   if (document.readyState === "loading") {
