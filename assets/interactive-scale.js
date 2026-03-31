@@ -956,7 +956,7 @@
     if (accLabel === "♭")  return drawFlat(parent, x + 8, y, color);
     if (accLabel === "𝄳") return drawHalfFlat(parent, x + 8, y, color);
     if (accLabel === "♯")  return drawSharp(parent, x + 1, y, color);
-    if (accLabel === "𝄲") return drawHalfSharp(parent, x + 1, y, color);
+    if (accLabel === "𝄲") return drawHalfSharp(parent, x + 2, y, color);
   }
 
   function drawFlat(parent, x, y, color) {
@@ -1002,19 +1002,43 @@
   }
 
   function drawHalfSharp(parent, x, y, color) {
-    const g = svgEl("g", {
-      transform: `translate(${x - 4},${y})`
-    }, parent);
+  const g = svgEl("g", {
+    transform: `translate(${x - 1},${y - 0.5})`
+  }, parent);
 
-    svgEl("path", {
-      d: "M -1 -15 L 2 13 M -8 -5 L 7 -9 M -7 9 L 11 5",
-      fill: "none",
-      stroke: color,
-      "stroke-width": "3.5",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
-    }, g);
-  }
+  // centered vertical line
+  svgEl("line", {
+    x1: "0",
+    y1: "-12",
+    x2: "0",
+    y2: "12",
+    stroke: color,
+    "stroke-width": "2.5",
+    "stroke-linecap": "round"
+  }, g);
+
+  // upper horizontal/slanted line
+  svgEl("line", {
+    x1: "-8",
+    y1: "-4",
+    x2: "8",
+    y2: "-7",
+    stroke: color,
+    "stroke-width": "2.5",
+    "stroke-linecap": "round"
+  }, g);
+
+  // lower horizontal/slanted line
+  svgEl("line", {
+    x1: "-8",
+    y1: "6",
+    x2: "8",
+    y2: "3",
+    stroke: color,
+    "stroke-width": "2.5",
+    "stroke-linecap": "round"
+  }, g);
+}
 
   bootstrap();
 })();
