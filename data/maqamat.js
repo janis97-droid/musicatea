@@ -64,6 +64,7 @@ const CANONICAL_NOTE_LABELS_AR = {
 const STANDARD_TONICS = [
   "do",
   "re",
+  "mi",
   "mi_flat",
   "fa",
   "sol",
@@ -82,6 +83,7 @@ const HALF_FLAT_TONICS = [
 const TONIC_LABELS_AR = {
   do: "دو",
   re: "ري",
+  mi: "ري", 
   mi_flat: "مي بيمول",
   fa: "فا",
   sol: "صول",
@@ -97,6 +99,7 @@ const TONIC_LABELS_AR = {
 const TONIC_TO_CANONICAL_NOTE = {
   do: "Do",
   re: "Re",
+  mi: "Mi", 
   mi_flat: "Mib",
   fa: "Fa",
   sol: "Sol",
