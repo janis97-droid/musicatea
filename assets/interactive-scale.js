@@ -1009,11 +1009,11 @@
   // centered vertical line
   svgEl("line", {
     x1: "0",
-    y1: "-12",
+    y1: "-10",
     x2: "0",
-    y2: "12",
+    y2: "10",
     stroke: color,
-    "stroke-width": "3.7",
+    "stroke-width": "3.2",
     "stroke-linecap": "round"
   }, g);
 
@@ -1024,7 +1024,7 @@
     x2: "8",
     y2: "-7",
     stroke: color,
-    "stroke-width": "3.7",
+    "stroke-width": "3.2",
     "stroke-linecap": "round"
   }, g);
 
@@ -1035,7 +1035,7 @@
     x2: "8",
     y2: "3",
     stroke: color,
-    "stroke-width": "3.7",
+    "stroke-width": "3.2",
     "stroke-linecap": "round"
   }, g);
 }
