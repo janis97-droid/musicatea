@@ -51,14 +51,14 @@
  
   <div class="filters">
     <select id="system">
-      <option>نوتات شرقية</option>
-      <option>نوتات غربية</option>
+      <option value="arabic">نوتات شرقية</option>
+      <option value="western">نوتات غربية</option>
     </select>
  
     <select id="type">
-      <option>الكل</option>
-      <option>أغنية</option>
-      <option>معزوفة</option>
+      <option value="">نوع النوتة</option>
+      <option value="song">أغنية</option>
+      <option value="instrumental">معزوفة</option>
     </select>
  
     <select id="maqam">
@@ -73,7 +73,7 @@
       <option value="">الدرجة</option>
     </select>
  
-    <input id="search" type="text" placeholder="بحث بالاسم أو الملحن...">
+    <input id="search" type="text" placeholder="بحث بالاسم أو الملحن أو المؤدي...">
   </div>
  
   <div id="list" class="grid"></div>
