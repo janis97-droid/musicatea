@@ -10,7 +10,9 @@
   const JINS_GUIDE_ROW_ID = "maqam-jins-guide-row";
   const SCALE_HELPER_ROW_ID = "maqam-scale-helper-row";
   const TONIC_HELPER_ID = "maqam-tonic-helper";
+  const ROLE_FLASH_MS = 950;
   let staffObserver = null;
+  let scaleKeyRoleFlashBound = false;
 
   function injectStyles() {
     if (document.getElementById(ENHANCER_STYLE_ID)) return;
@@ -714,12 +716,18 @@
     noteBtn.appendChild(hoverLabel);
 
     const show = () => {
+      window.clearTimeout(noteBtn.__roleHideTimer);
       hoverLabel.style.opacity = "1";
     };
 
     const hide = () => {
+      window.clearTimeout(noteBtn.__roleHideTimer);
       hoverLabel.style.opacity = "0";
     };
+
+    noteBtn.__roleLabelNode = hoverLabel;
+    noteBtn.__showRoleLabel = show;
+    noteBtn.__hideRoleLabel = hide;
 
     noteBtn.addEventListener("mouseenter", show);
     noteBtn.addEventListener("mouseleave", hide);
@@ -745,6 +753,43 @@
       childList: true,
       subtree: true
     });
+  }
+
+  function flashStaffRoleLabel(noteIndex) {
+    const noteBtn = document.querySelector(`#staff-current .note-btn[data-note-idx="${noteIndex}"]`);
+    if (!noteBtn || typeof noteBtn.__showRoleLabel !== "function") return;
+
+    noteBtn.__showRoleLabel();
+    window.clearTimeout(noteBtn.__roleHideTimer);
+    noteBtn.__roleHideTimer = window.setTimeout(() => {
+      if (typeof noteBtn.__hideRoleLabel === "function") {
+        noteBtn.__hideRoleLabel();
+      }
+    }, ROLE_FLASH_MS);
+  }
+
+  function handleScaleKeyRoleFlash(event) {
+    if (!(event.target instanceof Element)) return;
+
+    const keyBtn = event.target.closest("#keys-current .note-key");
+    if (!keyBtn) return;
+
+    const keysRow = document.getElementById("keys-current");
+    if (!keysRow) return;
+
+    const keyButtons = Array.from(keysRow.querySelectorAll(".note-key"));
+    const noteIndex = keyButtons.indexOf(keyBtn);
+    if (noteIndex < 0) return;
+
+    window.requestAnimationFrame(() => {
+      flashStaffRoleLabel(noteIndex);
+    });
+  }
+
+  function ensureScaleKeyRoleFlashBinding() {
+    if (scaleKeyRoleFlashBound) return;
+    document.addEventListener("click", handleScaleKeyRoleFlash);
+    scaleKeyRoleFlashBound = true;
   }
 
   function getLowerJinsSpan(maqamId, noteCount) {
@@ -881,6 +926,7 @@
       window.requestAnimationFrame(() => {
         setTimeout(() => {
           ensureTonicHelperLabel();
+          ensureScaleKeyRoleFlashBinding();
           enhanceStaffHoverLabels();
           ensureJinsGuide(maqamModel, state.maqamId, state.familyId);
           ensurePlaybackHelperRow();
@@ -915,6 +961,7 @@
     window.requestAnimationFrame(() => {
       setTimeout(() => {
         ensureTonicHelperLabel();
+        ensureScaleKeyRoleFlashBinding();
         enhanceStaffHoverLabels();
         ensurePlaybackHelperRow();
       }, 40);
