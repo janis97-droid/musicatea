@@ -18,7 +18,6 @@
   ];
 
   const CLOSE_DELAY_MS = 180;
-  const DESKTOP_BRANCH_PANEL_HEIGHT = 430;
   const DESKTOP_MAIN_LIST_WIDTH = 240;
   const DESKTOP_BRANCH_PANEL_WIDTH = 360;
 
@@ -36,7 +35,6 @@
         display: flex;
         flex-direction: row;
         align-items: stretch;
-        min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
       }
 
       .maqam-nav-item .maqam-mega-main-grid {
@@ -46,7 +44,7 @@
         flex-direction: column;
         gap: 8px;
         padding: 16px 14px;
-        overflow: auto;
+        overflow: visible;
         align-content: stretch;
         border-left: 1px solid rgba(255,255,255,0.06);
       }
@@ -70,9 +68,9 @@
       .maqam-nav-item .maqam-mega-branch-panel {
         flex: 0 0 ${DESKTOP_BRANCH_PANEL_WIDTH}px;
         width: ${DESKTOP_BRANCH_PANEL_WIDTH}px;
-        min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
-        max-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
-        overflow: hidden;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
       }
 
       .maqam-nav-item .maqam-mega-branch-kicker {
@@ -89,8 +87,9 @@
       }
 
       .maqam-nav-item .maqam-mega-branches {
-        overflow: auto;
+        overflow: visible;
         padding-left: 2px;
+        flex: 1 1 auto;
       }
 
       @media (max-width: 980px) {
