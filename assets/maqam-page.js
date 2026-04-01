@@ -18,11 +18,33 @@
     style.id = ENHANCER_STYLE_ID;
     style.textContent = `
       .maqam-hero-inner .maqam-reference-intro {
-        margin-top: 12px;
-        max-width: 760px;
+        display: none !important;
+      }
+
+      .maqam-hero .maqam-name {
+        font-size: clamp(2.9rem, 6.4vw, 5.25rem);
+      }
+
+      .maqam-hero .maqam-latin {
+        font-size: 1.28rem;
         color: var(--text-muted);
-        font-size: 0.98rem;
-        line-height: 1.95;
+      }
+
+      .maqam-hero #maqam-subtitle {
+        display: none !important;
+      }
+
+      .maqam-body > .sec-title:first-of-type {
+        display: none;
+      }
+
+      .staff-scale-box .staff-scale-header {
+        justify-content: flex-end;
+        margin-bottom: 16px;
+      }
+
+      .staff-scale-box .staff-scale-title {
+        display: none !important;
       }
 
       .maqam-quickfacts {
@@ -522,9 +544,9 @@
   }
 
   function injectHeroSummary(heroInner, maqamModel) {
-    if (!heroInner || heroInner.querySelector(".maqam-reference-intro")) return;
-    const p = createEl("p", "maqam-reference-intro", textOrFallback(maqamModel.hero_summary));
-    heroInner.appendChild(p);
+    if (!heroInner) return;
+    const existing = heroInner.querySelector(".maqam-reference-intro");
+    if (existing) existing.remove();
   }
 
   function getStaffRoleLabel(description) {
