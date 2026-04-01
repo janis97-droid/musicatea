@@ -70,6 +70,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
   transition: all 0.3s var(--ease);
+  overflow: visible;
 }
 
 .site-nav.scrolled {
@@ -201,6 +202,175 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .nav-top-home .nav-links {
   flex: 1;
+}
+
+.maqam-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.maqam-nav-item > a {
+  z-index: 2;
+}
+
+.maqam-mega-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(860px, calc(100vw - 40px));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s var(--ease);
+}
+
+.maqam-nav-item.is-open .maqam-mega-menu,
+.maqam-nav-item:hover .maqam-mega-menu,
+.maqam-nav-item:focus-within .maqam-mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.maqam-mega-shell {
+  background: rgba(15,15,18,0.98);
+  border: 1px solid rgba(200,164,90,0.16);
+  border-radius: 18px;
+  box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  overflow: hidden;
+}
+
+.maqam-mega-main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(200,164,90,0.04) 0%, rgba(255,255,255,0.01) 100%);
+}
+
+.maqam-mega-main-item {
+  min-height: 84px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  transition: all 0.22s var(--ease);
+}
+
+.maqam-mega-main-item:hover,
+.maqam-mega-main-item:focus,
+.maqam-mega-main-item.active {
+  background: rgba(200,164,90,0.10);
+  border-color: rgba(200,164,90,0.24);
+  color: var(--gold-light);
+}
+
+.maqam-mega-main-name {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.maqam-mega-main-item:hover .maqam-mega-main-name,
+.maqam-mega-main-item:focus .maqam-mega-main-name,
+.maqam-mega-main-item.active .maqam-mega-main-name {
+  color: var(--gold-light);
+}
+
+.maqam-mega-main-latin {
+  font-size: 0.76rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.maqam-mega-branch-panel {
+  padding: 18px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.maqam-mega-branch-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.maqam-mega-branch-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  font-weight: 800;
+}
+
+.maqam-mega-branch-family-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: var(--gold-light);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.maqam-mega-branch-family-link svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+.maqam-mega-branches {
+  display: grid;
+  gap: 8px;
+}
+
+.maqam-mega-branch-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+  transition: all 0.22s var(--ease);
+}
+
+.maqam-mega-branch-item:hover,
+.maqam-mega-branch-item:focus {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(200,164,90,0.18);
+}
+
+.maqam-mega-branch-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.maqam-mega-branch-latin {
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.maqam-mega-empty {
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.8;
 }
 
 html[dir="rtl"] .nav-top,
@@ -661,6 +831,28 @@ a.download:hover {
 }
 
 /* ─┐ Responsive ─┐ ─────────────────*/
+@media (max-width: 980px) {
+  .nav-top-home {
+    min-height: auto;
+    padding: 12px 0;
+    align-items: flex-start;
+  }
+
+  .nav-main-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-top-home .nav-links {
+    width: 100%;
+  }
+
+  .maqam-mega-menu {
+    display: none;
+  }
+}
+
 @media (max-width: 640px) {
   #list {
     grid-template-columns: 1fr;
@@ -718,24 +910,6 @@ a.download:hover {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
-  }
-}
-
-@media (max-width: 980px) {
-  .nav-top-home {
-    min-height: auto;
-    padding: 12px 0;
-    align-items: flex-start;
-  }
-
-  .nav-main-group {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .nav-top-home .nav-links {
-    width: 100%;
   }
 }
 
