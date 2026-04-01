@@ -8,12 +8,14 @@ function createSheetCard(s) {
   card.dataset.maqam = s.maqam || '';
 
   const maqamRoute = s.system === 'arabic' && s.maqam
-    ? getMaqamRoute(s.maqam)
+    ? getMaqamRoute(s.maqam, s.tonic)
     : null;
 
+  const maqamTagLabel = buildInteractiveMaqamTagLabel(s.maqam, s.tonic);
+
   const maqamDisplay = maqamRoute
-    ? `<a href="${maqamRoute}" class="maqam-link" onclick="event.stopPropagation()">${s.maqam}</a>`
-    : (s.scale || '');
+    ? `<a href="${maqamRoute}" class="maqam-link" onclick="event.stopPropagation()">${maqamTagLabel}</a>`
+    : (s.system === 'arabic' ? maqamTagLabel : (s.scale || ''));
 
   const performerLine = s.performer
     ? `<p class="card-performer">${s.performer}</p>`
@@ -22,6 +24,10 @@ function createSheetCard(s) {
   const badge = s.type === 'song'
     ? `<span class="badge badge-song">أغنية</span>`
     : `<span class="badge badge-inst">معزوفة</span>`;
+
+  const secondaryMeta = s.system === 'arabic'
+    ? ''
+    : (s.tonic ? `<span class="card-tonic">${s.tonic}</span>` : '');
 
   card.innerHTML = `
     <div class="card-header">
@@ -34,7 +40,7 @@ function createSheetCard(s) {
     </div>
     <div class="card-meta">
       <span class="card-maqam">${maqamDisplay}</span>
-      ${s.tonic ? `<span class="card-tonic">${s.tonic}</span>` : ''}
+      ${secondaryMeta}
     </div>
     <a href="${s.pdf}" target="_blank" class="download-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
