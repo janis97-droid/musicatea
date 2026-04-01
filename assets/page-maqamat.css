@@ -105,11 +105,18 @@
   border-color: rgba(200,164,90,0.30);
 }
 
+.maqam-card-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .maqam-family-card h3 {
   font-size: 1.7rem;
   font-weight: 900;
   color: var(--gold-light);
-  margin: 0 0 6px 0;
+  margin: 0;
   line-height: 1.12;
 }
 
@@ -117,7 +124,7 @@
   font-size: 0.88rem;
   color: var(--text-dim);
   font-style: italic;
-  display: block;
+  display: inline-block;
   margin-bottom: 0;
 }
 
@@ -184,15 +191,40 @@
 @media (max-width: 640px) {
   #maqamat-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 12px;
   }
 
   .maqam-family-card {
     min-height: auto;
-    padding: 22px 18px 18px;
+    padding: 16px 16px 14px;
+    border-radius: 16px;
+  }
+
+  .maqam-card-heading {
+    gap: 8px;
+    align-items: baseline;
   }
 
   .maqam-family-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.34rem;
+  }
+
+  .maqam-family-card .latin {
+    font-size: 0.76rem;
+  }
+
+  .maqam-card-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+  }
+
+  .maqam-card-cta {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .maqam-card-cta svg {
+    width: 12px;
+    height: 12px;
   }
 }

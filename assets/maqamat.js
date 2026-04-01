@@ -30,8 +30,10 @@ function createFamilyCard(mainMaqam) {
 
   card.innerHTML = `
     <div class="maqam-card-main">
-      <h3>${mainMaqam.name}</h3>
-      <span class="latin">${mainMaqam.latin}</span>
+      <div class="maqam-card-heading">
+        <h3>${mainMaqam.name}</h3>
+        <span class="latin">${mainMaqam.latin}</span>
+      </div>
     </div>
 
     <div class="maqam-card-footer">
