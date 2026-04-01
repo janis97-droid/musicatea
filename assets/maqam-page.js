@@ -256,24 +256,27 @@
       }
 
       .maqam-scale-helper-row {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: flex-start;
-        margin-top: 10px;
-        margin-bottom: 4px;
+        flex: 0 1 auto;
+        min-width: 0;
       }
 
       .maqam-scale-helper-text {
-        color: var(--text-dim);
-        font-size: 0.77rem;
-        font-weight: 700;
-        line-height: 1.65;
+        color: var(--text-muted);
+        font-size: 0.94rem;
+        font-weight: 800;
+        line-height: 1.4;
+        white-space: nowrap;
       }
 
       .staff-scale-box .playbar {
         margin-top: 10px;
         padding-top: 12px;
         gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
       }
 
       .staff-scale-box .status-bar {
@@ -290,6 +293,11 @@
       @media (max-width: 700px) {
         .staff-scale-box .playbar {
           gap: 8px;
+        }
+
+        .maqam-scale-helper-text {
+          white-space: normal;
+          font-size: 0.88rem;
         }
       }
     `;
@@ -649,23 +657,29 @@
     return Math.max(1, Math.min(4, Math.max(1, noteCount - 1)));
   }
 
+  function isNawaAtharFamily(familyId, maqamId) {
+    if (String(familyId || "") === "nawa_athar") return true;
+    return ["nawa_athar", "nikriz", "basandida"].includes(String(maqamId || ""));
+  }
+
   function formatGuideJinsLabel(name) {
     const text = textOrFallback(name, "الجنس");
     if (!text || text === "—") return "الجنس";
-    if (text.includes("نوا أثر")) return "عقد نوا أثر";
     if (text.startsWith("جنس ")) return text;
     if (text.startsWith("المنطقة العليا") || text.startsWith("منطقة ")) return text;
     return `جنس ${text}`;
   }
 
-  function ensureJinsGuide(model, maqamId) {
+  function ensureJinsGuide(model, maqamId, familyId) {
     const keysRow = document.getElementById("keys-current");
     if (!keysRow) return;
 
     const noteCount = keysRow.querySelectorAll(".note-key").length;
     if (!noteCount) return;
 
-    const lowerName = formatGuideJinsLabel(model?.jins_architecture?.lower?.name);
+    const lowerName = isNawaAtharFamily(familyId || model?.family, maqamId)
+      ? "عقد نوا أثر"
+      : formatGuideJinsLabel(model?.jins_architecture?.lower?.name);
     const upperName = formatGuideJinsLabel(model?.jins_architecture?.upper?.name);
     const lowerCount = getLowerJinsSpan(maqamId, noteCount);
     const upperCount = Math.max(1, noteCount - lowerCount);
@@ -694,7 +708,8 @@
 
     const headerTitle = staffBox.querySelector(".staff-scale-title");
     const playbar = staffBox.querySelector(".playbar");
-    if (!headerTitle || !playbar) return;
+    const playBtn = playbar ? playbar.querySelector(".play-btn") : null;
+    if (!headerTitle || !playbar || !playBtn) return;
 
     const helperText = String(headerTitle.textContent || "").trim();
     const isHelperSentence = helperText.includes("اضغط") || helperText.includes("للاستماع");
@@ -708,7 +723,9 @@
     if (!helperRow) {
       helperRow = createEl("div", "maqam-scale-helper-row");
       helperRow.id = SCALE_HELPER_ROW_ID;
-      playbar.insertAdjacentElement("beforebegin", helperRow);
+      playBtn.insertAdjacentElement("afterend", helperRow);
+    } else if (helperRow.parentElement !== playbar || helperRow.previousElementSibling !== playBtn) {
+      playBtn.insertAdjacentElement("afterend", helperRow);
     }
 
     helperRow.innerHTML = `<div class="maqam-scale-helper-text">${helperText}</div>`;
@@ -768,7 +785,7 @@
       window.requestAnimationFrame(() => {
         setTimeout(() => {
           enhanceStaffHoverLabels();
-          ensureJinsGuide(maqamModel, state.maqamId);
+          ensureJinsGuide(maqamModel, state.maqamId, state.familyId);
           ensurePlaybackHelperRow();
         }, 40);
       });
