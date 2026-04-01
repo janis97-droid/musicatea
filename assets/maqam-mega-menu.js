@@ -18,10 +18,11 @@
   ];
 
   const CLOSE_DELAY_MS = 180;
-  const DESKTOP_MAIN_LIST_WIDTH = 240;
-  const DESKTOP_BRANCH_PANEL_WIDTH = 360;
+  const DESKTOP_MAIN_LIST_WIDTH = 220;
+  const DESKTOP_BRANCH_PANEL_WIDTH = 340;
   const VIEWPORT_BREAKPOINT_QUERY = '(max-width: 980px)';
   const RESIZE_REINIT_DELAY_MS = 120;
+  const COMPACT_ITEM_HEIGHT = 52;
 
   let resizeReinitTimer = null;
 
@@ -46,27 +47,31 @@
         flex: 0 0 ${DESKTOP_MAIN_LIST_WIDTH}px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        padding: 16px 14px;
+        gap: 6px;
+        padding: 12px 10px;
         overflow: visible;
         align-content: stretch;
         border-left: 1px solid rgba(255,255,255,0.06);
       }
 
       .maqam-nav-item .maqam-mega-main-item {
-        min-height: 0;
-        padding: 10px 12px;
+        min-height: ${COMPACT_ITEM_HEIGHT}px;
+        height: ${COMPACT_ITEM_HEIGHT}px;
+        padding: 6px 10px;
         align-items: flex-start;
         justify-content: center;
+        gap: 1px;
+        border-radius: 11px;
       }
 
       .maqam-nav-item .maqam-mega-main-name {
-        font-size: 0.98rem;
-        line-height: 1.2;
+        font-size: 0.9rem;
+        line-height: 1.15;
       }
 
       .maqam-nav-item .maqam-mega-main-latin {
-        font-size: 0.73rem;
+        font-size: 0.68rem;
+        line-height: 1.1;
       }
 
       .maqam-nav-item .maqam-mega-branch-panel {
@@ -75,25 +80,52 @@
         align-self: stretch;
         display: flex;
         flex-direction: column;
+        padding: 12px;
+        gap: 10px;
       }
 
       .maqam-nav-item .maqam-mega-branch-kicker {
-        font-size: 0.92rem;
+        font-size: 0.86rem;
         font-weight: 900;
       }
 
       .maqam-nav-item .maqam-mega-branch-family-link {
-        font-size: 1.26rem;
+        font-size: 1.08rem;
       }
 
       .maqam-nav-item .maqam-mega-branch-name {
-        font-size: 0.86rem;
+        font-size: 0.84rem;
+        line-height: 1.15;
+      }
+
+      .maqam-nav-item .maqam-mega-branch-latin {
+        font-size: 0.68rem;
+        line-height: 1.1;
       }
 
       .maqam-nav-item .maqam-mega-branches {
         overflow: visible;
         padding-left: 2px;
         flex: 1 1 auto;
+        gap: 6px;
+      }
+
+      .maqam-nav-item .maqam-mega-branch-item {
+        min-height: ${COMPACT_ITEM_HEIGHT}px;
+        height: ${COMPACT_ITEM_HEIGHT}px;
+        padding: 6px 10px;
+        justify-content: center;
+        gap: 1px;
+        border-radius: 11px;
+      }
+
+      .maqam-nav-item .maqam-mega-empty {
+        min-height: ${COMPACT_ITEM_HEIGHT}px;
+        display: flex;
+        align-items: center;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        line-height: 1.5;
       }
 
       @media (max-width: 980px) {
@@ -270,7 +302,7 @@
       menu.style.top = '100%';
       menu.style.right = '0';
       menu.style.left = '';
-      menu.style.width = 'min(640px, calc(100vw - 40px))';
+      menu.style.width = 'min(600px, calc(100vw - 40px))';
       menu.style.paddingTop = '14px';
       menu.style.maxHeight = '';
       menu.style.overflow = '';
