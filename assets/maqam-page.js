@@ -594,6 +594,13 @@
     });
   }
 
+  function shouldShowFamilyContext(maqamId, familyId, modelFamilyId) {
+    const resolvedMaqamId = String(maqamId || "").trim();
+    const resolvedFamilyId = String(familyId || modelFamilyId || "").trim();
+    if (!resolvedMaqamId || !resolvedFamilyId) return false;
+    return resolvedMaqamId === resolvedFamilyId;
+  }
+
   function ensureTonicHelperLabel() {
     const header = document.querySelector(".staff-scale-header");
     const tonicSelector = document.getElementById("tonic-selector-current");
@@ -856,7 +863,7 @@
       injectHeroSummary(heroInner, maqamModel);
       cleanupInitialInfoSection();
 
-      if (familyModel) {
+      if (familyModel && shouldShowFamilyContext(state.maqamId, state.familyId, maqamModel?.family)) {
         maqamBody.appendChild(renderFamilyContextSection(familyModel));
       }
 
