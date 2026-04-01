@@ -51,33 +51,6 @@
       }
 
       @media (max-width: 980px) {
-        .maqam-nav-item .maqam-mega-menu {
-          display: block !important;
-        }
-
-        .maqam-nav-item .maqam-mega-shell {
-          grid-template-columns: 1fr;
-          min-height: auto;
-        }
-
-        .maqam-nav-item .maqam-mega-main-grid {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          align-content: stretch;
-        }
-
-        .maqam-nav-item .maqam-mega-branch-panel {
-          border-right: none;
-          border-top: 1px solid rgba(255,255,255,0.06);
-          min-height: auto;
-          max-height: none;
-          overflow: visible;
-        }
-
-        .maqam-nav-item .maqam-mega-branches {
-          max-height: 34vh;
-          overflow: auto;
-        }
-
         .nav-links a[href="index.html"],
         .nav-links a[data-home-link="true"] {
           display: none;
@@ -106,26 +79,6 @@
 
         .nav-logo {
           font-size: 1.82rem;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .maqam-nav-item .maqam-mega-main-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .maqam-nav-item .maqam-mega-main-item {
-          min-height: 74px;
-          padding: 10px 12px;
-        }
-
-        .maqam-nav-item .maqam-mega-main-name {
-          font-size: 0.92rem;
-        }
-
-        .maqam-nav-item .maqam-mega-main-latin,
-        .maqam-nav-item .maqam-mega-branch-latin {
-          font-size: 0.7rem;
         }
       }
     `;
@@ -242,32 +195,15 @@
 
     function applyMenuPlacement() {
       menu.style.display = 'block';
-
-      if (isCompactViewport()) {
-        const triggerRect = triggerLink.getBoundingClientRect();
-        const top = Math.min(window.innerHeight - 24, triggerRect.bottom + 10);
-        const maxHeight = Math.max(220, window.innerHeight - top - 12);
-
-        menu.style.position = 'fixed';
-        menu.style.top = `${top}px`;
-        menu.style.right = '12px';
-        menu.style.left = '12px';
-        menu.style.width = 'auto';
-        menu.style.paddingTop = '0px';
-        menu.style.maxHeight = `${maxHeight}px`;
-        menu.style.overflow = 'auto';
-        menu.style.zIndex = '350';
-      } else {
-        menu.style.position = 'absolute';
-        menu.style.top = '100%';
-        menu.style.right = '0';
-        menu.style.left = '';
-        menu.style.width = 'min(860px, calc(100vw - 40px))';
-        menu.style.paddingTop = '14px';
-        menu.style.maxHeight = '';
-        menu.style.overflow = '';
-        menu.style.zIndex = '';
-      }
+      menu.style.position = 'absolute';
+      menu.style.top = '100%';
+      menu.style.right = '0';
+      menu.style.left = '';
+      menu.style.width = 'min(860px, calc(100vw - 40px))';
+      menu.style.paddingTop = '14px';
+      menu.style.maxHeight = '';
+      menu.style.overflow = '';
+      menu.style.zIndex = '';
     }
 
     function setOpen(isOpen) {
@@ -300,9 +236,7 @@
     });
 
     wrapper.addEventListener('mouseleave', () => {
-      if (!isCompactViewport()) {
-        scheduleClose();
-      }
+      scheduleClose();
     });
 
     wrapper.addEventListener('focusin', () => {
@@ -317,11 +251,7 @@
     });
 
     menu.addEventListener('mouseenter', clearCloseTimer);
-    menu.addEventListener('mouseleave', () => {
-      if (!isCompactViewport()) {
-        scheduleClose();
-      }
-    });
+    menu.addEventListener('mouseleave', scheduleClose);
 
     triggerLink.addEventListener('click', (event) => {
       event.preventDefault();
@@ -333,21 +263,7 @@
     mainItems.forEach(item => {
       item.addEventListener('mouseenter', () => setActiveFamily(item.dataset.family));
       item.addEventListener('focus', () => setActiveFamily(item.dataset.family));
-      item.addEventListener('click', (event) => {
-        const isActive = item.dataset.family === activeFamilyId;
-
-        if (isCompactViewport()) {
-          if (!isActive) {
-            event.preventDefault();
-            setOpen(true);
-            setActiveFamily(item.dataset.family);
-            return;
-          }
-
-          setOpen(false);
-          return;
-        }
-
+      item.addEventListener('click', () => {
         setOpen(false);
       });
     });
@@ -364,12 +280,6 @@
       }
     });
 
-    window.addEventListener('resize', () => {
-      if (wrapper.classList.contains('is-open')) {
-        applyMenuPlacement();
-      }
-    });
-
     if (menuShell) {
       menuShell.addEventListener('click', (event) => {
         const branchLink = event.target.closest('.maqam-mega-branch-item, .maqam-mega-branch-family-link');
@@ -382,6 +292,11 @@
 
   function initMegaMenu() {
     injectMegaMenuOverrides();
+
+    if (isCompactViewport()) {
+      return;
+    }
+
     const navGroups = document.querySelectorAll('.nav-links');
     navGroups.forEach(enhanceNavGroup);
   }
