@@ -214,23 +214,24 @@
 
       .maqam-jins-guide {
         display: grid;
-        gap: 7px;
-        margin-top: 10px;
+        gap: 6px;
+        margin-top: 12px;
         direction: ltr;
       }
 
       .maqam-jins-guide-seg {
-        min-height: 34px;
-        border-radius: 10px;
+        min-height: 36px;
+        border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 6px 8px;
-        font-size: 0.76rem;
-        font-weight: 800;
-        line-height: 1.25;
+        padding: 7px 10px;
+        font-size: 0.75rem;
+        font-weight: 850;
+        line-height: 1.2;
         border: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
       }
 
       .maqam-jins-guide-seg.lower {
@@ -251,6 +252,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
+        letter-spacing: 0.01em;
       }
 
       .maqam-scale-helper-row {
@@ -650,6 +652,7 @@
   function formatGuideJinsLabel(name) {
     const text = textOrFallback(name, "الجنس");
     if (!text || text === "—") return "الجنس";
+    if (text.includes("نوا أثر")) return "عقد نوا أثر";
     if (text.startsWith("جنس ")) return text;
     if (text.startsWith("المنطقة العليا") || text.startsWith("منطقة ")) return text;
     return `جنس ${text}`;
