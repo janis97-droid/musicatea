@@ -257,20 +257,37 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        margin-top: 12px;
-        margin-bottom: -4px;
+        margin-top: 10px;
+        margin-bottom: 4px;
       }
 
       .maqam-scale-helper-text {
         color: var(--text-dim);
-        font-size: 0.78rem;
+        font-size: 0.77rem;
         font-weight: 700;
-        line-height: 1.7;
+        line-height: 1.65;
+      }
+
+      .staff-scale-box .playbar {
+        margin-top: 10px;
+        padding-top: 12px;
+        gap: 12px;
+      }
+
+      .staff-scale-box .status-bar {
+        min-height: 0;
+        line-height: 1.5;
       }
 
       @media (max-width: 900px) {
         .maqam-theory-grid {
           grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .staff-scale-box .playbar {
+          gap: 8px;
         }
       }
     `;
