@@ -18,6 +18,7 @@
   ];
 
   const CLOSE_DELAY_MS = 180;
+  const DESKTOP_BRANCH_PANEL_HEIGHT = 320;
 
   function injectMegaMenuOverrides() {
     if (document.getElementById('maqam-mega-menu-overrides')) return;
@@ -29,6 +30,26 @@
         box-sizing: border-box;
       }
 
+      .maqam-nav-item .maqam-mega-shell {
+        align-items: stretch;
+        min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
+      }
+
+      .maqam-nav-item .maqam-mega-main-grid {
+        align-content: start;
+      }
+
+      .maqam-nav-item .maqam-mega-branch-panel {
+        min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
+        max-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
+        overflow: hidden;
+      }
+
+      .maqam-nav-item .maqam-mega-branches {
+        overflow: auto;
+        padding-left: 2px;
+      }
+
       @media (max-width: 980px) {
         .maqam-nav-item .maqam-mega-menu {
           display: block !important;
@@ -36,21 +57,75 @@
 
         .maqam-nav-item .maqam-mega-shell {
           grid-template-columns: 1fr;
+          min-height: auto;
         }
 
         .maqam-nav-item .maqam-mega-main-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
+          align-content: stretch;
         }
 
         .maqam-nav-item .maqam-mega-branch-panel {
           border-right: none;
           border-top: 1px solid rgba(255,255,255,0.06);
+          min-height: auto;
+          max-height: none;
+          overflow: visible;
+        }
+
+        .maqam-nav-item .maqam-mega-branches {
+          max-height: 34vh;
+          overflow: auto;
+        }
+
+        .nav-links a[href="index.html"],
+        .nav-links a[data-home-link="true"] {
+          display: none;
+        }
+
+        .nav-bottom {
+          min-height: 48px;
+          padding: 6px 0;
+        }
+
+        .nav-links {
+          gap: 0;
+        }
+
+        .nav-links a,
+        .maqam-nav-item > a {
+          font-size: 0.74rem;
+          padding: 6px 8px;
+        }
+
+        .lang-toggle {
+          font-size: 0.72rem;
+          padding: 5px 8px;
+          gap: 6px;
+        }
+
+        .nav-logo {
+          font-size: 1.82rem;
         }
       }
 
       @media (max-width: 640px) {
         .maqam-nav-item .maqam-mega-main-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .maqam-nav-item .maqam-mega-main-item {
+          min-height: 74px;
+          padding: 10px 12px;
+        }
+
+        .maqam-nav-item .maqam-mega-main-name {
+          font-size: 0.92rem;
+        }
+
+        .maqam-nav-item .maqam-mega-main-latin,
+        .maqam-nav-item .maqam-mega-branch-latin {
+          font-size: 0.7rem;
         }
       }
     `;
@@ -97,7 +172,7 @@
           <div class="maqam-mega-branch-panel">
             <div class="maqam-mega-branch-head">
               <span class="maqam-mega-branch-kicker">فروع العائلة</span>
-              <a href="${firstMain ? buildInteractiveLink(firstMain) : 'maqamat.html'}" class="maqam-mega-branch-family-link" id="maqam-mega-family-link">
+              <a href="${firstMain ? buildInteractiveLink(firstMain) : 'interactive-scale.html'}" class="maqam-mega-branch-family-link" id="maqam-mega-family-link">
                 <span id="maqam-mega-family-name">${firstMain ? firstMain.name : ''}</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M5 12h14"/>
@@ -129,7 +204,7 @@
   }
 
   function enhanceNavGroup(navLinks) {
-    const triggerLink = [...navLinks.querySelectorAll('a')].find(link => link.getAttribute('href') === 'maqamat.html');
+    const triggerLink = navLinks.querySelector('[data-nav-maqamat="true"]') || [...navLinks.querySelectorAll('a')].find(link => link.getAttribute('href') === 'maqamat.html');
     if (!triggerLink || triggerLink.closest('.maqam-nav-item')) return;
 
     const mainFamilies = getOrderedMainFamilies();
@@ -259,9 +334,21 @@
       item.addEventListener('mouseenter', () => setActiveFamily(item.dataset.family));
       item.addEventListener('focus', () => setActiveFamily(item.dataset.family));
       item.addEventListener('click', (event) => {
-        event.preventDefault();
-        setOpen(true);
-        setActiveFamily(item.dataset.family);
+        const isActive = item.dataset.family === activeFamilyId;
+
+        if (isCompactViewport()) {
+          if (!isActive) {
+            event.preventDefault();
+            setOpen(true);
+            setActiveFamily(item.dataset.family);
+            return;
+          }
+
+          setOpen(false);
+          return;
+        }
+
+        setOpen(false);
       });
     });
 
