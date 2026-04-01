@@ -583,6 +583,17 @@
     if (existing) existing.remove();
   }
 
+  function cleanupInitialInfoSection() {
+    document.querySelectorAll(".maqam-quickfacts").forEach(node => node.remove());
+    const infoGrid = document.getElementById("maqam-info-grid");
+    if (infoGrid) infoGrid.remove();
+    document.querySelectorAll(".sec-title").forEach(node => {
+      if (String(node.textContent || "").trim() === "معلومات المقام") {
+        node.remove();
+      }
+    });
+  }
+
   function ensureTonicHelperLabel() {
     const header = document.querySelector(".staff-scale-header");
     const tonicSelector = document.getElementById("tonic-selector-current");
@@ -843,15 +854,7 @@
       pageRoot.setAttribute(ENHANCED_ATTR, state.maqamId);
 
       injectHeroSummary(heroInner, maqamModel);
-
-      const infoGrid = pageRoot.querySelector("#maqam-info-grid");
-      const quickFacts = renderQuickFacts(maqamModel);
-
-      if (infoGrid && infoGrid.parentNode) {
-        infoGrid.parentNode.insertBefore(quickFacts, infoGrid);
-      } else {
-        maqamBody.insertBefore(quickFacts, staffBox.nextSibling);
-      }
+      cleanupInitialInfoSection();
 
       if (familyModel) {
         maqamBody.appendChild(renderFamilyContextSection(familyModel));
