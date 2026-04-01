@@ -14,11 +14,15 @@ function createSheetCard(s) {
   const maqamTagLabel = buildInteractiveMaqamTagLabel(s.maqam, s.tonic);
 
   const maqamDisplay = maqamRoute
-    ? `<a href="${maqamRoute}" class="maqam-link" onclick="event.stopPropagation()">${maqamTagLabel}</a>`
-    : (s.system === 'arabic' ? maqamTagLabel : (s.scale || ''));
+    ? `<a href="${maqamRoute}" class="maqam-link card-tag card-tag-clickable" onclick="event.stopPropagation()">${maqamTagLabel}</a>`
+    : `<span class="card-tag">${s.system === 'arabic' ? maqamTagLabel : (s.scale || '')}</span>`;
 
   const performerLine = s.performer
-    ? `<p class="card-performer">${s.performer}</p>`
+    ? `
+      <div class="card-credit-row">
+        <span class="card-credit-label">المؤدي</span>
+        <span class="card-credit-value">${s.performer}</span>
+      </div>`
     : '';
 
   const badge = s.type === 'song'
@@ -27,7 +31,7 @@ function createSheetCard(s) {
 
   const secondaryMeta = s.system === 'arabic'
     ? ''
-    : (s.tonic ? `<span class="card-tonic">${s.tonic}</span>` : '');
+    : (s.tonic ? `<span class="card-tag card-tag-muted">${s.tonic}</span>` : '');
 
   card.innerHTML = `
     <div class="card-header">
@@ -35,13 +39,23 @@ function createSheetCard(s) {
         <h3 class="card-title">${s.title}</h3>
         ${badge}
       </div>
-      <p class="card-composer">${s.composer}</p>
-      ${performerLine}
+
+      <div class="card-credits">
+        <div class="card-credit-row">
+          <span class="card-credit-label">الملحن</span>
+          <span class="card-credit-value">${s.composer}</span>
+        </div>
+        ${performerLine}
+      </div>
     </div>
+
     <div class="card-meta">
-      <span class="card-maqam">${maqamDisplay}</span>
-      ${secondaryMeta}
+      <div class="card-tags-row">
+        ${maqamDisplay}
+        ${secondaryMeta}
+      </div>
     </div>
+
     <a href="${s.pdf}" target="_blank" class="download-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
