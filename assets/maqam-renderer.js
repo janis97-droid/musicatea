@@ -56,6 +56,9 @@
     const state = ns.state;
     const maqam = getMaqamById(state.maqamId);
     const displayName = ns.engine.getDisplayNameForTonicSafe(state.maqamId, state.tonic);
+    const latinDisplayName = typeof getLatinDisplayNameForTonic === 'function'
+      ? getLatinDisplayNameForTonic(state.maqamId, state.tonic)
+      : (maqam ? maqam.latin || '' : '');
     const tonicLabel = getTonicLabelAr(state.tonic);
     const notes = ns.engine.buildScaleNotes(state.maqamId, state.tonic);
 
@@ -72,7 +75,7 @@
         <div class="maqam-hero-inner">
           <div class="maqam-name-wrap">
             <h1 class="maqam-name" id="maqam-title">${displayName}</h1>
-            <span class="maqam-latin">${maqam.latin || ""}</span>
+            <span class="maqam-latin">${latinDisplayName}</span>
           </div>
           <p class="maqam-desc" id="maqam-subtitle">الطبقة الحالية: ${tonicLabel}</p>
         </div>
@@ -249,6 +252,9 @@
     const title = document.getElementById("maqam-title");
     const subtitle = document.getElementById("maqam-subtitle");
     const displayName = ns.engine.getDisplayNameForTonicSafe(ns.state.maqamId, ns.state.tonic);
+    const latinDisplayName = typeof getLatinDisplayNameForTonic === 'function'
+      ? getLatinDisplayNameForTonic(ns.state.maqamId, ns.state.tonic)
+      : (maqam ? maqam.latin || '' : '');
     const tonicLabel = getTonicLabelAr(ns.state.tonic);
 
     if (title) title.textContent = displayName;
@@ -258,10 +264,8 @@
     const hero = root.querySelector(".maqam-hero");
     if (hero) hero.setAttribute("data-name", displayName);
 
-    if (maqam && maqam.latin) {
-      const latin = root.querySelector(".maqam-latin");
-      if (latin) latin.textContent = maqam.latin;
-    }
+    const latin = root.querySelector(".maqam-latin");
+    if (latin) latin.textContent = latinDisplayName;
 
     const playLabel = document.getElementById("playlabel-current");
     if (playLabel && !ns.state.isPlaying) {

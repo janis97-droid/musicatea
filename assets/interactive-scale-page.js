@@ -33,6 +33,13 @@
   function resolveInitialSelection(familyId, maqamId, tonic) {
     let resolvedFamily = familyId;
     let resolvedMaqam = maqamId;
+    let resolvedTonic = tonic;
+
+    if (resolvedMaqam && typeof resolveInteractiveRepresentativeSelection === 'function') {
+      const representative = resolveInteractiveRepresentativeSelection(resolvedMaqam, resolvedTonic);
+      resolvedMaqam = representative.maqamId;
+      resolvedTonic = representative.tonic;
+    }
 
     if (!resolvedFamily && resolvedMaqam) {
       const maqam = getMaqamById(resolvedMaqam);
@@ -58,7 +65,7 @@
 
     const allowedTonics = getInteractiveTonicsForMaqam(resolvedMaqam);
     const defaultTonic = getInteractiveDefaultTonic(resolvedMaqam);
-    const resolvedTonic = allowedTonics.includes(tonic) ? tonic : defaultTonic;
+    resolvedTonic = allowedTonics.includes(resolvedTonic) ? resolvedTonic : defaultTonic;
 
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
@@ -87,12 +94,18 @@
   }
 
   function setActiveMaqam(maqamId) {
-    const maqam = getMaqamById(maqamId);
+    const representative = typeof resolveInteractiveRepresentativeSelection === 'function'
+      ? resolveInteractiveRepresentativeSelection(maqamId, null)
+      : { maqamId, tonic: null };
+
+    const resolvedMaqamId = representative.maqamId;
+    const maqam = getMaqamById(resolvedMaqamId);
     if (!maqam) return;
+
     ns.audio.stopAllAudio();
-    ns.state.maqamId = maqamId;
+    ns.state.maqamId = resolvedMaqamId;
     ns.state.familyId = maqam.family;
-    ns.state.tonic = getInteractiveDefaultTonic(maqamId);
+    ns.state.tonic = representative.tonic || getInteractiveDefaultTonic(resolvedMaqamId);
     ns.state.activeNoteIndex = null;
     ns.state.isPlaying = false;
     ns.state.stopRequested = false;

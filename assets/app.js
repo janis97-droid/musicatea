@@ -7,6 +7,15 @@ const scaleSelect = document.getElementById('scale');
 const tonicSelect = document.getElementById('tonic');
 const searchInput = document.getElementById('search');
 
+const URL_KEYS = {
+  system: 'system',
+  type: 'type',
+  maqam: 'maqam',
+  scale: 'scale',
+  tonic: 'tonic',
+  search: 'q'
+};
+
 const indexedSheets = sheets.map((sheet, index) => ({
   ...sheet,
   _renderIndex: index,
@@ -47,6 +56,7 @@ function buildUniqueValues(data, fieldName) {
 }
 
 function fillSelect(selectEl, values, firstOptionLabel) {
+  const previousValue = selectEl.value;
   selectEl.innerHTML = '';
 
   const firstOption = document.createElement('option');
@@ -60,6 +70,10 @@ function fillSelect(selectEl, values, firstOptionLabel) {
     opt.textContent = value;
     selectEl.appendChild(opt);
   });
+
+  if (previousValue && values.includes(previousValue)) {
+    selectEl.value = previousValue;
+  }
 }
 
 function populateFilters() {
@@ -74,6 +88,76 @@ function updateSystemSpecificControls(systemValue) {
   const isArabic = systemValue === 'arabic';
   maqamSelect.style.display = isArabic ? 'inline' : 'none';
   scaleSelect.style.display = isArabic ? 'none' : 'inline';
+
+  if (isArabic) {
+    scaleSelect.value = '';
+  } else {
+    maqamSelect.value = '';
+  }
+}
+
+function getFilterState() {
+  return {
+    system: systemSelect.value,
+    type: typeSelect.value,
+    maqam: maqamSelect.value,
+    scale: scaleSelect.value,
+    tonic: tonicSelect.value,
+    search: searchInput.value.trim()
+  };
+}
+
+function syncUrlFromState() {
+  const state = getFilterState();
+  const params = new URLSearchParams();
+
+  if (state.system && state.system !== 'arabic') params.set(URL_KEYS.system, state.system);
+  if (state.type) params.set(URL_KEYS.type, state.type);
+  if (state.maqam) params.set(URL_KEYS.maqam, state.maqam);
+  if (state.scale) params.set(URL_KEYS.scale, state.scale);
+  if (state.tonic) params.set(URL_KEYS.tonic, state.tonic);
+  if (state.search) params.set(URL_KEYS.search, state.search);
+
+  const query = params.toString();
+  const nextUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+  window.history.replaceState({}, '', nextUrl);
+}
+
+function applyStateFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedSystem = params.get(URL_KEYS.system);
+  const requestedType = params.get(URL_KEYS.type);
+  const requestedMaqam = params.get(URL_KEYS.maqam);
+  const requestedScale = params.get(URL_KEYS.scale);
+  const requestedTonic = params.get(URL_KEYS.tonic);
+  const requestedSearch = params.get(URL_KEYS.search);
+
+  if (requestedSystem && ['arabic', 'western'].includes(requestedSystem)) {
+    systemSelect.value = requestedSystem;
+  }
+
+  populateFilters();
+  updateSystemSpecificControls(systemSelect.value);
+
+  if (requestedType && [...typeSelect.options].some(opt => opt.value === requestedType)) {
+    typeSelect.value = requestedType;
+  }
+
+  if (requestedMaqam && [...maqamSelect.options].some(opt => opt.value === requestedMaqam)) {
+    maqamSelect.value = requestedMaqam;
+  }
+
+  if (requestedScale && [...scaleSelect.options].some(opt => opt.value === requestedScale)) {
+    scaleSelect.value = requestedScale;
+  }
+
+  if (requestedTonic && [...tonicSelect.options].some(opt => opt.value === requestedTonic)) {
+    tonicSelect.value = requestedTonic;
+  }
+
+  if (requestedSearch) {
+    searchInput.value = requestedSearch;
+  }
 }
 
 function applyFilters() {
@@ -109,6 +193,7 @@ function applyFilters() {
   }
 
   render(filtered);
+  syncUrlFromState();
 }
 
 systemSelect.addEventListener('change', () => {
@@ -122,6 +207,7 @@ scaleSelect.addEventListener('change', applyFilters);
 tonicSelect.addEventListener('change', applyFilters);
 searchInput.addEventListener('input', applyFilters);
 
+applyStateFromUrl();
 populateFilters();
 updateSystemSpecificControls(systemSelect.value);
 applyFilters();
