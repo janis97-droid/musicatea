@@ -114,7 +114,7 @@ const sheets = [
     type: "song",
     composer: "امجد العاطفي",
     performer: "جورج وسوف",
-    maqam: "سيكا",
+    maqam: "هزام",
     scale: null,
     tonic: "سي نصف بيمول",
     pdf: "pdfs/w-mshina.pdf"
