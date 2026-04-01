@@ -647,6 +647,14 @@
     return Math.max(1, Math.min(4, Math.max(1, noteCount - 1)));
   }
 
+  function formatGuideJinsLabel(name) {
+    const text = textOrFallback(name, "الجنس");
+    if (!text || text === "—") return "الجنس";
+    if (text.startsWith("جنس ")) return text;
+    if (text.startsWith("المنطقة العليا") || text.startsWith("منطقة ")) return text;
+    return `جنس ${text}`;
+  }
+
   function ensureJinsGuide(model, maqamId) {
     const keysRow = document.getElementById("keys-current");
     if (!keysRow) return;
@@ -654,8 +662,8 @@
     const noteCount = keysRow.querySelectorAll(".note-key").length;
     if (!noteCount) return;
 
-    const lowerName = textOrFallback(model?.jins_architecture?.lower?.name, "الجنس الأساسي");
-    const upperName = textOrFallback(model?.jins_architecture?.upper?.name, "الجنس العلوي");
+    const lowerName = formatGuideJinsLabel(model?.jins_architecture?.lower?.name);
+    const upperName = formatGuideJinsLabel(model?.jins_architecture?.upper?.name);
     const lowerCount = getLowerJinsSpan(maqamId, noteCount);
     const upperCount = Math.max(1, noteCount - lowerCount);
 
