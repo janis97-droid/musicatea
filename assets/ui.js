@@ -14,9 +14,13 @@ function createSheetCard(s) {
   card.dataset.system = s.system;
   card.dataset.maqam = s.maqam || '';
 
+  const maqamRoute = s.system === 'arabic' && s.maqam
+    ? getMaqamRoute(s.maqam)
+    : null;
+
   // Maqam link or scale text
-  const maqamDisplay = s.system === 'arabic' && s.maqam
-    ? `<a href="maqam.html?id=${slugify(s.maqam)}" class="maqam-link" onclick="event.stopPropagation()">${s.maqam}</a>`
+  const maqamDisplay = maqamRoute
+    ? `<a href="${maqamRoute}" class="maqam-link" onclick="event.stopPropagation()">${s.maqam}</a>`
     : (s.scale || '');
 
   // Performer line only if exists
@@ -62,7 +66,7 @@ function createSheetCard(s) {
 function createMaqamCard(m) {
   const card = document.createElement('a');
   card.className = 'maqam-card';
-  card.href = `maqam.html?id=${m.id}`;
+  card.href = getMaqamRoute(m.id) || 'maqamat.html';
 
   const feelings = m.feeling.slice(0, 3).map(f =>
     `<span class="feeling-tag">${f}</span>`
@@ -147,6 +151,31 @@ function slugify(name) {
   if (typeof maqamat === 'undefined') return name;
   const found = maqamat.find(m => m.name === name);
   return found ? found.id : name;
+}
+
+/**
+ * Resolve maqam object from id or Arabic name
+ * @param {string} maqamRef
+ * @returns {Object|null}
+ */
+function getMaqamObject(maqamRef) {
+  if (typeof maqamat === 'undefined' || !maqamRef) return null;
+  return maqamat.find(m => m.id === maqamRef || m.name === maqamRef) || null;
+}
+
+/**
+ * Build the canonical interactive maqam URL
+ * @param {string} maqamRef
+ * @returns {string|null}
+ */
+function getMaqamRoute(maqamRef) {
+  const maqam = getMaqamObject(maqamRef);
+  if (!maqam) return null;
+
+  const params = new URLSearchParams();
+  if (maqam.family) params.set('family', maqam.family);
+  params.set('maqam', maqam.id);
+  return `interactive-scale.html?${params.toString()}`;
 }
 
 /**
