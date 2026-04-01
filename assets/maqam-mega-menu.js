@@ -18,7 +18,7 @@
   ];
 
   const CLOSE_DELAY_MS = 180;
-  const DESKTOP_BRANCH_PANEL_HEIGHT = 332;
+  const DESKTOP_BRANCH_PANEL_HEIGHT = 430;
   const DESKTOP_MAIN_LIST_WIDTH = 240;
   const DESKTOP_BRANCH_PANEL_WIDTH = 360;
 
@@ -75,8 +75,13 @@
         overflow: hidden;
       }
 
+      .maqam-nav-item .maqam-mega-branch-kicker {
+        font-size: 0.92rem;
+        font-weight: 900;
+      }
+
       .maqam-nav-item .maqam-mega-branch-family-link {
-        font-size: 1.18rem;
+        font-size: 1.26rem;
       }
 
       .maqam-nav-item .maqam-mega-branch-name {
