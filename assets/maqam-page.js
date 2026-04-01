@@ -8,6 +8,7 @@
   const ENHANCED_ATTR = "data-maqam-enhanced";
   const STAFF_NOTE_BOUND_ATTR = "data-staff-hover-bound";
   const JINS_GUIDE_ROW_ID = "maqam-jins-guide-row";
+  const SCALE_HELPER_ROW_ID = "maqam-scale-helper-row";
   let staffObserver = null;
 
   function injectStyles() {
@@ -250,6 +251,21 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
+      }
+
+      .maqam-scale-helper-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 12px;
+        margin-bottom: -4px;
+      }
+
+      .maqam-scale-helper-text {
+        color: var(--text-dim);
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.7;
       }
 
       @media (max-width: 900px) {
@@ -644,6 +660,33 @@
     `;
   }
 
+  function ensurePlaybackHelperRow() {
+    const staffBox = document.querySelector(".staff-scale-box");
+    if (!staffBox) return;
+
+    const headerTitle = staffBox.querySelector(".staff-scale-title");
+    const playbar = staffBox.querySelector(".playbar");
+    if (!headerTitle || !playbar) return;
+
+    const helperText = String(headerTitle.textContent || "").trim();
+    const isHelperSentence = helperText.includes("اضغط") || helperText.includes("للاستماع");
+    let helperRow = document.getElementById(SCALE_HELPER_ROW_ID);
+
+    if (!isHelperSentence) {
+      if (helperRow) helperRow.remove();
+      return;
+    }
+
+    if (!helperRow) {
+      helperRow = createEl("div", "maqam-scale-helper-row");
+      helperRow.id = SCALE_HELPER_ROW_ID;
+      playbar.insertAdjacentElement("beforebegin", helperRow);
+    }
+
+    helperRow.innerHTML = `<div class="maqam-scale-helper-text">${helperText}</div>`;
+    headerTitle.textContent = "السلم التفاعلي";
+  }
+
   async function enhancePage() {
     injectStyles();
 
@@ -698,6 +741,7 @@
         setTimeout(() => {
           enhanceStaffHoverLabels();
           ensureJinsGuide(maqamModel, state.maqamId);
+          ensurePlaybackHelperRow();
         }, 40);
       });
     } catch (error) {
@@ -727,7 +771,10 @@
     setupObserver();
 
     window.requestAnimationFrame(() => {
-      setTimeout(enhanceStaffHoverLabels, 40);
+      setTimeout(() => {
+        enhanceStaffHoverLabels();
+        ensurePlaybackHelperRow();
+      }, 40);
     });
   }
 
