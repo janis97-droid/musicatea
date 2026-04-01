@@ -5,21 +5,6 @@
   const ns = window.InteractiveScaleApp = window.InteractiveScaleApp || {};
   const { SVG_NS, SLOT_MAP, STAFF_LINES_Y } = ns.constants;
 
-  function injectStyles() {
-    if (document.getElementById("interactive-scale-extra-style")) return;
-    const style = document.createElement("style");
-    style.id = "interactive-scale-extra-style";
-    style.textContent = `
-      .family-switcher{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-      .family-switch-btn{border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--text-dim);border-radius:999px;padding:4px 10px;font-family:inherit;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s ease}
-      .family-switch-btn:hover{color:var(--text-muted);border-color:rgba(200,164,90,.25)}
-      .family-switch-btn.active{color:var(--gold-light);background:rgba(200,164,90,.10);border-color:rgba(200,164,90,.35)}
-      .note-key-face.note-key-face-colored{min-height:58px;border-width:1.5px}
-      .note-key-face[title], .note-btn[title]{cursor:pointer}
-    `;
-    document.head.appendChild(style);
-  }
-
   function renderAll() {
     renderSidebar();
     renderPageShell();
@@ -44,7 +29,7 @@
             </button>
           `).join("")}
         </div>
-        <div class="sidebar-family-label" style="margin-top:12px;">العائلة الموسيقية</div>
+        <div class="sidebar-family-label sidebar-family-label-spaced">العائلة الموسيقية</div>
         <div class="sidebar-family-name">${familyName}</div>
         <div class="sidebar-family-sub">${familyItems.length} مقامات</div>
       </div>
@@ -64,7 +49,6 @@
 
     sidebar.querySelectorAll(".sidebar-btn").forEach(btn => btn.addEventListener("click", () => ns.actions.setActiveMaqam(btn.dataset.maqamId)));
     sidebar.querySelectorAll(".family-switch-btn").forEach(btn => btn.addEventListener("click", () => ns.actions.setActiveMaqam(btn.dataset.maqamId)));
-    injectStyles();
   }
 
   function renderPageShell() {
@@ -187,8 +171,7 @@
         role: "button",
         tabindex: "0",
         title: note.role_description,
-        "aria-label": note.role_description,
-        style: "cursor:pointer"
+        "aria-label": note.role_description
       }, svg);
 
       drawLedgerLines(g, x, slot.ledger);
@@ -375,7 +358,6 @@
     renderInfoGrid,
     renderStaff,
     renderKeys,
-    updateDisplayedName,
-    injectStyles
+    updateDisplayedName
   };
 })();

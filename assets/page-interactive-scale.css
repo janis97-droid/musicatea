@@ -175,6 +175,41 @@
   margin-bottom:4px;
 }
 
+.sidebar-family-label-spaced {
+  margin-top:12px;
+}
+
+.family-switcher {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+.family-switch-btn {
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  color:var(--text-dim);
+  border-radius:999px;
+  padding:4px 10px;
+  font-family:inherit;
+  font-size:.72rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:all .2s ease;
+}
+
+.family-switch-btn:hover {
+  color:var(--text-muted);
+  border-color:rgba(200,164,90,.25);
+}
+
+.family-switch-btn.active {
+  color:var(--gold-light);
+  background:rgba(200,164,90,.10);
+  border-color:rgba(200,164,90,.35);
+}
+
 .sidebar-family-name {
   font-size:1.1rem;
   font-weight:900;
@@ -427,6 +462,10 @@
   overflow:visible;
 }
 
+.note-btn {
+  cursor:pointer;
+}
+
 .note-keys-row {
   display:flex;
   gap:7px;
@@ -460,6 +499,11 @@
   transition:all .2s var(--ease);
   padding:6px 4px;
   gap:1px;
+}
+
+.note-key-face.note-key-face-colored {
+  min-height:58px;
+  border-width:1.5px;
 }
 
 .note-key-face .acc {
