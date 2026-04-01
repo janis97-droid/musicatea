@@ -18,7 +18,9 @@
   ];
 
   const CLOSE_DELAY_MS = 180;
-  const DESKTOP_BRANCH_PANEL_HEIGHT = 320;
+  const DESKTOP_BRANCH_PANEL_HEIGHT = 332;
+  const DESKTOP_MAIN_LIST_WIDTH = 240;
+  const DESKTOP_BRANCH_PANEL_WIDTH = 360;
 
   function injectMegaMenuOverrides() {
     if (document.getElementById('maqam-mega-menu-overrides')) return;
@@ -31,18 +33,54 @@
       }
 
       .maqam-nav-item .maqam-mega-shell {
+        display: flex;
+        flex-direction: row;
         align-items: stretch;
         min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
       }
 
       .maqam-nav-item .maqam-mega-main-grid {
-        align-content: start;
+        width: ${DESKTOP_MAIN_LIST_WIDTH}px;
+        flex: 0 0 ${DESKTOP_MAIN_LIST_WIDTH}px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 14px;
+        overflow: auto;
+        align-content: stretch;
+        border-left: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .maqam-nav-item .maqam-mega-main-item {
+        min-height: 0;
+        padding: 10px 12px;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .maqam-nav-item .maqam-mega-main-name {
+        font-size: 0.98rem;
+        line-height: 1.2;
+      }
+
+      .maqam-nav-item .maqam-mega-main-latin {
+        font-size: 0.73rem;
       }
 
       .maqam-nav-item .maqam-mega-branch-panel {
+        flex: 0 0 ${DESKTOP_BRANCH_PANEL_WIDTH}px;
+        width: ${DESKTOP_BRANCH_PANEL_WIDTH}px;
         min-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
         max-height: ${DESKTOP_BRANCH_PANEL_HEIGHT}px;
         overflow: hidden;
+      }
+
+      .maqam-nav-item .maqam-mega-branch-family-link {
+        font-size: 1.18rem;
+      }
+
+      .maqam-nav-item .maqam-mega-branch-name {
+        font-size: 0.86rem;
       }
 
       .maqam-nav-item .maqam-mega-branches {
@@ -199,7 +237,7 @@
       menu.style.top = '100%';
       menu.style.right = '0';
       menu.style.left = '';
-      menu.style.width = 'min(860px, calc(100vw - 40px))';
+      menu.style.width = 'min(640px, calc(100vw - 40px))';
       menu.style.paddingTop = '14px';
       menu.style.maxHeight = '';
       menu.style.overflow = '';
