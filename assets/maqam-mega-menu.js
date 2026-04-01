@@ -20,6 +20,10 @@
   const CLOSE_DELAY_MS = 180;
   const DESKTOP_MAIN_LIST_WIDTH = 240;
   const DESKTOP_BRANCH_PANEL_WIDTH = 360;
+  const VIEWPORT_BREAKPOINT_QUERY = '(max-width: 980px)';
+  const RESIZE_REINIT_DELAY_MS = 120;
+
+  let resizeReinitTimer = null;
 
   function injectMegaMenuOverrides() {
     if (document.getElementById('maqam-mega-menu-overrides')) return;
@@ -129,7 +133,7 @@
   }
 
   function isCompactViewport() {
-    return window.matchMedia('(max-width: 980px)').matches;
+    return window.matchMedia(VIEWPORT_BREAKPOINT_QUERY).matches;
   }
 
   function buildInteractiveLink(maqam) {
@@ -198,8 +202,33 @@
     `).join('');
   }
 
+  function getTriggerLink(navLinks) {
+    return navLinks.querySelector('[data-nav-maqamat="true"]')
+      || [...navLinks.querySelectorAll('a')].find(link => link.getAttribute('href') === 'maqamat.html')
+      || null;
+  }
+
+  function destroyEnhancedNavGroup(navLinks) {
+    const wrapper = navLinks.querySelector('.maqam-nav-item');
+    if (!wrapper) return;
+
+    if (typeof wrapper._maqamMegaCleanup === 'function') {
+      wrapper._maqamMegaCleanup();
+    }
+
+    const triggerLink = wrapper.firstElementChild && wrapper.firstElementChild.tagName === 'A'
+      ? wrapper.firstElementChild
+      : wrapper.querySelector('a');
+    if (triggerLink) {
+      const cleanTriggerLink = triggerLink.cloneNode(true);
+      wrapper.parentNode.insertBefore(cleanTriggerLink, wrapper);
+    }
+
+    wrapper.remove();
+  }
+
   function enhanceNavGroup(navLinks) {
-    const triggerLink = navLinks.querySelector('[data-nav-maqamat="true"]') || [...navLinks.querySelectorAll('a')].find(link => link.getAttribute('href') === 'maqamat.html');
+    const triggerLink = getTriggerLink(navLinks);
     if (!triggerLink || triggerLink.closest('.maqam-nav-item')) return;
 
     const mainFamilies = getOrderedMainFamilies();
@@ -272,76 +301,141 @@
       branchesBox.innerHTML = renderBranchItems(getDisplayBranches(main));
     }
 
-    wrapper.addEventListener('mouseenter', () => {
+    const handleWrapperMouseEnter = () => {
       clearCloseTimer();
       setOpen(true);
-    });
+    };
 
-    wrapper.addEventListener('mouseleave', () => {
+    const handleWrapperMouseLeave = () => {
       scheduleClose();
-    });
+    };
 
-    wrapper.addEventListener('focusin', () => {
+    const handleWrapperFocusIn = () => {
       clearCloseTimer();
       setOpen(true);
-    });
+    };
 
-    wrapper.addEventListener('focusout', (event) => {
+    const handleWrapperFocusOut = (event) => {
       if (!wrapper.contains(event.relatedTarget)) {
         setOpen(false);
       }
-    });
+    };
 
-    menu.addEventListener('mouseenter', clearCloseTimer);
-    menu.addEventListener('mouseleave', scheduleClose);
-
-    triggerLink.addEventListener('click', (event) => {
+    const handleTriggerClick = (event) => {
       event.preventDefault();
       clearCloseTimer();
       setOpen(!wrapper.classList.contains('is-open'));
       setActiveFamily(activeFamilyId);
-    });
+    };
 
-    mainItems.forEach(item => {
-      item.addEventListener('mouseenter', () => setActiveFamily(item.dataset.family));
-      item.addEventListener('focus', () => setActiveFamily(item.dataset.family));
-      item.addEventListener('click', () => {
-        setOpen(false);
-      });
-    });
-
-    document.addEventListener('click', (event) => {
+    const handleDocumentClick = (event) => {
       if (!wrapper.contains(event.target)) {
         setOpen(false);
       }
-    });
+    };
 
-    document.addEventListener('keydown', (event) => {
+    const handleDocumentKeydown = (event) => {
       if (event.key === 'Escape') {
         setOpen(false);
       }
+    };
+
+    const handleMenuShellClick = (event) => {
+      const branchLink = event.target.closest('.maqam-mega-branch-item, .maqam-mega-branch-family-link');
+      if (branchLink) {
+        setOpen(false);
+      }
+    };
+
+    wrapper.addEventListener('mouseenter', handleWrapperMouseEnter);
+    wrapper.addEventListener('mouseleave', handleWrapperMouseLeave);
+    wrapper.addEventListener('focusin', handleWrapperFocusIn);
+    wrapper.addEventListener('focusout', handleWrapperFocusOut);
+
+    menu.addEventListener('mouseenter', clearCloseTimer);
+    menu.addEventListener('mouseleave', scheduleClose);
+
+    triggerLink.addEventListener('click', handleTriggerClick);
+
+    const mainItemListeners = mainItems.map(item => {
+      const handleItemEnter = () => setActiveFamily(item.dataset.family);
+      const handleItemFocus = () => setActiveFamily(item.dataset.family);
+      const handleItemClick = () => {
+        setOpen(false);
+      };
+
+      item.addEventListener('mouseenter', handleItemEnter);
+      item.addEventListener('focus', handleItemFocus);
+      item.addEventListener('click', handleItemClick);
+
+      return {
+        item,
+        handleItemEnter,
+        handleItemFocus,
+        handleItemClick
+      };
     });
 
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleDocumentKeydown);
+
     if (menuShell) {
-      menuShell.addEventListener('click', (event) => {
-        const branchLink = event.target.closest('.maqam-mega-branch-item, .maqam-mega-branch-family-link');
-        if (branchLink) {
-          setOpen(false);
-        }
-      });
+      menuShell.addEventListener('click', handleMenuShellClick);
     }
+
+    wrapper._maqamMegaCleanup = function () {
+      clearCloseTimer();
+      setOpen(false);
+
+      wrapper.removeEventListener('mouseenter', handleWrapperMouseEnter);
+      wrapper.removeEventListener('mouseleave', handleWrapperMouseLeave);
+      wrapper.removeEventListener('focusin', handleWrapperFocusIn);
+      wrapper.removeEventListener('focusout', handleWrapperFocusOut);
+
+      menu.removeEventListener('mouseenter', clearCloseTimer);
+      menu.removeEventListener('mouseleave', scheduleClose);
+
+      triggerLink.removeEventListener('click', handleTriggerClick);
+
+      mainItemListeners.forEach(({ item, handleItemEnter, handleItemFocus, handleItemClick }) => {
+        item.removeEventListener('mouseenter', handleItemEnter);
+        item.removeEventListener('focus', handleItemFocus);
+        item.removeEventListener('click', handleItemClick);
+      });
+
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('keydown', handleDocumentKeydown);
+
+      if (menuShell) {
+        menuShell.removeEventListener('click', handleMenuShellClick);
+      }
+    };
   }
 
-  function initMegaMenu() {
+  function syncMegaMenuToViewport() {
     injectMegaMenuOverrides();
 
+    const navGroups = document.querySelectorAll('.nav-links');
+
     if (isCompactViewport()) {
+      navGroups.forEach(destroyEnhancedNavGroup);
       return;
     }
 
-    const navGroups = document.querySelectorAll('.nav-links');
     navGroups.forEach(enhanceNavGroup);
   }
 
-  initMegaMenu();
+  function scheduleViewportSync() {
+    if (resizeReinitTimer) {
+      window.clearTimeout(resizeReinitTimer);
+    }
+
+    resizeReinitTimer = window.setTimeout(() => {
+      syncMegaMenuToViewport();
+    }, RESIZE_REINIT_DELAY_MS);
+  }
+
+  syncMegaMenuToViewport();
+  window.addEventListener('resize', scheduleViewportSync);
+  window.addEventListener('orientationchange', scheduleViewportSync);
 })();
