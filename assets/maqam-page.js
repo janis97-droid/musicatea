@@ -9,6 +9,7 @@
   const STAFF_NOTE_BOUND_ATTR = "data-staff-hover-bound";
   const JINS_GUIDE_ROW_ID = "maqam-jins-guide-row";
   const SCALE_HELPER_ROW_ID = "maqam-scale-helper-row";
+  const TONIC_HELPER_ID = "maqam-tonic-helper";
   let staffObserver = null;
 
   function injectStyles() {
@@ -39,12 +40,36 @@
       }
 
       .staff-scale-box .staff-scale-header {
-        justify-content: flex-end;
+        justify-content: flex-start;
         margin-bottom: 16px;
       }
 
       .staff-scale-box .staff-scale-title {
         display: none !important;
+      }
+
+      .maqam-tonic-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        direction: rtl;
+      }
+
+      .maqam-tonic-helper {
+        color: var(--text-muted);
+        font-size: 0.94rem;
+        font-weight: 800;
+        line-height: 1.35;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .maqam-tonic-controls .tonic-selector {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
       }
 
       .maqam-quickfacts {
@@ -313,6 +338,15 @@
       }
 
       @media (max-width: 700px) {
+        .maqam-tonic-controls {
+          gap: 8px;
+        }
+
+        .maqam-tonic-helper {
+          font-size: 0.88rem;
+          white-space: normal;
+        }
+
         .staff-scale-box .playbar {
           gap: 8px;
         }
@@ -547,6 +581,36 @@
     if (!heroInner) return;
     const existing = heroInner.querySelector(".maqam-reference-intro");
     if (existing) existing.remove();
+  }
+
+  function ensureTonicHelperLabel() {
+    const header = document.querySelector(".staff-scale-header");
+    const tonicSelector = document.getElementById("tonic-selector-current");
+    if (!header || !tonicSelector) return;
+
+    let controls = header.querySelector(".maqam-tonic-controls");
+    if (!controls) {
+      controls = createEl("div", "maqam-tonic-controls");
+      header.appendChild(controls);
+    }
+
+    let helper = document.getElementById(TONIC_HELPER_ID);
+    if (!helper) {
+      helper = createEl("div", "maqam-tonic-helper", "تغيير طبقة المقام");
+      helper.id = TONIC_HELPER_ID;
+    }
+
+    if (helper.parentElement !== controls) {
+      controls.appendChild(helper);
+    }
+
+    if (tonicSelector.parentElement !== controls) {
+      controls.appendChild(tonicSelector);
+    }
+
+    if (controls.firstElementChild !== helper) {
+      controls.insertBefore(helper, controls.firstChild);
+    }
   }
 
   function getStaffRoleLabel(description) {
@@ -806,6 +870,7 @@
 
       window.requestAnimationFrame(() => {
         setTimeout(() => {
+          ensureTonicHelperLabel();
           enhanceStaffHoverLabels();
           ensureJinsGuide(maqamModel, state.maqamId, state.familyId);
           ensurePlaybackHelperRow();
@@ -839,6 +904,7 @@
 
     window.requestAnimationFrame(() => {
       setTimeout(() => {
+        ensureTonicHelperLabel();
         enhanceStaffHoverLabels();
         ensurePlaybackHelperRow();
       }, 40);
