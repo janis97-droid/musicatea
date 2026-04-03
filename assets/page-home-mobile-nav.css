@@ -25,7 +25,7 @@
   }
 
   .nav-top-home .nav-logo {
-    font-size: 1.78rem;
+    font-size: 1.92rem;
     line-height: 1;
     text-align: center;
   }
@@ -74,19 +74,43 @@
     border-radius: 14px;
     font-size: 0.92rem;
     gap: 6px;
+    position: relative;
   }
 
   .hero-cta-home-menu .cta-btn svg {
-    width: 16px;
-    height: 16px;
+    display: none;
   }
 
-  .hero-cta-home-menu .cta-secondary {
+  .hero-cta-home-menu .cta-btn:not(:last-child) {
+    background: var(--gold);
+    color: var(--bg);
+    border: 2px solid var(--gold);
+  }
+
+  .hero-cta-home-menu .cta-btn:not(:last-child)::after {
+    content: "→";
+    display: inline-block;
+    margin-inline-start: 8px;
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .hero-cta-home-menu .cta-btn:not(:last-child):hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    color: var(--bg);
+  }
+
+  .hero-cta-home-menu .cta-btn:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .hero-cta-home-menu .cta-secondary:last-child {
     background: var(--surface);
     border-color: var(--border2);
   }
 
-  .hero-cta-home-menu .cta-secondary:hover {
+  .hero-cta-home-menu .cta-secondary:last-child:hover {
     background: var(--surface2);
   }
 }
@@ -98,7 +122,7 @@
   }
 
   .nav-top-home .nav-logo {
-    font-size: 1.62rem;
+    font-size: 1.74rem;
   }
 
   .nav-top-home .lang-toggle {
@@ -122,5 +146,9 @@
   .hero-cta-home-menu .cta-btn {
     min-height: 52px;
     font-size: 0.9rem;
+  }
+
+  .hero-cta-home-menu .cta-btn:last-child {
+    grid-column: auto;
   }
 }
