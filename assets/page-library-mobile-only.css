@@ -3,7 +3,13 @@
 
 @media (max-width: 760px) {
   .page-hero {
-    display: none;
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
   }
 
   .filters {
@@ -12,6 +18,8 @@
     align-items: stretch;
     gap: 10px;
     border-top: none;
+    padding-top: 12px;
+    margin-top: 0;
   }
 
   .filters select,
