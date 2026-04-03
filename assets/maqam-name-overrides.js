@@ -87,3 +87,26 @@
     return maqam.latin || '';
   };
 })();
+
+(function () {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+  const isHomePage = document.querySelector('.nav-top-home') && document.querySelector('.hero-cta-home-menu');
+  if (!isHomePage) return;
+
+  if (!document.getElementById('page-home-mobile-only-css')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'assets/page-home-mobile-only.css';
+    link.id = 'page-home-mobile-only-css';
+    document.head.appendChild(link);
+  }
+
+  if (document.querySelector('script[data-page-home-mobile-script="true"]')) return;
+
+  const script = document.createElement('script');
+  script.src = 'assets/page-home-mobile.js';
+  script.defer = true;
+  script.dataset.pageHomeMobileScript = 'true';
+  document.body.appendChild(script);
+})();
