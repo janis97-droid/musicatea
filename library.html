@@ -12,7 +12,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
 </head>
 <body>
- 
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -44,46 +44,31 @@
       </div>
     </div>
   </nav>
- 
+
   <header class="page-hero">
     <h1>مكتبة النوتات</h1>
     <p>نوتات موسيقية عربية وغربية — قابلة للتصفية والتحميل المجاني.</p>
   </header>
- 
+
   <div class="filters">
-    <select id="system">
-      <option value="arabic">نوتات شرقية</option>
-      <option value="western">نوتات غربية</option>
+    <select id="performer">
+      <option value="">المطرب</option>
     </select>
- 
-    <select id="type">
-      <option value="">نوع النوتة</option>
-      <option value="song">أغنية</option>
-      <option value="instrumental">معزوفة</option>
-    </select>
- 
+
     <select id="maqam">
       <option value="">كل المقامات</option>
     </select>
- 
-    <select id="scale" style="display:none;">
-      <option value="">All Scales</option>
-    </select>
- 
-    <select id="tonic">
-      <option value="">الدرجة</option>
-    </select>
- 
-    <input id="search" type="text" placeholder="بحث بالاسم أو الملحن أو المؤدي...">
+
+    <input id="search" type="text" placeholder="بحث">
   </div>
- 
+
   <div id="list" class="grid"></div>
- 
+
   <footer class="site-footer">
     <span class="footer-logo">موسيقتي</span>
     <span>© 2025 Musicatea</span>
   </footer>
- 
+
   <script src="data/sheets.js"></script>
   <script src="data/maqamat.js"></script>
   <script src="assets/maqam-name-overrides.js"></script>
@@ -91,6 +76,6 @@
   <script src="assets/sheet-card.js"></script>
   <script src="assets/app.js"></script>
   <script src="assets/maqam-mega-menu.js"></script>
- 
+
 </body>
 </html>
