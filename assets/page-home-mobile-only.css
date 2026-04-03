@@ -1,13 +1,13 @@
 /* assets/page-home-mobile-only.css */
-/* Homepage-only mobile overrides loaded separately from shared CSS. */
+/* Homepage-only mobile design split. */
 
 .pillar-title-mobile,
 .pillar-copy-mobile {
-  display: none !important;
+  display: none;
 }
 
 @media (max-width: 760px) {
-  body.is-home-mobile-layout .nav-top-home {
+  .nav-top-home {
     min-height: 52px;
     padding: 6px 0 4px;
     align-items: center;
@@ -16,7 +16,7 @@
     position: relative;
   }
 
-  body.is-home-mobile-layout .nav-top-home .nav-main-group {
+  .nav-top-home .nav-main-group {
     align-items: center;
     justify-content: center;
     gap: 0;
@@ -25,17 +25,17 @@
     width: auto;
   }
 
-  body.is-home-mobile-layout .nav-top-home .nav-links {
+  .nav-top-home .nav-links {
     display: none;
   }
 
-  body.is-home-mobile-layout .nav-top-home .nav-logo {
+  .nav-top-home .nav-logo {
     font-size: 2.24rem;
     line-height: 1;
     text-align: center;
   }
 
-  body.is-home-mobile-layout .nav-top-home .nav-top-left {
+  .nav-top-home .nav-top-left {
     position: absolute;
     left: 0;
     top: 50%;
@@ -44,25 +44,25 @@
     align-items: center;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle {
+  .nav-top-home .lang-toggle {
     padding: 5px 9px;
     border-radius: 12px;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle span {
+  .nav-top-home .lang-toggle span {
     font-size: 0.82rem;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle svg {
+  .nav-top-home .lang-toggle svg {
     width: 16px;
     height: 16px;
   }
 
-  body.is-home-mobile-layout .hero {
+  .hero {
     padding: 18px 4% 18px;
   }
 
-  body.is-home-mobile-layout .hero-tag {
+  .hero-tag {
     font-size: 1.34rem;
     margin-bottom: 4px;
     padding: 4px 14px;
@@ -72,102 +72,112 @@
     letter-spacing: 0.06em;
   }
 
-  body.is-home-mobile-layout .hero .hero-content > h1 {
+  .hero .hero-content > h1 {
     display: none;
   }
 
-  body.is-home-mobile-layout .hero .subtitle {
+  .hero .subtitle {
     font-size: 0.94rem;
     line-height: 1.65;
     margin: 0 auto 18px;
     max-width: 100%;
   }
 
-  body.is-home-mobile-layout .pillars {
+  .pillars {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
     padding: 26px 4% 34px;
   }
 
-  body.is-home-mobile-layout .pillars .pillar {
+  .pillars .pillar:nth-child(4) {
+    display: none;
+  }
+
+  .pillars .pillar {
     padding: 16px 10px;
     border-radius: 14px;
     min-width: 0;
   }
 
-  body.is-home-mobile-layout .pillars .pillar-mobile-hidden {
-    display: none !important;
-  }
-
-  body.is-home-mobile-layout .pillars .pillar-icon {
+  .pillars .pillar-icon {
     font-size: 1.7rem;
     margin-bottom: 10px;
     animation: none;
   }
 
-  body.is-home-mobile-layout .pillars .pillar h3 {
+  .pillars .pillar h3 {
     font-size: 0.86rem;
     line-height: 1.35;
     margin-bottom: 6px;
   }
 
-  body.is-home-mobile-layout .pillars .pillar p {
+  .pillars .pillar p {
     font-size: 0.72rem;
     line-height: 1.45;
+  }
+
+  .pillar-title-desktop,
+  .pillar-copy-desktop {
+    display: none;
+  }
+
+  .pillar-title-mobile,
+  .pillar-copy-mobile {
+    display: inline;
   }
 }
 
 @media (max-width: 420px) {
-  body.is-home-mobile-layout .nav-top-home {
+  .nav-top-home {
     min-height: 50px;
     padding: 5px 0 3px;
   }
 
-  body.is-home-mobile-layout .nav-top-home .nav-logo {
+  .nav-top-home .nav-logo {
     font-size: 2.02rem;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle {
+  .nav-top-home .lang-toggle {
     padding: 4px 8px;
     border-radius: 11px;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle span {
+  .nav-top-home .lang-toggle span {
     font-size: 0.78rem;
   }
 
-  body.is-home-mobile-layout .nav-top-home .lang-toggle svg {
+  .nav-top-home .lang-toggle svg {
     width: 15px;
     height: 15px;
   }
 
-  body.is-home-mobile-layout .hero {
+  .hero {
     padding: 16px 4% 16px;
   }
 
-  body.is-home-mobile-layout .hero-tag {
+  .hero-tag {
     font-size: 1.16rem;
     padding: 4px 12px;
   }
 
-  body.is-home-mobile-layout .pillars {
+  .pillars {
     gap: 6px;
     padding: 22px 4% 30px;
   }
 
-  body.is-home-mobile-layout .pillars .pillar {
+  .pillars .pillar {
     padding: 12px 6px;
   }
 
-  body.is-home-mobile-layout .pillars .pillar-icon {
+  .pillars .pillar-icon {
     font-size: 1.38rem;
   }
 
-  body.is-home-mobile-layout .pillars .pillar h3 {
+  .pillars .pillar h3 {
     font-size: 0.72rem;
   }
 
-  body.is-home-mobile-layout .pillars .pillar p {
+  .pillars .pillar p {
     font-size: 0.58rem;
     line-height: 1.35;
   }

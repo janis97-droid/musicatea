@@ -16,28 +16,6 @@ const URL_KEYS = {
   search: 'q'
 };
 
-function loadLibraryMobileAssets() {
-  if (typeof window === 'undefined' || typeof document === 'undefined') return;
-
-  if (!document.getElementById('page-library-mobile-only-css')) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'assets/page-library-mobile-only.css';
-    link.id = 'page-library-mobile-only-css';
-    document.head.appendChild(link);
-  }
-
-  if (document.querySelector('script[data-page-library-mobile-script="true"]')) return;
-
-  const script = document.createElement('script');
-  script.src = 'assets/page-library-mobile.js';
-  script.defer = true;
-  script.dataset.pageLibraryMobileScript = 'true';
-  document.body.appendChild(script);
-}
-
-loadLibraryMobileAssets();
-
 const indexedSheets = sheets.map((sheet, index) => ({
   ...sheet,
   _renderIndex: index,
