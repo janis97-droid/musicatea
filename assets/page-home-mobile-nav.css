@@ -1,0 +1,78 @@
+/* assets/page-home-mobile-nav.css */
+/* Homepage mobile-only nav simplification + centered quick menu */
+
+@media (max-width: 760px) {
+  .nav-top-home {
+    min-height: 64px;
+    padding: 10px 0;
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .nav-top-home .nav-main-group {
+    align-items: center;
+    gap: 0;
+    margin-left: 0;
+  }
+
+  .nav-top-home .nav-links {
+    display: none;
+  }
+
+  .nav-top-home .nav-logo {
+    font-size: 2.1rem;
+    line-height: 1;
+  }
+
+  .nav-top-home .lang-toggle {
+    padding: 6px 10px;
+  }
+
+  .hero-cta-home-menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .hero-cta-home-menu .cta-btn {
+    width: 100%;
+    min-height: 54px;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    gap: 6px;
+  }
+
+  .hero-cta-home-menu .cta-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-cta-home-menu .cta-secondary {
+    background: var(--surface);
+    border-color: var(--border2);
+  }
+
+  .hero-cta-home-menu .cta-secondary:hover {
+    background: var(--surface2);
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-top-home .nav-logo {
+    font-size: 1.95rem;
+  }
+
+  .hero-cta-home-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-home-menu .cta-btn {
+    min-height: 52px;
+    font-size: 0.9rem;
+  }
+}
