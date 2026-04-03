@@ -1,0 +1,31 @@
+/* assets/page-library-mobile-only.css */
+/* Library-only mobile overrides. Keep desktop untouched. */
+
+@media (max-width: 760px) {
+  body.is-library-mobile-layout .filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  body.is-library-mobile-layout .filters select,
+  body.is-library-mobile-layout .filters input[type="text"] {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body.is-library-mobile-layout .filters input[type="text"] {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 420px) {
+  body.is-library-mobile-layout .filters {
+    grid-template-columns: 1fr;
+  }
+
+  body.is-library-mobile-layout .filters input[type="text"] {
+    grid-column: auto;
+  }
+}
