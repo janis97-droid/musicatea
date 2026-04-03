@@ -6,13 +6,18 @@
     min-height: 54px;
     padding: 6px 0 4px;
     align-items: center;
+    justify-content: center;
     border-bottom: none;
+    position: relative;
   }
 
   .nav-top-home .nav-main-group {
     align-items: center;
+    justify-content: center;
     gap: 0;
     margin-left: 0;
+    flex: 0 0 auto;
+    width: auto;
   }
 
   .nav-top-home .nav-links {
@@ -22,9 +27,14 @@
   .nav-top-home .nav-logo {
     font-size: 1.78rem;
     line-height: 1;
+    text-align: center;
   }
 
   .nav-top-home .nav-top-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
   }
@@ -41,6 +51,10 @@
   .nav-top-home .lang-toggle svg {
     width: 16px;
     height: 16px;
+  }
+
+  .hero .hero-content > h1 {
+    display: none;
   }
 
   .hero-cta-home-menu {
