@@ -1,13 +1,16 @@
 // assets/maqam-audio.js
 // Interactive maqam audio playback: note playback, stop logic, and scale playback state.
-// Octave-aware version matched to your current mp3 naming style:
+// Matched to current file naming style:
 // - LowLa.mp3
 // - La.mp3
 // - HighDo.mp3
 // - HighMiFlat.mp3
 // - HighMiHalfFlat.mp3
 //
-// It also keeps fallbacks for older filename styles.
+// This version prefers the visible musical register first:
+// - notes labeled "قرار" => Low...
+// - notes labeled "جواب" => High...
+// Then it falls back to slot_key octave and finally to the plain filename.
 
 (function () {
   const ns = window.InteractiveScaleApp = window.InteractiveScaleApp || {};
@@ -56,9 +59,28 @@
     return typeof noteOrToken === "object" && noteOrToken ? noteOrToken.slot_key || "" : "";
   }
 
+  function getDisplayLabel(noteOrToken) {
+    return typeof noteOrToken === "object" && noteOrToken ? String(noteOrToken.display_label || "") : "";
+  }
+
   function getOctaveFromSlotKey(slotKey) {
     const match = String(slotKey || "").match(/(\d+)$/);
     return match ? Number(match[1]) : null;
+  }
+
+  function getPreferredRegister(noteOrToken) {
+    const displayLabel = getDisplayLabel(noteOrToken);
+
+    if (displayLabel.includes("جواب")) return "high";
+    if (displayLabel.includes("قرار")) return "low";
+
+    const octave = getOctaveFromSlotKey(getSlotKey(noteOrToken));
+    if (octave !== null) {
+      if (octave <= 3) return "low";
+      if (octave >= 5) return "high";
+    }
+
+    return "mid";
   }
 
   function getPlaybackRate() {
@@ -95,12 +117,19 @@
     const stem = TOKEN_TO_STEM[token];
     const legacyFilename = getLegacyFilename(token);
     const urls = [];
+    const preferredRegister = getPreferredRegister(noteOrToken);
 
-    // Match your current naming style first:
-    // octave 3 => LowX.mp3
-    // octave 4 => X.mp3
-    // octave 5+ => HighX.mp3
     if (stem) {
+      // First: visible register priority from label / musical role
+      if (preferredRegister === "low") {
+        urls.push(`${basePath}Low${stem}.mp3`);
+      } else if (preferredRegister === "high") {
+        urls.push(`${basePath}High${stem}.mp3`);
+      } else {
+        urls.push(`${basePath}${stem}.mp3`);
+      }
+
+      // Second: octave-derived candidate as backup
       if (octave !== null) {
         if (octave <= 3) {
           urls.push(`${basePath}Low${stem}.mp3`);
@@ -111,12 +140,12 @@
         }
       }
 
-      // Fallbacks in case some files are missing in one register
+      // Third: plain / low / high generic fallbacks
       urls.push(`${basePath}${stem}.mp3`);
       urls.push(`${basePath}Low${stem}.mp3`);
       urls.push(`${basePath}High${stem}.mp3`);
 
-      // Extra fallback for numeric octave naming if you ever add it later
+      // Optional numeric-octave fallback if you add those later
       if (octave !== null) {
         urls.push(`${basePath}${stem}${octave}.mp3`);
       }
