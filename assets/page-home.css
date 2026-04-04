@@ -123,7 +123,7 @@
 .pillars {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: 18px;
   padding: 46px 5% 70px;
   max-width: 1200px;
   margin: 0 auto;
