@@ -30,23 +30,18 @@
 }
 
 .hero-tag {
-  font-size: 1.3rem;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 8px;
-  display: inline-block;
+  display: block;
+  font-size: 40px;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+  color: var(--gold-light);
+  text-transform: none;
+  font-weight: 900;
+  margin-bottom: 14px;
 }
 
 .hero h1 {
-  font-size: clamp(2.35rem, 5.5vw, 4.15rem);
-  font-weight: 900;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, var(--text), var(--gold-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  display: none;
 }
 
 .hero .subtitle {
