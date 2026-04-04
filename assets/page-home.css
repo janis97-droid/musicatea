@@ -124,8 +124,8 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  padding: 46px 5% 70px;
-  max-width: 1200px;
+  padding: 40px 5% 70px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
