@@ -1,6 +1,6 @@
 /* assets/page-home-mobile-only.css */
 /* Homepage mobile-only design file */
-/* Ready-to-paste full replacement */
+/* Full replacement: brighter premium 5 cards + bright gold text + RTL arrow */
 
 .pillar-title-mobile,
 .pillar-copy-mobile {
@@ -100,21 +100,27 @@
 
   .hero-cta-home-menu .cta-btn {
     width: 100%;
-    min-height: 58px;
+    min-height: 60px;
     justify-content: center;
     text-align: center;
     padding: 14px 14px;
-    border-radius: 16px;
+    border-radius: 18px;
     font-size: 0.94rem;
     font-weight: 800;
+    line-height: 1.35;
     gap: 6px;
     position: relative;
-    background: rgba(200,164,90,0.24);
-    color: #09090b;
-    border: 1px solid rgba(226,192,122,0.38);
+    overflow: hidden;
+    direction: rtl;
+    color: var(--gold-light);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 20%, rgba(200,164,90,0.18) 100%),
+      rgba(18,18,22,0.96);
+    border: 1px solid rgba(226,192,122,0.34);
     box-shadow:
-      0 12px 28px rgba(0,0,0,0.22),
-      inset 0 1px 0 rgba(255,255,255,0.16);
+      0 14px 30px rgba(0,0,0,0.28),
+      0 0 0 1px rgba(200,164,90,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.14);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
@@ -127,24 +133,33 @@
     content: '';
     position: absolute;
     inset: 1px;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 17px;
+    border: 1px solid rgba(255,255,255,0.06);
     pointer-events: none;
   }
 
-  .hero-cta-home-menu .cta-btn:hover {
-    background: rgba(226,192,122,0.32);
-    border-color: rgba(226,192,122,0.52);
-    color: #09090b;
-    transform: translateY(-1px);
-  }
-
-  .hero-cta-home-menu .cta-btn:not(:last-child)::after {
-    content: "→";
+  .hero-cta-home-menu .cta-btn::after {
+    content: '←';
     display: inline-block;
     margin-inline-start: 8px;
     font-size: 1rem;
     line-height: 1;
+    color: var(--gold-light);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.18);
+  }
+
+  .hero-cta-home-menu .cta-btn:hover,
+  .hero-cta-home-menu .cta-btn:active {
+    transform: translateY(-1px);
+    color: var(--gold-light);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.03) 22%, rgba(200,164,90,0.24) 100%),
+      rgba(22,22,26,0.98);
+    border-color: rgba(226,192,122,0.46);
+    box-shadow:
+      0 18px 34px rgba(0,0,0,0.34),
+      0 0 0 1px rgba(200,164,90,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.18);
   }
 
   .hero-cta-home-menu .cta-btn:last-child {
@@ -245,6 +260,10 @@
   .hero-cta-home-menu .cta-btn {
     min-height: 54px;
     font-size: 0.90rem;
+    border-radius: 16px;
+  }
+
+  .hero-cta-home-menu .cta-btn::before {
     border-radius: 15px;
   }
 
