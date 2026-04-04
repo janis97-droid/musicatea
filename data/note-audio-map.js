@@ -45,7 +45,7 @@ const NOTE_AUDIO_FILE_MAP = {
   "Sol": "Sol.mp3",
   "Solb": "Solb.mp3",
   "Sol#": "SolSharp.mp3",
-  "Sol/#": "Sol/#.mp3",
+  "Sol/#": "SolHalfSharp.mp3",
 
   "La": "La.mp3",
   "Lab": "Lab.mp3",
