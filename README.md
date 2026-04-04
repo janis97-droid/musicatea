@@ -52,25 +52,25 @@ Future Development
 
 Possible next steps for the project:
 
-expanded bilingual support
-more interactive theory tools
-more sheet music categories
-improved filtering and metadata
-richer history timeline
-composer and performer archives
-audio examples for maqamat and rhythms
-stronger educational pathways for beginners and advanced learners
-Contribution
-Mobile Application For Easy Access
+- expanded bilingual support
+- more interactive theory tools
+- more sheet music categories
+- improved filtering and metadata
+- richer history timeline
+- composer and performer archives
+- audio examples for maqamat and rhythms
+- stronger educational pathways for beginners and advanced learners
+- Contribution
+- Mobile Application For Easy Access
 
 Contributions, corrections, and improvements are welcome.
 
 Areas that can be improved include:
 
-Arabic music content accuracy
-UI and responsive layout refinements
-accessibility improvements
-performance optimization
-content expansion and organization
+- Arabic music content accuracy
+- UI and responsive layout refinements
+- accessibility improvements
+- performance optimization
+- content expansion and organization
 
-All rights reserved.
+ All rights reserved.
