@@ -24,18 +24,96 @@
     familyId: null,
     maqamId: null,
     tonic: null,
+    tempo: 96,
     activeNoteIndex: null,
     isPlaying: false,
     stopRequested: false,
     lastAudioErrorToken: null
   };
 
+  function ensureTempoStyles() {
+    if (document.getElementById("interactive-tempo-style")) return;
+
+    const style = document.createElement("style");
+    style.id = "interactive-tempo-style";
+    style.textContent = `
+      .tempo-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-inline-start: 8px;
+      }
+
+      .tempo-label {
+        font-size: .74rem;
+        color: var(--text-muted);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .tempo-label span {
+        color: var(--gold-light);
+      }
+
+      .tempo-slider {
+        width: 140px;
+        accent-color: var(--gold);
+      }
+
+      @media (max-width: 768px) {
+        .playbar {
+          flex-wrap: wrap;
+        }
+
+        .tempo-control {
+          order: 2;
+          width: 100%;
+          margin-inline-start: 0;
+          justify-content: space-between;
+        }
+
+        .tempo-slider {
+          width: 100%;
+        }
+
+        .status-bar {
+          width: 100%;
+          margin-right: 0;
+          order: 3;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function ensureTempoControl() {
+    ensureTempoStyles();
+
+    const playbar = document.querySelector(".playbar");
+    if (!playbar || document.getElementById("tempo-current")) return;
+
+    const status = document.getElementById("status-current");
+    const wrap = document.createElement("div");
+    wrap.className = "tempo-control";
+    wrap.innerHTML = `
+      <label class="tempo-label" for="tempo-current">السرعة <span id="tempo-value-current">${ns.state.tempo}</span> BPM</label>
+      <input class="tempo-slider" id="tempo-current" type="range" min="50" max="180" step="1" value="${ns.state.tempo}">
+    `;
+
+    if (status) {
+      playbar.insertBefore(wrap, status);
+    } else {
+      playbar.appendChild(wrap);
+    }
+  }
+
   function resolveInitialSelection(familyId, maqamId, tonic) {
     let resolvedFamily = familyId;
     let resolvedMaqam = maqamId;
     let resolvedTonic = tonic;
 
-    if (resolvedMaqam && typeof resolveInteractiveRepresentativeSelection === 'function') {
+    if (resolvedMaqam && typeof resolveInteractiveRepresentativeSelection === "function") {
       const representative = resolveInteractiveRepresentativeSelection(resolvedMaqam, resolvedTonic);
       resolvedMaqam = representative.maqamId;
       resolvedTonic = representative.tonic;
@@ -71,8 +149,28 @@
   }
 
   function bindPageEvents() {
+    ensureTempoControl();
+
     const playBtn = document.getElementById("playbtn-current");
-    if (playBtn) playBtn.addEventListener("click", ns.audio.playScale);
+    const tempoSlider = document.getElementById("tempo-current");
+    const tempoValue = document.getElementById("tempo-value-current");
+
+    if (playBtn && !playBtn.dataset.boundPlay) {
+      playBtn.addEventListener("click", ns.audio.playScale);
+      playBtn.dataset.boundPlay = "true";
+    }
+
+    if (tempoSlider && !tempoSlider.dataset.boundTempo) {
+      const syncTempo = () => {
+        ns.state.tempo = Number(tempoSlider.value) || 96;
+        if (tempoValue) tempoValue.textContent = String(ns.state.tempo);
+      };
+
+      tempoSlider.addEventListener("input", syncTempo);
+      tempoSlider.addEventListener("change", syncTempo);
+      tempoSlider.dataset.boundTempo = "true";
+      syncTempo();
+    }
   }
 
   function scrollMainToTop() {
@@ -94,7 +192,7 @@
   }
 
   function setActiveMaqam(maqamId) {
-    const representative = typeof resolveInteractiveRepresentativeSelection === 'function'
+    const representative = typeof resolveInteractiveRepresentativeSelection === "function"
       ? resolveInteractiveRepresentativeSelection(maqamId, null)
       : { maqamId, tonic: null };
 
