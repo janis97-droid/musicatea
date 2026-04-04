@@ -1,5 +1,7 @@
 /* assets/page-library-mobile-only.css */
-/* Library-only mobile design split. Keep desktop untouched. */
+/* Library-only mobile layout for simplified filters:
+   مطرب + مقام + search
+*/
 
 @media (max-width: 760px) {
   .page-hero {
@@ -18,7 +20,7 @@
     align-items: stretch;
     gap: 10px;
     border-top: none;
-    padding-top: 12px;
+    padding: 12px 4% 14px;
     margin-top: 0;
   }
 
@@ -26,19 +28,33 @@
   .filters input[type="text"] {
     width: 100%;
     min-width: 0;
+    font-size: 0.88rem;
+    padding: 10px 12px;
   }
 
   .filters input[type="text"] {
     grid-column: 1 / -1;
+  }
+
+  #list {
+    padding-top: 18px;
   }
 }
 
 @media (max-width: 420px) {
   .filters {
     grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 4% 12px;
   }
 
   .filters input[type="text"] {
     grid-column: auto;
+  }
+
+  .filters select,
+  .filters input[type="text"] {
+    font-size: 0.84rem;
+    padding: 9px 11px;
   }
 }
