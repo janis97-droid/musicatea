@@ -210,7 +210,7 @@
         const idx = Number(node.dataset.noteIdx);
         ns.actions.setActiveNote(idx);
         const notesNow = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-        if (notesNow[idx]) await ns.audio.playSingleNote(notesNow[idx].token);
+        if (notesNow[idx]) await ns.audio.playSingleNote(notesNow[idx]);
       });
     });
   }
@@ -241,7 +241,7 @@
         const idx = Number(node.dataset.noteIdx);
         ns.actions.setActiveNote(idx);
         const notesNow = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-        if (notesNow[idx]) await ns.audio.playSingleNote(notesNow[idx].token);
+        if (notesNow[idx]) await ns.audio.playSingleNote(notesNow[idx]);
       });
     });
   }
