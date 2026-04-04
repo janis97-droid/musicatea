@@ -1,0 +1,29 @@
+/* Global dim islamic pattern overlay */
+body {
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('assets/islamic-pattern-dim-thin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  body::before {
+    opacity: 0.13;
+  }
+}
