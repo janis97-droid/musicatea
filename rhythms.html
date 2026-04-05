@@ -810,7 +810,7 @@
         <div class="sidebar-head">
           <span class="sidebar-kicker">إيقاع</span>
           <h1>الإيقاعات التفاعلية</h1>
-          <p>تصفّح الإيقاعات العربية عبر التوقيع الزمني، السرعة، والنمط الإيقاعي، ثم استمع إلى تسجيل كامل لكل إيقاع مع مساحة جاهزة لإضافة أمثلة من الأغاني والقطع لاحقاً.</p>
+          <p>تصفّح الإيقاعات العربية عبر البحث والتوقيع الزمني، ثم استمع إلى تسجيل كامل لكل إيقاع مع مساحة جاهزة لإضافة أمثلة من الأغاني والقطع لاحقاً.</p>
         </div>
 
         <div class="filters">
@@ -823,22 +823,6 @@
             <label for="time-filter">التوقيع الزمني</label>
             <select id="time-filter">
               <option value="">كل التواقيع</option>
-            </select>
-          </div>
-
-          <div class="filter-field">
-            <label for="tempo-filter">السرعة</label>
-            <select id="tempo-filter">
-              <option value="">كل السرعات</option>
-            </select>
-          </div>
-
-          <div class="filter-field">
-            <label for="sort-filter">الترتيب</label>
-            <select id="sort-filter">
-              <option value="tempo-asc">السرعة: من البطيء إلى السريع</option>
-              <option value="tempo-desc">السرعة: من السريع إلى البطيء</option>
-              <option value="name-asc">الاسم: أ - ي</option>
             </select>
           </div>
 
@@ -866,8 +850,6 @@
       const mobileToggle = document.getElementById('mobile-toggle');
       const searchInput = document.getElementById('rhythm-search');
       const timeFilter = document.getElementById('time-filter');
-      const tempoFilter = document.getElementById('tempo-filter');
-      const sortFilter = document.getElementById('sort-filter');
       const resetButton = document.getElementById('filters-reset');
       const listRoot = document.getElementById('rhythm-list');
       const detailRoot = document.getElementById('rhythm-detail');
@@ -889,17 +871,6 @@
         return;
       }
 
-      const TEMPO_RANK = {
-        'بطيء جداً': 0,
-        'بطيء': 1,
-        'بطيء إلى متوسط': 2,
-        'معتدل': 3,
-        'متوسط': 4,
-        'متوسط إلى سريع': 5,
-        'سريع': 6,
-        'سريع جداً': 7
-      };
-
       const normalizeText = (value) => {
         if (typeof window.normalize === 'function') return window.normalize(value || '');
         return String(value || '')
@@ -907,13 +878,13 @@
           .replace(/[أإآ]/g, 'ا')
           .replace(/ى/g, 'ي')
           .replace(/ة/g, 'ه')
-          .replace(/[\u064B-\u065F]/g, '');
+          .replace(/[\\u064B-\\u065F]/g, '');
       };
 
       const slugifyRhythm = (value) => String(value || '')
         .trim()
         .toLowerCase()
-        .replace(/[^a-z0-9\u0600-\u06FF]+/g, '-')
+        .replace(/[^a-z0-9\\u0600-\\u06FF]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
       const enrichedRhythms = window.rhythms.map((rhythm, index) => {
@@ -926,13 +897,11 @@
           id,
           usage,
           examples,
-          tempo,
-          tempoRank: Object.prototype.hasOwnProperty.call(TEMPO_RANK, tempo) ? TEMPO_RANK[tempo] : 99
+          tempo
         };
       });
 
       const uniqueTimeSignatures = [...new Set(enrichedRhythms.map(item => item.time_signature).filter(Boolean))];
-      const uniqueTempoLabels = [...new Set(enrichedRhythms.map(item => item.tempo).filter(Boolean))];
 
       function parseSignatureValue(signature) {
         const parts = String(signature || '').split('/').map(Number);
@@ -941,7 +910,6 @@
       }
 
       uniqueTimeSignatures.sort((a, b) => parseSignatureValue(a) - parseSignatureValue(b));
-      uniqueTempoLabels.sort((a, b) => (TEMPO_RANK[a] ?? 99) - (TEMPO_RANK[b] ?? 99));
 
       uniqueTimeSignatures.forEach(signature => {
         const option = document.createElement('option');
@@ -950,47 +918,19 @@
         timeFilter.appendChild(option);
       });
 
-      uniqueTempoLabels.forEach(tempo => {
-        const option = document.createElement('option');
-        option.value = tempo;
-        option.textContent = tempo;
-        tempoFilter.appendChild(option);
-      });
-
       const state = {
         selectedRhythmId: params.get('rhythm') || (enrichedRhythms[0] ? enrichedRhythms[0].id : null),
         query: params.get('q') || '',
         timeSignature: params.get('time') || '',
-        tempo: params.get('tempo') || '',
-        sort: params.get('sort') || 'tempo-asc',
         playbackRate: Number(params.get('rate')) || 1
       };
 
       searchInput.value = state.query;
       timeFilter.value = uniqueTimeSignatures.includes(state.timeSignature) ? state.timeSignature : '';
-      tempoFilter.value = uniqueTempoLabels.includes(state.tempo) ? state.tempo : '';
-      sortFilter.value = ['tempo-asc', 'tempo-desc', 'name-asc'].includes(state.sort) ? state.sort : 'tempo-asc';
-
-      function sortRhythms(items) {
-        const copy = items.slice();
-        if (state.sort === 'name-asc') {
-          copy.sort((a, b) => String(a.name || '').localeCompare(String(b.name || ''), 'ar'));
-          return copy;
-        }
-
-        copy.sort((a, b) => {
-          const diff = a.tempoRank - b.tempoRank;
-          if (diff !== 0) {
-            return state.sort === 'tempo-desc' ? -diff : diff;
-          }
-          return String(a.name || '').localeCompare(String(b.name || ''), 'ar');
-        });
-        return copy;
-      }
 
       function getFilteredRhythms() {
         const q = normalizeText(state.query);
-        return sortRhythms(enrichedRhythms.filter((rhythm) => {
+        return enrichedRhythms.filter((rhythm) => {
           const haystack = [
             rhythm.name,
             rhythm.latin,
@@ -1002,9 +942,8 @@
 
           const matchesQuery = !q || haystack.includes(q);
           const matchesTime = !state.timeSignature || rhythm.time_signature === state.timeSignature;
-          const matchesTempo = !state.tempo || rhythm.tempo === state.tempo;
-          return matchesQuery && matchesTime && matchesTempo;
-        }));
+          return matchesQuery && matchesTime;
+        });
       }
 
       function getSelectedRhythm(filtered) {
@@ -1015,12 +954,18 @@
 
       function syncUrl() {
         const url = new URL(window.location.href);
-        if (state.selectedRhythmId) url.searchParams.set('rhythm', state.selectedRhythmId); else url.searchParams.delete('rhythm');
-        if (state.query) url.searchParams.set('q', state.query); else url.searchParams.delete('q');
-        if (state.timeSignature) url.searchParams.set('time', state.timeSignature); else url.searchParams.delete('time');
-        if (state.tempo) url.searchParams.set('tempo', state.tempo); else url.searchParams.delete('tempo');
-        if (state.sort && state.sort !== 'tempo-asc') url.searchParams.set('sort', state.sort); else url.searchParams.delete('sort');
-        if (state.playbackRate && state.playbackRate !== 1) url.searchParams.set('rate', String(state.playbackRate)); else url.searchParams.delete('rate');
+        if (state.selectedRhythmId) url.searchParams.set('rhythm', state.selectedRhythmId);
+        else url.searchParams.delete('rhythm');
+
+        if (state.query) url.searchParams.set('q', state.query);
+        else url.searchParams.delete('q');
+
+        if (state.timeSignature) url.searchParams.set('time', state.timeSignature);
+        else url.searchParams.delete('time');
+
+        if (state.playbackRate && state.playbackRate !== 1) url.searchParams.set('rate', String(state.playbackRate));
+        else url.searchParams.delete('rate');
+
         window.history.replaceState({}, '', url.toString());
       }
 
@@ -1037,11 +982,8 @@
       }
 
       mobileToggle.addEventListener('click', () => {
-        if (sidebar.classList.contains('open')) {
-          closeSidebar();
-        } else {
-          openSidebar();
-        }
+        if (sidebar.classList.contains('open')) closeSidebar();
+        else openSidebar();
       });
 
       document.addEventListener('click', (event) => {
@@ -1052,9 +994,7 @@
       });
 
       window.addEventListener('resize', () => {
-        if (window.innerWidth > 980) {
-          closeSidebar();
-        }
+        if (window.innerWidth > 980) closeSidebar();
       });
 
       function createListCard(rhythm, isActive) {
@@ -1136,7 +1076,7 @@
 
       function getRelatedRhythms(current) {
         return enrichedRhythms
-          .filter(item => item.id !== current.id && (item.time_signature === current.time_signature || item.tempo === current.tempo))
+          .filter(item => item.id !== current.id && item.time_signature === current.time_signature)
           .sort((a, b) => String(a.name || '').localeCompare(String(b.name || ''), 'ar'))
           .slice(0, 4);
       }
@@ -1298,26 +1238,12 @@
         render();
       });
 
-      tempoFilter.addEventListener('change', (event) => {
-        state.tempo = event.target.value;
-        render();
-      });
-
-      sortFilter.addEventListener('change', (event) => {
-        state.sort = event.target.value;
-        render();
-      });
-
       resetButton.addEventListener('click', () => {
         state.query = '';
         state.timeSignature = '';
-        state.tempo = '';
-        state.sort = 'tempo-asc';
         state.playbackRate = 1;
         searchInput.value = '';
         timeFilter.value = '';
-        tempoFilter.value = '';
-        sortFilter.value = 'tempo-asc';
         render();
       });
 
