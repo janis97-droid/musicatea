@@ -64,3 +64,5 @@ const rhythms = [
     tempo: "Medium"
   }
 ];
+
+window.rhythms = rhythms;

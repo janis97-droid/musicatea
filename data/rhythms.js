@@ -372,3 +372,5 @@ const rhythms = [
     audio: "media/rhythms/dharafat.mp3"
   }
 ];
+
+window.rhythms = rhythms;
