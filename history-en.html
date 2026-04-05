@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="History of Arabic Music — a concise historical journey from early foundations to major modern transformations.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="ar" href="history.html">
+  <link rel="alternate" hreflang="en" href="history-en.html">
   <title>Music History | Musicatea</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -193,6 +197,8 @@
 </head>
 <body dir="ltr">
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -225,6 +231,8 @@
     </div>
   </nav>
 
+  <main id="main-content">
+
   <header class="history-hero">
     <span class="history-hero-tag">History</span>
     <h1>History of Arabic Music</h1>
@@ -237,13 +245,16 @@
     <div id="history-list"></div>
   </div>
 
+  </main>
+
   <footer class="site-footer">
     <span class="footer-logo">Musicatea</span>
     <span>© 2025 Musicatea</span>
   </footer>
 
   <script src="data/history-en.js"></script>
-  <script src="assets/ui.js"></script>
+  <script src="assets/shared-utils.js"></script>
+  <script src="assets/history-ui.js"></script>
   <script>
     function renderHistory() {
       const historyList = document.getElementById('history-list');

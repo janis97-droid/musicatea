@@ -1,0 +1,340 @@
+/* Maqam page enhancer styles — extracted from maqam-page.js */
+
+.maqam-hero-inner .maqam-reference-intro {
+  display: none !important;
+}
+
+.maqam-hero .maqam-name {
+  font-size: clamp(2.9rem, 6.4vw, 5.25rem);
+}
+
+.maqam-hero .maqam-latin {
+  font-size: 1.28rem;
+  color: var(--text-muted);
+}
+
+.maqam-hero #maqam-subtitle {
+  display: none !important;
+}
+
+.maqam-body > .sec-title:first-of-type {
+  display: none;
+}
+
+.staff-scale-box .staff-scale-header {
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.staff-scale-box .staff-scale-title {
+  display: none !important;
+}
+
+.maqam-tonic-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  direction: rtl;
+}
+
+.maqam-tonic-helper {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.35;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.maqam-tonic-controls .tonic-selector {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.maqam-quickfacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 0 0 28px;
+}
+
+.maqam-qf-card {
+  background: linear-gradient(180deg, rgba(200,164,90,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(200,164,90,0.12);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.maqam-qf-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.maqam-qf-value {
+  color: var(--text);
+  font-size: 0.93rem;
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.maqam-theory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.maqam-theory-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.maqam-theory-card.blue {
+  border-color: rgba(123,168,212,0.22);
+  background: linear-gradient(180deg, rgba(123,168,212,0.05) 0%, rgba(255,255,255,0.015) 100%);
+}
+
+.maqam-theory-card.gold {
+  border-color: rgba(200,164,90,0.2);
+  background: linear-gradient(180deg, rgba(200,164,90,0.06) 0%, rgba(255,255,255,0.015) 100%);
+}
+
+.maqam-theory-card h3 {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.maqam-theory-card .sub {
+  color: var(--gold-light);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.maqam-theory-card p,
+.maqam-theory-card li {
+  color: var(--text-muted);
+  line-height: 1.9;
+  font-size: 0.94rem;
+}
+
+.maqam-theory-card ul {
+  padding-right: 18px;
+}
+
+.maqam-long-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 20px 18px;
+  margin-bottom: 28px;
+}
+
+.maqam-long-card p,
+.maqam-long-card li {
+  color: var(--text-muted);
+  line-height: 1.95;
+  font-size: 0.95rem;
+}
+
+.maqam-long-card ul {
+  padding-right: 18px;
+}
+
+.maqam-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.maqam-section-title .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.maqam-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.maqam-related-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  transition: all .22s var(--ease);
+}
+
+.maqam-related-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200,164,90,0.24);
+  background: var(--surface2);
+}
+
+.maqam-related-card .name {
+  color: var(--text);
+  font-size: 0.97rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.maqam-related-card .meta {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.maqam-ref-list {
+  display: grid;
+  gap: 10px;
+}
+
+.maqam-ref-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.maqam-ref-item .title {
+  color: var(--gold-light);
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.maqam-ref-item .note {
+  color: var(--text-muted);
+  font-size: 0.87rem;
+  line-height: 1.8;
+}
+
+.maqam-inline-note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(200,164,90,0.15);
+  background: rgba(200,164,90,0.05);
+  color: var(--text-muted);
+  line-height: 1.85;
+  font-size: 0.9rem;
+}
+
+.maqam-jins-guide {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  direction: ltr;
+}
+
+.maqam-jins-guide-seg {
+  min-height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7px 10px;
+  font-size: 0.75rem;
+  font-weight: 850;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+.maqam-jins-guide-seg.lower {
+  background: rgba(200,164,90,0.10);
+  border-color: rgba(200,164,90,0.32);
+  color: #f0d28a;
+}
+
+.maqam-jins-guide-seg.upper {
+  background: rgba(123,168,212,0.10);
+  border-color: rgba(123,168,212,0.34);
+  color: #c8e4ff;
+}
+
+.maqam-jins-guide-seg span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  letter-spacing: 0.01em;
+}
+
+.maqam-scale-helper-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.maqam-scale-helper-text {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.staff-scale-box .playbar {
+  margin-top: 10px;
+  padding-top: 12px;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.staff-scale-box .status-bar {
+  min-height: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .maqam-theory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .maqam-tonic-controls {
+    gap: 8px;
+  }
+
+  .maqam-tonic-helper {
+    font-size: 0.88rem;
+    white-space: normal;
+  }
+
+  .staff-scale-box .playbar {
+    gap: 8px;
+  }
+
+  .maqam-scale-helper-text {
+    white-space: normal;
+    font-size: 0.88rem;
+  }
+}

@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arabic Rhythms — a practical guide to common Arabic rhythmic cycles, patterns, and time signatures.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="ar" href="rhythms.html">
+  <link rel="alternate" hreflang="en" href="rhythms-en.html">
   <title>Iqaatea | Musicatea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
     body[dir="ltr"] {
@@ -201,6 +205,8 @@
 </head>
 <body dir="ltr">
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -233,6 +239,8 @@
     </div>
   </nav>
 
+  <main id="main-content">
+
   <header class="rhythms-hero">
     <span class="rhythms-hero-tag">Rhythm</span>
     <h1>Arabic Rhythms</h1>
@@ -254,13 +262,15 @@
     <div id="rhythms-grid"></div>
   </div>
 
+  </main>
+
   <footer class="site-footer">
     <span class="footer-logo">Musicatea</span>
     <span>© 2025 Musicatea</span>
   </footer>
 
   <script src="data/rhythms-en.js"></script>
-  <script src="assets/ui.js"></script>
+  <script src="assets/shared-utils.js"></script>
   <script>
     const rhythmsGrid = document.getElementById('rhythms-grid');
     const searchInput = document.getElementById('rhythm-search');
