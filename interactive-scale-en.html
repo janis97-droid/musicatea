@@ -38,7 +38,7 @@
       </div>
 
       <div class="nav-actions">
-        <a href="interactive-scale.html" class="lang-toggle" aria-label="Switch to Arabic">
+        <a href="interactive-scale.html" class="lang-toggle" id="lang-toggle-ar" aria-label="Switch to Arabic">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <line x1="2" y1="12" x2="22" y2="12"></line>
@@ -75,5 +75,24 @@
   <script src="assets/maqam-audio.js"></script>
   <script src="assets/pages/maqamat/interactive-en-renderer.js"></script>
   <script src="assets/pages/maqamat/interactive-en-bootstrap.js"></script>
+  <script>
+    (function () {
+      const mapToArabicId = { bayat: 'bayati' };
+      const params = new URLSearchParams(window.location.search);
+      const lang = document.getElementById('lang-toggle-ar');
+      if (!lang) return;
+
+      const out = new URLSearchParams();
+      const family = params.get('family');
+      const maqam = params.get('maqam');
+      const tonic = params.get('tonic');
+
+      if (family) out.set('family', mapToArabicId[family] || family);
+      if (maqam) out.set('maqam', mapToArabicId[maqam] || maqam);
+      if (tonic) out.set('tonic', tonic);
+
+      lang.href = `interactive-scale.html${out.toString() ? `?${out.toString()}` : ''}`;
+    })();
+  </script>
 </body>
 </html>
