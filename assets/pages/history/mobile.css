@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+  .history-period {
+    display: none;
+  }
+
+  .history-container {
+    padding: 40px 4% 80px;
+  }
+}

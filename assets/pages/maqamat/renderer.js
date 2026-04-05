@@ -1,4 +1,4 @@
-// assets/maqam-renderer.js
+// assets/pages/maqamat/renderer.js
 // Interactive maqam rendering: sidebar, page shell, SVG staff, note keys, and page UI updates.
 
 (function () {

@@ -1,4 +1,4 @@
-// assets/maqam-engine.js
+// assets/maqamat/engine.js
 // Interactive maqam engine: musical models, note spelling, display labels, and scale generation.
 
 (function () {

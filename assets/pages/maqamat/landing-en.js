@@ -1,12 +1,10 @@
-// assets/maqamat.js
-// Renders the family-card grid on maqamat.html
-// Main families only, in a curated fixed order.
+// English maqamat landing page renderer
 
 const FAMILY_ORDER = [
   'saba',
   'nahawand',
   'ajam',
-  'bayati',
+  'bayat',
   'sikah',
   'hijaz',
   'rast',
@@ -15,7 +13,7 @@ const FAMILY_ORDER = [
 ];
 
 function getFamilyLink(mainMaqam) {
-  return `interactive-scale.html?family=${mainMaqam.family}&maqam=${mainMaqam.id}`;
+  return `interactive-scale-en.html?family=${mainMaqam.family}`;
 }
 
 function createFamilyCard(mainMaqam) {
@@ -26,7 +24,7 @@ function createFamilyCard(mainMaqam) {
   card.className = 'maqam-family-card';
   card.href = page;
   card.style.setProperty('--family-color', color);
-  card.setAttribute('aria-label', `عائلة ${mainMaqam.name}`);
+  card.setAttribute('aria-label', `${mainMaqam.name} family`);
 
   card.innerHTML = `
     <div class="maqam-card-main">
@@ -38,7 +36,7 @@ function createFamilyCard(mainMaqam) {
 
     <div class="maqam-card-footer">
       <span class="maqam-card-cta">
-        <span>لنتعرّف على عائلة المقام</span>
+        <span>Explore this maqam family</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M5 12h14"/>
           <path d="M13 6l6 6-6 6"/>
@@ -52,9 +50,9 @@ function createFamilyCard(mainMaqam) {
 
 const maqamatGrid = document.getElementById('maqamat-grid');
 
-const mainMaqamatRaw = typeof getInteractiveMainMaqamat === 'function'
-  ? getInteractiveMainMaqamat()
-  : maqamat.filter(m => m.is_main && m.interactive);
+const mainMaqamatRaw = typeof getMainMaqamat === 'function'
+  ? getMainMaqamat()
+  : maqamat.filter(m => m.is_main);
 
 const mainMaqamat = FAMILY_ORDER
   .map(familyId => mainMaqamatRaw.find(m => m.family === familyId))
@@ -68,7 +66,7 @@ function renderFamilies() {
   if (!mainMaqamat.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-state';
-    empty.textContent = 'لا توجد عائلات مقامية متاحة حالياً';
+    empty.textContent = 'No maqam families are currently available';
     maqamatGrid.appendChild(empty);
     return;
   }

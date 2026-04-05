@@ -1,4 +1,4 @@
-// assets/maqam-mega-menu.js
+// assets/pages/maqamat/mega-menu.js
 // Shared mega-menu for Arabic maqam families in the main navigation.
 
 (function () {

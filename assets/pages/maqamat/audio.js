@@ -1,4 +1,4 @@
-// assets/maqam-audio.js
+// assets/maqamat/audio.js
 // Interactive maqam audio playback: note playback, stop logic, and scale playback state.
 // Matched to current file naming style:
 // - LowLa.mp3

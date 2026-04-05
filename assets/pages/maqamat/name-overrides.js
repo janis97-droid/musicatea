@@ -1,4 +1,4 @@
-// assets/maqam-name-overrides.js
+// assets/pages/maqamat/name-overrides.js
 // Sidebar visibility and tonic-based alternate maqam naming overrides.
 
 (function () {

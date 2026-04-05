@@ -1,13 +1,12 @@
-// assets/interactive-scale-page.js
-// Interactive maqam page bootstrap: refs, state, URL sync, selection changes, and initial boot.
+// English interactive maqam page bootstrap: refs, state, URL sync, selection changes, and initial boot.
 
 (function () {
   const ns = window.InteractiveScaleApp = window.InteractiveScaleApp || {};
 
-  const root = document.getElementById("interactive-page-root");
-  const sidebar = document.getElementById("sidebar");
-  const breadcrumbLabel = document.getElementById("current-maqam-label");
-  const mainPanel = document.getElementById("main-panel");
+  const root = document.getElementById('interactive-page-root-en');
+  const sidebar = document.getElementById('sidebar-en');
+  const breadcrumbLabel = document.getElementById('current-maqam-label-en');
+  const mainPanel = document.getElementById('main-panel-en');
 
   if (!root || !sidebar) return;
 
@@ -32,10 +31,10 @@
   };
 
   function ensureTempoStyles() {
-    if (document.getElementById("interactive-tempo-style")) return;
+    if (document.getElementById('interactive-tempo-style-en')) return;
 
-    const style = document.createElement("style");
-    style.id = "interactive-tempo-style";
+    const style = document.createElement('style');
+    style.id = 'interactive-tempo-style-en';
     style.textContent = `
       .tempo-control {
         display: flex;
@@ -90,15 +89,15 @@
   function ensureTempoControl() {
     ensureTempoStyles();
 
-    const playbar = document.querySelector(".playbar");
-    if (!playbar || document.getElementById("tempo-current")) return;
+    const playbar = document.querySelector('.playbar');
+    if (!playbar || document.getElementById('tempo-current-en')) return;
 
-    const status = document.getElementById("status-current");
-    const wrap = document.createElement("div");
-    wrap.className = "tempo-control";
+    const status = document.getElementById('status-current');
+    const wrap = document.createElement('div');
+    wrap.className = 'tempo-control';
     wrap.innerHTML = `
-      <label class="tempo-label" for="tempo-current">السرعة <span id="tempo-value-current">${ns.state.tempo}</span> BPM</label>
-      <input class="tempo-slider" id="tempo-current" type="range" min="50" max="180" step="1" value="${ns.state.tempo}">
+      <label class="tempo-label" for="tempo-current-en">Tempo <span id="tempo-value-current-en">${ns.state.tempo}</span> BPM</label>
+      <input class="tempo-slider" id="tempo-current-en" type="range" min="50" max="180" step="1" value="${ns.state.tempo}">
     `;
 
     if (status) {
@@ -113,36 +112,36 @@
     let resolvedMaqam = maqamId;
     let resolvedTonic = tonic;
 
-    if (resolvedMaqam && typeof resolveInteractiveRepresentativeSelection === "function") {
-      const representative = resolveInteractiveRepresentativeSelection(resolvedMaqam, resolvedTonic);
+    if (resolvedMaqam) {
+      const representative = resolveInteractiveRepresentativeSelectionEn(resolvedMaqam, resolvedTonic);
       resolvedMaqam = representative.maqamId;
       resolvedTonic = representative.tonic;
     }
 
     if (!resolvedFamily && resolvedMaqam) {
-      const maqam = getMaqamById(resolvedMaqam);
+      const maqam = getEnglishMaqamById(resolvedMaqam);
       resolvedFamily = maqam ? maqam.family : null;
     }
 
     if (!resolvedFamily) {
-      const firstMain = getInteractiveMainMaqamat()[0];
-      resolvedFamily = firstMain ? firstMain.family : "rast";
+      const firstMain = getInteractiveMainMaqamatEn()[0];
+      resolvedFamily = firstMain ? firstMain.family : 'rast';
     }
 
-    const familyItems = getInteractiveFamily(resolvedFamily);
-    const familyMain = getFamilyMainMaqam(resolvedFamily);
+    const familyItems = getInteractiveFamilyEn(resolvedFamily);
+    const familyMain = getFamilyMainMaqamEn(resolvedFamily);
 
     if (!resolvedMaqam) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
 
-    const maqamObj = getMaqamById(resolvedMaqam);
-    if (!maqamObj || maqamObj.family !== resolvedFamily || !getInteractiveMaqamById(resolvedMaqam)) {
+    const maqamObj = getEnglishMaqamById(resolvedMaqam);
+    if (!maqamObj || maqamObj.family !== resolvedFamily) {
       resolvedMaqam = familyMain ? familyMain.id : (familyItems[0] ? familyItems[0].id : null);
     }
 
-    const allowedTonics = getInteractiveTonicsForMaqam(resolvedMaqam);
-    const defaultTonic = getInteractiveDefaultTonic(resolvedMaqam);
+    const allowedTonics = getInteractiveTonicsForMaqamEn(resolvedMaqam);
+    const defaultTonic = getInteractiveDefaultTonicEn(resolvedMaqam);
     resolvedTonic = allowedTonics.includes(resolvedTonic) ? resolvedTonic : defaultTonic;
 
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
@@ -151,13 +150,13 @@
   function bindPageEvents() {
     ensureTempoControl();
 
-    const playBtn = document.getElementById("playbtn-current");
-    const tempoSlider = document.getElementById("tempo-current");
-    const tempoValue = document.getElementById("tempo-value-current");
+    const playBtn = document.getElementById('playbtn-current');
+    const tempoSlider = document.getElementById('tempo-current-en');
+    const tempoValue = document.getElementById('tempo-value-current-en');
 
     if (playBtn && !playBtn.dataset.boundPlay) {
-      playBtn.addEventListener("click", ns.audio.playScale);
-      playBtn.dataset.boundPlay = "true";
+      playBtn.addEventListener('click', ns.audio.playScale);
+      playBtn.dataset.boundPlay = 'true';
     }
 
     if (tempoSlider && !tempoSlider.dataset.boundTempo) {
@@ -166,23 +165,23 @@
         if (tempoValue) tempoValue.textContent = String(ns.state.tempo);
       };
 
-      tempoSlider.addEventListener("input", syncTempo);
-      tempoSlider.addEventListener("change", syncTempo);
-      tempoSlider.dataset.boundTempo = "true";
+      tempoSlider.addEventListener('input', syncTempo);
+      tempoSlider.addEventListener('change', syncTempo);
+      tempoSlider.dataset.boundTempo = 'true';
       syncTempo();
     }
   }
 
   function scrollMainToTop() {
-    if (mainPanel) mainPanel.scrollTo({ top: 0, behavior: "smooth" });
+    if (mainPanel) mainPanel.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function syncUrl() {
     const url = new URL(window.location.href);
-    url.searchParams.set("family", ns.state.familyId);
-    url.searchParams.set("maqam", ns.state.maqamId);
-    url.searchParams.set("tonic", ns.state.tonic);
-    window.history.replaceState({}, "", url.toString());
+    url.searchParams.set('family', ns.state.familyId);
+    url.searchParams.set('maqam', ns.state.maqamId);
+    url.searchParams.set('tonic', ns.state.tonic);
+    window.history.replaceState({}, '', url.toString());
   }
 
   function setActiveNote(idx) {
@@ -192,18 +191,15 @@
   }
 
   function setActiveMaqam(maqamId) {
-    const representative = typeof resolveInteractiveRepresentativeSelection === "function"
-      ? resolveInteractiveRepresentativeSelection(maqamId, null)
-      : { maqamId, tonic: null };
-
+    const representative = resolveInteractiveRepresentativeSelectionEn(maqamId, null);
     const resolvedMaqamId = representative.maqamId;
-    const maqam = getMaqamById(resolvedMaqamId);
+    const maqam = getEnglishMaqamById(resolvedMaqamId);
     if (!maqam) return;
 
     ns.audio.stopAllAudio();
     ns.state.maqamId = resolvedMaqamId;
     ns.state.familyId = maqam.family;
-    ns.state.tonic = representative.tonic || getInteractiveDefaultTonic(resolvedMaqamId);
+    ns.state.tonic = representative.tonic || getInteractiveDefaultTonicEn(resolvedMaqamId);
     ns.state.activeNoteIndex = null;
     ns.state.isPlaying = false;
     ns.state.stopRequested = false;
@@ -228,9 +224,9 @@
   }
 
   function bootstrap() {
-    const requestedFamily = URL_PARAMS.get("family");
-    const requestedMaqam = URL_PARAMS.get("maqam");
-    const requestedTonic = URL_PARAMS.get("tonic");
+    const requestedFamily = URL_PARAMS.get('family');
+    const requestedMaqam = URL_PARAMS.get('maqam');
+    const requestedTonic = URL_PARAMS.get('tonic');
     const resolved = resolveInitialSelection(requestedFamily, requestedMaqam, requestedTonic);
 
     ns.state.familyId = resolved.familyId;

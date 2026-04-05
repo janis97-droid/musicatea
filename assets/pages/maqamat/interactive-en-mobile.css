@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+  body[dir="ltr"] .sidebar {
+    transform: translateX(-100%);
+  }
+
+  body[dir="ltr"] .sidebar.open {
+    transform: translateX(0);
+  }
+
+  body[dir="ltr"] .main {
+    margin-left: 0;
+  }
+}

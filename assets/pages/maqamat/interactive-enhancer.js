@@ -1,4 +1,3 @@
-// assets/maqam-page.js
 // Non-invasive content/theory enhancer for interactive-scale.html
 // Keeps the existing scale, root-transpose, staff, and playback logic untouched.
 

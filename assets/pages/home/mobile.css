@@ -1,9 +1,5 @@
-/* assets/page-home-mobile-only.css */
-/* Mobile-only homepage fix
-   - fixes the 3 feature cards row
-   - keeps تحميل مجاني inside its own card
-   - hides the duplicate 4th pillar card on mobile
-*/
+/* Home page mobile styles shared across Arabic and English.
+   Direction-specific differences are kept under html[dir="rtl"] / html[dir="ltr"] selectors. */
 
 .pillar-title-mobile,
 .pillar-copy-mobile {
@@ -24,7 +20,6 @@
     align-items: center;
     justify-content: center;
     gap: 0;
-    margin-left: 0;
     flex: 0 0 auto;
     width: auto;
   }
@@ -37,15 +32,6 @@
     font-size: 2.68rem;
     line-height: 0.95;
     text-align: center;
-  }
-
-  .nav-top-home .nav-top-left {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
   }
 
   .nav-top-home .lang-toggle {
@@ -62,6 +48,32 @@
     height: 16px;
   }
 
+  html[dir="rtl"] .nav-top-home .nav-main-group {
+    margin-left: 0;
+  }
+
+  html[dir="ltr"] .nav-top-home .nav-main-group {
+    margin-right: 0;
+  }
+
+  html[dir="rtl"] .nav-top-home .nav-top-left {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  html[dir="ltr"] .nav-top-home .nav-top-left {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+
   .hero {
     padding: 26px 4% 24px;
   }
@@ -70,7 +82,6 @@
     display: inline-block;
     margin-top: 8px;
     margin-bottom: 10px;
-    font-size: 1.34rem;
     padding: 8px 16px;
     border-radius: 999px;
     background: rgba(200,164,90,0.16);
@@ -82,8 +93,13 @@
       inset 0 1px 0 rgba(255,255,255,0.10);
   }
 
-  .hero .hero-content > h1 {
-    display: none;
+  html[dir="rtl"] .hero-tag {
+    font-size: 1.34rem;
+  }
+
+  html[dir="ltr"] .hero-tag {
+    font-size: 1.05rem;
+    line-height: 1.5;
   }
 
   .hero .subtitle {
@@ -114,7 +130,6 @@
     gap: 6px;
     position: relative;
     overflow: hidden;
-    direction: rtl;
     color: var(--gold-light) !important;
     background: var(--bg2) !important;
     box-shadow:
@@ -123,6 +138,14 @@
       inset 0 1px 0 rgba(255,255,255,0.14);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+  }
+
+  html[dir="rtl"] .hero-cta-home-menu .cta-btn {
+    direction: rtl;
+  }
+
+  html[dir="ltr"] .hero-cta-home-menu .cta-btn {
+    direction: ltr;
   }
 
   .hero-cta-home-menu .cta-btn svg {
@@ -138,8 +161,18 @@
     pointer-events: none;
   }
 
-  .hero-cta-home-menu .cta-btn::after {
+  html[dir="rtl"] .hero-cta-home-menu .cta-btn::after {
     content: '←' !important;
+    display: inline-block;
+    margin-inline-start: 8px;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--gold-light) !important;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.18);
+  }
+
+  html[dir="ltr"] .hero-cta-home-menu .cta-btn::after {
+    content: '→' !important;
     display: inline-block;
     margin-inline-start: 8px;
     font-size: 1rem;
@@ -164,7 +197,6 @@
     grid-column: 1 / -1;
   }
 
-  /* FIXED MOBILE FEATURE CARDS */
   .pillars {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -194,7 +226,6 @@
     overflow: hidden !important;
   }
 
-  /* Hide duplicate 4th desktop-only card on mobile */
   .pillars > .pillar:nth-child(4) {
     display: none !important;
   }
@@ -270,9 +301,16 @@
     padding: 22px 4% 20px;
   }
 
-  .hero-tag {
+  html[dir="rtl"] .hero-tag {
     font-size: 1.18rem;
     padding: 7px 14px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  html[dir="ltr"] .hero-tag {
+    font-size: 0.92rem;
+    padding: 7px 12px;
     margin-top: 6px;
     margin-bottom: 10px;
   }
