@@ -1,0 +1,19 @@
+@media (max-width: 700px) {
+  .maqam-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .maqam-content {
+    padding: 32px 4% 80px;
+  }
+
+  .meta-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    min-width: 0;
+  }
+}
