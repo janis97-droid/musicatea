@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maqam family — explore the branches of this maqam family and their characteristics.">
+  <meta name="theme-color" content="#09090b">
   <title>Maqam Family | Musicatea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css" />
   <style>
     body[dir="ltr"] {
@@ -308,6 +310,8 @@
 </head>
 <body dir="ltr">
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -358,7 +362,7 @@
     </div>
   </header>
 
-  <main class="family-content">
+  <main id="main-content" class="family-content">
     <section class="family-summary" id="family-summary"></section>
 
     <section>
@@ -376,7 +380,7 @@
   </footer>
 
   <script src="data/maqamat-en.js"></script>
-  <script src="assets/ui.js"></script>
+  <script src="assets/shared-utils.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const familyId = params.get('family');

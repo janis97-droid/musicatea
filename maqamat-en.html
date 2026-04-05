@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arabic Maqamat — explore the principal maqam families, their scales, emotional character, and branches.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="ar" href="maqamat.html">
+  <link rel="alternate" hreflang="en" href="maqamat-en.html">
   <title>Maqamatea | Musicatea</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,6 +233,8 @@
 </head>
 <body dir="ltr">
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -261,6 +267,8 @@
     </div>
   </nav>
 
+  <main id="main-content">
+
   <div class="maqamat-hero">
     <h1>Arabic Maqamat</h1>
     <p>
@@ -281,13 +289,15 @@
     <div id="maqamat-grid"></div>
   </div>
 
+  </main>
+
   <footer class="site-footer">
     <span class="footer-logo">Musicatea</span>
     <span>© 2025 Musicatea</span>
   </footer>
 
   <script src="data/maqamat-en.js"></script>
-  <script src="assets/ui.js"></script>
+  <script src="assets/shared-utils.js"></script>
   <script>
     const maqamatGrid = document.getElementById('maqamat-grid');
     const searchInput = document.getElementById('maqam-search');

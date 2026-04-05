@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="مكتبة نوتات موسيقية عربية وغربية قابلة للتصفية والتحميل المجاني.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="en" href="library-en.html">
+  <link rel="alternate" hreflang="ar" href="library.html">
   <title>مكتبة النوتات — موسيقتي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/islamic-pattern.css?v=1">
   <link rel="stylesheet" href="assets/page-library-mobile-only.css?v=2">
@@ -14,6 +18,8 @@
 </head>
 <body>
  
+  <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -46,37 +52,44 @@
     </div>
   </nav>
  
+  <main id="main-content">
+
   <header class="page-hero">
     <h1>مكتبة النوتات</h1>
     <p>نوتات موسيقية عربية وغربية — قابلة للتصفية والتحميل المجاني.</p>
   </header>
  
-  <div class="filters">
+  <div class="filters" role="search" aria-label="فلترة النوتات">
+    <label for="performer" class="sr-only">المطرب</label>
     <select id="performer">
       <option value="">المطرب</option>
     </select>
 
+    <label for="maqam" class="sr-only">المقام</label>
     <select id="maqam">
       <option value="">كل المقامات</option>
     </select>
 
+    <label for="search" class="sr-only">بحث</label>
     <input id="search" type="text" placeholder="بحث">
   </div>
  
   <div id="list" class="grid"></div>
  
+  </main>
+
   <footer class="site-footer">
     <span class="footer-logo">موسيقتي</span>
     <span>© 2025 Musicatea</span>
   </footer>
  
-  <script src="data/sheets.js"></script>
-  <script src="data/maqamat.js"></script>
-  <script src="assets/maqam-name-overrides.js"></script>
-  <script src="assets/shared-utils.js"></script>
-  <script src="assets/sheet-card.js"></script>
-  <script src="assets/app.js"></script>
-  <script src="assets/maqam-mega-menu.js"></script>
+  <script defer src="data/sheets.js"></script>
+  <script defer src="data/maqamat.js"></script>
+  <script defer src="assets/maqam-name-overrides.js"></script>
+  <script defer src="assets/shared-utils.js"></script>
+  <script defer src="assets/sheet-card.js"></script>
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/maqam-mega-menu.js"></script>
  
 </body>
 </html>

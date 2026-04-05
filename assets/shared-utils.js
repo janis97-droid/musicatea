@@ -94,3 +94,9 @@ function normalize(text) {
     .replace(/ة/g, 'ه')
     .replace(/[\u064B-\u065F]/g, '');
 }
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
+}
