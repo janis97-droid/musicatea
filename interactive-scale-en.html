@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maqamat | Musicatea</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Maqamat | Musicatea</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="stylesheet" href="assets/pages/maqamat/family-en-desktop.css" />
-  <link rel="stylesheet" href="assets/pages/maqamat/family-en-mobile.css" />
-  <link rel="stylesheet" href="assets/pages/maqamat/maqam-en-desktop.css" />
-  <link rel="stylesheet" href="assets/pages/maqamat/maqam-en-mobile.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/pages/maqamat/interactive-desktop.css">
+  <link rel="stylesheet" href="assets/pages/maqamat/interactive-mobile.css">
+  <link rel="stylesheet" href="assets/pages/maqamat/interactive-en-desktop.css">
+  <link rel="stylesheet" href="assets/pages/maqamat/interactive-en-mobile.css">
 </head>
 <body dir="ltr">
+
   <nav class="site-nav">
-    <div class="nav-shell">
-      <div class="nav-top">
-        <div class="nav-top-right">
-          <a href="index-en.html" class="nav-logo">Musicatea</a>
-        </div>
-        <div class="nav-top-left">
-          <a href="interactive-scale.html" class="lang-toggle" aria-label="Switch to Arabic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            <span>AR</span>
-          </a>
-        </div>
-      </div>
-      <div class="nav-bottom">
-        <div class="nav-links">
+    <div class="nav-inner">
+      <div class="nav-right">
+        <a href="index-en.html" class="nav-logo">Musicatea</a>
+
+        <nav class="nav-links">
           <a href="index-en.html">Home</a>
           <a href="library-en.html">Sheet Library</a>
           <a href="maqamat-en.html" class="active">Maqamat</a>
           <a href="rhythms-en.html">Rhythms</a>
           <a href="history-en.html">Arabic Music History</a>
           <a href="ensemble-en.html">Melodies Ensemble</a>
-        </div>
+        </nav>
+
+        <nav class="nav-breadcrumb" aria-label="Page path">
+          <a href="maqamat-en.html">Maqamat</a>
+          <span class="sep">›</span>
+          <span class="current" id="current-maqam-label-en">Rast</span>
+        </nav>
+      </div>
+
+      <div class="nav-actions">
+        <a href="interactive-scale.html" class="lang-toggle" aria-label="Switch to Arabic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>AR</span>
+        </a>
+        <button class="mobile-toggle" onclick="document.getElementById('sidebar-en').classList.toggle('open')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          Maqamat
+        </button>
       </div>
     </div>
   </nav>
 
-  <div id="interactive-en-root"></div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar-en"></aside>
 
-  <footer class="site-footer">
-    <span class="footer-logo">Musicatea</span>
-    <span>© 2025 Musicatea</span>
-  </footer>
+    <main class="main" id="main-panel-en">
+      <div id="interactive-page-root-en"></div>
+    </main>
+  </div>
 
   <script src="data/maqamat-en.js"></script>
-  <script src="assets/pages/maqamat/interactive-en.js"></script>
+  <script src="data/interactive-maqamat.js"></script>
+  <script src="data/interactive-maqamat-en.js"></script>
+  <script src="data/note-audio-map.js"></script>
+  <script src="assets/maqam-engine.js"></script>
+  <script src="assets/pages/maqamat/interactive-en-engine.js"></script>
+  <script src="assets/maqam-audio.js"></script>
+  <script src="assets/pages/maqamat/interactive-en-renderer.js"></script>
+  <script src="assets/pages/maqamat/interactive-en-bootstrap.js"></script>
 </body>
 </html>
