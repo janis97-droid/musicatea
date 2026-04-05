@@ -82,7 +82,7 @@ function createEmptyState(message) {
     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
       <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
     </svg>
-    <p>${message}</p>`;
+    <p>${escapeHtml(message)}</p>`;
   return div;
 }
 
@@ -93,4 +93,10 @@ function normalize(text) {
     .replace(/ى/g, 'ي')
     .replace(/ة/g, 'ه')
     .replace(/[\u064B-\u065F]/g, '');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str || '';
+  return div.innerHTML;
 }
