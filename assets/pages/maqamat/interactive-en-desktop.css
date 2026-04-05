@@ -1,0 +1,56 @@
+body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+body[dir="ltr"] .nav-right {
+  flex-direction: row;
+}
+
+body[dir="ltr"] .nav-breadcrumb {
+  direction: ltr;
+}
+
+body[dir="ltr"] .sidebar {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--border);
+}
+
+body[dir="ltr"] .main {
+  margin-right: 0;
+  margin-left: var(--sidebar-w);
+}
+
+body[dir="ltr"] .sidebar-btn {
+  text-align: left;
+}
+
+body[dir="ltr"] .sidebar-btn.active::before {
+  right: auto;
+  left: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+body[dir="ltr"] .sidebar-main-tag {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+body[dir="ltr"] .maqam-hero::after {
+  left: auto;
+  right: -1%;
+}
+
+body[dir="ltr"] .maqam-name-wrap {
+  justify-content: flex-start;
+}
+
+body[dir="ltr"] .staff-scale-header {
+  justify-content: flex-start;
+}
+
+body[dir="ltr"] .note-keys-row {
+  direction: ltr;
+}
