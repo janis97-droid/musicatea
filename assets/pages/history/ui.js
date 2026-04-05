@@ -1,13 +1,27 @@
-// assets/history-ui.js
+// assets/pages/history/ui.js
 // Shared history accordion helpers.
 
+function getHistoryUiStrings() {
+  const isEnglish = document.documentElement.lang === 'en' || document.body?.dir === 'ltr';
+  return isEnglish
+    ? {
+        figuresLabel: 'Figures associated with this era',
+        fallbackDescription: 'One of the figures associated with this musical era.'
+      }
+    : {
+        figuresLabel: 'الشخصيات المرتبطة بهذه الحقبة',
+        fallbackDescription: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.'
+      };
+}
+
 function normalizeHistoryFigure(figure) {
+  const ui = getHistoryUiStrings();
   if (typeof figure === 'string') {
     return {
       name: figure,
       role: '',
       years: '',
-      description: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.'
+      description: ui.fallbackDescription
     };
   }
 
@@ -15,11 +29,12 @@ function normalizeHistoryFigure(figure) {
     name: figure?.name || '',
     role: figure?.role || '',
     years: figure?.years || '',
-    description: figure?.description || 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.'
+    description: figure?.description || ui.fallbackDescription
   };
 }
 
 function createHistorySection(h, index) {
+  const ui = getHistoryUiStrings();
   const section = document.createElement('div');
   section.className = 'history-item';
   section.dataset.id = h.id;
@@ -32,9 +47,9 @@ function createHistorySection(h, index) {
   const figuresMarkup = figures.length
     ? `
       <div class="history-figures-block">
-        <div class="history-figures-label">الشخصيات المرتبطة بهذه الحقبة</div>
+        <div class="history-figures-label">${ui.figuresLabel}</div>
         <div class="history-figures">
-          ${figures.map((figure, idx) => `
+          ${figures.map(figure => `
             <button class="history-figure-chip" type="button"
               data-figure-name="${escapeHistoryHtml(figure.name)}"
               data-figure-role="${escapeHistoryHtml(figure.role)}"
