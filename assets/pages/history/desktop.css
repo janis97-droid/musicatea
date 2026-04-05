@@ -1,9 +1,10 @@
-/* ─ History page styles ───── */
+/* Shared history page desktop styles */
 .history-hero {
   padding: 60px 5% 48px;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
 }
+
 .history-hero-tag {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
@@ -13,20 +14,22 @@
   margin-bottom: 10px;
   display: block;
 }
+
 .history-hero h1 {
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 900;
   margin-bottom: 12px;
   line-height: 1.2;
 }
+
 .history-hero p {
   color: var(--text-muted);
   font-size: 1rem;
-  max-width: 540px;
-  line-height: 1.7;
+  max-width: 640px;
+  line-height: 1.8;
+  margin: 0;
 }
 
-/* ─ History accordion ─┐ ──────*/
 .history-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -40,53 +43,127 @@
 }
 
 .history-item {
-  border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
   transition: all 0.3s var(--ease);
 }
+
 .history-item:hover {
   border-color: rgba(200,164,90,0.2);
 }
 
 .history-toggle {
-  width: 100%; display: flex; align-items: center;
-  justify-content: space-between; gap: 16px;
-  background: var(--bg2); padding: 20px 22px;
-  border: none; cursor: pointer; text-align: start;
-  color: var(--text); font-family: inherit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg2);
+  padding: 20px 22px;
+  border: none;
+  cursor: pointer;
+  text-align: start;
+  color: var(--text);
+  font-family: inherit;
   transition: background 0.3s;
 }
-.history-toggle:hover { background: var(--bg3); }
-.history-toggle[aria-expanded="true"] { background: var(--bg3); }
 
-.history-toggle-left { display: flex; align-items: center; gap: 16px; }
-.history-index {
-  font-size: 1.4rem; font-weight: 900; color: var(--gold);
-  opacity: 0.5; min-width: 32px; font-family: 'Cairo', sans-serif;
+.history-toggle:hover,
+.history-toggle[aria-expanded="true"] {
+  background: var(--bg3);
 }
-.history-titles { display: flex; flex-direction: column; gap: 2px; }
-.history-title { font-size: 1rem; font-weight: 700; }
-.history-subtitle { font-size: 0.8rem; color: var(--text-muted); }
 
-.history-toggle-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
-.history-period { font-size: 0.75rem; color: var(--text-dim); white-space: nowrap; }
-.history-chevron { color: var(--text-dim); transition: transform 0.3s ease; }
+.history-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.history-index {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gold);
+  opacity: 0.5;
+  min-width: 32px;
+  font-family: 'Cairo', sans-serif;
+}
+
+.history-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.history-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.history-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.history-toggle-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.history-period {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.history-chevron {
+  color: var(--text-dim);
+  transition: transform 0.3s ease;
+}
 
 .history-content {
-  padding: 24px 22px; border-top: 1px solid var(--border);
+  padding: 24px 22px;
+  border-top: 1px solid var(--border);
   background: var(--bg);
 }
+
 .history-text {
-  color: var(--text-muted); line-height: 1.85;
-  font-size: 0.92rem; margin-bottom: 16px;
+  color: var(--text-muted);
+  line-height: 1.85;
+  font-size: 0.92rem;
+  margin-bottom: 16px;
 }
-.history-highlights { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.history-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .history-highlight {
-  font-size: 0.78rem; padding: 5px 12px; border-radius: 100px;
-  background: var(--gold-dim); border: 1px solid rgba(200,164,90,0.2);
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(200,164,90,0.2);
   color: var(--gold-light);
 }
 
-@media (max-width: 600px) {
-  .history-period { display: none; }
-  .history-container { padding: 40px 4% 80px; }
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .nav-top {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .nav-bottom {
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .nav-links {
+  flex-direction: row;
 }
