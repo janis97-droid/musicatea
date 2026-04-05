@@ -1,0 +1,177 @@
+/* Mobile-only overrides for interactive maqam scale */
+@media (max-width: 768px) {
+  .maqam-hero {
+    padding: 18px 14px 16px;
+  }
+
+  .maqam-name {
+    font-size: clamp(1.7rem, 9vw, 2.2rem);
+  }
+
+  .maqam-latin {
+    font-size: 0.82rem;
+  }
+
+  .maqam-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .maqam-body {
+    padding: 18px 12px 56px;
+    max-width: none;
+  }
+
+  .sec-title {
+    margin-bottom: 10px;
+    font-size: 0.66rem;
+  }
+
+  .staff-scale-box {
+    padding: 16px 12px 14px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+  }
+
+  .staff-scale-header {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .staff-scale-title {
+    font-size: 0.82rem;
+  }
+
+  .tonic-selector {
+    gap: 5px;
+  }
+
+  .tonic-btn {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.74rem;
+  }
+
+  .staff-wrap {
+    padding: 10px 4px 8px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .staff-svg {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto;
+  }
+
+  .note-keys-row {
+    gap: 4px;
+    margin-top: 12px;
+  }
+
+  .note-key-face,
+  .note-key-face.note-key-face-colored {
+    min-height: 42px;
+    padding: 4px 2px;
+    font-size: 0.67rem;
+    border-radius: 8px;
+  }
+
+  .note-key-face .acc {
+    font-size: 0.5rem;
+  }
+
+  .playbar {
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .play-btn {
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 0.74rem;
+  }
+
+  .status-bar {
+    width: 100%;
+    margin-right: 0;
+    font-size: 0.68rem;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .info-card {
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  .info-label {
+    font-size: 0.6rem;
+  }
+
+  .info-value {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .maqam-hero {
+    padding: 16px 12px 14px;
+  }
+
+  .maqam-name {
+    font-size: 1.5rem;
+  }
+
+  .maqam-latin {
+    font-size: 0.76rem;
+  }
+
+  .maqam-desc {
+    font-size: 0.82rem;
+  }
+
+  .maqam-body {
+    padding: 16px 10px 48px;
+  }
+
+  .staff-scale-box {
+    padding: 14px 10px 12px;
+    border-radius: 14px;
+  }
+
+  .staff-wrap {
+    padding: 8px 2px 6px;
+  }
+
+  .note-keys-row {
+    gap: 3px;
+  }
+
+  .note-key-face,
+  .note-key-face.note-key-face-colored {
+    min-height: 38px;
+    font-size: 0.6rem;
+    padding: 3px 1px;
+  }
+
+  .tonic-btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+
+  .play-btn {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
