@@ -1,0 +1,6 @@
+/* Copy of current inline mobile styles from index-en.html for safe refactor prep */
+@media (max-width: 640px) {
+  .hero {
+    padding: 84px 4% 64px;
+  }
+}
