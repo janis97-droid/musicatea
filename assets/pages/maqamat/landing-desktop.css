@@ -1,4 +1,4 @@
-/* Copy of current assets/page-maqamat.css for safe refactor prep */
+/* Arabic maqamat landing desktop styles */
 .maqamat-hero {
   padding: 42px 5% 26px;
   border-bottom: 1px solid var(--border);
@@ -171,61 +171,4 @@
   padding: 22px;
   color: var(--text-muted);
   font-size: 0.95rem;
-}
-
-@media (max-width: 980px) {
-  #maqamat-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .maqamat-content {
-    padding: 18px 4% 80px;
-  }
-
-  .maqamat-hero {
-    padding: 34px 4% 22px;
-  }
-}
-
-@media (max-width: 640px) {
-  #maqamat-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .maqam-family-card {
-    min-height: auto;
-    padding: 16px 16px 14px;
-    border-radius: 16px;
-  }
-
-  .maqam-card-heading {
-    gap: 8px;
-    align-items: baseline;
-  }
-
-  .maqam-family-card h3 {
-    font-size: 1.34rem;
-  }
-
-  .maqam-family-card .latin {
-    font-size: 0.76rem;
-  }
-
-  .maqam-card-footer {
-    margin-top: 12px;
-    padding-top: 10px;
-  }
-
-  .maqam-card-cta {
-    font-size: 0.8rem;
-    gap: 6px;
-  }
-
-  .maqam-card-cta svg {
-    width: 12px;
-    height: 12px;
-  }
 }
