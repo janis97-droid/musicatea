@@ -40,14 +40,14 @@ function createHistorySection(h, index) {
   section.dataset.id = h.id;
 
   const highlights = (h.highlights || []).map(hl =>
-    `<span class="history-highlight">${hl}</span>`
+    `<span class="history-highlight">${escapeHistoryHtml(hl)}</span>`
   ).join('');
 
   const figures = Array.isArray(h.figures) ? h.figures.map(normalizeHistoryFigure) : [];
   const figuresMarkup = figures.length
     ? `
       <div class="history-figures-block">
-        <div class="history-figures-label">${ui.figuresLabel}</div>
+        <div class="history-figures-label">${escapeHistoryHtml(ui.figuresLabel)}</div>
         <div class="history-figures">
           ${figures.map(figure => `
             <button class="history-figure-chip" type="button"
@@ -56,7 +56,7 @@ function createHistorySection(h, index) {
               data-figure-years="${escapeHistoryHtml(figure.years)}"
               data-figure-description="${escapeHistoryHtml(figure.description)}"
               onclick="selectHistoryFigure(this)">
-              ${figure.name}
+              ${escapeHistoryHtml(figure.name)}
             </button>
           `).join('')}
         </div>
@@ -78,19 +78,19 @@ function createHistorySection(h, index) {
       <div class="history-toggle-left">
         <span class="history-index">${String(index + 1).padStart(2, '0')}</span>
         <div class="history-titles">
-          <span class="history-title">${h.title}</span>
-          <span class="history-subtitle">${h.subtitle}</span>
+          <span class="history-title">${escapeHistoryHtml(h.title)}</span>
+          <span class="history-subtitle">${escapeHistoryHtml(h.subtitle)}</span>
         </div>
       </div>
       <div class="history-toggle-right">
-        <span class="history-period">${h.period}</span>
+        <span class="history-period">${escapeHistoryHtml(h.period)}</span>
         <svg class="history-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </div>
     </button>
     <div class="history-content" hidden>
-      <p class="history-text">${h.content}</p>
+      <p class="history-text">${escapeHistoryHtml(h.content)}</p>
       <div class="history-highlights">${highlights}</div>
       ${figuresMarkup}
     </div>`;

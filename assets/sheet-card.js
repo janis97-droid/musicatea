@@ -14,14 +14,14 @@ function createSheetCard(s) {
   const maqamTagLabel = buildInteractiveMaqamTagLabel(s.maqam, s.tonic);
 
   const maqamDisplay = maqamRoute
-    ? `<a href="${maqamRoute}" class="maqam-link card-tag card-tag-clickable" onclick="event.stopPropagation()">${maqamTagLabel}</a>`
-    : `<span class="card-tag">${s.system === 'arabic' ? maqamTagLabel : (s.scale || '')}</span>`;
+    ? `<a href="${escapeHtml(maqamRoute)}" class="maqam-link card-tag card-tag-clickable" onclick="event.stopPropagation()">${escapeHtml(maqamTagLabel)}</a>`
+    : `<span class="card-tag">${escapeHtml(s.system === 'arabic' ? maqamTagLabel : (s.scale || ''))}</span>`;
 
   const performerLine = s.performer
     ? `
       <div class="card-credit-row">
         <span class="card-credit-label">المؤدي</span>
-        <span class="card-credit-value">${s.performer}</span>
+        <span class="card-credit-value">${escapeHtml(s.performer)}</span>
       </div>`
     : '';
 
@@ -31,19 +31,19 @@ function createSheetCard(s) {
 
   const secondaryMeta = s.system === 'arabic'
     ? ''
-    : (s.tonic ? `<span class="card-tag card-tag-muted">${s.tonic}</span>` : '');
+    : (s.tonic ? `<span class="card-tag card-tag-muted">${escapeHtml(s.tonic)}</span>` : '');
 
   card.innerHTML = `
     <div class="card-header">
       <div class="card-title-row">
-        <h3 class="card-title">${s.title}</h3>
+        <h3 class="card-title">${escapeHtml(s.title)}</h3>
         ${badge}
       </div>
 
       <div class="card-credits">
         <div class="card-credit-row">
           <span class="card-credit-label">الملحن</span>
-          <span class="card-credit-value">${s.composer}</span>
+          <span class="card-credit-value">${escapeHtml(s.composer)}</span>
         </div>
         ${performerLine}
       </div>
@@ -56,7 +56,7 @@ function createSheetCard(s) {
       </div>
     </div>
 
-    <a href="${s.pdf}" target="_blank" class="download-btn">
+    <a href="${escapeHtml(s.pdf)}" target="_blank" rel="noopener" class="download-btn">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>

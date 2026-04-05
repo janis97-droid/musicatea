@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الإيقاعات العربية التفاعلية — تصفّح الإيقاعات الشرقية واستمع إليها.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="en" href="rhythms-en.html">
+  <link rel="alternate" hreflang="ar" href="rhythms.html">
   <title>الإيقاعات التفاعلية | موسيقتي</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -761,6 +765,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
   <nav class="site-nav">
     <div class="nav-inner">
       <div class="nav-right">
@@ -804,42 +810,44 @@
     </div>
   </nav>
 
-  <div class="shell">
-    <aside class="sidebar" id="rhythm-sidebar">
-      <div class="sidebar-inner">
-        <div class="sidebar-head">
-          <span class="sidebar-kicker">إيقاع</span>
-          <h1>الإيقاعات التفاعلية</h1>
-          <p>تصفّح الإيقاعات العربية عبر البحث والتوقيع الزمني، ثم استمع إلى تسجيل كامل لكل إيقاع مع مساحة جاهزة لإضافة أمثلة من الأغاني والقطع لاحقاً.</p>
+  <main id="main-content">
+    <div class="shell">
+      <aside class="sidebar" id="rhythm-sidebar">
+        <div class="sidebar-inner">
+          <div class="sidebar-head">
+            <span class="sidebar-kicker">إيقاع</span>
+            <h1>الإيقاعات التفاعلية</h1>
+            <p>تصفّح الإيقاعات العربية عبر البحث والتوقيع الزمني، ثم استمع إلى تسجيل كامل لكل إيقاع مع مساحة جاهزة لإضافة أمثلة من الأغاني والقطع لاحقاً.</p>
+          </div>
+
+          <div class="filters">
+            <div class="filter-field">
+              <label for="rhythm-search">بحث</label>
+              <input id="rhythm-search" type="text" placeholder="ابحث عن إيقاع، اسم لاتيني، أو وصف">
+            </div>
+
+            <div class="filter-field">
+              <label for="time-filter">التوقيع الزمني</label>
+              <select id="time-filter">
+                <option value="">كل التواقيع</option>
+              </select>
+            </div>
+
+            <div class="filters-meta">
+              <span class="results-count" id="results-count">0 إيقاع</span>
+              <button class="filters-reset" id="filters-reset" type="button">إعادة ضبط</button>
+            </div>
+          </div>
+
+          <div class="rhythm-list" id="rhythm-list"></div>
         </div>
+      </aside>
 
-        <div class="filters">
-          <div class="filter-field">
-            <label for="rhythm-search">بحث</label>
-            <input id="rhythm-search" type="text" placeholder="ابحث عن إيقاع، اسم لاتيني، أو وصف">
-          </div>
-
-          <div class="filter-field">
-            <label for="time-filter">التوقيع الزمني</label>
-            <select id="time-filter">
-              <option value="">كل التواقيع</option>
-            </select>
-          </div>
-
-          <div class="filters-meta">
-            <span class="results-count" id="results-count">0 إيقاع</span>
-            <button class="filters-reset" id="filters-reset" type="button">إعادة ضبط</button>
-          </div>
-        </div>
-
-        <div class="rhythm-list" id="rhythm-list"></div>
-      </div>
-    </aside>
-
-    <main class="main">
-      <div class="detail" id="rhythm-detail"></div>
-    </main>
-  </div>
+      <main class="main">
+        <div class="detail" id="rhythm-detail"></div>
+      </main>
+    </div>
+  </main>
 
   <script src="data/rhythms.js"></script>
   <script src="assets/shared-utils.js"></script>
@@ -878,13 +886,13 @@
           .replace(/[أإآ]/g, 'ا')
           .replace(/ى/g, 'ي')
           .replace(/ة/g, 'ه')
-          .replace(/[\\u064B-\\u065F]/g, '');
+          .replace(/[\u064B-\u065F]/g, '');
       };
 
       const slugifyRhythm = (value) => String(value || '')
         .trim()
         .toLowerCase()
-        .replace(/[^a-z0-9\\u0600-\\u06FF]+/g, '-')
+        .replace(/[^a-z0-9\u0600-\u06FF]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
       const enrichedRhythms = window.rhythms.map((rhythm, index) => {
@@ -1004,15 +1012,15 @@
         button.innerHTML = `
           <div class="rhythm-nav-top">
             <div>
-              <span class="rhythm-nav-name">${rhythm.name}</span>
-              <span class="rhythm-nav-latin">${rhythm.latin || '—'}</span>
+              <span class="rhythm-nav-name">${escapeHtml(rhythm.name)}</span>
+              <span class="rhythm-nav-latin">${escapeHtml(rhythm.latin || '—')}</span>
             </div>
-            <span class="rhythm-badge">${rhythm.time_signature || '—'}</span>
+            <span class="rhythm-badge">${escapeHtml(rhythm.time_signature || '—')}</span>
           </div>
           <div class="rhythm-nav-meta">
-            <span class="tempo-chip">${rhythm.tempo || 'غير محدد'}</span>
+            <span class="tempo-chip">${escapeHtml(rhythm.tempo || 'غير محدد')}</span>
           </div>
-          <div class="rhythm-nav-pattern">${rhythm.pattern || '—'}</div>
+          <div class="rhythm-nav-pattern">${escapeHtml(rhythm.pattern || '—')}</div>
         `;
         button.addEventListener('click', () => {
           state.selectedRhythmId = rhythm.id;
@@ -1052,7 +1060,7 @@
                 if (typeof example === 'string') {
                   return `
                     <div class="example-item">
-                      <h4>${example}</h4>
+                      <h4>${escapeHtml(example)}</h4>
                       <p>يمكن لاحقاً إضافة معلومات العمل، المؤلف، والموضع الذي يظهر فيه الإيقاع.</p>
                     </div>
                   `;
@@ -1060,8 +1068,8 @@
 
                 return `
                   <div class="example-item">
-                    <h4>${example.title || 'مثال'}</h4>
-                    <p>${example.note || 'يمكن لاحقاً إضافة معلومات العمل، المؤلف، والموضع الذي يظهر فيه الإيقاع.'}</p>
+                    <h4>${escapeHtml(example.title || 'مثال')}</h4>
+                    <p>${escapeHtml(example.note || 'يمكن لاحقاً إضافة معلومات العمل، المؤلف، والموضع الذي يظهر فيه الإيقاع.')}</p>
                   </div>
                 `;
               }).join('')}
@@ -1123,7 +1131,7 @@
         breadcrumbLabel.textContent = selected.name;
 
         const usageTags = selected.usage.length
-          ? selected.usage.map(tag => `<span class="usage-tag">${tag}</span>`).join('')
+          ? selected.usage.map(tag => `<span class="usage-tag">${escapeHtml(tag)}</span>`).join('')
           : '<span class="usage-tag">سيُضاف الاستعمال لاحقاً</span>';
 
         const related = getRelatedRhythms(selected);
@@ -1133,47 +1141,47 @@
             <span class="detail-kicker">iqa‘ reference</span>
             <div class="detail-heading">
               <div>
-                <h1 class="detail-title">${selected.name}</h1>
-                <p class="detail-subtitle">${selected.latin || '—'}</p>
+                <h1 class="detail-title">${escapeHtml(selected.name)}</h1>
+                <p class="detail-subtitle">${escapeHtml(selected.latin || '—')}</p>
               </div>
               <div class="hero-meta">
-                <span class="rhythm-badge">${selected.time_signature || '—'}</span>
-                <span class="tempo-chip">${selected.tempo || 'غير محدد'}</span>
+                <span class="rhythm-badge">${escapeHtml(selected.time_signature || '—')}</span>
+                <span class="tempo-chip">${escapeHtml(selected.tempo || 'غير محدد')}</span>
               </div>
             </div>
-            <p class="detail-summary">${selected.description || 'لا يوجد وصف مختصر لهذا الإيقاع بعد.'}</p>
+            <p class="detail-summary">${escapeHtml(selected.description || 'لا يوجد وصف مختصر لهذا الإيقاع بعد.')}</p>
           </section>
 
           <section class="overview-grid">
             <article>
               <h3>التوقيع الزمني</h3>
-              <p>${selected.time_signature || '—'}</p>
+              <p>${escapeHtml(selected.time_signature || '—')}</p>
             </article>
             <article>
               <h3>فئة السرعة</h3>
-              <p>${selected.tempo || '—'}</p>
+              <p>${escapeHtml(selected.tempo || '—')}</p>
             </article>
             <article>
               <h3>النمط الأساسي</h3>
-              <p>${selected.pattern || '—'}</p>
+              <p>${escapeHtml(selected.pattern || '—')}</p>
             </article>
             <article>
               <h3>عدد الاستعمالات</h3>
-              <p>${selected.usage.length ? selected.usage.length : '—'}</p>
+              <p>${escapeHtml(selected.usage.length ? String(selected.usage.length) : '—')}</p>
             </article>
           </section>
 
           <section class="info-grid">
             <article class="info-card">
               <h2 class="section-title">المعلومات الأساسية</h2>
-              <div class="pattern-box">${selected.pattern || '—'}</div>
+              <div class="pattern-box">${escapeHtml(selected.pattern || '—')}</div>
               <div class="usage-tags">${usageTags}</div>
             </article>
 
             <article class="info-card audio-card">
               <h2 class="section-title">التسجيل الكامل</h2>
               <p>استمع إلى دورة الإيقاع كاملة. يمكنك أيضاً تغيير سرعة التشغيل للمراجعة من البطيء إلى الأسرع بدون تغيير الملف الأصلي.</p>
-              ${selected.audio ? `<audio id="rhythm-audio" class="audio-player" controls preload="none" src="${selected.audio}"></audio>` : '<div class="empty-state"><p>لا يوجد تسجيل مرتبط بهذا الإيقاع بعد.</p></div>'}
+              ${selected.audio ? `<audio id="rhythm-audio" class="audio-player" controls preload="none" src="${escapeHtml(selected.audio)}"></audio>` : '<div class="empty-state"><p>لا يوجد تسجيل مرتبط بهذا الإيقاع بعد.</p></div>'}
               ${selected.audio ? `
                 <div class="playback-rate-group" aria-label="سرعة تشغيل التسجيل">
                   <button type="button" class="playback-rate-btn" data-rate="0.75">0.75×</button>
@@ -1196,8 +1204,8 @@
               <div class="related-grid">
                 ${related.map(item => `
                   <a class="related-link" href="?rhythm=${encodeURIComponent(item.id)}">
-                    <span class="name">${item.name}</span>
-                    <span class="meta">${item.time_signature} · ${item.tempo}</span>
+                    <span class="name">${escapeHtml(item.name)}</span>
+                    <span class="meta">${escapeHtml(item.time_signature)} · ${escapeHtml(item.tempo)}</span>
                   </a>
                 `).join('')}
               </div>

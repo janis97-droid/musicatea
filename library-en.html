@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arabic and Western sheet music library with searchable filters and free PDF download.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="alternate" hreflang="ar" href="library.html">
+  <link rel="alternate" hreflang="en" href="library-en.html">
   <title>Sheet Music Library — Musicatea</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
@@ -226,6 +230,8 @@
 </head>
 <body dir="ltr">
 
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
   <nav class="site-nav">
     <div class="nav-shell">
       <div class="nav-top">
@@ -256,39 +262,47 @@
     </div>
   </nav>
 
-  <header class="page-hero">
-    <h1>Sheet Music Library</h1>
-    <p>Arabic and Western sheet music with searchable filters and direct PDF download.</p>
-  </header>
+  <main id="main-content">
+    <header class="page-hero">
+      <h1>Sheet Music Library</h1>
+      <p>Arabic and Western sheet music with searchable filters and direct PDF download.</p>
+    </header>
 
-  <div class="filters">
-    <select id="system">
-      <option value="arabic">Eastern Notation</option>
-      <option value="western">Western Notation</option>
-    </select>
+    <div class="filters" role="search" aria-label="Filter sheets">
+      <label for="system" class="sr-only">Notation system</label>
+      <select id="system">
+        <option value="arabic">Eastern Notation</option>
+        <option value="western">Western Notation</option>
+      </select>
 
-    <select id="type">
-      <option value="">All Types</option>
-      <option value="song">Song</option>
-      <option value="instrumental">Instrumental</option>
-    </select>
+      <label for="type" class="sr-only">Type</label>
+      <select id="type">
+        <option value="">All Types</option>
+        <option value="song">Song</option>
+        <option value="instrumental">Instrumental</option>
+      </select>
 
-    <select id="maqam">
-      <option value="">All Maqamat</option>
-    </select>
+      <label for="maqam" class="sr-only">Maqam</label>
+      <select id="maqam">
+        <option value="">All Maqamat</option>
+      </select>
 
-    <select id="scale" style="display:none;">
-      <option value="">All Scales</option>
-    </select>
+      <label for="scale" class="sr-only">Scale</label>
+      <select id="scale" style="display:none;">
+        <option value="">All Scales</option>
+      </select>
 
-    <select id="tonic">
-      <option value="">All Tonics</option>
-    </select>
+      <label for="tonic" class="sr-only">Tonic</label>
+      <select id="tonic">
+        <option value="">All Tonics</option>
+      </select>
 
-    <input id="search" type="text" placeholder="Search by title, composer, or performer...">
-  </div>
+      <label for="search" class="sr-only">Search</label>
+      <input id="search" type="text" placeholder="Search by title, composer, or performer...">
+    </div>
 
-  <div id="list" class="grid"></div>
+    <div id="list" class="grid"></div>
+  </main>
 
   <footer class="site-footer">
     <span class="footer-logo">Musicatea</span>
@@ -297,52 +311,8 @@
 
   <script src="data/sheets.js"></script>
   <script src="data/maqamat-en.js"></script>
-  <script src="assets/ui.js"></script>
-  <script>
-    function createSheetCard(s) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.dataset.system = s.system;
-      card.dataset.maqam = s.maqam || '';
-
-      const maqamDisplay = s.system === 'arabic' && s.maqam
-        ? `<a href="maqam-en.html?id=${slugify(s.maqam)}" class="maqam-link" onclick="event.stopPropagation()">${s.maqam}</a>`
-        : (s.scale || '');
-
-      const performerLine = s.performer
-        ? `<p class="card-performer">${s.performer}</p>`
-        : '';
-
-      const badge = s.type === 'song'
-        ? `<span class="badge badge-song">Song</span>`
-        : `<span class="badge badge-inst">Instrumental</span>`;
-
-      card.innerHTML = `
-        <div class="card-header">
-          <div class="card-title-row">
-            <h3 class="card-title">${s.title}</h3>
-            ${badge}
-          </div>
-          <p class="card-composer">${s.composer || ''}</p>
-          ${performerLine}
-        </div>
-        <div class="card-meta">
-          ${maqamDisplay ? `<span class="card-maqam">${maqamDisplay}</span>` : ''}
-          ${s.tonic ? `<span class="card-tonic">${s.tonic}</span>` : ''}
-        </div>
-        <a href="${s.pdf}" target="_blank" class="download-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download Sheet
-        </a>
-      `;
-
-      return card;
-    }
-  </script>
+  <script src="assets/shared-utils.js"></script>
+  <script src="assets/sheet-card.js"></script>
   <script src="assets/app-en.js"></script>
 </body>
 </html>
