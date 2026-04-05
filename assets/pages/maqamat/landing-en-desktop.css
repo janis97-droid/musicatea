@@ -1,0 +1,191 @@
+/* English maqamat landing desktop styles */
+body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+.maqamat-hero {
+  padding: 42px 5% 26px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top left, rgba(200,164,90,0.10) 0%, transparent 30%),
+    radial-gradient(circle at top right, rgba(123,168,212,0.06) 0%, transparent 24%),
+    linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.maqamat-hero::after {
+  content: "Maqamat";
+  position: absolute;
+  right: -1%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(4.5rem, 14vw, 10rem);
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(200,164,90,0.035);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.maqamat-hero-inner {
+  position: relative;
+  max-width: 900px;
+  z-index: 1;
+}
+
+.maqamat-hero h1 {
+  font-size: clamp(2.5rem, 5.2vw, 4.1rem);
+  font-weight: 900;
+  margin-bottom: 10px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.maqamat-hero p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 760px;
+  line-height: 1.95;
+  margin-bottom: 0;
+}
+
+.maqamat-content {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 26px 5% 100px;
+}
+
+.maqamat-content-compact {
+  max-width: 1120px;
+  padding-top: 18px;
+}
+
+#maqamat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.maqam-family-card {
+  background:
+    linear-gradient(180deg, rgba(200,164,90,0.04) 0%, rgba(255,255,255,0.015) 100%),
+    var(--bg2);
+  border: 1px solid rgba(200,164,90,0.14);
+  border-radius: 18px;
+  padding: 24px 22px 20px;
+  transition: all 0.35s var(--ease);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.20);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.maqam-family-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--family-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease);
+}
+
+.maqam-family-card:hover::before {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.maqam-family-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.38);
+  border-color: rgba(200,164,90,0.30);
+}
+
+.maqam-card-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.maqam-family-card h3 {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--gold-light);
+  margin: 0;
+  line-height: 1.12;
+}
+
+.maqam-family-card .latin {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  font-style: italic;
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.maqam-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+
+.maqam-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.maqam-card-cta svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease);
+}
+
+.maqam-family-card:hover .maqam-card-cta {
+  color: var(--text);
+}
+
+.maqam-family-card:hover .maqam-card-cta svg {
+  transform: translateX(2px);
+}
+
+.empty-state {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+html[dir="ltr"] .nav-top {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .nav-bottom {
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .nav-links {
+  flex-direction: row;
+}
