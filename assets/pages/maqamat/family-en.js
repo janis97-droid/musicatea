@@ -31,12 +31,17 @@ function createSummaryCard(label, value) {
   return card;
 }
 
+function unifiedFamilyRoute(maqamId = null) {
+  const qs = new URLSearchParams();
+  if (familyId) qs.set('family', familyId);
+  if (maqamId) qs.set('maqam', maqamId);
+  return `interactive-scale-en.html?${qs.toString()}`;
+}
+
 function createFamilyMaqamCard(maqam) {
   const card = document.createElement('a');
   card.className = 'family-maqam-card' + (maqam.is_main ? ' main' : '');
-  card.href = familyId === 'rast'
-    ? `interactive-scale.html?maqam=${maqam.id}`
-    : `maqam-en.html?id=${maqam.id}`;
+  card.href = unifiedFamilyRoute(maqam.id);
   card.style.setProperty('--maqam-color', maqam.mood_color || 'var(--gold)');
 
   const tonicHtml = (maqam.tonic_options || [])

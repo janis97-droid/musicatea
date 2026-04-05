@@ -40,7 +40,7 @@ function renderMaqamPage() {
   const familyName = familyNameMap[maqam.family] || maqam.family;
   const familyLink = document.getElementById('breadcrumb-family-link');
   familyLink.textContent = `${familyName} Family`;
-  familyLink.href = `maqam-family-en.html?family=${maqam.family}`;
+  familyLink.href = `interactive-scale-en.html?family=${maqam.family}`;
 
   document.getElementById('maqam-family-badge').textContent = `${familyName} Family`;
 
@@ -100,7 +100,7 @@ function renderMaqamPage() {
       const sub = getMaqamById(id);
       const a = document.createElement('a');
       a.className = 'submaqam-link';
-      a.href = `maqam-en.html?id=${id}`;
+      a.href = `interactive-scale-en.html?family=${maqam.family}&maqam=${id}`;
       a.textContent = sub ? sub.name : id;
       submaqamat.appendChild(a);
     });

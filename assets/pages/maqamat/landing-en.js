@@ -13,7 +13,7 @@ const FAMILY_ORDER = [
 ];
 
 function getFamilyLink(mainMaqam) {
-  return `maqam-family-en.html?family=${mainMaqam.family}`;
+  return `interactive-scale-en.html?family=${mainMaqam.family}`;
 }
 
 function createFamilyCard(mainMaqam) {
