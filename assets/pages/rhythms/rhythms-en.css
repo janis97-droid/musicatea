@@ -1,0 +1,109 @@
+/* assets/pages/rhythms/rhythms-en.css */
+
+html[dir="ltr"] .rhythms-hero,
+body[dir="ltr"] .rhythms-hero,
+html[lang="en"] .rhythms-hero {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythms-content,
+body[dir="ltr"] .rhythms-content,
+html[lang="en"] .rhythms-content {
+  direction: ltr;
+}
+
+html[dir="ltr"] .filter-field label,
+body[dir="ltr"] .filter-field label,
+html[lang="en"] .filter-field label {
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythms-search-bar,
+body[dir="ltr"] .rhythms-search-bar,
+html[lang="en"] .rhythms-search-bar {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .filter-select,
+body[dir="ltr"] .filter-select,
+html[lang="en"] .filter-select {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .filter-select select,
+body[dir="ltr"] .filter-select select,
+html[lang="en"] .filter-select select {
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythm-card,
+body[dir="ltr"] .rhythm-card,
+html[lang="en"] .rhythm-card {
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythm-card-header,
+body[dir="ltr"] .rhythm-card-header,
+html[lang="en"] .rhythm-card-header {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .rhythm-card-title-wrap,
+body[dir="ltr"] .rhythm-card-title-wrap,
+html[lang="en"] .rhythm-card-title-wrap {
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythm-chip-row,
+body[dir="ltr"] .rhythm-chip-row,
+html[lang="en"] .rhythm-chip-row {
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .rhythm-pattern,
+body[dir="ltr"] .rhythm-pattern,
+html[lang="en"] .rhythm-pattern {
+  direction: ltr;
+  text-align: center;
+}
+
+html[dir="ltr"] .rhythm-bpm-row,
+body[dir="ltr"] .rhythm-bpm-row,
+html[lang="en"] .rhythm-bpm-row {
+  direction: ltr;
+}
+
+html[dir="ltr"] .rhythm-bpm-label,
+body[dir="ltr"] .rhythm-bpm-label,
+html[lang="en"] .rhythm-bpm-label {
+  text-align: left;
+}
+
+html[dir="ltr"] .rhythm-bpm-value,
+body[dir="ltr"] .rhythm-bpm-value,
+html[lang="en"] .rhythm-bpm-value {
+  text-align: right;
+  direction: ltr;
+}
+
+html[dir="ltr"] .empty-state,
+body[dir="ltr"] .empty-state,
+html[lang="en"] .empty-state {
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  html[dir="ltr"] .rhythm-card-header,
+  body[dir="ltr"] .rhythm-card-header,
+  html[lang="en"] .rhythm-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  html[dir="ltr"] .rhythm-bpm-value,
+  body[dir="ltr"] .rhythm-bpm-value,
+  html[lang="en"] .rhythm-bpm-value {
+    text-align: left;
+  }
+}
