@@ -1,0 +1,19 @@
+/* assets/pages/library/library-en.css */
+/* English/LTR-specific library tweaks */
+
+body[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+}
+
+html[dir="ltr"] .nav-top {
+  flex-direction: row;
+}
+
+html[dir="ltr"] .nav-bottom {
+  justify-content: flex-start;
+}
+
+html[dir="ltr"] .nav-links {
+  flex-direction: row;
+}

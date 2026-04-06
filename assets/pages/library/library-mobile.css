@@ -1,0 +1,14 @@
+/* assets/pages/library/library-mobile.css */
+/* Mobile layout for library pages */
+
+@media (max-width: 700px) {
+  .filters {
+    grid-template-columns: 1fr;
+    padding: 24px 4% 18px;
+  }
+
+  #list.grid {
+    padding: 0 4% 80px;
+    grid-template-columns: 1fr;
+  }
+}
