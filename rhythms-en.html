@@ -3,205 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Arabic Rhythms — a practical guide to common Arabic rhythmic cycles, patterns, and time signatures.">
+  <meta name="description" content="Arabic rhythms — rhythm cards with images, BPM speed control, and full recorded playback.">
   <meta name="theme-color" content="#09090b">
   <link rel="alternate" hreflang="ar" href="rhythms.html">
   <link rel="alternate" hreflang="en" href="rhythms-en.html">
   <title>Iqaatea | Musicatea</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/style.css">
-  <style>
-    body[dir="ltr"] {
-      direction: ltr;
-      text-align: left;
-    }
-
-    .rhythms-hero {
-      padding: 60px 5% 48px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
-    }
-
-    .rhythms-hero-tag {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .rhythms-hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 900;
-      margin-bottom: 12px;
-      line-height: 1.2;
-    }
-
-    .rhythms-hero p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      max-width: 700px;
-      line-height: 1.8;
-      margin: 0;
-    }
-
-    .rhythms-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 5% 100px;
-    }
-
-    .rhythms-search-wrap {
-      padding: 20px 0 40px;
-    }
-
-    .rhythms-search-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 18px;
-      max-width: 480px;
-      transition: all 0.3s var(--ease);
-    }
-
-    .rhythms-search-bar:focus-within {
-      border-color: rgba(200,164,90,0.45);
-      box-shadow: 0 0 0 3px rgba(200,164,90,0.07);
-    }
-
-    .rhythms-search-bar svg {
-      flex-shrink: 0;
-      color: var(--text-dim);
-    }
-
-    .rhythms-search-bar input {
-      background: none;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: inherit;
-      font-size: 0.95rem;
-      width: 100%;
-    }
-
-    .rhythms-search-bar input::placeholder {
-      color: var(--text-dim);
-    }
-
-    #rhythms-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .rhythm-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 24px;
-      transition: all 0.4s var(--ease);
-      cursor: pointer;
-    }
-
-    .rhythm-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
-      border-color: rgba(200,164,90,0.3);
-    }
-
-    .rhythm-card-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      gap: 12px;
-    }
-
-    .rhythm-card h3 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      margin: 0;
-    }
-
-    .rhythm-card .time-sig {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      font-weight: 600;
-      background: var(--surface);
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      direction: ltr;
-    }
-
-    .rhythm-card .latin {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      font-style: italic;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .rhythm-card .pattern {
-      font-family: monospace;
-      font-size: 0.95rem;
-      color: var(--text);
-      background: var(--surface);
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      direction: ltr;
-      text-align: center;
-      border: 1px solid var(--border2);
-    }
-
-    .rhythm-card .desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    .rhythm-card .tempo {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 100px;
-      background: var(--gold-dim);
-      color: var(--gold);
-      border: 1px solid rgba(200,164,90,0.2);
-      margin-top: 4px;
-    }
-
-    html[dir="ltr"] .nav-top {
-      flex-direction: row;
-    }
-
-    html[dir="ltr"] .nav-bottom {
-      justify-content: flex-start;
-    }
-
-    html[dir="ltr"] .nav-links {
-      flex-direction: row;
-    }
-
-    @media (max-width: 640px) {
-      #rhythms-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .rhythms-content {
-        padding: 30px 4% 80px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/pages/rhythms/rhythms-base.css">
+  <link rel="stylesheet" href="assets/pages/rhythms/rhythms-desktop.css">
+  <link rel="stylesheet" href="assets/pages/rhythms/rhythms-mobile.css">
+  <link rel="stylesheet" href="assets/pages/rhythms/rhythms-en.css">
 </head>
 <body dir="ltr">
 
@@ -217,9 +32,9 @@
         <div class="nav-top-left">
           <a href="rhythms.html" class="lang-toggle" aria-label="Switch to Arabic">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
             <span>AR</span>
           </a>
@@ -244,17 +59,31 @@
       <span class="rhythms-hero-tag">Rhythm</span>
       <h1>Arabic Rhythms</h1>
       <p>
-        A practical guide to common Arabic rhythmic cycles, their basic patterns, time signatures, and musical character.
+        Browse common Arabic rhythms by search or time signature, view a rhythm image,
+        adjust playback speed with BPM, and listen to the full recorded cycle directly from each card.
       </p>
     </header>
 
     <div class="rhythms-content">
-      <div class="rhythms-search-wrap">
-        <div class="rhythms-search-bar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-          <input id="rhythm-search" type="text" placeholder="Search for a rhythm..." aria-label="Search rhythms">
+      <div class="rhythms-filters" role="search" aria-label="Filter rhythms">
+        <div class="filter-field">
+          <label for="rhythm-search">Search</label>
+          <div class="rhythms-search-bar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input id="rhythm-search" type="text" placeholder="Search for a rhythm..." aria-label="Search for a rhythm">
+          </div>
+        </div>
+
+        <div class="filter-field">
+          <label for="time-filter">Time signature</label>
+          <div class="filter-select">
+            <select id="time-filter" aria-label="Filter by time signature">
+              <option value="">All signatures</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -269,46 +98,7 @@
 
   <script src="data/rhythms-en.js"></script>
   <script src="assets/shared-utils.js"></script>
-  <script>
-    const rhythmsGrid = document.getElementById('rhythms-grid');
-    const searchInput = document.getElementById('rhythm-search');
-
-    function createRhythmCard(r) {
-      const card = document.createElement('div');
-      card.className = 'rhythm-card';
-      card.innerHTML = `
-        <div class="rhythm-card-header">
-          <h3>${escapeHtml(r.name)}</h3>
-          <span class="time-sig">${escapeHtml(r.time_signature)}</span>
-        </div>
-        <span class="latin">${escapeHtml(r.latin)}</span>
-        <div class="pattern">${escapeHtml(r.pattern)}</div>
-        <p class="desc">${escapeHtml(r.description)}</p>
-        <span class="tempo">Tempo: ${escapeHtml(r.tempo)}</span>
-      `;
-      return card;
-    }
-
-    function renderRhythms(filter) {
-      rhythmsGrid.innerHTML = '';
-      const q = normalize(filter || '');
-      const filtered = rhythms.filter(r =>
-        !q ||
-        normalize(r.name).includes(q) ||
-        normalize(r.latin).includes(q) ||
-        normalize(r.description).includes(q)
-      );
-
-      if (!filtered.length) {
-        rhythmsGrid.appendChild(createEmptyState('No matching rhythms found'));
-        return;
-      }
-
-      filtered.forEach(r => rhythmsGrid.appendChild(createRhythmCard(r)));
-    }
-
-    searchInput.addEventListener('input', e => renderRhythms(e.target.value));
-    renderRhythms();
-  </script>
+  <script src="assets/pages/rhythms/rhythms-core.js"></script>
+  <script src="assets/pages/rhythms/rhythms-en.js"></script>
 </body>
 </html>
