@@ -3,119 +3,82 @@
 
 (function () {
   const list = document.getElementById('list');
-  const systemSelect = document.getElementById('system');
-  const typeSelect = document.getElementById('type');
+  const performerSelect = document.getElementById('performer');
   const maqamSelect = document.getElementById('maqam');
-  const scaleSelect = document.getElementById('scale');
-  const tonicSelect = document.getElementById('tonic');
   const searchInput = document.getElementById('search');
 
-  if (!list || !systemSelect || !typeSelect || !maqamSelect || !scaleSelect || !tonicSelect || !searchInput) {
+  if (!list || !performerSelect || !maqamSelect || !searchInput) {
     return;
   }
 
   const indexedSheets = (Array.isArray(window.sheets) ? window.sheets : []).map((sheet, index) => ({
     ...sheet,
     _renderIndex: index,
-    _searchBlob: window.buildLibrarySearchBlob(sheet, ['title', 'composer', 'performer'])
+    _searchBlob: [sheet.title, sheet.composer, sheet.performer]
+      .map(normalize)
+      .filter(Boolean)
+      .join(' ')
   }));
 
-  function getSystemData() {
-    const systemValue = systemSelect.value;
-    if (systemValue === 'western') {
-      return indexedSheets.filter(sheet => sheet.system === 'western');
+  function buildUniqueValues(data, fieldName) {
+    return [...new Set(data.map(item => item[fieldName]).filter(Boolean))]
+      .sort((a, b) => localeCompare(a, b, 'ar'));
+  }
+
+  function localeCompare(a, b, locale) {
+    return String(a).localeCompare(String(b), locale);
+  }
+
+  function fillSelect(selectEl, values, firstOptionLabel) {
+    const previousValue = selectEl.value;
+    selectEl.innerHTML = '';
+
+    const firstOption = document.createElement('option');
+    firstOption.value = '';
+    firstOption.textContent = firstOptionLabel;
+    selectEl.appendChild(firstOption);
+
+    values.forEach(value => {
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = value;
+      selectEl.appendChild(opt);
+    });
+
+    if (previousValue && values.includes(previousValue)) {
+      selectEl.value = previousValue;
     }
-    return indexedSheets.filter(sheet => sheet.system === 'arabic');
   }
 
   function populateFilters() {
-    const currentMaqam = maqamSelect.value;
-    const currentScale = scaleSelect.value;
-    const currentTonic = tonicSelect.value;
-
-    const systemData = getSystemData();
-
-    window.fillLibrarySelect(
-      maqamSelect,
-      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.maqam), 'maqam', 'ar'),
-      'كل المقامات'
-    );
-
-    window.fillLibrarySelect(
-      scaleSelect,
-      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.scale), 'scale', 'en'),
-      'كل السلالم'
-    );
-
-    window.fillLibrarySelect(
-      tonicSelect,
-      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.tonic), 'tonic', 'ar'),
-      'كل القرارات'
-    );
-
-    if (currentMaqam && [...maqamSelect.options].some(opt => opt.value === currentMaqam)) {
-      maqamSelect.value = currentMaqam;
-    }
-
-    if (currentScale && [...scaleSelect.options].some(opt => opt.value === currentScale)) {
-      scaleSelect.value = currentScale;
-    }
-
-    if (currentTonic && [...tonicSelect.options].some(opt => opt.value === currentTonic)) {
-      tonicSelect.value = currentTonic;
-    }
+    fillSelect(performerSelect, buildUniqueValues(indexedSheets, 'performer'), المطرب);
+    fillSelect(maqamSelect, buildUniqueValues(indexedSheets.filter(sheet => sheet.maqam), 'maqam'), 'كل المقامات');
   }
 
   function applyFilters() {
-    const systemValue = systemSelect.value;
-    const typeValue = typeSelect.value;
-    const maqamValue = maqamSelect.value;
-    const scaleValue = scaleSelect.value;
-    const tonicValue = tonicSelect.value;
-    const searchValue = normalize(searchInput.value);
+    const performerVal = performerSelect.value;
+    const maqamVal = maqamSelect.value;
+    const searchVal = normalize(searchInput.value);
 
-    let filtered = getSystemData();
+    let filtered = [...indexedSheets];
 
-    if (systemValue === 'arabic') {
-      maqamSelect.style.display = 'inline';
-      scaleSelect.style.display = 'none';
-    } else {
-      maqamSelect.style.display = 'none';
-      scaleSelect.style.display = 'inline';
+    if (performerVal) {
+      filtered = filtered.filter(sheet => sheet.performer === performerVal);
     }
 
-    if (typeValue) {
-      filtered = filtered.filter(sheet => sheet.type === typeValue);
+    if (maqamVal) {
+      filtered = filtered.filter(sheet => sheet.maqam === maqamVal);
     }
 
-    if (maqamValue) {
-      filtered = filtered.filter(sheet => sheet.maqam === maqamValue);
-    }
-
-    if (scaleValue) {
-      filtered = filtered.filter(sheet => sheet.scale === scaleValue);
-    }
-
-    if (tonicValue) {
-      filtered = filtered.filter(sheet => sheet.tonic === tonicValue);
-    }
-
-    if (searchValue) {
-      filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchValue));
+    if (searchVal) {
+      filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchVal));
     }
 
     window.renderLibraryList(list, filtered, window.createLibraryArSheetCard, 'لا توجد نوتات مطابقة للفلتر');
   }
 
-  systemSelect.addEventListener('change', () => {
-    populateFilters();
-    applyFilters();
-  });
-
-  typeSelect.addEventListener('change', applyFilters);
+  performerSelect.addEventListener('change', applyFilters);
   maqamSelect.addEventListener('change', applyFilters);
-  scaleSelect.addEventListener('change', applyFilters);
-  tonicSelect.addEventListener('change', applyFilters);
   searchInput.addEventListener('input', applyFilters);
 
   populateFilters();
