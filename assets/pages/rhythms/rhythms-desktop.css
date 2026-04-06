@@ -2,21 +2,76 @@
 
 @media (min-width: 1041px) {
   #rhythms-grid {
-    grid-template-columns: repeat(4, minmax(0, 300px));
+    grid-template-columns: repeat(4, minmax(0, 350px));
     justify-content: center;
+    gap: 18px;
   }
 
+  article.rhythm-card,
   .rhythm-card {
-    padding: 18px;
+    width: 350px;
+    min-height: 400px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .rhythm-card-header {
+    gap: 10px;
+  }
+
+  .rhythm-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.15;
+  }
+
+  .rhythm-card .latin {
+    margin-top: 2px;
+    font-size: 0.8rem;
+  }
+
+  .rhythm-chip-row {
+    gap: 6px;
+  }
+
+  .rhythm-chip,
+  .rhythm-card .time-sig,
+  .rhythm-card .tempo-chip {
+    min-height: 28px;
+    padding: 4px 9px;
+    font-size: 0.74rem;
   }
 
   .rhythm-image-wrap {
-    min-height: 150px;
-    padding: 12px;
+    min-height: 132px;
+    padding: 10px;
+    border-radius: 16px;
   }
 
   .rhythm-image {
-    max-height: 200px;
+    max-height: 160px;
+  }
+
+  .rhythm-card .desc {
+    font-size: 0.84rem;
+    line-height: 1.65;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .rhythm-bpm-row {
+    gap: 10px;
+  }
+
+  .rhythm-bpm-label,
+  .rhythm-bpm-value {
+    font-size: 0.78rem;
+  }
+
+  .rhythm-play-btn {
+    min-height: 42px;
+    font-size: 0.88rem;
   }
 }
 
