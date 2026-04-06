@@ -1,0 +1,62 @@
+/* assets/pages/library/library-ar.css */
+/* Arabic/RTL-specific library layout */
+
+html[dir="rtl"] .filters {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .page-hero {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html[dir="rtl"] .filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 10px;
+    border-top: none;
+    padding: 12px 4% 14px;
+    margin-top: 0;
+  }
+
+  .filters select,
+  .filters input[type="text"] {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.88rem;
+    padding: 10px 12px;
+  }
+
+  .filters input[type="text"] {
+    grid-column: 1 / -1;
+  }
+
+  #list {
+    padding-top: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  html[dir="rtl"] .filters {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 4% 12px;
+  }
+
+  .filters input[type="text"] {
+    grid-column: auto;
+  }
+
+  .filters select,
+  .filters input[type="text"] {
+    font-size: 0.84rem;
+    padding: 9px 11px;
+  }
+}
