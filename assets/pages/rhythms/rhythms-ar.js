@@ -39,10 +39,6 @@
         <span class="time-sig">${escapeHtml(rhythm.time_signature || "—")}</span>
       </div>
 
-      <div class="rhythm-chip-row">
-        <span class="tempo-chip">${escapeHtml(rhythm.tempo_label || rhythm.tempo || "")}</span>
-      </div>
-
       ${core.createImageMarkup(rhythm, rhythm.name || "")}
 
       <p class="desc">${escapeHtml(rhythm.description || "")}</p>
