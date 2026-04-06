@@ -56,38 +56,39 @@
 
   <main id="main-content">
     <header class="rhythms-hero">
-      <span class="rhythms-hero-tag">Rhythm</span>
       <h1>Arabic Rhythms</h1>
-      <p>
-        Browse common Arabic rhythms by search or time signature, view a rhythm image,
-        adjust playback speed with BPM, and listen to the full recorded cycle directly from each card.
-      </p>
     </header>
 
     <div class="rhythms-content">
-      <div class="rhythms-filters" role="search" aria-label="Filter rhythms">
-        <div class="filter-field">
-          <label for="rhythm-search">Search</label>
-          <div class="rhythms-search-bar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input id="rhythm-search" type="text" placeholder="Search for a rhythm..." aria-label="Search for a rhythm">
-          </div>
-        </div>
+      <div class="rhythms-layout">
+        <aside class="rhythms-sidebar">
+          <div class="rhythms-filters" role="search" aria-label="Filter rhythms">
+            <div class="filter-field">
+              <label for="rhythm-search">Search</label>
+              <div class="rhythms-search-bar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input id="rhythm-search" type="text" placeholder="Search for a rhythm..." aria-label="Search for a rhythm">
+              </div>
+            </div>
 
-        <div class="filter-field">
-          <label for="time-filter">Time signature</label>
-          <div class="filter-select">
-            <select id="time-filter" aria-label="Filter by time signature">
-              <option value="">All signatures</option>
-            </select>
+            <div class="filter-field">
+              <label for="time-filter">Time signature</label>
+              <div class="filter-select">
+                <select id="time-filter" aria-label="Filter by time signature">
+                  <option value="">All signatures</option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
+        </aside>
+
+        <section class="rhythms-main">
+          <div id="rhythms-grid"></div>
+        </section>
       </div>
-
-      <div id="rhythms-grid"></div>
     </div>
   </main>
 
