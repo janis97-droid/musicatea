@@ -1,5 +1,5 @@
-// assets/pages/library/library-filters-en.js
-// English library page filters and boot logic.
+// assets/pages/library/library-filters-ar.js
+// Arabic library page filters and boot logic.
 
 (function () {
   const list = document.getElementById('list');
@@ -37,20 +37,20 @@
 
     window.fillLibrarySelect(
       maqamSelect,
-      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.maqam), 'maqam', 'en'),
-      'All Maqamat'
+      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.maqam), 'maqam', 'ar'),
+      'كل المقامات'
     );
 
     window.fillLibrarySelect(
       scaleSelect,
       window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.scale), 'scale', 'en'),
-      'All Scales'
+      'كل السلالم'
     );
 
     window.fillLibrarySelect(
       tonicSelect,
-      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.tonic), 'tonic', 'en'),
-      'All Tonics'
+      window.buildLibraryUniqueValues(systemData.filter(sheet => sheet.tonic), 'tonic', 'ar'),
+      'كل القرارات'
     );
 
     if (currentMaqam && [...maqamSelect.options].some(opt => opt.value === currentMaqam)) {
@@ -104,7 +104,7 @@
       filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchValue));
     }
 
-    window.renderLibraryList(list, filtered, window.createLibraryEnSheetCard, 'No sheets match the current filters');
+    window.renderLibraryList(list, filtered, window.createLibraryArSheetCard, 'لا توجد نوتات مطابقة للفلتر');
   }
 
   systemSelect.addEventListener('change', () => {
