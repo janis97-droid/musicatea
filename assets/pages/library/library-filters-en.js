@@ -11,7 +11,11 @@
     return;
   }
 
-  const indexedSheets = (Array.isArray(window.sheets) ? window.sheets : []).map((sheet, index) => ({
+  const sourceSheets = (typeof sheets !== 'undefined' && Array.isArray(sheets))
+    ? sheets
+    : (Array.isArray(window.sheets) ? window.sheets : []);
+
+  const indexedSheets = sourceSheets.map((sheet, index) => ({
     ...sheet,
     _renderIndex: index,
     _searchBlob: [sheet.title, sheet.composer, sheet.performer]
