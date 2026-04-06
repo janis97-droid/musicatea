@@ -7,9 +7,12 @@ const rhythms = [
     pattern: "D - T - T - D - T -",
     description: "إيقاع متوازن ومتعدد الاستخدامات، يُعتبر من أكثر الإيقاعات شيوعاً في الموسيقى العربية بمختلف أنواعها.",
     tempo: "متوسط",
+    tempo_label: "متوسط",
+    bpm: 120,
     usage: ["موسيقى شعبية", "فولكلور", "طرب", "أغاني عصرية"],
     examples: [],
-    audio: "media/rhythms/maqsum.mp3"
+    audio: "media/rhythms/maqsum.mp3",
+    image: "media/rhythms/images/maqsum.svg"
   },
   {
     id: "baladi",
@@ -19,9 +22,12 @@ const rhythms = [
     pattern: "D D - T D - T T -",
     description: "إيقاع مصري ثقيل ومتجذر، يتميز بضربات بداية قوية ويُستخدم بكثرة في الموسيقى الشعبية والرقص الشرقي.",
     tempo: "متوسط",
+    tempo_label: "متوسط",
+    bpm: 110,
     usage: ["موسيقى شعبية", "رقص شرقي", "بلدي مصري"],
     examples: [],
-    audio: "media/rhythms/baladi.mp3"
+    audio: "media/rhythms/baladi.mp3",
+    image: "media/rhythms/images/baladi.svg"
   },
   {
     id: "saidi",
@@ -31,9 +37,12 @@ const rhythms = [
     pattern: "D - T D - D - T -",
     description: "إيقاع قوي ومندفع من صعيد مصر، يُستخدم في الرقصات الشعبية والموسيقى الفولكلورية.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 140,
     usage: ["رقص بالعصا", "موسيقى فولكلورية", "صعيد مصر"],
     examples: [],
-    audio: "media/rhythms/saidi.mp3"
+    audio: "media/rhythms/saidi.mp3",
+    image: "media/rhythms/images/saidi.svg"
   },
   {
     id: "malfuf",
@@ -43,9 +52,12 @@ const rhythms = [
     pattern: "D - T T -",
     description: "إيقاع سريع ومفعم بالطاقة، يُستخدم غالباً في المقدمات والأغاني السريعة.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 160,
     usage: ["مقدمات", "أغاني سريعة", "رقصات"],
     examples: [],
-    audio: "media/rhythms/malfuf.mp3"
+    audio: "media/rhythms/malfuf.mp3",
+    image: "media/rhythms/images/malfuf.svg"
   },
   {
     id: "ayyub",
@@ -55,9 +67,12 @@ const rhythms = [
     pattern: "D - D -",
     description: "إيقاع تنويمي ومتكرر، يُستخدم في الموسيقى الصوفية والحالات التأملية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 132,
     usage: ["موسيقى صوفية", "تراث", "أناشيد"],
     examples: [],
-    audio: "media/rhythms/ayyub.mp3"
+    audio: "media/rhythms/ayyub.mp3",
+    image: "media/rhythms/images/ayyub.svg"
   },
   {
     id: "samai_thaqil",
@@ -67,9 +82,12 @@ const rhythms = [
     pattern: "D - T - T - D D - T -",
     description: "إيقاع كلاسيكي معقّد، يُستخدم في الموشحات والقطع الآلية الراقية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 90,
     usage: ["موشحات", "قطع آلية", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/samai_thaqil.mp3"
+    audio: "media/rhythms/samai_thaqil.mp3",
+    image: "media/rhythms/images/samai_thaqil.svg"
   },
   {
     id: "samai_darij",
@@ -79,9 +97,12 @@ const rhythms = [
     pattern: "D - T - D - T -",
     description: "إيقاع أخف وأكثر انسيابية من السماعي الثقيل، يُستخدم في القوالب الأندلسية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 112,
     usage: ["قوالب أندلسية", "موشحات", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/samai_darij.mp3"
+    audio: "media/rhythms/samai_darij.mp3",
+    image: "media/rhythms/images/samai_darij.svg"
   },
   {
     id: "yuruk_semai",
@@ -91,9 +112,12 @@ const rhythms = [
     pattern: "D - T T - D -",
     description: "نسخة سريعة من السماعي، تُستخدم في خواتيم القطع الآلية.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 150,
     usage: ["خواتيم آلية", "سماعي", "رقصات"],
     examples: [],
-    audio: "media/rhythms/yuruk_semai.mp3"
+    audio: "media/rhythms/yuruk_semai.mp3",
+    image: "media/rhythms/images/yuruk_semai.svg"
   },
   {
     id: "masmoudi_kabir",
@@ -103,9 +127,12 @@ const rhythms = [
     pattern: "D - - T - D - T - -",
     description: "إيقاع ثقيل وممتد، يُستخدم في الغناء الكلاسيكي والقوالب الكبيرة.",
     tempo: "بطيء",
+    tempo_label: "بطيء",
+    bpm: 72,
     usage: ["غناء كلاسيكي", "موشحات", "طرب"],
     examples: [],
-    audio: "media/rhythms/masmoudi_kabir.mp3"
+    audio: "media/rhythms/masmoudi_kabir.mp3",
+    image: "media/rhythms/images/masmoudi_kabir.svg"
   },
   {
     id: "masmoudi_saghir",
@@ -115,9 +142,12 @@ const rhythms = [
     pattern: "D - T D - T -",
     description: "نسخة أقصر وأخف من المصمودي الكبير، تُستخدم في مرافقة الأغاني.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 108,
     usage: ["مرافقة أغاني", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/masmoudi_saghir.mp3"
+    audio: "media/rhythms/masmoudi_saghir.mp3",
+    image: "media/rhythms/images/masmoudi_saghir.svg"
   },
   {
     id: "wahda",
@@ -127,9 +157,12 @@ const rhythms = [
     pattern: "D - - - T - - -",
     description: "إيقاع بطيء ورحب، مثالي للارتجال الصوتي والتقاسيم.",
     tempo: "بطيء",
+    tempo_label: "بطيء",
+    bpm: 68,
     usage: ["ارتجال صوتي", "تقاسيم", "أغاني بطيئة"],
     examples: [],
-    audio: "media/rhythms/wahda.mp3"
+    audio: "media/rhythms/wahda.mp3",
+    image: "media/rhythms/images/wahda.svg"
   },
   {
     id: "wahda_kabira",
@@ -139,9 +172,12 @@ const rhythms = [
     pattern: "D - - - - - - - T - - - - - - -",
     description: "إيقاع كلاسيكي بطيء جداً، يُستخدم في الطرب والموشحات.",
     tempo: "بطيء جداً",
+    tempo_label: "بطيء جداً",
+    bpm: 56,
     usage: ["طرب", "موشحات", "غناء كلاسيكي"],
     examples: [],
-    audio: "media/rhythms/wahda_kabira.mp3"
+    audio: "media/rhythms/wahda_kabira.mp3",
+    image: "media/rhythms/images/wahda_kabira.svg"
   },
   {
     id: "fox",
@@ -151,9 +187,12 @@ const rhythms = [
     pattern: "D - T -",
     description: "إيقاع متأثر بالموسيقى الغربية، يُستخدم في الأغاني العربية العصرية.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 148,
     usage: ["أغاني عصرية", "بوب عربي"],
     examples: [],
-    audio: "media/rhythms/fox.mp3"
+    audio: "media/rhythms/fox.mp3",
+    image: "media/rhythms/images/fox.svg"
   },
   {
     id: "karachi",
@@ -163,9 +202,12 @@ const rhythms = [
     pattern: "D - T -",
     description: "إيقاع شامي سريع، يُستخدم في الدبكة والموسيقى الشعبية.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 150,
     usage: ["دبكة", "فولكلور شامي"],
     examples: [],
-    audio: "media/rhythms/karachi.mp3"
+    audio: "media/rhythms/karachi.mp3",
+    image: "media/rhythms/images/karachi.svg"
   },
   {
     id: "fallahi",
@@ -175,9 +217,12 @@ const rhythms = [
     pattern: "D - T T -",
     description: "إيقاع ريفي مفعم بالطاقة من الريف المصري.",
     tempo: "سريع",
+    tempo_label: "سريع",
+    bpm: 158,
     usage: ["ريف مصري", "موسيقى شعبية"],
     examples: [],
-    audio: "media/rhythms/fallahi.mp3"
+    audio: "media/rhythms/fallahi.mp3",
+    image: "media/rhythms/images/fallahi.svg"
   },
   {
     id: "ciftetelli",
@@ -187,9 +232,12 @@ const rhythms = [
     pattern: "D - - T - D - T -",
     description: "إيقاع انسيابي وحسي، يُستخدم بكثرة في الرقص الشرقي.",
     tempo: "بطيء إلى متوسط",
+    tempo_label: "بطيء إلى متوسط",
+    bpm: 92,
     usage: ["رقص شرقي", "تقاسيم"],
     examples: [],
-    audio: "media/rhythms/ciftetelli.mp3"
+    audio: "media/rhythms/ciftetelli.mp3",
+    image: "media/rhythms/images/ciftetelli.svg"
   },
   {
     id: "jurjina",
@@ -199,9 +247,12 @@ const rhythms = [
     pattern: "D - T - T - D - T -",
     description: "إيقاع مرح ومتقطع، يُستخدم في الموسيقى العراقية والخليجية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 102,
     usage: ["موسيقى عراقية", "خليجية"],
     examples: [],
-    audio: "media/rhythms/jurjina.mp3"
+    audio: "media/rhythms/jurjina.mp3",
+    image: "media/rhythms/images/jurjina.svg"
   },
   {
     id: "aqsaq",
@@ -211,9 +262,12 @@ const rhythms = [
     pattern: "D - T - D - T - T -",
     description: "إيقاع غير متماثل، من التراث العثماني.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 100,
     usage: ["تراث عثماني", "موسيقى تركية"],
     examples: [],
-    audio: "media/rhythms/aqsaq.mp3"
+    audio: "media/rhythms/aqsaq.mp3",
+    image: "media/rhythms/images/aqsaq.svg"
   },
   {
     id: "dawr_hindi",
@@ -223,9 +277,12 @@ const rhythms = [
     pattern: "D - T - D - T -",
     description: "إيقاع معقّد ومعبّر، يُستخدم في القوالب الكلاسيكية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 104,
     usage: ["قوالب كلاسيكية", "دور"],
     examples: [],
-    audio: "media/rhythms/dawr_hindi.mp3"
+    audio: "media/rhythms/dawr_hindi.mp3",
+    image: "media/rhythms/images/dawr_hindi.svg"
   },
   {
     id: "sudasi",
@@ -235,9 +292,12 @@ const rhythms = [
     pattern: "D - T - D - T -",
     description: "إيقاع انسيابي وسلس، مناسب للصوت والآلات.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 118,
     usage: ["غناء", "موسيقى آلية"],
     examples: [],
-    audio: "media/rhythms/sudasi.mp3"
+    audio: "media/rhythms/sudasi.mp3",
+    image: "media/rhythms/images/sudasi.svg"
   },
   {
     id: "mukhammas",
@@ -247,9 +307,12 @@ const rhythms = [
     pattern: "D - - T - D - - T - -",
     description: "دورة ممتدة، تُستخدم في الغناء الكلاسيكي.",
     tempo: "بطيء",
+    tempo_label: "بطيء",
+    bpm: 74,
     usage: ["غناء كلاسيكي", "موشحات"],
     examples: [],
-    audio: "media/rhythms/mukhammas.mp3"
+    audio: "media/rhythms/mukhammas.mp3",
+    image: "media/rhythms/images/mukhammas.svg"
   },
   {
     id: "murabbaa",
@@ -259,9 +322,12 @@ const rhythms = [
     pattern: "D - T - D - T - D - T -",
     description: "إيقاع غير منتظم ومتوازن، يُستخدم في الموشحات.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 96,
     usage: ["موشحات", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/murabbaa.mp3"
+    audio: "media/rhythms/murabbaa.mp3",
+    image: "media/rhythms/images/murabbaa.svg"
   },
   {
     id: "nawakht",
@@ -271,9 +337,12 @@ const rhythms = [
     pattern: "D - T - D - -",
     description: "إيقاع منظّم غير منتظم، يُستخدم في المؤلفات الكلاسيكية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 98,
     usage: ["مؤلفات كلاسيكية", "موشحات"],
     examples: [],
-    audio: "media/rhythms/nawakht.mp3"
+    audio: "media/rhythms/nawakht.mp3",
+    image: "media/rhythms/images/nawakht.svg"
   },
   {
     id: "nawakht_hindi",
@@ -283,9 +352,12 @@ const rhythms = [
     pattern: "D - - T - D - - T -",
     description: "دورة معقدة وممتدة، تُستخدم في التراث المتقدم.",
     tempo: "بطيء",
+    tempo_label: "بطيء",
+    bpm: 72,
     usage: ["تراث متقدم", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/nawakht_hindi.mp3"
+    audio: "media/rhythms/nawakht_hindi.mp3",
+    image: "media/rhythms/images/nawakht_hindi.svg"
   },
   {
     id: "muhajjar",
@@ -295,9 +367,12 @@ const rhythms = [
     pattern: "D - - T - D - T - D -",
     description: "إيقاع بطيء ومزخرف، يُستخدم في الموسيقى الكلاسيكية.",
     tempo: "بطيء",
+    tempo_label: "بطيء",
+    bpm: 70,
     usage: ["موسيقى كلاسيكية", "موشحات"],
     examples: [],
-    audio: "media/rhythms/muhajjar.mp3"
+    audio: "media/rhythms/muhajjar.mp3",
+    image: "media/rhythms/images/muhajjar.svg"
   },
   {
     id: "thurayya",
@@ -307,9 +382,12 @@ const rhythms = [
     pattern: "D - T - D -",
     description: "إيقاع غير منتظم ومعبّر، يُستخدم في الموشحات.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 106,
     usage: ["موشحات", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/thurayya.mp3"
+    audio: "media/rhythms/thurayya.mp3",
+    image: "media/rhythms/images/thurayya.svg"
   },
   {
     id: "zaffa",
@@ -319,9 +397,12 @@ const rhythms = [
     pattern: "D - D - T - T -",
     description: "إيقاع احتفالي وشعائري، يُستخدم في الأعراس.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 118,
     usage: ["أعراس", "احتفالات"],
     examples: [],
-    audio: "media/rhythms/zaffa.mp3"
+    audio: "media/rhythms/zaffa.mp3",
+    image: "media/rhythms/images/zaffa.svg"
   },
   {
     id: "nawari",
@@ -331,9 +412,12 @@ const rhythms = [
     pattern: "D - T - D - T -",
     description: "إيقاع خفيف ومتكرر، من التقاليد الشعبية.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 116,
     usage: ["تقاليد شعبية", "فولكلور"],
     examples: [],
-    audio: "media/rhythms/nawari.mp3"
+    audio: "media/rhythms/nawari.mp3",
+    image: "media/rhythms/images/nawari.svg"
   },
   {
     id: "rumba",
@@ -343,9 +427,12 @@ const rhythms = [
     pattern: "D - - T - D - T -",
     description: "إيقاع متأثر بالموسيقى اللاتينية، يُستخدم في البوب العربي الحديث.",
     tempo: "متوسط",
+    tempo_label: "متوسط",
+    bpm: 124,
     usage: ["بوب عربي", "موسيقى حديثة"],
     examples: [],
-    audio: "media/rhythms/rumba.mp3"
+    audio: "media/rhythms/rumba.mp3",
+    image: "media/rhythms/images/rumba.svg"
   },
   {
     id: "khosh_rang",
@@ -355,9 +442,12 @@ const rhythms = [
     pattern: "D - T - D - T -",
     description: "تنويع إيقاعي زخرفي، يُستخدم في الموسيقى الآلية.",
     tempo: "متوسط",
+    tempo_label: "متوسط",
+    bpm: 122,
     usage: ["موسيقى آلية", "تنويعات"],
     examples: [],
-    audio: "media/rhythms/khosh_rang.mp3"
+    audio: "media/rhythms/khosh_rang.mp3",
+    image: "media/rhythms/images/khosh_rang.svg"
   },
   {
     id: "dharafat",
@@ -367,9 +457,12 @@ const rhythms = [
     pattern: "D - T - T - D -",
     description: "إيقاع كلاسيكي خفيف، من التراث التقليدي.",
     tempo: "معتدل",
+    tempo_label: "معتدل",
+    bpm: 114,
     usage: ["تراث تقليدي", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/dharafat.mp3"
+    audio: "media/rhythms/dharafat.mp3",
+    image: "media/rhythms/images/dharafat.svg"
   }
 ];
 
