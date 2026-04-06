@@ -45,8 +45,6 @@
 
       ${core.createImageMarkup(rhythm, rhythm.name || "")}
 
-      <div class="rhythm-pattern">${escapeHtml(rhythm.pattern || "—")}</div>
-
       <p class="desc">${escapeHtml(rhythm.description || "")}</p>
 
       <div class="rhythm-bpm-row">
