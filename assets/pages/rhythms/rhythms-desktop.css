@@ -2,19 +2,19 @@
 
 @media (min-width: 1041px) {
   .rhythms-layout {
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 26px;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 20px;
   }
 
   #rhythms-grid {
-    grid-template-columns: repeat(3, minmax(0, 380px));
-    justify-content: center;
-    gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 400px));
+    justify-content: start;
+    gap: 18px;
   }
 
   article.rhythm-card,
   .rhythm-card {
-    width: 380px;
+    width: 400px;
     min-height: 400px;
     padding: 16px;
     gap: 12px;
@@ -35,13 +35,13 @@
   }
 
   .rhythm-image-wrap {
-    min-height: 165px;
+    min-height: 170px;
     padding: 12px;
     border-radius: 16px;
   }
 
   .rhythm-image {
-    max-height: 205px;
+    max-height: 210px;
   }
 
   .rhythm-card .desc {
