@@ -151,17 +151,28 @@
   }
 
   function createImageMarkup(rhythm, altText) {
+    const fallbackSvg = createPatternFallbackSvg(rhythm ? rhythm.pattern : "");
+
     if (rhythm && rhythm.image) {
       return `
         <div class="rhythm-image-wrap">
-          <img class="rhythm-image" src="${escapeHtml(rhythm.image)}" alt="${escapeHtml(altText || rhythm.name || "")}" loading="lazy">
+          <img
+            class="rhythm-image"
+            src="${escapeHtml(rhythm.image)}"
+            alt="${escapeHtml(altText || rhythm.name || "")}"
+            loading="lazy"
+            onerror="this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='flex';"
+          >
+          <div class="rhythm-image-fallback" style="display:none;">
+            ${fallbackSvg}
+          </div>
         </div>
       `;
     }
 
     return `
       <div class="rhythm-image-wrap rhythm-image-fallback">
-        ${createPatternFallbackSvg(rhythm ? rhythm.pattern : "")}
+        ${fallbackSvg}
       </div>
     `;
   }
