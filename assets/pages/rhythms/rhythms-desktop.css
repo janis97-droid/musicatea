@@ -1,5 +1,25 @@
 /* assets/pages/rhythms/rhythms-desktop.css */
 
+@media (min-width: 1041px) {
+  #rhythms-grid {
+    grid-template-columns: repeat(4, minmax(0, 300px));
+    justify-content: center;
+  }
+
+  .rhythm-card {
+    padding: 18px;
+  }
+
+  .rhythm-image-wrap {
+    min-height: 150px;
+    padding: 12px;
+  }
+
+  .rhythm-image {
+    max-height: 200px;
+  }
+}
+
 @media (max-width: 1320px) {
   #rhythms-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
