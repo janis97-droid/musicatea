@@ -1,0 +1,109 @@
+/* assets/pages/rhythms/rhythms-ar.css */
+
+html[dir="rtl"] .rhythms-hero,
+body[dir="rtl"] .rhythms-hero,
+html[lang="ar"] .rhythms-hero {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythms-content,
+body[dir="rtl"] .rhythms-content,
+html[lang="ar"] .rhythms-content {
+  direction: rtl;
+}
+
+html[dir="rtl"] .filter-field label,
+body[dir="rtl"] .filter-field label,
+html[lang="ar"] .filter-field label {
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythms-search-bar,
+body[dir="rtl"] .rhythms-search-bar,
+html[lang="ar"] .rhythms-search-bar {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .filter-select,
+body[dir="rtl"] .filter-select,
+html[lang="ar"] .filter-select {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .filter-select select,
+body[dir="rtl"] .filter-select select,
+html[lang="ar"] .filter-select select {
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythm-card,
+body[dir="rtl"] .rhythm-card,
+html[lang="ar"] .rhythm-card {
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythm-card-header,
+body[dir="rtl"] .rhythm-card-header,
+html[lang="ar"] .rhythm-card-header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .rhythm-card-title-wrap,
+body[dir="rtl"] .rhythm-card-title-wrap,
+html[lang="ar"] .rhythm-card-title-wrap {
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythm-chip-row,
+body[dir="rtl"] .rhythm-chip-row,
+html[lang="ar"] .rhythm-chip-row {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .rhythm-pattern,
+body[dir="rtl"] .rhythm-pattern,
+html[lang="ar"] .rhythm-pattern {
+  direction: ltr;
+  text-align: center;
+}
+
+html[dir="rtl"] .rhythm-bpm-row,
+body[dir="rtl"] .rhythm-bpm-row,
+html[lang="ar"] .rhythm-bpm-row {
+  direction: rtl;
+}
+
+html[dir="rtl"] .rhythm-bpm-label,
+body[dir="rtl"] .rhythm-bpm-label,
+html[lang="ar"] .rhythm-bpm-label {
+  text-align: right;
+}
+
+html[dir="rtl"] .rhythm-bpm-value,
+body[dir="rtl"] .rhythm-bpm-value,
+html[lang="ar"] .rhythm-bpm-value {
+  text-align: left;
+  direction: ltr;
+}
+
+html[dir="rtl"] .empty-state,
+body[dir="rtl"] .empty-state,
+html[lang="ar"] .empty-state {
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  html[dir="rtl"] .rhythm-card-header,
+  body[dir="rtl"] .rhythm-card-header,
+  html[lang="ar"] .rhythm-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  html[dir="rtl"] .rhythm-bpm-value,
+  body[dir="rtl"] .rhythm-bpm-value,
+  html[lang="ar"] .rhythm-bpm-value {
+    text-align: right;
+  }
+}
