@@ -56,38 +56,39 @@
 
   <main id="main-content">
     <header class="rhythms-hero">
-      <span class="rhythms-hero-tag">إيقاع</span>
       <h1>الإيقاعات العربية</h1>
-      <p>
-        تصفّح أشهر الإيقاعات العربية من خلال البحث أو التوقيع الزمني، واعرض صورة كل إيقاع،
-        واضبط السرعة عبر BPM، ثم استمع إلى التسجيل الكامل مباشرة من البطاقة.
-      </p>
     </header>
 
     <div class="rhythms-content">
-      <div class="rhythms-filters" role="search" aria-label="فلترة الإيقاعات">
-        <div class="filter-field">
-          <label for="rhythm-search">بحث</label>
-          <div class="rhythms-search-bar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input id="rhythm-search" type="text" placeholder="ابحث عن إيقاع..." aria-label="بحث عن إيقاع">
-          </div>
-        </div>
+      <div class="rhythms-layout">
+        <aside class="rhythms-sidebar">
+          <div class="rhythms-filters" role="search" aria-label="فلترة الإيقاعات">
+            <div class="filter-field">
+              <label for="rhythm-search">بحث</label>
+              <div class="rhythms-search-bar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input id="rhythm-search" type="text" placeholder="ابحث عن إيقاع..." aria-label="بحث عن إيقاع">
+              </div>
+            </div>
 
-        <div class="filter-field">
-          <label for="time-filter">التوقيع الزمني</label>
-          <div class="filter-select">
-            <select id="time-filter" aria-label="فلترة حسب التوقيع الزمني">
-              <option value="">كل التواقيع</option>
-            </select>
+            <div class="filter-field">
+              <label for="time-filter">التوقيع الزمني</label>
+              <div class="filter-select">
+                <select id="time-filter" aria-label="فلترة حسب التوقيع الزمني">
+                  <option value="">كل التواقيع</option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
+        </aside>
+
+        <section class="rhythms-main">
+          <div id="rhythms-grid"></div>
+        </section>
       </div>
-
-      <div id="rhythms-grid"></div>
     </div>
   </main>
 
