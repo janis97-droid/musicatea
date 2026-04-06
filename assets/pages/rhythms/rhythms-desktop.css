@@ -2,14 +2,14 @@
 
 @media (min-width: 1041px) {
   #rhythms-grid {
-    grid-template-columns: repeat(3, minmax(0, 350px));
+    grid-template-columns: repeat(3, minmax(0, 380px));
     justify-content: center;
     gap: 20px;
   }
 
   article.rhythm-card,
   .rhythm-card {
-    width: 350px;
+    width: 380px;
     min-height: 400px;
     padding: 16px;
     gap: 12px;
@@ -20,7 +20,7 @@
   }
 
   .rhythm-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
     line-height: 1.15;
   }
 
@@ -29,31 +29,19 @@
     font-size: 0.8rem;
   }
 
-  .rhythm-chip-row {
-    gap: 6px;
-  }
-
-  .rhythm-chip,
-  .rhythm-card .time-sig,
-  .rhythm-card .tempo-chip {
-    min-height: 28px;
-    padding: 4px 9px;
-    font-size: 0.74rem;
-  }
-
   .rhythm-image-wrap {
-    min-height: 150px;
+    min-height: 165px;
     padding: 12px;
     border-radius: 16px;
   }
 
   .rhythm-image {
-    max-height: 190px;
+    max-height: 205px;
   }
 
   .rhythm-card .desc {
-    font-size: 0.84rem;
-    line-height: 1.65;
+    font-size: 0.85rem;
+    line-height: 1.68;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
