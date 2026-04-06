@@ -1,6 +1,11 @@
 /* assets/pages/rhythms/rhythms-desktop.css */
 
 @media (min-width: 1041px) {
+  .rhythms-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 26px;
+  }
+
   #rhythms-grid {
     grid-template-columns: repeat(3, minmax(0, 380px));
     justify-content: center;
@@ -64,11 +69,16 @@
 }
 
 @media (max-width: 1040px) {
-  #rhythms-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .rhythms-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
   }
 
-  .rhythms-filters {
-    grid-template-columns: 1fr 220px;
+  .rhythms-sidebar {
+    position: static;
+  }
+
+  #rhythms-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
