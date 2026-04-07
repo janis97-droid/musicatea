@@ -4,12 +4,13 @@ const rhythms = [
     name: "مقسوم",
     latin: "Maqsum",
     time_signature: "8/8",
-    pattern: "D - T - T - D - T -",
     description: "إيقاع متوازن ومتعدد الاستخدامات، يُعتبر من أكثر الإيقاعات شيوعاً في الموسيقى العربية بمختلف أنواعها.",
     tempo: "متوسط",
     usage: ["موسيقى شعبية", "فولكلور", "طرب", "أغاني عصرية"],
     examples: [],
-    audio: "media/rhythms/maqsum.mp3"
+    audio: "media/rhythms/maqsum.mp3",
+    image: "media/rhythms/images/maqsum.svg",
+
   },
   {
     id: "baladi",
