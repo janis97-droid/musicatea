@@ -1,3 +1,5 @@
+Replace the entire contents of ensemble-en.html with this:
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -15,10 +17,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
   
   <style>
-    body[dir="ltr"] {
-      direction: ltr;
-      text-align: left;
-    }
+    body[dir="ltr"] { direction: ltr; text-align: left; }
 
     .ensemble-hero {
       padding: 60px 5% 48px;
@@ -272,18 +271,6 @@
       margin: 0;
     }
 
-    html[dir="ltr"] .nav-top {
-      flex-direction: row;
-    }
-
-    html[dir="ltr"] .nav-bottom {
-      justify-content: flex-start;
-    }
-
-    html[dir="ltr"] .nav-links {
-      flex-direction: row;
-    }
-
     @media (max-width: 640px) {
       .ensemble-content {
         padding: 40px 4% 60px;
@@ -317,9 +304,17 @@
 
   <nav class="site-nav">
     <div class="nav-shell">
-      <div class="nav-top">
-        <div class="nav-top-right">
+      <div class="nav-top nav-top-home">
+        <div class="nav-top-right nav-main-group">
           <a href="index-en.html" class="nav-logo">Musicatea</a>
+          <div class="nav-links">
+            <a href="index-en.html">Home</a>
+            <a href="library-en.html">Sheet Library</a>
+            <a href="maqamat-en.html">Maqamat</a>
+            <a href="rhythms-en.html">Rhythms</a>
+            <a href="history-en.html">Arabic Music History</a>
+            <a href="ensemble-en.html" class="active">Melodies Ensemble</a>
+          </div>
         </div>
         <div class="nav-top-left">
           <a href="ensemble.html" class="lang-toggle" aria-label="Switch to Arabic">
@@ -330,16 +325,6 @@
             </svg>
             <span>AR</span>
           </a>
-        </div>
-      </div>
-      <div class="nav-bottom">
-        <div class="nav-links">
-          <a href="index-en.html">Home</a>
-          <a href="library-en.html">Sheet Library</a>
-          <a href="maqamat-en.html">Maqamatea</a>
-          <a href="rhythms-en.html">Iqaatea</a>
-          <a href="history-en.html">Music History</a>
-          <a href="ensemble-en.html" class="active">Melodies Ensemble</a>
         </div>
       </div>
     </div>
