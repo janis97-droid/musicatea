@@ -863,6 +863,24 @@ a.download:hover {
   color: var(--gold-light);
 }
 
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: color 0.3s var(--ease);
+}
+
+.footer-links a:hover {
+  color: var(--gold-light);
+}
+
 /* ─┐ Responsive ─┐ ─────────────────*/
 @media (max-width: 980px) {
   .nav-top-home {
@@ -943,6 +961,15 @@ a.download:hover {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
+  }
+
+  .site-footer {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    width: 100%;
   }
 }
 
