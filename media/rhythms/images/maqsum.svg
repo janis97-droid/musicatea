@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="240" viewBox="0 0 1100 240">
+  <defs>
+    <style>
+      .staff { stroke:#111; stroke-width:3; }
+      .barthin { stroke:#111; stroke-width:3; }
+      .barthick { stroke:#111; stroke-width:8; }
+      .notehead { fill:#111; }
+      .stem { stroke:#111; stroke-width:4; }
+      .flag { fill:none; stroke:#111; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .timesig { font-size:78px; fill:#111; font-family: Georgia, "Times New Roman", serif; font-weight:700; }
+      .rest { font-size:126px; fill:#111; font-family: "Bravura", "Noto Music", "Segoe UI Symbol", serif; text-anchor:middle; dominant-baseline:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="white"/>
+
+  <line class="staff" x1="40" y1="120" x2="1060" y2="120"/>
+
+  <line class="barthick" x1="68" y1="92" x2="68" y2="148"/>
+  <line class="barthin" x1="84" y1="92" x2="84" y2="148"/>
+
+  <text class="timesig" x="128" y="113">4</text>
+  <text class="timesig" x="128" y="172">4</text>
+
+  <!-- دم shape only -->
+  <ellipse class="notehead" cx="220" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="235" y1="120" x2="235" y2="36"/>
+  <path class="flag" d="M235 36 C249 38, 263 47, 272 64" />
+
+  <!-- تك shape only -->
+  <ellipse class="notehead" cx="330" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="315" y1="117" x2="315" y2="201"/>
+  <path class="flag" d="M315 201 C329 197, 344 188, 355 171" />
+
+  <!-- bigger rest, slightly lower -->
+  <text class="rest" x="430" y="96">𝄾</text>
+
+  <!-- تك -->
+  <ellipse class="notehead" cx="540" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="525" y1="117" x2="525" y2="201"/>
+  <path class="flag" d="M525 201 C539 197, 554 188, 565 171" />
+
+  <!-- دم -->
+  <ellipse class="notehead" cx="700" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="715" y1="120" x2="715" y2="36"/>
+  <path class="flag" d="M715 36 C729 38, 743 47, 752 64" />
+
+  <!-- bigger rest, slightly lower -->
+  <text class="rest" x="805" y="96">𝄾</text>
+
+  <!-- تك -->
+  <ellipse class="notehead" cx="905" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="890" y1="117" x2="890" y2="201"/>
+  <path class="flag" d="M890 201 C904 197, 919 188, 930 171" />
+
+  <!-- bigger rest, slightly lower -->
+  <text class="rest" x="1005" y="96">𝄾</text>
+
+  <line class="barthin" x1="1048" y1="92" x2="1048" y2="148"/>
+</svg>
