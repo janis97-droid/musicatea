@@ -1,350 +1,527 @@
+// data/sheets.js
+// Shared sheet data with Arabic and English fields for the library pages.
+// Arabic page uses the base fields; English page uses the *_en fields directly.
+
 const sheets = [
- 
   {
     title: "لونجا عجم",
+    title_en: "Longa Ajam",
     system: "arabic",
     type: "instrumental",
     composer: "سامي خشيبون",
+    composer_en: "Sami Khashiboun",
     performer: null,
+    performer_en: null,
     maqam: "عجم",
+    maqam_en: "Ajam",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/Longa-Ajam.pdf"
   },
-  
+
   {
     title: "ليالي الأنس في فيينا",
+    title_en: "Layali Al-Uns fi Vienna",
     system: "arabic",
     type: "song",
     composer: "فريد الأطرش",
+    composer_en: "Farid al-Atrash",
     performer: "أسمهان",
+    performer_en: "Asmahan",
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/Layali-Eluns-Fi-Viena.pdf"
   },
 
-{
+  {
     title: "لو على قلبي",
+    title_en: "Law Ala Albi",
     system: "arabic",
     type: "song",
     composer: "نادر نور",
+    composer_en: "Nader Nour",
     performer: "فضل شاكر",
+    performer_en: "Fadel Shaker",
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/LawAlaQalbi.pdf"
   },
- 
- {
+
+  {
     title: "قطف الزيتون",
+    title_en: "Olive Harvest",
     system: "arabic",
     type: "instrumental",
     composer: "سيمون شاهين",
+    composer_en: "Simon Shaheen",
     performer: null,
+    performer_en: null,
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/olive-harvest.pdf"
   },
-  
+
   {
     title: "سماعي نهاوند (دو)",
+    title_en: "Sama'i Nahawand (C)",
     system: "arabic",
     type: "instrumental",
     composer: "مسعود جميل",
+    composer_en: "Masoud Jamil",
     performer: null,
+    performer_en: null,
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/samai-nahawand-do.pdf"
   },
 
-   {
+  {
     title: "مينا يافا",
+    title_en: "Mina Yafa",
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
+    composer_en: "Rahbani Brothers",
     performer: "جوزيف عازر",
+    performer_en: "Joseph Azer",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/yafa-re.pdf"
   },
 
   {
     title: "وحدن بيبقوا",
+    title_en: "Wahdon Biyeb'ou",
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
+    composer_en: "Rahbani Brothers",
     performer: "فيروز",
+    performer_en: "Fairuz",
     maqam: "عجم",
+    maqam_en: "Ajam",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/wahdon.pdf"
   },
-  
- {
+
+  {
     title: "مينا يافا",
+    title_en: "Mina Yafa",
     system: "arabic",
     type: "song",
     composer: "اخوين رحباني",
+    composer_en: "Rahbani Brothers",
     performer: "جوزيف عازر",
+    performer_en: "Joseph Azer",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/yafa-do.pdf"
   },
-  
+
   {
     title: "سماعي نهاوند (ري)",
+    title_en: "Sama'i Nahawand (D)",
     system: "arabic",
     type: "instrumental",
     composer: "مسعود جميل",
+    composer_en: "Masoud Jamil",
     performer: null,
+    performer_en: null,
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/samai-nahawand-re.pdf"
   },
 
   {
     title: "شكراً",
+    title_en: "Shukran",
     system: "arabic",
     type: "song",
     composer: "وليد سعد",
+    composer_en: "Walid Saad",
     performer: "جورج وسوف",
+    performer_en: "George Wassouf",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/shukran.pdf"
   },
 
-{
+  {
     title: "ومشينا يا حبيبي",
+    title_en: "W Msheina Ya Habibi",
     system: "arabic",
     type: "song",
     composer: "امجد العاطفي",
+    composer_en: "Amjad Al-Atifi",
     performer: "جورج وسوف",
+    performer_en: "George Wassouf",
     maqam: "هزام",
+    maqam_en: "Huzam",
     scale: null,
+    scale_en: null,
     tonic: "سي نصف بيمول",
+    tonic_en: "B half-flat",
     pdf: "pdfs/w-mshina.pdf"
   },
-  
+
   {
     title: "Cinema Paradiso",
+    title_en: "Cinema Paradiso",
     system: "western",
     type: "instrumental",
     composer: "Ennio Morricone",
+    composer_en: "Ennio Morricone",
     performer: null,
+    performer_en: null,
     maqam: null,
+    maqam_en: null,
     scale: "Bb Major",
+    scale_en: "Bb Major",
     tonic: "Bb",
+    tonic_en: "Bb",
     pdf: "pdfs/cinema-paradiso.pdf"
   },
 
   {
     title: "عالروزانا",
+    title_en: "Ala Rozana",
     system: "arabic",
     type: "song",
     composer: "عثمان الموصلي",
+    composer_en: "Othman Al-Mosuli",
     performer: "تراث",
+    performer_en: "Traditional",
     maqam: "راست",
+    maqam_en: "Rast",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/alrozana.pdf"
   },
 
   {
     title: "أنا قلبي دليلي (دو)",
+    title_en: "Ana Albi Dalili (C)",
     system: "arabic",
     type: "song",
     composer: "محمد القصبجي",
+    composer_en: "Mohamed El-Qasabgi",
     performer: "ليلى مراد",
+    performer_en: "Layla Murad",
     maqam: "عجم",
+    maqam_en: "Ajam",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/ana-qalbi-do.pdf"
   },
 
   {
     title: "أنا قلبي دليلي (فا)",
+    title_en: "Ana Albi Dalili (F)",
     system: "arabic",
     type: "song",
     composer: "محمد القصبجي",
+    composer_en: "Mohamed El-Qasabgi",
     performer: "ليلى مراد",
+    performer_en: "Layla Murad",
     maqam: "عجم",
+    maqam_en: "Ajam",
     scale: null,
+    scale_en: null,
     tonic: "فا",
+    tonic_en: "F",
     pdf: "pdfs/ana-qalbi-fa.pdf"
   },
 
   {
     title: "أنا وليلى",
+    title_en: "Ana wa Layla",
     system: "arabic",
     type: "song",
     composer: "كاظم الساهر",
+    composer_en: "Kadim Al Sahir",
     performer: "كاظم الساهر",
+    performer_en: "Kadim Al Sahir",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "لا",
+    tonic_en: "A",
     pdf: "pdfs/ana-w-layla.pdf"
   },
 
   {
     title: "أنشودة الفن (دو)",
+    title_en: "Anshoudat Al-Fann (C)",
     system: "arabic",
     type: "song",
     composer: "محمد عبد الوهاب",
+    composer_en: "Mohammed Abdel Wahab",
     performer: "محمد عبد الوهاب",
+    performer_en: "Mohammed Abdel Wahab",
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/fan-do.pdf"
   },
 
   {
     title: "أنشودة الفن (فا)",
+    title_en: "Anshoudat Al-Fann (F)",
     system: "arabic",
     type: "song",
     composer: "محمد عبد الوهاب",
+    composer_en: "Mohammed Abdel Wahab",
     performer: "محمد عبد الوهاب",
+    performer_en: "Mohammed Abdel Wahab",
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "فا",
+    tonic_en: "F",
     pdf: "pdfs/fan-fa.pdf"
   },
 
   {
     title: "خسرت كل الناس",
+    title_en: "Khesert Kel El Nas",
     system: "arabic",
     type: "song",
     composer: "وليد سعد",
+    composer_en: "Walid Saad",
     performer: "جورج وسوف",
+    performer_en: "George Wassouf",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/khsert.pdf"
   },
 
   {
     title: "ما في ورد",
+    title_en: "Ma Fi Ward",
     system: "arabic",
     type: "song",
     composer: "نزار فرنسيس",
+    composer_en: "Nizar Francis",
     performer: "ملحم بركات",
+    performer_en: "Melhem Barakat",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "لا",
+    tonic_en: "A",
     pdf: "pdfs/ma-fi-ward.pdf"
   },
 
   {
     title: "ومنين أبدأ يا قلبي (ري)",
+    title_en: "W Minen Abda Ya Albi (D)",
     system: "arabic",
     type: "song",
     composer: "فادي صعب",
+    composer_en: "Fadi Saab",
     performer: "فادي صعب",
+    performer_en: "Fadi Saab",
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/mneen-re.pdf"
   },
 
   {
     title: "ومنين أبدأ يا قلبي (صول)",
+    title_en: "W Minen Abda Ya Albi (G)",
     system: "arabic",
     type: "song",
     composer: "فادي صعب",
+    composer_en: "Fadi Saab",
     performer: "فادي صعب",
+    performer_en: "Fadi Saab",
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/mneen-sol.pdf"
   },
 
   {
     title: "على مودك انت وبس (ري)",
+    title_en: "Ala Moodak Enta w Bas (D)",
     system: "arabic",
     type: "song",
     composer: "رائد الشامي",
+    composer_en: "Raed Al-Shami",
     performer: "ماجد المهندس",
+    performer_en: "Majid Al Mohandis",
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/modak-re.pdf"
   },
 
   {
     title: "على مودك انت وبس (صول)",
+    title_en: "Ala Moodak Enta w Bas (G)",
     system: "arabic",
     type: "song",
     composer: "رائد الشامي",
+    composer_en: "Raed Al-Shami",
     performer: "ماجد المهندس",
+    performer_en: "Majid Al Mohandis",
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "صول",
+    tonic_en: "G",
     pdf: "pdfs/modak-sol.pdf"
   },
 
   {
     title: "قضية عم أحمد",
+    title_en: "Qadiyyat Amm Ahmad",
     system: "arabic",
     type: "instrumental",
     composer: "عمر خيرت",
+    composer_en: "Omar Khairat",
     performer: null,
+    performer_en: null,
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/om-ahmad.pdf"
   },
 
-{
+  {
     title: "وحياة قلبي وافراحه",
+    title_en: "Wehyat Albi wa Afraho",
     system: "arabic",
     type: "song",
     composer: "منير مراد",
+    composer_en: "Mounir Mourad",
     performer: "عبد الحليم حافظ",
+    performer_en: "Abdel Halim Hafez",
     maqam: "عجم",
+    maqam_en: "Ajam",
     scale: null,
+    scale_en: null,
     tonic: "فا",
+    tonic_en: "F",
     pdf: "pdfs/whyat-qalbi.pdf"
   },
-  
+
   {
     title: "صحاك الشوق",
+    title_en: "Sahak El Shoq",
     system: "arabic",
     type: "song",
     composer: "جمانة جمال",
+    composer_en: "Jumana Jamal",
     performer: "فضل شاكر",
+    performer_en: "Fadel Shaker",
     maqam: "بيات",
+    maqam_en: "Bayat",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/sahak-el-shoq.pdf"
   },
 
   {
     title: "سجر البن",
+    title_en: "Sajar El Bunn",
     system: "arabic",
     type: "song",
     composer: "مارسيل خليفة",
+    composer_en: "Marcel Khalife",
     performer: "مارسيل خليفة",
+    performer_en: "Marcel Khalife",
     maqam: "نهاوند",
+    maqam_en: "Nahawand",
     scale: null,
+    scale_en: null,
     tonic: "دو",
+    tonic_en: "C",
     pdf: "pdfs/sajar-el-bun.pdf"
   },
 
   {
     title: "توبة",
+    title_en: "Touba",
     system: "arabic",
     type: "song",
     composer: "محمد عبد الوهاب",
+    composer_en: "Mohammed Abdel Wahab",
     performer: "عبد الحليم حافظ",
+    performer_en: "Abdel Halim Hafez",
     maqam: "كرد",
+    maqam_en: "Kurd",
     scale: null,
+    scale_en: null,
     tonic: "ري",
+    tonic_en: "D",
     pdf: "pdfs/touba.pdf"
   }
 
