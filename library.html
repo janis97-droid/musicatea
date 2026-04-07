@@ -75,6 +75,34 @@
     </div>
  
     <div id="list" class="grid"></div>
+<section class="request-sheet-section" aria-labelledby="request-sheet-title">
+  <div class="request-sheet-card">
+    <div class="request-sheet-copy">
+      <h2 id="request-sheet-title">اطلب نوتة</h2>
+      <p>إذا لم تجد النوتة التي تبحث عنها، أرسل طلبك وسنعمل على إضافتها إلى المكتبة.</p>
+    </div>
+
+    <form
+      class="request-sheet-form"
+      action="https://formspree.io/f/xkopqjok"
+      method="POST"
+      onsubmit="setTimeout(function(){document.getElementById('request-sheet-success').style.display='block';}, 200);"
+    >
+      <label>
+        <span>البريد الإلكتروني</span>
+        <input type="email" name="email" placeholder="name@example.com" required>
+      </label>
+
+      <label>
+        <span>اسم الأغنية والمطرب</span>
+        <textarea name="message" rows="4" placeholder="اكتب اسم النوتة، الفنان، أو أي تفاصيل تساعدنا" required></textarea>
+      </label>
+
+      <button type="submit" class="request-sheet-btn">إرسال الطلب</button>
+      <p id="request-sheet-success" class="request-sheet-success" style="display:none;">شكرا على إرسال الطلب, تابع محتوى المكتبة بإستمرار حتى يتم إضافة النوتة</p>
+    </form>
+  </div>
+</section>
   </main>
  
   <footer class="site-footer">
