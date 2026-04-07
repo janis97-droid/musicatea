@@ -1,7 +1,6 @@
 // assets/pages/library/library-filters-en.js
-// English library page logic with translated sheet metadata.
-// Renders English/transliterated titles, composers, performers, maqamat, and tonics
-// from the shared Arabic-first sheets dataset without duplicating data.
+// English library page logic.
+// Reads bilingual fields directly from data/sheets.js with no extra translation map.
 
 (function () {
   const list = document.getElementById('list');
@@ -21,137 +20,54 @@
     search: 'q'
   };
 
-  const TITLE_MAP = {
-    "لونجا عجم": "Longa Ajam",
-    "ليالي الأنس في فيينا": "Layali Al-Uns fi Vienna",
-    "لو على قلبي": "Law Ala Albi",
-    "قطف الزيتون": "Olive Harvest",
-    "سماعي نهاوند (دو)": "Sama'i Nahawand (C)",
-    "مينا يافا": "Mina Yafa",
-    "وحدن بيبقوا": "Wahdon Biyeb'ou",
-    "سماعي نهاوند (ري)": "Sama'i Nahawand (D)",
-    "شكراً": "Shukran",
-    "ومشينا يا حبيبي": "Wa Msheina Ya Habibi",
-    "عالروزانا": "Ala Rozana",
-    "أنا قلبي دليلي (دو)": "Ana Albi Dalili (C)",
-    "أنا قلبي دليلي (فا)": "Ana Albi Dalili (F)",
-    "أنا وليلى": "Ana wa Layla",
-    "أنشودة الفن (دو)": "Anshoudat Al-Fann (C)",
-    "أنشودة الفن (فا)": "Anshoudat Al-Fann (F)",
-    "خسرت كل الناس": "Khesert Kol El Nas",
-    "ما في ورد": "Ma Fi Ward",
-    "ومنين أبدأ يا قلبي (ري)": "W Minen Abda Ya Albi (D)",
-    "ومنين أبدأ يا قلبي (صول)": "W Minen Abda Ya Albi (G)",
-    "على مودك انت وبس (ري)": "Ala Moodak Enta w Bas (D)",
-    "على مودك انت وبس (صول)": "Ala Moodak Enta w Bas (G)",
-    "قضية عم أحمد": "Qadiyat Amm Ahmad",
-    "وحياة قلبي وافراحه": "Wehyat Albi wa Afraho",
-    "صحاك الشوق": "Sahak El Shoq",
-    "سجر البن": "Sajar El Bunn",
-    "توبة": "Touba"
-  };
+  const sourceSheets = (typeof sheets !== 'undefined' && Array.isArray(sheets))
+    ? sheets
+    : (Array.isArray(window.sheets) ? window.sheets : []);
 
-  const COMPOSER_MAP = {
-    "سامي خشيبون": "Sami Khashiboun",
-    "فريد الأطرش": "Farid al-Atrash",
-    "نادر نور": "Nader Nour",
-    "سيمون شاهين": "Simon Shaheen",
-    "مسعود جميل": "Masoud Jamil",
-    "اخوين رحباني": "Rahbani Brothers",
-    "وليد سعد": "Walid Saad",
-    "امجد العاطفي": "Amjad Al-Atifi",
-    "عثمان الموصلي": "Othman Al-Mosuli",
-    "محمد القصبجي": "Mohamed El-Qasabgi",
-    "كاظم الساهر": "Kadim Al Sahir",
-    "محمد عبد الوهاب": "Mohammed Abdel Wahab",
-    "نزار فرنسيس": "Nizar Francis",
-    "فادي صعب": "Fadi Saab",
-    "رائد الشامي": "Raed Al-Shami",
-    "عمر خيرت": "Omar Khairat",
-    "منير مراد": "Mounir Mourad",
-    "جمانة جمال": "Jumana Jamal",
-    "مارسيل خليفة": "Marcel Khalife"
-  };
-
-  const PERFORMER_MAP = {
-    "أسمهان": "Asmahan",
-    "فضل شاكر": "Fadel Shaker",
-    "جوزيف عازر": "Joseph Azer",
-    "فيروز": "Fairuz",
-    "جورج وسوف": "George Wassouf",
-    "تراث": "Traditional",
-    "ليلى مراد": "Layla Murad",
-    "كاظم الساهر": "Kadim Al Sahir",
-    "محمد عبد الوهاب": "Mohammed Abdel Wahab",
-    "ملحم بركات": "Melhem Barakat",
-    "ماجد المهندس": "Majid Al Mohandis",
-    "عبد الحليم حافظ": "Abdel Halim Hafez",
-    "مارسيل خليفة": "Marcel Khalife",
-    "فادي صعب": "Fadi Saab"
-  };
-
-  const MAQAM_MAP = {
-    "عجم": "Ajam",
-    "نهاوند": "Nahawand",
-    "بيات": "Bayat",
-    "كرد": "Kurd",
-    "هزام": "Huzam",
-    "راست": "Rast"
-  };
-
-  const TONIC_MAP = {
-    "دو": "C",
-    "ري": "D",
-    "فا": "F",
-    "صول": "G",
-    "لا": "A",
-    "سي نصف بيمول": "B half-flat"
-  };
-
-  function translateField(value, map) {
-    if (!value) return '';
-    return map[value] || value;
-  }
-
-  function toEnglishSheet(sheet, index) {
-    const titleEn = translateField(sheet.title, TITLE_MAP);
-    const composerEn = translateField(sheet.composer, COMPOSER_MAP);
-    const performerEn = translateField(sheet.performer, PERFORMER_MAP);
-    const maqamEn = translateField(sheet.maqam, MAQAM_MAP);
-    const tonicEn = translateField(sheet.tonic, TONIC_MAP);
+  const indexedSheets = sourceSheets.map((sheet, index) => {
+    const titleDisplay = sheet.title_en || sheet.title || '';
+    const composerDisplay = sheet.composer_en || sheet.composer || '';
+    const performerDisplay = sheet.performer_en || sheet.performer || '';
+    const maqamDisplay = sheet.maqam_en || sheet.maqam || '';
+    const scaleDisplay = sheet.scale_en || sheet.scale || '';
+    const tonicDisplay = sheet.tonic_en || sheet.tonic || '';
+    const primaryTagDisplay = sheet.system === 'arabic' ? maqamDisplay : scaleDisplay;
 
     return {
       ...sheet,
       _renderIndex: index,
-      titleEn,
-      composerEn,
-      performerEn,
-      maqamEn,
-      tonicEn,
+      _titleDisplay: titleDisplay,
+      _composerDisplay: composerDisplay,
+      _performerDisplay: performerDisplay,
+      _maqamDisplay: maqamDisplay,
+      _scaleDisplay: scaleDisplay,
+      _tonicDisplay: tonicDisplay,
+      _primaryTagDisplay: primaryTagDisplay,
       _searchBlob: [
         sheet.title,
-        titleEn,
+        sheet.title_en,
+        titleDisplay,
         sheet.composer,
-        composerEn,
+        sheet.composer_en,
+        composerDisplay,
         sheet.performer,
-        performerEn,
+        sheet.performer_en,
+        performerDisplay,
         sheet.maqam,
-        maqamEn,
+        sheet.maqam_en,
+        maqamDisplay,
         sheet.scale,
+        sheet.scale_en,
+        scaleDisplay,
         sheet.tonic,
-        tonicEn
+        sheet.tonic_en,
+        tonicDisplay
       ]
         .map(value => normalize(value))
         .filter(Boolean)
         .join(' ')
     };
-  }
-
-  const sourceSheets = (typeof sheets !== 'undefined' && Array.isArray(sheets))
-    ? sheets
-    : (Array.isArray(window.sheets) ? window.sheets : []);
-
-  const indexedSheets = sourceSheets.map((sheet, index) => toEnglishSheet(sheet, index));
+  });
 
   function createCard(sheet) {
     const card = document.createElement('div');
@@ -162,7 +78,7 @@
 
     const title = document.createElement('h3');
     title.className = 'card-title';
-    title.textContent = sheet.titleEn || sheet.title || '';
+    title.textContent = sheet._titleDisplay;
 
     const badge = document.createElement('span');
     badge.className = sheet.type === 'song' ? 'badge badge-song' : 'badge badge-inst';
@@ -187,13 +103,13 @@
 
     const composerValue = document.createElement('span');
     composerValue.className = 'card-credit-value';
-    composerValue.textContent = sheet.composerEn || sheet.composer || '';
+    composerValue.textContent = sheet._composerDisplay;
 
     composerRow.appendChild(composerLabel);
     composerRow.appendChild(composerValue);
     credits.appendChild(composerRow);
 
-    if (sheet.performerEn || sheet.performer) {
+    if (sheet._performerDisplay) {
       const performerRow = document.createElement('div');
       performerRow.className = 'card-credit-row';
 
@@ -203,7 +119,7 @@
 
       const performerValue = document.createElement('span');
       performerValue.className = 'card-credit-value';
-      performerValue.textContent = sheet.performerEn || sheet.performer || '';
+      performerValue.textContent = sheet._performerDisplay;
 
       performerRow.appendChild(performerLabel);
       performerRow.appendChild(performerValue);
@@ -218,17 +134,17 @@
     const tagsRow = document.createElement('div');
     tagsRow.className = 'card-tags-row';
 
-    const primaryTag = document.createElement('span');
-    primaryTag.className = 'card-tag';
-    primaryTag.textContent = sheet.system === 'arabic'
-      ? (sheet.maqamEn || sheet.maqam || '')
-      : (sheet.scale || '');
-    if (primaryTag.textContent) tagsRow.appendChild(primaryTag);
+    if (sheet._primaryTagDisplay) {
+      const primaryTag = document.createElement('span');
+      primaryTag.className = 'card-tag';
+      primaryTag.textContent = sheet._primaryTagDisplay;
+      tagsRow.appendChild(primaryTag);
+    }
 
-    if (sheet.tonicEn || sheet.tonic) {
+    if (sheet._tonicDisplay) {
       const tonicTag = document.createElement('span');
       tonicTag.className = 'card-tag card-tag-muted';
-      tonicTag.textContent = sheet.tonicEn || sheet.tonic || '';
+      tonicTag.textContent = sheet._tonicDisplay;
       tagsRow.appendChild(tonicTag);
     }
 
@@ -260,27 +176,22 @@
     }
 
     const fragment = document.createDocumentFragment();
+
     data.forEach((sheet, index) => {
       const card = createCard(sheet);
       card.style.setProperty('--card-index', index);
       fragment.appendChild(card);
     });
+
     list.appendChild(fragment);
   }
 
-  function uniqueValues(fieldName) {
-    return [...new Set(indexedSheets.map(item => item[fieldName]).filter(Boolean))];
+  function buildUniqueValues(data, fieldName) {
+    return [...new Set(data.map(item => item[fieldName]).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
   }
 
-  function sortByTranslatedDisplay(values, map) {
-    return [...values].sort((a, b) => {
-      const labelA = translateField(a, map);
-      const labelB = translateField(b, map);
-      return labelA.localeCompare(labelB, 'en', { sensitivity: 'base' });
-    });
-  }
-
-  function fillSelect(selectEl, values, firstOptionLabel, map) {
+  function fillSelect(selectEl, values, firstOptionLabel) {
     const previousValue = selectEl.value;
     selectEl.innerHTML = '';
 
@@ -292,7 +203,7 @@
     values.forEach(value => {
       const opt = document.createElement('option');
       opt.value = value;
-      opt.textContent = translateField(value, map);
+      opt.textContent = value;
       selectEl.appendChild(opt);
     });
 
@@ -304,23 +215,20 @@
   function populateFilters() {
     fillSelect(
       performerSelect,
-      sortByTranslatedDisplay(uniqueValues('performer'), PERFORMER_MAP),
-      'Singers',
-      PERFORMER_MAP
+      buildUniqueValues(indexedSheets, '_performerDisplay'),
+      'Singers'
     );
 
     fillSelect(
       composerSelect,
-      sortByTranslatedDisplay(uniqueValues('composer'), COMPOSER_MAP),
-      'Composers',
-      COMPOSER_MAP
+      buildUniqueValues(indexedSheets, '_composerDisplay'),
+      'Composers'
     );
 
     fillSelect(
       maqamSelect,
-      sortByTranslatedDisplay(uniqueValues('maqam'), MAQAM_MAP),
-      'Maqams',
-      MAQAM_MAP
+      buildUniqueValues(indexedSheets.filter(sheet => sheet._maqamDisplay), '_maqamDisplay'),
+      'Maqams'
     );
   }
 
@@ -382,15 +290,15 @@
     let filtered = [...indexedSheets];
 
     if (performerVal) {
-      filtered = filtered.filter(sheet => sheet.performer === performerVal);
+      filtered = filtered.filter(sheet => sheet._performerDisplay === performerVal);
     }
 
     if (composerVal) {
-      filtered = filtered.filter(sheet => sheet.composer === composerVal);
+      filtered = filtered.filter(sheet => sheet._composerDisplay === composerVal);
     }
 
     if (maqamVal) {
-      filtered = filtered.filter(sheet => sheet.maqam === maqamVal);
+      filtered = filtered.filter(sheet => sheet._maqamDisplay === maqamVal);
     }
 
     if (searchVal) {
