@@ -24,6 +24,18 @@ const sheets = [
     pdf: "pdfs/Layali-Eluns-Fi-Viena.pdf"
   },
 
+{
+    title: "لو على قلبي",
+    system: "arabic",
+    type: "song",
+    composer: "نادر نور",
+    performer: "فضل شاكر",
+    maqam: "نهاوند",
+    scale: null,
+    tonic: "ري",
+    pdf: "pdfs/LawAlaQalbi.pdf"
+  },
+ 
  {
     title: "قطف الزيتون",
     system: "arabic",
