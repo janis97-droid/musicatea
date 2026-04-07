@@ -1,28 +1,39 @@
 const list = document.getElementById('list');
-
 const performerSelect = document.getElementById('performer');
+const composerSelect = document.getElementById('composer');
 const maqamSelect = document.getElementById('maqam');
 const searchInput = document.getElementById('search');
 
+if (!list || !performerSelect || !composerSelect || !maqamSelect || !searchInput) {
+  console.warn('Library filters: one or more required elements are missing.');
+}
+
+const sourceSheets = (typeof sheets !== 'undefined' && Array.isArray(sheets))
+  ? sheets
+  : (Array.isArray(window.sheets) ? window.sheets : []);
+
 const URL_KEYS = {
   performer: 'performer',
+  composer: 'composer',
   maqam: 'maqam',
   search: 'q'
 };
 
-const indexedSheets = sheets.map((sheet, index) => ({
+const indexedSheets = sourceSheets.map((sheet, index) => ({
   ...sheet,
   _renderIndex: index,
   _searchTitle: normalize(sheet.title),
   _searchComposer: normalize(sheet.composer),
   _searchPerformer: normalize(sheet.performer),
-  _searchBlob: [sheet.title, sheet.composer, sheet.performer]
+  _searchBlob: [sheet.title, sheet.composer, sheet.performer, sheet.maqam, sheet.scale, sheet.tonic]
     .map(normalize)
     .filter(Boolean)
     .join(' ')
 }));
 
 function render(data) {
+  if (!list) return;
+
   list.innerHTML = '';
 
   if (data.length === 0) {
@@ -32,8 +43,8 @@ function render(data) {
 
   const fragment = document.createDocumentFragment();
 
-  data.forEach((s, index) => {
-    const card = createSheetCard(s);
+  data.forEach((sheet, index) => {
+    const card = createSheetCard(sheet);
     card.style.setProperty('--card-index', index);
     fragment.appendChild(card);
   });
@@ -47,6 +58,8 @@ function buildUniqueValues(data, fieldName) {
 }
 
 function fillSelect(selectEl, values, firstOptionLabel) {
+  if (!selectEl) return;
+
   const previousValue = selectEl.value;
   selectEl.innerHTML = '';
 
@@ -56,10 +69,10 @@ function fillSelect(selectEl, values, firstOptionLabel) {
   selectEl.appendChild(firstOption);
 
   values.forEach(value => {
-    const opt = document.createElement('option');
-    opt.value = value;
-    opt.textContent = value;
-    selectEl.appendChild(opt);
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value;
+    selectEl.appendChild(option);
   });
 
   if (previousValue && values.includes(previousValue)) {
@@ -75,6 +88,12 @@ function populateFilters() {
   );
 
   fillSelect(
+    composerSelect,
+    buildUniqueValues(indexedSheets, 'composer'),
+    'كل الملحنين'
+  );
+
+  fillSelect(
     maqamSelect,
     buildUniqueValues(indexedSheets.filter(sheet => sheet.maqam), 'maqam'),
     'كل المقامات'
@@ -83,9 +102,10 @@ function populateFilters() {
 
 function getFilterState() {
   return {
-    performer: performerSelect.value,
-    maqam: maqamSelect.value,
-    search: searchInput.value.trim()
+    performer: performerSelect ? performerSelect.value : '',
+    composer: composerSelect ? composerSelect.value : '',
+    maqam: maqamSelect ? maqamSelect.value : '',
+    search: searchInput ? searchInput.value.trim() : ''
   };
 }
 
@@ -94,6 +114,7 @@ function syncUrlFromState() {
   const params = new URLSearchParams();
 
   if (state.performer) params.set(URL_KEYS.performer, state.performer);
+  if (state.composer) params.set(URL_KEYS.composer, state.composer);
   if (state.maqam) params.set(URL_KEYS.maqam, state.maqam);
   if (state.search) params.set(URL_KEYS.search, state.search);
 
@@ -105,50 +126,61 @@ function syncUrlFromState() {
 function applyStateFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const requestedPerformer = params.get(URL_KEYS.performer);
+  const requestedComposer = params.get(URL_KEYS.composer);
   const requestedMaqam = params.get(URL_KEYS.maqam);
   const requestedSearch = params.get(URL_KEYS.search);
 
   populateFilters();
 
-  if (requestedPerformer && [...performerSelect.options].some(opt => opt.value === requestedPerformer)) {
+  if (requestedPerformer && performerSelect && [...performerSelect.options].some(option => option.value === requestedPerformer)) {
     performerSelect.value = requestedPerformer;
   }
 
-  if (requestedMaqam && [...maqamSelect.options].some(opt => opt.value === requestedMaqam)) {
+  if (requestedComposer && composerSelect && [...composerSelect.options].some(option => option.value === requestedComposer)) {
+    composerSelect.value = requestedComposer;
+  }
+
+  if (requestedMaqam && maqamSelect && [...maqamSelect.options].some(option => option.value === requestedMaqam)) {
     maqamSelect.value = requestedMaqam;
   }
 
-  if (requestedSearch) {
+  if (requestedSearch && searchInput) {
     searchInput.value = requestedSearch;
   }
 }
 
 function applyFilters() {
-  const performerVal = performerSelect.value;
-  const maqamVal = maqamSelect.value;
-  const searchVal = normalize(searchInput.value);
+  const performerValue = performerSelect ? performerSelect.value : '';
+  const composerValue = composerSelect ? composerSelect.value : '';
+  const maqamValue = maqamSelect ? maqamSelect.value : '';
+  const searchValue = normalize(searchInput ? searchInput.value : '');
 
   let filtered = [...indexedSheets];
 
-  if (performerVal) {
-    filtered = filtered.filter(sheet => sheet.performer === performerVal);
+  if (performerValue) {
+    filtered = filtered.filter(sheet => sheet.performer === performerValue);
   }
 
-  if (maqamVal) {
-    filtered = filtered.filter(sheet => sheet.maqam === maqamVal);
+  if (composerValue) {
+    filtered = filtered.filter(sheet => sheet.composer === composerValue);
   }
 
-  if (searchVal) {
-    filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchVal));
+  if (maqamValue) {
+    filtered = filtered.filter(sheet => sheet.maqam === maqamValue);
+  }
+
+  if (searchValue) {
+    filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchValue));
   }
 
   render(filtered);
   syncUrlFromState();
 }
 
-performerSelect.addEventListener('change', applyFilters);
-maqamSelect.addEventListener('change', applyFilters);
-searchInput.addEventListener('input', applyFilters);
+if (performerSelect) performerSelect.addEventListener('change', applyFilters);
+if (composerSelect) composerSelect.addEventListener('change', applyFilters);
+if (maqamSelect) maqamSelect.addEventListener('change', applyFilters);
+if (searchInput) searchInput.addEventListener('input', applyFilters);
 
 applyStateFromUrl();
 populateFilters();
