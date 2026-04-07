@@ -1,126 +1,248 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Arabic and Western sheet music library with searchable filters and free PDF download.">
-  <meta name="theme-color" content="#09090b">
-  <link rel="alternate" hreflang="ar" href="library.html">
-  <link rel="alternate" hreflang="en" href="library-en.html">
-  <title>Sheet Music Library — Musicatea</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="assets/pages/library/library-base.css">
-  <link rel="stylesheet" href="assets/pages/library/library-desktop.css">
-  <link rel="stylesheet" href="assets/pages/library/library-mobile.css">
-  <link rel="stylesheet" href="assets/pages/library/library-en.css">
+// assets/pages/library/library-filters-en.js
+// English library page logic: performer + composer + maqam + search.
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
-</head>
-<body dir="ltr">
+(function () {
+  const list = document.getElementById('list');
+  const performerSelect = document.getElementById('performer');
+  const composerSelect = document.getElementById('composer');
+  const maqamSelect = document.getElementById('maqam');
+  const searchInput = document.getElementById('search');
 
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  if (!list || !performerSelect || !composerSelect || !maqamSelect || !searchInput) {
+    return;
+  }
 
-  <nav class="site-nav">
-    <div class="nav-shell">
-      <div class="nav-top nav-top-home">
-        <div class="nav-top-right nav-main-group">
-          <a href="index-en.html" class="nav-logo">Musicatea</a>
+  const sourceSheets = (typeof sheets !== 'undefined' && Array.isArray(sheets))
+    ? sheets
+    : (Array.isArray(window.sheets) ? window.sheets : []);
 
-          <div class="nav-links">
-            <a href="index-en.html">Home</a>
-            <a href="library-en.html" class="active">Sheet Library</a>
-            <a href="maqamat-en.html">Maqamat</a>
-            <a href="rhythms-en.html">Rhythms</a>
-            <a href="history-en.html">Arabic Music History</a>
-            <a href="ensemble-en.html">Melodies Ensemble</a>
-          </div>
-        </div>
+  const URL_KEYS = {
+    performer: 'performer',
+    composer: 'composer',
+    maqam: 'maqam',
+    search: 'q'
+  };
 
-        <div class="nav-top-left">
-          <a href="library.html" class="lang-toggle" aria-label="Switch to Arabic">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            <span>AR</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  const indexedSheets = sourceSheets.map((sheet, index) => ({
+    ...sheet,
+    _renderIndex: index,
+    _searchBlob: [sheet.title, sheet.composer, sheet.performer, sheet.maqam, sheet.scale, sheet.tonic]
+      .map(value => normalize(value))
+      .filter(Boolean)
+      .join(' ')
+  }));
 
-  <main id="main-content">
-    <header class="page-hero">
-      <h1>Sheet Music Library</h1>
-      <p>Arabic and Western sheet music with searchable filters and direct PDF download.</p>
-    </header>
+  function createCard(sheet) {
+    const card = document.createElement('div');
+    card.className = 'card';
 
-     <div class="filters" role="search" aria-label="Sheet filter">
-      <label for="performer" class="sr-only">Singer</label>
-      <select id="performer">
-        <option value="">Singers</option>
-    </select>
-  
-      <label for="composer" class="sr-only">Composer</label>
-      <select id="composer">
-        <option value="">composers</option>
-      </select>
-   
-      <label for="maqam" class="sr-only">maqam</label>
-      <select id="maqam">
-        <option value="">maqams</option>
-      </select>
+    const titleRow = document.createElement('div');
+    titleRow.className = 'card-title-row';
 
-      <label for="search" class="sr-only">Search</label>
-      <input id="search" type="text" placeholder="search">
-    </div>
+    const title = document.createElement('h3');
+    title.className = 'card-title';
+    title.textContent = sheet.title || '';
 
-    <div id="list" class="grid"></div>
-<section class="request-sheet-section" aria-labelledby="request-sheet-title">
-  <div class="request-sheet-card">
-    <div class="request-sheet-copy">
-      <h2 id="request-sheet-title">Request a sheet</h2>
-      <p>Didn't find the sheet you want? send us a request and we will work on it</p>
-    </div>
+    const badge = document.createElement('span');
+    badge.className = sheet.type === 'song' ? 'badge badge-song' : 'badge badge-inst';
+    badge.textContent = sheet.type === 'song' ? 'Song' : 'Instrumental';
 
-    <form
-      class="request-sheet-form"
-      action="https://formspree.io/f/xkopqjok"
-      method="POST"
-      onsubmit="setTimeout(function(){document.getElementById('request-sheet-success').style.display='block';}, 200);"
-    >
-      <label>
-        <span>Your Email</span>
-        <input type="email" name="email" placeholder="name@example.com" required>
-      </label>
+    titleRow.appendChild(title);
+    titleRow.appendChild(badge);
 
-      <label>
-        <span>Sheet title and Performer</span>
-        <textarea name="message" rows="4" placeholder="Enter Sheet title, composer, performer to help us recognize the piece" required></textarea>
-      </label>
+    const header = document.createElement('div');
+    header.className = 'card-header';
+    header.appendChild(titleRow);
 
-      <button type="submit" class="request-sheet-btn">Submit</button>
-      <p id="request-sheet-success" class="request-sheet-success" style="display:none;">Thanks for submitting, keep updated to see your sheet.</p>
-    </form>
-  </div>
-</section>
-  </main>
+    const composer = document.createElement('p');
+    composer.className = 'card-composer';
+    composer.textContent = sheet.composer || '';
+    header.appendChild(composer);
 
-  <footer class="site-footer">
-    <span class="footer-logo">Musicatea</span>
-    <div class="footer-links">
-      <a href="about-en.html">About</a>
-      <a href="contact-en.html">Contact</a>
-      <a href="privacy-en.html">Privacy Policy</a>
-    </div>
-    <span>© 2025 Musicatea</span>
-  </footer>
+    if (sheet.performer) {
+      const performer = document.createElement('p');
+      performer.className = 'card-performer';
+      performer.textContent = sheet.performer;
+      header.appendChild(performer);
+    }
 
-  <script src="data/sheets.js"></script>
-  <script src="assets/shared-utils.js"></script>
-  <script src="assets/pages/library/library-filters-en.js"></script>
-</body>
-</html>
+    const meta = document.createElement('div');
+    meta.className = 'card-meta';
+
+    const primaryTag = document.createElement('span');
+    primaryTag.className = 'card-maqam';
+    primaryTag.textContent = sheet.system === 'arabic' ? (sheet.maqam || '') : (sheet.scale || '');
+    if (primaryTag.textContent) meta.appendChild(primaryTag);
+
+    if (sheet.tonic) {
+      const tonicTag = document.createElement('span');
+      tonicTag.className = 'card-tonic';
+      tonicTag.textContent = sheet.tonic;
+      meta.appendChild(tonicTag);
+    }
+
+    const link = document.createElement('a');
+    link.className = 'download-btn';
+    link.href = sheet.pdf || '#';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Download Sheet';
+
+    card.appendChild(header);
+    card.appendChild(meta);
+    card.appendChild(link);
+    return card;
+  }
+
+  function render(data) {
+    list.innerHTML = '';
+
+    if (!data.length) {
+      const empty = document.createElement('div');
+      empty.className = 'empty-state';
+      empty.textContent = 'No sheets match the current filters';
+      list.appendChild(empty);
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    data.forEach((sheet, index) => {
+      const card = createCard(sheet);
+      card.style.setProperty('--card-index', index);
+      fragment.appendChild(card);
+    });
+    list.appendChild(fragment);
+  }
+
+  function buildUniqueValues(data, fieldName) {
+    return [...new Set(data.map(item => item[fieldName]).filter(Boolean))]
+      .sort((a, b) => a.localeCompare(b));
+  }
+
+  function fillSelect(selectEl, values, firstOptionLabel) {
+    const previousValue = selectEl.value;
+    selectEl.innerHTML = '';
+
+    const firstOption = document.createElement('option');
+    firstOption.value = '';
+    firstOption.textContent = firstOptionLabel;
+    selectEl.appendChild(firstOption);
+
+    values.forEach(value => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      selectEl.appendChild(option);
+    });
+
+    if (previousValue && values.includes(previousValue)) {
+      selectEl.value = previousValue;
+    }
+  }
+
+  function populateFilters() {
+    fillSelect(
+      performerSelect,
+      buildUniqueValues(indexedSheets, 'performer'),
+      'Singers'
+    );
+
+    fillSelect(
+      composerSelect,
+      buildUniqueValues(indexedSheets, 'composer'),
+      'Composers'
+    );
+
+    fillSelect(
+      maqamSelect,
+      buildUniqueValues(indexedSheets.filter(sheet => sheet.maqam), 'maqam'),
+      'Maqams'
+    );
+  }
+
+  function getFilterState() {
+    return {
+      performer: performerSelect.value,
+      composer: composerSelect.value,
+      maqam: maqamSelect.value,
+      search: searchInput.value.trim()
+    };
+  }
+
+  function syncUrlFromState() {
+    const state = getFilterState();
+    const params = new URLSearchParams();
+
+    if (state.performer) params.set(URL_KEYS.performer, state.performer);
+    if (state.composer) params.set(URL_KEYS.composer, state.composer);
+    if (state.maqam) params.set(URL_KEYS.maqam, state.maqam);
+    if (state.search) params.set(URL_KEYS.search, state.search);
+
+    const query = params.toString();
+    const nextUrl = query ? `${window.location.pathname}?${query}` : window.location.pathname;
+    window.history.replaceState({}, '', nextUrl);
+  }
+
+  function applyStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const requestedPerformer = params.get(URL_KEYS.performer);
+    const requestedComposer = params.get(URL_KEYS.composer);
+    const requestedMaqam = params.get(URL_KEYS.maqam);
+    const requestedSearch = params.get(URL_KEYS.search);
+
+    populateFilters();
+
+    if (requestedPerformer && [...performerSelect.options].some(option => option.value === requestedPerformer)) {
+      performerSelect.value = requestedPerformer;
+    }
+
+    if (requestedComposer && [...composerSelect.options].some(option => option.value === requestedComposer)) {
+      composerSelect.value = requestedComposer;
+    }
+
+    if (requestedMaqam && [...maqamSelect.options].some(option => option.value === requestedMaqam)) {
+      maqamSelect.value = requestedMaqam;
+    }
+
+    if (requestedSearch) {
+      searchInput.value = requestedSearch;
+    }
+  }
+
+  function applyFilters() {
+    const performerValue = performerSelect.value;
+    const composerValue = composerSelect.value;
+    const maqamValue = maqamSelect.value;
+    const searchValue = normalize(searchInput.value);
+
+    let filtered = [...indexedSheets];
+
+    if (performerValue) {
+      filtered = filtered.filter(sheet => sheet.performer === performerValue);
+    }
+
+    if (composerValue) {
+      filtered = filtered.filter(sheet => sheet.composer === composerValue);
+    }
+
+    if (maqamValue) {
+      filtered = filtered.filter(sheet => sheet.maqam === maqamValue);
+    }
+
+    if (searchValue) {
+      filtered = filtered.filter(sheet => sheet._searchBlob.includes(searchValue));
+    }
+
+    render(filtered);
+    syncUrlFromState();
+  }
+
+  performerSelect.addEventListener('change', applyFilters);
+  composerSelect.addEventListener('change', applyFilters);
+  maqamSelect.addEventListener('change', applyFilters);
+  searchInput.addEventListener('input', applyFilters);
+
+  applyStateFromUrl();
+  populateFilters();
+  applyFilters();
+})();
