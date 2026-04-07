@@ -58,23 +58,24 @@
       <p>Arabic and Western sheet music with searchable filters and direct PDF download.</p>
     </header>
 
-    <div class="filters" role="search" aria-label="Filter sheets">
-      <label for="system" class="sr-only">Notation system</label>
-      <select id="system">
-        <option value="">All Systems</option>
-        <option value="arabic">Eastern Notation</option>
-        <option value="western">Western Notation</option>
+     <div class="filters" role="search" aria-label="Sheet filter">
+      <label for="performer" class="sr-only">Singer</label>
+      <select id="performer">
+        <option value="">Singers</option>
+    </select>
+  
+      <label for="composer" class="sr-only">Composer</label>
+      <select id="composer">
+        <option value="">composers</option>
       </select>
-
-      <label for="type" class="sr-only">Type</label>
-      <select id="type">
-        <option value="">All Types</option>
-        <option value="song">Song</option>
-        <option value="instrumental">Instrumental</option>
+   
+      <label for="maqam" class="sr-only">maqam</label>
+      <select id="maqam">
+        <option value="">maqams</option>
       </select>
 
       <label for="search" class="sr-only">Search</label>
-      <input id="search" type="text" placeholder="Search by title, composer, or performer...">
+      <input id="search" type="text" placeholder="search">
     </div>
 
     <div id="list" class="grid"></div>
