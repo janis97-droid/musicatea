@@ -78,21 +78,34 @@
     </div>
 
     <div id="list" class="grid"></div>
-  <form
-  action="https://formspree.io/f/xkopqjok"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+<section class="request-sheet-section" aria-labelledby="request-sheet-title">
+  <div class="request-sheet-card">
+    <div class="request-sheet-copy">
+      <h2 id="request-sheet-title">اطلب نوتة</h2>
+      <p>إذا لم تجد النوتة التي تبحث عنها، أرسل طلبك وسنراجع إضافتها إلى المكتبة.</p>
+    </div>
+
+    <form
+      class="request-sheet-form"
+      action="https://formspree.io/f/xkopqjok"
+      method="POST"
+      onsubmit="setTimeout(function(){document.getElementById('request-sheet-success').style.display='block';}, 200);"
+    >
+      <label>
+        <span>Your Email</span>
+        <input type="email" name="email" placeholder="name@example.com" required>
+      </label>
+
+      <label>
+        <span>Sheet title and Performer</span>
+        <textarea name="message" rows="4" placeholder="Enter Sheet title, composer, performer to help us recognize the piece" required></textarea>
+      </label>
+
+      <button type="submit" class="request-sheet-btn">Submit</button>
+      <p id="request-sheet-success" class="request-sheet-success" style="display:none;">Thanks for submitting, keep updated to see your sheet.</p>
+    </form>
+  </div>
+</section>
   </main>
 
   <footer class="site-footer">
