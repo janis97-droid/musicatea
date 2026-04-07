@@ -29,27 +29,45 @@
   display: grid;
   gap: 14px;
   align-items: stretch;
+  justify-content: center;
 }
 
 .filters select,
 .filters input {
-  width: 100%;
+  width: min(100%, 230px);
+  max-width: 230px;
   min-width: 0;
+  justify-self: center;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(200,164,90,0.24);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 11px 14px;
   color: var(--text);
   font-family: inherit;
   font-size: 0.94rem;
   outline: none;
   transition: all 0.25s var(--ease);
+  box-shadow: inset 0 0 0 1px rgba(200,164,90,0.04);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.filters select:hover,
+.filters input:hover {
+  border-color: rgba(200,164,90,0.38);
+  background: var(--surface2);
 }
 
 .filters select:focus,
 .filters input:focus {
-  border-color: rgba(200,164,90,0.45);
-  box-shadow: 0 0 0 3px rgba(200,164,90,0.07);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(200,164,90,0.10);
+  background: var(--surface2);
+}
+
+.filters select option {
+  background: var(--bg3);
+  color: var(--text);
 }
 
 #list.grid {
