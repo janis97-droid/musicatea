@@ -140,12 +140,28 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--gold-light);
   letter-spacing: 0.02em;
   transition: transform 0.3s var(--ease);
   flex-shrink: 0;
+  line-height: 1;
+}
+
+.nav-logo-mark {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(200,164,90,0.18));
+}
+
+.nav-logo-text {
+  display: inline-block;
 }
 
 .nav-logo:hover {
@@ -937,9 +953,15 @@ a.download:hover {
     min-height: 54px;
     padding: 8px 0;
   }
-  .nav-logo {
-    font-size: 1.95rem;
-  }
+.nav-logo {
+  gap: 8px;
+  font-size: 1.95rem;
+}
+
+.nav-logo-mark {
+  width: 34px;
+  height: 34px;
+}
   .lang-toggle {
     font-size: 0.75rem;
     padding: 6px 10px;
