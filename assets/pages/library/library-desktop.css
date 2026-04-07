@@ -2,21 +2,20 @@
 /* Desktop and tablet layout for library pages */
 
 .filters {
-  grid-template-columns: repeat(4, minmax(0, 230px));
+  grid-template-columns: repeat(5, minmax(0, 230px));
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1320px) {
   .filters {
-    grid-template-columns: repeat(2, minmax(0, 230px));
+    grid-template-columns: repeat(3, minmax(0, 230px));
   }
 }
 
 @media (max-width: 760px) {
   .filters {
-    grid-template-columns: repeat(2, minmax(0, 210px));
+    grid-template-columns: repeat(2, minmax(0, 230px));
   }
 }
-
 .request-sheet-section {
   padding: 8px 5% 0;
 }
