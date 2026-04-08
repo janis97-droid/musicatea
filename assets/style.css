@@ -1055,8 +1055,11 @@ a.download:hover {
   margin-top: 8px;
   text-align: center;
   font-size: 0.78rem;
-  color: var(--text-dim);
+  font-weight: 700;
   line-height: 1.5;
+  color: var(--gold-light);
+  opacity: 0.9;
+  text-shadow: 0 1px 6px rgba(200,164,90,0.12);
 }
 
 .android-install-text {
