@@ -1,0 +1,210 @@
+# Production-ready replacement for `index-en.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Musicatea — The Arabic Music Encyclopedia: sheet music, maqam guides, oriental rhythms, and music history.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Musicatea" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  <link rel="canonical" href="https://musicatea.com/index-en.html">
+  <link rel="alternate" hreflang="ar" href="https://musicatea.com/">
+  <link rel="alternate" hreflang="en" href="https://musicatea.com/index-en.html">
+  <link rel="alternate" hreflang="x-default" href="https://musicatea.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Musicatea">
+  <meta property="og:title" content="Musicatea | The Arabic Music Encyclopedia">
+  <meta property="og:description" content="Musicatea — The Arabic Music Encyclopedia: sheet music, maqam guides, oriental rhythms, and music history.">
+  <meta property="og:url" content="https://musicatea.com/index-en.html">
+  <meta property="og:image" content="https://musicatea.com/assets/logo-mark.jpg">
+  <meta property="og:image:alt" content="Musicatea logo">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ar_AR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Musicatea | The Arabic Music Encyclopedia">
+  <meta name="twitter:description" content="Musicatea — The Arabic Music Encyclopedia: sheet music, maqam guides, oriental rhythms, and music history.">
+  <meta name="twitter:image" content="https://musicatea.com/assets/logo-mark.jpg">
+  <title>Musicatea | The Arabic Music Encyclopedia</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Musicatea",
+        "alternateName": "موسيقتي",
+        "url": "https://musicatea.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://musicatea.com/assets/logo-mark.jpg"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Musicatea",
+        "alternateName": "موسيقتي",
+        "url": "https://musicatea.com/index-en.html",
+        "inLanguage": "en",
+        "description": "Musicatea — The Arabic Music Encyclopedia: sheet music, maqam guides, oriental rhythms, and music history.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Musicatea",
+          "alternateName": "موسيقتي",
+          "url": "https://musicatea.com/"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/islamic-pattern.css?v=1">
+  <link rel="stylesheet" href="assets/pages/home/desktop.css">
+  <link rel="stylesheet" href="assets/pages/home/mobile.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3K1HS32DY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y3K1HS32DY');
+  </script>
+</head>
+<body dir="ltr">
+
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top nav-top-home">
+        <div class="nav-top-right nav-main-group">
+<a href="index-en.html" class="nav-logo">
+  <img src="assets/logo-mark.jpg" alt="Musicatea" class="nav-logo-mark">
+  <span class="nav-logo-text">Musicatea</span>
+</a>
+          <div class="nav-links">
+            <a href="index-en.html" class="active" data-home-link="true">Home</a>
+            <a href="library-en.html">Sheet Library</a>
+            <a href="maqamat-en.html">Maqamat</a>
+            <a href="rhythms-en.html">Rhythms</a>
+            <a href="history-en.html">Arabic Music History</a>
+            <a href="ensemble-en.html">Melodies Ensemble</a>
+          </div>
+        </div>
+
+        <div class="nav-top-left">
+          <a href="index.html" class="lang-toggle" aria-label="Switch to Arabic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <span>AR</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-tag">The Arabic Music Encyclopedia</span>
+        <p class="subtitle">
+          Your gateway to discovering the world of Arabic music: sheet music, maqam guides, Arabic rhythms, music history, and its leading figures.
+        </p>
+        <div class="hero-cta hero-cta-home-menu">
+          <a href="library-en.html" class="cta-btn cta-primary">
+            Explore Sheets
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="maqamat-en.html" class="cta-btn cta-secondary">
+            Discover Maqamat
+          </a>
+          <a href="rhythms-en.html" class="cta-btn cta-secondary">
+            Discover Rhythms
+          </a>
+          <a href="history-en.html" class="cta-btn cta-secondary">
+            Arabic Music History
+          </a>
+          <a href="ensemble-en.html" class="cta-btn cta-secondary">
+            Melodies Ensemble
+          </a>
+        </div>
+      </div>
+    </section>
+
+  <!-- Android install button -->
+<div class="android-install-wrap" id="androidInstallWrap" hidden>
+  <button type="button" class="android-install-btn" id="androidInstallBtn">
+    <span class="android-install-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 3.5L14.8 10.1L17.8 12L14.8 13.9L4 20.5V3.5Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <span class="android-install-text">Get App for Android</span>
+  </button>
+</div>
+ <p class="android-install-note">
+  Available Only Chrome-Android
+</p>
+    
+ <section class="pillars">
+      <div class="pillar">
+        <span class="pillar-icon">♩</span>
+        <h3>تحميل مجاني</h3>
+        <p>مكتبة متنامية من النوتات الموسيقية للتحميل المجاني.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">𝄞</span>
+        <h3>Arabic Maqamat</h3>
+        <p>A comprehensive reference exploring each maqam, its qualities, and the works that made it memorable.</p>
+      </div>
+
+      <div class="pillar">
+        <span class="pillar-icon">📜</span>
+        <h3>Music History</h3>
+        <p>From the Abbasid and Andalusian eras to the modern Arab musical renaissance.</p>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About the Project</h2>
+      <p>
+        Musicatea is a project that aims to document and simplify Arabic music, its heritage, theories, and musicians, and make it accessible to everyone: learners, teachers, researchers, and listeners. The content is continuously expanded and updated.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-logo">Musicatea</span>
+    <div class="footer-links">
+      <a href="about-en.html">About</a>
+      <a href="contact-en.html">Contact</a>
+      <a href="privacy-en.html">Privacy Policy</a>
+    </div>
+    <span>© 2025 Musicatea</span>
+  </footer>
+<script src="assets/android-install.js"></script>
+
+</body>
+</html>
+```
