@@ -1,8 +1,6 @@
 
 // Android install button
 
-<script src="assets/android-install.js"></script>
-
 (function () {
   const installWrap = document.getElementById('androidInstallWrap');
   const installBtn = document.getElementById('androidInstallBtn');
