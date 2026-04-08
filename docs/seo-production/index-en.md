@@ -1,3 +1,6 @@
+# Production-ready replacement for `index-en.html`
+
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,11 +9,11 @@
   <meta name="description" content="Musicatea — The Arabic Music Encyclopedia: sheet music, maqam guides, oriental rhythms, and music history.">
   <meta name="theme-color" content="#09090b">
   <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="Musicatea" />
-  <link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Musicatea" />
+<link rel="manifest" href="/site.webmanifest" />
 
   <link rel="canonical" href="https://musicatea.com/index-en.html">
   <link rel="alternate" hreflang="ar" href="https://musicatea.com/">
@@ -204,3 +207,4 @@
 
 </body>
 </html>
+```
