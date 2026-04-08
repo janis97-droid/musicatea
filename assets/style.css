@@ -1051,6 +1051,14 @@ a.download:hover {
   color: var(--gold-light);
 }
 
+.android-install-note {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
 .android-install-text {
   display: inline-block;
   line-height: 1;
