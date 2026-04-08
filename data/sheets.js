@@ -3,6 +3,25 @@
 // Arabic page uses the base fields; English page uses the *_en fields directly.
 
 const sheets = [
+ 
+ {
+    title: "حارمنا من أنسك ليه",
+    title_en: "Harmna mn onsak leh",
+    system: "arabic",
+    type: "song",
+    composer: "عصام جاد",
+    composer_en: "Essam Jad",
+    performer: "جورج وسوف",
+    performer_en: "George Wassouf",
+    maqam: "راست",
+    maqam_en: "Rast",
+    scale: null,
+    scale_en: null,
+    tonic: "دو",
+    tonic_en: "Do",
+    pdf: "pdfs/Harmna-mn-onsak-leh.pdf"
+  },
+  
   {
     title: "لونجا عجم",
     title_en: "Longa Ajam",
