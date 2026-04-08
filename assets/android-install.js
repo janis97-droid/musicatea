@@ -1,4 +1,3 @@
-
 // Android install button
 
 (function () {
@@ -47,3 +46,4 @@
     installWrap.hidden = true;
   });
 })(); 
+
