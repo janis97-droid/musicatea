@@ -1,10 +1,12 @@
-// Android install button
-
-(function () {
+// assets/android-install.js
+window.addEventListener('DOMContentLoaded', () => {
   const installWrap = document.getElementById('androidInstallWrap');
   const installBtn = document.getElementById('androidInstallBtn');
 
-  if (!installWrap || !installBtn) return;
+  if (!installWrap || !installBtn) {
+    console.warn('Android install UI not found in DOM.');
+    return;
+  }
 
   let deferredPrompt = null;
 
@@ -13,25 +15,33 @@
     window.matchMedia('(display-mode: standalone)').matches ||
     window.navigator.standalone === true;
 
+  // Hide by default unless Android browser mode.
+  installWrap.hidden = true;
+
   if (!isAndroid || isStandalone) {
-    installWrap.hidden = true;
+    console.log('Install button disabled: not Android or already installed.');
     return;
   }
 
   window.addEventListener('beforeinstallprompt', (event) => {
+    console.log('beforeinstallprompt fired');
     event.preventDefault();
     deferredPrompt = event;
     installWrap.hidden = false;
   });
 
   installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) return;
+    if (!deferredPrompt) {
+      console.warn('Install prompt not available.');
+      return;
+    }
 
     installBtn.disabled = true;
-    deferredPrompt.prompt();
 
     try {
-      await deferredPrompt.userChoice;
+      await deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      console.log('Install choice:', choice.outcome);
     } catch (error) {
       console.warn('Install prompt failed:', error);
     }
@@ -42,8 +52,8 @@
   });
 
   window.addEventListener('appinstalled', () => {
+    console.log('App installed');
     deferredPrompt = null;
     installWrap.hidden = true;
   });
-})(); 
-
+});
