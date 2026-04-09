@@ -16,9 +16,9 @@ const rhythms = [
     image: "media/rhythms/images/maqsum.svg"
   },
   {
-    id: "baladi",
-    name: { ar: "بلدي", en: "Baladi" },
-    time_signature: "8/8",
+    id: "baladi (masmudi saghir)",
+    name: { ar: "بلدي (مصمودي صغير)", en: "baladi (masmudi saghir)" },
+    time_signature: "4/4",
     description: {
       ar: "إيقاع مصري ثقيل ومتجذر، يتميز بضربات بداية قوية ويُستخدم بكثرة في الموسيقى الشعبية والرقص الشرقي.",
       en: "A rooted Egyptian rhythm with a heavy feel and strong opening strokes, widely used in folk music and belly dance."
@@ -29,12 +29,12 @@ const rhythms = [
     },
     examples: [],
     audio: "media/rhythms/baladi.mp3",
-    image: "media/rhythms/images/baladi.svg"
+    image: "media/rhythms/images/baladi_masmoudi_saghir.svg"
   },
   {
     id: "saidi",
     name: { ar: "صعيدي", en: "Sa'idi" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     description: {
       ar: "إيقاع قوي ومندفع من صعيد مصر، يُستخدم في الرقصات الشعبية والموسيقى الفولكلورية.",
       en: "A strong and driving rhythm from Upper Egypt, used in folk dances and folkloric music."
@@ -50,7 +50,7 @@ const rhythms = [
   {
     id: "malfuf",
     name: { ar: "ملفوف", en: "Malfuf" },
-    time_signature: "4/8",
+    time_signature: "2/4",
     description: {
       ar: "إيقاع سريع ومفعم بالطاقة، يُستخدم غالباً في المقدمات والأغاني السريعة.",
       en: "A fast and energetic rhythm, often used in introductions and quick songs."
@@ -66,7 +66,7 @@ const rhythms = [
   {
     id: "ayyub",
     name: { ar: "أيّوب", en: "Ayoub" },
-    time_signature: "4/8",
+    time_signature: "2/4",
     description: {
       ar: "إيقاع تنويمي ومتكرر، يُستخدم في الموسيقى الصوفية والحالات التأملية.",
       en: "A repetitive, trance-like rhythm used in Sufi music and meditative settings."
