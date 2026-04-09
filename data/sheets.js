@@ -4,6 +4,24 @@
 
 const sheets = [
  
+{
+    title: "نسيم بيسان",
+    title_en: "Breeze in bisaan",
+    system: "arabic",
+    type: "instrumental",
+    composer: "سيمون شاهين",
+    composer_en: "Simon Shaheen",
+    performer: null,
+    performer_en: null,
+    maqam: "كرد",
+    maqam_en: "kurd",
+    scale: null,
+    scale_en: null,
+    tonic: "ري",
+    tonic_en: "D",
+    pdf: "pdfs/Breeze-In-Bisaan.pdf"
+  },
+
  {
     title: "حارمنا من أنسك ليه",
     title_en: "Harmna mn onsak leh",
@@ -18,7 +36,7 @@ const sheets = [
     scale: null,
     scale_en: null,
     tonic: "دو",
-    tonic_en: "Do",
+    tonic_en: "C",
     pdf: "pdfs/Harmna-mn-onsak-leh.pdf"
   },
   
