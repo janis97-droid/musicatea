@@ -39,6 +39,11 @@
   <ellipse class="notehead" cx="575" cy="120" rx="16" ry="11"/>
   <line class="stem" x1="560" y1="117" x2="560" y2="201"/>
   <path class="flag" d="M560 201 C574 197, 589 188, 600 171" />
+
+    <!-- 1/8 TAK -->
+  <ellipse class="notehead" cx="575" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="560" y1="117" x2="560" y2="201"/>
+  <path class="flag" d="M560 201 C574 197, 589 188, 600 171" />
   
   <!-- 1/4 DOM -->
   <ellipse class="notehead" cx="760" cy="120" rx="16" ry="11"/>
