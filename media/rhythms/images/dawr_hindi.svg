@@ -31,10 +31,10 @@
   <path class="flag" d="M265 36 C279 38, 293 47, 302 64" />
 
     <!-- 1/8 TAK -->
-  <ellipse class="notehead" cx="412.5" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="412.5" y1="117" x2="412.5" y2="201"/>
-  <path class="flag" d="M560 201 C574 197, 589 188, 600 171" />
-
+   <ellipse class="notehead" cx="360" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="345" y1="117" x2="345" y2="201"/>
+  <path class="flag" d="M345 201 C359 197, 374 188, 385 171" />
+  
     <!-- 1/8 TAK -->
   <ellipse class="notehead" cx="575" cy="120" rx="16" ry="11"/>
   <line class="stem" x1="560" y1="117" x2="560" y2="201"/>
