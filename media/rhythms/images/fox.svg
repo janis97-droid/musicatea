@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240">
+  <defs>
+    <style>
+      .staff { stroke:#111; stroke-width:3; }
+      .barthin { stroke:#111; stroke-width:3; }
+      .barthick { stroke:#111; stroke-width:8; }
+      .notehead { fill:#111; }
+      .stem { stroke:#111; stroke-width:4; }
+      .flag { fill:none; stroke:#111; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .timesig { font-size:78px; fill:#111; font-family: Georgia, "Times New Roman", serif; font-weight:700; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="white"/>
+
+  <!-- single staff line -->
+  <line class="staff" x1="40" y1="120" x2="860" y2="120"/>
+
+  <!-- opening barline -->
+  <line class="barthick" x1="68" y1="92" x2="68" y2="148"/>
+  <line class="barthin" x1="84" y1="92" x2="84" y2="148"/>
+
+  <!-- 2/4 time signature -->
+  <text class="timesig" x="128" y="113">2</text>
+  <text class="timesig" x="128" y="172">4</text>
+
+  <!-- DOM : stem up on right side -->
+  <ellipse class="notehead" cx="250" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="265" y1="120" x2="265" y2="36"/>
+  <path class="flag" d="M265 36 C279 38, 293 47, 302 64" />
+
+  <!-- TAK : mirrored, stem down on left side, flag on right -->
+  <ellipse class="notehead" cx="360" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="345" y1="117" x2="345" y2="201"/>
+  <path class="flag" d="M345 201 C359 197, 374 188, 385 171" />
+
+  <!-- middle barline between Dom Tak | Dom Tak -->
+  <line class="barthin" x1="455" y1="92" x2="455" y2="148"/>
+
+  <!-- DOM -->
+  <ellipse class="notehead" cx="560" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="575" y1="120" x2="575" y2="36"/>
+  <path class="flag" d="M575 36 C589 38, 603 47, 612 64" />
+
+  <!-- TAK -->
+  <ellipse class="notehead" cx="670" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="655" y1="117" x2="655" y2="201"/>
+  <path class="flag" d="M655 201 C669 197, 684 188, 695 171" />
+
+  <!-- final barline -->
+  <line class="barthin" x1="810" y1="92" x2="810" y2="148"/>
+</svg>
