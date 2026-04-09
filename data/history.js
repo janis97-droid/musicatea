@@ -910,4 +910,315 @@ const historySources = [
       "Late Ottoman literary-musical context"
     ]
   }
+  const historySources = [
+  {
+    name: "Encyclopaedia Britannica",
+    url: "https://www.britannica.com/",
+    usedFor: [
+      "Umm Kulthum",
+      "Abd al-Halim Hafiz",
+      "Fairuz",
+      "Bela Bartok",
+      "King Fuad I",
+      "al-Kindi",
+      "al-Farabi",
+      "Ibrahim al-Mawsili",
+      "Ishaq al-Mawsili",
+      "Abu al-Faraj al-Isfahani",
+      "Ziryab",
+      "Ibn Quzman"
+    ],
+    notes: [
+      "Basic biographies",
+      "Dates",
+      "Historical significance",
+      "Artistic importance"
+    ]
+  },
+  {
+    name: "Reuters",
+    url: "https://www.reuters.com/",
+    usedFor: [
+      "Ziad Rahbani"
+    ],
+    notes: [
+      "Death date update",
+      "Latest timeline correction",
+      "General description of his cultural role"
+    ]
+  },
+  {
+    name: "Brill",
+    url: "https://brill.com/",
+    usedFor: [
+      "Mikhail Mishaqa",
+      "Safi al-Din al-Urmawi",
+      "Henry George Farmer",
+      "Cairo Congress of Arab Music 1932"
+    ],
+    notes: [
+      "Academic context",
+      "Music theory debates",
+      "Late classical and post-classical positioning",
+      "Conference documentation context"
+    ]
+  },
+  {
+    name: "Stanford Encyclopedia of Philosophy",
+    url: "https://plato.stanford.edu/",
+    usedFor: [
+      "Ibn Bajja"
+    ],
+    notes: [
+      "Intellectual biography",
+      "Philosophical context",
+      "Relationship to Andalusian scholarly culture"
+    ]
+  },
+  {
+    name: "State Information Service Egypt",
+    url: "https://sis.gov.eg/",
+    usedFor: [
+      "Abdu al-Hamuli",
+      "Yusuf al-Manyalawi",
+      "Salama Higazi",
+      "Dawud Husni",
+      "Zakariyya Ahmad",
+      "Riyad al-Sunbati",
+      "Sayyid Darwish",
+      "Salih Abd al-Hayy"
+    ],
+    notes: [
+      "Egyptian biographies",
+      "Roles in the Nahda and modern Arabic music",
+      "Dates",
+      "Artistic importance"
+    ]
+  },
+  {
+    name: "Maspero",
+    url: "https://www.maspero.eg/",
+    usedFor: [
+      "Muhammad Uthman",
+      "Kamil al-Khulai",
+      "Munira al-Mahdiyya",
+      "Mahmud Ahmad al-Hifni"
+    ],
+    notes: [
+      "Biographical summaries",
+      "Role in Egyptian musical development",
+      "Nahda and early modern music context"
+    ]
+  },
+  {
+    name: "AMAR Foundation",
+    url: "https://www.amar-foundation.org/",
+    usedFor: [
+      "Muhammad Uthman",
+      "Abdu al-Hamuli",
+      "Salama Higazi",
+      "Dawud Husni",
+      "Salih Abd al-Hayy"
+    ],
+    notes: [
+      "Performance heritage",
+      "Recording-related context",
+      "Arab musical legacy",
+      "Historical singing practice"
+    ]
+  },
+  {
+    name: "Bibliothèque nationale de France (BnF)",
+    url: "https://www.bnf.fr/",
+    usedFor: [
+      "Cairo Congress of Arab Music 1932"
+    ],
+    notes: [
+      "General conference framing",
+      "International dimension",
+      "Historical importance"
+    ]
+  },
+  {
+    name: "Qantara",
+    url: "https://qantara.de/",
+    usedFor: [
+      "Cairo Congress of Arab Music 1932"
+    ],
+    notes: [
+      "Cultural significance of the congress",
+      "Preservation and modernization context"
+    ]
+  },
+  {
+    name: "Syrian History / Arab Music Magazine / related Syrian sources",
+    url: "https://syrmh.com/",
+    usedFor: [
+      "Ali al-Darwish",
+      "Tawfiq al-Sabbagh"
+    ],
+    notes: [
+      "Aleppine and Syrian musical context",
+      "Educational and performance roles",
+      "Conference participation background"
+    ]
+  },
+  {
+    name: "Studies on Rauf Yekta and Ottoman/Turkish music theory",
+    url: "https://wom-journal.org/",
+    usedFor: [
+      "Rauf Yekta"
+    ],
+    notes: [
+      "Musicological role",
+      "Theoretical debates",
+      "Position on tuning and the 24-quarter-tone issue"
+    ]
+  },
+  {
+    name: "Iraqi cultural sources on Muhammad al-Qubbanchi",
+    url: "https://www.irfaasawtak.com/",
+    usedFor: [
+      "Muhammad al-Qubbanchi"
+    ],
+    notes: [
+      "Iraqi maqam context",
+      "Conference participation",
+      "Impact of Cairo recordings on his legacy"
+    ]
+  },
+  {
+    name: "Turkish reference sources on Mesut Cemil",
+    url: "https://islamansiklopedisi.org.tr/",
+    usedFor: [
+      "Mas'ud Jamil"
+    ],
+    notes: [
+      "Identity clarification",
+      "Turkish performance background",
+      "Conference participation"
+    ]
+  },
+  {
+    name: "Cairo Congress recording archives / Bolingo",
+    url: "https://www.bolingo.org/",
+    usedFor: [
+      "Muhammad al-Sharif"
+    ],
+    notes: [
+      "Conference recording documentation",
+      "Association with Tunisian maluf performance",
+      "Archival evidence rather than a full standalone biography"
+    ]
+  },
+  {
+    name: "Dar al Hikma and related Algerian sources",
+    url: "https://www.daralhikma.org/",
+    usedFor: [
+      "al-Arabi Bensari"
+    ],
+    notes: [
+      "Tlemcen Andalusian music context",
+      "Performance legacy",
+      "Conference representation"
+    ]
+  },
+  {
+    name: "Wikipedia and general biography pages",
+    url: "https://www.wikipedia.org/",
+    usedFor: [
+      "Mohammed Abdel Wahab",
+      "Mohamed El Qasabgi",
+      "El Sheikh Emam",
+      "Ahmed Fouad Negm",
+      "Farid al-Atrash",
+      "Asmahan",
+      "Assi Rahbani",
+      "Mansour Rahbani",
+      "Wadih El Safi",
+      "Warda Al-Jazairia",
+      "Marcel Khalife",
+      "George Wassouf",
+      "Kadim Al Sahir",
+      "Assala",
+      "Majida El Roumi",
+      "Ragheb Alama",
+      "Najwa Karam",
+      "Latifa",
+      "Elissa",
+      "Nancy Ajram",
+      "Hussain Al Jassmi",
+      "Bayou",
+      "Saint Levant",
+      "Elyanna",
+      "DYSTINCT",
+      "Issam Alnajjar",
+      "Wegz",
+      "Rodolphe d'Erlanger",
+      "Robert Lachmann",
+      "Paul Hindemith",
+      "Curt Sachs"
+    ],
+    notes: [
+      "Supporting biographical information",
+      "Name normalization",
+      "Basic timeline support",
+      "Used where stronger single-source institutional biographies were not available in one place"
+    ]
+  },
+  {
+    name: "Official and platform-era artist sources",
+    url: "https://open.spotify.com/",
+    usedFor: [
+      "DYSTINCT",
+      "Issam Alnajjar",
+      "Wegz",
+      "Saint Levant",
+      "Elyanna",
+      "Bayou",
+      "Amr Diab"
+    ],
+    notes: [
+      "Platform-era visibility",
+      "Cross-border identity context",
+      "Digital-era positioning",
+      "Audience and streaming-era relevance"
+    ]
+  },
+  {
+    name: "AP News",
+    url: "https://apnews.com/",
+    usedFor: [
+      "Fadl Shaker"
+    ],
+    notes: [
+      "Later-career trajectory",
+      "Public context around the interruption in his artistic path"
+    ]
+  },
+  {
+    name: "Legado Andalusi and related Andalusian studies",
+    url: "https://www.legadoandalusi.es/",
+    usedFor: [
+      "al-Qubri"
+    ],
+    notes: [
+      "Name variation caution",
+      "Differences in attribution",
+      "Cautious treatment of the muwashshah origin question"
+    ]
+  },
+  {
+    name: "WorldCat / library catalog references",
+    url: "https://search.worldcat.org/",
+    usedFor: [
+      "Muhammad Shihab al-Din"
+    ],
+    notes: [
+      "Fuller identity confirmation in description",
+      "Book attribution",
+      "Late Ottoman literary-musical context"
+    ]
+  }
+];
 ];
