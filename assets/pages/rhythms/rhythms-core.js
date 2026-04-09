@@ -43,26 +43,62 @@
     return (parts[0] * 100) + parts[1];
   }
 
+  function getLocalizedText(value, lang) {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      if (value[lang]) return value[lang];
+      if (value.ar) return value.ar;
+      if (value.en) return value.en;
+      return "";
+    }
+    return value || "";
+  }
+
+  function getLocalizedList(value, lang) {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+      const localized = value[lang] || value.ar || value.en || [];
+      return Array.isArray(localized) ? localized : [];
+    }
+    return Array.isArray(value) ? value : [];
+  }
+
   function normalizeRhythmData(data) {
     return (Array.isArray(data) ? data : []).map((rhythm, index) => {
-      const id = rhythm.id || slugify(rhythm.latin || rhythm.name || ("rhythm-" + index));
+      const id = rhythm.id || slugify(getLocalizedText(rhythm.name, "en") || getLocalizedText(rhythm.name, "ar") || ("rhythm-" + index));
       const baseBpm = Number(rhythm.bpm) || 120;
+
+      const nameAr = getLocalizedText(rhythm.name, "ar");
+      const nameEn = getLocalizedText(rhythm.name, "en");
+      const descAr = getLocalizedText(rhythm.description, "ar");
+      const descEn = getLocalizedText(rhythm.description, "en");
+      const usageAr = getLocalizedList(rhythm.usage, "ar");
+      const usageEn = getLocalizedList(rhythm.usage, "en");
+
       return {
         ...rhythm,
         id,
         bpm: baseBpm,
-        tempo: rhythm.tempo || rhythm.tempo_label || "",
-        tempo_label: rhythm.tempo_label || rhythm.tempo || "",
         image: rhythm.image || "",
         audio: rhythm.audio || "",
+        _localized: {
+          ar: {
+            name: nameAr,
+            description: descAr,
+            usage: usageAr
+          },
+          en: {
+            name: nameEn,
+            description: descEn,
+            usage: usageEn
+          }
+        },
         _searchBlob: [
-          rhythm.name,
-          rhythm.latin,
-          rhythm.description,
-          rhythm.pattern,
-          rhythm.time_signature,
-          rhythm.tempo,
-          rhythm.tempo_label
+          nameAr,
+          nameEn,
+          descAr,
+          descEn,
+          usageAr.join(" "),
+          usageEn.join(" "),
+          rhythm.time_signature
         ]
           .map(normalizeText)
           .filter(Boolean)
@@ -99,80 +135,23 @@
     }
   }
 
-  function createPatternFallbackSvg(pattern) {
-    const tokens = String(pattern || "")
-      .replace(/\u2014/g, "-")
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
-
-    if (!tokens.length) return "";
-
-    const pad = 12;
-    const cellW = 40;
-    const gap = 8;
-    const width = (pad * 2) + (tokens.length * cellW) + ((tokens.length - 1) * gap);
-    const height = 96;
-
-    const cells = tokens.map((token, index) => {
-      const normalized = token.toUpperCase();
-      const kind = normalized === "D"
-        ? "dum"
-        : normalized === "T"
-        ? "tek"
-        : "rest";
-
-      const x = pad + (index * (cellW + gap));
-      const y = kind === "dum" ? 18 : kind === "tek" ? 28 : 38;
-      const h = kind === "dum" ? 42 : kind === "tek" ? 32 : 20;
-      const fill = kind === "dum"
-        ? "#c8a45a"
-        : kind === "tek"
-        ? "#7ba8d4"
-        : "rgba(255,255,255,0.08)";
-      const stroke = kind === "rest" ? "rgba(255,255,255,0.12)" : "transparent";
-      const label = kind === "rest" ? "–" : normalized;
-      const textFill = kind === "rest" ? "#b9c0cf" : "#09101a";
-
-      return `
-        <g>
-          <rect x="${x}" y="${y}" width="${cellW}" height="${h}" rx="12" fill="${fill}" stroke="${stroke}" />
-          <text x="${x + (cellW / 2)}" y="${y + (h / 2) + 5}" text-anchor="middle" font-family="Cairo, sans-serif" font-size="14" font-weight="800" fill="${textFill}">${label}</text>
-        </g>
-      `;
-    }).join("");
-
-    return `
-      <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Rhythm pattern">
-        <rect x="1" y="1" width="${width - 2}" height="${height - 2}" rx="18" fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.06)" />
-        ${cells}
-      </svg>
-    `;
-  }
-
   function createImageMarkup(rhythm, altText) {
-    const fallbackSvg = createPatternFallbackSvg(rhythm ? rhythm.pattern : "");
-
     if (rhythm && rhythm.image) {
       return `
         <div class="rhythm-image-wrap">
           <img
             class="rhythm-image"
             src="${escapeHtml(rhythm.image)}"
-            alt="${escapeHtml(altText || rhythm.name || "")}"
+            alt="${escapeHtml(altText || "")}"
             loading="lazy"
-            onerror="this.style.display='none'; if (this.nextElementSibling) this.nextElementSibling.style.display='flex';"
           >
-          <div class="rhythm-image-fallback" style="display:none;">
-            ${fallbackSvg}
-          </div>
         </div>
       `;
     }
 
     return `
       <div class="rhythm-image-wrap rhythm-image-fallback">
-        ${fallbackSvg}
+        <div class="rhythm-image-fallback-empty"></div>
       </div>
     `;
   }
@@ -308,11 +287,12 @@
   window.rhythmsCore = {
     normalizeText,
     getRhythmsSource,
+    getLocalizedText,
+    getLocalizedList,
     normalizeRhythmData,
     slugify,
     parseSignatureValue,
     fillTimeSignatureFilter,
-    createPatternFallbackSvg,
     createImageMarkup,
     createEmptyRhythmState,
     createBpmRate,
