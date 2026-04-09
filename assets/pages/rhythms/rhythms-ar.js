@@ -12,7 +12,7 @@
   const data = core.normalizeRhythmData(core.getRhythmsSource());
 
   const labels = {
-    allSignatures: "كل التواقيع",
+    allSignatures: "الزمن",
     empty: "لا توجد نتائج مطابقة",
     bpm: "BPM",
     play: "تشغيل",
@@ -28,20 +28,24 @@
   };
 
   function createCard(rhythm) {
+    const localized = rhythm._localized && rhythm._localized.ar ? rhythm._localized.ar : {};
     const card = document.createElement("article");
     card.className = "rhythm-card";
     card.innerHTML = `
       <div class="rhythm-card-header">
         <div class="rhythm-card-title-wrap">
-          <h3>${escapeHtml(rhythm.name || "")}</h3>
-          <span class="latin">${escapeHtml(rhythm.latin || "")}</span>
+          <h3>${escapeHtml(localized.name || "")}</h3>
         </div>
         <span class="time-sig">${escapeHtml(rhythm.time_signature || "—")}</span>
       </div>
 
-      ${core.createImageMarkup(rhythm, rhythm.name || "")}
+      <div class="rhythm-chip-row">
+        <span class="tempo-chip">${Number(rhythm.bpm) || 120} BPM</span>
+      </div>
 
-      <p class="desc">${escapeHtml(rhythm.description || "")}</p>
+      ${core.createImageMarkup(rhythm, localized.name || "")}
+
+      <p class="desc">${escapeHtml(localized.description || "")}</p>
 
       <div class="rhythm-bpm-row">
         <span class="rhythm-bpm-label">${labels.bpm}</span>
