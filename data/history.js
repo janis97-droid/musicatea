@@ -910,6 +910,7 @@ const historySources = [
       "Late Ottoman literary-musical context"
     ]
   }
+];
   const historySources = [
   {
     name: "Encyclopaedia Britannica",
@@ -1220,5 +1221,4 @@ const historySources = [
       "Late Ottoman literary-musical context"
     ]
   }
-];
 ];
