@@ -17,8 +17,8 @@
 
   <line class="staff" x1="40" y1="120" x2="1060" y2="120"/>
 
-  <line class="barthick" x1="68" y1="92" x2="68" y2="148"/>
-  <line class="barthin" x1="84" y1="92" x2="84" y2="148"/>
+  <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
+  <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
 
   <text class="timesig" x="128" y="113">4</text>
   <text class="timesig" x="128" y="172">4</text>
@@ -34,7 +34,7 @@
   <path class="flag" d="M315 201 C329 197, 344 188, 355 171" />
 
   <!-- bigger rest, slightly lower -->
-  <text class="rest" x="430" y="110">𝄾</text>
+  <text class="rest" x="430" y="115">𝄾</text>
 
   <!-- تك -->
   <ellipse class="notehead" cx="540" cy="120" rx="16" ry="11"/>
@@ -47,7 +47,7 @@
   <path class="flag" d="M715 36 C729 38, 743 47, 752 64" />
 
   <!-- bigger rest, slightly lower -->
-  <text class="rest" x="805" y="110">𝄾</text>
+  <text class="rest" x="805" y="115">𝄾</text>
 
   <!-- تك -->
   <ellipse class="notehead" cx="905" cy="120" rx="16" ry="11"/>
@@ -55,7 +55,7 @@
   <path class="flag" d="M890 201 C904 197, 919 188, 930 171" />
 
   <!-- bigger rest, slightly lower -->
-  <text class="rest" x="1005" y="110">𝄾</text>
+  <text class="rest" x="1005" y="115">𝄾</text>
 
-  <line class="barthin" x1="1048" y1="92" x2="1048" y2="148"/>
+  <line class="barthin" x1="1048" y1="45" x2="1048" y2="195"/>
 </svg>
