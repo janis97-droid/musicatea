@@ -22,7 +22,8 @@ const rhythms = [
     tempo: "متوسط",
     usage: ["موسيقى شعبية", "رقص شرقي", "بلدي مصري"],
     examples: [],
-    audio: "media/rhythms/baladi.mp3"
+    audio: "media/rhythms/baladi.mp3",
+    image: "media/rhythms/images/baladi.svg"
   },
   {
     id: "saidi",
@@ -34,7 +35,8 @@ const rhythms = [
     tempo: "سريع",
     usage: ["رقص بالعصا", "موسيقى فولكلورية", "صعيد مصر"],
     examples: [],
-    audio: "media/rhythms/saidi.mp3"
+    audio: "media/rhythms/saidi.mp3",
+    image: "media/rhythms/images/saidi.svg"
   },
   {
     id: "malfuf",
@@ -46,7 +48,9 @@ const rhythms = [
     tempo: "سريع",
     usage: ["مقدمات", "أغاني سريعة", "رقصات"],
     examples: [],
-    audio: "media/rhythms/malfuf.mp3"
+    audio: "media/rhythms/malfuf.mp3",
+    image: "media/rhythms/images/malfuf.svg"
+
   },
   {
     id: "ayyub",
@@ -58,7 +62,9 @@ const rhythms = [
     tempo: "معتدل",
     usage: ["موسيقى صوفية", "تراث", "أناشيد"],
     examples: [],
-    audio: "media/rhythms/ayyub.mp3"
+    audio: "media/rhythms/ayyub.mp3",
+    image: "media/rhythms/images/ayyub.svg"
+
   },
   {
     id: "samai_thaqil",
@@ -70,7 +76,9 @@ const rhythms = [
     tempo: "معتدل",
     usage: ["موشحات", "قطع آلية", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/samai_thaqil.mp3"
+    audio: "media/rhythms/samai_thaqil.mp3",
+    image: "media/rhythms/images/samai_thaqil.svg"
+
   },
   {
     id: "samai_darij",
@@ -82,7 +90,8 @@ const rhythms = [
     tempo: "معتدل",
     usage: ["قوالب أندلسية", "موشحات", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/samai_darij.mp3"
+    audio: "media/rhythms/samai_darij.mp3",
+        image: "media/rhythms/images/samai_darij.svg"
   },
   {
     id: "yuruk_semai",
@@ -94,7 +103,8 @@ const rhythms = [
     tempo: "سريع",
     usage: ["خواتيم آلية", "سماعي", "رقصات"],
     examples: [],
-    audio: "media/rhythms/yuruk_semai.mp3"
+    audio: "media/rhythms/yuruk_semai.mp3",
+        image: "media/rhythms/images/yuruk_semai.svg"
   },
   {
     id: "masmoudi_kabir",
@@ -106,7 +116,8 @@ const rhythms = [
     tempo: "بطيء",
     usage: ["غناء كلاسيكي", "موشحات", "طرب"],
     examples: [],
-    audio: "media/rhythms/masmoudi_kabir.mp3"
+    audio: "media/rhythms/masmoudi_kabir.mp3",
+        image: "media/rhythms/images/masmudi_kabir.svg"
   },
   {
     id: "masmoudi_saghir",
@@ -118,7 +129,8 @@ const rhythms = [
     tempo: "معتدل",
     usage: ["مرافقة أغاني", "موسيقى كلاسيكية"],
     examples: [],
-    audio: "media/rhythms/masmoudi_saghir.mp3"
+    audio: "media/rhythms/masmoudi_saghir.mp3",
+        image: "media/rhythms/images/masmoudi_saghir.svg"
   },
   {
     id: "wahda",
@@ -130,7 +142,8 @@ const rhythms = [
     tempo: "بطيء",
     usage: ["ارتجال صوتي", "تقاسيم", "أغاني بطيئة"],
     examples: [],
-    audio: "media/rhythms/wahda.mp3"
+    audio: "media/rhythms/wahda.mp3",   
+    image: "media/rhythms/images/wahda.svg"
   },
   {
     id: "wahda_kabira",
@@ -142,7 +155,8 @@ const rhythms = [
     tempo: "بطيء جداً",
     usage: ["طرب", "موشحات", "غناء كلاسيكي"],
     examples: [],
-    audio: "media/rhythms/wahda_kabira.mp3"
+    audio: "media/rhythms/wahda_kabira.mp3",
+        image: "media/rhythms/images/wahda_kabira.svg"
   },
   {
     id: "fox",
@@ -154,7 +168,9 @@ const rhythms = [
     tempo: "سريع",
     usage: ["أغاني عصرية", "بوب عربي"],
     examples: [],
-    audio: "media/rhythms/fox.mp3"
+    audio: "media/rhythms/fox.mp3",
+        image: "media/rhythms/images/for.svg"
+
   },
   {
     id: "karachi",
