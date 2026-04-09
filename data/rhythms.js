@@ -5,7 +5,6 @@ const rhythms = [
     latin: "Maqsum",
     time_signature: "8/8",
     description: "إيقاع متوازن ومتعدد الاستخدامات، يُعتبر من أكثر الإيقاعات شيوعاً في الموسيقى العربية بمختلف أنواعها.",
-    tempo: "متوسط",
     usage: ["موسيقى شعبية", "فولكلور", "طرب", "أغاني عصرية"],
     examples: [],
     audio: "media/rhythms/maqsum.mp3",
