@@ -600,3 +600,6 @@ const history = [
     ]
   }
 ];
+const historySources = [
+  // sources here
+];
