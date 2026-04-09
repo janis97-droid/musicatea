@@ -20,8 +20,8 @@
   <line class="staff" x1="40" y1="120" x2="940" y2="120"/>
 
   <!-- opening barline -->
-  <line class="barthick" x1="68" y1="92" x2="68" y2="148"/>
-  <line class="barthin" x1="84" y1="92" x2="84" y2="148"/>
+  <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
+  <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
 
   <!-- 4/8 time signature -->
   <text class="timesig" x="128" y="113">2</text>
@@ -40,7 +40,7 @@
   <path class="flag" d="M385 184 C398 180, 412 171, 422 155" />
 
   <!-- 1/8 rest -->
-  <text class="rest" x="560" y="104">𝄾</text>
+  <text class="rest" x="560" y="115">𝄾</text>
 
   <!-- TAK = 1/8 note, mirrored down on left with one flag to the right -->
   <ellipse class="notehead" cx="735" cy="120" rx="16" ry="11"/>
@@ -48,5 +48,5 @@
   <path class="flag" d="M720 201 C734 197, 749 188, 760 171" />
 
   <!-- final barline -->
-  <line class="barthin" x1="900" y1="92" x2="900" y2="148"/>
+  <line class="barthin" x1="900" y1="45" x2="900" y2="195"/>
 </svg>
