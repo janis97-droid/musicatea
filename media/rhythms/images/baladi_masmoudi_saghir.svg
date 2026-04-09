@@ -15,9 +15,6 @@
 
   <rect width="100%" height="100%" fill="white"/>
 
-  <!-- title -->
-  <text class="title" x="640" y="32" text-anchor="middle">Baladi (Masmoudi Saghir)</text>
-
   <!-- single middle staff line -->
   <line class="staff" x1="40" y1="120" x2="1240" y2="120"/>
 
