@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="250" viewBox="0 0 980 250">
+  <defs>
+    <style>
+      .staff { stroke:#111; stroke-width:3; }
+      .barthin { stroke:#111; stroke-width:3; }
+      .barthick { stroke:#111; stroke-width:8; }
+      .notehead { fill:#111; }
+      .stem { stroke:#111; stroke-width:4; }
+      .flag { fill:none; stroke:#111; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .dot { fill:#111; }
+      .timesig { font-size:78px; fill:#111; font-family: Georgia, "Times New Roman", serif; font-weight:700; }
+      .rest { font-size:118px; fill:#111; font-family: "Bravura", "Noto Music", "Segoe UI Symbol", serif; text-anchor:middle; dominant-baseline:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="white"/>
+
+  <!-- single middle staff line -->
+  <line class="staff" x1="40" y1="120" x2="940" y2="120"/>
+
+  <!-- opening barline -->
+  <line class="barthick" x1="68" y1="92" x2="68" y2="148"/>
+  <line class="barthin" x1="84" y1="92" x2="84" y2="148"/>
+
+  <!-- 4/8 time signature -->
+  <text class="timesig" x="128" y="113">2</text>
+  <text class="timesig" x="128" y="172">4</text>
+
+  <!-- DOM = dotted 1/8 note, stem up on right -->
+  <ellipse class="notehead" cx="250" cy="120" rx="16" ry="11"/>
+  <circle class="dot" cx="278" cy="120" r="4.5"/>
+  <line class="stem" x1="265" y1="120" x2="265" y2="36"/>
+  <path class="flag" d="M265 36 C279 38, 293 47, 302 64" />
+
+  <!-- TAK = 1/16 note, mirrored down on left with two flags to the right -->
+  <ellipse class="notehead" cx="400" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="385" y1="117" x2="385" y2="201"/>
+  <path class="flag" d="M385 201 C399 197, 414 188, 425 171" />
+  <path class="flag" d="M385 184 C398 180, 412 171, 422 155" />
+
+  <!-- 1/8 rest -->
+  <text class="rest" x="560" y="104">𝄾</text>
+
+  <!-- TAK = 1/8 note, mirrored down on left with one flag to the right -->
+  <ellipse class="notehead" cx="735" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="720" y1="117" x2="720" y2="201"/>
+  <path class="flag" d="M720 201 C734 197, 749 188, 760 171" />
+
+  <!-- final barline -->
+  <line class="barthin" x1="900" y1="92" x2="900" y2="148"/>
+</svg>
