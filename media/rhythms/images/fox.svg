@@ -36,7 +36,7 @@
   <path class="flag" d="M345 201 C359 197, 374 188, 385 171" />
 
   <!-- middle barline between Dom Tak | Dom Tak -->
-  <line class="barthin" x1="455" y1="92" x2="455" y2="148"/>
+  <line class="barthin" x1="455" y1="45" x2="455" y2="195"/>
 
   <!-- DOM -->
   <ellipse class="notehead" cx="560" cy="120" rx="16" ry="11"/>
