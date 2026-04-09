@@ -166,7 +166,7 @@ const rhythms = [
     usage: ["أغاني عصرية", "بوب عربي"],
     examples: [],
     audio: "media/rhythms/fox.mp3",
-        image: "media/rhythms/images/for.svg"
+    image: "media/rhythms/images/fox.svg"
 
   },
   {
