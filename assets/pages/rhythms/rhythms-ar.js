@@ -12,7 +12,7 @@
   const data = core.normalizeRhythmData(core.getRhythmsSource());
 
   const labels = {
-    allSignatures: "الزمن",
+    allSignatures: "زمن الإيقاع",
     empty: "لا توجد نتائج مطابقة",
     bpm: "BPM",
     play: "تشغيل",
@@ -39,16 +39,12 @@
         <span class="time-sig">${escapeHtml(rhythm.time_signature || "—")}</span>
       </div>
 
-      <div class="rhythm-chip-row">
-        <span class="tempo-chip">${Number(rhythm.bpm) || 120} BPM</span>
-      </div>
-
       ${core.createImageMarkup(rhythm, localized.name || "")}
 
       <p class="desc">${escapeHtml(localized.description || "")}</p>
 
       <div class="rhythm-bpm-row">
-        <span class="rhythm-bpm-label">${labels.bpm}</span>
+        <span class="rhythm-bpm-value">${Number(rhythm.bpm) || 120} BPM</span>
         <input
           class="rhythm-bpm-slider"
           type="range"
@@ -58,7 +54,7 @@
           value="${Number(rhythm.bpm) || 120}"
           aria-label="${labels.bpm}"
         >
-        <span class="rhythm-bpm-value">${Number(rhythm.bpm) || 120} BPM</span>
+        <span class="rhythm-bpm-label">${labels.bpm}</span>
       </div>
 
       <div class="rhythm-actions">
