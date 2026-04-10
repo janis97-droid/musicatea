@@ -1,36 +1,27 @@
 /* assets/islamic-pattern.css */
-/* Dense interlocking Islamic geometric stars
-   matched to the current Musicatea dark-gold theme
-   - keeps the site's existing background colors
-   - subtle on desktop, softer on mobile
-*/
+/* Andalusian zellij SVG background overlay */
+
+html,
+body {
+  min-height: 100%;
+}
 
 body {
   position: relative;
 }
 
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.06;
-  background-image:
-    /* Dense interlocking geometric lines */
-    linear-gradient(30deg, transparent 44%, rgba(226, 192, 122, 0.06) 47%, rgba(226, 192, 122, 0.06) 53%, transparent 56%),
-    linear-gradient(150deg, transparent 44%, rgba(226, 192, 122, 0.06) 47%, rgba(226, 192, 122, 0.06) 53%, transparent 56%),
-    linear-gradient(0deg, transparent 47%, rgba(200, 164, 90, 0.04) 49%, rgba(200, 164, 90, 0.04) 51%, transparent 53%),
-    linear-gradient(90deg, transparent 47%, rgba(200, 164, 90, 0.04) 49%, rgba(200, 164, 90, 0.04) 51%, transparent 53%),
-
-    /* Richer star and intersection accents */
-    radial-gradient(circle at 25% 25%, transparent 32%, rgba(226, 192, 122, 0.05) 37%, transparent 45%),
-    radial-gradient(circle at 75% 75%, transparent 32%, rgba(226, 192, 122, 0.05) 37%, transparent 45%),
-    radial-gradient(circle at 50% 50%, transparent 48%, rgba(200, 164, 90, 0.03) 50%, transparent 52%);
-  background-size: 145px 145px;
+  opacity: 0.12;
+  background-image: url("/assets/andalusian-zellij.svg");
+  background-size: 160px 160px;
   background-position: center;
   background-repeat: repeat;
-  mix-blend-mode: screen;
+  mix-blend-mode: normal;
 }
 
 body > * {
@@ -38,10 +29,9 @@ body > * {
   z-index: 1;
 }
 
-/* Mobile - softer and slightly tighter */
 @media (max-width: 640px) {
   body::before {
-    opacity: 0.045;
-    background-size: 118px 118px;
+    opacity: 0.08;
+    background-size: 125px 125px;
   }
 }
