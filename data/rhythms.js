@@ -130,7 +130,7 @@ const rhythms = [
   {
     id: "masmoudi_kabir",
     name: { ar: "مصمودي كبير", en: "Masmoudi Kabir" },
-    time_signature: "16/8",
+    time_signature: "8/4",
     description: {
       ar: "إيقاع ثقيل وممتد، يُستخدم في الغناء الكلاسيكي والقوالب الكبيرة.",
       en: "A heavy and extended rhythm used in classical singing and large-form compositions."
