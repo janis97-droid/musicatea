@@ -2,24 +2,24 @@ function getHistoryPageStrings() {
   const isEnglish = document.documentElement.lang === 'en' || document.body?.dir === 'ltr';
   return isEnglish
     ? {
-        sourcesTitle: 'Sources',
+        sourcesTitle: 'References',
         sourcesIntro:
-          'These sources were used to prepare the eras and figures on this page. Each source appears only once, with the related figures/eras and the type of information taken from it.',
-        usedForLabel: 'Used for',
-        notesLabel: 'Information taken from this source',
-        sourceLinkLabel: 'Open source',
-        toggleShow: 'Show sources',
-        toggleHide: 'Hide sources'
+          'A short list of the references used to prepare this page. Each source appears once, followed by the figures or eras it helped inform.',
+        usedForLabel: 'Related to',
+        notesLabel: 'What was taken from it',
+        sourceLinkLabel: 'Visit source',
+        toggleShow: 'Show references',
+        toggleHide: 'Hide references'
       }
     : {
-        sourcesTitle: 'المصادر',
+        sourcesTitle: 'المراجع',
         sourcesIntro:
-          'استُخدمت هذه المصادر في إعداد الحقب والشخصيات في هذه الصفحة. ذُكر كل مصدر مرة واحدة فقط، مع توضيح الحقب أو الشخصيات المرتبطة به ونوع المعلومات المستقاة منه.',
-        usedForLabel: 'استُخدم في',
-        notesLabel: 'المعلومات المستقاة من هذا المصدر',
-        sourceLinkLabel: 'فتح المصدر',
-        toggleShow: 'إظهار المصادر',
-        toggleHide: 'إخفاء المصادر'
+          'قائمة مختصرة بالمراجع المستخدمة في إعداد هذه الصفحة. يظهر كل مصدر مرة واحدة فقط، وتحتَه الشخصيات أو الحقب التي أفاد منها المحتوى.',
+        usedForLabel: 'مرتبط بـ',
+        notesLabel: 'ما الذي أُخذ منه',
+        sourceLinkLabel: 'زيارة المصدر',
+        toggleShow: 'إظهار المراجع',
+        toggleHide: 'إخفاء المراجع'
       };
 }
 
@@ -47,24 +47,28 @@ function renderHistorySourcesSection() {
   section.id = 'history-sources-section';
   section.className = 'history-sources-section';
   section.style.maxWidth = '1000px';
-  section.style.margin = '0 auto 80px';
+  section.style.margin = '0 auto 96px';
   section.style.padding = '0 5%';
 
   section.innerHTML = `
-    <div style="border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:16px; overflow:hidden; background:var(--bg2, #111);">
+    <div style="border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:18px; overflow:hidden; background:linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(255,255,255,.01) 100%), var(--bg2, #111); box-shadow:0 14px 32px rgba(0,0,0,.16);">
       <button
         class="history-sources-toggle"
         type="button"
         aria-expanded="false"
         onclick="toggleHistorySources(this)"
-        style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 20px; border:none; background:var(--bg2, #111); color:var(--text, #fff); font:inherit; cursor:pointer; text-align:start;"
+        style="width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 22px; border:none; background:transparent; color:var(--text, #fff); font:inherit; cursor:pointer; text-align:start;"
       >
-        <span style="font-weight:800; font-size:1rem;">${escapeHistoryPageHtml(ui.sourcesTitle)}</span>
-        <span class="history-sources-toggle-text" style="font-size:.88rem; color:var(--text-dim, #bbb);">${escapeHistoryPageHtml(ui.toggleShow)}</span>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-weight:900; font-size:1.02rem; color:var(--gold-light, #e2c07a);">${escapeHistoryPageHtml(ui.sourcesTitle)}</span>
+          <span style="font-size:.82rem; color:var(--text-dim, #aaa);">${historySources.length} ${isSingleSource(historySources.length, document.documentElement.lang)}</span>
+        </div>
+        <span class="history-sources-toggle-text" style="font-size:.88rem; color:var(--text-dim, #bbb); font-weight:700;">${escapeHistoryPageHtml(ui.toggleShow)}</span>
       </button>
-      <div class="history-sources-content" hidden style="padding:20px; border-top:1px solid var(--border, rgba(255,255,255,.12)); background:var(--bg, #0d0d0d);">
-        <p style="margin:0 0 18px; line-height:1.8; color:var(--text-muted, #cfcfcf);">${escapeHistoryPageHtml(ui.sourcesIntro)}</p>
-        <div style="display:grid; gap:14px;">
+
+      <div class="history-sources-content" hidden style="padding:0 22px 22px; border-top:1px solid var(--border, rgba(255,255,255,.08)); background:rgba(0,0,0,.10);">
+        <p style="margin:18px 0 16px; line-height:1.85; color:var(--text-muted, #d8d8d8); font-size:.94rem;">${escapeHistoryPageHtml(ui.sourcesIntro)}</p>
+        <div style="display:grid; gap:12px;">
           ${historySources.map(source => createHistorySourceCardMarkup(source, ui)).join('')}
         </div>
       </div>
@@ -81,31 +85,41 @@ function createHistorySourceCardMarkup(source, ui) {
   const notes = Array.isArray(source?.notes) ? source.notes : [];
 
   const usedForMarkup = usedFor.length
-    ? `<ul style="margin:8px 0 0; padding-inline-start:20px;">${usedFor.map(item => `<li style="margin:4px 0; color:var(--text-muted, #d0d0d0);">${escapeHistoryPageHtml(item)}</li>`).join('')}</ul>`
-    : `<div style="margin-top:8px; color:var(--text-dim, #aaa);">—</div>`;
+    ? `<div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;">${usedFor.map(item => `
+        <span style="display:inline-flex; align-items:center; min-height:30px; padding:6px 12px; border-radius:999px; background:rgba(200,164,90,.08); border:1px solid rgba(200,164,90,.16); color:var(--gold-light, #e2c07a); font-size:.8rem; font-weight:700;">
+          ${escapeHistoryPageHtml(item)}
+        </span>
+      `).join('')}</div>`
+    : `<div style="margin-top:10px; color:var(--text-dim, #999);">—</div>`;
 
   const notesMarkup = notes.length
-    ? `<ul style="margin:8px 0 0; padding-inline-start:20px;">${notes.map(item => `<li style="margin:4px 0; color:var(--text-muted, #d0d0d0);">${escapeHistoryPageHtml(item)}</li>`).join('')}</ul>`
-    : `<div style="margin-top:8px; color:var(--text-dim, #aaa);">—</div>`;
+    ? `<ul style="margin:10px 0 0; padding-inline-start:20px;">${notes.map(item => `
+        <li style="margin:5px 0; color:var(--text-muted, #d4d4d4); line-height:1.75;">
+          ${escapeHistoryPageHtml(item)}
+        </li>
+      `).join('')}</ul>`
+    : `<div style="margin-top:10px; color:var(--text-dim, #999);">—</div>`;
 
   const linkMarkup = url
-    ? `<a href="${url}" target="_blank" rel="noopener noreferrer" style="font-size:.85rem; color:var(--gold-light, #d7b46a); text-decoration:none;">${escapeHistoryPageHtml(ui.sourceLinkLabel)}</a>`
+    ? `<a href="${url}" target="_blank" rel="noopener noreferrer" style="font-size:.84rem; color:var(--gold-light, #e2c07a); text-decoration:none; font-weight:700;">${escapeHistoryPageHtml(ui.sourceLinkLabel)}</a>`
     : '';
 
   return `
-    <article style="border:1px solid var(--border, rgba(255,255,255,.12)); border-radius:12px; padding:16px; background:rgba(255,255,255,.02);">
-      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:12px;">
-        <div style="font-weight:800; color:var(--gold-light, #e3c17b);">${name}</div>
+    <article style="border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:16px; background:rgba(255,255,255,.018);">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:12px;">
+        <div>
+          <div style="font-weight:900; color:var(--text, #fff); font-size:.98rem; line-height:1.45;">${name}</div>
+        </div>
         ${linkMarkup}
       </div>
 
-      <div style="margin-bottom:12px;">
-        <div style="font-size:.82rem; font-weight:800; color:var(--text-dim, #aaa);">${escapeHistoryPageHtml(ui.usedForLabel)}</div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:.78rem; font-weight:800; letter-spacing:.02em; color:var(--text-dim, #aaa);">${escapeHistoryPageHtml(ui.usedForLabel)}</div>
         ${usedForMarkup}
       </div>
 
       <div>
-        <div style="font-size:.82rem; font-weight:800; color:var(--text-dim, #aaa);">${escapeHistoryPageHtml(ui.notesLabel)}</div>
+        <div style="font-size:.78rem; font-weight:800; letter-spacing:.02em; color:var(--text-dim, #aaa);">${escapeHistoryPageHtml(ui.notesLabel)}</div>
         ${notesMarkup}
       </div>
     </article>
@@ -123,6 +137,11 @@ function toggleHistorySources(btn) {
 
   const label = btn.querySelector('.history-sources-toggle-text');
   if (label) label.textContent = isOpen ? ui.toggleShow : ui.toggleHide;
+}
+
+function isSingleSource(count, lang) {
+  if (lang === 'en') return count === 1 ? 'reference' : 'references';
+  return count === 1 ? 'مرجع' : 'مراجع';
 }
 
 function escapeHistoryPageHtml(value) {
