@@ -97,8 +97,8 @@ const rhythms = [
   },
   {
     id: "samai_darij",
-    name: { ar: "سماعي دارج", en: "Sama'i Darij" },
-    time_signature: "6/8",
+    name: { ar: " (فالس) سماعي دارج", en: "Sama'i Darij (Vals)" },
+    time_signature: "3/4",
     description: {
       ar: "إيقاع أخف وأكثر انسيابية من السماعي الثقيل، يُستخدم في القوالب الأندلسية.",
       en: "A lighter and more flowing form than Sama'i Thaqil, used in Andalusian forms."
@@ -143,26 +143,11 @@ const rhythms = [
     audio: "media/rhythms/masmoudi_kabir.mp3",
     image: "media/rhythms/images/masmoudi_kabir.svg"
   },
-  {
-    id: "masmoudi_saghir",
-    name: { ar: "مصمودي صغير", en: "Masmoudi Saghir" },
-    time_signature: "8/8",
-    description: {
-      ar: "نسخة أقصر وأخف من المصمودي الكبير، تُستخدم في مرافقة الأغاني.",
-      en: "A shorter and lighter version of Masmoudi Kabir, used for accompanying songs."
-    },
-    usage: {
-      ar: ["مرافقة أغاني", "موسيقى كلاسيكية"],
-      en: ["Song accompaniment", "Classical music"]
-    },
-    examples: [],
-    audio: "media/rhythms/masmoudi_saghir.mp3",
-    image: "media/rhythms/images/masmoudi_saghir.svg"
-  },
+ 
   {
     id: "wahda",
-    name: { ar: "واحدة", en: "Wahda" },
-    time_signature: "8/8",
+    name: { ar: " وحدة صغيرة", en: "Wahda saghira" },
+    time_signature: "2/4",
     description: {
       ar: "إيقاع بطيء ورحب، مثالي للارتجال الصوتي والتقاسيم.",
       en: "A slow and spacious rhythm, ideal for vocal improvisation and taqasim."
@@ -177,8 +162,8 @@ const rhythms = [
   },
   {
     id: "wahda_kabira",
-    name: { ar: "واحدة كبيرة", en: "Wahda Kabira" },
-    time_signature: "16/8",
+    name: { ar: "وحدة كبيرة", en: "Wahda Kabira" },
+    time_signature: "4/4",
     description: {
       ar: "إيقاع كلاسيكي بطيء جداً، يُستخدم في الطرب والموشحات.",
       en: "A very slow classical rhythm used in tarab and muwashshahat."
