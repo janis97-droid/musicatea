@@ -18,33 +18,37 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 28px 1.25% 90px;
+  padding: 28px 1% 90px;
 }
 
 .rhythms-layout {
   display: block;
   width: 100%;
+  max-width: none;
 }
 
 .rhythms-sidebar {
   position: static;
   width: 100%;
+  max-width: none;
   margin-bottom: 22px;
 }
 
 .rhythms-filters {
   display: grid;
-  grid-template-columns: minmax(280px, 520px) minmax(220px, 340px);
+  grid-template-columns: minmax(320px, 540px) minmax(240px, 360px);
   gap: 14px;
   align-items: end;
   justify-content: start;
   width: 100%;
+  max-width: none;
   margin-bottom: 0;
 }
 
 .filter-field {
   display: grid;
   gap: 8px;
+  min-width: 0;
 }
 
 .filter-field label {
@@ -81,6 +85,7 @@
 .rhythms-search-bar input,
 .filter-select select {
   width: 100%;
+  min-width: 0;
   background: transparent;
   border: none;
   outline: none;
@@ -106,21 +111,27 @@
 }
 
 .rhythms-main {
-  min-width: 0;
+  display: block;
   width: 100%;
+  min-width: 0;
+  max-width: none;
 }
 
 #rhythms-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 22px;
   width: 100%;
+  max-width: none;
+  align-items: stretch;
 }
 
 .rhythm-card {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  width: 100%;
+  min-width: 0;
   min-height: 100%;
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -328,13 +339,13 @@ body[dir="ltr"] .rhythm-card-title-wrap {
 
 @media (min-width: 1400px) {
   .rhythms-content {
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-left: 0.75%;
+    padding-right: 0.75%;
   }
 
   #rhythms-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 24px;
   }
 }
 
