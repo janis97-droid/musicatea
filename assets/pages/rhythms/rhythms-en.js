@@ -12,7 +12,7 @@
   const data = core.normalizeRhythmData(core.getRhythmsSource());
 
   const labels = {
-    allSignatures: "All time signatures",
+    allSignatures: "All signatures",
     empty: "No matching rhythms found",
     bpm: "BPM",
     play: "Play Sample",
@@ -37,10 +37,6 @@
           <h3>${escapeHtml(localized.name || "")}</h3>
         </div>
         <span class="time-sig">${escapeHtml(rhythm.time_signature || "—")}</span>
-      </div>
-
-      <div class="rhythm-chip-row">
-        <span class="tempo-chip">${Number(rhythm.bpm) || 120} BPM</span>
       </div>
 
       ${core.createImageMarkup(rhythm, localized.name || "")}
