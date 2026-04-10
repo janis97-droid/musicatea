@@ -1008,6 +1008,13 @@ a.download:hover {
   margin-top: 18px;
 }
 
+.android-install-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .android-install-btn {
   display: inline-flex;
   align-items: center;
@@ -1041,6 +1048,38 @@ a.download:hover {
   border-color: var(--gold);
 }
 
+.instagram-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,0.32);
+  background: rgba(255,255,255,0.03);
+  color: var(--gold-light);
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+  flex-shrink: 0;
+}
+
+.instagram-icon-btn:hover {
+  background: rgba(200,164,90,0.12);
+  border-color: rgba(200,164,90,0.48);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(200,164,90,0.14);
+}
+
+.instagram-icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(200,164,90,0.12);
+  border-color: var(--gold);
+}
+
+.instagram-icon-btn svg {
+  display: block;
+}
+
 .android-install-icon {
   display: inline-flex;
   align-items: center;
@@ -1072,10 +1111,20 @@ a.download:hover {
     margin-top: 14px;
   }
 
+  .android-install-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
   .android-install-btn {
     width: 100%;
     max-width: 260px;
     font-size: 0.88rem;
     min-height: 42px;
+  }
+
+  .instagram-icon-btn {
+    width: 42px;
+    height: 42px;
   }
 }
