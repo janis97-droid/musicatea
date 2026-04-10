@@ -1,20 +1,20 @@
 /* assets/pages/rhythms/rhythms-desktop.css */
 
-@media (min-width: 1041px) {
+@media (min-width: 1250px) {
   .rhythms-layout {
     grid-template-columns: 240px minmax(0, 1fr);
     gap: 20px;
   }
 
   #rhythms-grid {
-    grid-template-columns: repeat(3, minmax(0, 400px));
+    grid-template-columns: repeat(3, minmax(3, 500px));
     justify-content: start;
-    gap: 18px;
+    gap: 5px;
   }
 
   article.rhythm-card,
   .rhythm-card {
-    width: 400px;
+    width: 600px;
     min-height: 400px;
     padding: 16px;
     gap: 12px;
