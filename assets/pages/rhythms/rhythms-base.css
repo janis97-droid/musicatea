@@ -36,7 +36,7 @@
 
 .rhythms-filters {
   display: grid;
-  grid-template-columns: minmax(320px, 540px) minmax(240px, 360px);
+  grid-template-columns: minmax(320px, 300px) minmax(240px, 360px);
   gap: 14px;
   align-items: end;
   justify-content: start;
@@ -51,13 +51,6 @@
   min-width: 0;
 }
 
-.filter-field label {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-}
-
 .rhythms-search-bar,
 .filter-select {
   display: flex;
@@ -65,7 +58,7 @@
   gap: 10px;
   min-height: 52px;
   background: #09090b;
-  border: 1px solid var(--border);
+  border: 1px solid var(--gold);
   border-radius: 14px;
   padding: 12px 16px;
   transition: all 0.24s var(--ease);
@@ -79,7 +72,7 @@
 
 .rhythms-search-bar svg {
   flex-shrink: 0;
-  color: var(--text-dim);
+  color: var(--gold);
 }
 
 .rhythms-search-bar input,
@@ -91,11 +84,11 @@
   outline: none;
   color: var(--gold-light);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .rhythms-search-bar input::placeholder {
-  color: var(--text-dim);
+  color: var(--gold);
 }
 
 .filter-select select {
@@ -154,7 +147,7 @@ body[dir="rtl"] .rhythm-card-header {
 }
 
 body[dir="rtl"] .rhythm-card .time-sig {
-  grid-column: 1;
+  grid-column:4;
   justify-self: start;
 }
 
@@ -196,21 +189,21 @@ body[dir="ltr"] .rhythm-card-title-wrap {
 .rhythm-card .time-sig,
 .rhythm-card .tempo-chip {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  align-items:left;
+  justify-content: left;
   min-height: 30px;
   padding: 5px 10px;
   border-radius: 999px;
-  border: 1px solid var(--border2);
+  border: 1px solid var(--gold);
   background: var(--surface);
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size:1rem;
   font-weight: 800;
   white-space: nowrap;
 }
 
 .rhythm-card .time-sig {
-  direction: ltr;
+  direction: revert-layer;
 }
 
 .rhythm-image-wrap {
