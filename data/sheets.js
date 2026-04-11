@@ -5,6 +5,25 @@
 const sheets = [
  
 {
+    title: "لونجا نهاوند",
+    title_en: "Longa Nahawand",
+    system: "arabic",
+    type: "instrumental",
+    composer: "عبده داغر",
+    composer_en: "Abdo Dagher",
+    performer: null,
+    performer_en: null,
+    maqam: "نهاوند",
+    maqam_en: "Nahawand",
+    scale: null,
+    scale_en: null,
+    tonic: "دو",
+    tonic_en: "C",
+    pdf: "pdfs/Longa-Nahawand-dagher.pdf"
+  },
+
+ 
+ {
     title: "نسيم بيسان",
     title_en: "Breeze in bisaan",
     system: "arabic",
