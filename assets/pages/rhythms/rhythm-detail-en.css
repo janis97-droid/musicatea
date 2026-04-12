@@ -1,0 +1,8 @@
+body[dir="ltr"] .rhythm-title-row,
+body[dir="ltr"] .rhythm-breadcrumbs {
+  direction: ltr;
+}
+
+body[dir="ltr"] .rhythm-bpm-value {
+  text-align: right;
+}
