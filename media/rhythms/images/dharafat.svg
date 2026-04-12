@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="250" viewBox="0 0 2500 250">
+  <defs>
+    <style>
+      .staff { stroke:#111; stroke-width:3; }
+      .barthin { stroke:#111; stroke-width:3; }
+      .barthick { stroke:#111; stroke-width:8; }
+      .notehead { fill:#111; }
+      .stem { stroke:#111; stroke-width:4; }
+      .flag { fill:none; stroke:#111; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .timesig { font-size:78px; fill:#111; font-family: Georgia, "Times New Roman", serif; font-weight:700; }
+      .rest8 { font-size:118px; fill:#111; font-family:"Bravura","Noto Music","Segoe UI Symbol",serif; text-anchor:middle; dominant-baseline:middle; }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="white"/>
+  <line class="staff" x1="40" y1="120" x2="2460" y2="120"/>
+  <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
+  <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
+  <text class="timesig" x="128" y="113">13</text>
+  <text class="timesig" x="128" y="172">8</text>
+
+  <ellipse class="notehead" cx="250" cy="120" rx="16" ry="11"/><line class="stem" x1="265" y1="120" x2="265" y2="36"/><path class="flag" d="M265 36 C279 38, 293 47, 302 64"/>
+  <text class="rest8" x="400" y="115">𝄾</text>
+  <text class="rest8" x="530" y="115">𝄾</text>
+  <ellipse class="notehead" cx="680" cy="120" rx="16" ry="11"/><line class="stem" x1="665" y1="117" x2="665" y2="201"/><path class="flag" d="M665 201 C679 197, 694 188, 705 171"/>
+  <text class="rest8" x="830" y="115">𝄾</text>
+  <text class="rest8" x="960" y="115">𝄾</text>
+  <ellipse class="notehead" cx="1110" cy="120" rx="16" ry="11"/><line class="stem" x1="1125" y1="120" x2="1125" y2="36"/><path class="flag" d="M1125 36 C1139 38, 1153 47, 1162 64"/>
+  <text class="rest8" x="1260" y="115">𝄾</text>
+  <ellipse class="notehead" cx="1410" cy="120" rx="16" ry="11"/><line class="stem" x1="1425" y1="120" x2="1425" y2="36"/><path class="flag" d="M1425 36 C1439 38, 1453 47, 1462 64"/>
+  <ellipse class="notehead" cx="1540" cy="120" rx="16" ry="11"/><line class="stem" x1="1555" y1="120" x2="1555" y2="36"/><path class="flag" d="M1555 36 C1569 38, 1583 47, 1592 64"/>
+  <ellipse class="notehead" cx="1690" cy="120" rx="16" ry="11"/><line class="stem" x1="1675" y1="117" x2="1675" y2="201"/><path class="flag" d="M1675 201 C1689 197, 1704 188, 1715 171"/>
+  <text class="rest8" x="1840" y="115">𝄾</text>
+  <text class="rest8" x="1970" y="115">𝄾</text>
+
+  <line class="barthin" x1="2120" y1="45" x2="2120" y2="195"/>
+</svg>
