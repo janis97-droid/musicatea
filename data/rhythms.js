@@ -16,8 +16,8 @@ const rhythms = [
     image: "media/rhythms/images/maqsum.svg"
   },
   {
-    id: "baladi (masmudi saghir)",
-    name: { ar: "بلدي (مصمودي صغير)", en: "baladi (masmudi saghir)" },
+    id: "baladi_masmoudi_saghir",
+    name: { ar: "بلدي (مصمودي صغير)", en: "Baladi (Masmoudi Saghir)" },
     time_signature: "4/4",
     description: {
       ar: "إيقاع مصري ثقيل ومتجذر، يتميز بضربات بداية قوية ويُستخدم بكثرة في الموسيقى الشعبية والرقص الشرقي.",
@@ -97,7 +97,7 @@ const rhythms = [
   },
   {
     id: "samai_darij",
-    name: { ar: " (فالس) سماعي دارج", en: "Sama'i Darij (Vals)" },
+    name: { ar: "سماعي دارج (فالس)", en: "Sama'i Darij (Vals)" },
     time_signature: "3/4",
     description: {
       ar: "إيقاع أخف وأكثر انسيابية من السماعي الثقيل، يُستخدم في القوالب الأندلسية.",
@@ -143,10 +143,9 @@ const rhythms = [
     audio: "media/rhythms/masmoudi_kabir.mp3",
     image: "media/rhythms/images/masmoudi_kabir.svg"
   },
- 
   {
     id: "wahda",
-    name: { ar: " وحدة صغيرة", en: "Wahda saghira" },
+    name: { ar: "وحدة صغيرة", en: "Wahda Saghira" },
     time_signature: "2/4",
     description: {
       ar: "إيقاع بطيء ورحب، مثالي للارتجال الصوتي والتقاسيم.",
@@ -195,7 +194,7 @@ const rhythms = [
   {
     id: "karachi",
     name: { ar: "كراتشي", en: "Karachi" },
-    time_signature: "4/8",
+    time_signature: "2/4",
     description: {
       ar: "إيقاع شامي سريع، يُستخدم في الدبكة والموسيقى الشعبية.",
       en: "A fast Levantine rhythm used in dabke and folk music."
@@ -211,7 +210,7 @@ const rhythms = [
   {
     id: "fallahi",
     name: { ar: "فلّاحي", en: "Fallahi" },
-    time_signature: "4/8",
+    time_signature: "2/4",
     description: {
       ar: "إيقاع ريفي مفعم بالطاقة من الريف المصري.",
       en: "An energetic rural rhythm from the Egyptian countryside."
@@ -227,7 +226,7 @@ const rhythms = [
   {
     id: "ciftetelli",
     name: { ar: "شفته تلّي", en: "Ciftetelli" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     description: {
       ar: "إيقاع انسيابي وحسي، يُستخدم بكثرة في الرقص الشرقي.",
       en: "A flowing and sensual rhythm, widely used in belly dance."
@@ -243,7 +242,7 @@ const rhythms = [
   {
     id: "jurjina",
     name: { ar: "جرجينا", en: "Jurjina" },
-    time_signature: "10/8",
+    time_signature: "10/16",
     description: {
       ar: "إيقاع مرح ومتقطع، يُستخدم في الموسيقى العراقية والخليجية.",
       en: "A lively, segmented rhythm used in Iraqi and Gulf music."
@@ -291,7 +290,7 @@ const rhythms = [
   {
     id: "sudasi",
     name: { ar: "سداسي", en: "Sudasi" },
-    time_signature: "6/8",
+    time_signature: "6/4",
     description: {
       ar: "إيقاع انسيابي وسلس، مناسب للصوت والآلات.",
       en: "A smooth and flowing rhythm suitable for both voice and instruments."
@@ -307,7 +306,7 @@ const rhythms = [
   {
     id: "mukhammas",
     name: { ar: "مخمّس", en: "Mukhammas" },
-    time_signature: "16/8",
+    time_signature: "16/4",
     description: {
       ar: "دورة ممتدة، تُستخدم في الغناء الكلاسيكي.",
       en: "An extended cycle used in classical singing."
@@ -339,7 +338,7 @@ const rhythms = [
   {
     id: "nawakht",
     name: { ar: "نواخت", en: "Nawakht" },
-    time_signature: "7/8",
+    time_signature: "7/4",
     description: {
       ar: "إيقاع منظّم غير منتظم، يُستخدم في المؤلفات الكلاسيكية.",
       en: "A structured asymmetrical rhythm used in classical compositions."
@@ -371,7 +370,7 @@ const rhythms = [
   {
     id: "muhajjar",
     name: { ar: "محجّر", en: "Muhajjar" },
-    time_signature: "14/8",
+    time_signature: "14/4",
     description: {
       ar: "إيقاع بطيء ومزخرف، يُستخدم في الموسيقى الكلاسيكية.",
       en: "A slow and ornamented rhythm used in classical music."
@@ -419,7 +418,7 @@ const rhythms = [
   {
     id: "nawari",
     name: { ar: "نواري", en: "Nawari" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     description: {
       ar: "إيقاع خفيف ومتكرر، من التقاليد الشعبية.",
       en: "A light and repetitive rhythm from popular tradition."
@@ -435,7 +434,7 @@ const rhythms = [
   {
     id: "rumba",
     name: { ar: "رومبا عربي", en: "Rumba (Arabic)" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     description: {
       ar: "إيقاع متأثر بالموسيقى اللاتينية، يُستخدم في البوب العربي الحديث.",
       en: "A rhythm influenced by Latin music, used in modern Arabic pop."
@@ -467,7 +466,7 @@ const rhythms = [
   {
     id: "dharafat",
     name: { ar: "ظرافات", en: "Dharafat" },
-    time_signature: "8/8",
+    time_signature: "13/8",
     description: {
       ar: "إيقاع كلاسيكي خفيف، من التراث التقليدي.",
       en: "A light classical rhythm from the traditional repertoire."
@@ -479,6 +478,182 @@ const rhythms = [
     examples: [],
     audio: "media/rhythms/dharafat.mp3",
     image: "media/rhythms/images/dharafat.svg"
+  },
+  {
+    id: "mudawwar",
+    name: { ar: "مدوّر", en: "Mudawwar" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/mudawwar.mp3",
+    image: "media/rhythms/images/mudawwar.svg"
+  },
+  {
+    id: "hajaa",
+    name: { ar: "هجع", en: "Hajaa" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/hajaa.mp3",
+    image: "media/rhythms/images/hajaa.svg"
+  },
+  {
+    id: "bambi",
+    name: { ar: "بامبي", en: "Bambi" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/bambi.mp3",
+    image: "media/rhythms/images/bambi.svg"
+  },
+  {
+    id: "saudi",
+    name: { ar: "سعودي", en: "Saudi" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/saudi.mp3",
+    image: "media/rhythms/images/saudi.svg"
+  },
+  {
+    id: "wahda_ghayr_mulaaba",
+    name: { ar: "وحدة غير ملعّبة", en: "Wahda Ghayr Mulaaba" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/wahda_ghayr_mulaaba.mp3",
+    image: "media/rhythms/images/wahda_ghayr_mulaaba.svg"
+  },
+  {
+    id: "conga",
+    name: { ar: "كونجا", en: "Conga" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/conga.mp3",
+    image: "media/rhythms/images/conga.svg"
+  },
+  {
+    id: "lebanese_dabke",
+    name: { ar: "دبكة لبنانية", en: "Lebanese Dabke" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: ["دبكة", "فولكلور"],
+      en: ["Dabke", "Folklore"]
+    },
+    examples: [],
+    audio: "media/rhythms/lebanese_dabke.mp3",
+    image: "media/rhythms/images/lebanese_dabke.svg"
+  },
+  {
+    id: "sawt_shami",
+    name: { ar: "الصوت الشامي", en: "Sawt Shami" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/sawt_shami.mp3",
+    image: "media/rhythms/images/sawt_shami.svg"
+  },
+  {
+    id: "sumbati",
+    name: { ar: "سمباطي", en: "Sumbati" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/sumbati.mp3",
+    image: "media/rhythms/images/sumbati.svg"
+  },
+  {
+    id: "joobi_iraqi",
+    name: { ar: "جوبي عراقي", en: "Joobi Iraqi" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: ["رقص شعبي", "موسيقى عراقية"],
+      en: ["Folk dance", "Iraqi music"]
+    },
+    examples: [],
+    audio: "media/rhythms/joobi_iraqi.mp3",
+    image: "media/rhythms/images/joobi_iraqi.svg"
+  },
+  {
+    id: "masmoudi_nisfi",
+    name: { ar: "مصمودي نصفي", en: "Masmoudi Nisfi" },
+    time_signature: "",
+    description: {
+      ar: "",
+      en: ""
+    },
+    usage: {
+      ar: [],
+      en: []
+    },
+    examples: [],
+    audio: "media/rhythms/masmoudi_nisfi.mp3",
+    image: "media/rhythms/images/masmoudi_nisfi.svg"
   }
 ];
 
