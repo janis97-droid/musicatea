@@ -176,17 +176,9 @@ const rhythms = [
     image: "media/rhythms/images/rumba.svg"
   },
   {
-    id: "khosh_rang",
-    name: { ar: "خوش رنك", en: "Khosh Rang" },
-    time_signature: "8/8",
-    examples: [],
-    audio: "media/rhythms/khosh_rang.mp3",
-    image: "media/rhythms/images/khosh_rang.svg"
-  },
-  {
     id: "mudawwar",
     name: { ar: "مدوّر", en: "Mudawwar" },
-    time_signature: "",
+    time_signature: "12/4",
     examples: [],
     audio: "media/rhythms/mudawwar.mp3",
     image: "media/rhythms/images/mudawwar.svg"
@@ -194,7 +186,7 @@ const rhythms = [
   {
     id: "hajaa",
     name: { ar: "هجع", en: "Hajaa" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/hajaa.mp3",
     image: "media/rhythms/images/hajaa.svg"
@@ -202,7 +194,7 @@ const rhythms = [
   {
     id: "bambi",
     name: { ar: "بامبي", en: "Bambi" },
-    time_signature: "",
+    time_signature: "8/8",
     examples: [],
     audio: "media/rhythms/bambi.mp3",
     image: "media/rhythms/images/bambi.svg"
@@ -210,7 +202,7 @@ const rhythms = [
   {
     id: "saudi",
     name: { ar: "سعودي", en: "Saudi" },
-    time_signature: "",
+    time_signature: "2/4",
     examples: [],
     audio: "media/rhythms/saudi.mp3",
     image: "media/rhythms/images/saudi.svg"
@@ -218,7 +210,7 @@ const rhythms = [
   {
     id: "wahda_ghayr_mulaaba",
     name: { ar: "وحدة غير ملعّبة", en: "Wahda Ghayr Mulaaba" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/wahda_ghayr_mulaaba.mp3",
     image: "media/rhythms/images/wahda_ghayr_mulaaba.svg"
@@ -226,7 +218,7 @@ const rhythms = [
   {
     id: "conga",
     name: { ar: "كونجا", en: "Conga" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/conga.mp3",
     image: "media/rhythms/images/conga.svg"
@@ -234,7 +226,7 @@ const rhythms = [
   {
     id: "lebanese_dabke",
     name: { ar: "دبكة لبنانية", en: "Lebanese Dabke" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/lebanese_dabke.mp3",
     image: "media/rhythms/images/lebanese_dabke.svg"
@@ -242,7 +234,7 @@ const rhythms = [
   {
     id: "sawt_shami",
     name: { ar: "الصوت الشامي", en: "Sawt Shami" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/sawt_shami.mp3",
     image: "media/rhythms/images/sawt_shami.svg"
@@ -250,7 +242,7 @@ const rhythms = [
   {
     id: "sumbati",
     name: { ar: "سمباطي", en: "Sumbati" },
-    time_signature: "",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/sumbati.mp3",
     image: "media/rhythms/images/sumbati.svg"
@@ -258,7 +250,7 @@ const rhythms = [
   {
     id: "joobi_iraqi",
     name: { ar: "جوبي عراقي", en: "Joobi Iraqi" },
-    time_signature: "",
+    time_signature: "8/8",
     examples: [],
     audio: "media/rhythms/joobi_iraqi.mp3",
     image: "media/rhythms/images/joobi_iraqi.svg"
@@ -266,7 +258,7 @@ const rhythms = [
   {
     id: "masmoudi_nisfi",
     name: { ar: "مصمودي نصفي", en: "Masmoudi Nisfi" },
-    time_signature: "",
+    time_signature: "8/4",
     examples: [],
     audio: "media/rhythms/masmoudi_nisfi.mp3",
     image: "media/rhythms/images/masmoudi_nisfi.svg"
