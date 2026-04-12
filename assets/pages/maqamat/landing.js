@@ -15,7 +15,7 @@ const FAMILY_ORDER = [
 ];
 
 function getFamilyLink(mainMaqam) {
-  return `interactive-scale.html?family=${mainMaqam.family}&maqam=${mainMaqam.id}`;
+  return `interactive-scale.html?family=${mainMaqam.family}`;
 }
 
 function createFamilyCard(mainMaqam) {
