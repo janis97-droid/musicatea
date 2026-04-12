@@ -176,14 +176,6 @@ const rhythms = [
     image: "media/rhythms/images/rumba.svg"
   },
   {
-    id: "mudawwar",
-    name: { ar: "مدوّر", en: "Mudawwar" },
-    time_signature: "12/4",
-    examples: [],
-    audio: "media/rhythms/mudawwar.mp3",
-    image: "media/rhythms/images/mudawwar.svg"
-  },
-  {
     id: "hajaa",
     name: { ar: "هجع", en: "Hajaa" },
     time_signature: "4/4",
@@ -255,6 +247,7 @@ const rhythms = [
     audio: "media/rhythms/joobi_iraqi.mp3",
     image: "media/rhythms/images/joobi_iraqi.svg"
   },
+
   {
     id: "masmoudi_nisfi",
     name: { ar: "مصمودي نصفي", en: "Masmoudi Nisfi" },
@@ -263,7 +256,14 @@ const rhythms = [
     audio: "media/rhythms/masmoudi_nisfi.mp3",
     image: "media/rhythms/images/masmoudi_nisfi.svg"
   },
-
+  {
+    id: "mudawwar",
+    name: { ar: "مدوّر", en: "Mudawwar" },
+    time_signature: "12/4",
+    examples: [],
+    audio: "media/rhythms/mudawwar.mp3",
+    image: "media/rhythms/images/mudawwar.svg"
+  },
   {
     id: "murabbaa",
     name: { ar: "مربّع", en: "Murabba'" },
@@ -273,12 +273,12 @@ const rhythms = [
     image: "media/rhythms/images/murabbaa.svg"
   },
   {
-    id: "mukhammas",
-    name: { ar: "مخمّس", en: "Mukhammas" },
-    time_signature: "16/4",
+    id: "dharafat",
+    name: { ar: "ظرافات", en: "Dharafat" },
+    time_signature: "13/8",
     examples: [],
-    audio: "media/rhythms/mukhammas.mp3",
-    image: "media/rhythms/images/mukhammas.svg"
+    audio: "media/rhythms/dharafat.mp3",
+    image: "media/rhythms/images/dharafat.svg"
   },
   {
     id: "muhajjar",
@@ -289,12 +289,12 @@ const rhythms = [
     image: "media/rhythms/images/muhajjar.svg"
   },
   {
-    id: "dharafat",
-    name: { ar: "ظرافات", en: "Dharafat" },
-    time_signature: "13/8",
+    id: "mukhammas",
+    name: { ar: "مخمّس", en: "Mukhammas" },
+    time_signature: "16/4",
     examples: [],
-    audio: "media/rhythms/dharafat.mp3",
-    image: "media/rhythms/images/dharafat.svg"
+    audio: "media/rhythms/mukhammas.mp3",
+    image: "media/rhythms/images/mukhammas.svg"
   }
 ];
 
