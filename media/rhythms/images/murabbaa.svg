@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2500" height="250" viewBox="0 0 2500 250">
+  <defs>
+    <style>
+      .staff { stroke:#111; stroke-width:3; }
+      .barthin { stroke:#111; stroke-width:3; }
+      .barthick { stroke:#111; stroke-width:8; }
+      .notehead { fill:#111; }
+      .stem { stroke:#111; stroke-width:4; }
+      .timesig { font-size:78px; fill:#111; font-family: Georgia, "Times New Roman", serif; font-weight:700; }
+      .rest4 { font-size:118px; fill:#111; font-family:"Bravura","Noto Music","Segoe UI Symbol",serif; text-anchor:middle; dominant-baseline:middle; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="white"/>
+
+  <line class="staff" x1="40" y1="120" x2="2460" y2="120"/>
+
+  <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
+  <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
+
+  <!-- 13/4 -->
+  <text class="timesig" x="128" y="113">13</text>
+  <text class="timesig" x="128" y="172">4</text>
+
+  <!-- 1: 1/4 DOM -->
+  <ellipse class="notehead" cx="250" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="265" y1="120" x2="265" y2="36"/>
+
+  <!-- 2: 1/4 TAK -->
+  <ellipse class="notehead" cx="420" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="405" y1="117" x2="405" y2="201"/>
+
+  <!-- 3: 1/4 TAK -->
+  <ellipse class="notehead" cx="560" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="545" y1="117" x2="545" y2="201"/>
+
+  <!-- 4: 1/4 DOM -->
+  <ellipse class="notehead" cx="750" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="765" y1="120" x2="765" y2="36"/>
+
+  <!-- 5: 1/4 rest -->
+  <text class="rest4" x="920" y="115">𝄽</text>
+
+  <!-- 6: 1/4 TAK -->
+  <ellipse class="notehead" cx="1090" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1075" y1="117" x2="1075" y2="201"/>
+
+  <!-- 7: 1/4 rest -->
+  <text class="rest4" x="1260" y="115">𝄽</text>
+
+  <!-- 8: 1/4 TAK -->
+  <ellipse class="notehead" cx="1430" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1415" y1="117" x2="1415" y2="201"/>
+
+  <!-- 9: 1/4 rest -->
+  <text class="rest4" x="1600" y="115">𝄽</text>
+
+  <!-- 10: 1/4 TAK -->
+  <ellipse class="notehead" cx="1770" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1755" y1="117" x2="1755" y2="201"/>
+
+  <!-- 11: 1/4 TAK -->
+  <ellipse class="notehead" cx="1910" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1895" y1="117" x2="1895" y2="201"/>
+
+  <!-- 12: 1/4 DOM -->
+  <ellipse class="notehead" cx="2080" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="2095" y1="120" x2="2095" y2="36"/>
+
+  <!-- 13: 1/4 rest -->
+  <text class="rest4" x="2250" y="115">𝄽</text>
+
+  <line class="barthin" x1="2380" y1="45" x2="2380" y2="195"/>
+</svg>
