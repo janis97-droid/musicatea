@@ -54,13 +54,13 @@
 }
 
 .maqamat-content-compact {
-  max-width: 1120px;
+  max-width: 1500px;
   padding-top: 18px;
 }
 
 #maqamat-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
