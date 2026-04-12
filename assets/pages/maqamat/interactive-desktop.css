@@ -161,29 +161,29 @@
 }
 
 .sidebar-header {
-  padding:20px 18px 14px;
+  padding:24px 20px 18px;
   border-bottom:1px solid var(--border);
   flex-shrink:0;
 }
 
 .sidebar-family-label {
-  font-size:0.66rem;
+  font-size:0.76rem;
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--gold);
-  font-weight:700;
-  margin-bottom:4px;
+  font-weight:800;
+  margin-bottom:6px;
 }
 
 .sidebar-family-label-spaced {
-  margin-top:12px;
+  margin-top:14px;
 }
 
 .family-switcher {
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
-  margin-top:8px;
+  gap:8px;
+  margin-top:10px;
 }
 
 .family-switch-btn {
@@ -191,10 +191,10 @@
   background:rgba(255,255,255,.03);
   color:var(--text-dim);
   border-radius:999px;
-  padding:4px 10px;
+  padding:6px 12px;
   font-family:inherit;
-  font-size:.72rem;
-  font-weight:700;
+  font-size:.82rem;
+  font-weight:800;
   cursor:pointer;
   transition:all .2s ease;
 }
@@ -211,19 +211,20 @@
 }
 
 .sidebar-family-name {
-  font-size:1.1rem;
+  font-size:1.32rem;
   font-weight:900;
+  line-height:1.2;
 }
 
 .sidebar-family-sub {
-  font-size:0.75rem;
+  font-size:0.84rem;
   color:var(--text-dim);
-  margin-top:2px;
+  margin-top:4px;
 }
 
 .sidebar-list {
   list-style:none;
-  padding:10px 0;
+  padding:12px 0;
   flex:1;
 }
 
@@ -238,14 +239,14 @@
   display:flex;
   align-items:center;
   gap:10px;
-  padding:10px 12px;
+  padding:11px 12px;
   border-radius:10px;
   border:none;
   background:none;
   color:var(--text-muted);
   font-family:inherit;
-  font-size:0.9rem;
-  font-weight:600;
+  font-size:0.98rem;
+  font-weight:700;
   cursor:pointer;
   text-align:right;
   transition:all .25s var(--ease);
@@ -295,12 +296,12 @@
 }
 
 .sidebar-main-tag {
-  font-size:0.6rem;
+  font-size:0.66rem;
   letter-spacing:0.08em;
   background:var(--gold-dim);
   color:var(--gold);
   border:1px solid rgba(200,164,90,0.2);
-  padding:2px 6px;
+  padding:2px 7px;
   border-radius:4px;
   margin-right:auto;
   font-weight:800;
