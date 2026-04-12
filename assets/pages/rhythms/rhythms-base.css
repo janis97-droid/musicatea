@@ -113,7 +113,7 @@
 #rhythms-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 20px;
   width: 100%;
   max-width: none;
   align-items: stretch;
@@ -122,18 +122,23 @@
 .rhythm-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
   min-width: 0;
-  min-height: 100%;
+  min-height: 0;
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 20px;
+  padding: 18px;
   transition: all 0.28s var(--ease);
 }
 
-.rhythm-card:hover {
+.rhythm-card-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rhythm-card-link:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 34px rgba(0,0,0,0.34);
   border-color: rgba(200,164,90,0.26);
@@ -147,12 +152,10 @@ body[dir="rtl"] .rhythm-card-header {
 }
 
 body[dir="rtl"] .rhythm-card .time-sig {
-  grid-column:4;
   justify-self: start;
 }
 
 body[dir="rtl"] .rhythm-card-title-wrap {
-  grid-column: 2;
   text-align: right;
 }
 
@@ -164,12 +167,10 @@ body[dir="ltr"] .rhythm-card-header {
 }
 
 body[dir="ltr"] .rhythm-card .time-sig {
-  grid-column: 2;
   justify-self: end;
 }
 
 body[dir="ltr"] .rhythm-card-title-wrap {
-  grid-column: 1;
   text-align: left;
 }
 
@@ -180,135 +181,85 @@ body[dir="ltr"] .rhythm-card-title-wrap {
 .rhythm-card h3 {
   margin: 0;
   color: var(--gold-light);
-  font-size: 1.18rem;
+  font-size: 1.14rem;
   line-height: 1.2;
   font-weight: 900;
 }
 
-.rhythm-chip,
-.rhythm-card .time-sig,
-.rhythm-card .tempo-chip {
+.rhythm-card .time-sig {
   display: inline-flex;
-  align-items:left;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
   min-height: 30px;
   padding: 5px 10px;
   border-radius: 999px;
   border: 1px solid var(--gold);
   background: var(--surface);
   color: var(--text-muted);
-  font-size:1rem;
+  font-size: 0.94rem;
   font-weight: 800;
   white-space: nowrap;
-}
-
-.rhythm-card .time-sig {
-  direction: revert-layer;
+  direction: ltr;
 }
 
 .rhythm-image-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 170px;
+  min-height: 136px;
   border-radius: 18px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.012) 100%);
   border: 1px solid rgba(255,255,255,0.06);
-  padding: 14px;
+  padding: 12px;
 }
 
 .rhythm-image {
   display: block;
   width: 100%;
   max-width: 100%;
-  max-height: 230px;
+  max-height: 175px;
   object-fit: contain;
 }
 
 .rhythm-image-fallback-empty {
   width: 100%;
-  min-height: 140px;
+  min-height: 110px;
 }
 
-.rhythm-card .desc {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-.rhythm-bpm-row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
+.rhythm-card-footer {
   margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border2);
 }
 
-.rhythm-bpm-label {
+.rhythm-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--text-muted);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 800;
-  white-space: nowrap;
 }
 
-.rhythm-bpm-slider {
-  width: 100%;
-  accent-color: var(--gold);
-  cursor: pointer;
+.rhythm-card-cta svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease);
 }
 
-.rhythm-bpm-value {
-  min-width: 76px;
-  text-align: end;
-  color: var(--gold-light);
-  font-size: 0.83rem;
-  font-weight: 800;
-  white-space: nowrap;
+.rhythm-card-link:hover .rhythm-card-cta {
+  color: var(--text);
 }
 
-.rhythm-actions {
-  display: grid;
-  gap: 10px;
+body[dir="rtl"] .rhythm-card-link:hover .rhythm-card-cta svg {
+  transform: translateX(-2px);
 }
 
-.rhythm-play-btn {
-  appearance: none;
-  width: 100%;
-  min-height: 46px;
-  border: 1px solid rgba(200,164,90,0.22);
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(200,164,90,0.16) 0%, rgba(200,164,90,0.10) 100%);
-  color: var(--gold-light);
-  font-family: inherit;
-  font-size: 0.92rem;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.24s var(--ease);
-}
-
-.rhythm-play-btn:hover {
-  transform: translateY(-1px);
-  border-color: rgba(200,164,90,0.36);
-  box-shadow: 0 10px 22px rgba(200,164,90,0.12);
-}
-
-.rhythm-play-btn.is-playing {
-  background: linear-gradient(180deg, rgba(123,168,212,0.2) 0%, rgba(123,168,212,0.12) 100%);
-  border-color: rgba(123,168,212,0.35);
-  color: #d5ebff;
-}
-
-.rhythm-play-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.rhythm-audio {
-  display: none;
+body[dir="ltr"] .rhythm-card-link:hover .rhythm-card-cta svg {
+  transform: translateX(2px);
 }
 
 .empty-state {
@@ -338,7 +289,7 @@ body[dir="ltr"] .rhythm-card-title-wrap {
 
   #rhythms-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    gap: 22px;
   }
 }
 

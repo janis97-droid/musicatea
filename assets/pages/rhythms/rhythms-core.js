@@ -53,25 +53,12 @@
     return value || "";
   }
 
-  function getLocalizedList(value, lang) {
-    if (value && typeof value === "object" && !Array.isArray(value)) {
-      const localized = value[lang] || value.ar || value.en || [];
-      return Array.isArray(localized) ? localized : [];
-    }
-    return Array.isArray(value) ? value : [];
-  }
-
   function normalizeRhythmData(data) {
     return (Array.isArray(data) ? data : []).map((rhythm, index) => {
-      const id = rhythm.id || slugify(getLocalizedText(rhythm.name, "en") || getLocalizedText(rhythm.name, "ar") || ("rhythm-" + index));
-      const baseBpm = Number(rhythm.bpm) || 120;
-
       const nameAr = getLocalizedText(rhythm.name, "ar");
       const nameEn = getLocalizedText(rhythm.name, "en");
-      const descAr = getLocalizedText(rhythm.description, "ar");
-      const descEn = getLocalizedText(rhythm.description, "en");
-      const usageAr = getLocalizedList(rhythm.usage, "ar");
-      const usageEn = getLocalizedList(rhythm.usage, "en");
+      const id = rhythm.id || slugify(nameEn || nameAr || ("rhythm-" + index));
+      const baseBpm = Number(rhythm.bpm) || 120;
 
       return {
         ...rhythm,
@@ -80,26 +67,10 @@
         image: rhythm.image || "",
         audio: rhythm.audio || "",
         _localized: {
-          ar: {
-            name: nameAr,
-            description: descAr,
-            usage: usageAr
-          },
-          en: {
-            name: nameEn,
-            description: descEn,
-            usage: usageEn
-          }
+          ar: { name: nameAr },
+          en: { name: nameEn }
         },
-        _searchBlob: [
-          nameAr,
-          nameEn,
-          descAr,
-          descEn,
-          usageAr.join(" "),
-          usageEn.join(" "),
-          rhythm.time_signature
-        ]
+        _searchBlob: [nameAr, nameEn, id, rhythm.time_signature]
           .map(normalizeText)
           .filter(Boolean)
           .join(" ")
@@ -142,7 +113,7 @@
           <img
             class="rhythm-image"
             src="${escapeHtml(rhythm.image)}"
-            alt="${escapeHtml(altText || "")}"
+            alt="${escapeHtml(altText || "")}" 
             loading="lazy"
           >
         </div>
@@ -167,6 +138,11 @@
       <p>${escapeHtml(message || "")}</p>
     `;
     return wrapper;
+  }
+
+  function getDetailPageHref(rhythmId, lang) {
+    const page = lang === "en" ? "rhythm-en.html" : "rhythm.html";
+    return `${page}?id=${encodeURIComponent(rhythmId || "")}`;
   }
 
   function createBpmRate(baseBpm, selectedBpm) {
@@ -288,13 +264,13 @@
     normalizeText,
     getRhythmsSource,
     getLocalizedText,
-    getLocalizedList,
     normalizeRhythmData,
     slugify,
     parseSignatureValue,
     fillTimeSignatureFilter,
     createImageMarkup,
     createEmptyRhythmState,
+    getDetailPageHref,
     createBpmRate,
     stopCurrentRhythmAudio,
     attachAudioControls,

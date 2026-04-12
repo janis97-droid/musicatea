@@ -14,10 +14,7 @@
   const labels = {
     allSignatures: "زمن الإيقاع",
     empty: "لا توجد نتائج مطابقة",
-    bpm: "BPM",
-    play: "تشغيل",
-    pause: "إيقاف",
-    unavailable: "لا يوجد ملف صوتي"
+    openPage: "صفحة الإيقاع"
   };
 
   core.fillTimeSignatureFilter(timeFilter, data, labels.allSignatures);
@@ -29,8 +26,10 @@
 
   function createCard(rhythm) {
     const localized = rhythm._localized && rhythm._localized.ar ? rhythm._localized.ar : {};
-    const card = document.createElement("article");
-    card.className = "rhythm-card";
+    const card = document.createElement("a");
+    card.className = "rhythm-card rhythm-card-link";
+    card.href = core.getDetailPageHref(rhythm.id, "ar");
+    card.setAttribute("aria-label", `افتح صفحة ${localized.name || "الإيقاع"}`);
     card.innerHTML = `
       <div class="rhythm-card-header">
         <div class="rhythm-card-title-wrap">
@@ -41,29 +40,17 @@
 
       ${core.createImageMarkup(rhythm, localized.name || "")}
 
-      <p class="desc">${escapeHtml(localized.description || "")}</p>
-
-      <div class="rhythm-bpm-row">
-        <span class="rhythm-bpm-value">${Number(rhythm.bpm) || 120} BPM</span>
-        <input
-          class="rhythm-bpm-slider"
-          type="range"
-          min="60"
-          max="200"
-          step="1"
-          value="${Number(rhythm.bpm) || 120}"
-          aria-label="${labels.bpm}"
-        >
-        <span class="rhythm-bpm-label">${labels.bpm}</span>
-      </div>
-
-      <div class="rhythm-actions">
-        <button type="button" class="rhythm-play-btn">${labels.play}</button>
-        <audio class="rhythm-audio" preload="none"></audio>
+      <div class="rhythm-card-footer">
+        <span class="rhythm-card-cta">
+          <span>${labels.openPage}</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="M13 6l6 6-6 6"></path>
+          </svg>
+        </span>
       </div>
     `;
 
-    core.attachAudioControls(card, rhythm, labels);
     return card;
   }
 

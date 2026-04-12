@@ -25,40 +25,23 @@
     border-radius: 18px;
   }
 
-  .rhythm-card-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
   .rhythm-image-wrap {
-    min-height: 140px;
-    padding: 12px;
+    min-height: 124px;
+    padding: 10px;
   }
 
   .rhythm-image {
-    max-height: 190px;
+    max-height: 156px;
   }
 
-  .rhythm-bpm-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    align-items: stretch;
-  }
-
-  .rhythm-bpm-value {
-    text-align: start;
-    min-width: 0;
+  .rhythm-card-footer {
+    padding-top: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .rhythms-hero h1 {
     font-size: 1.8rem;
-  }
-
-  .rhythms-hero p {
-    font-size: 0.94rem;
   }
 
   .rhythms-search-bar,
@@ -69,16 +52,14 @@
   }
 
   .rhythm-card h3 {
-    font-size: 1.06rem;
+    font-size: 1.02rem;
   }
 
-  .rhythm-pattern {
-    font-size: 0.84rem;
-    padding: 9px 10px;
+  .rhythm-card .time-sig {
+    font-size: 0.86rem;
   }
 
-  .rhythm-play-btn {
-    min-height: 44px;
-    font-size: 0.88rem;
+  .rhythm-card-cta {
+    font-size: 0.82rem;
   }
 }
