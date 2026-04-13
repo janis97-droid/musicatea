@@ -1,0 +1,54 @@
+{
+  "id": "jurjina",
+  "source_context_or_origin": {
+    "ar": "الجورجينا هو إيقاع 10/8، وتذكر الصفحة المرجعية العربية أن اسمه من كلمة تركية تعني الصخب. وهو من الإيقاعات غير الزوجية التي لا تُفهم جيداً إذا عُدَّت كعشر نبضات متساوية فقط، بل يجب أن تُحَس كدورة ذات توزيع داخلي ونبرات واضحة. يعيش هذا الإيقاع أساساً في الفضاء العراقي والإيراني والتركي والكردي، مع حضور أندر في المشرق العربي العام، لكنه يظهر أيضاً أحياناً في المالوف التونسي. شخصيته السمعية تقوم على التموّج والالتفاف الداخلي أكثر من الاستقامة، وهذا ما يجعله مختلفاً بوضوح عن الإيقاعات الرباعية المستقيمة وعن بعض الإيقاعات الطويلة الأثقل بنيوياً.",
+    "en": "Jurjina is a 10/8 rhythm, and the Arabic reference notes that its name comes from a Turkish word meaning noise or clamor. It is one of the asymmetrical rhythms that cannot be understood well as ten equal pulses, but rather must be felt as a cycle with a clear internal distribution and accent pattern. It lives primarily in Iraqi, Iranian, Turkish, and Kurdish musical spaces, with rarer presence in the broader Arab Mashriq, while also appearing at times in Tunisian malouf. Its audible identity is built on inner sway and curvature more than on straightness, which makes it clearly different from regular quadruple rhythms and from some longer rhythms that feel more structurally heavy."
+  },
+  "other_names": {
+    "ar": [],
+    "en": []
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "يا أمّ العيون السود",
+        "artist": "ناظم الغزالي",
+        "note": "ألحان ناظم نعيم"
+      },
+      {
+        "title": "يا حلو اللمى",
+        "artist": "لطفي بوشناق",
+        "note": "موشح"
+      },
+      {
+        "title": "أدر راحاتي",
+        "note": "من المالوف التونسي"
+      },
+      {
+        "title": "ما كنت أدري",
+        "note": "من المالوف التونسي"
+      }
+    ],
+    "en": [
+      {
+        "title": "Ya Umm Al-Uyun Al-Sud",
+        "artist": "Nazem Al-Ghazali",
+        "note": "Composed by Nazem Naim"
+      },
+      {
+        "title": "Ya Hlu Al-Lama",
+        "artist": "Lotfi Bouchnak",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Adir Rahati",
+        "note": "From Tunisian malouf"
+      },
+      {
+        "title": "Ma Kuntu Adri",
+        "note": "From Tunisian malouf"
+      }
+    ]
+  },
+  "related_rhythms": ["samai_thaqil"]
+}
