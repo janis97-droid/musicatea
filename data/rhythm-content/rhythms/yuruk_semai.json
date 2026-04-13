@@ -1,0 +1,48 @@
+{
+  "id": "yuruk_semai",
+  "source_context_or_origin": {
+    "ar": "يورك سماعي هو إيقاع 6/8 ذو أصل تركي دخل إلى الممارسة العربية، وهو شائع جداً في الموشحات. تذكر المراجع أيضاً أنه يُسمّى أحياناً يوغرغ، وأن كلمة yürük في التركية تحمل معنى قريباً من المتحرك أو الماشي، وهو معنى ينسجم تماماً مع شخصيته السمعية. أهميته لا تأتي من كونه مجرد وزن سداسي سريع، بل من كونه يقع في قلب الريبرتوار الموشحي ويؤدي وظيفة واضحة في الغناء الكلاسيكي العربي، وخصوصاً في الأعمال التي تحتاج إلى حركة منسابة من غير ثقل الإيقاعات الأطول مثل السماعي الثقيل. كما أن له حضوراً أوسع من الموشح وحده، إذ تذكر بعض الدراسات أنه حاضر أيضاً في الموسيقى الشعبية، مع وجود صيغة أبطأ منه في المقام العراقي.",
+    "en": "Yürük Semai is a 6/8 rhythm of Turkish origin that entered Arabic musical practice and became especially common in muwashshahat. References also note alternate names such as Yugrug, and explain that the Turkish word yürük carries a meaning close to moving or walking, which fits the audible character of the rhythm very well. Its importance does not come merely from being a fast six-beat meter, but from the fact that it sits at the heart of the muwashshah repertoire and serves a clear role in classical Arabic singing, especially in pieces that need flowing motion without the weight of longer rhythms such as Sama'i Thaqil. It also lives beyond the muwashshah alone, since some studies note its presence in folk music as well, with a slower related form appearing in Iraqi maqam practice."
+  },
+  "other_names": {
+    "ar": ["يوغرغ"],
+    "en": ["Yugrug", "Ugrug", "Yürük Semai"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "أهوى الغزال الرَّبربَبي",
+        "artist": "Ensemble Al Kindi",
+        "note": "موشح"
+      },
+      {
+        "title": "عُنق المليح الغالي",
+        "artist": "صبري المدلل",
+        "note": "موشح"
+      },
+      {
+        "title": "بالذي أسكر",
+        "artist": "لويس حايك وعايدة شلهوب",
+        "note": "موشح"
+      }
+    ],
+    "en": [
+      {
+        "title": "Ahwa Al-Ghazal Al-Rabrabi",
+        "artist": "Ensemble Al Kindi",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Unuq Al-Malih Al-Ghali",
+        "artist": "Sabri Al-Mudallal",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Billadhi Askar",
+        "artist": "Louis Hayek and Aida Chelloub",
+        "note": "Muwashshah"
+      }
+    ]
+  },
+  "related_rhythms": ["samai_darij", "samai_thaqil"]
+}
