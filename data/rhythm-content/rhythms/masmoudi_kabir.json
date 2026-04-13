@@ -1,0 +1,76 @@
+{
+  "id": "masmoudi_kabir",
+  "source_context_or_origin": {
+    "ar": "المصمودي الكبير هو إيقاع عربي 8/4، ويُعد من الإيقاعات الأساسية في ريبرتوار الطرب في القرن العشرين. وكلمة كبير هنا تمييز تقني له عن المصمودي الصغير، وهو الإيقاع المعروف غالباً باسم البلدي، لأن المصمودي الكبير يمتد على دورتين من 4/4 بينما البلدي يبقى داخل دورة واحدة 4/4. في المراجع المرجعية يظهر المصمودي الكبير داخل عائلة الإيقاعات الزوجية الطويلة نسبياً، مع حضور واضح في الطرب العربي الكلاسيكي وبعض القوالب التقليدية والآلية، ولذلك لا يُفهم بوصفه رباعياً بطيئاً أو موسعاً فقط، بل بوصفه إيقاعاً ذا دورة ممتدة ومساحة تنفس أوسع وشخصية طربية مهيبة. كما أن طوله يفرض على الجملة الموسيقية أن تُبنى على مسافة زمنية أطول من المقسوم والبلدي والصعيدي، وهذا ما يجعله مرحلة مختلفة في الإحساس الزمني داخل الإيقاع العربي.",
+    "en": "Masmoudi Kabir is an Arabic 8/4 rhythm and one of the foundational rhythms of twentieth-century Arab tarab repertoire. The term kabir is a technical distinction from Masmoudi Saghir, the rhythm more commonly known as Baladi, because Masmoudi Kabir stretches across two 4/4 measures while Baladi remains inside a single 4/4 cycle. In reference material, Masmoudi Kabir appears within the family of relatively long even-meter rhythms, with strong presence in classical Arab tarab and in certain traditional and instrumental forms. It should therefore not be understood merely as a slow or expanded quadruple meter, but as a rhythm with an extended cycle, broader breathing space, and a stately tarab character. Its length forces the musical phrase to think across a longer span than Maqsum, Baladi, or Sa'idi, which makes it a distinct stage in the temporal feeling of Arabic rhythm."
+  },
+  "other_names": {
+    "ar": [],
+    "en": []
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "بنت البلد",
+        "artist": "محمد عبد الوهاب",
+        "note": "قطعة آلية، 1951"
+      },
+      {
+        "title": "خي خي",
+        "artist": "محمد عبد الوهاب",
+        "note": "1958"
+      },
+      {
+        "title": "رباعيات الخيام",
+        "artist": "أم كلثوم",
+        "note": "1950، من ألحان رياض السنباطي"
+      },
+      {
+        "title": "يا فاتن الغزلان",
+        "artist": "صباح فخري",
+        "note": "موشح"
+      },
+      {
+        "title": "يا شادي الألحان",
+        "artist": "صباح فخري",
+        "note": "موشح"
+      },
+      {
+        "title": "زارني المحبوب",
+        "note": "موشح"
+      }
+    ],
+    "en": [
+      {
+        "title": "Bint El-Balad",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "Instrumental piece, 1951"
+      },
+      {
+        "title": "Khi Khi",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "1958"
+      },
+      {
+        "title": "Rubaiyat Al-Khayyam",
+        "artist": "Umm Kulthum",
+        "note": "1950, composed by Riyad Al-Sunbati"
+      },
+      {
+        "title": "Ya Fatin Al-Ghazlan",
+        "artist": "Sabah Fakhri",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Ya Shadi Al-Alhan",
+        "artist": "Sabah Fakhri",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Zarani Al-Mahbub",
+        "note": "Muwashshah"
+      }
+    ]
+  },
+  "related_rhythms": ["baladi_masmoudi_saghir", "ciftetelli", "wahda_kabira"]
+}
