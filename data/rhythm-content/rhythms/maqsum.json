@@ -1,46 +1,28 @@
 {
   "id": "maqsum",
-  "hero_summary": {
-    "ar": "إيقاع 4/4 أساسي وواسع الانتشار، ويُعد من أكثر الإيقاعات حضورًا في الغناء العربي والأعمال الآلية والتعليم المبدئي.",
-    "en": "A foundational 4/4 rhythm widely used across Arabic songs, instrumental repertoire, and beginner study."
-  },
-  "what_is_it": {
-    "ar": "يقدّم المقسوم مدخلًا عمليًا واضحًا لفهم الإيقاع العربي المنتظم. بناؤه المباشر يجعله مناسبًا للتعلّم، وفي الوقت نفسه يبقى حاضرًا بقوة في الأداء الاحترافي.",
-    "en": "Maqsum offers a clear practical entry point into regular Arabic rhythmic cycles. Its direct structure makes it beginner-friendly while remaining central in professional performance."
-  },
-  "counting": {
-    "ar": "يمكن الإحساس به كدورة رباعية مستقرة. في التدريب الأولي يكفي تثبيت النبض المنتظم ثم تمييز أماكن الضربات القوية والخفيفة داخل الدورة.",
-    "en": "It can be felt as a stable four-beat cycle. In early practice, it is enough to establish a steady pulse and then notice the stronger and lighter beats inside the cycle."
+  "source_context_or_origin": {
+    "ar": "يظهر المقسوم بكثرة في الغناء العربي، والمقدمات، والمرافقة الإيقاعية العامة، لذلك يُعد من أكثر الإيقاعات حضورًا وانتشارًا.",
+    "en": "Maqsum appears widely in Arabic songs, introductions, and general rhythmic accompaniment, making it one of the most common and recognizable rhythms."
   },
   "other_names": {
     "ar": [],
     "en": []
   },
-  "source_context": {
-    "ar": "يظهر المقسوم بكثرة في الأغاني، والمقدمات، والمصاحبة الإيقاعية العامة، لذلك يصلح كنقطة انطلاق ممتازة داخل قسم الإيقاعات.",
-    "en": "Maqsum appears widely in songs, introductions, and general accompaniment, which makes it an excellent starting point inside the rhythms section."
-  },
-  "where_it_appears": {
-    "ar": ["أغاني عربية", "مرافقة إيقاعية عامة", "تدريب مبتدئ"],
-    "en": ["Arabic songs", "General accompaniment", "Beginner study"]
-  },
   "examples": {
     "ar": [
       {
-        "title": "يمكن إضافة اسم أغنية أو قطعة هنا",
-        "artist": "مثال أول"
+        "title": "يمكن إضافة مثال دقيق هنا",
+        "artist": "أغنية أو قطعة آلية",
+        "note": "مثال مؤقت إلى حين إدخال مرجع دقيق ومؤكد."
       }
     ],
     "en": [
       {
-        "title": "Add a song or piece title here",
-        "artist": "Example entry"
+        "title": "Add a precise example here",
+        "artist": "Song or instrumental piece",
+        "note": "Temporary example until a verified reference is added."
       }
     ]
-  },
-  "practice_tip": {
-    "ar": "ابدأ بسرعة ثابتة، وصفّق الدورة كاملة عدة مرات قبل تشغيل التسجيل، ثم ارفع السرعة تدريجيًا فقط بعد ثبات النبض.",
-    "en": "Start with a steady tempo, clap the full cycle several times before playing the audio, and raise the speed only after the pulse feels stable."
   },
   "related_rhythms": ["baladi_masmoudi_saghir", "wahda", "malfuf"]
 }

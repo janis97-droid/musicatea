@@ -10,17 +10,12 @@
       play: "Play Sample",
       pause: "Pause Sample",
       unavailable: "Sample Unavailable",
-      missingSummary: "A fuller summary for this rhythm will be added soon.",
-      whatIsIt: "What is this rhythm",
-      counting: "Counting and feel",
+      sourceContextOrOrigin: "Source context or origin",
       otherNames: "Other names",
-      sourceContext: "Context and usage",
-      whereUsed: "Where it appears",
-      examples: "Examples",
+      examples: "Examples in songs, pieces, or instrumental works",
       exampleBy: "Performed by:",
-      practiceTip: "Practice tip",
       relatedRhythms: "Related rhythms",
-      placeholder: "The page structure is ready. Detailed content for this rhythm can now be added in its JSON file.",
+      placeholder: "You can now add the source context or origin, other names if there are any, examples, and related rhythms for this page.",
       notFound: "This rhythm could not be found."
     }
   });

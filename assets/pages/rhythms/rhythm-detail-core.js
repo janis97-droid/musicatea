@@ -140,9 +140,7 @@
 
   function createHeroMarkup(rhythm, detailContent, lang, labels) {
     const localized = rhythm && rhythm._localized && rhythm._localized[lang] ? rhythm._localized[lang] : {};
-    const summary = detailContent && detailContent.hero_summary
-      ? detailContent.hero_summary
-      : labels.missingSummary;
+    const summary = detailContent && detailContent.hero_summary ? detailContent.hero_summary : "";
     const bpm = Number(rhythm && rhythm.bpm) || DEFAULT_BPM;
 
     return `
@@ -153,7 +151,7 @@
             <span class="rhythm-time-chip">${escapeHtml(rhythm.time_signature || "—")}</span>
           </div>
 
-          <p class="rhythm-hero-summary">${escapeHtml(summary)}</p>
+          ${summary ? `<p class="rhythm-hero-summary">${escapeHtml(summary)}</p>` : ""}
 
           <div class="rhythm-controls-card">
             <div class="rhythm-bpm-row">
@@ -203,13 +201,9 @@
     const detailContent = rawContent ? loader.resolveLocalizedValue(rawContent, lang) : null;
 
     const sectionsMarkup = [
-      createParagraphSection(labels.whatIsIt, detailContent && detailContent.what_is_it),
-      createParagraphSection(labels.counting, detailContent && detailContent.counting),
+      createParagraphSection(labels.sourceContextOrOrigin, detailContent && (detailContent.source_context_or_origin || detailContent.source_context || detailContent.origin)),
       createChipSection(labels.otherNames, detailContent && detailContent.other_names),
-      createParagraphSection(labels.sourceContext, detailContent && detailContent.source_context),
-      createChipSection(labels.whereUsed, detailContent && detailContent.where_it_appears),
-      createExamplesSection(labels.examples, detailContent && detailContent.examples, labels),
-      createParagraphSection(labels.practiceTip, detailContent && detailContent.practice_tip)
+      createExamplesSection(labels.examples, detailContent && detailContent.examples, labels)
     ].filter(Boolean).join("");
 
     root.innerHTML = `
