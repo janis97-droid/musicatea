@@ -259,7 +259,7 @@ const rhythms = [
   {
     id: "murabbaa",
     name: { ar: "مربّع", en: "Murabba'" },
-    time_signature: "13/8",
+    time_signature: "13/4",
     examples: [],
     audio: "media/rhythms/murabbaa.mp3",
     image: "media/rhythms/images/murabbaa.svg"
