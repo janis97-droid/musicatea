@@ -5,6 +5,25 @@
 const sheets = [
  
 {
+    title: "القنطرة",
+    title_en: "Al cantara",
+    system: "arabic",
+    type: "instrumental",
+    composer: "سيمون شاهين",
+    composer_en: "Simon Shaheen",
+    performer: null,
+    performer_en: null,
+    maqam: "كرد",
+    maqam_en: "kurd",
+    scale: null,
+    scale_en: null,
+    tonic: "لا",
+    tonic_en: "A",
+    pdf: "pdfs/al-cantara-simoon-shahin.pdf"
+  },
+
+ 
+ {
     title: "لونجا نهاوند",
     title_en: "Longa Nahawand",
     system: "arabic",
