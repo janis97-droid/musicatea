@@ -1,0 +1,78 @@
+{
+  "id": "fox",
+  "source_context_or_origin": {
+    "ar": "الفوكس هو إيقاع عربي 2/4 بسيط، ويُرجَّح أن اسمه مشتق من Foxtrot الغربي. في الاستعمال العربي لا يُفهم عادةً كإيقاع راقص غربي بالمعنى المباشر، بل كوزن ثنائي سريع، خفيف، وملحّ يُعزف غالباً من غير زخرفة كثيرة، خصوصاً فوق المقاطع الآلية. حضوره الأوضح يكون داخل المواد الآلية، وبخاصة في خانات اللونغا، حيث يعمل بوصفه نبضاً منتظماً وقافزاً يدفع الجملة اللحنية إلى الأمام من دون أن يثقلها. وهو قريب من الملفوف ويمكن أن يتحول إليه بسهولة، لكنه أبسط في تركيبه، أقل ميلاً للزخرفة، وأكثر التصاقاً بالمقاطع الآلية وبروح النبض المنتظم.",
+    "en": "Fox is a simple Arabic 2/4 rhythm whose name is likely derived from the Western Foxtrot. In Arabic practice, however, it is not usually understood as a directly imported Western dance rhythm, but rather as a fast, light, and urgent duple meter often played with little ornamentation, especially in instrumental passages. Its clearest role appears in instrumental material, particularly in the khanat of the longa, where it serves as a regular, springing pulse that drives the melodic line forward without weighing it down. It is close to Malfuf and can shift to and from it easily, but it is structurally simpler, less ornamented, and more closely tied to instrumental passages and the spirit of steady pulse."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Foxtrot"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "لونغا فرحفزا",
+        "artist": "أوركسترا سليم سحاب",
+        "note": "من موسيقى رياض السنباطي"
+      },
+      {
+        "title": "غلبت أصالح في روحي",
+        "artist": "أم كلثوم",
+        "note": "1946، من ألحان رياض السنباطي"
+      },
+      {
+        "title": "الفن",
+        "artist": "محمد عبد الوهاب",
+        "note": "1945"
+      },
+      {
+        "title": "توتا",
+        "artist": "فريد الأطرش",
+        "note": "1942"
+      },
+      {
+        "title": "يا دنيا يا غرامي",
+        "artist": "محمد عبد الوهاب",
+        "note": "1938، مثال على الصيغة الأبطأ التي قد تُدوَّن 4/4"
+      },
+      {
+        "title": "كل ده كان ليه",
+        "artist": "محمد عبد الوهاب",
+        "note": "1954، مثال على الصيغة الأبطأ التي قد تُدوَّن 4/4"
+      }
+    ],
+    "en": [
+      {
+        "title": "Longa Farahfaza",
+        "artist": "Salim Sahab Orchestra",
+        "note": "from music by Riyad Al-Sunbati"
+      },
+      {
+        "title": "Ghalabt Asaleh fi Rouhi",
+        "artist": "Umm Kulthum",
+        "note": "1946, composed by Riyad Al-Sunbati"
+      },
+      {
+        "title": "Al-Fann",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "1945"
+      },
+      {
+        "title": "Tota",
+        "artist": "Farid Al-Atrash",
+        "note": "1942"
+      },
+      {
+        "title": "Ya Donya Ya Gharami",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "1938, an example of the slower form that may be notated in 4/4"
+      },
+      {
+        "title": "Kul Da Kan Leh",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "1954, an example of the slower form that may be notated in 4/4"
+      }
+    ]
+  },
+  "related_rhythms": ["malfuf", "karachi", "fallahi"]
+}
