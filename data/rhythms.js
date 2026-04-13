@@ -186,7 +186,7 @@ const rhythms = [
   {
     id: "bambi",
     name: { ar: "بامبي", en: "Bambi" },
-    time_signature: "8/8",
+    time_signature: "8/4",
     examples: [],
     audio: "media/rhythms/bambi.mp3",
     image: "media/rhythms/images/bambi.svg"
