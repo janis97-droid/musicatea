@@ -1,0 +1,78 @@
+{
+  "id": "karachi",
+  "source_context_or_origin": {
+    "ar": "الكراتشي هو إيقاع عربي 2/4 من عائلة الإيقاعات الثنائية القصيرة، لكنه لا يحمل استعجال الملفوف ولا الإلحاح الترانسي للأيوب. إحساسه العام أبطأ، أهدأ، وأكثر تمهلاً، ولذلك يمكن عزفه على سرعات أبطأ نسبياً من كثير من إيقاعات 2/4 الأخرى. في الشرح العملي يُقدَّم أحياناً بوصفه قلباً بسيطاً لإيقاع الأيوب، وهذا مفيد تربوياً لأنه يوضح أنه يعيش داخل نفس المجال الحركي تقريباً مع الأيوب والملفوف، من غير أن يفقد شخصيته الخاصة. كما أنه ينتقل كثيراً من وإلى الملفوف، لكنه يبقى أقل استعجالاً وأكثر هدوءاً، ويظهر بوضوح في الغناء الطربي العربي الكبير، لا كإيقاع هامشي أو نادر.",
+    "en": "Karachi is an Arabic 2/4 rhythm from the family of short duple-meter rhythms, but it does not carry the urgency of Malfuf or the trance-like insistence of Ayyub. Its overall feel is slower, calmer, and more measured, which allows it to be performed at relatively slower tempos than many other 2/4 rhythms. In practical darbuka teaching it is sometimes presented as a simple inversion of Ayyub, which is pedagogically useful because it shows that Karachi lives in nearly the same kinetic field as Ayyub and Malfuf without losing its own identity. It also moves frequently to and from Malfuf while remaining less hurried and more restrained, and it appears clearly in major Arab tarab repertoire rather than as a marginal or rare rhythm."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Kartachi"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "بعيد عنك",
+        "artist": "أم كلثوم",
+        "note": "1965"
+      },
+      {
+        "title": "سيرة الحب",
+        "artist": "أم كلثوم",
+        "note": "1964"
+      },
+      {
+        "title": "فكروني",
+        "artist": "أم كلثوم",
+        "note": "1966"
+      },
+      {
+        "title": "أمل حياتي",
+        "artist": "أم كلثوم",
+        "note": "1965"
+      },
+      {
+        "title": "دارت الأيام",
+        "artist": "أم كلثوم",
+        "note": "1970"
+      },
+      {
+        "title": "قدّ ذات الجمال أخت الهلال",
+        "artist": "فرقة التراث",
+        "note": "من حلب"
+      }
+    ],
+    "en": [
+      {
+        "title": "Ba'id 'Annak",
+        "artist": "Umm Kulthum",
+        "note": "1965"
+      },
+      {
+        "title": "Sirat Al-Hubb",
+        "artist": "Umm Kulthum",
+        "note": "1964"
+      },
+      {
+        "title": "Fakkarouni",
+        "artist": "Umm Kulthum",
+        "note": "1966"
+      },
+      {
+        "title": "Amal Hayati",
+        "artist": "Umm Kulthum",
+        "note": "1965"
+      },
+      {
+        "title": "Daret Al-Ayyam",
+        "artist": "Umm Kulthum",
+        "note": "1970"
+      },
+      {
+        "title": "Qadd Dhat Al-Jamal Ukht Al-Hilal",
+        "artist": "Firqat Al-Turath",
+        "note": "from Aleppo"
+      }
+    ]
+  },
+  "related_rhythms": ["malfuf", "ayyub", "fox", "fallahi"]
+}
