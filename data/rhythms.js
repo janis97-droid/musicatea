@@ -234,7 +234,7 @@ const rhythms = [
   {
     id: "joobi_iraqi",
     name: { ar: "جوبي عراقي", en: "Joobi Iraqi" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/joobi_iraqi.mp3",
     image: "media/rhythms/images/joobi_iraqi.svg"

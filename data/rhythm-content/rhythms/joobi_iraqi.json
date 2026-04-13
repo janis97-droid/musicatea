@@ -1,0 +1,16 @@
+{
+  "id": "joobi_iraqi",
+  "source_context_or_origin": {
+    "ar": "الجوبي العراقي يُفهم بدقة أكبر بوصفه لوناً غنائياً-راقصاً شعبياً له إيقاعه الخاص، لا مجرد دورة إيقاعية مجرّدة منفصلة عن سياقها. فالمراجع تقدمه أولاً كفن فولكلوري عراقي جماعي تصاحبه رقصة خاصة، وينتشر في بغداد ومدن وقرى عراقية أخرى مع اختلافات محلية واضحة من منطقة إلى أخرى في الأداء والأغاني والآلات. شخصيته الحقيقية تظهر مع الخطوة الجماعية ودكّ الأرض والنداء الشعبي المصاحب له، لا من خلال الوزن النظري وحده. وفي الاستعمال التعليمي المعاصر الخاص بالإيقاعات الشرقية يُدرَّس الجوبي غالباً بوصفه إيقاعاً في 4/4، وتميّزه العملي الأشهر أن في بدايته ثلاث دُمّات متتالية، وهذا ما يفرّقه عن كثير من إيقاعات الدبكة الشامية الأكثر شيوعاً. ومع ذلك يجب أن يبقى واضحاً أن الجوبي فن شعبي حي له تنويعات محلية، لذلك لا ينبغي تقديم هذا الشكل وكأنه الصيغة الوحيدة المغلقة في كل العراق.",
+    "en": "Joobi Iraqi is understood more accurately as a popular sung-and-danced Iraqi folk genre with its own rhythm, rather than as an abstract rhythmic cycle detached from its context. Sources present it first as a collective Iraqi folkloric form accompanied by a characteristic dance, and it is found in Baghdad and in other Iraqi towns and villages with clear local variations in performance, songs, and instruments from one area to another. Its real identity appears together with the group step, the stamping of the ground, and the accompanying popular calls, not through theoretical meter alone. In contemporary pedagogical treatments of Middle Eastern rhythms, Joobi is often taught as a 4/4 pattern, and its best-known practical mark is the presence of three consecutive Dum strokes at the opening of the measure, which distinguishes it from many more familiar Levantine dabke rhythms. Even so, it should remain clear that Joobi is a living folk form with local variants, so this teaching form should not be presented as the only closed version for all of Iraq."
+  },
+  "other_names": {
+    "ar": ["الجوبي"],
+    "en": ["Joobi", "Chobi"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["lebanese_dabke", "sudasi"]
+}
