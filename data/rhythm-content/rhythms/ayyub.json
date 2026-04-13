@@ -1,0 +1,42 @@
+{
+  "id": "ayyub",
+  "source_context_or_origin": {
+    "ar": "الأيوب هو إيقاع عربي 2/4 يُستعمل أساساً في الموسيقى الصوفية، كما يحضر في بعض الموسيقى الشعبية والرقص الشرقي. تذكر المراجع المتخصصة أنه يُسمّى أحياناً في مصر الزار، نسبةً إلى طقس شعبي علاجي تقوده نساء مع آلات إيقاعية يدوية. شخصيته العامة سريعة، قصيرة، دائرية، ومتكررة الإحساس، لكن دفعه ليس خفة الملفوف نفسها، بل دفع فيه إلحاح واستغراق وترانس واضح. ولهذا يرتبط كثيراً بالسياقات التي تحتاج إلى دوران مستمر ونبض طقسي أو روحي أكثر من ارتباطه بالأغنية الخفيفة اليومية.",
+    "en": "Ayyub is an Arabic 2/4 rhythm used primarily in Sufi music, while also appearing in some popular music and belly dance contexts. Specialized references note that in Egypt it is sometimes called Zaar, in connection with a women-led healing ritual accompanied by hand percussion. Its overall character is fast, short, circular, and repetitive in feel, but its drive is not the same light turning motion of Malfuf; rather, it carries insistence, immersion, and a trance-like quality. For that reason, it is strongly associated with contexts that require continuous rotation and a ritual or spiritual pulse more than with everyday light song."
+  },
+  "other_names": {
+    "ar": ["أيوب", "عيّوب", "الزار"],
+    "en": ["Ayoub", "Ayyub", "Zaar"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "أتاني زماني",
+        "artist": "نور الدين خورشيد ودراويش دمشق"
+      },
+      {
+        "title": "يا من نشا",
+        "artist": "ريما خشيش مع أوركسترا سليم سحاب"
+      },
+      {
+        "title": "تجلّت وانجلت ليلاً",
+        "artist": "الشيخ حمزة شكور و Ensemble Al Kindi"
+      }
+    ],
+    "en": [
+      {
+        "title": "Atani Zamani",
+        "artist": "Nour Eddine Khourchid and the Whirling Dervishes of Damascus"
+      },
+      {
+        "title": "Ya Man Nasha",
+        "artist": "Rima Khcheich with the Salim Sahab Orchestra"
+      },
+      {
+        "title": "Tajallat wa Anjalat Laylan",
+        "artist": "Sheikh Hamza Shakkur and Ensemble Al Kindi"
+      }
+    ]
+  },
+  "related_rhythms": ["malfuf", "karachi"]
+}
