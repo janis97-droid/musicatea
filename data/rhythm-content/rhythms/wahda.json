@@ -1,0 +1,78 @@
+{
+  "id": "wahda",
+  "source_context_or_origin": {
+    "ar": "الوحدة الصغيرة هي إيقاع عربي 2/4 بسيط، ويُعرف أيضاً باسم الوحدة البسيطة، وفي بعض المراجع باسم الوحدة السائرة. المقصود بكلمة وحدة هنا هو وجود دُم واحدة في الدورة، بينما صغيرة تعني أنها الصيغة المختصرة من عائلة الوحدة، لا الوحدة الأساسية المعروفة في 4/4. في الممارسة الموسيقية تُستعمل في الجمل الغنائية والآلية معاً، لكن بعض التحليلات تشير إلى أن حضورها يكون أوضح كثيراً في المقاطع والمقدمات الآلية، بينما تبقى الوحدة 4/4 أكثر التصاقاً بالجمل الغنائية الطربية. إحساسها العام مفتوح وخفيف ومنظم: ليست ملفوفاً سريعاً، وليست وحدة كبيرة متمددة، بل حل وسط قصير ونظيف يترك فراغاً مسموعاً حول الجملة من دون أن يفقد وضوح النبض.",
+    "en": "Wahda Saghira is a simple Arabic 2/4 rhythm, also known as Wahda Basita and in some references as Wahda Saira. The word wahda here refers to the presence of a single Dum in the cycle, while saghira indicates that it is the shorter form within the Wahda family rather than the main 4/4 Wahda. In musical practice it is used in both vocal and instrumental phrases, although some analytical writing notes that it appears especially clearly in instrumental passages and introductions, while the 4/4 Wahda remains more closely tied to tarab-oriented vocal lines. Its overall feel is open, light, and orderly: it is neither a fast-turning Malfuf nor an extended large Wahda, but a short, clean middle ground that leaves audible space around the phrase without losing pulse clarity."
+  },
+  "other_names": {
+    "ar": ["الوحدة البسيطة", "الوحدة السائرة"],
+    "en": ["Wahda Basita", "Wahda Saira"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "دارت الأيام",
+        "artist": "أم كلثوم",
+        "note": "1970، من ألحان محمد عبد الوهاب"
+      },
+      {
+        "title": "الأطلال",
+        "artist": "أم كلثوم",
+        "note": "1966، من ألحان رياض السنباطي"
+      },
+      {
+        "title": "على حسب وداد قلبي",
+        "artist": "عبد الحليم حافظ",
+        "note": "1953"
+      },
+      {
+        "title": "مضناك",
+        "artist": "محمد عبد الوهاب",
+        "note": "1938"
+      },
+      {
+        "title": "نبتدي منين الحكاية",
+        "artist": "عبد الحليم حافظ",
+        "note": "1975"
+      },
+      {
+        "title": "قال إيه بيسألوني",
+        "artist": "وردة",
+        "note": "من ألحان سيد مكاوي"
+      }
+    ],
+    "en": [
+      {
+        "title": "Daret Al-Ayyam",
+        "artist": "Umm Kulthum",
+        "note": "1970, composed by Mohammed Abdel Wahab"
+      },
+      {
+        "title": "Al-Atlal",
+        "artist": "Umm Kulthum",
+        "note": "1966, composed by Riyad Al-Sunbati"
+      },
+      {
+        "title": "Ala Hasab Widad Qalbi",
+        "artist": "Abdel Halim Hafez",
+        "note": "1953"
+      },
+      {
+        "title": "Mudnaka",
+        "artist": "Mohammed Abdel Wahab",
+        "note": "1938"
+      },
+      {
+        "title": "Nebtedi Minen El-Hekaya",
+        "artist": "Abdel Halim Hafez",
+        "note": "1975"
+      },
+      {
+        "title": "Qal Eih Beys'alouni",
+        "artist": "Warda",
+        "note": "Composed by Sayed Mekawy"
+      }
+    ]
+  },
+  "related_rhythms": ["wahda_kabira", "malfuf", "fox"]
+}
