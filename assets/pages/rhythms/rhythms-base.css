@@ -113,7 +113,7 @@
 #rhythms-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 18px;
   width: 100%;
   max-width: none;
   align-items: stretch;
@@ -122,14 +122,14 @@
 .rhythm-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
   min-width: 0;
   min-height: 0;
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 18px;
+  border-radius: 18px;
+  padding: 15px;
   transition: all 0.28s var(--ease);
 }
 
@@ -148,7 +148,7 @@ body[dir="rtl"] .rhythm-card-header {
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: start;
-  gap: 12px;
+  gap: 10px;
 }
 
 body[dir="rtl"] .rhythm-card .time-sig {
@@ -163,7 +163,7 @@ body[dir="ltr"] .rhythm-card-header {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
-  gap: 12px;
+  gap: 10px;
 }
 
 body[dir="ltr"] .rhythm-card .time-sig {
@@ -181,8 +181,8 @@ body[dir="ltr"] .rhythm-card-title-wrap {
 .rhythm-card h3 {
   margin: 0;
   color: var(--gold-light);
-  font-size: 1.14rem;
-  line-height: 1.2;
+  font-size: 1.06rem;
+  line-height: 1.18;
   font-weight: 900;
 }
 
@@ -190,13 +190,13 @@ body[dir="ltr"] .rhythm-card-title-wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 30px;
-  padding: 5px 10px;
+  min-height: 28px;
+  padding: 4px 9px;
   border-radius: 999px;
   border: 1px solid var(--gold);
   background: var(--surface);
   color: var(--text-muted);
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   font-weight: 800;
   white-space: nowrap;
   direction: ltr;
@@ -206,45 +206,45 @@ body[dir="ltr"] .rhythm-card-title-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 136px;
-  border-radius: 18px;
+  min-height: 118px;
+  border-radius: 16px;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.012) 100%);
   border: 1px solid rgba(255,255,255,0.06);
-  padding: 12px;
+  padding: 10px;
 }
 
 .rhythm-image {
   display: block;
   width: 100%;
   max-width: 100%;
-  max-height: 175px;
+  max-height: 150px;
   object-fit: contain;
 }
 
 .rhythm-image-fallback-empty {
   width: 100%;
-  min-height: 110px;
+  min-height: 100px;
 }
 
 .rhythm-card-footer {
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid var(--border2);
 }
 
 .rhythm-card-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--text-muted);
-  font-size: 0.88rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 900;
 }
 
 .rhythm-card-cta svg {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   color: var(--gold);
   flex-shrink: 0;
   transition: transform 0.25s var(--ease);
@@ -254,8 +254,12 @@ body[dir="ltr"] .rhythm-card-title-wrap {
   color: var(--text);
 }
 
+body[dir="rtl"] .rhythm-card-cta svg {
+  transform: rotate(180deg);
+}
+
 body[dir="rtl"] .rhythm-card-link:hover .rhythm-card-cta svg {
-  transform: translateX(-2px);
+  transform: rotate(180deg) translateX(-2px);
 }
 
 body[dir="ltr"] .rhythm-card-link:hover .rhythm-card-cta svg {
@@ -289,7 +293,7 @@ body[dir="ltr"] .rhythm-card-link:hover .rhythm-card-cta svg {
 
   #rhythms-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 20px;
   }
 }
 

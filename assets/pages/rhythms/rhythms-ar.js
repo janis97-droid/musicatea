@@ -14,7 +14,7 @@
   const labels = {
     allSignatures: "زمن الإيقاع",
     empty: "لا توجد نتائج مطابقة",
-    openPage: "صفحة الإيقاع"
+    openPage: "لصفحة الإيقاع"
   };
 
   core.fillTimeSignatureFilter(timeFilter, data, labels.allSignatures);
@@ -43,7 +43,7 @@
       <div class="rhythm-card-footer">
         <span class="rhythm-card-cta">
           <span>${labels.openPage}</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true">
             <path d="M5 12h14"></path>
             <path d="M13 6l6 6-6 6"></path>
           </svg>
