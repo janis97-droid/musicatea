@@ -192,14 +192,6 @@ const rhythms = [
     image: "media/rhythms/images/bambi.svg"
   },
   {
-    id: "saudi",
-    name: { ar: "سعودي", en: "Saudi" },
-    time_signature: "2/4",
-    examples: [],
-    audio: "media/rhythms/saudi.mp3",
-    image: "media/rhythms/images/saudi.svg"
-  },
-  {
     id: "wahda_ghayr_mulaaba",
     name: { ar: "وحدة غير ملعّبة", en: "Wahda Ghayr Mulaaba" },
     time_signature: "4/4",
