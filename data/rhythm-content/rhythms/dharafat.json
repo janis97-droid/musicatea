@@ -1,0 +1,56 @@
+{
+  "id": "dharafat",
+  "source_context_or_origin": {
+    "ar": "الظرافات هو إيقاع عربي 13/8، ويُكتب في المرجع الإنجليزي أيضاً Dharafat أو Zarafat. وهو من الإيقاعات الطويلة غير المتناظرة، لكن موضعه الطبيعي ليس بين الإيقاعات العامة الشائعة في كل الألوان، بل في قالب الموشّح بالدرجة الأولى. أهم ما يميّزه أنه يُستعمل غالباً في الموشّح، لكنه قد يظهر أحياناً خارج هذا القالب في الأغنية الحديثة، وعندها يعطي العمل لوناً تقليدياً وكلاسيكياً لأنه يستدعي سمعياً الريبرتوار القديم. شخصيته مركّبة ومائلة داخلياً، لذلك لا يُفهم جيداً إذا عُدَّ كأنه ثلاث عشرة نبضة متساوية فقط؛ بل يجب أن يُسمع كقوس طويل غير متناظر. وهذا ما يجعله مناسباً للموشّح أكثر من الألوان الأخف أو الأكثر مباشرة. كما أن المقارنة مع المربّع مفيدة هنا: الظرافات 13/8 بينما المربّع 13/4، وكلاهما من الإيقاعات الطويلة المرتبطة بالموشح، لكن الظرافات أوضح في كونه إيقاعاً كسرياً ومجزّأً داخل 13/8، بينما المربّع أوسع في إحساسه الزمني بسبب كونه 13/4.",
+    "en": "Dharafat is an Arabic 13/8 rhythm, also written in the English reference as Dharafat or Zarafat. It belongs to the family of long asymmetrical rhythms, yet its natural place is not among the general-purpose rhythms found across all styles, but primarily within the muwashshah form. What distinguishes it most is that it is used mainly in the muwashshah, although it may also appear at times outside that form in modern song, where it lends the work a traditional or classical color by evoking older repertoire. Its character is composite and internally tilted, which means it is not understood well as merely thirteen equal pulses, but rather as a long asymmetrical arc. That is precisely what makes it more suitable for the muwashshah than for lighter or more direct genres. The comparison with Murabba' is especially useful here: Dharafat is 13/8 whereas Murabba' is 13/4. Both belong to the family of long muwashshah-associated rhythms, but Dharafat is more clearly felt as a subdivided and fractional 13/8 cycle, while Murabba' feels broader in temporal span because it is cast in 13/4."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Dharafat", "Zarafat"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "طف يا دُرّي بالقناني",
+        "artist": "فرقة الكندي",
+        "note": "من ألحان عمر البطش"
+      },
+      {
+        "title": "والذي ولاك قلبي",
+        "artist": "فرقة مرقس"
+      },
+      {
+        "title": "الحب كله",
+        "artist": "أم كلثوم",
+        "note": "1971، من ألحان بليغ حمدي"
+      },
+      {
+        "title": "مستنّياك",
+        "artist": "عزيزة جلال",
+        "note": "من ألحان بليغ حمدي"
+      }
+    ],
+    "en": [
+      {
+        "title": "Tuf Ya Durri Bil-Qanani",
+        "artist": "Al-Kindi Ensemble",
+        "note": "Composed by Umar Al-Batsh"
+      },
+      {
+        "title": "Walladhi Wallaka Qalbi",
+        "artist": "Ensemble Morkos"
+      },
+      {
+        "title": "Al-Hubb Kullu",
+        "artist": "Umm Kulthum",
+        "note": "1971, composed by Baligh Hamdi"
+      },
+      {
+        "title": "Mestanniyak",
+        "artist": "Aziza Jalal",
+        "note": "Composed by Baligh Hamdi"
+      }
+    ]
+  },
+  "related_rhythms": ["murabbaa", "aqsaq", "samai_thaqil"]
+}
