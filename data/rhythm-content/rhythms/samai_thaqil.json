@@ -1,0 +1,76 @@
+{
+  "id": "samai_thaqil",
+  "source_context_or_origin": {
+    "ar": "السماعي الثقيل هو إيقاع عربي 10/8، ويُسمّى أحياناً اختصاراً السماعي فقط. وهو من أهم الإيقاعات في الموسيقى العربية الكلاسيكية، لأنه شائع جداً في غناء الموشحات، وهو أيضاً الإيقاع الرئيس في قالب السماعي التركي/العثماني الآلي. هذه المكانة لا تأتي من مجرد شيوعه، بل من وظيفته البنيوية أيضاً؛ فالمرجع يذكر أن أقسام السماعي الأربعة مع التسليم تُؤلَّف كلها في السماعي الثقيل، باستثناء الخانة الرابعة التي تأتي عادةً على إيقاع أقصر وأخف. لذلك فالسماعي الثقيل ليس مجرد 10/8 آخر، بل أحد الأعمدة الإيقاعية المركزية في التراث العربي-العثماني المشترك، ويُفهم بوصفه إيقاعاً وقوراً ومنظماً يخدم اللحن الكلاسيكي المؤلف أكثر مما يخدم الاستعراض الإيقاعي المجرد. كما أنه يختلف بوضوح عن الجورجينا رغم اشتراكهما في 10/8، لأن ارتباطه المرجعي الأوضح هو الموشح وقالب السماعي لا الفضاء العراقي-الإيراني-التركي-الكردي الأوسع.",
+    "en": "Sama'i Thaqil is an Arabic 10/8 rhythm, sometimes referred to simply as Sama'i. It is one of the most important rhythms in classical Arabic music because it is highly common in muwashshah singing, and it is also the principal rhythm of the Ottoman-Turkish instrumental sama'i form. This importance does not come only from frequency of use, but also from structural function: the reference notes that the four khanat of the sama'i together with the taslim are composed in Sama'i Thaqil, with the usual exception of the fourth khana, which tends to move to a shorter and lighter rhythm. For that reason, Sama'i Thaqil is not just another 10/8 pattern, but one of the central rhythmic pillars of the shared Arab-Ottoman tradition, understood as a dignified and ordered rhythm that serves composed classical melody more than it serves rhythm display for its own sake. It also differs clearly from Jurjina despite sharing 10/8, because its strongest reference association is with the muwashshah and the sama'i form rather than with the broader Iraqi-Iranian-Turkish-Kurdish sphere."
+  },
+  "other_names": {
+    "ar": ["السماعي"],
+    "en": ["Sama'i"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "سماعي بياتي",
+        "artist": "إبراهيم العريان"
+      },
+      {
+        "title": "أعطني بكرا الدنان",
+        "artist": "أوركسترا سليم سحاب",
+        "note": "موشح"
+      },
+      {
+        "title": "املأ لي الأقداح صرفاً",
+        "artist": "الشيخ حمزة شكور مع Ensemble Al Kindi",
+        "note": "موشح"
+      },
+      {
+        "title": "لها بدر التم",
+        "artist": "فرقة عبد الحليم نويرة",
+        "note": "موشح"
+      },
+      {
+        "title": "رشيق القدّ وطرّز الريحان",
+        "artist": "Ensemble Morkos",
+        "note": "موشح"
+      },
+      {
+        "title": "يا غصين البان",
+        "artist": "صبري المدلل",
+        "note": "من ألحان سيد درويش"
+      }
+    ],
+    "en": [
+      {
+        "title": "Sama'i Bayati",
+        "artist": "Ibrahim Al-Aryan"
+      },
+      {
+        "title": "A'tini Bakra Al-Danan",
+        "artist": "Salim Sahab Orchestra",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Imla' Li Al-Aqdah Sarfan",
+        "artist": "Sheikh Hamza Shakkur with Ensemble Al Kindi",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Laha Badr Al-Tamm",
+        "artist": "Abdel Halim Nuweira Ensemble",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Rashiq Al-Qadd wa Tarraz Al-Rayhan",
+        "artist": "Ensemble Morkos",
+        "note": "Muwashshah"
+      },
+      {
+        "title": "Ya Ghusayn Al-Ban",
+        "artist": "Sabri Al-Mudallal",
+        "note": "Composed by Sayed Darwish"
+      }
+    ]
+  },
+  "related_rhythms": ["jurjina", "samai_darij"]
+}
