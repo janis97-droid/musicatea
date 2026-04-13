@@ -1,0 +1,102 @@
+{
+  "id": "aqsaq",
+  "source_context_or_origin": {
+    "ar": "الأقساق، ويُكتب أيضاً الأقصاق، هو إيقاع 9/8 من الإيقاعات الطويلة غير الزوجية، ويرتبط في الممارسة العربية غالباً بغناء الموشحات أكثر من ارتباطه بالأغنية الشعبية أو الطربية الخفيفة. وتذكر المراجع أن كلمة Aksak التركية تعني الأعرج أو المائل، وهو معنى ينسجم مباشرةً مع إحساسه الداخلي غير المتناظر. أهم ما يميّزه عملياً قربه الشديد من السماعي الثقيل 10/8؛ فهو يبدو كأنه أقصر منه بنبضة واحدة، ولذلك يمكن أحياناً أن يُعزف قبله أو بعده داخل الوصلة من غير انقطاع حاد في الإحساس. كما تذكر المراجع صيغة ثانية للأقساق تُستبدل فيها السكوتة على النبضة السادسة بدُم أخرى، فينشأ تتابع دُمّين متتاليتين يقرّب الإيقاع سمعياً من السماعي الثقيل من غير أن يذوبه فيه تماماً. لذلك فالأقساق لا يُفهم جيداً كـ9/8 عام فقط، بل كإيقاع موشحي ذو ميل داخلي خاص وشخصية مائلة غير متناظرة.",
+    "en": "Aqsaq, also written as Aqsāq or Aksak, is a 9/8 rhythm belonging to the family of long asymmetrical meters, and in Arabic practice it is associated primarily with the muwashshah repertoire more than with light popular song or mainstream tarab song. References note that the Turkish word aksak means limping or uneven, a meaning that aligns directly with the rhythm’s asymmetrical inner feeling. What distinguishes it most in practice is its close proximity to Sama'i Thaqil in 10/8: it can feel like a version from the same space but shortened by one beat, which is why it may sometimes be played before or after Sama'i Thaqil within a wasla without causing a sharp break in feeling. References also describe a second form of Aqsaq in which the rest on the sixth beat is replaced by another Dum, creating a pair of consecutive Dum strokes that brings it sonically closer to Sama'i Thaqil without completely dissolving into it. For that reason, Aqsaq should not be understood merely as a general 9/8 rhythm, but as a muwashshah rhythm with a distinctive internal tilt and asymmetrical profile."
+  },
+  "other_names": {
+    "ar": ["الأقصاق"],
+    "en": ["Aksak", "Aqsāq"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "ما احتيالي",
+        "artist": "لويس حايك وعايدة شلهوب"
+      },
+      {
+        "title": "أنا من وجدي أنا",
+        "artist": "عائشة رضوان"
+      },
+      {
+        "title": "جلّ من بالحسن صوّر",
+        "artist": "فرقة عبد الحليم نويرة",
+        "note": "من ألحان كامل الخلعي"
+      },
+      {
+        "title": "السمع والراح",
+        "artist": "إبراهيم الحجار",
+        "note": "من ألحان داود حسني"
+      },
+      {
+        "title": "بشرف بلبل الأفراح",
+        "artist": "Ensemble Morkos"
+      },
+      {
+        "title": "ما احتيالي",
+        "artist": "فرقة التراث",
+        "note": "مثال على الصيغة الثانية"
+      },
+      {
+        "title": "أيها الساقي",
+        "artist": "صباح فخري",
+        "note": "من ألحان مجدي العقيلي، مثال على الصيغة الثانية"
+      },
+      {
+        "title": "عذبوني",
+        "artist": "فرقة الكندي",
+        "note": "من ألحان عمر البطش، مثال على الصيغة الثانية"
+      },
+      {
+        "title": "بأبي بهي الجمال",
+        "artist": "محمد خيري",
+        "note": "مثال على الصيغة الثانية"
+      }
+    ],
+    "en": [
+      {
+        "title": "Ma Ihtiyali",
+        "artist": "Louis Hayek and Aida Chelloub"
+      },
+      {
+        "title": "Ana Min Wajdi Ana",
+        "artist": "Aisha Radwan"
+      },
+      {
+        "title": "Jalla Man Bil-Husn Sawwar",
+        "artist": "Abdel Halim Nuweira Ensemble",
+        "note": "Composed by Kamel Al-Khulai"
+      },
+      {
+        "title": "Al-Sam'u wa Al-Rah",
+        "artist": "Ibrahim Al-Hajjar",
+        "note": "Composed by Dawud Husni"
+      },
+      {
+        "title": "Bashraf Bulbul Al-Afrah",
+        "artist": "Ensemble Morkos"
+      },
+      {
+        "title": "Ma Ihtiyali",
+        "artist": "Firqat Al-Turath",
+        "note": "An example of the second form"
+      },
+      {
+        "title": "Ayyuha Al-Saqi",
+        "artist": "Sabah Fakhri",
+        "note": "Composed by Majdi Al-Uqayli, an example of the second form"
+      },
+      {
+        "title": "Adhhabuni",
+        "artist": "Al-Kindi Ensemble",
+        "note": "Composed by Umar Al-Batsh, an example of the second form"
+      },
+      {
+        "title": "Bi-Abi Bahi Al-Jamal",
+        "artist": "Mohammad Khairy",
+        "note": "An example of the second form"
+      }
+    ]
+  },
+  "related_rhythms": ["samai_thaqil"]
+}
