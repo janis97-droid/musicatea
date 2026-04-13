@@ -1,0 +1,48 @@
+{
+  "id": "thurayya",
+  "source_context_or_origin": {
+    "ar": "الثريا هو إيقاع عربي 5/8، ويُسمّى أيضاً الأقساق التركي أو Aqsaq Turki. وهو إيقاع نادر جداً مقارنة بالإيقاعات العربية الأشهر، ويظهر استعماله أساساً في قالب الموشح الغنائي لا في الاستعمال العام الواسع. ما يميّزه أنه من الإيقاعات الفردية القصيرة: ليس رباعياً مستقيم الحركة مثل المقسوم أو الوحدة، وليس طويلاً مثل السماعي الثقيل أو الأقساق 9/8، بل دورة قصيرة من 5/8 تعطيه إحساساً مائلاً وخاطفاً. وارتباطه باسم الأقساق التركي يربطه مباشرةً بعائلة الإيقاعات التركية غير المتناظرة من نوع aksak، أي الإيقاعات التي لا تمشي على تناظر زوجي مستقيم. لذلك لا يُفهم الثريا جيداً كأنه مجرد عدّ إلى خمسة، بل بوصفه إيقاعاً غير متناظر قصير الدورة، متخصصاً في الريبرتوار الموشحي أكثر من غيره.",
+    "en": "Thurayya is an Arabic 5/8 rhythm, also known as Aqsaq Turki or Turkish Aksak. It is a very rare rhythm compared with the more common Arabic iqa'at, and its use appears mainly in the vocal muwashshah form rather than in broad general practice. What distinguishes it is that it belongs to the family of short asymmetrical rhythms: it is neither a straight-moving quadruple meter like Maqsum or Wahda, nor a longer cycle like Sama'i Thaqil or Aqsaq in 9/8, but instead a short 5/8 cycle that gives it a slanted and fleeting feel. Its association with the term Aqsaq Turki connects it directly to the Turkish aksak family of asymmetrical rhythms, that is, rhythms that do not move in even symmetrical balance. For that reason, Thurayya should not be understood simply as counting to five, but as a short asymmetrical cycle whose natural home is the muwashshah repertoire."
+  },
+  "other_names": {
+    "ar": ["الأقساق التركي"],
+    "en": ["Aqsaq Turki", "Turkish Aksak"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "في الروض أنا شفت الجميل",
+        "artist": "صباح فخري",
+        "note": "من ألحان عمر البطش"
+      },
+      {
+        "title": "فتّاكة اللحظ ممشوقة القدّ",
+        "artist": "كريم عزب",
+        "note": "من ألحان عمر البطش"
+      },
+      {
+        "title": "قالت علامَ الرضا",
+        "artist": "سحر",
+        "note": "من ألحان الشيخ علي الدرويش"
+      }
+    ],
+    "en": [
+      {
+        "title": "Fi Al-Rawd Ana Shift Al-Jamil",
+        "artist": "Sabah Fakhri",
+        "note": "Composed by Umar Al-Batsh"
+      },
+      {
+        "title": "Fattakat Al-Lahz Mamshuqatu Al-Qadd",
+        "artist": "Karim Azab",
+        "note": "Composed by Umar Al-Batsh"
+      },
+      {
+        "title": "Qalat 'Allama Al-Rida",
+        "artist": "Sahar",
+        "note": "Composed by Sheikh Ali Al-Darwish"
+      }
+    ]
+  },
+  "related_rhythms": ["aqsaq", "samai_thaqil"]
+}
