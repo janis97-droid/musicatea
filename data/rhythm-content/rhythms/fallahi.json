@@ -1,0 +1,46 @@
+{
+  "id": "fallahi",
+  "source_context_or_origin": {
+    "ar": "الفلاحي هو إيقاع عربي 2/4 سريع الإحساس، مصري الطابع، ويُستعمل أساساً في الموسيقى الشعبية. ورغم أنه قد يشبه المقسوم إذا عُزف بسرعة مضاعفة، فإن هذا التشابه يبقى شكلياً فقط، لأن إحساس الفلاحي مختلف بوضوح: فهو يجري بسلاسة متصلة ومن دون تباين حاد في النبر بين الدُم والتك. داخل عائلة الإيقاعات الثنائية القصيرة يحتفظ الفلاحي بظل واضح من المقسوم المصري، لكنه يعمل داخل 2/4 لا 4/4، ولذلك يُفهم أفضل حين يُقارن بالملفوف والأيوب والفوكس والكراتشي والوحدة الصغيرة. حضوره المرجعي يرتبط بوضوح بالموسيقى الشعبية المصرية، حيث تظهر شخصيته السريعة والمنسابة والطاقة المباشرة التي تدفع الجملة إلى الأمام من دون تقطيع ثقيل.",
+    "en": "Fallahi is an Arabic 2/4 rhythm with a fast feel, distinctly Egyptian in character, and used mainly in popular music. Although it can resemble Maqsum when played at double speed, that resemblance is only superficial, because Fallahi has a clearly different feel: it flows with continuous smoothness and without a sharp contrast between dum and tak accents. Within the family of short duple rhythms, Fallahi retains a clear shadow of Egyptian Maqsum, yet it operates in 2/4 rather than 4/4, which is why it is best understood in relation to Malfuf, Ayyub, Fox, Karachi, and Wahda Saghira. Its reference use is strongly tied to Egyptian popular music, where its quick, smooth, and direct energy drives the phrase forward without heavy segmentation."
+  },
+  "other_names": {
+    "ar": [],
+    "en": []
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "البنت بيضا",
+        "artist": "متقال قنّاوي"
+      },
+      {
+        "title": "هزّ يا حب",
+        "artist": "أحمد عدوية",
+        "note": "من ألحان حسن أبو السعود"
+      },
+      {
+        "title": "سلامتها أم حسن",
+        "artist": "أحمد عدوية",
+        "note": "من ألحان فاروق سلامة"
+      }
+    ],
+    "en": [
+      {
+        "title": "Al-Bint Bayda",
+        "artist": "Metqal Qenawi"
+      },
+      {
+        "title": "Hazz Ya Hubb",
+        "artist": "Ahmed Adaweya",
+        "note": "Composed by Hassan Abu Al-Saud"
+      },
+      {
+        "title": "Salametha Om Hassan",
+        "artist": "Ahmed Adaweya",
+        "note": "Composed by Farouk Salama"
+      }
+    ]
+  },
+  "related_rhythms": ["maqsum", "malfuf", "fox", "karachi", "ayyub"]
+}
