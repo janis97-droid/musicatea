@@ -1,0 +1,68 @@
+{
+  "id": "sudasi",
+  "source_context_or_origin": {
+    "ar": "السداسي هو إيقاع عربي 6/4، وهو الاسم المرجعي الأدق في دليل الإيقاعات العربي القياسي، لا المسدس. وتصفه المراجع بأنه إيقاع شائع جداً لمرافقة الرقصات الشعبية الصفّية في لبنان وفلسطين، وخصوصاً الدبكة. لذلك فهويته ليست طربية مفتوحة مثل الوحدة، ولا لافّة قصيرة مثل الملفوف، بل مرتبطة مباشرة بالخطوة الجماعية والأرضية الراقصة الواضحة. كما أن له علاقة عملية مهمة بالملفوف، إذ يمكن أن يتحول إلى ثلاثة موازير متتالية من الملفوف، وهو ما يفسر بعض القرابة السمعية بين جمل الدبكة المبنية عليه وبين نبض الملفوف. وتذكر المراجع أيضاً صيغة ثانية له تبدأ بثلاث دُمّات متتالية، وهي شائعة في أغاني الدبكة اللبنانية. لهذا فالسداسي لا يُفهم جيداً كـ6/4 عام بلا هوية، بل كإيقاع دبكة جماعي واضح الشخصية مرتبط بالأغنية الشعبية اللبنانية والفلسطينية.",
+    "en": "Sudasi is an Arabic 6/4 rhythm, and this is the more accurate reference name in the standard Arabic rhythm guide rather than Musaddas. Reference material describes it as a very common rhythm for accompanying line folk dances in Lebanon and Palestine, especially the dabke. Its identity is therefore neither tarab-oriented and open like Wahda, nor short and curling like Malfuf, but directly tied to the collective step and to a clear dance-ground pulse. It also has an important practical relationship with Malfuf, since it can transform into three consecutive measures of Malfuf, which helps explain the audible kinship between some dabke phrases built on Sudasi and the pulse of Malfuf. References also describe a second form of Sudasi that begins with three consecutive Dum strokes, and this variant is common in Lebanese dabke songs. For that reason, Sudasi should not be understood as a generic 6/4 meter without identity, but as a clearly characterized communal dabke rhythm tied to Lebanese and Palestinian popular song."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Sudasi"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "دلعونا",
+        "artist": "فيروز",
+        "note": "من الفولكلور اللبناني"
+      },
+      {
+        "title": "يا محلى ليالي الهوى",
+        "artist": "فيروز",
+        "note": "1963، من ألحان وكلمات الأخوين رحباني"
+      },
+      {
+        "title": "يا هاجل صنين",
+        "artist": "فيروز",
+        "note": "1965، من فيلم بياع الخواتم"
+      },
+      {
+        "title": "يا تراب عينطورة",
+        "artist": "فيروز ووديع الصافي ونصري شمس الدين",
+        "note": "مثال على الصيغة الثانية"
+      },
+      {
+        "title": "يا بعلبك",
+        "artist": "تانيا صالح",
+        "note": "مثال على الصيغة الثانية"
+      }
+    ],
+    "en": [
+      {
+        "title": "Dal'ona",
+        "artist": "Fairuz",
+        "note": "From Lebanese folklore"
+      },
+      {
+        "title": "Ya Mahla Layali Al-Hawa",
+        "artist": "Fairuz",
+        "note": "1963, words and music by the Rahbani Brothers"
+      },
+      {
+        "title": "Ya Hajel Snine",
+        "artist": "Fairuz",
+        "note": "1965, from the film Biyā' Al-Khawatim"
+      },
+      {
+        "title": "Ya Turab Aintoura",
+        "artist": "Fairuz, Wadih Al-Safi, and Nasri Shamseddine",
+        "note": "An example of the second form"
+      },
+      {
+        "title": "Ya Baalbak",
+        "artist": "Tania Saleh",
+        "note": "An example of the second form"
+      }
+    ]
+  },
+  "related_rhythms": ["malfuf", "lebanese_dabke"]
+}
