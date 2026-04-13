@@ -1,0 +1,46 @@
+{
+  "id": "zaffa",
+  "source_context_or_origin": {
+    "ar": "الزفّة هو إيقاع عربي 4/4، اكتسب اسمه من زفّة العروس في حفلات الزفاف، وخصوصاً في مصر، حيث تُصاحَب المسيرة عادةً بجماعة كبيرة من العازفين وآلات الإيقاع الصاخبة. لذلك لا تُفهم الزفّة هنا بوصفها مجرد مناسبة اجتماعية، بل أيضاً بوصفها إيقاعاً مستقلاً داخل المرجع الإيقاعي العربي. شخصيته الأساسية احتفالية وموكبية: فهو لا يُحَسّ كأنه 4/4 عادي فقط، بل كإيقاع يحمل إحساس التقدّم الجماعي، والضجيج المنظم، والإعلان العلني عن الفرح. كما يذكر المرجع أنه قد يأتي بوصفه تحويلاً أو تبطيئاً لبعض إيقاعات 4/4 الأخرى مثل البلدي والمقسوم، لكن مع بقاء شخصيته الخاصة المرتبطة بالمشهد الاحتفالي والموكب وبالكثافة الصوتية العالية للفرقة الإيقاعية الجماعية.",
+    "en": "Zaffa is an Arabic 4/4 rhythm whose name comes from the bridal procession, especially in Egypt, where the march is typically accompanied by a large group of players and loud percussion instruments. For that reason, Zaffa should not be understood merely as a social occasion, but also as an independent rhythm within the Arabic rhythmic reference tradition. Its core character is celebratory and processional: it is not felt as just another ordinary 4/4, but as a rhythm carrying a sense of collective forward movement, organized noise, and the public announcement of joy. The reference also notes that it can appear as a transformation or slowing-down of other 4/4 rhythms such as Baladi and Maqsum, while still preserving its own identity through its festive scene, processional role, and the high sonic density of the group percussion setting."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Zeffa"]
+  },
+  "examples": {
+    "ar": [
+      {
+        "title": "دقّوا المَزاهر",
+        "artist": "فريد الأطرش",
+        "note": "1952"
+      },
+      {
+        "title": "ألف ليلة وليلة",
+        "artist": "أم كلثوم",
+        "note": "1969، من ألحان بليغ حمدي"
+      },
+      {
+        "title": "قدّك الميّاس / قدّ آه يا حلو",
+        "artist": "محمد خيري"
+      }
+    ],
+    "en": [
+      {
+        "title": "Daqqu Al-Mazahir",
+        "artist": "Farid Al-Atrash",
+        "note": "1952"
+      },
+      {
+        "title": "Alf Leila wa Leila",
+        "artist": "Umm Kulthum",
+        "note": "1969, composed by Baligh Hamdi"
+      },
+      {
+        "title": "Qaddak Al-Mayas / Qadd Ah Ya Helou",
+        "artist": "Mohammad Khairy"
+      }
+    ]
+  },
+  "related_rhythms": ["maqsum", "baladi_masmoudi_saghir"]
+}

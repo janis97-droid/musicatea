@@ -154,7 +154,7 @@ const rhythms = [
   {
     id: "zaffa",
     name: { ar: "زفّة", en: "Zaffa" },
-    time_signature: "8/8",
+    time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/zaffa.mp3",
     image: "media/rhythms/images/zaffa.svg"
