@@ -34,7 +34,7 @@
   display: grid;
   grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
   gap: 24px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .rhythm-hero-card,
@@ -44,17 +44,17 @@
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 24px;
-  padding: 24px;
+  padding: 22px;
 }
 
 .rhythm-hero-copy {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .rhythm-hero > :last-child {
-  padding: 18px;
+  padding: 14px;
 }
 
 .rhythm-title-row {
@@ -86,9 +86,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 440px;
-  padding: 18px;
-  border-radius: 22px;
+  min-height: 0;
+  padding: 12px;
+  border-radius: 20px;
   background: linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.012) 100%);
   border: 1px solid rgba(255,255,255,0.06);
 }
@@ -97,13 +97,13 @@
   display: block;
   width: 100%;
   max-width: 100%;
-  max-height: 560px;
+  max-height: 340px;
   object-fit: contain;
 }
 
 .rhythm-controls-card {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .rhythm-bpm-row {
@@ -240,8 +240,8 @@
     grid-template-columns: 1fr;
   }
 
-  .rhythm-large-image-wrap {
-    min-height: 320px;
+  .rhythm-large-image {
+    max-height: 300px;
   }
 }
 
@@ -258,15 +258,18 @@
   .rhythm-info-card,
   .rhythm-empty-card,
   .related-rhythms-card {
-    padding: 20px;
+    padding: 18px;
   }
 
   .rhythm-hero > :last-child {
-    padding: 14px;
+    padding: 12px;
   }
 
   .rhythm-large-image-wrap {
-    min-height: 260px;
-    padding: 14px;
+    padding: 10px;
+  }
+
+  .rhythm-large-image {
+    max-height: 240px;
   }
 }
