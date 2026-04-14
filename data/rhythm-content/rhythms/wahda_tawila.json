@@ -1,0 +1,16 @@
+{
+  "id": "wahda_tawila",
+  "source_context_or_origin": {
+    "ar": "الوحدة الطويلة، أو الوحدة السنباطي في اصطلاح بعض المراجع الحديثة، هي صيغة ممتدة من الوحدة يكون مقياسها بطول مقياسين من الوحدة العادية. يشرح المرجع أن النصف الأول منها مطابق في الأداء والتدوين لمقياس من الوحدة، بينما النصف الثاني شديد التخفف: دُم واحدة وتك واحدة على أربعة أزمنة، وهذا ما يمنحها إحساساً مفتوحاً ومسترخياً. كما تورد المراجع مثال خطوة حبيبي لمحمد عبد الوهاب سنة 1953. لكن يجب التنبيه إلى وجود اضطراب اصطلاحي حديث: فبعض الكتابات المعاصرة عن الرحابنة وفيروز تستخدم سُمباطي أو Wahda Kabira للدلالة على واحدة ونص لا على الوحدة الطويلة. في هذه المادة يُعتمد اصطلاح Farraj وAbu Shumays: السنباطي = الوحدة الطويلة، لا واحدة ونص.",
+    "en": "Wahda Tawila, or Wahda Sunbati in the terminology of some modern references, is an extended form of Wahda whose measure spans the length of two ordinary Wahda measures. The reference explains that its first half matches one measure of Wahda in performance and notation, while its second half is highly thinned out, with a single Dum and a single Tek spread across four beats, giving it a broad and relaxed feeling. A cited example is Khutwat Habibi by Mohammed Abdel Wahab from 1953. It is important to note, however, that there is modern terminological instability here: some contemporary writings on the Rahbani and Fairuz traditions use Sunbati or Wahda Kabira to mean Wahda w Noss rather than Wahda Tawila. In this material, the terminology of Farraj and Abu Shumays is followed: Sunbati equals Wahda Tawila, not Wahda w Noss."
+  },
+  "other_names": {
+    "ar": ["الوحدة السنباطي"],
+    "en": ["Wahda Tawila", "Wahda Sunbati"]
+  },
+  "examples": {
+    "ar": [{"title": "خطوة حبيبي", "artist": "محمد عبد الوهاب", "note": "1953"}],
+    "en": [{"title": "Khutwat Habibi", "artist": "Mohammed Abdel Wahab", "note": "1953"}]
+  },
+  "related_rhythms": ["wahda_kabira", "wahda_wa_noss"]
+}
