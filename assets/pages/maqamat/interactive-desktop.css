@@ -315,7 +315,7 @@
 }
 
 .maqam-hero {
-  padding:34px 5% 28px;
+  padding:20px 5% 14px;
   border-bottom:1px solid var(--border);
   position:relative;
   overflow:hidden;
@@ -328,7 +328,7 @@
   left:-1%;
   top:50%;
   transform:translateY(-50%);
-  font-size:clamp(6rem,16vw,13rem);
+  font-size:clamp(5rem,13vw,10rem);
   font-weight:900;
   color:rgba(200,164,90,0.04);
   line-height:1;
@@ -344,13 +344,13 @@
 .maqam-name-wrap {
   display:flex;
   align-items:baseline;
-  gap:14px;
-  margin-bottom:8px;
+  gap:12px;
+  margin-bottom:6px;
   flex-wrap:wrap;
 }
 
 .maqam-name {
-  font-size:clamp(2.2rem,5vw,3.6rem);
+  font-size:clamp(1.8rem,4.1vw,2.8rem);
   font-weight:900;
   color:var(--gold-light);
   letter-spacing:-0.03em;
@@ -358,7 +358,7 @@
 }
 
 .maqam-latin {
-  font-size:1rem;
+  font-size:0.92rem;
   color:var(--text-dim);
   font-style:italic;
   font-weight:400;
@@ -366,13 +366,13 @@
 
 .maqam-desc {
   color:var(--text-muted);
-  font-size:1rem;
-  line-height:1.85;
+  font-size:0.92rem;
+  line-height:1.7;
   max-width:760px;
 }
 
 .maqam-body {
-  padding:28px 10% 90px;
+  padding:16px 8% 72px;
   max-width:1600px;
 }
 
@@ -382,7 +382,7 @@
   text-transform:uppercase;
   color:var(--gold);
   font-weight:800;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 
 .staff-scale-box {
@@ -391,8 +391,8 @@
     #141008;
   border:1px solid rgba(200,164,90,0.12);
   border-radius:22px;
-  padding:28px 26px 24px;
-  margin-bottom:28px;
+  padding:18px 18px 14px;
+  margin-bottom:20px;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.02),
     0 18px 38px rgba(0,0,0,0.30);
@@ -403,12 +403,12 @@
   align-items:center;
   justify-content:space-between;
   flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:20px;
+  gap:10px;
+  margin-bottom:12px;
 }
 
 .staff-scale-title {
-  font-size:0.94rem;
+  font-size:0.9rem;
   font-weight:800;
   color:var(--text-muted);
 }
@@ -453,13 +453,14 @@
     #0f0b05;
   border:1px solid rgba(200,164,90,0.10);
   border-radius:14px;
-  padding:20px 8px 14px;
+  padding:10px 6px 6px;
 }
 
 .staff-svg {
   display:block;
   width:100%;
-  min-width:760px;
+  min-width:700px;
+  max-height:220px;
   overflow:visible;
 }
 
@@ -470,7 +471,7 @@
 .note-keys-row {
   display:flex;
   gap:7px;
-  margin-top:16px;
+  margin-top:12px;
   direction:ltr;
 }
 
@@ -486,7 +487,7 @@
 
 .note-key-face {
   width:100%;
-  min-height:66px;
+  min-height:60px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -503,7 +504,7 @@
 }
 
 .note-key-face.note-key-face-colored {
-  min-height:58px;
+  min-height:54px;
   border-width:1.5px;
 }
 
@@ -537,8 +538,8 @@
   display:flex;
   align-items:center;
   gap:10px;
-  margin-top:16px;
-  padding-top:16px;
+  margin-top:12px;
+  padding-top:12px;
   border-top:1px solid rgba(255,255,255,0.06);
 }
 
@@ -583,7 +584,7 @@
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
   gap:12px;
-  margin-bottom:28px;
+  margin-bottom:20px;
 }
 
 .info-card {
@@ -676,6 +677,7 @@
 
   .staff-svg {
     min-width:640px;
+    max-height:none;
   }
 
   .note-key-face {
