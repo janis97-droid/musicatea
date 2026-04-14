@@ -4,43 +4,109 @@
   const loader = window.RhythmContentLoader;
   const DEFAULT_BPM = 120;
   const EXAMPLES_BY_RHYTHM = {
-    maqsum: ["Yana Yana", "Alb Ya’shaq Koll Gamil", "Darat al-Ayyam", "Qari’at al-Finjan"],
-    baladi_masmoudi_saghir: ["Midad Ya Nabi", "El Bulbul Naghgha"],
-    saidi: ["Adik Ti’oul Makhadtish", "Ya Bahiyya", "Tfarrak al-Halawa", "Sallam Alay"],
-    malfuf: ["Ya Dara Douri Fina", "Amal Hayati", "Ya Sahi al-Sabr Wahaminni", "Tulbah"],
-    ayyub: ["Qif Bi-Khushu‘"],
-    samai_thaqil: ["Lamma Bada Yatathanna", "Samai Bayati"],
-    samai_darij: ["Kallili Ya Suhbi Tijan al-Ruba"],
-    yuruk_semai: [],
-    wahda: ["Kulli Da Kan Leh"],
-    wahda_kabira: ["Habibi Yis‘ad Awqatu", "Alli Garra"],
-    wahda_wa_noss: ["Amal Hayati"],
-    fox: ["Ya Dunya Ya Gharami"],
-    karachi: ["Fakkarouni"],
-    fallahi: ["Salametha Umm Hassan", "Sallam Alay"],
-    ciftetelli: [],
-    jurjina: ["Mihanna"],
-    aqsaq: ["Hat Ayyuha al-Saqi"],
-    dawr_hindi: ["Shaghili Bil Husni Badrun"],
-    sudasi: [],
-    thurayya: [],
-    zaffa: ["Daqqu al-Mazahir", "Alf Leila wa Leila", "Etmakhtari Ya Helwa Ya Zeina"],
-    nawari: [],
-    rumba: ["Alashan Mallish Gherak"],
-    hajaa: ["Tala‘ al-Badru ‘Alayna"],
-    bambi: [],
-    wahda_ghayr_mulaaba: [],
-    conga: [],
-    lebanese_dabke: [],
-    sawt_shami: ["Marr Zabi Sabani"],
-    sumbati: [],
-    joobi_iraqi: ["Wallah Wala Wallah"],
-    masmoudi_nisfi: ["Bint el-Balad"],
-    mudawwar: [],
-    murabbaa: [],
-    dharafat: [],
-    muhajjar: [],
-    mukhammas: []
+    maqsum: {
+      ar: ["يانا يانا", "قلب يعشق كل جميل", "دارت الأيام", "قارئة الفنجان"],
+      en: ["Yana Yana", "Alb Ya’shaq Koll Gamil", "Darat al-Ayyam", "Qari’at al-Finjan"]
+    },
+    baladi_masmoudi_saghir: {
+      ar: ["مدد يا نبي", "البلبل نغّغ"],
+      en: ["Midad Ya Nabi", "El Bulbul Naghgha"]
+    },
+    saidi: {
+      ar: ["أديك تقول ماخدتش", "يا بهية", "تفرق الحلاوة", "سلّم عليّ"],
+      en: ["Adik Ti’oul Makhadtish", "Ya Bahiyya", "Tfarrak al-Halawa", "Sallam Alay"]
+    },
+    malfuf: {
+      ar: ["يا دارا دوري فينا", "أمل حياتي", "يا ساهي الصبر واهامني", "طلبة"],
+      en: ["Ya Dara Douri Fina", "Amal Hayati", "Ya Sahi al-Sabr Wahaminni", "Tulbah"]
+    },
+    ayyub: {
+      ar: ["قف بخشوع"],
+      en: ["Qif Bi-Khushu‘"]
+    },
+    samai_thaqil: {
+      ar: ["لما بدا يتثنى", "سماعي بياتي"],
+      en: ["Lamma Bada Yatathanna", "Samai Bayati"]
+    },
+    samai_darij: {
+      ar: ["قلّيلي يا صحبي تيجان الربا"],
+      en: ["Kallili Ya Suhbi Tijan al-Ruba"]
+    },
+    yuruk_semai: { ar: [], en: [] },
+    wahda: {
+      ar: ["كلّي ده كان ليه"],
+      en: ["Kulli Da Kan Leh"]
+    },
+    wahda_kabira: {
+      ar: ["حبيبي يسعد أوقاته", "اللي جرى"],
+      en: ["Habibi Yis‘ad Awqatu", "Alli Garra"]
+    },
+    wahda_wa_noss: {
+      ar: ["أمل حياتي"],
+      en: ["Amal Hayati"]
+    },
+    fox: {
+      ar: ["يا دنيا يا غرامي"],
+      en: ["Ya Dunya Ya Gharami"]
+    },
+    karachi: {
+      ar: ["فكروني"],
+      en: ["Fakkarouni"]
+    },
+    fallahi: {
+      ar: ["سلامتها أم حسن", "سلّم عليّ"],
+      en: ["Salametha Umm Hassan", "Sallam Alay"]
+    },
+    ciftetelli: { ar: [], en: [] },
+    jurjina: {
+      ar: ["مهنّة"],
+      en: ["Mihanna"]
+    },
+    aqsaq: {
+      ar: ["هات أيها الساقي"],
+      en: ["Hat Ayyuha al-Saqi"]
+    },
+    dawr_hindi: {
+      ar: ["شاغلي بالحسن بدر"],
+      en: ["Shaghili Bil Husni Badrun"]
+    },
+    sudasi: { ar: [], en: [] },
+    thurayya: { ar: [], en: [] },
+    zaffa: {
+      ar: ["دقّوا المظاهر", "ألف ليلة وليلة", "اتمخطري يا حلوة يا زينة"],
+      en: ["Daqqu al-Mazahir", "Alf Leila wa Leila", "Etmakhtari Ya Helwa Ya Zeina"]
+    },
+    nawari: { ar: [], en: [] },
+    rumba: {
+      ar: ["علشان ماليش غيرك"],
+      en: ["Alashan Mallish Gherak"]
+    },
+    hajaa: {
+      ar: ["طلع البدر علينا"],
+      en: ["Tala‘ al-Badru ‘Alayna"]
+    },
+    bambi: { ar: [], en: [] },
+    wahda_ghayr_mulaaba: { ar: [], en: [] },
+    conga: { ar: [], en: [] },
+    lebanese_dabke: { ar: [], en: [] },
+    sawt_shami: {
+      ar: ["مرّ ضبي سباني"],
+      en: ["Marr Zabi Sabani"]
+    },
+    sumbati: { ar: [], en: [] },
+    joobi_iraqi: {
+      ar: ["والله ولا والله"],
+      en: ["Wallah Wala Wallah"]
+    },
+    masmoudi_nisfi: {
+      ar: ["بنت البلد"],
+      en: ["Bint el-Balad"]
+    },
+    mudawwar: { ar: [], en: [] },
+    murabbaa: { ar: [], en: [] },
+    dharafat: { ar: [], en: [] },
+    muhajjar: { ar: [], en: [] },
+    mukhammas: { ar: [], en: [] }
   };
 
   if (!core || !loader) return;
@@ -124,16 +190,18 @@
     return createSectionCard(title, `<div class="rhythm-chip-list">${markup}</div>`);
   }
 
-  function getResolvedExamples(rhythmId, detailContent) {
+  function getResolvedExamples(rhythmId, detailContent, lang) {
     const localizedExamples = detailContent && Array.isArray(detailContent.examples)
       ? detailContent.examples.filter(Boolean)
       : [];
 
     if (localizedExamples.length) return localizedExamples;
 
-    return Array.isArray(EXAMPLES_BY_RHYTHM[rhythmId])
-      ? EXAMPLES_BY_RHYTHM[rhythmId]
-      : [];
+    const mapped = EXAMPLES_BY_RHYTHM[rhythmId];
+    if (!mapped) return [];
+    if (Array.isArray(mapped[lang]) && mapped[lang].length) return mapped[lang];
+    if (Array.isArray(mapped.en)) return mapped.en;
+    return [];
   }
 
   function createExamplesSection(title, items, labels) {
@@ -258,7 +326,7 @@
 
     const rawContent = await loader.loadRhythmContentSafe(rhythm.id);
     const detailContent = rawContent ? loader.resolveLocalizedValue(rawContent, lang) : null;
-    const resolvedExamples = getResolvedExamples(rhythm.id, detailContent);
+    const resolvedExamples = getResolvedExamples(rhythm.id, detailContent, lang);
 
     const sectionsMarkup = [
       createParagraphSection(labels.sourceContextOrOrigin, detailContent && (detailContent.source_context_or_origin || detailContent.source_context || detailContent.origin)),
