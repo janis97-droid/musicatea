@@ -422,9 +422,9 @@
 .tonic-btn {
   padding:6px 14px;
   border-radius:10px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:#191409;
-  color:var(--text-dim);
+  border:1px solid rgba(200,164,90,.5);
+  background:rgba(200,164,90,.12);
+  color:var(--gold-light);
   font-family:inherit;
   font-size:0.82rem;
   font-weight:700;
@@ -433,16 +433,16 @@
 }
 
 .tonic-btn:hover {
-  border-color:rgba(200,164,90,.3);
-  color:var(--text-muted);
-  background:#1d170a;
+  border-color:rgba(200,164,90,.72);
+  color:#f0d79e;
+  background:rgba(200,164,90,.18);
 }
 
 .tonic-btn.active {
-  background:rgba(200,164,90,.12);
-  border-color:rgba(200,164,90,.45);
-  color:var(--gold-light);
-  box-shadow:0 0 0 1px rgba(200,164,90,0.08) inset;
+  background:rgba(200,164,90,.18);
+  border-color:rgba(200,164,90,.85);
+  color:#f3ddab;
+  box-shadow:0 0 0 1px rgba(200,164,90,0.12) inset;
 }
 
 .staff-wrap {
