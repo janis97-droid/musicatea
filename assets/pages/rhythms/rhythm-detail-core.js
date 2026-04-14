@@ -3,6 +3,45 @@
   const core = window.rhythmsCore;
   const loader = window.RhythmContentLoader;
   const DEFAULT_BPM = 120;
+  const EXAMPLES_BY_RHYTHM = {
+    maqsum: ["Yana Yana", "Alb Ya’shaq Koll Gamil", "Darat al-Ayyam", "Qari’at al-Finjan"],
+    baladi_masmoudi_saghir: ["Midad Ya Nabi", "El Bulbul Naghgha"],
+    saidi: ["Adik Ti’oul Makhadtish", "Ya Bahiyya", "Tfarrak al-Halawa", "Sallam Alay"],
+    malfuf: ["Ya Dara Douri Fina", "Amal Hayati", "Ya Sahi al-Sabr Wahaminni", "Tulbah"],
+    ayyub: ["Qif Bi-Khushu‘"],
+    samai_thaqil: ["Lamma Bada Yatathanna", "Samai Bayati"],
+    samai_darij: ["Kallili Ya Suhbi Tijan al-Ruba"],
+    yuruk_semai: [],
+    wahda: ["Kulli Da Kan Leh"],
+    wahda_kabira: ["Habibi Yis‘ad Awqatu", "Alli Garra"],
+    wahda_wa_noss: ["Amal Hayati"],
+    fox: ["Ya Dunya Ya Gharami"],
+    karachi: ["Fakkarouni"],
+    fallahi: ["Salametha Umm Hassan", "Sallam Alay"],
+    ciftetelli: [],
+    jurjina: ["Mihanna"],
+    aqsaq: ["Hat Ayyuha al-Saqi"],
+    dawr_hindi: ["Shaghili Bil Husni Badrun"],
+    sudasi: [],
+    thurayya: [],
+    zaffa: ["Daqqu al-Mazahir", "Alf Leila wa Leila", "Etmakhtari Ya Helwa Ya Zeina"],
+    nawari: [],
+    rumba: ["Alashan Mallish Gherak"],
+    hajaa: ["Tala‘ al-Badru ‘Alayna"],
+    bambi: [],
+    wahda_ghayr_mulaaba: [],
+    conga: [],
+    lebanese_dabke: [],
+    sawt_shami: ["Marr Zabi Sabani"],
+    sumbati: [],
+    joobi_iraqi: ["Wallah Wala Wallah"],
+    masmoudi_nisfi: ["Bint el-Balad"],
+    mudawwar: [],
+    murabbaa: [],
+    dharafat: [],
+    muhajjar: [],
+    mukhammas: []
+  };
 
   if (!core || !loader) return;
 
@@ -85,11 +124,31 @@
     return createSectionCard(title, `<div class="rhythm-chip-list">${markup}</div>`);
   }
 
+  function getResolvedExamples(rhythmId, detailContent) {
+    const localizedExamples = detailContent && Array.isArray(detailContent.examples)
+      ? detailContent.examples.filter(Boolean)
+      : [];
+
+    if (localizedExamples.length) return localizedExamples;
+
+    return Array.isArray(EXAMPLES_BY_RHYTHM[rhythmId])
+      ? EXAMPLES_BY_RHYTHM[rhythmId]
+      : [];
+  }
+
   function createExamplesSection(title, items, labels) {
     const values = Array.isArray(items) ? items.filter(Boolean) : [];
     if (!values.length) return "";
 
     const markup = values.map(item => {
+      if (typeof item === "string") {
+        return `
+          <li class="rhythm-example-item">
+            <span class="rhythm-example-title">${escapeHtml(item)}</span>
+          </li>
+        `;
+      }
+
       const titleText = item.title || item.name || "";
       const artistText = item.artist || item.performer || "";
       const noteText = item.note || item.notes || "";
@@ -199,11 +258,12 @@
 
     const rawContent = await loader.loadRhythmContentSafe(rhythm.id);
     const detailContent = rawContent ? loader.resolveLocalizedValue(rawContent, lang) : null;
+    const resolvedExamples = getResolvedExamples(rhythm.id, detailContent);
 
     const sectionsMarkup = [
       createParagraphSection(labels.sourceContextOrOrigin, detailContent && (detailContent.source_context_or_origin || detailContent.source_context || detailContent.origin)),
       createChipSection(labels.otherNames, detailContent && detailContent.other_names),
-      createExamplesSection(labels.examples, detailContent && detailContent.examples, labels)
+      createExamplesSection(labels.examples, resolvedExamples, labels)
     ].filter(Boolean).join("");
 
     root.innerHTML = `
