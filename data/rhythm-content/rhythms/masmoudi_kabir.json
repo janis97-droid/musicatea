@@ -1,76 +1,20 @@
 {
   "id": "masmoudi_kabir",
   "source_context_or_origin": {
-    "ar": "المصمودي الكبير هو إيقاع عربي 8/4، ويُعد من الإيقاعات الأساسية في ريبرتوار الطرب في القرن العشرين. وكلمة كبير هنا تمييز تقني له عن المصمودي الصغير، وهو الإيقاع المعروف غالباً باسم البلدي، لأن المصمودي الكبير يمتد على دورتين من 4/4 بينما البلدي يبقى داخل دورة واحدة 4/4. في المراجع المرجعية يظهر المصمودي الكبير داخل عائلة الإيقاعات الزوجية الطويلة نسبياً، مع حضور واضح في الطرب العربي الكلاسيكي وبعض القوالب التقليدية والآلية، ولذلك لا يُفهم بوصفه رباعياً بطيئاً أو موسعاً فقط، بل بوصفه إيقاعاً ذا دورة ممتدة ومساحة تنفس أوسع وشخصية طربية مهيبة. كما أن طوله يفرض على الجملة الموسيقية أن تُبنى على مسافة زمنية أطول من المقسوم والبلدي والصعيدي، وهذا ما يجعله مرحلة مختلفة في الإحساس الزمني داخل الإيقاع العربي.",
-    "en": "Masmoudi Kabir is an Arabic 8/4 rhythm and one of the foundational rhythms of twentieth-century Arab tarab repertoire. The term kabir is a technical distinction from Masmoudi Saghir, the rhythm more commonly known as Baladi, because Masmoudi Kabir stretches across two 4/4 measures while Baladi remains inside a single 4/4 cycle. In reference material, Masmoudi Kabir appears within the family of relatively long even-meter rhythms, with strong presence in classical Arab tarab and in certain traditional and instrumental forms. It should therefore not be understood merely as a slow or expanded quadruple meter, but as a rhythm with an extended cycle, broader breathing space, and a stately tarab character. Its length forces the musical phrase to think across a longer span than Maqsum, Baladi, or Sa'idi, which makes it a distinct stage in the temporal feeling of Arabic rhythm."
+    "ar": "المصمودي الكبير هو إيقاع عربي 8/4 بطيء، ذو طابع رسمي وكلاسيكي واضح. وتعرّفه المراجع الحديثة بأنه إيقاع شائع في المقدمات الموسيقية، وفي قالب الدور، وفي بعض القصائد، ولا سيما في الأعمال المرتبطة برياض السنباطي. ومن أهم ما يثبت هويته أكاديمياً أن البلدي، أو المصمودي الصغير، ليس إيقاعاً آخر بلا صلة به، بل هو الصيغة الأسرع من المصمودي الكبير. كما تشير المراجع إلى إمكان إضافة دُم على الضربة الثالثة لتكوين ثلاث دُمّات متتالية، مما يزيده ثقلاً واحتفالية. وفي القطع الآلية قد يتبادل مع المقسوم داخل العمل نفسه.",
+    "en": "Masmudi Kabir is a slow Arabic 8/4 rhythm with a clearly formal and classical character. Modern references describe it as common in instrumental introductions, in the dawr form, and in certain qasida settings, especially in works associated with Riyad Al-Sunbati. One of the most important points establishing its identity academically is that Baladi, or Masmudi Saghir, is not an unrelated rhythm but the faster form of Masmudi Kabir. References also note that one possible embellishment is the addition of a Dum on the third beat to create three consecutive Dum strokes, increasing its weight and ceremonial quality. In instrumental pieces it may also exchange with Maqsum within the same work."
   },
   "other_names": {
     "ar": [],
-    "en": []
+    "en": ["Masmudi Kabir"]
   },
   "examples": {
     "ar": [
-      {
-        "title": "بنت البلد",
-        "artist": "محمد عبد الوهاب",
-        "note": "قطعة آلية، 1951"
-      },
-      {
-        "title": "خي خي",
-        "artist": "محمد عبد الوهاب",
-        "note": "1958"
-      },
-      {
-        "title": "رباعيات الخيام",
-        "artist": "أم كلثوم",
-        "note": "1950، من ألحان رياض السنباطي"
-      },
-      {
-        "title": "يا فاتن الغزلان",
-        "artist": "صباح فخري",
-        "note": "موشح"
-      },
-      {
-        "title": "يا شادي الألحان",
-        "artist": "صباح فخري",
-        "note": "موشح"
-      },
-      {
-        "title": "زارني المحبوب",
-        "note": "موشح"
-      }
+      {"title": "بنت البلد", "artist": "محمد عبد الوهاب", "note": "1951، مثال مرجعي على الافتتاحية"}
     ],
     "en": [
-      {
-        "title": "Bint El-Balad",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "Instrumental piece, 1951"
-      },
-      {
-        "title": "Khi Khi",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "1958"
-      },
-      {
-        "title": "Rubaiyat Al-Khayyam",
-        "artist": "Umm Kulthum",
-        "note": "1950, composed by Riyad Al-Sunbati"
-      },
-      {
-        "title": "Ya Fatin Al-Ghazlan",
-        "artist": "Sabah Fakhri",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Ya Shadi Al-Alhan",
-        "artist": "Sabah Fakhri",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Zarani Al-Mahbub",
-        "note": "Muwashshah"
-      }
+      {"title": "Bint Al-Balad", "artist": "Mohammed Abdel Wahab", "note": "1951, reference example in the opening"}
     ]
   },
-  "related_rhythms": ["baladi_masmoudi_saghir", "ciftetelli", "wahda_kabira"]
+  "related_rhythms": ["baladi_masmoudi_saghir", "maqsum", "bambi"]
 }
