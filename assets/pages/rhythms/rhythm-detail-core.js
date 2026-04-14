@@ -330,7 +330,7 @@
 
     const sectionsMarkup = [
       createParagraphSection(labels.sourceContextOrOrigin, detailContent && (detailContent.source_context_or_origin || detailContent.source_context || detailContent.origin)),
-      createChipSection(labels.otherNames, detailContent && detailContent.other_names),
+      ...(lang === "ar" ? [createChipSection(labels.otherNames, detailContent && detailContent.other_names)] : []),
       createExamplesSection(labels.examples, resolvedExamples, labels)
     ].filter(Boolean).join("");
 
