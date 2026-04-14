@@ -111,7 +111,7 @@
         <div class="maqam-content-sections" id="maqam-content-sections">
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>يتم تحميل مادة المقام…</h3>
-            <p>سيظهر هنا السير، والأمثلة، والتحويلات، والتسجيلات المرجعية عندما تكون متاحة في ملف المقام.</p>
+            <p>سيظهر هنا السير، وأمثلة الفيديو، والتسجيلات المرجعية، والأغاني أو القطع عندما تكون متاحة في ملف المقام.</p>
           </div>
         </div>
       </section>
@@ -133,17 +133,16 @@
       const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
       const cards = [
         createSayrCard(model),
-        createExamplesCard(model),
         createVideoExamplesCard(model),
-        createModulationsCard(model),
-        createReferencesCard(model)
+        createReferencesCard(model),
+        createExamplesCard(model)
       ].filter(Boolean);
 
       if (!cards.length) {
         container.innerHTML = `
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>القسم جاهز للتوسعة</h3>
-            <p>هذه الصفحة أصبحت مهيأة لإضافة السير، والأمثلة، والتحويلات، والتسجيلات المرجعية من المصادر الأكاديمية لكل مقام.</p>
+            <p>هذه الصفحة أصبحت مهيأة لإضافة السير، وأمثلة الفيديو، والتسجيلات المرجعية، والأغاني أو القطع من المصادر الأكاديمية لكل مقام.</p>
           </div>
         `;
         return;
@@ -194,12 +193,14 @@
     const path = createBulletList(sayr.common_path);
     const resting = createBulletList(sayr.resting_tones);
     const motion = createBulletList(sayr.motion_notes);
+    const modulations = createBulletList(model && (model.common_modulations || model.modulations || model.modulation_paths));
 
     const body = [
       summary,
       path ? `<div class="maqam-content-subsection"><h4>المسار الغالب</h4>${path}</div>` : "",
       resting ? `<div class="maqam-content-subsection"><h4>درجات الارتكاز</h4>${resting}</div>` : "",
-      motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : ""
+      motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : "",
+      modulations ? `<div class="maqam-content-subsection"><h4>التحويلات الشائعة</h4>${modulations}</div>` : ""
     ].filter(Boolean).join("");
 
     return createContentCard("السير", body);
@@ -234,19 +235,13 @@
   function createExamplesCard(model) {
     const items = (model && (model.examples || model.listening_examples || model.repertoire_examples)) || [];
     const body = createExamplesMarkup(items);
-    return createContentCard("أمثلة موسيقية", body);
+    return createContentCard("أغاني وقطع", body);
   }
 
   function createVideoExamplesCard(model) {
     const items = (model && (model.video_examples || model.video_listening_examples)) || [];
     const body = createExamplesMarkup(items);
     return createContentCard("أمثلة مرئية / فيديو", body);
-  }
-
-  function createModulationsCard(model) {
-    const values = (model && (model.common_modulations || model.modulations || model.modulation_paths)) || [];
-    const body = createBulletList(values);
-    return createContentCard("التحويلات الشائعة", body);
   }
 
   function createReferencesCard(model) {
