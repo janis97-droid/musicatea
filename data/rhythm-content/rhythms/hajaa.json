@@ -1,88 +1,24 @@
 {
   "id": "hajaa",
   "source_context_or_origin": {
-    "ar": "الهَجَع هو إيقاع عربي تظهر صيغته الأشهر والأوسع استعمالاً على 4/4، مع وجود صيغتين أخريين على 2/4 و6/4. ويرد في المرجع أن لفظه يمكن أن يُنطق هَجَع أو هَشَع. تتمثل هويته الأوضح في ارتباطه القوي بالموسيقى الصوفية، وخصوصاً في القطع التي تعتمد على الآلات الإيقاعية فقط، ولذلك لا يُفهم بوصفه 4/4 عاماً فقط، بل بوصفه إيقاعاً ذا نبض تعبدي وجماعي ودوران داخلي مستمر. كما يذكر المرجع أن صيغة 4/4 نفسها تُعد تكييفاً أو تطويراً لصيغة أقدم وأكثر فلكلورية في 2/4، بينما تبقى صيغة 6/4 نادرة. لهذا فالهجع يعيش عملياً في ثلاث دوائر: الإنشاد الصوفي في صورته 4/4، وبعض الاستعمالات الفلكلورية والراقصة في صورته 2/4، وحضور نادر لكن مهم في أعمال غنائية كبيرة في صورته 6/4.",
-    "en": "Hajaa is an Arabic rhythm whose most common and widely used form appears in 4/4, while two additional forms also exist in 2/4 and 6/4. The reference notes that its name may be pronounced either Hajaa or Hasha'. Its clearest identity lies in its strong association with Sufi music, especially in pieces built around percussion alone, which means it should not be understood as just another general 4/4 rhythm, but as one carrying a devotional, collective pulse with an inward circular continuity. The reference also notes that the 4/4 form is itself an adaptation or development of an older, more folkloric 2/4 form, while the 6/4 version remains rare. In practice, Hajaa therefore lives in three overlapping circles: Sufi chanting in its 4/4 form, more folkloric and dance-oriented use in its 2/4 form, and rarer but important appearances in major vocal works in its 6/4 form."
+    "ar": "الهجع، أو Hacha‘ / Hadja‘ في بعض النقلات اللاتينية، هو إيقاع عراقي الأصل شديد المرونة، وله في المرجع الحديث أكثر من صورة: 2/4 و4/4 و6/4. والصورة الأساسية منه هي 2/4، وهي مطابقة في التدوين لإيقاع الوحدة الصغيرة، لكنها أسرع وأكثر قفزاً في الإحساس. وقد استُعمل هذا الشكل 2/4 في أغانٍ فولكلورية شامية مثل عالماية، كما استُعمل أيضاً في سياقات صوفية مثل طلع البدر علينا. ثم تطورت منه صيغة 4/4 الشائعة جداً، وهي صيغة يمكن أن تظهر كتعديل أو تحويل من إيقاعات 4/4 أخرى مثل المقسوم والبلدي، وتُدخل في الجو العام مزاجاً درامياً متقطعاً بسبب التباين بين دُم واحدة وتكات متعددة. وهذه الصيغة 4/4 شديدة الشيوع في الذكر الصوفي، وتناسب تكرار لفظ الله على ثلاث تكات أولى. أما الصيغة 6/4 فهي أقل شيوعاً، لكنها مذكورة بوضوح في مقدمة ألف ليلة وليلة.",
+    "en": "Hajaa, also rendered in some Latin spellings as Hacha' or Hadja', is a rhythm of Iraqi origin with considerable flexibility, and modern references present it in more than one form: 2/4, 4/4, and 6/4. Its basic form is 2/4, and this form is notationally identical to Wahda Saghira, though it feels faster and more springing. This 2/4 form appears in Levantine folkloric songs such as Al-Maya and also in Sufi contexts such as Tala' Al-Badru 'Alayna. From it developed the very common 4/4 form, which can appear as a modification or transformation of other 4/4 rhythms such as Maqsum and Baladi, introducing a more broken dramatic atmosphere through the contrast between a single Dum and multiple Teks. This 4/4 form is especially common in Sufi dhikr, where it suits repeated utterance patterns such as Allah on the first three Teks. The 6/4 form is less common, but it is explicitly cited in the introduction to Alf Leila wa Leila."
   },
   "other_names": {
-    "ar": ["هَشَع"],
-    "en": ["Hasha'"]
+    "ar": [],
+    "en": ["Hajaa", "Hacha'", "Hadja'"]
   },
   "examples": {
     "ar": [
-      {
-        "title": "بحمدك يا إلهي",
-        "artist": "الشيخ حمزة شكور مع فرقة الكندي",
-        "note": "مثال على الهجع 4/4"
-      },
-      {
-        "title": "سبحان",
-        "artist": "الشيخ أحمد حبوش مع فرقة الكندي",
-        "note": "مثال على الهجع 4/4"
-      },
-      {
-        "title": "القلب يعشق كل جميل",
-        "artist": "أم كلثوم",
-        "note": "1961، مثال على الهجع 4/4"
-      },
-      {
-        "title": "قارئة الفنجان",
-        "artist": "عبد الحليم حافظ",
-        "note": "1976، مثال على الهجع 4/4"
-      },
-      {
-        "title": "طلع البدر علينا",
-        "artist": "حسن الحفار",
-        "note": "مثال على الهجع 4/4"
-      },
-      {
-        "title": "عالماية",
-        "artist": "دياب مشهور",
-        "note": "من التراث الشعبي السوري، مثال على الهجع 2/4"
-      },
-      {
-        "title": "ألف ليلة وليلة",
-        "artist": "أم كلثوم",
-        "note": "1969، من ألحان بليغ حمدي، مثال على الهجع 6/4"
-      }
+      {"title": "عالماية"},
+      {"title": "طلع البدر علينا"},
+      {"title": "ألف ليلة وليلة", "note": "المقدمة، مثال على صيغة 6/4"}
     ],
     "en": [
-      {
-        "title": "Bihamdika Ya Ilahi",
-        "artist": "Sheikh Hamza Shakkur with Al-Kindi Ensemble",
-        "note": "An example of Hajaa in 4/4"
-      },
-      {
-        "title": "Subhan",
-        "artist": "Sheikh Ahmad Haboush with Al-Kindi Ensemble",
-        "note": "An example of Hajaa in 4/4"
-      },
-      {
-        "title": "Al-Qalb Ya'shaq Kull Jamil",
-        "artist": "Umm Kulthum",
-        "note": "1961, an example of Hajaa in 4/4"
-      },
-      {
-        "title": "Qari'at Al-Finjan",
-        "artist": "Abdel Halim Hafez",
-        "note": "1976, an example of Hajaa in 4/4"
-      },
-      {
-        "title": "Tala'a Al-Badru 'Alayna",
-        "artist": "Hassan Al-Haffar",
-        "note": "An example of Hajaa in 4/4"
-      },
-      {
-        "title": "Al-Mayyeh",
-        "artist": "Diab Mashhour",
-        "note": "From Syrian folk tradition, an example of Hajaa in 2/4"
-      },
-      {
-        "title": "Alf Leila wa Leila",
-        "artist": "Umm Kulthum",
-        "note": "1969, composed by Baligh Hamdi, an example of Hajaa in 6/4"
-      }
+      {"title": "Al-Maya"},
+      {"title": "Tala' Al-Badru 'Alayna"},
+      {"title": "Alf Leila wa Leila", "note": "opening, example of the 6/4 form"}
     ]
   },
-  "related_rhythms": ["wahda", "wahda_kabira"]
+  "related_rhythms": ["wahda", "maqsum", "baladi_masmoudi_saghir"]
 }

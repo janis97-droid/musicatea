@@ -1,0 +1,16 @@
+{
+  "id": "lebanese_dabke",
+  "source_context_or_origin": {
+    "ar": "من الناحية الأكاديمية الدقيقة، الدبكة اللبنانية لا تُقدَّم في المرجع الأساسي اسماً معيارياً لإيقاع مستقل منفصل، بل تُفهم غالباً تحت السداسي 6/4 بوصفه الإيقاع الأشهر المرافق للدبكة في لبنان وبلاد الشام. لذلك فالأدق أن تُعامل الدبكة اللبنانية هنا بوصفها اسماً لفن راقص وغنائي جماعي، بينما يكون اسم الإيقاع المرجعي الأكثر دقة له في الكتب الأساسية هو السداسي. هذا لا يمنع وجود استعمالات تعليمية متخصصة تذكر Lebanese Dabke, 6/4 صراحة، لكنه يبقى منسجماً مع التصنيف الذي يعيدها إلى السداسي أكثر من كونه يثبت لها هوية مستقلة منفصلة عن هذا الأصل.",
+    "en": "From a stricter academic point of view, Lebanese Dabke is not usually presented in the core reference tradition as the name of an entirely separate standard rhythm. Rather, it is commonly understood under Sudasi in 6/4, since Sudasi is the most characteristic rhythm accompanying dabke in Lebanon and the Levant more broadly. It is therefore more accurate to treat Lebanese Dabke here as the name of a collective sung-and-danced form, while the more precise reference name of its principal rhythm in major books is Sudasi. This does not prevent specialized pedagogical materials from explicitly writing Lebanese Dabke, 6/4, but that usage remains consistent with classifying it under Sudasi rather than establishing it as a wholly separate core rhythmic type."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Lebanese Dabke"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["sudasi", "malfuf"]
+}

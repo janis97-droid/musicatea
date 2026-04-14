@@ -1,16 +1,20 @@
 {
   "id": "zaffa",
   "source_context_or_origin": {
-    "ar": "الزفّة إيقاع عربي 4/4 ارتبط عضوياً بموكب الزفاف العربي، وخاصة المصري، حيث يرافق الموسيقيون العريس ومرافقيه بموسيقى عالية وغناء وهتاف. لذلك ينبغي تعريفه من خلال وظيفته الأدائية الجماعية قبل أي شيء آخر: هو ليس مجرد وزن 4/4، بل نمط إيقاعي مرتبط بالمشهد الاحتفالي والموكبي وبالكتلة الصوتية العالية التي تصنعها الفرقة. وتؤكد المراجع الحديثة أن أفضل أدائه يكون بفرقة إيقاعية كبيرة ومتنوعة مع آلة لحنية نافذة مثل المزمار، لا عبر طبلة منفردة فقط. وهذا ما يميّزه عن 4/4 الغنائي العام مثل المقسوم أو الوحدة.",
-    "en": "Zaffa is an Arabic 4/4 rhythm organically tied to the Arab wedding procession, especially in Egypt, where musicians accompany the groom and his entourage with loud music, singing, and calls. It should therefore be defined first through its collective performative function: it is not merely a 4/4 meter, but a rhythmic type bound to the festive processional scene and to the high sonic density created by the ensemble. Modern references emphasize that it is best realized through a large and varied percussion group together with a penetrating melodic instrument such as the mizmar, rather than by a single tabla alone. This is what distinguishes it from more general vocal 4/4 rhythms such as Maqsum or Wahda."
+    "ar": "الزفّة إيقاع 4/4، لكنه لا يُعرَّف في المرجع الحديث من خلال الميزان فقط، بل من خلال المشهد الاجتماعي الذي خرج منه: موكب الزفاف الذي يرافق فيه الموسيقيون العريس ومرافقيه في طريقه إلى اصطحاب العروس، وسط موسيقى عالية وغناء وهتاف. لهذا السبب ترتبط الزفّة بفرقة إيقاعية كبيرة ومتنوعة تضم مثلًا الرِّق والمزهر والطبلة والدُّف والطبل البلدي، مع آلة لحنية نافذة مثل المزمار. ومن أشهر أمثلتها المرجعية دقّوا المَزاهر لفريد الأطرش، التي ما تزال من أشهر ألحان الزفّة المستعملة في الأعراس العربية الحديثة.",
+    "en": "Zaffa is a 4/4 rhythm, but in modern references it is defined not by meter alone, but by the social scene from which it emerges: the wedding procession in which musicians accompany the groom and his entourage on the way to fetch the bride, amid loud music, singing, and shouted celebration. For this reason, Zaffa is associated with a large and varied percussion ensemble that may include riqq, mazhar, tabla, duff, and baladi drum, together with a penetrating melodic instrument such as the mizmar. One of its best-known reference examples is Daqqu Al-Mazahir by Farid Al-Atrash, which remains among the most famous zaffa melodies used in modern Arab weddings."
   },
   "other_names": {
     "ar": [],
     "en": ["Zaffa", "Zeffa"]
   },
   "examples": {
-    "ar": [],
-    "en": []
+    "ar": [
+      {"title": "دقّوا المَزاهر", "artist": "فريد الأطرش"}
+    ],
+    "en": [
+      {"title": "Daqqu Al-Mazahir", "artist": "Farid Al-Atrash"}
+    ]
   },
   "related_rhythms": ["maqsum", "baladi_masmoudi_saghir"]
 }

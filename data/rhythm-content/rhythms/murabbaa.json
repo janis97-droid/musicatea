@@ -1,8 +1,8 @@
 {
   "id": "murabbaa",
   "source_context_or_origin": {
-    "ar": "المربّع هو إيقاع عربي 13/4، ويُستعمل كثيراً في قالب الموشّح. لذلك فهو ليس من الإيقاعات العامة الشائعة مثل المقسوم أو البلدي، بل من الإيقاعات الكلاسيكية الأقرب إلى بيئة الموشحات. ورغم أن اسمه يوحي بشيء مبني على الرقم أربعة، فإن هذا غير مرتبط بميزانه الفعلي، لأن ميزانه المرجعي هنا هو 13/4، لا 4/4. شخصيته الأساسية طويلة وغير متناظرة، وهذا يُفهم مباشرة من كونه 13/4 ومن موضعه داخل الموشح؛ فهو يحتاج إلى جملة لحنية تتحمل دورة ممتدة وغير مستقيمة مثل الإيقاعات الزوجية البسيطة. مكانه الطبيعي إذن هو الريبرتوار الموشحي الكلاسيكي، حيث تُسمع الدورة كوحدة موسيقية واحدة لا كسلسلة ضربات ميكانيكية متتابعة.",
-    "en": "Murabba' is an Arabic 13/4 rhythm used extensively in the muwashshah form. For that reason, it does not belong to the broad general rhythms such as Maqsum or Baladi, but to the classically oriented rhythms most at home in the muwashshah environment. Although its name suggests something built on the number four, that is not tied to its actual meter here, because its reference meter is 13/4 rather than 4/4. Its basic character is long and asymmetrical, which follows directly from its 13/4 structure and from its role in the muwashshah; it requires a melodic phrase capable of sustaining an extended and uneven cycle rather than the straight balance of simpler even rhythms. Its natural home is therefore the classical muwashshah repertoire, where the cycle must be heard as a single musical unit rather than as a mechanical chain of counted beats."
+    "ar": "المربّع هو إيقاع 13/4، وتذكر المراجع الحديثة أنه شديد الشعبية في الموشحات. كما تشرح بوضوح أن كلمة مربّع في العربية تعني مربعاً أو مبنياً على الأربعة، لكن هذا المعنى اللغوي غير مرتبط بميزانه الفعلي. ومن أمثلته المرجعية الواضحة حيّر الأفكار واسقني الراح ورماني بسهم هواه. كما تؤكد بعض الدراسات المتعلقة بالقالب الآلي العربي أن المربّع من الأوزان العربية الخالصة التي استُعملت أيضاً في بعض البشارف العربية، لا في الموشح وحده، وهو ما يزيد أهميته البنيوية داخل الموسيقى العربية الكلاسيكية.",
+    "en": "Murabba' is a 13/4 rhythm, and modern references describe it as highly popular in muwashshahat. They also explain clearly that the Arabic word murabba' means square or built on four, yet that linguistic meaning is not connected to its actual meter. Clear reference examples include Hayyar Al-Afkar, Isqini Al-Rah, and Ramani Bisahm Hawaah. Some studies related to the Arab instrumental form further note that Murabba' is one of the indigenous Arabic meters also used in certain Arab peshrev-like instrumental compositions, not only in the muwashshah, which increases its structural importance in classical Arabic music."
   },
   "other_names": {
     "ar": [],
@@ -10,51 +10,15 @@
   },
   "examples": {
     "ar": [
-      {
-        "title": "حيّر الأفكار"
-      },
-      {
-        "title": "حبّي مليك الملاح"
-      },
-      {
-        "title": "اسقني الراح"
-      },
-      {
-        "title": "جلّ من أنشأ جمالك"
-      },
-      {
-        "title": "قم بنا يا نور عيني"
-      },
-      {
-        "title": "رماني بسهم هواه"
-      },
-      {
-        "title": "يا عُذيب المرشف"
-      }
+      {"title": "حيّر الأفكار"},
+      {"title": "اسقني الراح"},
+      {"title": "رماني بسهم هواه"}
     ],
     "en": [
-      {
-        "title": "Hayyar Al-Afkar"
-      },
-      {
-        "title": "Hubbi Malik Al-Milah"
-      },
-      {
-        "title": "Isqini Al-Rah"
-      },
-      {
-        "title": "Jalla Man Ansha Jamalak"
-      },
-      {
-        "title": "Qum Bina Ya Nur Ayni"
-      },
-      {
-        "title": "Ramani Bisahm Hawaah"
-      },
-      {
-        "title": "Ya Udhayb Al-Murshaf"
-      }
+      {"title": "Hayyar Al-Afkar"},
+      {"title": "Isqini Al-Rah"},
+      {"title": "Ramani Bisahm Hawaah"}
     ]
   },
-  "related_rhythms": ["dawr_hindi", "aqsaq", "samai_thaqil", "mukhammas"]
+  "related_rhythms": ["mukhammas", "dharafat", "mudawwar"]
 }

@@ -1,8 +1,8 @@
 {
   "id": "mukhammas",
   "source_context_or_origin": {
-    "ar": "المخمّس هو إيقاع عربي 16/4، ويُستعمل في الأساس داخل قالب الموشّح، مع حضور واضح أيضاً في البشرف ضمن الإيقاعات الزوجية الطويلة. لذلك فنحن أمام إيقاع كلاسيكي طويل لا إيقاعاً عاماً واسع التداول مثل المقسوم أو البلدي. ورغم أن اسمه في العربية يشير إلى شيء مبني على العدد خمسة، فإن هذا المعنى غير مرتبط مباشرة بميزانه، بل هو اسم تاريخي واصطلاحي أكثر منه وصفاً حرفياً لعدد النبضات في الدورة. شخصيته الأساسية ممتدّة وتحتاج إلى نفس طويل وإلى وعي واضح ببداية الدورة وامتدادها ونهايتها، ولهذا لا ينجح إذا عُومل كأنه عدّ طويل فقط. وبعض الشروح الموسيقية تفيد عملياً في الإحساس به من خلال تقسيم داخلي مثل 6+6+4، لأن هذا يوضح معالمه ويمنع ضياع العازف داخل ست عشرة نبضة متساوية. مكانه الطبيعي إذن هو الإيقاعات المؤلَّفة والبنيوية التي تخدم الموشح والبشرف أكثر من خدمة الألوان الشعبية أو الراقصة المباشرة.",
-    "en": "Mukhammas is an Arabic 16/4 rhythm used primarily in the muwashshah form, with a clear place as well in the bashraf among the long even-meter rhythms. From the outset, this means it is a long classical rhythm rather than a broadly circulating general rhythm such as Maqsum or Baladi. Although its Arabic name suggests something built on the number five, that meaning is not directly tied to its meter; the name is historical and terminological rather than a literal description of the number of beats in the cycle. Its central character is extended and requires long breath together with clear awareness of the beginning, span, and close of the cycle, which is why it fails if treated as a mere long count. Some musical explanations make practical sense of it through an internal division such as 6+6+4, because that helps reveal its landmarks and keeps the player from getting lost inside sixteen equal pulses. Its natural home is therefore among the composed and structural rhythms that serve the muwashshah and the bashraf more than they serve direct popular or dance usage."
+    "ar": "المخمّس هو إيقاع 16/4، وهو من الإيقاعات الكلاسيكية الطويلة التي ترتبط أساساً بالموشحات، كما يظهر أيضاً بكثرة في البشرف التركي/العثماني. وتشير المراجع الحديثة إلى أن كلمة مخمّس تعني في العربية مبنيّاً على الخمسة، لكن هذا المعنى لا يتصل بميزانه الفعلي، لأن الوزن نفسه 16/4. وهذه ملاحظة مهمة لأن الاسم قد يضلّل غير المتخصص. كما تذكر المراجع أمثلة موشحية واضحة عليه مثل بدري أدر كأس الطلا ووجهك مشرق بالأنوار.",
+    "en": "Mukhammas is a 16/4 rhythm and one of the long classical rhythms associated primarily with muwashshahat, while also appearing frequently in the Turkish-Ottoman peshrev tradition. Modern references note that the Arabic word mukhammas means built on five, but that meaning has no direct relation to its actual meter, which is 16/4. This is important because the name can mislead non-specialists. References also cite clear muwashshah examples such as Badri Adir Kas Al-Tila and Wajhuka Mushriq Bil-Anwar."
   },
   "other_names": {
     "ar": [],
@@ -10,37 +10,13 @@
   },
   "examples": {
     "ar": [
-      {
-        "title": "بدري أدر كاس الطلا",
-        "artist": "فرقة الغناء الشرقي في جامعة الروح القدس – الكسليك",
-        "note": "من ألحان محمد عثمان"
-      },
-      {
-        "title": "هذه المنازل",
-        "artist": "صباح فخري",
-        "note": "من ألحان عمر البطش"
-      },
-      {
-        "title": "وجهك مُشرق",
-        "artist": "فرقة الموسيقى العربية بقيادة عبد الحليم نويرة"
-      }
+      {"title": "بدري أدر كأس الطلا"},
+      {"title": "وجهك مشرق بالأنوار"}
     ],
     "en": [
-      {
-        "title": "Badri Adir Kas Al-Tila",
-        "artist": "Oriental Singing Ensemble of the Holy Spirit University of Kaslik",
-        "note": "Composed by Muhammad Uthman"
-      },
-      {
-        "title": "Hadhihi Al-Manazil",
-        "artist": "Sabah Fakhri",
-        "note": "Composed by Umar Al-Batsh"
-      },
-      {
-        "title": "Wajhuka Mushriq",
-        "artist": "Arab Music Ensemble conducted by Abdel Halim Nuweira"
-      }
+      {"title": "Badri Adir Kas Al-Tila"},
+      {"title": "Wajhuka Mushriq Bil-Anwar"}
     ]
   },
-  "related_rhythms": ["masmoudi_nisfi", "mudawwar", "samai_thaqil"]
+  "related_rhythms": ["mudawwar", "murabbaa"]
 }

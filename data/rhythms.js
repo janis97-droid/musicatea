@@ -218,7 +218,7 @@ const rhythms = [
   {
     id: "lebanese_dabke",
     name: { ar: "دبكة لبنانية", en: "Lebanese Dabke" },
-    time_signature: "4/4",
+    time_signature: "6/4",
     examples: [],
     audio: "media/rhythms/lebanese_dabke.mp3",
     image: "media/rhythms/images/lebanese_dabke.svg"

@@ -1,0 +1,16 @@
+{
+  "id": "mudawwar",
+  "source_context_or_origin": {
+    "ar": "المدوّر هو إيقاع ذو دورة من 12 نبضة في المرجع الحديث، وتكمن أهميته في أنه ليس صيغة واحدة مغلقة، بل عائلة من التنويعات الإقليمية، منها المدوّر المصري والحلبي والتركي والشامي. وتؤكد المراجع أن هذه التنويعات كلها تشترك في الدورة نفسها مع اختلافات أسلوبية ولهجية، وأن المدوّر يُستعمل أساساً في الموشحات. كما أن كثيراً من القطع المبنية عليه تبدأ من النبضة الحادية عشرة، أي من آخر تك، ما يجعله قريباً من العويص من حيث أهمية موضع الدخول اللحني داخل الدورة. وتشرح المراجع أيضاً أن كلمة مدوّر تعني مستديراً أو دائرياً، وهو اسم مناسب لإيقاع تُحسّ دورته بوصفها قوساً دائرياً ممتداً لا مجرد عدّ ميكانيكي.",
+    "en": "Mudawwar is a rhythm with a cycle of 12 pulses in the modern reference tradition, and its importance lies in the fact that it is not a single closed pattern but a family of regional variants, including Egyptian, Aleppan, Turkish, and Shami forms. References emphasize that these variants share the same underlying cycle while differing in style and local inflection, and that Mudawwar is used primarily in muwashshahat. Many pieces based on it begin from the eleventh pulse, that is, from the final Tek, which makes it close to Awis in terms of the importance of melodic point of entry within the cycle. References also explain that the word mudawwar means rounded or circular, an apt name for a rhythm whose cycle is felt as an extended circular arc rather than as mere mechanical counting."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Mudawwar", "Mudawwar Halabi", "Mudawwar Masri", "Mudawwar Turki", "Mudawwar Shami"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["mukhammas", "murabbaa"]
+}
