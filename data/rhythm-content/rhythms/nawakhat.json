@@ -1,0 +1,22 @@
+{
+  "id": "nawakhat",
+  "source_context_or_origin": {
+    "ar": "النواخت إيقاع عربي 7/4 شديد الحضور في الموشح. وتذكر المراجع الحديثة أنه يُستعمل في موشحات مثل يا هلالاً وبدر تمّ، كما تشير إلى تنويع أدائي شائع يبدأ فيه اللحن على الضربة الثالثة، أي على أول تك، لا على أول نبضة من الدورة. وهذا تفصيل مهم لأنه يبين أن هوية الإيقاع لا تتحدد فقط بالميزان، بل أيضاً بموضع دخول الجملة اللحنية. كما تنبه المراجع إلى ضرورة عدم الخلط بين النواخت والدور الهندي؛ فمع أن أحدهما قد يبدو في السمع وكأنه أبطأ من الآخر، فإن الفرق الحقيقي بينهما في الإحساس والزخرفة والسرعة الأدائية. وتشرح أيضاً أن كلمة نواخت فارسية الأصل وتدل على الغناء أو العزف.",
+    "en": "Nawakhat is a 7/4 Arabic rhythm with a strong presence in the muwashshah tradition. Modern references note its use in muwashshahat such as Ya Hilalan and Badr Tamm, and they also point to a common performance variant in which the melody begins on the third ضرب, that is, on the first Tek rather than on the first pulse of the cycle. This is important because it shows that the identity of the rhythm is shaped not only by meter, but also by the point at which the melodic phrase enters. References also warn against confusing Nawakhat with Dawr Hindi; although one may sound slower than the other in performance, the true difference lies in feel, ornamentation, and performed tempo. They further explain that the word Nawakhat is of Persian origin and relates to singing or playing music."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Nawakhat"]
+  },
+  "examples": {
+    "ar": [
+      {"title": "يا هلالاً"},
+      {"title": "بدر تمّ"}
+    ],
+    "en": [
+      {"title": "Ya Hilalan"},
+      {"title": "Badr Tamm"}
+    ]
+  },
+  "related_rhythms": ["dawr_hindi"]
+}
