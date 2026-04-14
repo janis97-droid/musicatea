@@ -1,0 +1,16 @@
+{
+  "id": "muhajjar",
+  "source_context_or_origin": {
+    "ar": "المحجّر إيقاع عربي 14/4 يرتبط بوضوح بريبرتوار الموشحات، وتثبته المراجع الحديثة بوصفه من الإيقاعات الشائعة والممتدة النفس داخل هذا القالب. وتورده مواد مرجعية معاصرة في سياق موشحات مثل هجرني حبيبي، كما تشير شروح الأداء إلى أن من علاماته السمعية البارزة افتتاحية تقوم على ثلاث دُمّات متتالية. وفي بعض المدارس التعليمية يُشرح تقسيمه الداخلي على نحو 4+2+4+4، لكن هذا يفيد في العدّ والتحليل أكثر من كونه الصيغة الوحيدة المقبولة أدائياً. والأدق أكاديمياً أن تُفهم هويته من خلال القالب الذي يعيش فيه، أي الموشح، حيث يصبح اتساع الدورة جزءاً من البنية التعبيرية لا مجرد مسألة وزن مجرد.",
+    "en": "Muhajjar is an Arabic 14/4 rhythm associated clearly with the muwashshah repertory, and modern references present it as one of the common extended cycles used in that genre. Contemporary source material identifies it in muwashshahat such as Hajrani Habibi, and performance-oriented explanations note that one of its most recognizable aural markers is an opening built on three consecutive Dum strokes. Some pedagogical schools explain its internal grouping as 4+2+4+4, but that is more useful for counting and analysis than as the only valid performed realization. The academically precise framing is therefore not only to name its meter, but also to locate it in the muwashshah tradition, where the breadth of the cycle functions as part of the expressive design rather than as meter alone."
+  },
+  "other_names": {
+    "ar": ["المُحجَّر"],
+    "en": ["Muhajjar"]
+  },
+  "examples": {
+    "ar": ["هجرني حبيبي", "بدت من الخدر", "هل على الأستار", "يا ترى بعد البعاد"],
+    "en": ["Hajrani Habibi", "Badat min al-Khidr", "Hal 'ala al-Astar", "Ya Tura Ba'd al-Bu'ad"]
+  },
+  "related_rhythms": ["murabbaa", "mukhammas", "samai_thaqil"]
+}
