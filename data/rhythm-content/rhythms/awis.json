@@ -1,0 +1,16 @@
+{
+  "id": "awis",
+  "source_context_or_origin": {
+    "ar": "العويص هو إيقاع 11/8 يُستعمل أساساً في الموشحات. وتشير المراجع الحديثة إلى أنه من الإيقاعات التي تبدأ بعض قطعها من الضربة الثالثة، أي من أول تك، بينما تبدأ قطع أخرى من الضربة الحادية عشرة، أي من آخر تك. وهذه ملاحظة مهمة جداً، لأنها تكشف أن هوية الإيقاع في الأداء الموشحي لا تتحدد بالوزن وحده، بل أيضاً بموضع دخول الجملة اللحنية في الدورة. وتذكر المراجع كذلك أن له صيغة أبطأ يمكن تدوينها على نحو مختلف، وأن اسم العويص نفسه يعني في العربية الشديد الصعوبة أو المعقّد، وهي دلالة منسجمة مع موقعه بين الإيقاعات الموشحية المركبة.",
+    "en": "Awis is an 11/8 rhythm used primarily in muwashshahat. Modern references indicate that some pieces in this rhythm begin from the third ضرب, that is, from the first Tek, while others begin from the eleventh ضرب, that is, from the final Tek. This is a very important observation, because it shows that the identity of the rhythm in muwashshah performance is determined not only by its meter, but also by the point at which the melodic phrase enters the cycle. References also note that it has a slower form that may be notated differently, and that the Arabic name awis itself means something like difficult or complex, a meaning well aligned with its place among the more intricate muwashshah rhythms."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Awis"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["mudawwar", "nawakhat"]
+}
