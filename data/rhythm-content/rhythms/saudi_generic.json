@@ -1,0 +1,16 @@
+{
+  "id": "saudi_generic",
+  "source_context_or_origin": {
+    "ar": "عبارة الإيقاع السعودي ليست اسماً معيارياً مضبوطاً في المراجع الأكاديمية الأساسية، بل تعبيراً عاماً أو تعليمياً قد يُستعمل اختزالاً للإشارة إلى واحد من عدة فنون سعودية مثل السامري أو العرضة أو غيرهما. والمراجع الأكاديمية عن موسيقى السعودية والخليج لا تقدم إيقاعاً واحداً جامعاً بهذا الاسم، بل تقدّم مشهداً متعدد الفنون والأنماط بأسماء أكثر تحديداً. لذلك فالأدق في الكتابة العلمية ألا يُستعمل هذا العنوان بوصفه اسماً مرجعياً نهائياً، بل بوصفه تسمية تداولية تحتاج دائماً إلى إعادتها إلى الفن المقصود فعلاً: هل المقصود السامري، أم العرضة، أم لون حضري خليجي آخر؟ ومن دون هذا التحديد يبقى الاسم واسعاً أكثر مما ينبغي وضعيف الفائدة العلمية.",
+    "en": "The label Saudi rhythm is not a tightly standardized name in the main academic literature, but rather a broad or pedagogical shorthand that may be used for one of several Saudi performance traditions such as Samri, Ardah, or another Gulf urban form. Academic writing on the music of Saudi Arabia and the Gulf does not usually present one unified rhythm under that title, but instead describes a field of multiple named traditions and practices. The more rigorous approach is therefore not to treat Saudi as a final reference term, but as a loose label that should always be traced back to the specific form actually meant: Samri, Ardah, or something else. Without that clarification, the term is too broad to be very useful analytically."
+  },
+  "other_names": {
+    "ar": ["السعودي", "الإيقاع السعودي"],
+    "en": ["Saudi", "Saudi Rhythm"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["samri_najdi"]
+}
