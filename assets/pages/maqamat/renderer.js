@@ -4,6 +4,7 @@
 (function () {
   const ns = window.InteractiveScaleApp = window.InteractiveScaleApp || {};
   const { SVG_NS, SLOT_MAP, STAFF_LINES_Y } = ns.constants;
+  const maqamContentLoader = window.MaqamContentLoader || null;
 
   function renderAll() {
     renderSidebar();
@@ -105,6 +106,14 @@
 
         <div class="sec-title">معلومات المقام</div>
         <div class="info-grid" id="maqam-info-grid"></div>
+
+        <div class="sec-title">البنية والسير والأمثلة</div>
+        <div class="maqam-content-sections" id="maqam-content-sections">
+          <div class="maqam-content-card maqam-content-card-placeholder">
+            <h3>يتم تحميل مادة المقام…</h3>
+            <p>سيظهر هنا السير، والأمثلة، والتحويلات، والتسجيلات المرجعية عندما تكون متاحة في ملف المقام.</p>
+          </div>
+        </div>
       </section>
     `;
 
@@ -113,6 +122,139 @@
     renderStaff();
     renderKeys();
     ns.actions.bindPageEvents();
+    void renderMaqamContentSections();
+  }
+
+  async function renderMaqamContentSections() {
+    const container = document.getElementById("maqam-content-sections");
+    if (!container || !maqamContentLoader || typeof maqamContentLoader.buildMaqamContentModel !== "function") return;
+
+    try {
+      const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
+      const cards = [
+        createSayrCard(model),
+        createExamplesCard(model),
+        createVideoExamplesCard(model),
+        createModulationsCard(model),
+        createReferencesCard(model)
+      ].filter(Boolean);
+
+      if (!cards.length) {
+        container.innerHTML = `
+          <div class="maqam-content-card maqam-content-card-placeholder">
+            <h3>القسم جاهز للتوسعة</h3>
+            <p>هذه الصفحة أصبحت مهيأة لإضافة السير، والأمثلة، والتحويلات، والتسجيلات المرجعية من المصادر الأكاديمية لكل مقام.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = cards.join("");
+    } catch (error) {
+      container.innerHTML = `
+        <div class="maqam-content-card maqam-content-card-placeholder">
+          <h3>القسم جاهز للتوسعة</h3>
+          <p>البنية الجديدة جاهزة، لكن ملف هذا المقام لا يحتوي بعد على جميع الحقول الإضافية المطلوبة.</p>
+        </div>
+      `;
+    }
+  }
+
+  function createContentCard(title, bodyHtml) {
+    if (!bodyHtml) return "";
+    return `
+      <section class="maqam-content-card">
+        <h3>${title}</h3>
+        ${bodyHtml}
+      </section>
+    `;
+  }
+
+  function createBulletList(items) {
+    const values = Array.isArray(items) ? items.filter(Boolean) : [];
+    if (!values.length) return "";
+    return `<ul class="maqam-content-list">${values.map(item => `<li>${escapeHtml(String(item))}</li>`).join("")}</ul>`;
+  }
+
+  function createLinkedReferenceList(items) {
+    const values = Array.isArray(items) ? items.filter(Boolean) : [];
+    if (!values.length) return "";
+    return `<ul class="maqam-content-list">${values.map(item => {
+      const title = item.title || item.name || item.id || "مرجع";
+      const author = item.author ? ` — ${item.author}` : "";
+      return `<li>${escapeHtml(title + author)}</li>`;
+    }).join("")}</ul>`;
+  }
+
+  function createSayrCard(model) {
+    const sayr = model && model.sayr ? model.sayr : null;
+    if (!sayr) return "";
+
+    const summary = sayr.summary ? `<p class="maqam-content-copy">${escapeHtml(sayr.summary)}</p>` : "";
+    const path = createBulletList(sayr.common_path);
+    const resting = createBulletList(sayr.resting_tones);
+    const motion = createBulletList(sayr.motion_notes);
+
+    const body = [
+      summary,
+      path ? `<div class="maqam-content-subsection"><h4>المسار الغالب</h4>${path}</div>` : "",
+      resting ? `<div class="maqam-content-subsection"><h4>درجات الارتكاز</h4>${resting}</div>` : "",
+      motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : ""
+    ].filter(Boolean).join("");
+
+    return createContentCard("السير", body);
+  }
+
+  function normalizeExampleEntries(items) {
+    return (Array.isArray(items) ? items : []).filter(Boolean).map(item => {
+      if (typeof item === "string") return { title: item };
+      return item;
+    });
+  }
+
+  function createExamplesMarkup(items) {
+    const values = normalizeExampleEntries(items);
+    if (!values.length) return "";
+    return `
+      <ul class="maqam-example-list">
+        ${values.map(item => {
+          const title = item.title || item.name || "";
+          const note = item.note || item.notes || item.description || "";
+          return `
+            <li class="maqam-example-item">
+              ${title ? `<span class="maqam-example-title">${escapeHtml(title)}</span>` : ""}
+              ${note ? `<span class="maqam-example-note">${escapeHtml(note)}</span>` : ""}
+            </li>
+          `;
+        }).join("")}
+      </ul>
+    `;
+  }
+
+  function createExamplesCard(model) {
+    const items = (model && (model.examples || model.listening_examples || model.repertoire_examples)) || [];
+    const body = createExamplesMarkup(items);
+    return createContentCard("أمثلة موسيقية", body);
+  }
+
+  function createVideoExamplesCard(model) {
+    const items = (model && (model.video_examples || model.video_listening_examples)) || [];
+    const body = createExamplesMarkup(items);
+    return createContentCard("أمثلة مرئية / فيديو", body);
+  }
+
+  function createModulationsCard(model) {
+    const values = (model && (model.common_modulations || model.modulations || model.modulation_paths)) || [];
+    const body = createBulletList(values);
+    return createContentCard("التحويلات الشائعة", body);
+  }
+
+  function createReferencesCard(model) {
+    const values = (model && (model.reference_recordings || model.canonical_pieces || model.references)) || [];
+    const body = Array.isArray(values) && values.length && typeof values[0] === "object"
+      ? createLinkedReferenceList(values)
+      : createBulletList(values);
+    return createContentCard("تسجيلات / مراجع أساسية", body);
   }
 
   function renderTonicSelector() {

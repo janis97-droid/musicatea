@@ -587,7 +587,8 @@
   margin-bottom:20px;
 }
 
-.info-card {
+.info-card,
+.maqam-content-card {
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:12px;
@@ -611,6 +612,71 @@
 
 .info-value.gold {
   color:var(--gold);
+}
+
+.maqam-content-sections {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.maqam-content-card h3 {
+  margin:0 0 12px;
+  color:var(--gold-light);
+  font-size:1rem;
+  font-weight:900;
+}
+
+.maqam-content-subsection + .maqam-content-subsection {
+  margin-top:12px;
+}
+
+.maqam-content-subsection h4 {
+  margin:0 0 8px;
+  color:var(--text-muted);
+  font-size:.82rem;
+  font-weight:800;
+}
+
+.maqam-content-copy,
+.maqam-content-card-placeholder p,
+.maqam-example-note,
+.maqam-content-list li {
+  color:var(--text-muted);
+  line-height:1.8;
+  font-size:.92rem;
+}
+
+.maqam-content-list,
+.maqam-example-list {
+  margin:0;
+  padding:0 18px 0 0;
+  display:grid;
+  gap:8px;
+}
+
+.maqam-example-list {
+  list-style:none;
+  padding-right:0;
+}
+
+.maqam-example-item {
+  display:grid;
+  gap:4px;
+  padding:10px 12px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.maqam-example-title {
+  color:var(--gold-light);
+  font-size:.94rem;
+  font-weight:800;
+}
+
+.maqam-content-card-placeholder {
+  border-style:dashed;
 }
 
 @media(max-width:768px) {
@@ -678,6 +744,10 @@
   .staff-svg {
     min-width:640px;
     max-height:none;
+  }
+
+  .maqam-content-sections {
+    grid-template-columns:1fr;
   }
 
   .note-key-face {
