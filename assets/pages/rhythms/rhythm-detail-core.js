@@ -145,13 +145,17 @@
 
     return `
       <section class="rhythm-hero">
-        <article class="rhythm-hero-card rhythm-hero-copy">
+        <article class="rhythm-hero-card rhythm-hero-copy rhythm-hero-single-card">
           <div class="rhythm-title-row">
             <h1>${escapeHtml(localized.name || labels.fallbackTitle)}</h1>
             <span class="rhythm-time-chip">${escapeHtml(rhythm.time_signature || "—")}</span>
           </div>
 
           ${summary ? `<p class="rhythm-hero-summary">${escapeHtml(summary)}</p>` : ""}
+
+          <div class="rhythm-hero-visual-block">
+            ${createLargeImageMarkup(rhythm, localized.name || labels.fallbackTitle)}
+          </div>
 
           <div class="rhythm-controls-card">
             <div class="rhythm-bpm-row">
@@ -173,10 +177,6 @@
               <audio class="rhythm-audio" preload="none"></audio>
             </div>
           </div>
-        </article>
-
-        <article class="rhythm-hero-card">
-          ${createLargeImageMarkup(rhythm, localized.name || labels.fallbackTitle)}
         </article>
       </section>
     `;

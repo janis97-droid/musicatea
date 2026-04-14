@@ -231,6 +231,34 @@
   gap: 14px;
 }
 
+@media (min-width: 1081px) {
+  .rhythm-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .rhythm-hero-single-card {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    gap: 18px;
+  }
+
+  .rhythm-hero-visual-block {
+    display: block;
+  }
+
+  .rhythm-hero-single-card .rhythm-large-image-wrap {
+    padding: 16px;
+  }
+
+  .rhythm-hero-single-card .rhythm-large-image {
+    max-height: 420px;
+  }
+
+  .rhythm-hero-single-card .rhythm-controls-card {
+    padding-top: 4px;
+  }
+}
+
 @media (max-width: 1080px) {
   .rhythm-hero {
     grid-template-columns: 1fr;
