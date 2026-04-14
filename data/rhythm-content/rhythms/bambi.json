@@ -1,84 +1,28 @@
 {
   "id": "bambi",
   "source_context_or_origin": {
-    "ar": "البامب، أو البامبي، هو إيقاع مصري 8/4 طويل ومتمدّد، ويُستعمل كثيراً لمرافقة الارتجالات الآلية والمقاطع الغنائية الخفيفة أو المتناثرة أكثر من استعماله كإيقاع مزدحم وثقيل. هذه هي النقطة الأساسية في شخصيته: فهو لا يضغط على الجملة، بل يمنحها مساحة تنفس وامتداداً زمنياً واسعاً. من الناحية العملية يتميّز أيضاً بطريقة الدخول، إذ يذكر المرجع أن العزف يبدأ كثيراً من الضربة السابعة، أي من الدُم قبل الأخيرة، بحيث تدخل الدورة مع تركيز واضح على ثلاث دُمّات متتالية في بداية الإحساس السمعي للدورة. لذلك لا يكفي أن يُفهم على أنه مجرد 8/4 طويل، بل يجب سماع مركز الثقل الخاص به وطريقة توزّع الضربات فيه. حضوره واضح في التقاسيم والموال والأغنية الطربية والقطعة الآلية، وهذا ما يجعله إيقاعاً مناسباً للمساحات الأقل ازدحاماً والأكثر تنفساً.",
-    "en": "Bamb, or Bambi, is an Egyptian 8/4 rhythm with a long and extended feel, often used to accompany instrumental improvisation and lighter or more spacious vocal passages rather than dense and heavy rhythmic textures. This is central to its identity: it does not press on the phrase, but instead gives it breathing room and broad temporal space. In practical performance, it is also marked by its point of entry, since the reference notes that the groove often begins from the seventh beat, from the penultimate Dum, so that the cycle enters with a clear concentration on three consecutive Dum strokes at the beginning of the felt phrase. For that reason it should not be understood merely as any long 8/4 rhythm, but as one with its own center of weight and its own distribution of accents. It appears clearly in taqasim, mawwal, tarab song, and instrumental pieces, which makes it especially suitable for more spacious and less crowded musical textures."
+    "ar": "البامبي إيقاع مصري 8/4 من المجال الشعبي، وتصفه المراجع الحديثة بأنه إيقاع ذو شخصية افتتاحية مميزة تقوم على ثلاث دُمّات متتالية. ويُشرح ذلك عملياً بأن العازفين يبدأون أداءه من النبضة السابعة، فيظهر السمع وكأن الدورة تبدأ بثلاث دُمّات متوالية، وهذه هي علامته الأوضح. كما تشير المراجع إلى أن بعض العازفين قد يستبدلون الدُّم الثانية من هذا الثلاثي بتك أو سكتة لإحداث توتر بسيط بين الضربة الأولى والثالثة. وله أيضاً صيغة ثانية تبدأ من أول الميزان بعد إزاحة الصيغة الأولى بمقدار ربعين، لكنها تحتفظ كذلك ببداية من ثلاث دُمّات. واسم البامب ليس إيقاعاً آخر، بل اختصار تداولي للبامبي.",
+    "en": "Bambi is an Egyptian 8/4 rhythm from the popular domain, and modern references describe it as having a distinctive opening identity based on three consecutive Dum strokes. In practical terms, performers begin it from the seventh pulse, so the ear perceives the cycle as if it begins with three successive Dums, and this is its clearest marker. References also note that some players may replace the second Dum in this triple opening with a Tek or a rest to create a slight tension between the first and third strokes. It also has a second form that begins from the start of the measure after shifting the first form by two quarter-note beats, while still preserving a three-Dum opening profile. The name Bamp is not a separate rhythm, but a colloquial shortening of Bambi."
   },
   "other_names": {
-    "ar": ["البامب", "البامبي"],
-    "en": ["Bamb", "Bambi"]
+    "ar": ["البامب"],
+    "en": ["Bambi", "Bamp"]
   },
   "examples": {
     "ar": [
-      {
-        "title": "تقسيم موزون على العود",
-        "artist": "سيمون شاهين"
-      },
-      {
-        "title": "يا من بنودك حرير",
-        "artist": "محمد خيري",
-        "note": "موال"
-      },
-      {
-        "title": "جفنُه علّم الغزل",
-        "artist": "محمد عبد الوهاب",
-        "note": "1933"
-      },
-      {
-        "title": "أنده عليك",
-        "artist": "وردة",
-        "note": "1982"
-      },
-      {
-        "title": "ألف ليلة وليلة",
-        "artist": "أم كلثوم",
-        "note": "1969"
-      },
-      {
-        "title": "أسامينا",
-        "artist": "فيروز"
-      },
-      {
-        "title": "ليالي لبنان",
-        "artist": "محمد عبد الوهاب",
-        "note": "1954"
-      }
+      {"title": "جفنه علّم الغزل", "artist": "محمد عبد الوهاب"},
+      {"title": "ليالي لبنان", "artist": "محمد عبد الوهاب"},
+      {"title": "أنده عليك", "artist": "وردة", "note": "المقدمة"},
+      {"title": "ألف ليلة وليلة", "artist": "أم كلثوم", "note": "المقدمة"},
+      {"title": "أسامينا", "artist": "فيروز"}
     ],
     "en": [
-      {
-        "title": "Measured Taqsim on Oud",
-        "artist": "Simon Shaheen"
-      },
-      {
-        "title": "Ya Man Bunudak Harir",
-        "artist": "Mohammad Khairy",
-        "note": "Mawwal"
-      },
-      {
-        "title": "Jafnuhu 'Allam Al-Ghazal",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "1933"
-      },
-      {
-        "title": "Andeh Aleik",
-        "artist": "Warda",
-        "note": "1982"
-      },
-      {
-        "title": "Alf Leila wa Leila",
-        "artist": "Umm Kulthum",
-        "note": "1969"
-      },
-      {
-        "title": "Asameena",
-        "artist": "Fairuz"
-      },
-      {
-        "title": "Layali Lubnan",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "1954"
-      }
+      {"title": "Jafnuhu 'Allam Al-Ghazal", "artist": "Mohammed Abdel Wahab"},
+      {"title": "Layali Lubnan", "artist": "Mohammed Abdel Wahab"},
+      {"title": "Andah 'Alayk", "artist": "Warda", "note": "opening"},
+      {"title": "Alf Leila wa Leila", "artist": "Umm Kulthum", "note": "opening"},
+      {"title": "Asamina", "artist": "Fairuz"}
     ]
   },
-  "related_rhythms": ["wahda_kabira", "masmoudi_nisfi"]
+  "related_rhythms": ["masmoudi_kabir", "maqsum"]
 }

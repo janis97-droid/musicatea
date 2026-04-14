@@ -1,8 +1,8 @@
 {
   "id": "rumba",
   "source_context_or_origin": {
-    "ar": "الرومبا العربي هو إيقاع 4/4، لكنه ليس من الإيقاعات العربية التراثية الأصيلة بالمعنى الضيق؛ بل هو اقتباس عربي عن إيقاع الرومبا الأميركي اللاتيني بالاسم نفسه. ووفق المرجع الإيقاعي الذي اعتمدناه في الصفحات السابقة، صار هذا الإيقاع دارجاً منذ بداية الثلاثينيات من القرن العشرين، واستُعمل داخل الموسيقى العربية لإضافة نكهة لاتينية إلى التوزيع. لذلك فشخصيته في السياق العربي ترتبط غالباً بالإحساس الخارجي أو المطعَّم لاتينياً داخل الأغنية العربية، لا بالهوية الفولكلورية المحلية الخالصة. وهو لا يُفهم تربوياً بوصفه مقسوماً باسم أجنبي، بل بوصفه إيقاعاً ذا أصل لاتيني تبنّته الموسيقى العربية بوظيفة توزيعية وتلوينية واضحة داخل الأغنية الحديثة.",
-    "en": "Arabic Rumba is a 4/4 rhythm, but it is not one of the strictly indigenous Arabic heritage rhythms; rather, it is an Arabic adaptation of the Latin American rumba bearing the same name. According to the rhythmic reference used throughout these pages, it became current from the early 1930s onward and was used in Arabic music to add a Latin flavor to orchestration and arrangement. Its character in Arabic musical practice is therefore often tied to a sense of external or Latin-inflected coloration inside the Arabic song, rather than to a purely local folkloric identity. Pedagogically, it should not be understood as Maqsum with a foreign name, but as a rhythm of Latin origin that Arabic music adopted for a specific arranging and coloring function within modern song."
+    "ar": "الرومبا العربي هو صيغة عربية مشتقة من الرومبا اللاتينية، لا إيقاع عربي تراثي خالص من حيث الأصل. وتربط المراجع الحديثة ظهوره برواج الموسيقى اللاتينية في مصر منذ الثلاثينيات، ودخول عناصر متعددة منها إلى الموسيقى العربية خاصة في الأربعينيات والخمسينيات. لذلك فالرومبا العربي لا يُفهم بوصفه إيقاعاً تراثياً مثل المقسوم، بل بوصفه إيقاعاً مُعَرَّباً دخل من باب التلوين والتهجين الموسيقي. كما تشير المراجع إلى أنه ليس شديد الشيوع، لكنه حين يُستخدم يمنح الأغنية أو القطعة نكهة أجنبية أو خارجية واضحة. ومن الناحية الأدائية، تبرز فيه الدُّمّان الرئيسيتان، أما ما بينهما من حشو وزخرفة فمتغير وقد يكون سنكوبياً.",
+    "en": "Arabic Rumba is an Arabic adaptation of the Latin rumba rather than a purely indigenous Arabic heritage rhythm. Modern references link its emergence to the popularity of Latin music in Egypt from the 1930s onward, and to the entry of multiple Latin elements into Arabic music especially in the 1940s and 1950s. For that reason, Arabic Rumba should not be understood as a traditional rhythm like Maqsum, but as an Arabized rhythm that entered through musical coloring and stylistic hybridization. References also note that it is not especially common, but when it is used it lends the song or composition a clear foreign or cosmopolitan flavor. In performance, the two main Dum strokes are the key structural points, while the material between them is variable and may be syncopated."
   },
   "other_names": {
     "ar": [],
@@ -10,77 +10,13 @@
   },
   "examples": {
     "ar": [
-      {
-        "title": "الفن",
-        "artist": "محمد عبد الوهاب",
-        "note": "1945"
-      },
-      {
-        "title": "أمل حياتي",
-        "artist": "أم كلثوم",
-        "note": "1965"
-      },
-      {
-        "title": "أنساك ده كلام",
-        "note": "1961"
-      },
-      {
-        "title": "بعيد عنك",
-        "artist": "أم كلثوم",
-        "note": "1965"
-      },
-      {
-        "title": "دارت الأيام",
-        "artist": "أم كلثوم",
-        "note": "1970"
-      },
-      {
-        "title": "قارئة الفنجان",
-        "artist": "عبد الحليم حافظ",
-        "note": "1976"
-      },
-      {
-        "title": "شعوري ناحيتك",
-        "artist": "وردة",
-        "note": "1981"
-      }
+      {"title": "الفن", "artist": "محمد عبد الوهاب"},
+      {"title": "شعوري ناحيتك", "artist": "وردة"}
     ],
     "en": [
-      {
-        "title": "Al-Fann",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "1945"
-      },
-      {
-        "title": "Amal Hayati",
-        "artist": "Umm Kulthum",
-        "note": "1965"
-      },
-      {
-        "title": "Ansak Da Kalam",
-        "note": "1961"
-      },
-      {
-        "title": "Ba'id 'Annak",
-        "artist": "Umm Kulthum",
-        "note": "1965"
-      },
-      {
-        "title": "Daret Al-Ayyam",
-        "artist": "Umm Kulthum",
-        "note": "1970"
-      },
-      {
-        "title": "Qari'at Al-Finjan",
-        "artist": "Abdel Halim Hafez",
-        "note": "1976"
-      },
-      {
-        "title": "Shu'uri Nahiyetak",
-        "artist": "Warda",
-        "note": "1981"
-      }
+      {"title": "Al-Fann", "artist": "Mohammed Abdel Wahab"},
+      {"title": "Shu'uri Nahiyetak", "artist": "Warda"}
     ]
   },
-  "related_rhythms": ["maqsum", "wahda_kabira", "fox"]
+  "related_rhythms": ["maqsum", "fox"]
 }

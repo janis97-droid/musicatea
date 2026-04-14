@@ -1,64 +1,16 @@
 {
   "id": "samai_darij",
   "source_context_or_origin": {
-    "ar": "السماعي الدارج هو إيقاع عربي 3/4، ويُسمّى أحياناً اختصاراً الدارج فقط. وتصفه المراجع بأنه إيقاع عام يُستعمل في الغناء والعزف الآلي معاً، وليس إيقاعاً خاصاً بنمط واحد ضيق. كما أنه الإيقاع الرئيسي في قالب الدارج الآلي المؤلَّف، وهذا ما يمنحه مكانة بنائية لا تقتصر على كونه وزناً مستقلاً فقط. شخصيته السمعية منسابة وواضحة ومباشرة، فهو أبسط وأقصر من السماعي الثقيل 10/8، وأقرب إلى الإحساس الثلاثي المباشر، مع قدرة على حمل الجملة الغنائية أو الآلية من غير تعقيد زائد. وتبرز أهميته أيضاً من علاقته بعائلة السماعي؛ فهو يظهر بوصفه إيقاعاً مختلفاً تماماً عن السماعي الثقيل في الميزان والوظيفة، كما يمكن أن يرتبط حركياً بيورك سماعي عندما تتغير السرعة وطريقة الإحساس بالدورة.",
-    "en": "Sama'i Darij is an Arabic 3/4 rhythm, sometimes referred to simply as Darij. Reference material describes it as a general-purpose rhythm used in both singing and instrumental music, not one restricted to a narrowly defined genre. It is also the principal rhythm of the composed instrumental darij form, which gives it structural importance beyond being just a standalone meter. Its audible character is flowing, clear, and direct: it is simpler and shorter than Sama'i Thaqil in 10/8 and closer to a straightforward triple feel, while still being flexible enough to support both vocal and instrumental phrasing without excessive complexity. Its importance is further highlighted by its connection to the wider Sama'i family: it stands apart from Sama'i Thaqil in both meter and function, and it can also sit in a kinetic relationship with Yuruk Semai when tempo and the feeling of the cycle shift."
+    "ar": "السماعي الدارج هو إيقاع عربي 3/4، وتصفه المراجع الحديثة بأنه شديد الشيوع في الأجناس الآلية، وهو الإيقاع الرئيسي في قالب السماعي الدارج الآلي. وهذه نقطة حاسمة في تعريفه، لأن وظيفته ليست فقط أنه وزن ثلاثي، بل أنه مركز بنائي لقالب آلي مستقل. كما تشير المراجع إلى أنه يطابق الفالس الأوروبي في الميزان والتدوين الهيكلي، لكنها تؤكد بوضوح أن الإحساس مختلف، وأن التشابه الكتابي لا يعني التطابق في الطابع ولا في الاستعمال. لذلك لا يصح تعريف السماعي الدارج اختزالاً بأنه فالس عربي.",
+    "en": "Sama'i Darij is an Arabic 3/4 rhythm, and modern references describe it as highly common in instrumental genres and as the principal rhythm of the instrumental Sama'i Darij form. This is a crucial point in defining it, because its role is not simply that of a triple meter, but that of a structural center for an independent instrumental form. References also note that it matches the European waltz in meter and basic notational outline, yet they stress clearly that the feeling is different, and that notational similarity does not imply identity of character or use. For that reason, Sama'i Darij should not be reduced to the label of an Arabic waltz."
   },
   "other_names": {
-    "ar": ["الدارج"],
-    "en": ["Darij"]
+    "ar": [],
+    "en": ["Sama'i Darij"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "كلّلي يا صحبُ",
-        "artist": "فرقة عبد الحليم نويرة",
-        "note": "من ألحان محمد عثمان"
-      },
-      {
-        "title": "يا غصنًا نقا",
-        "artist": "صباح فخري"
-      },
-      {
-        "title": "يا من لعبت به شمول",
-        "artist": "فرقة التراث"
-      },
-      {
-        "title": "دارج بياتي",
-        "artist": "سامي الشوّا",
-        "note": "قالب آلي"
-      },
-      {
-        "title": "دارج حجاز",
-        "artist": "سامي الشوّا",
-        "note": "تسجيل سنة 1924"
-      }
-    ],
-    "en": [
-      {
-        "title": "Kallili Ya Sahbu",
-        "artist": "Abdel Halim Nuweira Ensemble",
-        "note": "Composed by Muhammad Uthman"
-      },
-      {
-        "title": "Ya Ghusnan Naqa",
-        "artist": "Sabah Fakhri"
-      },
-      {
-        "title": "Ya Man La'ibat Bihi Shumul",
-        "artist": "Firqat Al-Turath"
-      },
-      {
-        "title": "Darij Bayati",
-        "artist": "Sami Al-Shawwa",
-        "note": "Instrumental form"
-      },
-      {
-        "title": "Darij Hijaz",
-        "artist": "Sami Al-Shawwa",
-        "note": "Recorded in 1924"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
-  "related_rhythms": ["samai_thaqil", "yuruk_semai"]
+  "related_rhythms": ["yuruk_semai", "samai_thaqil"]
 }

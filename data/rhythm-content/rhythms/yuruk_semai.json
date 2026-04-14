@@ -1,48 +1,16 @@
 {
   "id": "yuruk_semai",
   "source_context_or_origin": {
-    "ar": "يورك سماعي هو إيقاع 6/8 ذو أصل تركي دخل إلى الممارسة العربية، وهو شائع جداً في الموشحات. تذكر المراجع أيضاً أنه يُسمّى أحياناً يوغرغ، وأن كلمة yürük في التركية تحمل معنى قريباً من المتحرك أو الماشي، وهو معنى ينسجم تماماً مع شخصيته السمعية. أهميته لا تأتي من كونه مجرد وزن سداسي سريع، بل من كونه يقع في قلب الريبرتوار الموشحي ويؤدي وظيفة واضحة في الغناء الكلاسيكي العربي، وخصوصاً في الأعمال التي تحتاج إلى حركة منسابة من غير ثقل الإيقاعات الأطول مثل السماعي الثقيل. كما أن له حضوراً أوسع من الموشح وحده، إذ تذكر بعض الدراسات أنه حاضر أيضاً في الموسيقى الشعبية، مع وجود صيغة أبطأ منه في المقام العراقي.",
-    "en": "Yürük Semai is a 6/8 rhythm of Turkish origin that entered Arabic musical practice and became especially common in muwashshahat. References also note alternate names such as Yugrug, and explain that the Turkish word yürük carries a meaning close to moving or walking, which fits the audible character of the rhythm very well. Its importance does not come merely from being a fast six-beat meter, but from the fact that it sits at the heart of the muwashshah repertoire and serves a clear role in classical Arabic singing, especially in pieces that need flowing motion without the weight of longer rhythms such as Sama'i Thaqil. It also lives beyond the muwashshah alone, since some studies note its presence in folk music as well, with a slower related form appearing in Iraqi maqam practice."
+    "ar": "يورك سماعي هو إيقاع 6/8 من أصل تركي، وتذكر المراجع الحديثة أنه كان في الأصل أصولاً تركياً ثم صار شديد الحضور في الفولكلور وفي الموشح معاً. كما تذكر له أسماء أخرى مثل Ugrug وYugrug، وتشرح أن كلمة yürük التركية تعني تقريباً المتحرك أو الماشي، وهي تسمية منسجمة مع شخصيته الإيقاعية. وتضيف المراجع أن لهذا الإيقاع صيغة أبطأ بكثير في المقام العراقي تسمى Singin Sama‘i. لذلك فاليورك سماعي ليس مجرد وزن سداسي خفيف، بل إيقاع له جذر أصولي ووظائف متعددة بين الشعبي والموشحي.",
+    "en": "Yuruk Semai is a 6/8 rhythm of Turkish origin, and modern references note that it began as an usul of Turkish provenance before becoming strongly present in both folklore and the muwashshah tradition. They also give alternate names such as Ugrug and Yugrug, and explain that the Turkish word yürük means roughly moving or walking, a term that fits its rhythmic character well. References further note that this rhythm has a much slower counterpart in Iraqi maqam called Singin Sama'i. Yuruk Semai is therefore not just a light six-beat meter, but a rhythm with an usul-based lineage and multiple functions across folk and muwashshah practice."
   },
   "other_names": {
-    "ar": ["يوغرغ"],
-    "en": ["Yugrug", "Ugrug", "Yürük Semai"]
+    "ar": [],
+    "en": ["Yuruk Semai", "Ugrug", "Yugrug", "Singin Sama'i"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "أهوى الغزال الرَّبربَبي",
-        "artist": "Ensemble Al Kindi",
-        "note": "موشح"
-      },
-      {
-        "title": "عُنق المليح الغالي",
-        "artist": "صبري المدلل",
-        "note": "موشح"
-      },
-      {
-        "title": "بالذي أسكر",
-        "artist": "لويس حايك وعايدة شلهوب",
-        "note": "موشح"
-      }
-    ],
-    "en": [
-      {
-        "title": "Ahwa Al-Ghazal Al-Rabrabi",
-        "artist": "Ensemble Al Kindi",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Unuq Al-Malih Al-Ghali",
-        "artist": "Sabri Al-Mudallal",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Billadhi Askar",
-        "artist": "Louis Hayek and Aida Chelloub",
-        "note": "Muwashshah"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
   "related_rhythms": ["samai_darij", "samai_thaqil"]
 }

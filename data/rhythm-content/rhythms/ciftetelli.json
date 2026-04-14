@@ -1,136 +1,16 @@
 {
   "id": "ciftetelli",
   "source_context_or_origin": {
-    "ar": "الشفتتلي، أو الجفتتلي، هو نفسه ما يُكتب أيضاً Ciftetelli، وأصله تركي دخل إلى الموسيقى العربية وأصبح معروفاً فيها. مرجعه الأساس إيقاع 8/4 طويل ومتمدّد، ويُستعمل أساساً لمرافقة الارتجال، سواء كان ارتجالاً غنائياً أو آلياً، أكثر مما يُستعمل لبناء لحن مؤلف من البداية إلى النهاية. هذه نقطة جوهرية في شخصيته: فهو لا يدفع الجملة بقوة مثل الإيقاعات القصيرة، بل يمنحها مساحة زمنية واسعة ونَفَساً طويلاً وليونةً تسمح للمغني أو العازف بالحركة بحرية نسبية. ويمكن أن يُؤدّى أحياناً بشكل أسرع وأخف بحيث يُدوَّن على 4/4، وعندها يقترب كثيراً من إحساس واحدة ونص، لكن هويته المرجعية تبقى إيقاعاً طويلاً متمدّداً من عائلة 8/4.",
-    "en": "Ciftetelli, also rendered as Shiftetelli or Cifteteli, is originally Turkish and entered Arabic music as a recognized rhythmic form. Its reference form is a long and extended 8/4 rhythm used primarily to accompany improvisation, whether vocal or instrumental, more than to carry a tightly composed melody from beginning to end. This is central to its character: instead of pushing the phrase forcefully like shorter rhythms, it gives the performer broad temporal space, long breath, and a supple ground for relative freedom. It can also be performed in a lighter and faster way so that it may be notated in 4/4, at which point it comes very close to the feel of Wahda wa Noss, but its reference identity remains that of a long, stretched rhythm from the 8/4 family."
+    "ar": "الشفتتلي، أو الجفتتلي، هو إيقاع من أصل تركي دخل إلى الموسيقى العربية وصار معروفاً فيها. وتحدد المراجع الحديثة وظيفته بدقة: هو نادراً ما يُستخدم لحمل لحن مؤلف كاملاً، ووظيفته الأساسية هي مرافقة الارتجال، سواء كان ارتجالاً غنائياً أو آلياً. وهذا فرق حاسم بينه وبين إيقاعات مثل المصمودي الكبير أو السماعي الثقيل التي ترتبط بقوة بالبناء المؤلف. ومن حيث الكتابة قد يأتي بصيغة 8/4 عندما يكون بطيئاً ومتمدداً، وعندها قد يشترك في السرعة العامة والمزاج مع المصمودي الكبير. لكنه إذا أُدّي أسرع وأخف صار قريباً جداً من واحدة ونص في 4/4، وقد يتبادل معها ومع المقسوم داخل الأداء. لذلك فهويته لا تُختزل في الميزان فقط، بل في الوظيفة والإحساس الزمني.",
+    "en": "Ciftetelli, also written Jiftitelli, is a rhythm of Turkish origin that entered Arabic music and became established within it. Modern references define its function quite precisely: it is rarely used to carry a fully composed melody from beginning to end, and its main role is to accompany improvisation, whether vocal or instrumental. This sharply distinguishes it from rhythms such as Masmudi Kabir or Sama'i Thaqil, which are more strongly tied to composed structures. In notation it may appear in 8/4 when performed slowly and expansively, in which case it may share the general tempo and mood of Masmudi Kabir. But when performed lighter and faster it comes very close to Wahda w Noss in 4/4, and may exchange with it and with Maqsum in performance. Its identity therefore lies not only in meter, but in function and temporal feeling."
   },
   "other_names": {
-    "ar": ["الجفتتلي", "الشفتتلي"],
-    "en": ["Ciftetelli", "Shiftetelli", "Çiftetelli"]
+    "ar": ["الجفتتلي"],
+    "en": ["Ciftetelli", "Jiftitelli"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "اشتقتلك",
-        "artist": "فريد الأطرش",
-        "note": "1962"
-      },
-      {
-        "title": "جاءت معذبتي",
-        "artist": "فاطمة سرحان",
-        "note": "قصيدة"
-      },
-      {
-        "title": "ليالي راست",
-        "artist": "عباس البليدي"
-      },
-      {
-        "title": "خلٍّ سَقاني كاسات الصبر",
-        "artist": "محمد خيري",
-        "note": "موال"
-      },
-      {
-        "title": "يا دلع دلع",
-        "artist": "صباح",
-        "note": "1974"
-      },
-      {
-        "title": "عيني لغير جمالكم",
-        "artist": "فرقة التراث",
-        "note": "قصيدة"
-      },
-      {
-        "title": "بنت البلد",
-        "artist": "محمد عبد الوهاب",
-        "note": "1951، مثال على الصورة الأسرع والأخف"
-      },
-      {
-        "title": "يا من بنودك حرير",
-        "artist": "محمد خيري",
-        "note": "موال، مثال على الصورة الأسرع والأخف"
-      },
-      {
-        "title": "نورة نورة",
-        "artist": "فريد الأطرش",
-        "note": "1953، مثال على الصورة الأسرع والأخف"
-      },
-      {
-        "title": "تقسيم ناي بياتي",
-        "artist": "محمد خيري",
-        "note": "مثال على الصورة الأسرع والأخف"
-      },
-      {
-        "title": "توتا",
-        "artist": "فريد الأطرش",
-        "note": "1942، مثال على الصورة الأسرع والأخف"
-      },
-      {
-        "title": "يا دار دوري فينا",
-        "artist": "فيروز",
-        "note": "مثال على الصورة الأسرع والأخف"
-      }
-    ],
-    "en": [
-      {
-        "title": "Eshta'tellak",
-        "artist": "Farid Al-Atrash",
-        "note": "1962"
-      },
-      {
-        "title": "Ja'at Mu'adhdhibati",
-        "artist": "Fatima Sarhan",
-        "note": "Qasida"
-      },
-      {
-        "title": "Layali Rast",
-        "artist": "Abbas Al-Bilidi"
-      },
-      {
-        "title": "Khallin Saqani Kasat Al-Sabr",
-        "artist": "Mohammad Khairy",
-        "note": "Mawwal"
-      },
-      {
-        "title": "Ya Dala' Dala'",
-        "artist": "Sabah",
-        "note": "1974"
-      },
-      {
-        "title": "Ayni li Ghayri Jamalikum",
-        "artist": "Firqat Al-Turath",
-        "note": "Qasida"
-      },
-      {
-        "title": "Bint El-Balad",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "1951, an example of the faster and lighter form"
-      },
-      {
-        "title": "Ya Man Bunudak Harir",
-        "artist": "Mohammad Khairy",
-        "note": "Mawwal, an example of the faster and lighter form"
-      },
-      {
-        "title": "Noura Noura",
-        "artist": "Farid Al-Atrash",
-        "note": "1953, an example of the faster and lighter form"
-      },
-      {
-        "title": "Taqsim Nay Bayati",
-        "artist": "Mohammad Khairy",
-        "note": "An example of the faster and lighter form"
-      },
-      {
-        "title": "Tota",
-        "artist": "Farid Al-Atrash",
-        "note": "1942, an example of the faster and lighter form"
-      },
-      {
-        "title": "Ya Dar Douri Fina",
-        "artist": "Fairuz",
-        "note": "An example of the faster and lighter form"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
-  "related_rhythms": ["wahda_kabira", "masmoudi_nisfi", "bambi"]
+  "related_rhythms": ["wahda_wa_noss", "maqsum", "masmoudi_kabir"]
 }
