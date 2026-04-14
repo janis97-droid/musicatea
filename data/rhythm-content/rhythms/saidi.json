@@ -1,72 +1,16 @@
 {
   "id": "saidi",
   "source_context_or_origin": {
-    "ar": "الصعيدي هو إيقاع عربي رباعي 4/4 حيّ وحيوي ومصري بامتياز، ويرتبط اسمه مباشرةً بمنطقة الصعيد في مصر. في الممارسة العملية يُفهم بوصفه جزءاً من عائلة الإيقاعات الرباعية القريبة من المقسوم والبلدي، إذ يتحرك بسهولة ذهاباً وإياباً معهما داخل الأغنية أو التوزيع. شخصيته السمعية تقوم على الدُمّين المتتاليين في وسط الدورة، وهذا ما يمنحه طاقةً ودفعاً أوضح من المقسوم، ويجعله أقل أرضيةً من البلدي وأكثر حيويةً منه. كما أن ذكر النواري معه مهم لأنه يُستعمل بوصفه تنويعاً قريباً من فضائه الإيقاعي داخل الاستعمالات الفولكلورية والمشرقية.",
-    "en": "Sa'idi is a lively and distinctly Egyptian Arabic 4/4 rhythm whose name is directly associated with Upper Egypt. In practical musical use, it is best understood as part of the family of quadruple rhythms closely related to Maqsum and Baladi, since it moves easily back and forth with them inside songs and arrangements. Its sonic identity comes from the two consecutive Dum strokes placed in the middle of the cycle, which give it more drive and energy than Maqsum while making it less grounded than Baladi. Nawari is also worth mentioning alongside it as a related variation that appears in folkloric and Levantine-oriented practice."
+    "ar": "الصعيدي إيقاع عربي 4/4 منسوب إلى صعيد مصر، وله حضور قوي في الموسيقى الصعيدية والرقص المصاحب لها، لكنه لا يقتصر على هذا المجال وحده إذ قد يدخل أيضاً في مؤلفات طربية. علامته البنيوية الأساسية أن الدُّمّين الرئيسيين يقعان في وسط الدورة، لا في بدايتها كما في البلدي. وهذا هو الفارق التركيبي الأوضح بينه وبين البلدي والمقسوم. كما تشير المراجع الحديثة إلى وجود تنويعات أدائية شائعة تحذف أحياناً أول دُم أو تكثف الدُّمّات في المنتصف، وهذه التنويعات تُعد جزءاً من أدائه الفعلي لا مجرد أخطاء في التنفيذ.",
+    "en": "Sa'idi is an Arabic 4/4 rhythm associated with Upper Egypt, and it has a strong place in Sa'idi music and the dance traditions linked to it, while not being restricted to that sphere alone since it may also enter tarab-oriented compositions. Its primary structural marker is that the two main Dum strokes fall in the middle of the cycle rather than at the beginning, as in Baladi. This is the clearest structural distinction between Sa'idi and related 4/4 rhythms such as Baladi and Maqsum. Modern references also note common performance variants that may omit the first Dum or intensify the Dum strokes in the middle, and these should be understood as part of actual practice rather than as mistakes in execution."
   },
   "other_names": {
     "ar": [],
-    "en": []
+    "en": ["Sa'idi"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "سواح",
-        "artist": "عبد الحليم حافظ",
-        "note": "1966"
-      },
-      {
-        "title": "زيّ الهوا",
-        "artist": "عبد الحليم حافظ",
-        "note": "1970"
-      },
-      {
-        "title": "بحبك صدقني",
-        "artist": "وردة"
-      },
-      {
-        "title": "حبة فوق وحبة تحت",
-        "artist": "أحمد عدوية"
-      },
-      {
-        "title": "أديك تقول ماخدتش",
-        "artist": "أحمد عدوية"
-      },
-      {
-        "title": "على حسب وداد قلبي",
-        "artist": "حسام رمزي",
-        "note": "مع نسبة اللحن إلى بليغ حمدي كما ورد في المرجع الذي نقلته"
-      }
-    ],
-    "en": [
-      {
-        "title": "Sawwah",
-        "artist": "Abdel Halim Hafez",
-        "note": "1966"
-      },
-      {
-        "title": "Zay El-Hawa",
-        "artist": "Abdel Halim Hafez",
-        "note": "1970"
-      },
-      {
-        "title": "Bhebbak Saddaqni",
-        "artist": "Warda"
-      },
-      {
-        "title": "Habba Fo' wa Habba Taht",
-        "artist": "Ahmed Adaweya"
-      },
-      {
-        "title": "Adeek Te'oul Makhadtesh",
-        "artist": "Ahmed Adaweya"
-      },
-      {
-        "title": "Ala Hasab Widad Qalbi",
-        "artist": "Hossam Ramzy",
-        "note": "With the melody attributed to Baligh Hamdi as stated in the source you provided"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
   "related_rhythms": ["maqsum", "baladi_masmoudi_saghir", "nawari"]
 }

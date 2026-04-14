@@ -1,0 +1,16 @@
+{
+  "id": "nawari",
+  "source_context_or_origin": {
+    "ar": "النواري إيقاع عربي 4/4، ويُذكر في المراجع الحديثة أيضاً باسم الكتاكفتي، ويُقدَّم بوصفه تنويعاً على البلدي والصعيدي أكثر من كونه إيقاعاً منفصلاً تماماً عنهما. لذلك فهويته تُفهم من خلال القرابة والتحوير لا من خلال الانفصال التام. ويظهر كثيراً في الفولكلور المشرقي وخصوصاً في رقصات الدبكة. كما تُشير المراجع الحديثة إلى أن اسم Nawari مشتق من كلمة عامية ذات حمولة قدحية تشير إلى جماعات الروما، ولذلك يَحسن ذكره في الكتابة الأكاديمية بوصفه اسماً تداولياً موثَّقاً مع التنبه إلى خلفيته اللغوية غير المحايدة.",
+    "en": "Nawari is an Arabic 4/4 rhythm, and modern references also give the name Katakufti alongside it. It is presented more as a variation on Baladi and Sa'idi than as a rhythm entirely separate from them, so its identity is best understood through affinity and transformation rather than through full independence. It appears frequently in Levantine folklore, especially in dabke contexts. Modern references also note that the name Nawari derives from a colloquial term carrying pejorative associations toward Romani groups, so in academic writing it is best cited as a documented usage while keeping its non-neutral linguistic background in view."
+  },
+  "other_names": {
+    "ar": ["الكتاكفتي"],
+    "en": ["Nawari", "Katakufti"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["baladi_masmoudi_saghir", "saidi", "lebanese_dabke"]
+}

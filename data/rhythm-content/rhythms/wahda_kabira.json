@@ -1,58 +1,16 @@
 {
   "id": "wahda_kabira",
   "source_context_or_origin": {
-    "ar": "الوحدة هي إيقاع عربي 4/4، وتُعد الإيقاع الأساسي في الجمل الغنائية داخل طرب القرن العشرين. واسمها يأتي من كلمة واحدة لأن بنيتها تقوم على دُم واحدة في كل ميزان، وهذا ما يفتح مساحة كبيرة أمام المغني للزخرفة، والمد، والتصرف النسبي في السرعة داخل الجملة. في الممارسة الطربية لا تُفهم الوحدة بوصفها إيقاعاً ممتلئاً بالضربات، بل إيقاعاً مفتوحاً وقليل التقييد، يترك المجال للصوت أكثر مما يفرض عليه شبكة نبرية كثيفة. ولهذا ارتبطت بالمقاطع الغنائية البطيئة والمزخرفة، وبالدور الذي يتتبع فيه عازف الإيقاع المغني بدقة ويُسنِد الجملة من غير أن يخنقها. وهي تختلف بوضوح عن الوحدة الصغيرة 2/4، وعن المقسوم الذي يدفع الجملة إلى الأمام أكثر، وعن واحدة ونص التي تعمل بمنطق سنكوبي أقرب إلى المقسوم المتلوّن.",
-    "en": "Wahda Kabira is an Arabic 4/4 rhythm and is regarded as the foundational rhythm of vocal phrases in twentieth-century tarab. Its name comes from the idea of a single central Dum in each measure, and that is exactly what opens space for the singer to ornament, sustain, and shape tempo flexibly within the phrase. In tarab practice, Wahda is not understood as a rhythm filled with many strokes, but as an open and lightly constraining rhythm that gives space to the voice rather than imposing a dense accent grid upon it. This is why it became closely associated with slow, ornamented vocal passages, and with a style of accompaniment in which the percussionist follows the singer carefully and supports the phrase without choking it. It differs clearly from Wahda Saghira in 2/4, from Maqsum which pushes the phrase forward more strongly, and from Wahda wa Noss which works through a syncopated logic closer to a colored form of Maqsum."
+    "ar": "الوحدة إيقاع عربي 4/4 يُعد في التقليد الطربي الحديث الإيقاع الأساسي المصاحب للغناء. وتشرح المراجع الحديثة الاسم بوضوح: سُمّي Wahda لأنه يقوم على دُم واحدة، وهذه الواحدة تترك للمغني مساحة واسعة للزخرفة والمدود والملزمات. لذلك فوظيفته ليست فرض النبض بقدر ما هي متابعة الغناء بدقة. وفي هذا السياق لا يكون عازف الإيقاع ضابطاً صارماً مستقلاً عن الغناء، بل متابعاً لإيقاع المغني ومقاطع النص بإنصات شديد. وهذا يفسر لماذا تتكامل الوحدة غالباً مع المقسوم داخل الأغنية نفسها: المقاطع البطيئة المزخرفة تميل إلى الوحدة، بينما المقاطع الأكثر حركة أو الجوقات والآلات تميل إلى المقسوم.",
+    "en": "Wahda is an Arabic 4/4 rhythm and, in the modern tarab tradition, the primary rhythm for accompanying vocal performance. Modern references explain the name clearly: it is called Wahda because it is built around a single Dum, and that single stroke leaves the singer broad space for ornamentation, sustained tones, and melismatic phrasing. Its function is therefore not to impose pulse so much as to follow the vocal line with precision. In this setting, the percussionist is not an independent strict timekeeper but someone who listens closely to the singer’s rhythm and to the segmentation of the text. This also explains why Wahda often complements Maqsum within the same song: slow and ornamented passages tend toward Wahda, while more active sections, choruses, or instrumental passages tend toward Maqsum."
   },
   "other_names": {
+    "ar": ["الوحدة"],
+    "en": ["Wahda"]
+  },
+  "examples": {
     "ar": [],
     "en": []
   },
-  "examples": {
-    "ar": [
-      {
-        "title": "بعيد عنك",
-        "artist": "أم كلثوم",
-        "note": "1965"
-      },
-      {
-        "title": "دارت الأيام",
-        "artist": "أم كلثوم",
-        "note": "1970"
-      },
-      {
-        "title": "قارئة الفنجان",
-        "artist": "عبد الحليم حافظ",
-        "note": "1976"
-      },
-      {
-        "title": "سلو قلبي",
-        "artist": "أم كلثوم",
-        "note": "1946"
-      }
-    ],
-    "en": [
-      {
-        "title": "Ba'id 'Annak",
-        "artist": "Umm Kulthum",
-        "note": "1965"
-      },
-      {
-        "title": "Daret Al-Ayyam",
-        "artist": "Umm Kulthum",
-        "note": "1970"
-      },
-      {
-        "title": "Qari'at Al-Finjan",
-        "artist": "Abdel Halim Hafez",
-        "note": "1976"
-      },
-      {
-        "title": "Salu Qalbi",
-        "artist": "Umm Kulthum",
-        "note": "1946"
-      }
-    ]
-  },
-  "related_rhythms": ["wahda", "maqsum"]
+  "related_rhythms": ["maqsum", "wahda"]
 }

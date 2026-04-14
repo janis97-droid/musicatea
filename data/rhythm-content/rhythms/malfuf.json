@@ -1,76 +1,16 @@
 {
   "id": "malfuf",
   "source_context_or_origin": {
-    "ar": "الملفوف هو إيقاع عربي 2/4، ويُعرف أيضاً باسم اللفّ. يُستعمل أساساً في الموسيقى الشعبية والفولكلورية العربية، ويتميّز بأنه قصير ودوري وسريع الإحساس، لذلك يعطي حركة فورية وواضحة منذ أول نبضة. في الممارسة العملية يتحرك كثيراً من وإلى إيقاعات 2/4 قريبة مثل الكاراشي والفوكس، كما أن دورتين من الملفوف يمكن أن تعادلا دورة واحدة من إيقاعات 4/4 مثل البلدي أو المقسوم. شخصيته الأساسية دافعة وسريعة الدوران، وقيمته الإيقاعية لا تأتي من التعقيد بل من نظافة النبض، ولذلك يُستعمل كثيراً في الغناء الخفيف والمواد الشعبية والمقدمات والتحويلات التي تحتاج إلى طاقة مباشرة من دون ثقل رباعي طويل.",
-    "en": "Malfuf is an Arabic 2/4 rhythm, also known as al-Laff. It is used mainly in Arabic popular and folkloric music, and it is characterized by a short, cyclical, and fast-moving feel that creates immediate motion from the first beat. In practice, it often moves to and from nearby 2/4 rhythms such as Karachi and Fox, and two Malfuf cycles can correspond to one 4/4 cycle in rhythms such as Baladi or Maqsum. Its core character is driving and rapidly turning, and its rhythmic value comes less from complexity than from a clean pulse, which is why it works well in light song, folkloric material, introductions, and transitions that need direct energy without the weight of a longer quadruple cycle."
+    "ar": "الملفوف إيقاع عربي 2/4 من الإيقاعات القصيرة الأساسية في التقليد المصري-المشرقي. أهميته لا تقوم فقط على هيكله المختصر، بل على إحساسه بالدوران والاستمرار والحركة السريعة إلى الأمام. لذلك يُستخدم كثيراً بوصفه إيقاعاً حركياً قصيراً يربط بين الأقسام أو يدفع الجملة إلى الأمام. وتشير المراجع الحديثة أيضاً إلى أنه واحد من الإيقاعات التي يمكن أن تتبادل بنيوياً مع بعض إيقاعات 4/4 مثل المقسوم والفلاحي من خلال تحويل في عدد الموازير والسرعة. لذلك لا ينبغي اختزاله إلى دُم تك تك فقط، بل فهمه كإيقاع قصير ذي وظيفة حركية واضحة داخل البنية الموسيقية.",
+    "en": "Malfuf is an Arabic 2/4 rhythm and one of the fundamental short rhythms in the Egyptian-Levantine tradition. Its importance lies not only in its compact structure but in its feeling of rotation, continuity, and quick forward motion. For that reason it is often used as a short kinetic rhythm that links sections together or drives the phrase ahead. Modern references also indicate that it is one of the rhythms that can exchange structurally with certain 4/4 rhythms such as Maqsum and Fallahi through changes in the number of measures and in tempo. It should therefore not be reduced to Dum-Tak-Tak alone, but understood as a short rhythm with a distinct kinetic function inside musical form."
   },
   "other_names": {
-    "ar": ["اللفّ"],
-    "en": ["Al-Laff"]
+    "ar": [],
+    "en": ["Malfuf"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "يا دار دوري فينا",
-        "artist": "فيروز",
-        "note": "من ألحان فيلمون وهبة"
-      },
-      {
-        "title": "أمل حياتي",
-        "artist": "أم كلثوم",
-        "note": "1965، من ألحان محمد عبد الوهاب"
-      },
-      {
-        "title": "يا صاحي الصبر",
-        "artist": "حسن الحفار",
-        "note": "موشح"
-      },
-      {
-        "title": "ها مني",
-        "artist": "حسن الحفار",
-        "note": "موشح"
-      },
-      {
-        "title": "يا صاحي الصبر / ها مني",
-        "artist": "شيخ حمزة شكور مع Ensemble Al Kindi",
-        "note": "أداء موشحات"
-      },
-      {
-        "title": "Tulbah (Proposition)",
-        "artist": "فرقة الفنون الفلسطينية"
-      }
-    ],
-    "en": [
-      {
-        "title": "Ya Dar Douri Fina",
-        "artist": "Fairuz",
-        "note": "Composed by Philemon Wehbe"
-      },
-      {
-        "title": "Amal Hayati",
-        "artist": "Umm Kulthum",
-        "note": "1965, composed by Mohammed Abdel Wahab"
-      },
-      {
-        "title": "Ya Sahi Al-Sabr",
-        "artist": "Hassan Al-Haffar",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Ha Minni",
-        "artist": "Hassan Al-Haffar",
-        "note": "Muwashshah"
-      },
-      {
-        "title": "Ya Sahi Al-Sabr / Ha Minni",
-        "artist": "Sheikh Hamza Shakkur with Ensemble Al Kindi",
-        "note": "Muwashshah performance"
-      },
-      {
-        "title": "Tulbah (Proposition)",
-        "artist": "El Funoun Palestinian Dance Troupe"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
-  "related_rhythms": ["karachi", "fox", "baladi_masmoudi_saghir", "maqsum", "ayyub"]
+  "related_rhythms": ["maqsum", "fallahi", "sudasi"]
 }

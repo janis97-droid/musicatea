@@ -1,72 +1,16 @@
 {
   "id": "maqsum",
   "source_context_or_origin": {
-    "ar": "المقسوم هو الإيقاع 4/4 الأكثر شيوعاً في الموسيقى العربية والشرق أوسطية، ويُعامل كثيراً بوصفه الإيقاع المرجعي الأول داخل عائلة الإيقاعات الرباعية. يظهر بوصفه إيقاعاً حضرياً واسع الاستعمال في المجال العربي، مع حضور قوي في الممارسة المصرية والمشرقية، أكثر من كونه إيقاعاً يمكن ربط اختراعه بتاريخ واحد أو اسم واحد بشكل قاطع. قوته العملية أنه متوازن ومرن وقابل للتلوين، لذلك يخدم الغناء، والرقص، والتوزيع، والمرافقة الآلية في مساحات واسعة من الريبرتوار العربي.",
-    "en": "Maqsum is the most common 4/4 rhythm in Arabic and broader Middle Eastern music, and it is often treated as the main reference rhythm within the family of quadruple meters. In practical musical use, it appears as a widely used urban rhythm across the Arab world, with especially strong presence in Egyptian and Levantine practice, rather than as a rhythm that can be tied with certainty to a single inventor, date, or origin point. Its practical strength lies in its balance, flexibility, and ability to absorb ornamentation, which is why it works across singing, dance, arrangement, and instrumental accompaniment in a broad span of Arabic repertoire."
+    "ar": "المقسوم هو إيقاع عربي 4/4، ويُعد في التقليد المصري-المشرقي الحديث الإيقاع الأكثر شيوعاً وانتشاراً في الغناء الطربي، والغناء الشعبي، والموسيقى الآلية. وتربط المراجع الحديثة اسمه بفكرة المقسوم أو المجزأ، لأن الدورة تُحَسّ عملياً كأنها قابلة للانقسام إلى نصفين واضحين. أهم ما يميّزه أكاديمياً أنه ليس مجرد هيكل محفوظ، بل مركز عائلة إيقاعية واسعة؛ إذ يمكن أن يتحول بسهولة إلى إيقاعات قريبة مثل البلدي والصعيدي، كما قد يتبادل أيضاً مع الملفوف والفلاحي بحسب السرعة وتوزيع الموازير داخل العمل. لذلك فخصوصيته لا تقوم على الميزان وحده، بل أيضاً على خفته النسبية وقدرته العالية على التبادل والتحوير في الأداء الحي.",
+    "en": "Maqsum is an Arabic 4/4 rhythm and, in the modern Egyptian-Levantine tradition, the most widespread and recognizable rhythm in tarab song, popular song, and instrumental music. Modern references relate its name to the sense of being divided or segmented, because the cycle is often felt as though it can be split into two clear halves. What distinguishes it academically is that it is not merely a memorized pattern but the center of a broad rhythmic family: it can move easily into related rhythms such as Baladi and Sa'idi, and it may also exchange with Malfuf and Fallahi depending on tempo and the distribution of measures within a piece. Its identity therefore lies not in meter alone, but also in its relative lightness and its high capacity for transformation in live performance."
   },
   "other_names": {
     "ar": [],
-    "en": []
+    "en": ["Maqsum"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "القلب يعشق كل جميل",
-        "artist": "أم كلثوم",
-        "note": "1961"
-      },
-      {
-        "title": "دارت الأيام",
-        "artist": "أم كلثوم",
-        "note": "1970"
-      },
-      {
-        "title": "قارئة الفنجان",
-        "artist": "عبد الحليم حافظ",
-        "note": "1976"
-      },
-      {
-        "title": "ورقو الأصفر شهر أيلول",
-        "artist": "فيروز"
-      },
-      {
-        "title": "يا لبنان دخل ترابك",
-        "artist": "صباح"
-      },
-      {
-        "title": "وأنا بحب الجديد",
-        "artist": "أحمد عدوية"
-      }
-    ],
-    "en": [
-      {
-        "title": "Al-Qalb Ya'shaq Kull Jamil",
-        "artist": "Umm Kulthum",
-        "note": "1961"
-      },
-      {
-        "title": "Daret Al-Ayyam",
-        "artist": "Umm Kulthum",
-        "note": "1970"
-      },
-      {
-        "title": "Qari'at Al-Finjan",
-        "artist": "Abdel Halim Hafez",
-        "note": "1976"
-      },
-      {
-        "title": "Waraqo Al-Asfar Shahr Aylul",
-        "artist": "Fairuz"
-      },
-      {
-        "title": "Ya Lubnan Dakhala Turabak",
-        "artist": "Sabah"
-      },
-      {
-        "title": "Wa Ana Baheb El-Gedid",
-        "artist": "Ahmed Adaweya"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
-  "related_rhythms": ["baladi_masmoudi_saghir", "wahda", "malfuf"]
+  "related_rhythms": ["baladi_masmoudi_saghir", "saidi", "malfuf", "fallahi"]
 }

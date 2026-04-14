@@ -1,44 +1,16 @@
 {
   "id": "baladi_masmoudi_saghir",
   "source_context_or_origin": {
-    "ar": "البلدي هو إيقاع عربي رباعي 4/4 شائع جداً في الريبرتوار الغنائي العربي المشرقي، ويُعرف أيضاً باسم مصمودي صغير لتمييزه عن المصمودي الكبير الذي يمتد على دورة 8/4. في الاستعمال العملي يُعد من أكثر الإيقاعات قرباً إلى المقسوم، وكثير الانتقال من وإلى المقسوم، كما ينتقل أيضاً من وإلى الملفوف بحيث يمكن أن تعادل دورتان من الملفوف دورةً واحدة من البلدي. شخصيته الأساسية أرضية وثقيلة في البداية بسبب دُم دُم الافتتاحية، وهذا ما يجعله أكثر رسوخاً وامتلاءً من المقسوم، مع بقاءه صالحاً للمرافقة الغنائية وبناء الجملة، لا كونه مجرد إيقاع استعراضي أو تمرين طبلة منفصل عن الموسيقى.",
-    "en": "Baladi is a very common Arabic 4/4 rhythm in Levantine and broader Arabic vocal repertoire, and it is also known as Masmoudi Saghir to distinguish it from Masmoudi Kabir, whose cycle extends over 8/4. In practical use, it is one of the rhythms most closely related to Maqsum, with frequent movement to and from Maqsum, and also to and from Malfuf, where two Malfuf cycles can correspond to one Baladi cycle. Its defining character is grounded and weighty at the opening because of the initial Dum-Dum, which makes it feel heavier and more rooted than Maqsum while still functioning as a vocal accompaniment rhythm and a phrase-building rhythm, not merely as a display pattern or an isolated percussion exercise."
+    "ar": "البلدي هو إيقاع عربي 4/4 واسع الانتشار في الموسيقى الشعبية والعامة، ويُسمّى أيضاً المصمودي الصغير. وتربط المراجع الحديثة بينه وبين المصمودي الكبير بوصفه الصيغة الأسرع منه، أي أن العلاقة بينهما ليست مجرد تشابه اسم، بل علاقة بنيوية وسرعية واضحة. ويتميّز البلدي عن المقسوم بأن بدايته أثقل بسبب الدُّمّين الافتتاحيين، ولذلك يبدو أكثر رسوخاً وأقل خفة من المقسوم. ومن الناحية التعليمية يُدرَّس عادةً مع المقسوم والصعيدي ضمن الهياكل الأساسية للإيقاعات الشرقية العربية، لأن التفريق بينها يقوم أساساً على موضع الثقل داخل الدورة لا على الميزان وحده.",
+    "en": "Baladi is a widely used Arabic 4/4 rhythm in popular and broadly circulating music, and it is also known as Masmudi Saghir. Modern references connect it structurally to Masmudi Kabir as its faster form, which means the relationship is not merely one of similar naming but of clear formal and tempo-based linkage. Baladi differs from Maqsum in that its opening is heavier because of the two initial Dum strokes, and for that reason it feels more grounded and less light than Maqsum. Pedagogically, it is often taught together with Maqsum and Sa'idi among the basic Eastern Arab rhythmic structures, because the distinction among them rests primarily on where the weight falls within the cycle rather than on meter alone."
   },
   "other_names": {
-    "ar": ["مصمودي صغير"],
-    "en": ["Masmoudi Saghir"]
+    "ar": ["المصمودي الصغير"],
+    "en": ["Baladi", "Masmudi Saghir"]
   },
   "examples": {
-    "ar": [
-      {
-        "title": "عزيزة",
-        "artist": "محمد عبد الوهاب",
-        "note": "قطعة آلية من فيلم عزيزة، 1955"
-      },
-      {
-        "title": "تلومني ولم ترثُ لحالي",
-        "artist": "حسن الحفار"
-      },
-      {
-        "title": "قد ملك يا حلوة",
-        "artist": "محمد خيري"
-      }
-    ],
-    "en": [
-      {
-        "title": "Aziza",
-        "artist": "Mohammed Abdel Wahab",
-        "note": "Instrumental piece from the film Aziza, 1955"
-      },
-      {
-        "title": "Talumni wa Lam Tarthu li Hali",
-        "artist": "Hassan Al-Haffar"
-      },
-      {
-        "title": "Qad Malak Ya Helwa",
-        "artist": "Mohammad Khairy"
-      }
-    ]
+    "ar": [],
+    "en": []
   },
-  "related_rhythms": ["maqsum", "malfuf", "saidi", "nawari"]
+  "related_rhythms": ["maqsum", "saidi", "masmoudi_nisfi"]
 }
