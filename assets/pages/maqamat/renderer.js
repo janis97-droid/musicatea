@@ -213,6 +213,32 @@
     });
   }
 
+  function pickFirstUrl(item, keys) {
+    for (const key of keys) {
+      const value = item && item[key];
+      if (value && String(value).trim()) return String(value).trim();
+    }
+    return "";
+  }
+
+  function buildExampleActions(item) {
+    const videoUrl = pickFirstUrl(item, ["video_url", "video", "youtube", "youtube_url"]);
+    const audioUrl = pickFirstUrl(item, ["audio_url", "audio", "recording_url"]);
+    const linkUrl = pickFirstUrl(item, ["url", "link", "href"]);
+
+    const actions = [];
+    if (videoUrl) {
+      actions.push(`<a class="maqam-example-action" href="${escapeHtml(videoUrl)}" target="_blank" rel="noopener noreferrer">فيديو</a>`);
+    }
+    if (audioUrl) {
+      actions.push(`<a class="maqam-example-action" href="${escapeHtml(audioUrl)}" target="_blank" rel="noopener noreferrer">صوت</a>`);
+    }
+    if (linkUrl) {
+      actions.push(`<a class="maqam-example-action" href="${escapeHtml(linkUrl)}" target="_blank" rel="noopener noreferrer">رابط</a>`);
+    }
+    return actions.join("");
+  }
+
   function createExamplesMarkup(items) {
     const values = normalizeExampleEntries(items);
     if (!values.length) return "";
@@ -220,11 +246,15 @@
       <ul class="maqam-example-list">
         ${values.map(item => {
           const title = item.title || item.name || "";
+          const performer = item.artist || item.performer || item.singer || "";
           const note = item.note || item.notes || item.description || "";
+          const actions = buildExampleActions(item);
           return `
             <li class="maqam-example-item">
               ${title ? `<span class="maqam-example-title">${escapeHtml(title)}</span>` : ""}
+              ${performer ? `<span class="maqam-example-meta">${escapeHtml(performer)}</span>` : ""}
               ${note ? `<span class="maqam-example-note">${escapeHtml(note)}</span>` : ""}
+              ${actions ? `<div class="maqam-example-actions">${actions}</div>` : ""}
             </li>
           `;
         }).join("")}
@@ -247,7 +277,7 @@
   function createReferencesCard(model) {
     const values = (model && (model.reference_recordings || model.canonical_pieces || model.references)) || [];
     const body = Array.isArray(values) && values.length && typeof values[0] === "object"
-      ? createLinkedReferenceList(values)
+      ? createExamplesMarkup(values)
       : createBulletList(values);
     return createContentCard("تسجيلات / مراجع أساسية", body);
   }

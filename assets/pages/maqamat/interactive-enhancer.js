@@ -73,191 +73,33 @@
         flex-wrap: wrap;
       }
 
-      .maqam-quickfacts {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        gap: 12px;
-        margin: 0 0 28px;
-      }
-
-      .maqam-qf-card {
-        background: linear-gradient(180deg, rgba(200,164,90,0.06) 0%, rgba(255,255,255,0.02) 100%);
-        border: 1px solid rgba(200,164,90,0.12);
-        border-radius: 14px;
-        padding: 14px 16px;
-      }
-
-      .maqam-qf-label {
-        font-size: 0.68rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--gold);
-        font-weight: 800;
-        margin-bottom: 6px;
-      }
-
-      .maqam-qf-value {
-        color: var(--text);
-        font-size: 0.93rem;
-        line-height: 1.75;
-        font-weight: 700;
-      }
-
-      .maqam-theory-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-bottom: 28px;
-      }
-
-      .maqam-theory-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 18px;
-      }
-
-      .maqam-theory-card.blue {
-        border-color: rgba(123,168,212,0.22);
-        background: linear-gradient(180deg, rgba(123,168,212,0.05) 0%, rgba(255,255,255,0.015) 100%);
-      }
-
-      .maqam-theory-card.gold {
-        border-color: rgba(200,164,90,0.2);
-        background: linear-gradient(180deg, rgba(200,164,90,0.06) 0%, rgba(255,255,255,0.015) 100%);
-      }
-
-      .maqam-theory-card h3 {
-        font-size: 1rem;
-        color: var(--text);
-        font-weight: 900;
-        margin-bottom: 8px;
-      }
-
-      .maqam-theory-card .sub {
-        color: var(--gold-light);
-        font-size: 0.82rem;
-        font-weight: 800;
-        margin-bottom: 10px;
-      }
-
-      .maqam-theory-card p,
-      .maqam-theory-card li {
-        color: var(--text-muted);
-        line-height: 1.9;
-        font-size: 0.94rem;
-      }
-
-      .maqam-theory-card ul {
-        padding-right: 18px;
-      }
-
-      .maqam-long-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 20px 20px 18px;
-        margin-bottom: 28px;
-      }
-
-      .maqam-long-card p,
-      .maqam-long-card li {
-        color: var(--text-muted);
-        line-height: 1.95;
-        font-size: 0.95rem;
-      }
-
-      .maqam-long-card ul {
-        padding-right: 18px;
-      }
-
-      .maqam-section-title {
-        display: flex;
+      .maqam-scale-helper-row {
+        display: inline-flex;
         align-items: center;
-        gap: 10px;
-        font-size: 1.08rem;
-        font-weight: 900;
-        color: var(--text);
-        margin-bottom: 12px;
+        justify-content: flex-start;
+        flex: 0 1 auto;
+        min-width: 0;
       }
 
-      .maqam-section-title .dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: var(--gold);
-        flex-shrink: 0;
+      .maqam-scale-helper-text {
+        color: var(--text-muted);
+        font-size: 0.94rem;
+        font-weight: 800;
+        line-height: 1.4;
+        white-space: nowrap;
       }
 
-      .maqam-related-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      .staff-scale-box .playbar {
+        margin-top: 10px;
+        padding-top: 12px;
         gap: 12px;
-        margin-top: 8px;
+        align-items: center;
+        flex-wrap: wrap;
       }
 
-      .maqam-related-card {
-        display: block;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 14px 14px 12px;
-        transition: all .22s var(--ease);
-      }
-
-      .maqam-related-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(200,164,90,0.24);
-        background: var(--surface2);
-      }
-
-      .maqam-related-card .name {
-        color: var(--text);
-        font-size: 0.97rem;
-        font-weight: 900;
-        margin-bottom: 4px;
-      }
-
-      .maqam-related-card .meta {
-        color: var(--text-dim);
-        font-size: 0.78rem;
-        font-weight: 700;
-      }
-
-      .maqam-ref-list {
-        display: grid;
-        gap: 10px;
-      }
-
-      .maqam-ref-item {
-        background: rgba(255,255,255,0.02);
-        border: 1px solid var(--border2);
-        border-radius: 12px;
-        padding: 12px 14px;
-      }
-
-      .maqam-ref-item .title {
-        color: var(--gold-light);
-        font-size: 0.9rem;
-        font-weight: 900;
-        margin-bottom: 4px;
-      }
-
-      .maqam-ref-item .note {
-        color: var(--text-muted);
-        font-size: 0.87rem;
-        line-height: 1.8;
-      }
-
-      .maqam-inline-note {
-        margin-top: 12px;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(200,164,90,0.15);
-        background: rgba(200,164,90,0.05);
-        color: var(--text-muted);
-        line-height: 1.85;
-        font-size: 0.9rem;
+      .staff-scale-box .status-bar {
+        min-height: 0;
+        line-height: 1.5;
       }
 
       .maqam-jins-guide {
@@ -301,41 +143,6 @@
         text-overflow: ellipsis;
         max-width: 100%;
         letter-spacing: 0.01em;
-      }
-
-      .maqam-scale-helper-row {
-        display: inline-flex;
-        align-items: center;
-        justify-content: flex-start;
-        flex: 0 1 auto;
-        min-width: 0;
-      }
-
-      .maqam-scale-helper-text {
-        color: var(--text-muted);
-        font-size: 0.94rem;
-        font-weight: 800;
-        line-height: 1.4;
-        white-space: nowrap;
-      }
-
-      .staff-scale-box .playbar {
-        margin-top: 10px;
-        padding-top: 12px;
-        gap: 12px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .staff-scale-box .status-bar {
-        min-height: 0;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 900px) {
-        .maqam-theory-grid {
-          grid-template-columns: 1fr;
-        }
       }
 
       @media (max-width: 700px) {
@@ -389,196 +196,7 @@
     return Array.isArray(value) ? value : [];
   }
 
-  function getMaqamNameAr(maqamId) {
-    if (typeof getMaqamById === "function") {
-      const maqam = getMaqamById(maqamId);
-      if (maqam && maqam.name) return maqam.name;
-    }
-    return maqamId || "";
-  }
-
-  function getDefaultTonicForMaqam(maqamId) {
-    if (typeof getInteractiveDefaultTonic === "function") {
-      return getInteractiveDefaultTonic(maqamId);
-    }
-    return "do";
-  }
-
-  function buildMaqamLink(maqamId, familyId) {
-    const tonic = getDefaultTonicForMaqam(maqamId);
-    const params = new URLSearchParams();
-    if (familyId) params.set("family", familyId);
-    if (maqamId) params.set("maqam", maqamId);
-    if (tonic) params.set("tonic", tonic);
-    return `interactive-scale.html?${params.toString()}`;
-  }
-
-  function renderQuickFacts(model) {
-    const facts = model.quick_facts || {};
-    const entries = [
-      ["القرار", facts.karar],
-      ["الغمّاز", facts.ghammaz],
-      ["الجنس الأساسي", facts.lower_jins],
-      ["الجنس العلوي", facts.upper_jins],
-      ["الطابع", facts.character],
-      ["بداية السير", facts.common_start]
-    ];
-
-    const wrap = createEl("section", "maqam-quickfacts");
-    entries.forEach(([label, value]) => {
-      const card = createEl("div", "maqam-qf-card");
-      card.appendChild(createEl("div", "maqam-qf-label", label));
-      card.appendChild(createEl("div", "maqam-qf-value", textOrFallback(value)));
-      wrap.appendChild(card);
-    });
-    return wrap;
-  }
-
-  function renderJinsCards(model) {
-    const jins = model.jins_architecture || {};
-    const lower = jins.lower || {};
-    const upper = jins.upper || {};
-
-    const section = document.createDocumentFragment();
-
-    section.appendChild(createEl("div", "sec-title", "بنية الأجناس"));
-
-    const grid = createEl("section", "maqam-theory-grid");
-
-    const lowerCard = createEl("article", "maqam-theory-card gold");
-    lowerCard.appendChild(createEl("h3", "", "الجنس الأساسي"));
-    lowerCard.appendChild(createEl("div", "sub", `${textOrFallback(lower.name)} — يبدأ من ${textOrFallback(lower.starts_on)}`));
-    lowerCard.appendChild(createEl("p", "", textOrFallback(lower.description)));
-
-    const upperCard = createEl("article", "maqam-theory-card blue");
-    upperCard.appendChild(createEl("h3", "", "المنطقة العليا"));
-    upperCard.appendChild(createEl("div", "sub", `${textOrFallback(upper.name)} — يبدأ من ${textOrFallback(upper.starts_on)}`));
-    upperCard.appendChild(createEl("p", "", textOrFallback(upper.description)));
-
-    grid.appendChild(lowerCard);
-    grid.appendChild(upperCard);
-    section.appendChild(grid);
-
-    if (jins.transition_note) {
-      section.appendChild(createEl("div", "maqam-inline-note", `<strong>ملاحظة انتقال:</strong> ${jins.transition_note}`));
-    }
-
-    return section;
-  }
-
-  function renderLongSection(title, bodyHtml) {
-    const wrapper = document.createDocumentFragment();
-    wrapper.appendChild(createEl("div", "sec-title", title));
-    const card = createEl("section", "maqam-long-card");
-    card.appendChild(createEl("div", "maqam-section-title", `<span class="dot"></span><span>${title}</span>`));
-    card.appendChild(createEl("div", "", bodyHtml));
-    wrapper.appendChild(card);
-    return wrapper;
-  }
-
-  function renderSayrSection(model) {
-    const sayr = model.sayr || {};
-    const restTones = normalizeArray(sayr.resting_tones);
-    const motionNotes = normalizeArray(sayr.motion_notes);
-    const pathNotes = normalizeArray(sayr.common_path);
-
-    const html = `
-      <p>${textOrFallback(sayr.summary)}</p>
-      ${restTones.length ? `<h4 style="margin:14px 0 6px;color:var(--gold-light);font-size:.9rem;">نغمات الارتكاز</h4><ul>${restTones.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}
-      ${motionNotes.length ? `<h4 style="margin:14px 0 6px;color:var(--gold-light);font-size:.9rem;">نقاط الحركة</h4><ul>${motionNotes.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}
-      ${pathNotes.length ? `<h4 style="margin:14px 0 6px;color:var(--gold-light);font-size:.9rem;">المسار الشائع</h4><ul>${pathNotes.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}
-    `;
-    return renderLongSection("السير اللحني", html);
-  }
-
-  function renderRelatedSection(model) {
-    const ids = normalizeArray(model.related_maqamat);
-    const links = ids.map(id => {
-      return {
-        id,
-        name: getMaqamNameAr(id),
-        href: buildMaqamLink(id, model.family)
-      };
-    });
-
-    const wrapper = document.createDocumentFragment();
-    wrapper.appendChild(createEl("div", "sec-title", "مقامات ذات صلة"));
-
-    const card = createEl("section", "maqam-long-card");
-    card.appendChild(createEl("div", "maqam-section-title", `<span class="dot"></span><span>ضمن العائلة نفسها</span>`));
-
-    if (!links.length) {
-      card.appendChild(createEl("p", "", "لا توجد مقامات مرتبطة مضبوطة لهذه الصفحة بعد."));
-    } else {
-      const grid = createEl("div", "maqam-related-grid");
-      links.forEach(item => {
-        const a = createEl("a", "maqam-related-card");
-        a.href = item.href;
-        a.innerHTML = `<div class="name">${item.name}</div><div class="meta">فتح صفحة المقام</div>`;
-        grid.appendChild(a);
-      });
-      card.appendChild(grid);
-    }
-
-    wrapper.appendChild(card);
-    return wrapper;
-  }
-
-  function renderReferencesSection(model) {
-    const refs = normalizeArray(model.references);
-    const wrapper = document.createDocumentFragment();
-    wrapper.appendChild(createEl("div", "sec-title", "المراجع"));
-
-    const card = createEl("section", "maqam-long-card");
-    card.appendChild(createEl("div", "maqam-section-title", `<span class="dot"></span><span>مراجع أساسية</span>`));
-
-    if (!refs.length) {
-      card.appendChild(createEl("p", "", "لم يتم ربط مراجع بهذه الصفحة بعد."));
-    } else {
-      const list = createEl("div", "maqam-ref-list");
-      refs.forEach(ref => {
-        const item = createEl("div", "maqam-ref-item");
-        item.appendChild(createEl("div", "title", textOrFallback(ref.public_label || ref.title)));
-        item.appendChild(createEl("div", "note", textOrFallback(ref.notes)));
-        list.appendChild(item);
-      });
-      card.appendChild(list);
-    }
-
-    wrapper.appendChild(card);
-    return wrapper;
-  }
-
-  function renderSimpleBulletsSection(sectionTitle, cardTitle, items) {
-    const normalizedItems = normalizeArray(items);
-    if (!normalizedItems.length) return document.createDocumentFragment();
-
-    const html = `<ul>${normalizedItems.map(item => `<li>${item}</li>`).join("")}</ul>`;
-    const wrapper = document.createDocumentFragment();
-    wrapper.appendChild(createEl("div", "sec-title", sectionTitle));
-
-    const card = createEl("section", "maqam-long-card");
-    card.appendChild(createEl("div", "maqam-section-title", `<span class="dot"></span><span>${cardTitle}</span>`));
-    card.appendChild(createEl("div", "", html));
-    wrapper.appendChild(card);
-
-    return wrapper;
-  }
-
-  function renderFamilyContextSection(familyModel) {
-    const wrapper = document.createDocumentFragment();
-    wrapper.appendChild(createEl("div", "sec-title", "سياق العائلة"));
-
-    const card = createEl("section", "maqam-long-card");
-    card.appendChild(createEl("div", "maqam-section-title", `<span class="dot"></span><span>${textOrFallback(familyModel.title_ar)}</span>`));
-    card.appendChild(createEl("p", "", textOrFallback(familyModel.overview)));
-    card.appendChild(createEl("div", "maqam-inline-note", `<strong>منطق العائلة:</strong> ${textOrFallback(familyModel.family_identity)}`));
-
-    wrapper.appendChild(card);
-    return wrapper;
-  }
-
-  function injectHeroSummary(heroInner, maqamModel) {
+  function injectHeroSummary(heroInner) {
     if (!heroInner) return;
     const existing = heroInner.querySelector(".maqam-reference-intro");
     if (existing) existing.remove();
@@ -593,13 +211,6 @@
         node.remove();
       }
     });
-  }
-
-  function shouldShowFamilyContext(maqamId, familyId, modelFamilyId) {
-    const resolvedMaqamId = String(maqamId || "").trim();
-    const resolvedFamilyId = String(familyId || modelFamilyId || "").trim();
-    if (!resolvedMaqamId || !resolvedFamilyId) return false;
-    return resolvedMaqamId === resolvedFamilyId;
   }
 
   function ensureTonicHelperLabel() {
@@ -897,30 +508,11 @@
     if (pageRoot.getAttribute(ENHANCED_ATTR) === state.maqamId) return;
 
     try {
-      const [maqamModel, familyModel] = await Promise.all([
-        window.MaqamContentLoader.buildMaqamContentModel(state.maqamId),
-        state.familyId ? window.MaqamContentLoader.buildFamilyContentModel(state.familyId) : Promise.resolve(null)
-      ]);
-
+      const maqamModel = await window.MaqamContentLoader.buildMaqamContentModel(state.maqamId);
       pageRoot.setAttribute(ENHANCED_ATTR, state.maqamId);
 
-      injectHeroSummary(heroInner, maqamModel);
+      injectHeroSummary(heroInner);
       cleanupInitialInfoSection();
-
-      if (familyModel && shouldShowFamilyContext(state.maqamId, state.familyId, maqamModel?.family)) {
-        maqamBody.appendChild(renderFamilyContextSection(familyModel));
-      }
-
-      maqamBody.appendChild(renderLongSection("ما هو هذا المقام؟", `<p>${textOrFallback(maqamModel.what_is_it)}</p>`));
-      maqamBody.appendChild(renderJinsCards(maqamModel));
-      maqamBody.appendChild(renderSayrSection(maqamModel));
-      maqamBody.appendChild(renderLongSection("التحويل على الجذور", `<p>${textOrFallback(maqamModel.transpose_explainer)}</p>`));
-      maqamBody.appendChild(renderSimpleBulletsSection("ملاحظات تاريخية", "إضاءة تاريخية", maqamModel.historical_notes));
-      maqamBody.appendChild(renderSimpleBulletsSection("اختلافات مدرسية", "بين المدارس", maqamModel.school_differences));
-      maqamBody.appendChild(renderSimpleBulletsSection("ملاحظات سمعية", "كيف تستمع إلى المقام", maqamModel.listening_notes));
-      maqamBody.appendChild(renderSimpleBulletsSection("التباسات شائعة", "ما الذي يجب الانتباه له", maqamModel.common_confusions));
-      maqamBody.appendChild(renderRelatedSection(maqamModel));
-      maqamBody.appendChild(renderReferencesSection(maqamModel));
 
       window.requestAnimationFrame(() => {
         setTimeout(() => {

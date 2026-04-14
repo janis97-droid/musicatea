@@ -640,6 +640,7 @@
 
 .maqam-content-copy,
 .maqam-content-card-placeholder p,
+.maqam-example-meta,
 .maqam-example-note,
 .maqam-content-list li {
   color:var(--text-muted);
@@ -673,6 +674,28 @@
   color:var(--gold-light);
   font-size:.94rem;
   font-weight:800;
+}
+
+.maqam-example-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:4px;
+}
+
+.maqam-example-action {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:30px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid rgba(200,164,90,0.28);
+  background:rgba(200,164,90,0.08);
+  color:var(--gold-light);
+  font-size:.78rem;
+  font-weight:800;
+  text-decoration:none;
 }
 
 .maqam-content-card-placeholder {
