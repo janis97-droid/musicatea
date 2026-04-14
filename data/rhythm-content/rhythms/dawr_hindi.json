@@ -1,8 +1,8 @@
 {
   "id": "dawr_hindi",
   "source_context_or_origin": {
-    "ar": "الدور الهندي هو إيقاع عربي 7/8، ويُعد من الإيقاعات الفردية المهمة في التراث العربي، لا سيما لأنه شائع كثيراً في قالب الموشح. وهو يقع في منطقة وسطى بين الإيقاعات الفردية القصيرة والمتوسطة: أطول من الثريا 5/8 ويورك سماعي 6/8، وأقصر من الأقساق 9/8 والسماعي الثقيل 10/8. لذلك فهو يحمل إحساساً غير متناظر واضحاً من دون الامتداد الواسع الذي نجده في الإيقاعات الأطول. طبيعته السمعية مائلة وملتفة داخلياً، ولهذا لا يُفهم جيداً إذا عُدَّ كأنه سبع نبضات متساوية فقط، بل بوصفه دورة لها اتجاه ونبر داخلي خاص. والمرجع يربطه بوضوح ببيئة الموشح والغناء الكلاسيكي المركب أكثر من ربطه بالأغنية الشعبية العامة.",
-    "en": "Dawr Hindi is an Arabic 7/8 rhythm and one of the important asymmetrical meters in the Arabic tradition, especially because it is widely used in the muwashshah form. It occupies a middle zone between the shorter and medium asymmetrical rhythms: it is longer than Thurayya in 5/8 and Yuruk Semai in 6/8, yet shorter than Aqsaq in 9/8 and Sama'i Thaqil in 10/8. For that reason it carries a clearly uneven internal feel without the broad span found in the longer cycles. Its audible character is tilted and internally turning, which is why it cannot be understood well as merely seven equal beats, but rather as a cycle with its own directional accent pattern. Reference material links it clearly to the muwashshah and to more complex classical vocal repertoire rather than to general popular song."
+    "ar": "الدور الهندي هو إيقاع عربي 7/8 شائع جداً في قالب الموشح. وتذكر المراجع أمثلة واضحة عليه مثل صحت وجداً لسيد درويش وجادك الغيث وجلّ من قد صوّرك. كما تشرح أن كلمة دور تعني دورة أو دوراناً، وأن هندي هنا جزء من الاسم الاصطلاحي. ومن أهم ما يورده المرجع في شرح هذا الإيقاع تقسيمه الداخلي إلى 3-2-2، وهو المفتاح الأهم لفهمه سمعياً؛ لأن قوته ليست في الرقم 7 وحده، بل في كيفية تجميعه الداخلي.",
+    "en": "Dawr Hindi is an Arabic 7/8 rhythm that is very common in the muwashshah tradition. References cite clear examples such as Siht Wajdan by Sayed Darwish, Jadaka Al-Ghayth, and Jalla Man Qad Sawwarak. They also note that the word dawr means cycle or turning, while Hindi is simply part of the established name. One of the most important points in the reference explanation is its internal grouping of 3-2-2, which is the key to understanding it aurally, since its force lies not in the number seven alone but in the way those seven units are internally gathered."
   },
   "other_names": {
     "ar": [],
@@ -10,47 +10,15 @@
   },
   "examples": {
     "ar": [
-      {
-        "title": "صحت وجداً",
-        "artist": "فرقة الغناء الشرقي في جامعة الروح القدس الكسليك",
-        "note": "من ألحان سيد درويش"
-      },
-      {
-        "title": "جادك الغيث",
-        "artist": "صباح فخري",
-        "note": "من ألحان مجدي العقيلي"
-      },
-      {
-        "title": "جلّ من قد صوّرك",
-        "artist": "الشيخ حمزة شكور مع فرقة الكندي"
-      },
-      {
-        "title": "ارجعي يا ألف ليلة",
-        "artist": "فيروز",
-        "note": "1966، من ألحان الأخوين رحباني"
-      }
+      {"title": "صحت وجداً", "artist": "سيد درويش"},
+      {"title": "جادك الغيث"},
+      {"title": "جلّ من قد صوّرك"}
     ],
     "en": [
-      {
-        "title": "Siht Wajdan",
-        "artist": "Oriental Singing Ensemble of the Holy Spirit University of Kaslik",
-        "note": "Composed by Sayed Darwish"
-      },
-      {
-        "title": "Jadaka Al-Ghayth",
-        "artist": "Sabah Fakhri",
-        "note": "Composed by Majdi Al-Uqayli"
-      },
-      {
-        "title": "Jalla Man Qad Sawwarak",
-        "artist": "Sheikh Hamza Shakkur with Al-Kindi Ensemble"
-      },
-      {
-        "title": "Irji'i Ya Alf Layla",
-        "artist": "Fairuz",
-        "note": "1966, composed by the Rahbani Brothers"
-      }
+      {"title": "Siht Wajdan", "artist": "Sayed Darwish"},
+      {"title": "Jadaka Al-Ghayth"},
+      {"title": "Jalla Man Qad Sawwarak"}
     ]
   },
-  "related_rhythms": ["thurayya", "yuruk_semai", "aqsaq", "samai_thaqil"]
+  "related_rhythms": ["jurjina", "aqsaq", "thurayya"]
 }
