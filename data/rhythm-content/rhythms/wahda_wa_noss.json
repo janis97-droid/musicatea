@@ -1,0 +1,17 @@
+{
+  "id": "wahda_wa_noss",
+  "source_context_or_origin": {
+    "ar": "واحدة ونص هو إيقاع عربي 4/4، لكن المراجع الحديثة تحدده بدقة بوصفه صيغة سنكوبية من المقسوم، لا صيغة مشتقة من الوحدة نفسها رغم الاسم. الفارق البنيوي الأساسي أن أول تك فيه يأتي متأخراً بمقدار سدس عشر تقريباً مقارنةً بالمقسوم، وهذا ما يخلق الإحساس السنكوبـي المميّز له. لذلك لا ينبغي فهمه على أنه إيقاع يقع بين الوحدة والمقسوم على سبيل الوصف العام، بل على أنه بنيوياً أقرب إلى المقسوم مع تأخير إيقاعي يمنحه مرونة وحيوية أوضح. كما يذكر المرجع أنه يتبادل كثيراً وبسلاسة مع المقسوم والبلدي داخل الأداء.",
+    "en": "Wahda wa Noss is an Arabic 4/4 rhythm, but modern references define it more precisely as a syncopated form of Maqsum rather than as something derived from Wahda itself despite the name. Its main structural difference is that the first Tek arrives about a sixteenth-note later than it does in Maqsum, and that delay creates its distinctive syncopated feel. It should therefore not be understood vaguely as something halfway between Wahda and Maqsum, but as being structurally closer to Maqsum with a rhythmic delay that gives it greater flexibility and drive. References also note that it exchanges smoothly in performance with both Maqsum and Baladi.
+"
+  },
+  "other_names": {
+    "ar": ["واحدة ونصف"],
+    "en": ["Wahda wa Noss", "Wahda w Noss"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["maqsum", "baladi_masmoudi_saghir", "wahda_kabira"]
+}

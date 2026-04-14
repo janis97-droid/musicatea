@@ -80,6 +80,14 @@ const rhythms = [
     image: "media/rhythms/images/wahda_kabira.svg"
   },
   {
+    id: "wahda_wa_noss",
+    name: { ar: "واحدة ونص", en: "Wahda w Noss" },
+    time_signature: "4/4",
+    examples: [],
+    audio: "media/rhythms/wahda_wa_noss.mp3",
+    image: "media/rhythms/images/wahda_wa_noss.svg"
+  },
+  {
     id: "fox",
     name: { ar: "فوكس", en: "Fox" },
     time_signature: "2/4",
