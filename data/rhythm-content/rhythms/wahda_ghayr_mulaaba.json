@@ -1,0 +1,16 @@
+{
+  "id": "wahda_ghayr_mulaaba",
+  "source_context_or_origin": {
+    "ar": "وحدة غير ملعوبة اسم يحتاج إلى توثيق مرجعي أقوى قبل اعتماده كمدخل مستقل نهائي في باب الإيقاعات العربية. ففي المرحلة الحالية لم يظهر شاهد أكاديمي قوي ومباشر يثبت هذا الاسم بوصفه مصطلحاً مستقراً في الأدبيات الأساسية على مستوى الأسماء المعيارية الأكثر رسوخاً. ولذلك فالأمانة العلمية تقتضي أن يُقدَّم هنا بوصفه اسماً قيد التحقق لا بوصفه إيقاعاً مثبتاً تثبيتاً نهائياً.",
+    "en": "Wahda Ghayr Mulaaba is a term that requires stronger reference support before it can be treated as a final independent entry in Arabic rhythm taxonomy. At the present stage, no strong direct academic witness has been established for it as a stable term in the core literature on the same level as more firmly standardized names. The academically honest approach is therefore to present it here as a term under verification rather than as a definitively established rhythm entry."
+  },
+  "other_names": {
+    "ar": ["وحدة غير ملعوبة"],
+    "en": ["Wahda Ghayr Mulaaba"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["wahda", "wahda_kabira", "wahda_wa_noss"]
+}
