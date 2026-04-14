@@ -1,0 +1,16 @@
+{
+  "id": "masmoudi_nisfi",
+  "source_context_or_origin": {
+    "ar": "المصمودي النصفي اسم متداول في بعض المواد التعليمية والفهارس، لكن توثيقه المرجعي غير كافٍ حتى الآن في المصادر الأكاديمية الأساسية التي جرى التحقق منها في هذه المرحلة. لذلك لا ينبغي تقديمه حالياً على مستوى الدقة نفسه الذي تُقدَّم به أسماء أكثر رسوخاً مثل المصمودي الكبير أو البلدي/المصمودي الصغير. والأدق في هذه المرحلة أن يُعامل بوصفه مصطلحاً قيد التحقق، لا مدخلاً نهائياً مكتمل التثبيت.",
+    "en": "Masmoudi Nisfi is a circulated term in some pedagogical materials and catalog listings, but its documentation remains insufficient in the main academic sources checked at this stage. It should therefore not currently be presented with the same level of certainty as more firmly grounded names such as Masmoudi Kabir or Baladi/Masmoudi Saghir. The more careful approach for now is to treat it as a term under verification rather than as a fully established final entry."
+  },
+  "other_names": {
+    "ar": ["مصمودي نصفي"],
+    "en": ["Masmoudi Nisfi"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["baladi_masmoudi_saghir"]
+}
