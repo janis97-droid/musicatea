@@ -111,8 +111,19 @@
         <div class="maqam-content-sections" id="maqam-content-sections">
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>يتم تحميل مادة المقام…</h3>
-            <p>سيظهر هنا السير، وأمثلة الفيديو، والأغاني أو القطع، ثم المصادر في الأسفل.</p>
+            <p>سيظهر هنا السير، وأمثلة الفيديو، والأغاني أو القطع.</p>
           </div>
+        </div>
+
+        <div class="maqam-sources-footer" id="maqam-sources-footer">
+          <section class="maqam-content-card maqam-content-card-placeholder maqam-sources-footer-card">
+            <details class="maqam-sources-accordion">
+              <summary class="maqam-sources-summary">مصادر ومراجع</summary>
+              <div class="maqam-sources-body">
+                <p class="maqam-content-copy">سيتم تحميل المصادر والمراجع…</p>
+              </div>
+            </details>
+          </section>
         </div>
       </section>
     `;
@@ -127,24 +138,24 @@
 
   async function renderMaqamContentSections() {
     const container = document.getElementById("maqam-content-sections");
-    if (!container || !maqamContentLoader || typeof maqamContentLoader.buildMaqamContentModel !== "function") return;
+    const sourcesFooter = document.getElementById("maqam-sources-footer");
+    if (!container || !sourcesFooter || !maqamContentLoader || typeof maqamContentLoader.buildMaqamContentModel !== "function") return;
 
     try {
       const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
-      const cards = [
+      container.innerHTML = [
         createSayrCard(model),
         createVideoExamplesCard(model),
-        createExamplesCard(model),
-        createReferencesCard(model)
-      ];
-      container.innerHTML = cards.join("");
+        createExamplesCard(model)
+      ].join("");
+      sourcesFooter.innerHTML = createReferencesCard(model);
     } catch (error) {
       container.innerHTML = [
         createSayrCard(null),
         createVideoExamplesCard(null),
-        createExamplesCard(null),
-        createReferencesCard(null)
+        createExamplesCard(null)
       ].join("");
+      sourcesFooter.innerHTML = createReferencesCard(null);
     }
   }
 
@@ -267,13 +278,10 @@
       : createPlaceholderBody("ستُضاف المصادر والمراجع لهذا المقام لاحقًا.");
     const isPlaceholder = !(Array.isArray(values) && values.length);
     return `
-      <section class="maqam-content-card ${isPlaceholder ? "maqam-content-card-placeholder" : ""}">
-        <details class="maqam-sources-accordion" ${isPlaceholder ? "" : ""}>
-          <summary class="maqam-sources-summary" style="cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-            <span style="margin:0;color:var(--gold-light);font-size:1rem;font-weight:900;">مصادر ومراجع</span>
-            <span style="color:var(--text-muted);font-size:.88rem;font-weight:800;">فتح</span>
-          </summary>
-          <div class="maqam-sources-body" style="padding-top:12px;">
+      <section class="maqam-content-card ${isPlaceholder ? "maqam-content-card-placeholder" : ""} maqam-sources-footer-card">
+        <details class="maqam-sources-accordion">
+          <summary class="maqam-sources-summary">مصادر ومراجع</summary>
+          <div class="maqam-sources-body">
             ${body}
           </div>
         </details>

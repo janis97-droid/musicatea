@@ -702,6 +702,46 @@
   border-style:dashed;
 }
 
+.maqam-sources-footer {
+  margin-top:18px;
+  display:flex;
+  justify-content:center;
+}
+
+.maqam-sources-footer-card {
+  width:min(100%, 760px);
+}
+
+.maqam-sources-accordion {
+  width:100%;
+}
+
+.maqam-sources-summary {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:56px;
+  cursor:pointer;
+  list-style:none;
+  color:var(--gold-light);
+  font-size:1rem;
+  font-weight:900;
+  text-align:center;
+}
+
+.maqam-sources-summary::-webkit-details-marker {
+  display:none;
+}
+
+.maqam-sources-summary::marker {
+  content:"";
+}
+
+.maqam-sources-body {
+  padding-top:10px;
+}
+
 @media(max-width:768px) {
   .nav-inner {
     padding:0 16px;
