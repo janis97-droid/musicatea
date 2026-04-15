@@ -111,7 +111,7 @@
         <div class="maqam-content-sections" id="maqam-content-sections">
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>يتم تحميل مادة المقام…</h3>
-            <p>سيظهر هنا السير، وأمثلة الفيديو، والتسجيلات المرجعية، والأغاني أو القطع عندما تكون متاحة في ملف المقام.</p>
+            <p>سيظهر هنا السير، وأمثلة الفيديو، والأغاني أو القطع، ثم المصادر في الأسفل.</p>
           </div>
         </div>
       </section>
@@ -134,35 +134,23 @@
       const cards = [
         createSayrCard(model),
         createVideoExamplesCard(model),
-        createReferencesCard(model),
-        createExamplesCard(model)
-      ].filter(Boolean);
-
-      if (!cards.length) {
-        container.innerHTML = `
-          <div class="maqam-content-card maqam-content-card-placeholder">
-            <h3>القسم جاهز للتوسعة</h3>
-            <p>هذه الصفحة أصبحت مهيأة لإضافة السير، وأمثلة الفيديو، والتسجيلات المرجعية، والأغاني أو القطع من المصادر الأكاديمية لكل مقام.</p>
-          </div>
-        `;
-        return;
-      }
-
+        createExamplesCard(model),
+        createReferencesCard(model)
+      ];
       container.innerHTML = cards.join("");
     } catch (error) {
-      container.innerHTML = `
-        <div class="maqam-content-card maqam-content-card-placeholder">
-          <h3>القسم جاهز للتوسعة</h3>
-          <p>البنية الجديدة جاهزة، لكن ملف هذا المقام لا يحتوي بعد على جميع الحقول الإضافية المطلوبة.</p>
-        </div>
-      `;
+      container.innerHTML = [
+        createSayrCard(null),
+        createVideoExamplesCard(null),
+        createExamplesCard(null),
+        createReferencesCard(null)
+      ].join("");
     }
   }
 
-  function createContentCard(title, bodyHtml) {
-    if (!bodyHtml) return "";
+  function createContentCard(title, bodyHtml, isPlaceholder = false) {
     return `
-      <section class="maqam-content-card">
+      <section class="maqam-content-card ${isPlaceholder ? "maqam-content-card-placeholder" : ""}">
         <h3>${title}</h3>
         ${bodyHtml}
       </section>
@@ -175,19 +163,15 @@
     return `<ul class="maqam-content-list">${values.map(item => `<li>${escapeHtml(String(item))}</li>`).join("")}</ul>`;
   }
 
-  function createLinkedReferenceList(items) {
-    const values = Array.isArray(items) ? items.filter(Boolean) : [];
-    if (!values.length) return "";
-    return `<ul class="maqam-content-list">${values.map(item => {
-      const title = item.title || item.name || item.id || "مرجع";
-      const author = item.author ? ` — ${item.author}` : "";
-      return `<li>${escapeHtml(title + author)}</li>`;
-    }).join("")}</ul>`;
+  function createPlaceholderBody(message) {
+    return `<p class="maqam-content-copy">${escapeHtml(message)}</p>`;
   }
 
   function createSayrCard(model) {
     const sayr = model && model.sayr ? model.sayr : null;
-    if (!sayr) return "";
+    if (!sayr) {
+      return createContentCard("السير", createPlaceholderBody("سيُضاف شرح السير لهذا المقام لاحقًا."), true);
+    }
 
     const summary = sayr.summary ? `<p class="maqam-content-copy">${escapeHtml(sayr.summary)}</p>` : "";
     const path = createBulletList(sayr.common_path);
@@ -196,7 +180,7 @@
     const modulations = createBulletList(model && (model.common_modulations || model.modulations || model.modulation_paths));
 
     const body = [
-      summary,
+      summary || createPlaceholderBody("سيُضاف شرح السير لهذا المقام لاحقًا."),
       path ? `<div class="maqam-content-subsection"><h4>المسار الغالب</h4>${path}</div>` : "",
       resting ? `<div class="maqam-content-subsection"><h4>درجات الارتكاز</h4>${resting}</div>` : "",
       motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : "",
@@ -263,23 +247,24 @@
   }
 
   function createExamplesCard(model) {
-    const items = (model && (model.examples || model.listening_examples || model.repertoire_examples)) || [];
-    const body = createExamplesMarkup(items);
-    return createContentCard("أغاني وقطع", body);
+    const items = model && (model.examples || model.listening_examples || model.repertoire_examples);
+    const body = createExamplesMarkup(items) || createPlaceholderBody("ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.");
+    return createContentCard("أغاني وقطع", body, !createExamplesMarkup(items));
   }
 
   function createVideoExamplesCard(model) {
-    const items = (model && (model.video_examples || model.video_listening_examples)) || [];
-    const body = createExamplesMarkup(items);
-    return createContentCard("أمثلة مرئية / فيديو", body);
+    const items = model && (model.video_examples || model.video_listening_examples);
+    const body = createExamplesMarkup(items) || createPlaceholderBody("ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.");
+    return createContentCard("أمثلة مرئية / فيديو", body, !createExamplesMarkup(items));
   }
 
   function createReferencesCard(model) {
-    const values = (model && (model.reference_recordings || model.canonical_pieces || model.references)) || [];
-    const body = Array.isArray(values) && values.length && typeof values[0] === "object"
-      ? createExamplesMarkup(values)
-      : createBulletList(values);
-    return createContentCard("تسجيلات / مراجع أساسية", body);
+    const values = model && (model.reference_recordings || model.canonical_pieces || model.references);
+    const body = Array.isArray(values) && values.length
+      ? (typeof values[0] === "object" ? createExamplesMarkup(values) : createBulletList(values))
+      : createPlaceholderBody("ستُضاف المصادر والتسجيلات المرجعية لهذا المقام لاحقًا.");
+    const isPlaceholder = !(Array.isArray(values) && values.length);
+    return createContentCard("تسجيلات / مراجع أساسية", body, isPlaceholder);
   }
 
   function renderTonicSelector() {
