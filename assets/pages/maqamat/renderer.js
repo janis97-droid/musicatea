@@ -248,23 +248,37 @@
 
   function createExamplesCard(model) {
     const items = model && (model.examples || model.listening_examples || model.repertoire_examples);
-    const body = createExamplesMarkup(items) || createPlaceholderBody("ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.");
-    return createContentCard("أغاني وقطع", body, !createExamplesMarkup(items));
+    const markup = createExamplesMarkup(items);
+    const body = markup || createPlaceholderBody("ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.");
+    return createContentCard("أغاني وقطع", body, !markup);
   }
 
   function createVideoExamplesCard(model) {
     const items = model && (model.video_examples || model.video_listening_examples);
-    const body = createExamplesMarkup(items) || createPlaceholderBody("ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.");
-    return createContentCard("أمثلة مرئية / فيديو", body, !createExamplesMarkup(items));
+    const markup = createExamplesMarkup(items);
+    const body = markup || createPlaceholderBody("ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.");
+    return createContentCard("أمثلة مرئية / فيديو", body, !markup);
   }
 
   function createReferencesCard(model) {
     const values = model && (model.reference_recordings || model.canonical_pieces || model.references);
     const body = Array.isArray(values) && values.length
       ? (typeof values[0] === "object" ? createExamplesMarkup(values) : createBulletList(values))
-      : createPlaceholderBody("ستُضاف المصادر والتسجيلات المرجعية لهذا المقام لاحقًا.");
+      : createPlaceholderBody("ستُضاف المصادر والمراجع لهذا المقام لاحقًا.");
     const isPlaceholder = !(Array.isArray(values) && values.length);
-    return createContentCard("تسجيلات / مراجع أساسية", body, isPlaceholder);
+    return `
+      <section class="maqam-content-card ${isPlaceholder ? "maqam-content-card-placeholder" : ""}">
+        <details class="maqam-sources-accordion" ${isPlaceholder ? "" : ""}>
+          <summary class="maqam-sources-summary" style="cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <span style="margin:0;color:var(--gold-light);font-size:1rem;font-weight:900;">مصادر ومراجع</span>
+            <span style="color:var(--text-muted);font-size:.88rem;font-weight:800;">فتح</span>
+          </summary>
+          <div class="maqam-sources-body" style="padding-top:12px;">
+            ${body}
+          </div>
+        </details>
+      </section>
+    `;
   }
 
   function renderTonicSelector() {
