@@ -622,8 +622,8 @@
 
 .maqam-content-card h3 {
   margin:0 0 12px;
-  color:var(--gold-light);
-  font-size:1rem;
+  color:#f3ddab;
+  font-size:1.14rem;
   font-weight:900;
 }
 
@@ -633,9 +633,9 @@
 
 .maqam-content-subsection h4 {
   margin:0 0 8px;
-  color:var(--text-muted);
-  font-size:.82rem;
-  font-weight:800;
+  color:var(--gold-light);
+  font-size:.92rem;
+  font-weight:850;
 }
 
 .maqam-content-copy,
@@ -724,8 +724,8 @@
   min-height:56px;
   cursor:pointer;
   list-style:none;
-  color:var(--gold-light);
-  font-size:1rem;
+  color:#f3ddab;
+  font-size:1.08rem;
   font-weight:900;
   text-align:center;
 }

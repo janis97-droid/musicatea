@@ -107,11 +107,10 @@
         <div class="sec-title">معلومات المقام</div>
         <div class="info-grid" id="maqam-info-grid"></div>
 
-        <div class="sec-title">البنية والسير والأمثلة</div>
         <div class="maqam-content-sections" id="maqam-content-sections">
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>يتم تحميل مادة المقام…</h3>
-            <p>سيظهر هنا السير، وأمثلة الفيديو، والأغاني أو القطع.</p>
+            <p>سيظهر هنا تعريف المقام، وأمثلة الفيديو، والأغاني أو القطع.</p>
           </div>
         </div>
 
@@ -144,14 +143,14 @@
     try {
       const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
       container.innerHTML = [
-        createSayrCard(model),
+        createDefinitionCard(model),
         createVideoExamplesCard(model),
         createExamplesCard(model)
       ].join("");
       sourcesFooter.innerHTML = createReferencesCard(model);
     } catch (error) {
       container.innerHTML = [
-        createSayrCard(null),
+        createDefinitionCard(null),
         createVideoExamplesCard(null),
         createExamplesCard(null)
       ].join("");
@@ -178,10 +177,10 @@
     return `<p class="maqam-content-copy">${escapeHtml(message)}</p>`;
   }
 
-  function createSayrCard(model) {
+  function createDefinitionCard(model) {
     const sayr = model && model.sayr ? model.sayr : null;
     if (!sayr) {
-      return createContentCard("السير", createPlaceholderBody("سيُضاف شرح السير لهذا المقام لاحقًا."), true);
+      return createContentCard("تعريف المقام", createPlaceholderBody("سيُضاف تعريف هذا المقام لاحقًا."), true);
     }
 
     const summary = sayr.summary ? `<p class="maqam-content-copy">${escapeHtml(sayr.summary)}</p>` : "";
@@ -191,14 +190,14 @@
     const modulations = createBulletList(model && (model.common_modulations || model.modulations || model.modulation_paths));
 
     const body = [
-      summary || createPlaceholderBody("سيُضاف شرح السير لهذا المقام لاحقًا."),
-      path ? `<div class="maqam-content-subsection"><h4>المسار الغالب</h4>${path}</div>` : "",
+      summary || createPlaceholderBody("سيُضاف تعريف هذا المقام لاحقًا."),
+      path ? `<div class="maqam-content-subsection"><h4>كيف يسير المقام</h4>${path}</div>` : "",
       resting ? `<div class="maqam-content-subsection"><h4>درجات الارتكاز</h4>${resting}</div>` : "",
       motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : "",
-      modulations ? `<div class="maqam-content-subsection"><h4>التحويلات الشائعة</h4>${modulations}</div>` : ""
+      modulations ? `<div class="maqam-content-subsection"><h4>أين يذهب المقام</h4>${modulations}</div>` : ""
     ].filter(Boolean).join("");
 
-    return createContentCard("السير", body);
+    return createContentCard("تعريف المقام", body);
   }
 
   function normalizeExampleEntries(items) {
