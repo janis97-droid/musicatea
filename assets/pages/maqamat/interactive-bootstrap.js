@@ -203,11 +203,29 @@
     if (mainPanel) mainPanel.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function syncUrl() {
+  function buildNormalizedUrl() {
     const url = new URL(window.location.href);
     url.searchParams.set("family", ns.state.familyId);
-    url.searchParams.set("maqam", ns.state.maqamId);
-    url.searchParams.set("tonic", ns.state.tonic);
+
+    const familyMain = getFamilyMainMaqam(ns.state.familyId);
+    const defaultTonic = getInteractiveDefaultTonic(ns.state.maqamId);
+    const isDefaultFamilyView = familyMain
+      && ns.state.maqamId === familyMain.id
+      && ns.state.tonic === defaultTonic;
+
+    if (isDefaultFamilyView) {
+      url.searchParams.delete("maqam");
+      url.searchParams.delete("tonic");
+    } else {
+      url.searchParams.set("maqam", ns.state.maqamId);
+      url.searchParams.set("tonic", ns.state.tonic);
+    }
+
+    return url;
+  }
+
+  function syncUrl() {
+    const url = buildNormalizedUrl();
     window.history.replaceState({}, "", url.toString());
     syncSeo();
   }
@@ -236,7 +254,7 @@
     ns.state.stopRequested = false;
     ns.state.lastAudioErrorToken = null;
     ns.renderer.renderAll();
-    syncSeo();
+    syncUrl();
     scrollMainToTop();
   }
 
@@ -267,6 +285,7 @@
 
     syncSeo();
     ns.renderer.renderAll();
+    syncUrl();
   }
 
   ns.actions = {
