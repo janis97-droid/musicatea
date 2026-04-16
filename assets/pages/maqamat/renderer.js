@@ -140,20 +140,23 @@
     const sourcesFooter = document.getElementById("maqam-sources-footer");
     if (!container || !sourcesFooter || !maqamContentLoader || typeof maqamContentLoader.buildMaqamContentModel !== "function") return;
 
+    const familyMain = getFamilyMainMaqam(ns.state.familyId);
+    const showDefinitionCard = !!familyMain && familyMain.id === ns.state.maqamId;
+
     try {
       const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
       container.innerHTML = [
-        createDefinitionCard(model),
+        showDefinitionCard ? createDefinitionCard(model) : "",
         createVideoExamplesCard(model),
         createExamplesCard(model)
-      ].join("");
+      ].filter(Boolean).join("");
       sourcesFooter.innerHTML = createReferencesCard(model);
     } catch (error) {
       container.innerHTML = [
-        createDefinitionCard(null),
+        showDefinitionCard ? createDefinitionCard(null) : "",
         createVideoExamplesCard(null),
         createExamplesCard(null)
-      ].join("");
+      ].filter(Boolean).join("");
       sourcesFooter.innerHTML = createReferencesCard(null);
     }
   }
