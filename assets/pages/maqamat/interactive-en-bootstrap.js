@@ -147,6 +147,33 @@
     return { familyId: resolvedFamily, maqamId: resolvedMaqam, tonic: resolvedTonic };
   }
 
+  function setHref(selector, href) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute('href', href);
+  }
+
+  function setMetaContent(selector, value) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute('content', value);
+  }
+
+  function syncSeo() {
+    if (!ns.state.familyId) return;
+
+    const canonicalUrl = new URL('/interactive-scale-en.html', window.location.origin);
+    canonicalUrl.searchParams.set('family', ns.state.familyId);
+
+    const arabicFamilyId = ns.state.familyId === 'bayat' ? 'bayati' : ns.state.familyId;
+    const arabicUrl = new URL('/interactive-scale.html', window.location.origin);
+    arabicUrl.searchParams.set('family', arabicFamilyId);
+
+    setHref('link[rel="canonical"]', canonicalUrl.toString());
+    setHref('link[rel="alternate"][hreflang="ar"]', arabicUrl.toString());
+    setHref('link[rel="alternate"][hreflang="en"]', canonicalUrl.toString());
+    setHref('link[rel="alternate"][hreflang="x-default"]', arabicUrl.toString());
+    setMetaContent('meta[property="og:url"]', canonicalUrl.toString());
+  }
+
   function bindPageEvents() {
     ensureTempoControl();
 
@@ -182,6 +209,7 @@
     url.searchParams.set('maqam', ns.state.maqamId);
     url.searchParams.set('tonic', ns.state.tonic);
     window.history.replaceState({}, '', url.toString());
+    syncSeo();
   }
 
   function setActiveNote(idx) {
@@ -205,6 +233,7 @@
     ns.state.stopRequested = false;
     ns.state.lastAudioErrorToken = null;
     ns.renderer.renderAll();
+    syncSeo();
     scrollMainToTop();
   }
 
@@ -233,6 +262,7 @@
     ns.state.maqamId = resolved.maqamId;
     ns.state.tonic = resolved.tonic;
 
+    syncSeo();
     ns.renderer.renderAll();
   }
 
