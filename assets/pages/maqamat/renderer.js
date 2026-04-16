@@ -110,7 +110,7 @@
         <div class="maqam-content-sections" id="maqam-content-sections">
           <div class="maqam-content-card maqam-content-card-placeholder">
             <h3>يتم تحميل مادة المقام…</h3>
-            <p>سيظهر هنا تعريف المقام، وأمثلة الفيديو، والأغاني أو القطع.</p>
+            <p>سيظهر هنا أمثلة الفيديو، والأغاني أو القطع.</p>
           </div>
         </div>
 
@@ -140,23 +140,18 @@
     const sourcesFooter = document.getElementById("maqam-sources-footer");
     if (!container || !sourcesFooter || !maqamContentLoader || typeof maqamContentLoader.buildMaqamContentModel !== "function") return;
 
-    const familyMain = getFamilyMainMaqam(ns.state.familyId);
-    const showDefinitionCard = !!familyMain && familyMain.id === ns.state.maqamId;
-
     try {
       const model = await maqamContentLoader.buildMaqamContentModel(ns.state.maqamId);
       container.innerHTML = [
-        showDefinitionCard ? createDefinitionCard(model) : "",
         createVideoExamplesCard(model),
         createExamplesCard(model)
-      ].filter(Boolean).join("");
+      ].join("");
       sourcesFooter.innerHTML = createReferencesCard(model);
     } catch (error) {
       container.innerHTML = [
-        showDefinitionCard ? createDefinitionCard(null) : "",
         createVideoExamplesCard(null),
         createExamplesCard(null)
-      ].filter(Boolean).join("");
+      ].join("");
       sourcesFooter.innerHTML = createReferencesCard(null);
     }
   }
@@ -178,29 +173,6 @@
 
   function createPlaceholderBody(message) {
     return `<p class="maqam-content-copy">${escapeHtml(message)}</p>`;
-  }
-
-  function createDefinitionCard(model) {
-    const sayr = model && model.sayr ? model.sayr : null;
-    if (!sayr) {
-      return createContentCard("تعريف المقام", createPlaceholderBody("سيُضاف تعريف هذا المقام لاحقًا."), true);
-    }
-
-    const summary = sayr.summary ? `<p class="maqam-content-copy">${escapeHtml(sayr.summary)}</p>` : "";
-    const path = createBulletList(sayr.common_path);
-    const resting = createBulletList(sayr.resting_tones);
-    const motion = createBulletList(sayr.motion_notes);
-    const modulations = createBulletList(model && (model.common_modulations || model.modulations || model.modulation_paths));
-
-    const body = [
-      summary || createPlaceholderBody("سيُضاف تعريف هذا المقام لاحقًا."),
-      path ? `<div class="maqam-content-subsection"><h4>كيف يسير المقام</h4>${path}</div>` : "",
-      resting ? `<div class="maqam-content-subsection"><h4>درجات الارتكاز</h4>${resting}</div>` : "",
-      motion ? `<div class="maqam-content-subsection"><h4>درجات الحركة</h4>${motion}</div>` : "",
-      modulations ? `<div class="maqam-content-subsection"><h4>أين يذهب المقام</h4>${modulations}</div>` : ""
-    ].filter(Boolean).join("");
-
-    return createContentCard("تعريف المقام", body);
   }
 
   function normalizeExampleEntries(items) {
