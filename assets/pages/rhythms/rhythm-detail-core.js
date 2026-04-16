@@ -126,6 +126,36 @@
     return rhythms.find(item => item.id === rhythmId) || rhythms[0] || null;
   }
 
+  function setHref(selector, href) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute("href", href);
+  }
+
+  function setMetaContent(selector, value) {
+    const node = document.querySelector(selector);
+    if (node) node.setAttribute("content", value);
+  }
+
+  function syncSeo(rhythm, lang) {
+    if (!rhythm || !rhythm.id) return;
+
+    const isEnglish = lang === "en";
+    const canonicalUrl = new URL(isEnglish ? "/rhythm-en.html" : "/rhythm.html", window.location.origin);
+    canonicalUrl.searchParams.set("id", rhythm.id);
+
+    const arabicUrl = new URL("/rhythm.html", window.location.origin);
+    arabicUrl.searchParams.set("id", rhythm.id);
+
+    const englishUrl = new URL("/rhythm-en.html", window.location.origin);
+    englishUrl.searchParams.set("id", rhythm.id);
+
+    setHref('link[rel="canonical"]', canonicalUrl.toString());
+    setHref('link[rel="alternate"][hreflang="ar"]', arabicUrl.toString());
+    setHref('link[rel="alternate"][hreflang="en"]', englishUrl.toString());
+    setHref('link[rel="alternate"][hreflang="x-default"]', arabicUrl.toString());
+    setMetaContent('meta[property="og:url"]', canonicalUrl.toString());
+  }
+
   function setDocumentState(rhythm, lang, labels) {
     const currentLabel = document.getElementById("rhythm-current-label");
     const toggle = document.getElementById("detail-lang-toggle");
@@ -143,6 +173,8 @@
       const targetPage = lang === "ar" ? "rhythm-en.html" : "rhythm.html";
       toggle.href = `${targetPage}?id=${encodeURIComponent(rhythm.id)}`;
     }
+
+    syncSeo(rhythm, lang);
   }
 
   function createLargeImageMarkup(rhythm, altText) {
