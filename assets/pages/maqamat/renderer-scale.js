@@ -6,7 +6,7 @@
 
   const JINS_LABELS_AR = {
     rast: { lower: "جنس الراست", upper: "جنس الراست" },
-    bayati: { lower: "جنس البيات", upper: "جنس البيات" },
+    bayati: { lower: "جنس البيات", upper: "جنس الراست" },
     ajam: { lower: "جنس العجم", upper: "جنس العجم" },
     hijaz: { lower: "جنس الحجاز", upper: "جنس الحجاز" },
     nahawand: { lower: "جنس النهاوند", upper: "جنس النهاوند" },
