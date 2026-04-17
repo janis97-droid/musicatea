@@ -4,6 +4,19 @@
   const { svgEl, drawClef, drawLedgerLines, drawAccidental, shadowColorForBorder } = ns.rendererSvg;
   const { escapeHtml } = ns.rendererContent;
 
+  const JINS_LABELS_AR = {
+    rast: { lower: "جنس الراست", upper: "جنس الراست" },
+    bayati: { lower: "جنس البيات", upper: "جنس البيات" },
+    ajam: { lower: "جنس العجم", upper: "جنس العجم" },
+    hijaz: { lower: "جنس الحجاز", upper: "جنس الحجاز" },
+    nahawand: { lower: "جنس النهاوند", upper: "جنس النهاوند" },
+    kurd: { lower: "جنس الكرد", upper: "جنس الكرد" },
+    sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
+    saba: { lower: "جنس الصبا", upper: "جنس الصبا" },
+    nawa_athar: { lower: "جنس النوى أثر", upper: "جنس النوى أثر" },
+    huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" }
+  };
+
   function renderTonicSelector() {
     const c = document.getElementById("tonic-selector-current");
     if (!c) return;
@@ -109,9 +122,18 @@
     );
   }
 
+  function renderJinsRow() {
+    const row = document.getElementById("jins-current");
+    if (!row) return;
+
+    const labels = JINS_LABELS_AR[ns.state.maqamId] || { lower: "الجنس الأول", upper: "الجنس الثاني" };
+    row.innerHTML = `<div class="jins-pill jins-pill-lower">${escapeHtml(labels.lower)}</div><div class="jins-pill jins-pill-upper">${escapeHtml(labels.upper)}</div>`;
+  }
+
   ns.rendererScale = {
     renderTonicSelector,
     renderStaff,
     renderKeys,
+    renderJinsRow,
   };
 })();
