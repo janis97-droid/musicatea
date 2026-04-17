@@ -6,15 +6,67 @@
 
   const JINS_LABELS_AR = {
     rast: { lower: "جنس الراست", upper: "جنس الراست" },
-    bayati: { lower: "جنس البيات", upper: "جنس الراست" },
+    suznak: { lower: "جنس الراست", upper: "جنس الحجاز" },
+    mahur: { lower: "جنس الراست", upper: "جنس العجم" },
+    nairuz: { lower: "جنس الراست", upper: "جنس الحجاز" },
+    bashayer: { lower: "جنس الراست", upper: "جنس العجم" },
+    sazkar: { lower: "جنس الراست", upper: "جنس الحجاز" },
+    dalanshin: { lower: "جنس الراست", upper: "جنس النهاوند" },
+
+    bayati: { lower: "جنس البيات", upper: "جنس النهاوند" },
+    bayati_shuri: { lower: "جنس البيات", upper: "جنس الحجاز" },
+    husayni: { lower: "جنس البيات", upper: "جنس الحسيني" },
+    muhayyar: { lower: "جنس البيات", upper: "جنس المحيّر" },
+    bayatin: { lower: "جنس البيات", upper: "جنس البياتين" },
+    nahuft: { lower: "جنس البيات", upper: "جنس النهاوند" },
+
     ajam: { lower: "جنس العجم", upper: "جنس العجم" },
+    ajam_ushayran: { lower: "جنس العجم", upper: "جنس العجم" },
+    shawq_afza: { lower: "جنس العجم", upper: "جنس العجم" },
+    suznal: { lower: "جنس العجم", upper: "جنس الحجاز" },
+    ajam_murassa: { lower: "جنس العجم", upper: "جنس البيات" },
+    jaharkah: { lower: "جنس العجم", upper: "جنس العجم" },
+
     hijaz: { lower: "جنس الحجاز", upper: "جنس الحجاز" },
+    hijazkar: { lower: "جنس الحجاز", upper: "جنس العجم" },
+    shadd_araban: { lower: "جنس الحجاز", upper: "جنس الكرد" },
+    suzdil: { lower: "جنس الحجاز", upper: "جنس الكرد" },
+    shahnaz: { lower: "جنس الحجاز", upper: "جنس الشهناز" },
+    hijazayn: { lower: "جنس الحجاز", upper: "جنس الحجازين" },
+    zanjaran: { lower: "جنس الحجاز", upper: "جنس الزنجران" },
+    hijaz_ajami: { lower: "جنس الحجاز", upper: "جنس العجم" },
+
     nahawand: { lower: "جنس النهاوند", upper: "جنس النهاوند" },
+    nahawand_murassa: { lower: "جنس النهاوند", upper: "جنس البيات" },
+    ushshaq_masri: { lower: "جنس النهاوند", upper: "جنس العشّاق" },
+    tarz_jadid: { lower: "جنس النهاوند", upper: "جنس الحجاز" },
+    nahawand_kabir: { lower: "جنس النهاوند", upper: "جنس العجم" },
+    nahawand_kurdi: { lower: "جنس النهاوند", upper: "جنس الكرد" },
+
     kurd: { lower: "جنس الكرد", upper: "جنس الكرد" },
+    tarz_nawin: { lower: "جنس الكرد", upper: "جنس الكرد" },
+    shahnaz_kurdi: { lower: "جنس الكرد", upper: "جنس الشهناز" },
+    lami: { lower: "جنس الكرد", upper: "جنس الكرد" },
+    athar_kurd: { lower: "جنس الكرد", upper: "جنس النوى أثر" },
+
     sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
+    huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" },
+    rahat_al_arwah: { lower: "جنس السيكاه", upper: "جنس الراحة الأرواح" },
+    iraq: { lower: "جنس السيكاه", upper: "جنس العراق" },
+    awj_iraq: { lower: "جنس السيكاه", upper: "جنس الأوج عراق" },
+    basta_nikar: { lower: "جنس السيكاه", upper: "جنس البستة نكار" },
+    mustaar: { lower: "جنس السيكاه", upper: "جنس المستعار" },
+    farahnak: { lower: "جنس السيكاه", upper: "جنس الفرحناك" },
+    shaar: { lower: "جنس السيكاه", upper: "جنس الشعار" },
+    rahat_faza: { lower: "جنس السيكاه", upper: "جنس الراحة فزا" },
+
     saba: { lower: "جنس الصبا", upper: "جنس الصبا" },
+    saba_jadid: { lower: "جنس الصبا", upper: "جنس الصبا الجديد" },
+    zamzama: { lower: "جنس الصبا", upper: "جنس الزمزمة" },
+
     nawa_athar: { lower: "جنس النوى أثر", upper: "جنس النوى أثر" },
-    huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" }
+    nikriz: { lower: "جنس النوى أثر", upper: "جنس النكريز" },
+    basandida: { lower: "جنس النوى أثر", upper: "جنس البسنديدة" }
   };
 
   function renderTonicSelector() {
