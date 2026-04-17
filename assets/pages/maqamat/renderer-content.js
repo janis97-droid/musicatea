@@ -154,11 +154,11 @@
 
     try {
       const model = await loader.buildMaqamContentModel(ns.state.maqamId);
-      c.innerHTML = `<div class="maqam-content-top-grid"><div class="maqam-content-col maqam-content-col-info">${createDefinitionCard(model)}</div><div class="maqam-content-col maqam-content-col-examples">${createExamplesCard(model)}</div></div>${createVideoExamplesCard(model)}`;
+      c.innerHTML = [createDefinitionCard(model), createExamplesCard(model), createVideoExamplesCard(model)].filter(Boolean).join("");
       f.innerHTML = createReferencesCard(model);
       bindExclusiveAccordions(c);
     } catch (e) {
-      c.innerHTML = `<div class="maqam-content-top-grid"><div class="maqam-content-col maqam-content-col-info">${createDefinitionCard(null)}</div><div class="maqam-content-col maqam-content-col-examples">${createExamplesCard(null)}</div></div>${createVideoExamplesCard(null)}`;
+      c.innerHTML = [createDefinitionCard(null), createExamplesCard(null), createVideoExamplesCard(null)].filter(Boolean).join("");
       f.innerHTML = createReferencesCard(null);
       bindExclusiveAccordions(c);
     }
