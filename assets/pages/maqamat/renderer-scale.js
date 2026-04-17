@@ -127,7 +127,7 @@
     if (!row) return;
 
     const labels = JINS_LABELS_AR[ns.state.maqamId] || { lower: "الجنس الأول", upper: "الجنس الثاني" };
-    row.innerHTML = `<div class="jins-pill jins-pill-lower">${escapeHtml(labels.lower)}</div><div class="jins-pill jins-pill-upper">${escapeHtml(labels.upper)}</div>`;
+    row.innerHTML = `<div class="jins-pill jins-pill-upper">${escapeHtml(labels.upper)}</div><div class="jins-pill jins-pill-lower">${escapeHtml(labels.lower)}</div>`;
   }
 
   ns.rendererScale = {
