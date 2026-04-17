@@ -154,11 +154,11 @@
 
     try {
       const model = await loader.buildMaqamContentModel(ns.state.maqamId);
-      c.innerHTML = [createDefinitionCard(model), createVideoExamplesCard(model), createExamplesCard(model)].filter(Boolean).join("");
+      c.innerHTML = `<div class="maqam-content-top-grid">${createDefinitionCard(model)}${createExamplesCard(model)}</div>${createVideoExamplesCard(model)}`;
       f.innerHTML = createReferencesCard(model);
       bindExclusiveAccordions(c);
     } catch (e) {
-      c.innerHTML = [createDefinitionCard(null), createVideoExamplesCard(null), createExamplesCard(null)].filter(Boolean).join("");
+      c.innerHTML = `<div class="maqam-content-top-grid">${createDefinitionCard(null)}${createExamplesCard(null)}</div>${createVideoExamplesCard(null)}`;
       f.innerHTML = createReferencesCard(null);
       bindExclusiveAccordions(c);
     }
