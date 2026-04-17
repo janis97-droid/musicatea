@@ -430,6 +430,13 @@
   }
 
   function ensureJinsGuide(model, maqamId, familyId) {
+    const splitGuideRow = document.getElementById("jins-current");
+    if (splitGuideRow) {
+      const oldGuideRow = document.getElementById(JINS_GUIDE_ROW_ID);
+      if (oldGuideRow) oldGuideRow.remove();
+      return;
+    }
+
     const keysRow = document.getElementById("keys-current");
     if (!keysRow) return;
 
