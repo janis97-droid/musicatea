@@ -46,7 +46,7 @@
     sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
     huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" },
     rahat_al_arwah: { lower: "جنس السيكاه", upper: "جنس الراحة الأرواح" },
-    iraq: { lower: "جنس السيكاه", upper: "جنس العراق" },
+    iraq: { lower: "جنس السيكاه", upper: "جنس العشّاق" },
     awj_iraq: { lower: "جنس السيكاه", upper: "جنس الأوج عراق" },
     basta_nikar: { lower: "جنس السيكاه", upper: "جنس البستة نكار" },
     mustaar: { lower: "جنس السيكاه", upper: "جنس المستعار" },
