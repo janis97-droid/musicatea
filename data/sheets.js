@@ -78,7 +78,43 @@ const sheets = [
     pdf: "pdfs/Harmna-mn-onsak-leh.pdf"
   },
   
-  {
+{
+    title: "حلف القمر",
+    title_en: "Helef El Qamar",
+    system: "arabic",
+    type: "song",
+    composer: "نور الملاح",
+    composer_en: "Nour El Mallah",
+    performer: "جورج وسوف",
+    performer_en: "George Wassouf",
+    maqam: "نهاوند",
+    maqam_en: "Nahawand",
+    scale: null,
+    scale_en: null,
+    tonic: "دو",
+    tonic_en: "C",
+    pdf: "pdfs/helef-elqamar-Do.pdf"
+  },
+
+   {
+    title: "حلف القمر",
+    title_en: "Helef El Qamar",
+    system: "arabic",
+    type: "song",
+    composer: "نور الملاح",
+    composer_en: "Nour El Mallah",
+    performer: "جورج وسوف",
+    performer_en: "George Wassouf",
+    maqam: "نهاوند",
+    maqam_en: "Nahawand",
+    scale: null,
+    scale_en: null,
+    tonic: "صول",
+    tonic_en: "G",
+    pdf: "pdfs/helef-elqamar-Sol.pdf"
+  },
+ 
+ {
     title: "لونجا عجم",
     title_en: "Longa Ajam",
     system: "arabic",
