@@ -249,16 +249,16 @@ const INTERACTIVE_MAQAM_DATA = {
   athar_kurd:           maqamConfig("athar_kurd", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [5, 8], 4),
 
   // sikah
-  sikah:                maqamConfig("sikah", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  huzam:                maqamConfig("huzam", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  rahat_al_arwah:       maqamConfig("rahat_al_arwah", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  iraq:                 maqamConfig("iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  awj_iraq:             maqamConfig("awj_iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  basta_nikar:          maqamConfig("basta_nikar", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  mustaar:              maqamConfig("mustaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  farahnak:             maqamConfig("farahnak", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  shaar:                maqamConfig("shaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
-  rahat_faza:           maqamConfig("rahat_faza", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
+  sikah:                maqamConfig("sikah", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  huzam:                maqamConfig("huzam", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  rahat_al_arwah:       maqamConfig("rahat_al_arwah", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  iraq:                 maqamConfig("iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  awj_iraq:             maqamConfig("awj_iraq", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  basta_nikar:          maqamConfig("basta_nikar", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  mustaar:              maqamConfig("mustaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  farahnak:             maqamConfig("farahnak", "mixed", "si_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  shaar:                maqamConfig("shaar", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
+  rahat_faza:           maqamConfig("rahat_faza", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [3, 6], 4),
 
   // saba
   saba:                 maqamConfig("saba", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [3, 6], 4),
