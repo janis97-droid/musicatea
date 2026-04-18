@@ -1,7 +1,7 @@
 (function () {
   const ns = window.InteractiveScaleApp = window.InteractiveScaleApp || {};
   const { renderAll, renderSidebar, renderPageShell, updateDisplayedName } = ns.rendererLayout;
-  const { renderTonicSelector, renderStaff, renderKeys } = ns.rendererScale;
+  const { renderTonicSelector, renderStaff, renderKeys, renderJinsRow } = ns.rendererScale;
 
   ns.renderer = {
     renderAll,
@@ -10,6 +10,7 @@
     renderTonicSelector,
     renderStaff,
     renderKeys,
+    renderJinsRow,
     updateDisplayedName,
   };
 })();
