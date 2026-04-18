@@ -53,7 +53,7 @@
     farahnak: { lower: "جنس السيكاه", upper: "جنس الفرحناك" },
     shaar: { lower: "جنس السيكاه", upper: "جنس الشعار" },
     rahat_faza: { lower: "جنس السيكاه", upper: "جنس الراحة فزا" },
-    saba: { lower: "جنس صبا على الري", upper: "جنس حجاز على الفا" },
+    saba: { lower: "جنس صبا", upper: "جنس حجاز" },
     saba_jadid: { lower: "جنس الصبا", upper: "جنس الصبا الجديد" },
     zamzama: { lower: "جنس الصبا", upper: "جنس الزمزمة" },
     nawa_athar: { lower: "جنس النوى أثر", upper: "جنس النوى أثر" },
@@ -191,7 +191,7 @@
     const keysRow = document.getElementById('keys-current');
     if (!row || !keysRow) return;
     row.querySelectorAll('.jins-pill').forEach((pill) => {
-      const selected = segment && pill.dataset.segmentKey === segment.key && pill.dataset.segmentStart === String(segment.start) && pill.dataset.segmentEnd === String(segment.end);
+      const selected = segment && pill.dataset.segmentKey === segment.key;
       pill.classList.toggle('is-selected', !!selected);
     });
     const sharedSegments = Array.isArray(allSegments) ? allSegments.filter((item) => item.role === 'shared') : [];
@@ -214,15 +214,15 @@
     const degreeCount = Math.max(notes.length, 1);
     const segments = buildJinsSegments(ns.state.maqamId, degreeCount);
     const visibleSegments = segments.filter((segment) => segment.role !== 'shared');
-    row.style.gridTemplateColumns = `repeat(${degreeCount}, minmax(0, 1fr))`;
+    row.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
     row.style.direction = 'ltr';
     row.innerHTML = visibleSegments.map((segment) => {
       const className = `jins-pill jins-pill-${segment.role}`;
-      return `<div class="${className}" data-segment-key="${segment.key}" data-segment-start="${segment.start}" data-segment-end="${segment.end}" style="grid-column:${segment.start} / ${segment.end + 1};"><span>${escapeHtml(segment.label)}</span></div>`;
+      return `<div class="${className}" data-segment-key="${segment.key}"><span>${escapeHtml(segment.label)}</span></div>`;
     }).join('');
     row.querySelectorAll('.jins-pill').forEach((pill) => {
       pill.addEventListener('click', () => {
-        const segment = visibleSegments.find((item) => item.key === pill.dataset.segmentKey && String(item.start) === pill.dataset.segmentStart && String(item.end) === pill.dataset.segmentEnd);
+        const segment = visibleSegments.find((item) => item.key === pill.dataset.segmentKey);
         const isAlreadySelected = pill.classList.contains('is-selected');
         applyJinsSelection(isAlreadySelected ? null : segment, segments);
       });
