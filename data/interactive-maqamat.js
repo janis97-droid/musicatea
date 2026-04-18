@@ -261,7 +261,7 @@ const INTERACTIVE_MAQAM_DATA = {
   rahat_faza:           maqamConfig("rahat_faza", "mixed", "mi_half_flat", [...INTERACTIVE_TONIC_ORDER_SIKAH], [1, 3], [4, 8], 4),
 
   // saba
-  saba:                 maqamConfig("saba", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [4, 7], 4),
+  saba:                 maqamConfig("saba", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 3], [3, 6], 4),
   saba_jadid:           maqamConfig("saba_jadid", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [5, 8], 4),
   zamzama:              maqamConfig("zamzama", "standard", "re", [...INTERACTIVE_TONIC_ORDER_STANDARD], [1, 4], [5, 8], 4),
 
