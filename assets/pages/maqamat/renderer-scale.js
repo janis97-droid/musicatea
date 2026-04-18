@@ -22,7 +22,7 @@
     ajam_ushayran: { lower: "جنس العجم", upper: "جنس العجم" },
     shawq_afza: { lower: "جنس العجم", upper: "جنس العجم" },
     suznal: { lower: "جنس العجم", upper: "جنس الحجاز" },
-    ajam_murassa: { lower: "جنس العجم", upper: "جنس البيات" },
+    ajam_murassa: { lower: "جنس العجم", upper: "جنس العجم" },
     jaharkah: { lower: "جنس العجم", upper: "جنس العجم" },
     hijaz: { lower: "جنس الحجاز", upper: "جنس الحجاز" },
     hijazkar: { lower: "جنس الحجاز", upper: "جنس العجم" },
