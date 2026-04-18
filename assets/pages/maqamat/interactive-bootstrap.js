@@ -267,9 +267,11 @@
     ns.state.lastAudioErrorToken = null;
     ns.renderer.updateDisplayedName();
     ns.renderer.renderTonicSelector();
-    ns.renderer.renderInfoGrid();
     ns.renderer.renderStaff();
     ns.renderer.renderKeys();
+    if (typeof ns.renderer.renderJinsRow === "function") {
+      ns.renderer.renderJinsRow();
+    }
     syncUrl();
   }
 
