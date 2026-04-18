@@ -8,7 +8,7 @@
     rast: { lower: "جنس الراست", upper: "جنس الراست" },
     suznak: { lower: "جنس الراست", upper: "جنس الحجاز" },
     mahur: { lower: "جنس الراست", upper: "جنس العجم" },
-    nairuz: { lower: "جنس الراست", upper: "جنس الحجاز" },
+    nairuz: { lower: "جنس الراست", upper: "جنس البيات" },
     bashayer: { lower: "جنس الراست", upper: "جنس العجم" },
     sazkar: { lower: "جنس الراست", upper: "جنس الحجاز" },
     dalanshin: { lower: "جنس الراست", upper: "جنس النهاوند" },
