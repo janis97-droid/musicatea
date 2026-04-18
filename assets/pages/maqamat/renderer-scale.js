@@ -60,7 +60,7 @@
     shaar: { lower: "جنس السيكاه", upper: "جنس الشعار" },
     rahat_faza: { lower: "جنس السيكاه", upper: "جنس الراحة فزا" },
 
-    saba: { lower: "جنس الصبا", upper: "جنس الصبا" },
+    saba: { lower: "جنس صبا على الري", upper: "جنس حجاز على الفا" },
     saba_jadid: { lower: "جنس الصبا", upper: "جنس الصبا الجديد" },
     zamzama: { lower: "جنس الصبا", upper: "جنس الزمزمة" },
 
@@ -174,12 +174,70 @@
     );
   }
 
+  function clampDegree(value, degreeCount) {
+    const num = Number(value);
+    if (!Number.isFinite(num)) return 1;
+    return Math.min(Math.max(Math.round(num), 1), degreeCount);
+  }
+
+  function buildJinsSegments(maqamId, degreeCount) {
+    const labels = JINS_LABELS_AR[maqamId] || { lower: "الجنس الأول", upper: "الجنس الثاني" };
+    const config = typeof getInteractiveConfig === "function" ? getInteractiveConfig(maqamId) : null;
+    const lowerRange = Array.isArray(config?.lower_jins_degree_range) ? config.lower_jins_degree_range : [1, Math.min(4, degreeCount)];
+    const upperRange = Array.isArray(config?.upper_jins_degree_range) ? config.upper_jins_degree_range : [Math.min(5, degreeCount), degreeCount];
+
+    const lowerStart = clampDegree(lowerRange[0], degreeCount);
+    const lowerEnd = clampDegree(lowerRange[1], degreeCount);
+    const upperStart = clampDegree(upperRange[0], degreeCount);
+    const upperEnd = clampDegree(upperRange[1], degreeCount);
+
+    const overlapStart = Math.max(lowerStart, upperStart);
+    const overlapEnd = Math.min(lowerEnd, upperEnd);
+    const hasOverlap = overlapStart <= overlapEnd;
+
+    if (!hasOverlap) {
+      return [
+        { role: "lower", label: labels.lower, start: lowerStart, end: lowerEnd },
+        { role: "upper", label: labels.upper, start: upperStart, end: upperEnd }
+      ];
+    }
+
+    const segments = [];
+
+    if (lowerStart < overlapStart) {
+      segments.push({ role: "lower", label: labels.lower, start: lowerStart, end: overlapStart - 1 });
+    }
+
+    segments.push({ role: "shared", label: "", start: overlapStart, end: overlapEnd, title: "نغمة مشتركة" });
+
+    if (upperEnd > overlapEnd) {
+      segments.push({ role: "upper", label: labels.upper, start: overlapEnd + 1, end: upperEnd });
+    }
+
+    if (!segments.some((segment) => segment.role === "lower")) {
+      segments.unshift({ role: "lower", label: labels.lower, start: lowerStart, end: overlapEnd });
+    }
+
+    return segments.filter((segment) => segment.start <= segment.end);
+  }
+
   function renderJinsRow() {
     const row = document.getElementById("jins-current");
     if (!row) return;
 
-    const labels = JINS_LABELS_AR[ns.state.maqamId] || { lower: "الجنس الأول", upper: "الجنس الثاني" };
-    row.innerHTML = `<div class="jins-pill jins-pill-upper">${escapeHtml(labels.upper)}</div><div class="jins-pill jins-pill-lower">${escapeHtml(labels.lower)}</div>`;
+    const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
+    const degreeCount = Math.max(notes.length, 1);
+    const segments = buildJinsSegments(ns.state.maqamId, degreeCount);
+
+    row.style.gridTemplateColumns = `repeat(${degreeCount}, minmax(0, 1fr))`;
+    row.innerHTML = segments
+      .map((segment) => {
+        const className = `jins-pill jins-pill-${segment.role}`;
+        const text = segment.label ? `<span>${escapeHtml(segment.label)}</span>` : "";
+        const titleAttr = segment.title ? ` title="${escapeHtml(segment.title)}" aria-label="${escapeHtml(segment.title)}"` : "";
+        return `<div class="${className}" style="grid-column:${segment.start} / ${segment.end + 1};"${titleAttr}>${text}</div>`;
+      })
+      .join("");
   }
 
   ns.rendererScale = {
