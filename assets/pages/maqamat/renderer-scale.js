@@ -69,109 +69,35 @@
     basandida: { lower: "جنس النوى أثر", upper: "جنس البسنديدة" }
   };
 
+  const NOTE_ROLE_STYLES = {
+    lower: {
+      bg: 'rgba(200,164,90,0.10)',
+      border: 'rgba(200,164,90,0.30)',
+      text: '#d8bb74',
+      shadow: 'rgba(200,164,90,0.20)'
+    },
+    upper: {
+      bg: 'rgba(123,168,212,0.10)',
+      border: 'rgba(123,168,212,0.30)',
+      text: '#8dbde4',
+      shadow: 'rgba(123,168,212,0.20)'
+    },
+    shared: {
+      bg: 'rgba(112,170,96,0.12)',
+      border: 'rgba(112,170,96,0.34)',
+      text: '#9fd68a',
+      shadow: 'rgba(112,170,96,0.22)'
+    }
+  };
+
   function renderTonicSelector() {
-    const c = document.getElementById("tonic-selector-current");
+    const c = document.getElementById('tonic-selector-current');
     if (!c) return;
     const tonics = getInteractiveTonicsForMaqam(ns.state.maqamId);
     c.innerHTML = tonics
-      .map((t) => `<button class="tonic-btn ${t === ns.state.tonic ? "active" : ""}" data-tonic="${t}">${getTonicLabelAr(t)}</button>`)
-      .join("");
-    c.querySelectorAll(".tonic-btn").forEach((b) => b.addEventListener("click", () => ns.actions.setActiveTonic(b.dataset.tonic)));
-  }
-
-  function renderStaff() {
-    const svg = document.getElementById("staff-current");
-    if (!svg) return;
-    const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-    svg.innerHTML = "";
-
-    STAFF_LINES_Y.forEach((y) => {
-      svgEl("line", { x1: "0", y1: String(y), x2: "820", y2: String(y), stroke: "#8a7440", "stroke-width": "1.6" }, svg);
-    });
-
-    drawClef(svg);
-
-    const xStart = 82;
-    const count = Math.max(notes.length, 1);
-    const xGap = (820 - xStart - 16) / count;
-
-    notes.forEach((note, i) => {
-      const x = xStart + i * xGap + xGap * 0.4;
-      const p = ns.engine.getPaletteForNote(note);
-      const active = ns.state.activeNoteIndex === i;
-      const slot = SLOT_MAP[note.slot_key] || SLOT_MAP["E4"];
-      const y = slot.y;
-      const g = svgEl(
-        "g",
-        {
-          class: `note-btn ${active ? "active" : ""}`,
-          "data-note-idx": String(i),
-          role: "button",
-          tabindex: "0",
-          title: note.role_description,
-          "aria-label": note.role_description,
-        },
-        svg,
-      );
-
-      drawLedgerLines(g, x, slot.ledger);
-
-      const noteColor = active ? p.active : p.idle;
-      const stemColor = active ? p.active : p.stem;
-      const accColor = active ? p.active_acc : p.acc;
-      const up = y >= 138;
-
-      svgEl(
-        "line",
-        {
-          x1: String(up ? x + 7 : x - 7),
-          y1: String(y),
-          x2: String(up ? x + 7 : x - 7),
-          y2: String(up ? y - 38 : y + 38),
-          stroke: stemColor,
-          "stroke-width": "1.8",
-        },
-        g,
-      );
-
-      drawAccidental(g, x - 22, y, note.acc_label, accColor);
-      svgEl("ellipse", { cx: String(x), cy: String(y), rx: "8", ry: "5.5", fill: noteColor, transform: `rotate(-18,${x},${y})` }, g);
-    });
-
-    svg.querySelectorAll(".note-btn").forEach((n) =>
-      n.addEventListener("click", async () => {
-        const idx = Number(n.dataset.noteIdx);
-        ns.actions.setActiveNote(idx);
-        const now = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-        if (now[idx]) await ns.audio.playSingleNote(now[idx]);
-      }),
-    );
-  }
-
-  function renderKeys() {
-    const row = document.getElementById("keys-current");
-    if (!row) return;
-    const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-
-    row.innerHTML = notes
-      .map((note, i) => {
-        const p = ns.engine.getPaletteForNote(note);
-        const active = ns.state.activeNoteIndex === i;
-        const bg = active ? p.box_bg_active : p.box_bg;
-        const border = active ? p.box_border_active : p.box_border;
-        const text = active ? p.box_text_active : p.box_text;
-        return `<div class="note-key ${active ? "active" : ""}" data-note-idx="${i}" title="${escapeHtml(note.role_description)}" aria-label="${escapeHtml(note.role_description)}"><div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${active ? `0 10px 24px ${shadowColorForBorder(border)}` : "none"};"><span>${note.display_label}</span></div></div>`;
-      })
-      .join("");
-
-    row.querySelectorAll(".note-key").forEach((n) =>
-      n.addEventListener("click", async () => {
-        const idx = Number(n.dataset.noteIdx);
-        ns.actions.setActiveNote(idx);
-        const now = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
-        if (now[idx]) await ns.audio.playSingleNote(now[idx]);
-      }),
-    );
+      .map((t) => `<button class="tonic-btn ${t === ns.state.tonic ? 'active' : ''}" data-tonic="${t}">${getTonicLabelAr(t)}</button>`)
+      .join('');
+    c.querySelectorAll('.tonic-btn').forEach((b) => b.addEventListener('click', () => ns.actions.setActiveTonic(b.dataset.tonic)));
   }
 
   function clampDegree(value, degreeCount) {
@@ -181,8 +107,8 @@
   }
 
   function buildJinsSegments(maqamId, degreeCount) {
-    const labels = JINS_LABELS_AR[maqamId] || { lower: "الجنس الأول", upper: "الجنس الثاني" };
-    const config = typeof getInteractiveConfig === "function" ? getInteractiveConfig(maqamId) : null;
+    const labels = JINS_LABELS_AR[maqamId] || { lower: 'الجنس الأول', upper: 'الجنس الثاني' };
+    const config = typeof getInteractiveConfig === 'function' ? getInteractiveConfig(maqamId) : null;
     const lowerRange = Array.isArray(config?.lower_jins_degree_range) ? config.lower_jins_degree_range : [1, Math.min(4, degreeCount)];
     const upperRange = Array.isArray(config?.upper_jins_degree_range) ? config.upper_jins_degree_range : [Math.min(5, degreeCount), degreeCount];
 
@@ -197,32 +123,175 @@
 
     if (!hasOverlap) {
       return [
-        { role: "lower", label: labels.lower, start: lowerStart, end: lowerEnd },
-        { role: "upper", label: labels.upper, start: upperStart, end: upperEnd }
+        { role: 'lower', label: labels.lower, start: lowerStart, end: lowerEnd, key: 'lower' },
+        { role: 'upper', label: labels.upper, start: upperStart, end: upperEnd, key: 'upper' }
       ];
     }
 
     const segments = [];
 
     if (lowerStart < overlapStart) {
-      segments.push({ role: "lower", label: labels.lower, start: lowerStart, end: overlapStart - 1 });
+      segments.push({ role: 'lower', label: labels.lower, start: lowerStart, end: overlapStart - 1, key: 'lower' });
     }
 
-    segments.push({ role: "shared", label: "", start: overlapStart, end: overlapEnd, title: "نغمة مشتركة" });
+    segments.push({ role: 'shared', label: '', start: overlapStart, end: overlapEnd, title: 'نغمة مشتركة', key: 'shared' });
 
     if (upperEnd > overlapEnd) {
-      segments.push({ role: "upper", label: labels.upper, start: overlapEnd + 1, end: upperEnd });
+      segments.push({ role: 'upper', label: labels.upper, start: overlapEnd + 1, end: upperEnd, key: 'upper' });
     }
 
-    if (!segments.some((segment) => segment.role === "lower")) {
-      segments.unshift({ role: "lower", label: labels.lower, start: lowerStart, end: overlapEnd });
+    if (!segments.some((segment) => segment.role === 'lower')) {
+      segments.unshift({ role: 'lower', label: labels.lower, start: lowerStart, end: overlapEnd, key: 'lower' });
     }
 
     return segments.filter((segment) => segment.start <= segment.end);
   }
 
+  function getDegreeRoleMap(segments, degreeCount) {
+    const map = {};
+    for (let degree = 1; degree <= degreeCount; degree += 1) {
+      const hit = segments.find((segment) => degree >= segment.start && degree <= segment.end);
+      map[degree] = hit ? hit.role : null;
+    }
+    return map;
+  }
+
+  function getBaseNoteStyle(role, palette) {
+    const roleStyle = NOTE_ROLE_STYLES[role];
+    if (roleStyle) return roleStyle;
+    return {
+      bg: palette.box_bg,
+      border: palette.box_border,
+      text: palette.box_text,
+      shadow: shadowColorForBorder(palette.box_border)
+    };
+  }
+
+  function renderStaff() {
+    const svg = document.getElementById('staff-current');
+    if (!svg) return;
+    const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
+    svg.innerHTML = '';
+
+    STAFF_LINES_Y.forEach((y) => {
+      svgEl('line', { x1: '0', y1: String(y), x2: '820', y2: String(y), stroke: '#8a7440', 'stroke-width': '1.6' }, svg);
+    });
+
+    drawClef(svg);
+
+    const xStart = 82;
+    const count = Math.max(notes.length, 1);
+    const xGap = (820 - xStart - 16) / count;
+
+    notes.forEach((note, i) => {
+      const x = xStart + i * xGap + xGap * 0.4;
+      const p = ns.engine.getPaletteForNote(note);
+      const active = ns.state.activeNoteIndex === i;
+      const slot = SLOT_MAP[note.slot_key] || SLOT_MAP['E4'];
+      const y = slot.y;
+      const g = svgEl(
+        'g',
+        {
+          class: `note-btn ${active ? 'active' : ''}`,
+          'data-note-idx': String(i),
+          role: 'button',
+          tabindex: '0',
+          title: note.role_description,
+          'aria-label': note.role_description
+        },
+        svg
+      );
+
+      drawLedgerLines(g, x, slot.ledger);
+
+      const noteColor = active ? p.active : p.idle;
+      const stemColor = active ? p.active : p.stem;
+      const accColor = active ? p.active_acc : p.acc;
+      const up = y >= 138;
+
+      svgEl(
+        'line',
+        {
+          x1: String(up ? x + 7 : x - 7),
+          y1: String(y),
+          x2: String(up ? x + 7 : x - 7),
+          y2: String(up ? y - 38 : y + 38),
+          stroke: stemColor,
+          'stroke-width': '1.8'
+        },
+        g
+      );
+
+      drawAccidental(g, x - 22, y, note.acc_label, accColor);
+      svgEl('ellipse', { cx: String(x), cy: String(y), rx: '8', ry: '5.5', fill: noteColor, transform: `rotate(-18,${x},${y})` }, g);
+    });
+
+    svg.querySelectorAll('.note-btn').forEach((n) =>
+      n.addEventListener('click', async () => {
+        const idx = Number(n.dataset.noteIdx);
+        ns.actions.setActiveNote(idx);
+        const now = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
+        if (now[idx]) await ns.audio.playSingleNote(now[idx]);
+      })
+    );
+  }
+
+  function renderKeys() {
+    const row = document.getElementById('keys-current');
+    if (!row) return;
+    const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
+    const degreeCount = Math.max(notes.length, 1);
+    const segments = buildJinsSegments(ns.state.maqamId, degreeCount);
+    const roleMap = getDegreeRoleMap(segments, degreeCount);
+
+    row.style.direction = 'ltr';
+    row.innerHTML = notes
+      .map((note, i) => {
+        const degree = i + 1;
+        const p = ns.engine.getPaletteForNote(note);
+        const active = ns.state.activeNoteIndex === i;
+        const role = roleMap[degree];
+        const baseStyle = getBaseNoteStyle(role, p);
+        const bg = active ? p.box_bg_active : baseStyle.bg;
+        const border = active ? p.box_border_active : baseStyle.border;
+        const text = active ? p.box_text_active : baseStyle.text;
+        const shadow = active ? `0 10px 24px ${shadowColorForBorder(border)}` : 'none';
+        return `<div class="note-key ${active ? 'active' : ''} jins-role-${role || 'none'}" data-note-idx="${i}" data-degree="${degree}" title="${escapeHtml(note.role_description)}" aria-label="${escapeHtml(note.role_description)}"><div class="note-key-face note-key-face-colored" style="background:${bg};border-color:${border};color:${text};box-shadow:${shadow};"><span>${note.display_label}</span></div></div>`;
+      })
+      .join('');
+
+    row.querySelectorAll('.note-key').forEach((n) =>
+      n.addEventListener('click', async () => {
+        const idx = Number(n.dataset.noteIdx);
+        ns.actions.setActiveNote(idx);
+        const now = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
+        if (now[idx]) await ns.audio.playSingleNote(now[idx]);
+      })
+    );
+  }
+
+  function applyJinsSelection(segment) {
+    const row = document.getElementById('jins-current');
+    const keysRow = document.getElementById('keys-current');
+    if (!row || !keysRow) return;
+
+    row.querySelectorAll('.jins-pill').forEach((pill) => {
+      const selected = segment && pill.dataset.segmentKey === segment.key && pill.dataset.segmentStart === String(segment.start) && pill.dataset.segmentEnd === String(segment.end);
+      pill.classList.toggle('is-selected', !!selected);
+    });
+
+    keysRow.querySelectorAll('.note-key').forEach((key) => {
+      const degree = Number(key.dataset.degree);
+      const selected = segment && degree >= segment.start && degree <= segment.end;
+      key.classList.toggle('jins-highlight', !!selected);
+      key.classList.toggle('jins-highlight-lower', !!selected && segment?.role === 'lower');
+      key.classList.toggle('jins-highlight-upper', !!selected && segment?.role === 'upper');
+      key.classList.toggle('jins-highlight-shared', !!selected && segment?.role === 'shared');
+    });
+  }
+
   function renderJinsRow() {
-    const row = document.getElementById("jins-current");
+    const row = document.getElementById('jins-current');
     if (!row) return;
 
     const notes = ns.engine.buildScaleNotes(ns.state.maqamId, ns.state.tonic);
@@ -230,14 +299,25 @@
     const segments = buildJinsSegments(ns.state.maqamId, degreeCount);
 
     row.style.gridTemplateColumns = `repeat(${degreeCount}, minmax(0, 1fr))`;
+    row.style.direction = 'ltr';
     row.innerHTML = segments
       .map((segment) => {
         const className = `jins-pill jins-pill-${segment.role}`;
-        const text = segment.label ? `<span>${escapeHtml(segment.label)}</span>` : "";
-        const titleAttr = segment.title ? ` title="${escapeHtml(segment.title)}" aria-label="${escapeHtml(segment.title)}"` : "";
-        return `<div class="${className}" style="grid-column:${segment.start} / ${segment.end + 1};"${titleAttr}>${text}</div>`;
+        const text = segment.label ? `<span>${escapeHtml(segment.label)}</span>` : '';
+        const titleAttr = segment.title ? ` title="${escapeHtml(segment.title)}" aria-label="${escapeHtml(segment.title)}"` : '';
+        return `<div class="${className}" data-segment-key="${segment.key}" data-segment-start="${segment.start}" data-segment-end="${segment.end}" style="grid-column:${segment.start} / ${segment.end + 1};"${titleAttr}>${text}</div>`;
       })
-      .join("");
+      .join('');
+
+    row.querySelectorAll('.jins-pill').forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const segment = segments.find((item) => item.key === pill.dataset.segmentKey && String(item.start) === pill.dataset.segmentStart && String(item.end) === pill.dataset.segmentEnd);
+        const isAlreadySelected = pill.classList.contains('is-selected');
+        applyJinsSelection(isAlreadySelected ? null : segment);
+      });
+    });
+
+    applyJinsSelection(null);
   }
 
   ns.rendererScale = {
