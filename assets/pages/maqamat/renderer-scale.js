@@ -270,7 +270,7 @@
     );
   }
 
-  function applyJinsSelection(segment) {
+  function applyJinsSelection(segment, allSegments) {
     const row = document.getElementById('jins-current');
     const keysRow = document.getElementById('keys-current');
     if (!row || !keysRow) return;
@@ -280,13 +280,18 @@
       pill.classList.toggle('is-selected', !!selected);
     });
 
+    const sharedSegments = Array.isArray(allSegments) ? allSegments.filter((item) => item.role === 'shared') : [];
+
     keysRow.querySelectorAll('.note-key').forEach((key) => {
       const degree = Number(key.dataset.degree);
-      const selected = segment && degree >= segment.start && degree <= segment.end;
-      key.classList.toggle('jins-highlight', !!selected);
-      key.classList.toggle('jins-highlight-lower', !!selected && segment?.role === 'lower');
-      key.classList.toggle('jins-highlight-upper', !!selected && segment?.role === 'upper');
-      key.classList.toggle('jins-highlight-shared', !!selected && segment?.role === 'shared');
+      const inSelected = !!(segment && degree >= segment.start && degree <= segment.end);
+      const inShared = sharedSegments.some((shared) => degree >= shared.start && degree <= shared.end);
+      const shouldLight = segment ? (inSelected || ((segment.role === 'lower' || segment.role === 'upper') && inShared)) : false;
+
+      key.classList.toggle('jins-highlight', shouldLight);
+      key.classList.toggle('jins-highlight-lower', shouldLight && segment?.role === 'lower' && !inShared);
+      key.classList.toggle('jins-highlight-upper', shouldLight && segment?.role === 'upper' && !inShared);
+      key.classList.toggle('jins-highlight-shared', shouldLight && inShared);
     });
   }
 
@@ -313,11 +318,11 @@
       pill.addEventListener('click', () => {
         const segment = segments.find((item) => item.key === pill.dataset.segmentKey && String(item.start) === pill.dataset.segmentStart && String(item.end) === pill.dataset.segmentEnd);
         const isAlreadySelected = pill.classList.contains('is-selected');
-        applyJinsSelection(isAlreadySelected ? null : segment);
+        applyJinsSelection(isAlreadySelected ? null : segment, segments);
       });
     });
 
-    applyJinsSelection(null);
+    applyJinsSelection(null, segments);
   }
 
   ns.rendererScale = {
