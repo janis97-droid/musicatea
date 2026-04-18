@@ -50,7 +50,7 @@
     awj_iraq: { lower: "جنس السيكاه", upper: "جنس الأوج عراق" },
     basta_nikar: { lower: "جنس السيكاه", upper: "جنس الصبا" },
     mustaar: { lower: "جنس المستعار", upper: "جنس النهاوند" },
-    farahnak: { lower: "جنس السيكاه", upper: "جنس الفرحناك" },
+    farahnak: { lower: "جنس السيكاه", upper: "جنس العجم" },
     shaar: { lower: "جنس السيكاه", upper: "جنس الشعار" },
     rahat_faza: { lower: "جنس السيكاه", upper: "جنس الراحة فزا" },
     saba: { lower: "جنس صبا", upper: "جنس حجاز" },
