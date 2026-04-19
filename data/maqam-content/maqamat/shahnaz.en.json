@@ -1,0 +1,76 @@
+{
+  "id": "shahnaz",
+  "family": "hijaz",
+  "title_ar": "شاهناز",
+  "title_en": "Shahnaz",
+  "latin": "Shahnaz",
+  "hero_summary": "In modern Arabic usage, Shahnaz is often understood as a branch of the Hijaz family, but the more precise analytical reading presents it as Hijazkar transposed to Dukah (D), not merely simple Hijaz on D.",
+  "short_identity": "A practical Hijaz-family branch, but analytically closer to Hijazkar on Dukah (D).",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Hijazkar on Dukah (D)",
+    "upper_jins": "A full Hijazkar-type upper construction, not just simple Hijaz",
+    "common_start": "It often begins by stabilizing Dukah (D), then clearly bringing out the Hijazkar color",
+    "character": "Hijaz in family belonging, Hijazkar in essence, and broader in structure than basic Hijaz"
+  },
+  "sayr": {
+    "summary": "Shahnaz should not be reduced to a mere ascent through a Hijaz jins and then a descent. In this formulation it is understood as Hijazkar transposed to Dukah (D): it begins by stabilizing Dukah as tonic, then clearly shows a Hijazkar color rather than simple Hijaz alone. After that, it expands into the upper register while preserving the maqam’s identity, then returns and cadences on Dukah (D). The decisive element here is therefore not merely the tonic, but the upper structure that makes it Shahnaz rather than ordinary Hijaz.",
+    "resting_tones": [
+      "Dukah (D): the tonic and the specific transposed resting degree of Shahnaz",
+      "Nawa (G): still a very important tone inside the broader Hijaz-based structure",
+      "Kardan (upper C) and the surrounding tones: important in upper expansion because Shahnaz works strongly in the higher register as well"
+    ],
+    "motion_notes": [
+      "Shahnaz is not simply Hijaz on D, but Hijazkar on D",
+      "The difference between it and ordinary Hijaz appears in the breadth of structure, not in the tonic alone",
+      "It should not be played as though it were only simple Hijaz, because that strips away its upper identity",
+      "The strongest analytical source here confirms its identity as a transposition of Hijazkar more than as an isolated scale-based maqam"
+    ],
+    "common_path": [
+      "Stabilize Dukah (D) as the tonic",
+      "Show the Hijazkar color clearly",
+      "Expand into the upper register while preserving identity",
+      "Return and cadence on Dukah (D)"
+    ]
+  },
+  "common_modulations": [
+    "It is understood inside the Hijaz family in practical Arabic classification",
+    "But analytically it is closer to Hijazkar transposed to Dukah (D)",
+    "If it is treated as only simple Hijaz, its Hijazkar-specific identity is lost",
+    "The available documentation here is stronger in confirming the theoretical identity than in supplying a long list of extensively analyzed Arabic repertoire examples"
+  ],
+  "examples": [
+    {
+      "title": "Bashraf Kuzum Shahnaz",
+      "artist": "Amin al-Buzri",
+      "note": "A clear instrumental witness to the presence of repertoire directly attributed to Shahnaz in the archival record"
+    },
+    {
+      "title": "Longa Shahnaz",
+      "note": "An indexed witness confirming the practical presence of the name in archived instrumental repertoire"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Bashraf Kuzum Shahnaz",
+      "artist": "Amin al-Buzri",
+      "note": "A direct reference to Shahnaz in archived instrumental material"
+    },
+    {
+      "title": "Longa Shahnaz",
+      "note": "An important reference proving the name’s presence in practical catalogues even with limited extended repertoire explanation"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Hijaz family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
