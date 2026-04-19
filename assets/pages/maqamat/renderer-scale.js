@@ -58,7 +58,7 @@
     zamzama: { lower: "جنس الصبا", upper: "جنس الزمزمة" },
     nawa_athar: { lower: "جنس النوى أثر", upper: "جنس النوى أثر" },
     nikriz: { lower: "جنس النوى أثر", upper: "جنس النكريز" },
-    basandida: { lower: "جنس النوى أثر", upper: "جنس البسنديدة" }
+    basandida: { lower: "جنس النوى أثر", upper: "جنس الراست" }
   };
 
   const NOTE_ROLE_STYLES = {
