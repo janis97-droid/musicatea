@@ -1,0 +1,86 @@
+{
+  "id": "suzdil",
+  "family": "hijaz",
+  "title_ar": "سوزدل",
+  "title_en": "Suzdil",
+  "latin": "Suzdil",
+  "hero_summary": "Suzdil is a branch of the Hijaz family, and its character appears through a special upper region and a melodic route that distinguishes it from basic Hijaz while the Hijaz essence remains present.",
+  "short_identity": "A Hijaz branch with a distinctive upper treatment and a special color inside the family.",
+  "quick_facts": {
+    "karar": "The tonic according to the chosen root",
+    "ghammaz": "Its importance is determined by the route and upper treatment",
+    "lower_jins": "Jins Hijaz in the basic structure",
+    "upper_jins": "An upper region with a branch-specific color",
+    "character": "Dramatic, specially colored, and distinct in the jawab",
+    "common_start": "It usually begins by stabilizing the Hijaz foundation, then reveals its personality in the upper region"
+  },
+  "what_is_it": "Suzdil is read inside the Hijaz family as a branch that preserves its Hijaz foundation, but acquires its personality through a special upper coloring and a distinctive melodic treatment within the family.",
+  "jins_architecture": {
+    "lower": {
+      "name": "Jins Hijaz",
+      "starts_on": "The chosen tonic",
+      "description": "The lower Hijaz jins remains the basis that ties this branch to the Hijaz family."
+    },
+    "upper": {
+      "name": "Special upper region",
+      "starts_on": "Usually after the lower jins has been stabilized",
+      "description": "The identity of Suzdil appears through the special color of the upper region and the way it is treated melodically."
+    },
+    "transition_note": "The difference between Suzdil and Hijaz becomes clear when the jawab is built and the upper region is colored."
+  },
+  "sayr": {
+    "summary": "Suzdil first stabilizes the Hijaz foundation, then shapes its personality through a special upper path before returning to the tonic to confirm its family belonging.",
+    "resting_tones": [
+      "The tonic",
+      "Resting tones within the lower jins",
+      "Upper stations tied to the special color of this branch"
+    ],
+    "motion_notes": [
+      "The difference from Hijaz is defined through the upper region",
+      "One should listen closely to how the jawab is opened and how it returns"
+    ],
+    "common_path": [
+      "Stabilize the Hijaz foundation",
+      "Move through the middle region",
+      "Reveal the branch’s distinctive upper color",
+      "Return and confirm the tonic"
+    ]
+  },
+  "transpose_explainer": "When this branch is transposed to another root, the interval logic and the functions of the tones that give it its identity inside the Hijaz family must be preserved. The written form, accidentals, and notational range may change, but the difference between this branch and Hijaz must remain audible in the upper region and the sayr.",
+  "historical_notes": [
+    "Hijaz branches are commonly understood in modern teaching through their relation to the parent maqam and their difference from it in the upper region.",
+    "This branch is usually read inside the family more than as a separate system detached from Hijaz logic."
+  ],
+  "school_differences": [
+    "The explanation of this branch may differ from one school or reference to another.",
+    "Some traditions emphasize the upper color, while others focus on the general structural reading."
+  ],
+  "related_maqamat": [
+    "hijaz",
+    "hijazkar",
+    "shadd_araban",
+    "shahnaz",
+    "hijazayn",
+    "zanjaran",
+    "hijaz_ajami"
+  ],
+  "common_confusions": [
+    "Listing note names alone is not enough to understand this branch; one must pay attention to movement, repose, and upper coloring.",
+    "Similarity in the lower jins to Hijaz does not mean complete maqamic identity."
+  ],
+  "listening_notes": [
+    "Start by comparing it with basic Hijaz.",
+    "Notice where the special color appears in the upper region."
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Hijaz family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
