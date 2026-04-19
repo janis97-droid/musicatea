@@ -4,61 +4,123 @@
   const { svgEl, drawClef, drawLedgerLines, drawAccidental, shadowColorForBorder } = ns.rendererSvg;
   const { escapeHtml } = ns.rendererContent;
 
+  function isEnglishPage() {
+    const lang = (document.documentElement.getAttribute('lang') || 'ar').toLowerCase();
+    return lang.startsWith('en');
+  }
+
   const JINS_LABELS_AR = {
-    rast: { lower: "جنس الراست", upper: "جنس الراست" },
-    suznak: { lower: "جنس الراست", upper: "جنس الحجاز" },
-    mahur: { lower: "جنس الراست", upper: "جنس العجم" },
-    nairuz: { lower: "جنس الراست", upper: "جنس البيات" },
-    bashayer: { lower: "جنس الراست", upper: "جنس العجم" },
-    sazkar: { lower: "جنس الراست", upper: "جنس الحجاز" },
-    dalanshin: { lower: "جنس الراست", upper: "جنس النهاوند" },
-    bayati: { lower: "جنس البيات", upper: "جنس النهاوند" },
-    bayati_shuri: { lower: "جنس البيات", upper: "جنس الحجاز" },
-    husayni: { lower: "جنس البيات", upper: "جنس الحسيني" },
-    muhayyar: { lower: "جنس البيات", upper: "جنس المحيّر" },
-    bayatin: { lower: "جنس البيات", upper: "جنس البياتين" },
-    nahuft: { lower: "جنس البيات", upper: "جنس النهاوند" },
-    ajam: { lower: "جنس العجم", upper: "جنس العجم" },
-    ajam_ushayran: { lower: "جنس العجم", upper: "جنس العجم" },
-    shawq_afza: { lower: "جنس العجم", upper: "جنس العجم" },
-    suznal: { lower: "جنس العجم", upper: "جنس الحجاز" },
-    ajam_murassa: { lower: "جنس العجم", upper: "جنس العجم" },
-    jaharkah: { lower: "جنس العجم", upper: "جنس العجم" },
-    hijaz: { lower: "جنس الحجاز", upper: "جنس الحجاز" },
-    hijazkar: { lower: "جنس الحجاز", upper: "جنس العجم" },
-    shadd_araban: { lower: "جنس الحجاز", upper: "جنس الكرد" },
-    suzdil: { lower: "جنس الحجاز", upper: "جنس الكرد" },
-    shahnaz: { lower: "جنس الحجاز", upper: "جنس الشهناز" },
-    hijazayn: { lower: "جنس الحجاز", upper: "جنس الحجازين" },
-    zanjaran: { lower: "جنس الحجاز", upper: "جنس الزنجران" },
-    hijaz_ajami: { lower: "جنس الحجاز", upper: "جنس العجم" },
-    nahawand: { lower: "جنس النهاوند", upper: "جنس النهاوند" },
-    nahawand_murassa: { lower: "جنس النهاوند", upper: "جنس البيات" },
-    ushshaq_masri: { lower: "جنس النهاوند", upper: "جنس البيات" },
-    tarz_jadid: { lower: "جنس النهاوند", upper: "جنس الحجاز" },
-    nahawand_kabir: { lower: "جنس النهاوند", upper: "جنس العجم" },
-    nahawand_kurdi: { lower: "جنس النهاوند", upper: "جنس الكرد" },
-    kurd: { lower: "جنس الكرد", upper: "جنس الكرد" },
-    tarz_nawin: { lower: "جنس الكرد", upper: "جنس الحجاز" },
-    shahnaz_kurdi: { lower: "جنس الكرد", upper: "جنس الحجاز" },
-    lami: { lower: "جنس الكرد", upper: "جنس الكرد" },
-    athar_kurd: { lower: "جنس أثر كرد", upper: "جنس النوى أثر" },
-    sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
-    huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" },
-    rahat_al_arwah: { lower: "جنس السيكاه", upper: "جنس الراحة الأرواح" },
-    iraq: { lower: "جنس السيكاه", upper: "جنس البيات" },
-    awj_iraq: { lower: "جنس السيكاه", upper: "جنس الأوج عراق" },
-    basta_nikar: { lower: "جنس السيكاه", upper: "جنس الصبا" },
-    mustaar: { lower: "جنس المستعار", upper: "جنس النهاوند" },
-    farahnak: { lower: "جنس السيكاه", upper: "جنس العجم" },
-    shaar: { lower: "جنس السيكاه", upper: "جنس النهاوند" },
-    rahat_faza: { lower: "جنس السيكاه", upper: "جنس الكرد" },
-    saba: { lower: "جنس صبا", upper: "جنس حجاز" },
-    saba_jadid: { lower: "جنس الصبا", upper: "جنس الصبا الجديد" },
-    zamzama: { lower: "جنس الصبا", upper: "جنس الزمزمة" },
-    nawa_athar: { lower: "جنس النوى أثر", upper: "جنس النوى أثر" },
-    nikriz: { lower: "جنس النوى أثر", upper: "جنس النكريز" },
-    basandida: { lower: "جنس النوى أثر", upper: "جنس الراست" }
+    rast: { lower: 'جنس الراست', upper: 'جنس الراست' },
+    suznak: { lower: 'جنس الراست', upper: 'جنس الحجاز' },
+    mahur: { lower: 'جنس الراست', upper: 'جنس العجم' },
+    nairuz: { lower: 'جنس الراست', upper: 'جنس البيات' },
+    bashayer: { lower: 'جنس الراست', upper: 'جنس العجم' },
+    sazkar: { lower: 'جنس الراست', upper: 'جنس الحجاز' },
+    dalanshin: { lower: 'جنس الراست', upper: 'جنس النهاوند' },
+    bayati: { lower: 'جنس البيات', upper: 'جنس النهاوند' },
+    bayati_shuri: { lower: 'جنس البيات', upper: 'جنس الحجاز' },
+    husayni: { lower: 'جنس البيات', upper: 'جنس الحسيني' },
+    muhayyar: { lower: 'جنس البيات', upper: 'جنس المحيّر' },
+    bayatin: { lower: 'جنس البيات', upper: 'جنس البياتين' },
+    nahuft: { lower: 'جنس البيات', upper: 'جنس النهاوند' },
+    ajam: { lower: 'جنس العجم', upper: 'جنس العجم' },
+    ajam_ushayran: { lower: 'جنس العجم', upper: 'جنس العجم' },
+    shawq_afza: { lower: 'جنس العجم', upper: 'جنس العجم' },
+    suznal: { lower: 'جنس العجم', upper: 'جنس الحجاز' },
+    ajam_murassa: { lower: 'جنس العجم', upper: 'جنس العجم' },
+    jaharkah: { lower: 'جنس العجم', upper: 'جنس العجم' },
+    hijaz: { lower: 'جنس الحجاز', upper: 'جنس الحجاز' },
+    hijazkar: { lower: 'جنس الحجاز', upper: 'جنس العجم' },
+    shadd_araban: { lower: 'جنس الحجاز', upper: 'جنس الكرد' },
+    suzdil: { lower: 'جنس الحجاز', upper: 'جنس الكرد' },
+    shahnaz: { lower: 'جنس الحجاز', upper: 'جنس الشهناز' },
+    hijazayn: { lower: 'جنس الحجاز', upper: 'جنس الحجازين' },
+    zanjaran: { lower: 'جنس الحجاز', upper: 'جنس الزنجران' },
+    hijaz_ajami: { lower: 'جنس الحجاز', upper: 'جنس العجم' },
+    nahawand: { lower: 'جنس النهاوند', upper: 'جنس النهاوند' },
+    nahawand_murassa: { lower: 'جنس النهاوند', upper: 'جنس البيات' },
+    ushshaq_masri: { lower: 'جنس النهاوند', upper: 'جنس البيات' },
+    tarz_jadid: { lower: 'جنس النهاوند', upper: 'جنس الحجاز' },
+    nahawand_kabir: { lower: 'جنس النهاوند', upper: 'جنس العجم' },
+    nahawand_kurdi: { lower: 'جنس النهاوند', upper: 'جنس الكرد' },
+    kurd: { lower: 'جنس الكرد', upper: 'جنس الكرد' },
+    tarz_nawin: { lower: 'جنس الكرد', upper: 'جنس الحجاز' },
+    shahnaz_kurdi: { lower: 'جنس الكرد', upper: 'جنس الحجاز' },
+    lami: { lower: 'جنس الكرد', upper: 'جنس الكرد' },
+    athar_kurd: { lower: 'جنس أثر كرد', upper: 'جنس النوى أثر' },
+    sikah: { lower: 'جنس السيكاه', upper: 'جنس السيكاه' },
+    huzam: { lower: 'جنس السيكاه', upper: 'جنس الحجاز' },
+    rahat_al_arwah: { lower: 'جنس السيكاه', upper: 'جنس الراحة الأرواح' },
+    iraq: { lower: 'جنس السيكاه', upper: 'جنس البيات' },
+    awj_iraq: { lower: 'جنس السيكاه', upper: 'جنس الأوج عراق' },
+    basta_nikar: { lower: 'جنس السيكاه', upper: 'جنس الصبا' },
+    mustaar: { lower: 'جنس المستعار', upper: 'جنس النهاوند' },
+    farahnak: { lower: 'جنس السيكاه', upper: 'جنس العجم' },
+    shaar: { lower: 'جنس السيكاه', upper: 'جنس النهاوند' },
+    rahat_faza: { lower: 'جنس السيكاه', upper: 'جنس الكرد' },
+    saba: { lower: 'جنس صبا', upper: 'جنس حجاز' },
+    saba_jadid: { lower: 'جنس الصبا', upper: 'جنس الصبا الجديد' },
+    zamzama: { lower: 'جنس الصبا', upper: 'جنس الزمزمة' },
+    nawa_athar: { lower: 'جنس النوى أثر', upper: 'جنس النوى أثر' },
+    nikriz: { lower: 'جنس النوى أثر', upper: 'جنس النكريز' },
+    basandida: { lower: 'جنس النوى أثر', upper: 'جنس الراست' }
+  };
+
+  const JINS_LABELS_EN = {
+    rast: { lower: 'Jins Rast', upper: 'Jins Rast' },
+    suznak: { lower: 'Jins Rast', upper: 'Jins Hijaz' },
+    mahur: { lower: 'Jins Rast', upper: 'Jins Ajam' },
+    nairuz: { lower: 'Jins Rast', upper: 'Jins Bayati' },
+    bashayer: { lower: 'Jins Rast', upper: 'Jins Ajam' },
+    sazkar: { lower: 'Jins Rast', upper: 'Jins Hijaz' },
+    dalanshin: { lower: 'Jins Rast', upper: 'Jins Nahawand' },
+    bayati: { lower: 'Jins Bayati', upper: 'Jins Nahawand' },
+    bayati_shuri: { lower: 'Jins Bayati', upper: 'Jins Hijaz' },
+    husayni: { lower: 'Jins Bayati', upper: 'Jins Husayni' },
+    muhayyar: { lower: 'Jins Bayati', upper: 'Jins Muhayyar' },
+    bayatin: { lower: 'Jins Bayati', upper: 'Jins Bayatin' },
+    nahuft: { lower: 'Jins Bayati', upper: 'Jins Nahawand' },
+    ajam: { lower: 'Jins Ajam', upper: 'Jins Ajam' },
+    ajam_ushayran: { lower: 'Jins Ajam', upper: 'Jins Ajam' },
+    shawq_afza: { lower: 'Jins Ajam', upper: 'Jins Ajam' },
+    suznal: { lower: 'Jins Ajam', upper: 'Jins Hijaz' },
+    ajam_murassa: { lower: 'Jins Ajam', upper: 'Jins Ajam' },
+    jaharkah: { lower: 'Jins Ajam', upper: 'Jins Ajam' },
+    hijaz: { lower: 'Jins Hijaz', upper: 'Jins Hijaz' },
+    hijazkar: { lower: 'Jins Hijaz', upper: 'Jins Ajam' },
+    shadd_araban: { lower: 'Jins Hijaz', upper: 'Jins Kurd' },
+    suzdil: { lower: 'Jins Hijaz', upper: 'Jins Kurd' },
+    shahnaz: { lower: 'Jins Hijaz', upper: 'Jins Shahnaz' },
+    hijazayn: { lower: 'Jins Hijaz', upper: 'Jins Hijazayn' },
+    zanjaran: { lower: 'Jins Hijaz', upper: 'Jins Zanjaran' },
+    hijaz_ajami: { lower: 'Jins Hijaz', upper: 'Jins Ajam' },
+    nahawand: { lower: 'Jins Nahawand', upper: 'Jins Nahawand' },
+    nahawand_murassa: { lower: 'Jins Nahawand', upper: 'Jins Bayati' },
+    ushshaq_masri: { lower: 'Jins Nahawand', upper: 'Jins Bayati' },
+    tarz_jadid: { lower: 'Jins Nahawand', upper: 'Jins Hijaz' },
+    nahawand_kabir: { lower: 'Jins Nahawand', upper: 'Jins Ajam' },
+    nahawand_kurdi: { lower: 'Jins Nahawand', upper: 'Jins Kurd' },
+    kurd: { lower: 'Jins Kurd', upper: 'Jins Kurd' },
+    tarz_nawin: { lower: 'Jins Kurd', upper: 'Jins Hijaz' },
+    shahnaz_kurdi: { lower: 'Jins Kurd', upper: 'Jins Hijaz' },
+    lami: { lower: 'Jins Kurd', upper: 'Jins Kurd' },
+    athar_kurd: { lower: 'Jins Athar Kurd', upper: 'Jins Nawa Athar' },
+    sikah: { lower: 'Jins Sikah', upper: 'Jins Sikah' },
+    huzam: { lower: 'Jins Sikah', upper: 'Jins Hijaz' },
+    rahat_al_arwah: { lower: 'Jins Sikah', upper: 'Jins Rahat al-Arwah' },
+    iraq: { lower: 'Jins Sikah', upper: 'Jins Bayati' },
+    awj_iraq: { lower: 'Jins Sikah', upper: 'Jins Awj Iraq' },
+    basta_nikar: { lower: 'Jins Sikah', upper: 'Jins Saba' },
+    mustaar: { lower: 'Jins Mustaar', upper: 'Jins Nahawand' },
+    farahnak: { lower: 'Jins Sikah', upper: 'Jins Ajam' },
+    shaar: { lower: 'Jins Sikah', upper: 'Jins Nahawand' },
+    rahat_faza: { lower: 'Jins Sikah', upper: 'Jins Kurd' },
+    saba: { lower: 'Jins Saba', upper: 'Jins Hijaz' },
+    saba_jadid: { lower: 'Jins Saba', upper: 'Jins Saba Jadid' },
+    zamzama: { lower: 'Jins Saba', upper: 'Jins Zamzama' },
+    nawa_athar: { lower: 'Jins Nawa Athar', upper: 'Jins Nawa Athar' },
+    nikriz: { lower: 'Jins Nawa Athar', upper: 'Jins Nikriz' },
+    basandida: { lower: 'Jins Nawa Athar', upper: 'Jins Rast' }
   };
 
   const NOTE_ROLE_STYLES = {
@@ -67,11 +129,20 @@
     shared: { bg: 'rgba(112,170,96,0.12)', border: 'rgba(112,170,96,0.34)', text: '#9fd68a', shadow: 'rgba(112,170,96,0.22)' }
   };
 
+  function getJinsLabels(maqamId) {
+    const labels = isEnglishPage() ? JINS_LABELS_EN : JINS_LABELS_AR;
+    return labels[maqamId] || (isEnglishPage() ? { lower: 'Lower jins', upper: 'Upper jins' } : { lower: 'الجنس الأول', upper: 'الجنس الثاني' });
+  }
+
+  function getTonicLabel(tonic) {
+    return isEnglishPage() && typeof getTonicLabelEn === 'function' ? getTonicLabelEn(tonic) : getTonicLabelAr(tonic);
+  }
+
   function renderTonicSelector() {
     const c = document.getElementById('tonic-selector-current');
     if (!c) return;
     const tonics = getInteractiveTonicsForMaqam(ns.state.maqamId);
-    c.innerHTML = tonics.map((t) => `<button class="tonic-btn ${t === ns.state.tonic ? 'active' : ''}" data-tonic="${t}">${getTonicLabelAr(t)}</button>`).join('');
+    c.innerHTML = tonics.map((t) => `<button class="tonic-btn ${t === ns.state.tonic ? 'active' : ''}" data-tonic="${t}">${getTonicLabel(t)}</button>`).join('');
     c.querySelectorAll('.tonic-btn').forEach((b) => b.addEventListener('click', () => ns.actions.setActiveTonic(b.dataset.tonic)));
   }
 
@@ -82,7 +153,7 @@
   }
 
   function buildJinsSegments(maqamId, degreeCount) {
-    const labels = JINS_LABELS_AR[maqamId] || { lower: 'الجنس الأول', upper: 'الجنس الثاني' };
+    const labels = getJinsLabels(maqamId);
     const config = typeof getInteractiveConfig === 'function' ? getInteractiveConfig(maqamId) : null;
     const lowerRange = Array.isArray(config?.lower_jins_degree_range) ? config.lower_jins_degree_range : [1, Math.min(4, degreeCount)];
     const upperRange = Array.isArray(config?.upper_jins_degree_range) ? config.upper_jins_degree_range : [Math.min(5, degreeCount), degreeCount];
@@ -103,7 +174,7 @@
 
     const segments = [];
     if (lowerStart < overlapStart) segments.push({ role: 'lower', label: labels.lower, start: lowerStart, end: overlapStart - 1, key: 'lower' });
-    segments.push({ role: 'shared', label: '', start: overlapStart, end: overlapEnd, title: 'نغمة مشتركة', key: 'shared' });
+    segments.push({ role: 'shared', label: '', start: overlapStart, end: overlapEnd, title: isEnglishPage() ? 'Shared note' : 'نغمة مشتركة', key: 'shared' });
     if (upperEnd > overlapEnd) segments.push({ role: 'upper', label: labels.upper, start: overlapEnd + 1, end: upperEnd, key: 'upper' });
     if (!segments.some((segment) => segment.role === 'lower')) segments.unshift({ role: 'lower', label: labels.lower, start: lowerStart, end: overlapEnd, key: 'lower' });
     return segments.filter((segment) => segment.start <= segment.end);
@@ -216,10 +287,7 @@
     const visibleSegments = segments.filter((segment) => segment.role !== 'shared');
     row.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
     row.style.direction = 'ltr';
-    row.innerHTML = visibleSegments.map((segment) => {
-      const className = `jins-pill jins-pill-${segment.role}`;
-      return `<div class="${className}" data-segment-key="${segment.key}"><span>${escapeHtml(segment.label)}</span></div>`;
-    }).join('');
+    row.innerHTML = visibleSegments.map((segment) => `<div class="jins-pill jins-pill-${segment.role}" data-segment-key="${segment.key}"><span>${escapeHtml(segment.label)}</span></div>`).join('');
     row.querySelectorAll('.jins-pill').forEach((pill) => {
       pill.addEventListener('click', () => {
         const segment = visibleSegments.find((item) => item.key === pill.dataset.segmentKey);
