@@ -1,0 +1,89 @@
+{
+  "id": "sikah",
+  "family": "sikah",
+  "title_ar": "سيكاه",
+  "title_en": "Sikah",
+  "latin": "Sikah",
+  "hero_summary": "Sikah is one of the great original maqamat in the Arabic system. It is not understood only from its scale, but from its way of stabilizing the tonic, expanding upward, and returning to the tonic at the end.",
+  "short_identity": "An original maqam built on Jins Sikah on Sikah (E half-flat), with a clear upper center on Nawa (G) and a secondary Rast color in the upper region before returning to the tonic.",
+  "quick_facts": {
+    "karar": "Sikah (E half-flat)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Sikah on Sikah (E half-flat)",
+    "upper_jins": "An upper region containing a secondary Rast with colorings that vary according to branch and context",
+    "character": "Subtle, sensitive, inward, and strongly defined in sound",
+    "common_start": "It usually begins by stabilizing Sikah and its lower jins before opening the upper region"
+  },
+  "sayr": {
+    "summary": "Maqam Sikah begins from Sikah (E half-flat) and establishes that tonic clearly. It then moves through Jaharkah (F) toward Nawa (G), before opening the upper field gradually. In that upper region, a secondary Rast appears inside the maqam’s own structure rather than as a complete departure from it. The maqam then returns clearly to Sikah (E half-flat) in the final cadence.",
+    "resting_tones": [
+      "Sikah (E half-flat): the tonic and final resting point",
+      "Nawa (G): a very important upper center inside the development",
+      "Kardan (upper C): a jawab station when the maqam expands above",
+      "Jaharkah (F): a pivotal tone because it completes the original jins and opens the way to the upper path"
+    ],
+    "motion_notes": [
+      "Sikah should not be reduced to a mere display of quarter-tone tuning",
+      "The maqam’s identity appears through the stabilization of Sikah (E half-flat) and through its way of rising and returning",
+      "Jins Sikah must be heard in full: Sikah (E half-flat) – Jaharkah (F) – Nawa (G)",
+      "The upper region remains linked to the original tonic and is not detached from it"
+    ],
+    "common_path": [
+      "Stabilize Sikah (E half-flat) clearly",
+      "Bring out the natural relation with Jaharkah (F)",
+      "Rest temporarily on Nawa (G)",
+      "Open the upper region gradually",
+      "Activate a secondary Rast in the upper region",
+      "Return clearly to Sikah (E half-flat)"
+    ]
+  },
+  "common_modulations": [
+    "A secondary Rast in the upper structure",
+    "Colorings that vary according to branch and context, especially above the fourth degree",
+    "Many audible changes inside Sikah belong to its own family rather than being full departures to a foreign maqam",
+    "The maqam’s identity is determined by the routes between ajnas and the points of rest, not by the scale alone"
+  ],
+  "examples": [
+    {
+      "title": "Ya Nakhlatayn fi al-'Alali",
+      "note": "A well-known vocal example that reveals the sound-world of Sikah"
+    },
+    {
+      "title": "Ya Ghusn Naqa",
+      "note": "A muwashshah that reveals different aspects of Sikah"
+    },
+    {
+      "title": "Mawlay Katabta Rahmat al-Nas 'Alayk",
+      "note": "A devotional setting that reveals a dignified face of Sikah"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Taqsim Riyad al-Sunbati on Oud",
+      "note": "An important reference for hearing the stabilization of the tonic and the upper expansion in Sikah"
+    },
+    {
+      "title": "Bashraf Qara Batak Sikah",
+      "note": "An instrumental analytical example of Sikah structure"
+    },
+    {
+      "title": "Ya Nakhlatayn fi al-'Alali",
+      "note": "An important popular reference for hearing Sikah in vocal performance"
+    },
+    {
+      "title": "Ya Ghusn Naqa",
+      "note": "A good reference for hearing maqamic treatment of Sikah in a muwashshah context"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
