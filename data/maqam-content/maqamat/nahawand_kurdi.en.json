@@ -1,0 +1,62 @@
+{
+  "id": "nahawand_kurdi",
+  "family": "nahawand",
+  "title_ar": "نهاوند كردي",
+  "title_en": "Nahawand Kurdi",
+  "latin": "Nahawand Kurdi",
+  "hero_summary": "Maqam Nahawand Kurdi is a branch of the Nahawand family. The clearest structural definition in practical Arabic explanations is that it consists of Jins Nahawand on the root, followed by Jins Kurd on Nawa (the fifth).",
+  "short_identity": "A branch of the Nahawand family built on Nahawand below and Kurd on Nawa (G) above.",
+  "quick_facts": {
+    "karar": "The root on which the maqam is transposed, often Rast (C) in common teaching explanation",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Nahawand on the root",
+    "upper_jins": "Jins Kurd on Nawa (G)",
+    "common_start": "It usually begins by stabilizing Jins Nahawand on the root, then ascends toward Nawa (G) to reveal Kurd on the fifth",
+    "character": "Nahawand in the lower trunk, but with its own color gained by replacing Hijaz on the fifth with Kurd on the fifth"
+  },
+  "sayr": {
+    "summary": "The nearest practical sayr of Nahawand Kurdi begins from Jins Nahawand on the root with a clear stabilization of the tonic, then moves toward Nawa (G). There it does not open Hijaz as in some other Nahawand forms, but instead settles Kurd on the fifth. From there it may extend to the جواب and then return at the end to the tonic. Some teaching explanations also note that Nahawand-Hijaz is often used more in ascent, whereas Nahawand-Kurd is often clearer in descent; this is a useful practical observation in understanding the branch.",
+    "resting_tones": [
+      "Rast (C): the final tonic in the common C-based transposition",
+      "Nawa (G): the most important secondary point of rest, because Jins Kurd begins there",
+      "Kardan (upper C): a natural upper جواب summit when the upper jins extends further"
+    ],
+    "motion_notes": [
+      "Nahawand Kurdi is not ordinary Nahawand, nor Nawa Athar, nor Nahawand with حسّاس in the usual sense",
+      "Its decisive difference is the replacement of Hijaz on the fifth with Kurd on the fifth",
+      "If the path opens Hijaz on the fifth, the ear moves toward Nahawand-Hijaz or Nahawand ذو الحسّاس",
+      "Some schools regard this path as especially distinctive in descending motion"
+    ],
+    "common_path": [
+      "Stabilize Nahawand on the root",
+      "Ascend to Nawa (G)",
+      "Show Kurd on the fifth clearly",
+      "Expand to the جواب when needed",
+      "Return clearly to the tonic"
+    ]
+  },
+  "common_modulations": [
+    "Kurd on Nawa (G) as the jins that distinguishes the maqam",
+    "If a clear Hijaz appears on the fifth, the ear moves toward Nahawand-Hijaz",
+    "The value of the maqam lies in the difference of the second jins rather than in the lower trunk",
+    "Some schools hear it as a distinctive descending form within the broader Nahawand space"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no strongly documented and widely agreed-upon Arabic heritage examples",
+      "note": "The available references here are stronger in structural and teaching definition than in repertoire examples agreed upon across sources"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Nahawand family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
