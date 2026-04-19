@@ -1,0 +1,86 @@
+{
+  "id": "hijazkar",
+  "family": "hijaz",
+  "title_ar": "حجازكار",
+  "title_en": "Hijazkar",
+  "latin": "Hijazkar",
+  "hero_summary": "Hijazkar is a prominent branch of the Hijaz family, known for its broader upper space and a relatively brighter opening than basic Hijaz, while the Hijaz color remains clear in both structure and sayr.",
+  "short_identity": "A relatively expansive Hijaz branch, distinguished by a more open and luminous upper treatment than basic Hijaz.",
+  "quick_facts": {
+    "karar": "The tonic according to the chosen root",
+    "ghammaz": "Its importance is determined by the route and upper treatment",
+    "lower_jins": "Jins Hijaz in the basic structure",
+    "upper_jins": "A broader and relatively brighter upper region",
+    "character": "Dramatic, expansive, and more open than basic Hijaz",
+    "common_start": "It usually begins by stabilizing the Hijaz foundation, then opens into a wider upper region"
+  },
+  "what_is_it": "Hijazkar is read inside the Hijaz family as a branch that preserves the Hijaz essence, but develops its own identity through an upper region that is broader and more spacious in sound than basic Hijaz.",
+  "jins_architecture": {
+    "lower": {
+      "name": "Jins Hijaz",
+      "starts_on": "The chosen tonic",
+      "description": "The lower Hijaz jins remains the basis that ties this branch to the Hijaz family."
+    },
+    "upper": {
+      "name": "Broader upper region",
+      "starts_on": "Usually after the lower jins has been stabilized",
+      "description": "The identity of Hijazkar appears through the relative breadth and brightness of the upper region compared with basic Hijaz."
+    },
+    "transition_note": "The real difference between Hijazkar and Hijaz appears when the upper region is opened and widened."
+  },
+  "sayr": {
+    "summary": "Hijazkar first stabilizes the Hijaz foundation, then moves into a broader upper construction before returning to the tonic to confirm its family belonging.",
+    "resting_tones": [
+      "The tonic",
+      "Resting tones within the lower jins",
+      "Upper stations broader than those of basic Hijaz"
+    ],
+    "motion_notes": [
+      "The difference from Hijaz is defined through the weight of the upper region",
+      "One should listen closely to how the jawab is opened and how it returns"
+    ],
+    "common_path": [
+      "Stabilize the Hijaz foundation",
+      "Move through the middle region",
+      "Reveal the branch’s broader upper space",
+      "Return and confirm the tonic"
+    ]
+  },
+  "transpose_explainer": "When this branch is transposed to another root, the interval logic and the functions of the tones that give it its identity inside the Hijaz family must be preserved. The written form, accidentals, and notational range may change, but the difference between this branch and Hijaz must remain audible in the upper region and the sayr.",
+  "historical_notes": [
+    "Hijaz branches are commonly understood in modern teaching through their relation to the parent maqam and through their difference from it in the upper region.",
+    "This branch is usually read inside the family more than as a separate system detached from Hijaz logic."
+  ],
+  "school_differences": [
+    "The explanation of this branch may differ from one school or reference to another.",
+    "Some traditions emphasize the breadth of the upper region, while others focus on the general structural reading."
+  ],
+  "related_maqamat": [
+    "hijaz",
+    "shadd_araban",
+    "suzdil",
+    "shahnaz",
+    "hijazayn",
+    "zanjaran",
+    "hijaz_ajami"
+  ],
+  "common_confusions": [
+    "Listing note names alone is not enough to understand this branch; one must pay attention to movement, repose, and upper coloring.",
+    "Similarity in the lower jins to Hijaz does not mean complete maqamic identity."
+  ],
+  "listening_notes": [
+    "Start by comparing it with basic Hijaz.",
+    "Notice how the upper region opens more broadly than in Hijaz."
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Hijaz family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
