@@ -1,0 +1,51 @@
+{
+  "id": "tarz_nawin",
+  "family": "kurd",
+  "title_ar": "الطرز نوين",
+  "title_en": "Tarz Nawin",
+  "latin": "Tarz Nawin",
+  "hero_summary": "Tarz Nawin is a composite maqam whose tonic is Rast (C) and whose sayr is descending. In practical Arabic explanation it is described as Kurd on Rast with Hijaz on Jaharkah (F) above, while its broader theoretical construction also includes Ajam Ashiran material within the descending route.",
+  "short_identity": "A composite maqam rather than a pure Kurd maqam; it descends from Hijaz on the fourth toward a Rast tonic with a Kurdish color below.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Jaharkah (F), together with an important upper-register emphasis",
+    "lower_jins": "Jins Kurd on Rast (C)",
+    "upper_jins": "Jins Hijaz on Jaharkah (F)",
+    "character": "Composite, descending, combining Hijaz on the fourth with Kurd at the tonic",
+    "common_start": "It begins in the upper register where the Hijaz material becomes clear, then descends gradually to the tonic on Rast with a Kurdish color"
+  },
+  "sayr": {
+    "summary": "Tarz Nawin is a composite maqam and not a simple maqam of a single family in the narrow sense. Its tonic is Rast (C), and its sayr is fundamentally descending. Turkish reference sources describe it as being built from Zirgule Hijaz on Jaharkah (F), to which Ajam Ashiran material is added in the descending section, followed by Kurd on Rast (C) at the final tonic. For that reason, it should not be treated as a purely Kurdish maqam, but as an independent composite maqam that ends on a Rast tonic colored by Kurd in the lower region.",
+    "resting_tones": [
+      "Rast (C): the final tonic of the maqam",
+      "Jaharkah (F): the upper point of emphasis because it is the place of Hijaz in the practical Arabic explanation",
+      "The upper register and jawab function as important centers of confirmation before the descent to the tonic"
+    ],
+    "motion_notes": [
+      "In practical Arabic explanation it is described as Kurd on Rast (C) with Hijaz on Jaharkah (F) above",
+      "This teaching formula is correct pedagogically, but abbreviated, because it does not include all layers of the broader Turkish construction that also mentions Ajam Ashiran within the descending route",
+      "Its personality comes from the adjacency of Kurd at the tonic and Hijaz on the fourth inside a descending sayr",
+      "If only the Kurdish side is emphasized, the maqam loses its composite character, and if only the Hijaz side is emphasized, it begins to resemble other Hijaz-related maqamat"
+    ],
+    "common_path": [
+      "Begin in the upper register where the Hijaz material on Jaharkah (F) becomes clear",
+      "Descend gradually through the composite route",
+      "Bring in Ajam Ashiran material inside the broader descending framework",
+      "Close on Rast (C) with a clearly Kurdish flavor below"
+    ]
+  },
+  "common_modulations": [
+    "Tarz Nawin is not pure Kurd, because Kurd here is only the tonic jins, while its upper personality is Hijaz-based and its sayr is composite and descending",
+    "Nor is it pure Hijaz, because the Hijaz here lies on the fourth rather than on the tonic, and the maqam ends below on Rast/Kurd",
+    "It is structurally close to Shawq Afza in that both use Zirgule Hijaz in the upper region, but Tarz Nawin ends on Rast with Kurd, while Shawq Afza resolves on Ajam Ashiran or closely related forms",
+    "If it is written in the project simply as: Jins Kurd followed by Jins Hijaz on the fourth, that is correct as an Arabic teaching explanation, but it is better to note that this is a simplification, because the broader theoretical construction also includes Ajam Ashiran material in the descending sayr"
+  ],
+  "examples": [],
+  "reference_recordings": [],
+  "ui_notes": {
+    "hero_badge": "Branch of the composite Rast-resolving maqamat",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": ["ref-cairo-1932", "ref-mishaqa", "ref-inside-arabic-music", "ref-touma"]
+}
