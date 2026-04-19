@@ -1,0 +1,75 @@
+{
+  "id": "mahur",
+  "family": "rast",
+  "title_ar": "ماهور",
+  "title_en": "Mahur",
+  "latin": "Mahur",
+  "hero_summary": "Mahur is a secondary maqam inside the Rast family, but it is theoretically more problematic than Suznak, Nairuz, and Dalanshin. In the commonly circulated Arabic version it is usually understood as Rast below with an upper Ajam color in the jawab.",
+  "short_identity": "Rast in origin, Ajam in the jawab: Jins Rast on Rast (C) with a clear upper Ajam color in the high register.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "The jawab and the region above the fifth, rather than the fifth itself as the main distinguishing sign",
+    "lower_jins": "Jins Rast on Rast (C)",
+    "upper_jins": "An upper Ajam color above the jawab",
+    "common_start": "It usually begins by stabilizing Rast first, then the difference becomes clear when the upper Ajam appears",
+    "character": "Rast-based in origin, but bright and Ajam-colored in the upper register"
+  },
+  "sayr": {
+    "summary": "In the Arabic version, Mahur begins from Rast (C) and stabilizes the original Rast jins clearly, then rises gradually toward the upper register. There it does not activate upper Rast or one of the usual fifth-branches of the Rast family; instead, a clear upper Ajam appears. This Ajam is not a passing ornament, but what makes the listener realize that the maqam is not ordinary Rast. The cadence then returns to Rast (C), so the maqam remains inside the Rast family rather than moving into pure Ajam.",
+    "resting_tones": [
+      "Rast (C): the final tonic, because it still belongs to the Rast family",
+      "Kardan (upper C): a very central region, because Mahur relies heavily on the upper register",
+      "Nawa (G): it remains an important degree as the fifth of Rast, but it is not the main distinguishing sign the way it is in Suznak or Nairuz"
+    ],
+    "motion_notes": [
+      "Arabic Mahur is not identical in every detail to Turkish Mahur, but is a specifically Arabic version built on Rast below plus Ajam above",
+      "The real difference between it and Rast lies in the type of upper jins: is it upper Rast or upper Ajam?",
+      "If it is played as if it were only Rast, Mahur will not emerge; if it is played as if it were only Ajam, it leaves the Rast family altogether",
+      "What is required is a balance between a Rast foundation and an Ajam jawab"
+    ],
+    "common_path": [
+      "Stabilize Jins Rast on Rast (C)",
+      "Ascend gradually into the upper register",
+      "Make the upper Ajam sufficiently clear",
+      "Expand in the jawab without turning the maqam into pure Ajam",
+      "Return clearly to Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "Upper Ajam above the jawab as the main distinguishing mark",
+    "If Hijaz on the fifth becomes frequent, the ear moves toward Suznak; if Bayati on the fifth becomes frequent, it moves toward Nairuz",
+    "If the jawab remains purely Rast-oriented, the feeling returns toward Rast or toward something close to Kardan",
+    "Mahur is very rare in Arabic as an internal modulation inside traditional vocal Rast performance"
+  ],
+  "examples": [
+    {
+      "title": "Bisifatin ja‘alatni",
+      "note": "An example cited by Inside Arabic Music among the examples of Maqam Mahur"
+    },
+    {
+      "title": "Hayyar al-Afkar",
+      "note": "One of the clearer Arabic examples attributed to Mahur"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Sama‘i Mahur",
+      "artist": "In‘am Labib",
+      "note": "An important witness to the maqam’s existence in relatively modern instrumental composition"
+    },
+    {
+      "title": "Bisifatin ja‘alatni",
+      "note": "A vocal reference that clarifies Mahur in its Arabic version"
+    },
+    {
+      "title": "Hayyar al-Afkar",
+      "note": "An important reference because it is one of the few clear Arabic examples of Mahur"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Rast family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": ["ref-cairo-1932", "ref-mishaqa", "ref-inside-arabic-music", "ref-touma"]
+}
