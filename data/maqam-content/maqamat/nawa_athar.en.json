@@ -1,0 +1,82 @@
+{
+  "id": "nawa_athar",
+  "family": "nawa_athar",
+  "title_ar": "نواأثر",
+  "title_en": "Nawa Athar",
+  "latin": "Nawa Athar",
+  "hero_summary": "Nawa Athar is a maqam that is often confused with others because its lower trunk may sound close to Nahawand, yet its real identity is confirmed above through Hijazkar on Nawa (G). For that reason it is not understood from one rigid scale, but from its own sayr.",
+  "short_identity": "A maqam with Rast (C) as tonic, sounding close to Nahawand or Nikriz below, then asserting its identity above through Hijazkar on Nawa (G).",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "A lower trunk close to Nahawand / Nikriz on Rast (C)",
+    "upper_jins": "Hijazkar on Nawa (G)",
+    "character": "Composite, relatively tense, and very clearly colored in the upper region",
+    "common_start": "It often begins by confirming the tonic and the lower trunk before its full identity becomes clear above"
+  },
+  "sayr": {
+    "summary": "Nawa Athar usually begins from Rast (C) and confirms the lower trunk first. Yet in some works the opening may not immediately make it clear whether the phrase leans more toward Nahawand or toward Nikriz, because the first three notes alone are not always enough to decide. Then, once the line reaches Jaharkah (F) and Nawa (G), the true difference begins to emerge, and the identity of the maqam unfolds through Hijazkar on the fifth. Once that upper atmosphere is established, the listener is fully inside Nawa Athar rather than inside a passing coloration. The final cadence then returns clearly to Rast (C).",
+    "resting_tones": [
+      "Rast (C): the tonic that confirms the maqam’s identity in the final cadence",
+      "Nawa (G): an extremely central tone because the upper region is usually built around it",
+      "Jaharkah (F): the place where the true difference between Nawa Athar and Nahawand begins to emerge"
+    ],
+    "motion_notes": [
+      "One should not identify the maqam from the first three notes alone",
+      "Jaharkah (F) is not just a passing tone, but the place where the structural difference from Nahawand appears",
+      "Hijazkar on the fifth is a central element of Nawa Athar in modern practice",
+      "If the cadence does not return clearly to Rast (C), the maqam may dissolve into Hijazkar, Nahawand, or Hisar"
+    ],
+    "common_path": [
+      "Confirm the tonic: Rast (C)",
+      "Present the lower trunk that sounds close to Nahawand / Nikriz",
+      "Reveal the difference at Jaharkah (F)",
+      "Ascend to Nawa (G) and confirm Hijazkar on the fifth",
+      "Expand above if the maqam’s upper identity has stabilized",
+      "Return firmly to Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "Hijazkar on Nawa (G)",
+    "Possible passing colors such as Bayati 5, Saba 5, or Hijaz 5 in some modern works",
+    "These colors may be atmospheres inside a piece rather than the definition of the maqam itself",
+    "Sources differ in explanatory language: al-Khula‘i explains it as a modified Nahawand, while Scott Marcus / Abu Shumays-style modern writing explains it through a network of ajnas and melodic pathways"
+  ],
+  "examples": [
+    {
+      "title": "Jani al-habib wa-l-kas bi-idu",
+      "artist": "Muhammad Uthman",
+      "note": "A dawr that AMAR explicitly lists among the adwar of Nawa Athar"
+    },
+    {
+      "title": "Jamil Jamal",
+      "note": "An analytical example showing that Nawa Athar may sometimes appear as a hybrid between Nawa Athar and Nahawand"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Bashraf Nawa Athar Yusuf Pasha",
+      "note": "An instrumental reference listed in AMAR archives and catalogues"
+    },
+    {
+      "title": "Jani al-habib wa-l-kas bi-idu",
+      "artist": "Muhammad Uthman",
+      "note": "A direct traditional vocal reference in Nawa Athar"
+    },
+    {
+      "title": "Jamil Jamal",
+      "note": "An important analytical reference for understanding Nawa Athar as a hybrid maqam in some modern works"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
