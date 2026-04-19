@@ -1,0 +1,83 @@
+{
+  "id": "suznak",
+  "family": "rast",
+  "title_ar": "سوزناك",
+  "title_en": "Suznak",
+  "latin": "Suznak",
+  "hero_summary": "Suznak is an important branch of the Rast family. It should not be understood as merely a passing Hijaz color inside Rast, but as a Rast-based form in which Hijaz on the fifth becomes the dominant and central secondary route.",
+  "short_identity": "A Rast branch built on Jins Rast on Rast (C), with Jins Hijaz on Nawa (G) as the most important secondary center.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Rast on Rast (C)",
+    "upper_jins": "Jins Hijaz on Nawa (G)",
+    "common_start": "It usually begins by stabilizing Rast first, then rises to Hijaz on the fifth and confirms it clearly",
+    "character": "Rast-based in origin, but more tense and more inflamed in color than basic Rast"
+  },
+  "sayr": {
+    "summary": "Suznak begins from Jins Rast on Rast (C), then rises gradually toward Nawa (G). At this point it does not settle for a fleeting Hijaz touch; rather, it establishes Jins Hijaz on the fifth and makes it the maqam’s most important secondary center of expansion. From there it may rise further to Kardan (upper C), then descend back to Rast (C). Suznak is therefore not totally separate from Rast, but neither is it merely Rast with a brief Hijaz passage on the fifth.",
+    "resting_tones": [
+      "Rast (C): the final tonic, because the maqam still belongs to the Rast family",
+      "Nawa (G): the most important secondary point of repose, because Hijaz on the fifth is the heart of Suznak",
+      "Kardan (upper C): a natural upper jawab summit after Hijaz on the fifth has been firmly established"
+    ],
+    "motion_notes": [
+      "Not every appearance of Hijaz on the fifth inside Rast means that one has entered Suznak",
+      "The label Suznak becomes more accurate when Hijaz on the fifth is strongly confirmed and sustained for a meaningful span",
+      "If Hijaz on the fifth opens the phrase or dominates middle and final cadences, this is a strong Suznak sign",
+      "If Nahawand on the fifth or a secondary Rast dominates instead, the feeling returns more toward Rast than toward Suznak"
+    ],
+    "common_path": [
+      "Stabilize Rast on Rast (C)",
+      "Ascend gradually toward Nawa (G)",
+      "Establish Hijaz on the fifth and build the main phrases around it",
+      "Reach Kardan (upper C) at the summit when needed",
+      "Return clearly to Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "Hijaz on Nawa (G) as the dominant secondary center",
+    "Nairuz may appear within the broader Rast field because of the close relation between Bayati on the fifth and Hijaz on the fifth",
+    "If Hijaz on the fifth is only brief inside a broad Rast space, the more accurate description is usually Rast rather than Suznak",
+    "The line between Rast and Suznak is analytical rather than mechanical, and depends on duration, strength of emphasis, and the position of Hijaz inside the phrase"
+  ],
+  "examples": [
+    {
+      "title": "Ghanni li shwayya shwayya",
+      "artist": "Umm Kulthum / Zakariyya Ahmad",
+      "note": "One of the most famous examples of Suznak, in which Hijaz on the fifth takes precedence over the other secondary ajnas"
+    },
+    {
+      "title": "al-Bulbul Jani",
+      "artist": "Ibrahim al-Qabbani",
+      "note": "A documented example that AMAR explicitly describes as Rast, branch Suznak"
+    },
+    {
+      "title": "Hilm",
+      "artist": "Zakariyya Ahmad",
+      "note": "An important example of the craft tradition naming Rast with Hijaz on the fifth as Suznak or Eastern Rast"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Tahmila Suznak",
+      "note": "One of the most famous tahamil ever, and a very clear reference for Suznak behavior"
+    },
+    {
+      "title": "Ghanni li shwayya shwayya",
+      "artist": "Umm Kulthum / Zakariyya Ahmad",
+      "note": "A core vocal reference for understanding the dominance of Hijaz on the fifth in Suznak"
+    },
+    {
+      "title": "al-Bulbul Jani",
+      "artist": "Ibrahim al-Qabbani",
+      "note": "A Nahda-period documented reference that proves the name’s use inside the repertoire itself"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Rast family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": ["ref-cairo-1932", "ref-mishaqa", "ref-inside-arabic-music", "ref-touma"]
+}
