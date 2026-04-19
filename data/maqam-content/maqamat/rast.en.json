@@ -1,0 +1,119 @@
+{
+  "id": "rast",
+  "family": "rast",
+  "title_ar": "راست",
+  "title_en": "Rast",
+  "latin": "Rast",
+  "hero_summary": "Rast is one of the most important core maqamat in Arabic music. It is not understood only from its scale, but from its modal movement, its points of repose, and the coloring that appears especially in the upper register.",
+  "short_identity": "A reference maqam built on a firm tonic, a clearly audible Sikah third, a strong expansion toward the fifth, and a decisive return to the tonic.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Rast on the tonic",
+    "upper_jins": "Usually Rast on Nawa, with the jawab often extending to Kardan",
+    "character": "Foundational, stable, balanced, and direct in phrase shape with clear room for modal coloring",
+    "common_start": "It usually begins by stabilizing the lower Rast jins and making the Sikah color clear before any upper coloring appears"
+  },
+  "sayr": {
+    "summary": "Rast is one of the central reference maqamat in Arabic music. It is not understood only from its scalar form, but from its way of moving, its points of repose, and the coloring that becomes especially important in the upper region.",
+    "resting_tones": [
+      "Rast (C): the tonic and main center of gravity",
+      "Nawa (G): the clearest practical ghammaz",
+      "Kardan (upper C): an important upper resting point",
+      "Dukah (D) and Sikah (E half-flat): two important tones in shaping the maqam’s personality"
+    ],
+    "motion_notes": [
+      "The identity of Rast appears especially through the Sikah third (E half-flat)",
+      "The fifth is one of the maqam’s most important working regions",
+      "Hijaz on the fifth may function as an internal coloring inside Rast rather than a full departure from it"
+    ],
+    "common_path": [
+      "Stabilize Rast (C) at the tonic",
+      "Bring out the Sikah color clearly",
+      "Ascend gradually toward Nawa (G)",
+      "Work extensively around the fifth",
+      "Potentially reach Kardan (upper C)",
+      "Then return to the tonic"
+    ]
+  },
+  "common_modulations": [
+    "Rast on the fifth",
+    "Nahawand on the fifth",
+    "Hijaz on the fifth",
+    "Not every upper coloring means the maqam has left Rast; the crucial point is the logic of phrase and repose"
+  ],
+  "examples": [
+    {
+      "title": "Asl al-gharam nazra",
+      "artist": "Muhammad عثمان / Muhammad Uthman",
+      "note": "A classical vocal example in Rast"
+    },
+    {
+      "title": "Malla al-kasat",
+      "artist": "Muhammad عثمان / Muhammad Uthman",
+      "note": "A muwashshah in Rast"
+    },
+    {
+      "title": "Atani zamani",
+      "artist": "Muhammad عثمان / Muhammad Uthman",
+      "note": "A muwashshah in Rast"
+    },
+    {
+      "title": "Daqqat tubul al-harb ya khayala",
+      "artist": "Sayyid Darwish",
+      "note": "A vocal work shaped by the sound of Rast"
+    },
+    {
+      "title": "Fakkaruni",
+      "artist": "Umm Kulthum / Muhammad Abdel Wahab",
+      "note": "A modern analytical example of activating Rast on the fifth inside Rast"
+    },
+    {
+      "title": "Hayran leh",
+      "artist": "Layla Murad / Dawud Husni",
+      "note": "An analytical Rast example"
+    },
+    {
+      "title": "Sihat wigdan",
+      "artist": "Sayyid Darwish",
+      "note": "An analytical example in Rast"
+    },
+    {
+      "title": "Ya Shadi al-Alhan",
+      "artist": "Sayyid Darwish",
+      "note": "An example of fifth-region colorings inside Rast"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Bashraf Rast",
+      "note": "A core instrumental reference in AMAR’s Rast material"
+    },
+    {
+      "title": "Sama‘i Rast",
+      "artist": "Muhammad al-Qasabji",
+      "note": "A key instrumental reference within the wasla context"
+    },
+    {
+      "title": "Fakkaruni",
+      "artist": "Umm Kulthum / Muhammad Abdel Wahab",
+      "note": "An important analytical reference for hearing fifth-Rast inside Rast"
+    },
+    {
+      "title": "Ya Shadi al-Alhan",
+      "artist": "Sayyid Darwish",
+      "note": "A good reference for hearing fifth-region colorings in Rast"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
