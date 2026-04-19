@@ -1,0 +1,62 @@
+{
+  "id": "bashayer",
+  "family": "rast",
+  "title_ar": "بشاير",
+  "title_en": "Bashayer",
+  "latin": "Bashayer",
+  "hero_summary": "Bashayer is a secondary maqam in the Rast family. It is not understood from its scale alone, but from the fact that it begins with Rast on the original tonic and then makes Kurd on the fifth the decisive structural color in the upper region.",
+  "short_identity": "A Rast branch built on Jins Rast on Rast (C), with Jins Kurd on Nawa (G) as its most important secondary jins.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Rast on Rast (C)",
+    "upper_jins": "Jins Kurd on Nawa (G)",
+    "common_start": "It usually begins by stabilizing Rast first, then the difference becomes clear when Kurd on the fifth is revealed",
+    "character": "Rast in origin, but takes on a clear Kurdish color in the upper region"
+  },
+  "sayr": {
+    "summary": "Bashayer begins from Jins Rast on Rast (C) and clearly stabilizes the tonic and original identity. It then rises gradually to Nawa (G), and there the real difference appears: instead of opening Rast on the fifth as in basic Rast, Hijaz on the fifth as in Suznak, or Bayati on the fifth as in Nairuz, it establishes Kurd on the fifth and makes it the clearest center of expansion. It may then continue to the jawab, but the final cadence returns to Rast (C).",
+    "resting_tones": [
+      "Rast (C): the final tonic because it belongs to the Rast family",
+      "Nawa (G): the most important secondary point of repose because Jins Kurd begins there and distinguishes Bashayer",
+      "Kardan (upper C): a possible upper jawab summit when the maqam expands higher"
+    ],
+    "motion_notes": [
+      "The distinction between Bashayer and Rast is made primarily through the secondary jins on the fifth",
+      "In Bashayer, the upper region becomes Kurd on Nawa (G)",
+      "The similarity of the lower trunk to Rast is not enough by itself; one must watch how the fifth is confirmed and what kind of upper region appears",
+      "At this stage, the theoretical documentation for Bashayer is clearer than the repertoire documentation"
+    ],
+    "common_path": [
+      "Stabilize Rast on Rast (C)",
+      "Ascend gradually to Nawa (G)",
+      "Establish Kurd on the fifth and build the main phrases there",
+      "Optionally expand to the jawab when needed",
+      "Return clearly to Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "Kurd on Nawa (G) as the maqam’s defining color",
+    "If Rast on the fifth becomes dominant, the feeling returns to basic Rast",
+    "If Hijaz on the fifth becomes dominant, the ear moves toward Suznak",
+    "Bashayer is less famous in circulating repertoire than some other Rast branches, even though its theoretical structure is clear"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no repertoire examples documented with the same strength as Suznak or Nairuz",
+      "note": "The available definition here is clearer in its theoretical structure than in the documentation of famous agreed-upon works"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Rast family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
