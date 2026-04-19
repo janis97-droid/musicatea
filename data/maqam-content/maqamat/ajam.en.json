@@ -1,0 +1,92 @@
+{
+  "id": "ajam",
+  "family": "ajam",
+  "title_ar": "عجم",
+  "title_en": "Ajam",
+  "latin": "Ajam",
+  "hero_summary": "Ajam is one of the core maqamat in modern Arabic practice. Although it may appear close to the Western major mode, Arabic treatment of it remains maqamic rather than purely Western-harmonic.",
+  "short_identity": "A clear and ascending maqam whose phrases rely on brightness and structural clarity, but which should not be reduced to a Western major scale.",
+  "quick_facts": {
+    "karar": "Depends on the chosen transposition; in common modern practice it may be Rast (C)",
+    "ghammaz": "The fifth as a strong middle point of repose",
+    "lower_jins": "The original Ajam jins",
+    "upper_jins": "Usually extends into the upper Ajam region, with possible colorings depending on context and repertoire",
+    "character": "Bright, clear, direct in structure, and strong in ascent",
+    "common_start": "It usually begins by establishing the Ajam jins clearly before any additional coloring"
+  },
+  "sayr": {
+    "summary": "In Arabic music, Ajam is not treated as merely a Western major scale, but as a maqam with its own way of functioning and moving. It usually begins by establishing the Ajam jins clearly, then ascends gradually toward the upper region while confirming the fifth as a strong point of repose, reaches the jawab with clarity, and then returns downward either to the tonic or to the main resting degree used in the performer’s chosen formulation.",
+    "resting_tones": [
+      "The tonic according to the transposition being used; if transposed on Rast (C), then Rast (C) is the tonic",
+      "The fifth: a strong central point of repose and expansion in ascent",
+      "The upper tonic: a natural point of arrival when the ascending phrase completes itself",
+      "The Ajam tone itself may serve as a final center of repose in certain older formulations"
+    ],
+    "motion_notes": [
+      "Ajam depends on clarity of structure more than on ornamental ambiguity",
+      "Its ascent is usually clear, bright, and gradual",
+      "There is a major difference between dry scalar ascent and maqamic ascent with stabilization, emphasis, and melodic breathing",
+      "The return in Ajam should be clear and well-shaped so that the maqam’s identity remains stable"
+    ],
+    "common_path": [
+      "Establish the basic Ajam jins",
+      "Ascend gradually and clearly without rushing into extra coloring",
+      "Rest on the fifth as a main point of expansion",
+      "Reach and confirm the jawab",
+      "Return decisively through a middle resting point to the tonic"
+    ]
+  },
+  "common_modulations": [
+    "Expansion into the upper Ajam as the maqam’s natural continuation",
+    "Possible passage to neighboring ajnas depending on school and repertoire",
+    "Ajam is not understood from two fixed ajnas alone, but from the routes between ajnas and the points of emphasis and return",
+    "One must be careful not to reduce it to a straight major scale with no distinct maqamic logic"
+  ],
+  "examples": [
+    {
+      "title": "Al-hubb sultanuh qasi",
+      "artist": "Dawud Husni",
+      "note": "One of the early full-length treatments in Maqam Ajam, showing the maqam’s Arabic identity"
+    },
+    {
+      "title": "Qum wa nadim",
+      "note": "An example cited by al-Khula‘i in his description of Maqam Ajam"
+    },
+    {
+      "title": "Shanbar",
+      "artist": "Abu Khalil",
+      "note": "Another example cited by al-Khula‘i in Maqam Ajam"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Al-hubb sultanuh qasi",
+      "artist": "Dawud Husni",
+      "note": "An important reference for hearing Ajam in the Arabic sense rather than as a purely Western major"
+    },
+    {
+      "title": "Qum wa nadim",
+      "note": "A traditional reference cited by al-Khula‘i in connection with Ajam"
+    },
+    {
+      "title": "Shanbar",
+      "artist": "Abu Khalil",
+      "note": "A traditional reference among the examples of Maqam Ajam"
+    },
+    {
+      "title": "Man li-sabbin fi al-hawa",
+      "note": "An example connected with Ajam Ushayran, useful for distinguishing it from Ajam itself"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
