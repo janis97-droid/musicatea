@@ -1,0 +1,62 @@
+{
+  "id": "nahawand_murassa",
+  "family": "nahawand",
+  "title_ar": "نهاوند مرصّع",
+  "title_en": "Nahawand Murassa",
+  "latin": "Nahawand Murassa",
+  "hero_summary": "Nahawand Murassa is a branch of the Nahawand family. The clearest practical Arabic explanation states that it begins as Nahawand, then at the fourth degree opens a Hijaz jins while the final tonic remains Nahawand.",
+  "short_identity": "A Nahawand branch that begins in Nahawand, is inlaid with Hijaz on the fourth, then returns to the Nahawand tonic.",
+  "quick_facts": {
+    "karar": "The Nahawand tonic, often Rast (C) in the common teaching transposition",
+    "ghammaz": "Jaharkah (F) as the pivotal degree for the move into Hijaz",
+    "lower_jins": "Jins Nahawand on the root",
+    "upper_jins": "Jins Hijaz on the fourth, i.e. Jaharkah (F)",
+    "common_start": "It usually begins by stabilizing Nahawand on the root, then opens Hijaz at the fourth",
+    "character": "Nahawand in its root, but defined by a clear Hijaz inlay on the fourth"
+  },
+  "sayr": {
+    "summary": "The nearest practical sayr of Nahawand Murassa begins from Jins Nahawand on the root, clearly establishing the Nahawand identity. Then, upon reaching the fourth degree, it does not remain inside the Nahawand space alone, but opens a Hijaz on the fourth. From there it may continue into the upper register, then returns at the end to the Nahawand tonic. That is the meaning of its being ‘murassa’: a structure whose root is Nahawand, but with a clear Hijaz inlay inside it.",
+    "resting_tones": [
+      "Rast (C): the final tonic in the common C-based transposition, because the karar remains Nahawand’s karar",
+      "Jaharkah (F): the pivotal degree, because it is the place where the Hijaz jins begins",
+      "Nawa (G): still an important tone in the upper continuation, but the structural difference here begins from the fourth, not the fifth"
+    ],
+    "motion_notes": [
+      "Nahawand Murassa is not pure Nahawand, nor is it Nawa Athar in the sense of changing the fifth",
+      "Its distinctive sign is not the fifth, but the Hijaz on the fourth",
+      "It should begin in a Nahawand way, not in a Hijaz way",
+      "After the Hijaz coloration it must return clearly to the Nahawand tonic"
+    ],
+    "common_path": [
+      "Stabilize Nahawand on the root",
+      "Reach Jaharkah (F)",
+      "Show the Hijaz on the fourth clearly",
+      "Expand upward when needed",
+      "Return to the Nahawand tonic"
+    ]
+  },
+  "common_modulations": [
+    "Hijaz on the fourth as the jins that distinguishes the maqam",
+    "If the decisive coloration shifts to the fifth, the sound approaches other Nahawand branches rather than the Murassa form",
+    "Its value lies in preserving the Nahawand tonic despite the Hijaz coloration",
+    "It is a Nahawand maqam with a Hijaz inlay, not a maqam that fully transforms into Hijaz"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there is no strongly agreed-upon and richly documented Arabic heritage list",
+      "note": "What is available here is stronger in structural definition and analytical witness than in a set of fully agreed-upon repertoire examples"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Nahawand family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
