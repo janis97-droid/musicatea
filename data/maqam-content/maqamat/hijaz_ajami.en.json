@@ -1,0 +1,62 @@
+{
+  "id": "hijaz_ajami",
+  "family": "hijaz",
+  "title_ar": "حجاز عجمي",
+  "title_en": "Hijaz Ajami",
+  "latin": "Hijaz Ajami",
+  "hero_summary": "In practical Arabic explanations, Hijaz Ajami is treated as a branch of the Hijaz family, built on a distinct combination of Hijaz on Dukah (D) and Kurd on Husayni (A).",
+  "short_identity": "A Hijaz-family branch built on Hijaz on Dukah (D), with Kurd on Husayni (A) as its clearest secondary jins.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Husayni (A)",
+    "lower_jins": "Jins Hijaz on Dukah (D)",
+    "upper_jins": "Jins Kurd on Husayni (A)",
+    "common_start": "It usually begins by stabilizing Hijaz on Dukah (D), then rises to Husayni (A) to reveal the Kurd branch",
+    "character": "Hijaz in its trunk, but with a distinct upper color because of the Kurdish branch"
+  },
+  "sayr": {
+    "summary": "The practical sayr of Hijaz Ajami usually works as follows: it begins from Hijaz on Dukah (D) and clearly stabilizes both the tonic and the first jins. Then it rises toward Husayni (A), but instead of opening Bayati or another Hijaz there, it reveals Kurd on Husayni. That is where the true distinction of the maqam is formed. From there the line may extend to the jawab, before returning at the end to Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the final tonic, because the trunk jins is Hijaz on this degree",
+      "Husayni (A): the most important secondary point of rest, because it is the place of the Kurd jins that distinguishes the maqam from nearby Hijaz branches",
+      "Muhayyar (upper D): a possible upper jawab summit when the maqam expands higher"
+    ],
+    "motion_notes": [
+      "Hijaz Ajami is not ordinary Hijaz, but a Hijaz maqam with a Kurdish branch on Husayni (A)",
+      "If the upper region becomes Bayati, the ear moves toward the more common Hijaz in this practical explanation",
+      "If the upper region becomes a second Hijaz, the sound moves toward Shahnaz or Hijazayn",
+      "Some analytical writings also read this maqam inside a broader logic of transformational relations between maqamat, not only as a memorized scale-pattern"
+    ],
+    "common_path": [
+      "Stabilize Hijaz on Dukah (D)",
+      "Ascend to Husayni (A)",
+      "Reveal Kurd on Husayni (A) clearly",
+      "Expand to Muhayyar (upper D) when needed",
+      "Return clearly to Dukah (D)"
+    ]
+  },
+  "common_modulations": [
+    "Kurd on Husayni (A) as the jins that distinguishes the maqam",
+    "If the upper region becomes Bayati, the maqam approaches Hijaz in this practical reading",
+    "If the upper region becomes a second Hijaz, it approaches Shahnaz or Hijazayn",
+    "Some explanations relate it structurally to what is called the Jewish Scale, but this does not replace its definition inside the Arabic modal framework itself"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no strongly documented Arabic repertoire examples",
+      "note": "What is available here is clearer in theoretical structure and practical differentiation from nearby branches than in a list of famous agreed-upon works"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Hijaz family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
