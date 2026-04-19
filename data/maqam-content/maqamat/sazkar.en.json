@@ -1,0 +1,95 @@
+{
+  "id": "sazkar",
+  "family": "rast",
+  "title_ar": "سازكار",
+  "title_en": "Sazkar",
+  "latin": "Sazkar",
+  "hero_summary": "Sazkar is a secondary maqam in the Rast family, but one of its most ambiguous branches. In modern practice it is often understood as a Rast-path that begins from the jawab and descends to the tonic, with a raised second degree becoming prominent in some phrases.",
+  "short_identity": "A Rast branch very close to Kardan, and one that may be understood practically as a Kardan-type path colored by the raising of the second in certain passages.",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Kardan (upper C)",
+    "lower_jins": "Rast at the final tonic",
+    "upper_jins": "The upper Rast jawab field, with a raised second appearing in some phrases",
+    "common_start": "It usually begins from Kardan (upper C) or from its immediate surrounding field, then descends to Rast",
+    "character": "Upper-register in launch, Rast in descent, and distinguished by a special coloring of the second"
+  },
+  "sayr": {
+    "summary": "Sazkar does not usually begin from the tonic as ordinary Rast does, but rather from the jawab: Kardan (upper C), or from the field surrounding it. From there it confirms the sense that the upper register is the starting center, then begins descending through the upper Rast field to Nawa (G) and below, with the special sign of Sazkar appearing in some phrases: the raised second degree. The descent then continues until the final clear cadence on Rast (C).",
+    "resting_tones": [
+      "Kardan (upper C): the most important tone for understanding the maqam, because it begins practically from the جواب of Rast",
+      "Nawa (G): a very important middle station in the descent from the جواب to the tonic",
+      "Rast (C): the final tonic because it belongs to the Rast family"
+    ],
+    "motion_notes": [
+      "Sazkar is not Suznak, because Suznak is based on Hijaz on the fifth, not on a raised second",
+      "Sazkar is not ordinary Rast, because its strongest point of departure lies in the جواب rather than in the tonic",
+      "Sazkar is not pure Kardan either, because its basic distinction is the prominence of the raised second in some phrases",
+      "This raising does not occur as a complete or permanent rule, but appears only in certain passages"
+    ],
+    "common_path": [
+      "Open from Kardan (upper C) or from the upper region surrounding it",
+      "Stabilize the sense that the جواب is the point of departure",
+      "Descend through the upper Rast field to Nawa (G) and below",
+      "Reveal the raised second clearly in some phrases",
+      "Continue descending until the cadence on Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "A raised second inside a Rast-based route as the defining color of the maqam",
+    "The same work may be classified as Kardan, Sazkar, or even simply Rast, depending on the theorist or on the actual performance",
+    "In modern practice, Sazkar has often become more a path inside a larger Rast sayr than a widely independent maqam",
+    "The overwhelming majority of recordings do not always reveal the theoretically raised sound in exactly the same way suggested by some classifications"
+  ],
+  "examples": [
+    {
+      "title": "Ya Shadi al-Alhan",
+      "note": "One of the most prominent complete-song examples that have at times been described as Kardan, Sazkar, or simply Rast"
+    },
+    {
+      "title": "Sihat Wijdan",
+      "note": "One of the core examples mentioned by the reference in this maqam or the closely related path"
+    },
+    {
+      "title": "Hayrana Leh",
+      "artist": "Layla Murad",
+      "note": "An example in which this path appears clearly"
+    },
+    {
+      "title": "Ya Dala‘ Dala‘",
+      "artist": "Sabah",
+      "note": "The chorus opening contains an important example of this path"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Ya Shadi al-Alhan",
+      "note": "A basic reference for understanding the overlap between Kardan, Sazkar, and Rast"
+    },
+    {
+      "title": "Sihat Wijdan",
+      "note": "An important reference because theoretical classification and actual performance do not always coincide in it"
+    },
+    {
+      "title": "Hayrana Leh",
+      "artist": "Layla Murad",
+      "note": "A good reference for hearing this path in modern Arabic singing"
+    },
+    {
+      "title": "Ya Dala‘ Dala‘",
+      "artist": "Sabah",
+      "note": "A clear reference for the appearance of this color in a collective opening"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Rast family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
