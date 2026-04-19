@@ -1,0 +1,87 @@
+{
+  "id": "nahawand",
+  "family": "nahawand",
+  "title_ar": "نهاوند",
+  "title_en": "Nahawand",
+  "latin": "Nahawand",
+  "hero_summary": "Nahawand is one of the main maqamat in Arabic practice. Although it may seem close to the Western minor idea, the Arabic maqam is not reducible to a scale alone, but must be understood through its sayr and its points of repose, especially around the fifth.",
+  "short_identity": "A maqam built on Jins Nahawand on Rast (C), with a final repose on Rast (C) and a major secondary center on Nawa (G).",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Nahawand on Rast (C)",
+    "upper_jins": "Usually extends around Nawa (G) and then to Kardan (upper C), with possible Hijaz or other colorings in the upper region",
+    "character": "Emotional, clear in structure, and flexible in expansion",
+    "common_start": "It usually begins by establishing Jins Nahawand on Rast (C) before any upper coloring appears"
+  },
+  "sayr": {
+    "summary": "Nahawand should not be understood as merely a minor scale, but as a maqam with a clear modal path. It usually begins from Rast (C) by stabilizing the Nahawand jins up to Nawa (G), after which the fifth is confirmed as the maqam’s most important secondary center of repose. The line may then expand into the upper region toward Kardan (upper C) and beyond, with upper colorings appearing according to the piece and context, before returning clearly to Rast (C) in the final cadence.",
+    "resting_tones": [
+      "Rast (C): the tonic and natural final cadence",
+      "Nawa (G): the maqam’s most important secondary point of repose",
+      "Kardan (upper C): an important upper jawab tone when the ascent is completed",
+      "Jaharkah (F): a pivotal tone that completes the lower jins and opens the middle and upper regions"
+    ],
+    "motion_notes": [
+      "The identity of Nahawand is first built from the lower region rising toward the fifth",
+      "Nawa (G) is not merely a passing tone, but a major working center in the maqam",
+      "The ascent into the upper register should be maqamic, not dry and scalar",
+      "The natural return descends from the jawab or from the fifth with a clear re-establishment of the original Nahawand jins"
+    ],
+    "common_path": [
+      "Stabilize Jins Nahawand on Rast (C)",
+      "Bring out the lower region clearly up to Nawa (G)",
+      "Rest on Nawa (G) as the first major point of expansion",
+      "Expand toward Kardan (upper C) and beyond when needed",
+      "Allow upper colorings to appear depending on context",
+      "Return clearly to Rast (C) and cadence there"
+    ]
+  },
+  "common_modulations": [
+    "Expansion around Nawa (G) as the maqam’s most important secondary tonic-like center",
+    "Possible activation of Hijaz on the fifth or other upper colorings depending on the piece and context",
+    "Not every upper coloring should be analyzed as a complete departure from Nahawand",
+    "The maqam’s identity is determined by the routes between ajnas and the points of repose, not by scale shape alone"
+  ],
+  "examples": [
+    {
+      "title": "Lamma bada yatathanna",
+      "note": "A famous muwashshah that AMAR explicitly identifies as being in Nahawand"
+    },
+    {
+      "title": "Kadani al-hawa",
+      "artist": "Muhammad Uthman / Yusuf al-Manyalawi",
+      "note": "A traditional dawr that AMAR also identifies as Nahawand"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Taqsim Nahawand",
+      "artist": "Sami al-Shawwa",
+      "note": "An important instrumental reference for hearing the original framework and expansion in Nahawand"
+    },
+    {
+      "title": "Bashraf Nahawand",
+      "note": "An instrumental reference linked to AMAR archives and recording catalogues"
+    },
+    {
+      "title": "Sama‘i Nahawand",
+      "note": "An important instrumental reference within the indexed recordings of the same family"
+    },
+    {
+      "title": "Lamma bada yatathanna",
+      "note": "A core vocal reference for hearing Nahawand in traditional repertoire"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
