@@ -1,0 +1,97 @@
+{
+  "id": "bayati",
+  "family": "bayati",
+  "title_ar": "بيات",
+  "title_en": "Bayati",
+  "latin": "Bayati",
+  "hero_summary": "Bayati is one of the most widespread and frequently used Arabic maqamat. It is not defined by its scale alone, but by the way it moves, its points of repose, and the ajnas it passes through in ascent and descent.",
+  "short_identity": "A core maqam built on Jins Bayati on Dukah (D), with important inner colorings around Jaharkah (F) and the upper region before returning to the tonic.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G) in practical development, with Jaharkah (F) also playing a very important role",
+    "lower_jins": "Jins Bayati on Dukah (D)",
+    "upper_jins": "Usually Rast on Jaharkah (F), with possible Ajam on Husayni (A) or Hijaz on Jaharkah (F)",
+    "character": "Warm, vocal, expressive, and melodically flexible",
+    "common_start": "It usually begins by stabilizing Bayati on Dukah before any upper coloring appears"
+  },
+  "sayr": {
+    "summary": "Bayati is one of the original Arabic maqamat, and it is not defined by scale alone, but by its melodic behavior. It usually begins from Dukah (D) with the Bayati jins stabilized and the character of its Sikah tone made clear, then expands toward Jaharkah (F) and Nawa (G). One of its most common internal routes is Rast on Jaharkah (F), while Ajam in the upper region or Hijaz on Jaharkah may also appear as internal colorings. In the end, the maqam returns to settle on Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the tonic and the natural final cadence",
+      "Nawa (G): an important middle point of melodic repose",
+      "Kardan (upper C): an important upper resting point when the line expands into the higher register",
+      "Jaharkah (F): an important tone because it carries one of the most important internal Bayati routes, namely Rast on the fourth"
+    ],
+    "motion_notes": [
+      "Bayati is not known from its pitch set alone, but from the way it rises and returns",
+      "The Sikah tone within Bayati is an essential part of the lower jins identity",
+      "Rast on Jaharkah (F) is one of the most important inner pathways of Bayati",
+      "Hijaz on the fourth may function as an internal coloring inside Bayati rather than a full departure from it"
+    ],
+    "common_path": [
+      "Stabilize Bayati on Dukah (D)",
+      "Bring out the lower-register character of the maqam",
+      "Ascend to Jaharkah (F) and activate Rast on the fourth",
+      "Expand toward Nawa (G) and Husayni (A)",
+      "Use Ajam on the sixth or in the upper region when needed",
+      "Potentially use Hijaz on Jaharkah (F) as an internal coloring",
+      "Return to Dukah (D) and cadence there"
+    ]
+  },
+  "common_modulations": [
+    "Rast on Jaharkah (F)",
+    "Ajam on Husayni (A) or in the upper region",
+    "Hijaz on Jaharkah (F)",
+    "Not every appearance of fourth-degree Hijaz means a full departure from Bayati; what matters is the logic of phrase and repose"
+  ],
+  "examples": [
+    {
+      "title": "Min qabl ma ahwa al-jamal",
+      "note": "A dawr often cited among traditional Bayati examples"
+    },
+    {
+      "title": "La jaza Allah dam‘ ‘ayni khayran",
+      "note": "A qasida cited among Bayati examples"
+    },
+    {
+      "title": "Ah ya hilu yimsallini",
+      "note": "An important analytical example of Bayati with internal colorings, including a Hijaz movement"
+    },
+    {
+      "title": "Nura Nura",
+      "artist": "Farid al-Atrash",
+      "note": "An example of Rast on the fourth inside Bayati"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Taqsim Bayati",
+      "artist": "Sami al-Shawwa",
+      "note": "A clear instrumental example of Bayati in performance"
+    },
+    {
+      "title": "Sama‘i Bayati",
+      "note": "A key instrumental reference in the listening material linked to the Bayati episode"
+    },
+    {
+      "title": "Ah ya hilu yimsallini",
+      "note": "An important analytical reference for hearing Bayati’s internal colorings"
+    },
+    {
+      "title": "Nura Nura",
+      "artist": "Farid al-Atrash",
+      "note": "A good reference for hearing Rast on the fourth inside Bayati"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
