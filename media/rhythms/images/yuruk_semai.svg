@@ -49,4 +49,11 @@
   <path class="flag" d="M840 201 C854 197, 869 188, 880 171" />
 
   <line class="barthin" x1="990" y1="45" x2="990" y2="195"/>
+
+<!-- 1/8 TAK -->
+  <ellipse class="notehead" cx="855" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="840" y1="117" x2="840" y2="201"/>
+  <path class="flag" d="M840 201 C854 197, 869 188, 880 171" />
+
+  <line class="barthin" x1="990" y1="45" x2="990" y2="195"/>
 </svg>
