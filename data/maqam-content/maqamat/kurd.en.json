@@ -1,0 +1,87 @@
+{
+  "id": "kurd",
+  "family": "kurd",
+  "title_ar": "كرد",
+  "title_en": "Kurd",
+  "latin": "Kurd",
+  "hero_summary": "Kurd is one of the core maqamat in modern Arabic practice. It is not understood only from its scale, but from its melodic path, its points of repose, and its routes of coloring and return.",
+  "short_identity": "A maqam built on Jins Kurd on Dukah (D), with a final repose on Dukah (D), a major upper center on Nawa (G), and a common upper coloring through the relation between the fourth and the sixth.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Kurd on Dukah (D)",
+    "upper_jins": "It usually expands around Jaharkah (F) and Nawa (G), with a frequent appearance of Nahawand on Jaharkah (F)",
+    "character": "Clear, coherent, relatively pure in sound, and flexible in development",
+    "common_start": "It usually begins by stabilizing Jins Kurd on Dukah (D) before opening the upper region"
+  },
+  "sayr": {
+    "summary": "Maqam Kurd usually begins from Dukah (D) with Jins Kurd clearly established: Dukah (D), Kurdish second (E-flat), Jaharkah (F), and Nawa (G). From this, the practical difference between it and Bayati becomes clear, because the second in Kurd is Kurd (E-flat), not Sikah (E half-flat). After the original jins is established, the maqam expands toward the fifth and above, where Nahawand on Jaharkah (F) may appear, or the relation between the fourth and the sixth may become strong in some phrases and instrumental passages, before it clearly returns to Dukah (D) in the final cadence.",
+    "resting_tones": [
+      "Dukah (D): the tonic and natural final center of repose",
+      "Nawa (G): a very important secondary upper center",
+      "Kardan (upper C): a natural jawab station if the maqam expands into the upper region"
+    ],
+    "motion_notes": [
+      "Kurd is practically recognized by its lowered second: Kurd (E-flat)",
+      "The opening phrases should not be vague, because the maqam loses its identity quickly if its original jins is not stabilized",
+      "Some phrases may resemble Bayati or Nahawand, but the correct judgment depends on the final resting point and on the way the fifth and the upper region are treated",
+      "The relation between the fourth and the sixth is common in Kurd repertoire and affects the upper color of the maqam"
+    ],
+    "common_path": [
+      "Stabilize Jins Kurd on Dukah (D)",
+      "Make clear the distinction between Kurd (E-flat) and Sikah (E half-flat)",
+      "Expand naturally toward Nawa (G)",
+      "Color the upper region through Nahawand on Jaharkah (F) or through the relation between the fourth and the sixth",
+      "Return clearly to Dukah (D) and cadence there"
+    ]
+  },
+  "common_modulations": [
+    "Nahawand on Jaharkah (F)",
+    "A common relation between Jaharkah (F) and the upper sixth in certain expansions and instrumental links",
+    "Some phrases may sound close to Bayati or Nahawand, but if the final return and cadence remain Kurdish, the function stays inside Kurd",
+    "A resemblance in the lower trunk alone is not enough; one must watch how the fifth is confirmed and how the upper region is treated"
+  ],
+  "examples": [
+    {
+      "title": "'Awwadt 'Ayni",
+      "artist": "Umm Kulthum",
+      "note": "One of the most important twentieth-century examples of Maqam Kurd"
+    },
+    {
+      "title": "Ridak wa-Nnas Hawak",
+      "artist": "Layla Murad",
+      "note": "An example of newer developments in Maqam Kurd in the mid-twentieth century"
+    },
+    {
+      "title": "Ba'id 'Annak",
+      "note": "An important example because the complete instrumental introduction begins in Maqam Kurd"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "'Awwadt 'Ayni",
+      "artist": "Umm Kulthum",
+      "note": "A core reference for hearing Kurd in a mature and complete formulation"
+    },
+    {
+      "title": "Ridak wa-Nnas Hawak",
+      "artist": "Layla Murad",
+      "note": "An important reference for the development of Kurd in the twentieth century"
+    },
+    {
+      "title": "Introduction to Ba'id 'Annak",
+      "note": "An important reference for hearing Kurd in instrumental introductions and links"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
