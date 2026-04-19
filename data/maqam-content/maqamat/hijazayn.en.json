@@ -1,0 +1,62 @@
+{
+  "id": "hijazayn",
+  "family": "hijaz",
+  "title_ar": "حجازين",
+  "title_en": "Hijazayn",
+  "latin": "Hijazayn",
+  "hero_summary": "Maqam Hijazayn is less widely circulated today, but its theoretical material agrees on one essential point: it is built on two connected Hijaz ajnas, and that is precisely why it is called Hijazayn, or “two Hijazes.”",
+  "short_identity": "A branch of the Hijaz family built on Hijaz on Dukah (D), then Hijaz on Nawa (G).",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Hijaz on Dukah (D)",
+    "upper_jins": "Jins Hijaz on Nawa (G)",
+    "common_start": "It usually begins by stabilizing Hijaz on Dukah (D), then rises to the fifth to confirm the second Hijaz",
+    "character": "A doubled Hijaz character; the Hijaz color remains dominant in both the original and the upper branch"
+  },
+  "sayr": {
+    "summary": "The practical sayr of Hijazayn usually works as follows: it begins from Jins Hijaz on Dukah (D) and clearly stabilizes the tonic, then rises to Nawa (G). But instead of changing color there to Nahawand or Rast, it settles a second Hijaz on Nawa. That is where the true difference of the maqam appears. From there the line may extend to Kardan (upper C) and beyond, before returning at the end to Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the final tonic, because the original jins is Hijaz on Dukah",
+      "Nawa (G): the most important secondary point of rest, because the second Hijaz begins there and marks the maqam",
+      "Kardan (upper C): a natural upper jawab summit when the maqam expands higher"
+    ],
+    "motion_notes": [
+      "Hijazayn is not ordinary Hijaz; it is a maqam that keeps the Hijaz color dominant in both the original and upper branch",
+      "In the more familiar Hijaz, the upper region tends toward Nahawand on Nawa, but here it opens a second Hijaz instead",
+      "One should not open Nahawand on Nawa if the intended maqam is Hijazayn",
+      "Al-Khula‘i’s old expression ‘from two Hijazes in two diwans’ aligns perfectly with this structural understanding"
+    ],
+    "common_path": [
+      "Stabilize Hijaz on Dukah (D)",
+      "Ascend to Nawa (G)",
+      "Settle the Hijaz on the fifth clearly",
+      "Expand to Kardan (upper C) when needed",
+      "Return clearly to Dukah (D)"
+    ]
+  },
+  "common_modulations": [
+    "Hijaz on Nawa (G) as the second Hijaz that distinguishes the maqam",
+    "If Nahawand opens on the fifth, the ear returns toward the more familiar Hijaz",
+    "The value of the maqam here lies in keeping the Hijaz color present in both diwans",
+    "The available documentation here is stronger in structural definition than in listing famous agreed-upon Arabic repertoire examples"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no strongly documented Arabic repertoire examples",
+      "note": "What is available here is a clear structural definition, together with an old historical attribution to the idea of two Hijazes in two diwans, but not the same level of practical repertoire evidence available for some other maqamat"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Hijaz family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
