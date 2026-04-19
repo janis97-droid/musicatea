@@ -42,7 +42,7 @@
     tarz_nawin: { lower: "جنس الكرد", upper: "جنس الحجاز" },
     shahnaz_kurdi: { lower: "جنس الكرد", upper: "جنس الحجاز" },
     lami: { lower: "جنس الكرد", upper: "جنس الكرد" },
-    athar_kurd: { lower: "جنس الكرد", upper: "جنس النوى أثر" },
+    athar_kurd: { lower: "جنس أثر كرد", upper: "جنس النوى أثر" },
     sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
     huzam: { lower: "جنس السيكاه", upper: "جنس الحجاز" },
     rahat_al_arwah: { lower: "جنس السيكاه", upper: "جنس الراحة الأرواح" },
