@@ -40,7 +40,7 @@
     nahawand_kurdi: { lower: "جنس النهاوند", upper: "جنس الكرد" },
     kurd: { lower: "جنس الكرد", upper: "جنس الكرد" },
     tarz_nawin: { lower: "جنس الكرد", upper: "جنس الحجاز" },
-    shahnaz_kurdi: { lower: "جنس الكرد", upper: "جنس الشهناز" },
+    shahnaz_kurdi: { lower: "جنس الكرد", upper: "جنس الحجاز" },
     lami: { lower: "جنس الكرد", upper: "جنس الكرد" },
     athar_kurd: { lower: "جنس الكرد", upper: "جنس النوى أثر" },
     sikah: { lower: "جنس السيكاه", upper: "جنس السيكاه" },
