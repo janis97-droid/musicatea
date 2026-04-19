@@ -54,3 +54,51 @@ body[dir="ltr"] .staff-scale-header {
 body[dir="ltr"] .note-keys-row {
   direction: ltr;
 }
+
+body[dir="ltr"] .jins-row {
+  direction: ltr;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+body[dir="ltr"] .jins-pill {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+body[dir="ltr"] .jins-pill span {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  line-height: 1.35;
+}
+
+body[dir="ltr"] .jins-pill-lower,
+body[dir="ltr"] .jins-pill-upper {
+  min-height: 48px;
+}
+
+@media (max-width: 768px) {
+  body[dir="ltr"] .jins-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  body[dir="ltr"] .jins-pill {
+    padding: 9px 10px;
+    border-radius: 10px;
+  }
+
+  body[dir="ltr"] .jins-pill span {
+    font-size: 0.84rem;
+    line-height: 1.3;
+  }
+}
