@@ -1,0 +1,94 @@
+{
+  "id": "dalanshin",
+  "family": "rast",
+  "title_ar": "دلنشين",
+  "title_en": "Dalanshin",
+  "latin": "Dalanshin",
+  "hero_summary": "Dalanshin is a secondary maqam in the Rast family, but it differs from Suznak and Nairuz in that it is not built on a secondary jins on the fifth. Instead, it opens from above through Saba Dalanshin on the upper tonic, then descends to Rast.",
+  "short_identity": "A Rast branch whose final tonic is Rast (C), but whose distinctive upper jins is Saba Dalanshin on Kardan (upper C).",
+  "quick_facts": {
+    "karar": "Rast (C)",
+    "ghammaz": "Kardan (upper C)",
+    "lower_jins": "Rast at the final tonic",
+    "upper_jins": "Saba Dalanshin on Kardan (upper C)",
+    "common_start": "It often opens from the upper region rather than from the tonic, then descends gradually to Rast",
+    "character": "Upper-register in launch, dark in color, marked by a clear Saba sonority above and a Rast descent below"
+  },
+  "sayr": {
+    "summary": "Dalanshin does not logically begin from the tonic as many students expect. Very often it opens from the jawab: Kardan (upper C), with Jins Saba Dalanshin and its lowered ninth made clear above that point. From there the maqam moves downward from the upper register to the middle field, then finally settles on Rast (C). Its strongest identity therefore lies in the jawab rather than at the tonic, even though the final cadence remains clearly Rast-based.",
+    "resting_tones": [
+      "Rast (C): the final tonic because the maqam still belongs to the Rast family",
+      "Kardan (upper C): the most important upper point of emphasis, because it is the center of Saba Dalanshin",
+      "Husayni (A) and the nearby upper tones may appear inside the upper field, but the real center remains the jawab itself"
+    ],
+    "motion_notes": [
+      "Dalanshin is one of the clearest examples of non-octave-equivalent maqamic practice in the older tradition",
+      "It is not just an extension of upper Rast, but a full modal opening from the upper region followed by a structural descent to the original tonic",
+      "It contains a lowered ninth above the jawab and a dark Saba color in the upper region before transitioning downward into Rast",
+      "Saba Dalanshin should not be confused with ordinary Saba, because its function and path are different"
+    ],
+    "common_path": [
+      "Stabilize Kardan (upper C) as the upper center",
+      "Reveal Jins Saba Dalanshin together with the lowered ninth",
+      "Move downward from the jawab into the middle register",
+      "Settle finally on Rast (C)"
+    ]
+  },
+  "common_modulations": [
+    "Saba Dalanshin in the jawab as the maqam’s defining color",
+    "Dalanshin may appear inside larger Rast-based works rather than as the full maqam of the whole piece",
+    "It may also play a role inside older important modulations, including moves toward Ajam Ushayran in some examples",
+    "It is not understood through the fifth like Suznak or Nairuz, but through its upper opening and subsequent descent"
+  ],
+  "examples": [
+    {
+      "title": "‘Ishna wa Shufna",
+      "artist": "Muhammad Uthman",
+      "note": "One of the best complete examples of Maqam Dalanshin"
+    },
+    {
+      "title": "Ya Mal al-Sham",
+      "note": "A famous example in which the Dalanshin path appears clearly in the middle of the piece"
+    },
+    {
+      "title": "Malla al-Kasat",
+      "note": "An example in which Dalanshin appears clearly inside a broader Rast space"
+    },
+    {
+      "title": "Kull illi Habb Itnassaf",
+      "artist": "Muhammad Abdel Wahab",
+      "note": "A prominent example of an extended and clear Dalanshin usage inside a vocal context"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "‘Ishna wa Shufna",
+      "artist": "Muhammad Uthman",
+      "note": "A basic reference for understanding Dalanshin as a full maqam"
+    },
+    {
+      "title": "Ya Mal al-Sham",
+      "note": "An important reference for hearing the Dalanshin path inside a famous work"
+    },
+    {
+      "title": "Malla al-Kasat",
+      "note": "An important reference because Dalanshin appears there as a prominent internal path inside Rast"
+    },
+    {
+      "title": "Kull illi Habb Itnassaf",
+      "artist": "Muhammad Abdel Wahab",
+      "note": "An important analytical reference for understanding the value of Saba Dalanshin in older modal transitions"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Rast family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
