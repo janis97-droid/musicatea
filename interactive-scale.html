@@ -96,6 +96,14 @@
       </div>
 
       <div class="nav-actions">
+        <a href="interactive-scale-en.html" class="lang-toggle" id="lang-toggle-en" aria-label="Switch to English">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span>EN</span>
+        </a>
         <button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -131,5 +139,24 @@
   <script src="assets/pages/maqamat/audio.js?v=20260418c"></script>
   <script src="assets/pages/maqamat/interactive-bootstrap.js?v=20260418c"></script>
   <script src="assets/pages/maqamat/interactive-enhancer.js?v=20260418c"></script>
+  <script>
+    (function () {
+      const mapToEnglishId = { bayati: 'bayat' };
+      const params = new URLSearchParams(window.location.search);
+      const lang = document.getElementById('lang-toggle-en');
+      if (!lang) return;
+
+      const out = new URLSearchParams();
+      const family = params.get('family');
+      const maqam = params.get('maqam');
+      const tonic = params.get('tonic');
+
+      if (family) out.set('family', mapToEnglishId[family] || family);
+      if (maqam) out.set('maqam', mapToEnglishId[maqam] || maqam);
+      if (tonic) out.set('tonic', tonic);
+
+      lang.href = `interactive-scale-en.html${out.toString() ? `?${out.toString()}` : ''}`;
+    })();
+  </script>
 </body>
 </html>
