@@ -1,0 +1,101 @@
+{
+  "id": "hijaz",
+  "family": "hijaz",
+  "title_ar": "حجاز",
+  "title_en": "Hijaz",
+  "latin": "Hijaz",
+  "hero_summary": "Hijaz is one of the core maqamat in Arabic music. AMAR describes it as the sixth maqam and explains that it can be understood in two ways: either as a Bayati with a raised third, or as a Sikah whose distance between the second and third has widened.",
+  "short_identity": "A maqam built on Jins Hijaz on Dukah (D), with a final repose on Dukah (D), a major upper center on Nawa (G), and multiple internal colorings in the upper region.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Hijaz on Dukah (D)",
+    "upper_jins": "It may move to Rast on the fourth, Nahawand on the fourth, or Hijaz in the jawab, with the possibility of a Bayati origin appearing in some formulations",
+    "character": "Moderate in expression; it carries dignity and charm, and can serve either joy or sorrow depending on context",
+    "common_start": "It usually begins by stabilizing Jins Hijaz on Dukah (D) before opening the upper region"
+  },
+  "sayr": {
+    "summary": "The practical sayr of Hijaz usually works like this: it begins from Dukah (D) and establishes Jins Hijaz clearly, so the listener should hear from the outset the tonic on Dukah, the special second as Sikah (E half-flat), and the Hijaz degree moving toward Nawa (G). After that, the natural expansion reaches Nawa (G), and from there the broader maqamic region may begin: either Rast on the fourth, Nahawand on the fourth, or the development toward Hijaz in the jawab, before the maqam finally returns to Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the final tonic and modal center, and AMAR states explicitly that Hijaz is settled on Dukah",
+      "Nawa (G): a very important upper center of repose, because the natural Hijaz jins extends to it and many modal expansions begin from it",
+      "Kardan (upper C): an important jawab station when the maqam expands above",
+      "Husayni (A): important in some paths, where an original Bayati flavor may appear from Husayni inside Maqam Hijaz"
+    ],
+    "motion_notes": [
+      "Traditional performers prefer to treat the second degree here as Sikah (E half-flat), not Kurd (E-flat)",
+      "The Hijaz degree itself lies between Jaharkah (F) and Nawa (G), but it is closer to Jaharkah",
+      "Hijaz is not well understood if reduced to a single jins only, because it has multiple internal routes",
+      "The mere presence of a Hijaz jins inside another maqam does not automatically mean we are in Maqam Hijaz itself"
+    ],
+    "common_path": [
+      "Stabilize Dukah (D) and Jins Hijaz clearly",
+      "Bring out Sikah (E half-flat) and then the Hijaz degree moving toward Nawa (G)",
+      "Ascend naturally to Nawa (G) and establish it",
+      "Color the upper region through Rast on the fourth, Nahawand on the fourth, or Hijaz in the jawab",
+      "Return clearly to Dukah (D) and cadence there"
+    ]
+  },
+  "common_modulations": [
+    "Rast on the fourth",
+    "Nahawand on the fourth",
+    "Hijaz in the jawab",
+    "Bayati on the original degree in some phrases or descending pathways",
+    "These are not always departures from Hijaz, but may belong to the maqam’s own internal network"
+  ],
+  "examples": [
+    {
+      "title": "Bashraf Hijaz",
+      "note": "A direct instrumental example of the maqam as AMAR presents it"
+    },
+    {
+      "title": "Ma Ihtiyali",
+      "note": "One of the most famous muwashshahat in Hijaz"
+    },
+    {
+      "title": "Taqsim Hijaz",
+      "artist": "Muhammad al-'Uqqad",
+      "note": "A clear taqsim example in this maqam"
+    },
+    {
+      "title": "Ya Nasim al-Saba Tahammal Salami",
+      "artist": "Shaykh Ali Mahmud / Sami al-Shawwa",
+      "note": "A major example of Hijaz and its branches in improvised dialogue"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Bashraf Hijaz",
+      "note": "A direct instrumental reference for the maqam"
+    },
+    {
+      "title": "Ma Ihtiyali",
+      "note": "A core vocal/muwashshah reference in Hijaz"
+    },
+    {
+      "title": "Taqsim Hijaz",
+      "artist": "Muhammad al-'Uqqad",
+      "note": "An important reference for hearing the original jins and the maqam’s expansion"
+    },
+    {
+      "title": "Ya Nasim al-Saba Tahammal Salami",
+      "artist": "Shaykh Ali Mahmud / Sami al-Shawwa",
+      "note": "A major improvised reference for Hijaz and its branches"
+    },
+    {
+      "title": "Adhan in Hijaz",
+      "note": "A very clear auditory example of Jins Hijaz and its expressive field"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Core maqam",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Core reference"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
