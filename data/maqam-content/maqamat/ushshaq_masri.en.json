@@ -1,0 +1,68 @@
+{
+  "id": "ushshaq_masri",
+  "family": "nahawand",
+  "title_ar": "عشّاق مصري",
+  "title_en": "Ushshaq Masri",
+  "latin": "Ushshaq Masri",
+  "hero_summary": "Nahawand Ushshaq Masri is not a widely current name today as a fully separate maqam from Nahawand. It is closer to an older Egyptian understanding in which Nahawand was tied to the family of Ushshaq, so that Nahawand was treated as one of its branches rather than as a fully separate original maqam.",
+  "short_identity": "Nahawand as understood in an older Egyptian school, where it is treated as a branch of the Arab Ushshaq maqam.",
+  "quick_facts": {
+    "karar": "The Nahawand tonic according to the chosen root",
+    "ghammaz": "Practically determined as in Nahawand",
+    "lower_jins": "Jins Nahawand on the root",
+    "upper_jins": "The usual Nahawand upper field, but inside an older Ushshaq-based classification",
+    "common_start": "In practice it begins as Nahawand begins, while the older Egyptian classification still places it under Ushshaq",
+    "character": "Nahawand in melodic substance, Ushshaq-based in older Egyptian classification"
+  },
+  "sayr": {
+    "summary": "In actual hearing and performance, what one hears here is the familiar material of Nahawand: it begins from Jins Nahawand on the root and expands through its usual field. But in older Egyptian historical understanding, this Nahawand was not separated from Maqam Ushshaq; rather, it was considered one of its branches. So the practical sayr is Nahawand, while the name is historical and classificatory.",
+    "resting_tones": [
+      "The Nahawand tonic according to the chosen root",
+      "The basic resting tones that function as they do in Nahawand",
+      "The upper field, which remains Nahawand in melodic substance"
+    ],
+    "motion_notes": [
+      "The difference here is historical and classificatory more than a sharp structural difference in scale or jins",
+      "In the old Egyptian understanding: Ushshaq is the parent, and Nahawand one of its branches",
+      "In modern understanding: it is treated simply as an independent Nahawand maqam",
+      "One must not confuse Arab Ushshaq in this sense with the Turkish use of Ushshaq, which may refer to something else"
+    ],
+    "common_path": [
+      "Stabilize the Nahawand material on the root",
+      "Move through the usual Nahawand field",
+      "Keep in mind that the older Egyptian classification linked it historically to the Ushshaq family",
+      "Return to the tonic as in Nahawand"
+    ]
+  },
+  "common_modulations": [
+    "It is not understood here as a structurally different maqam from Nahawand so much as an older Egyptian historical naming of it",
+    "The main difference is classificatory and historical, not that it possesses a clearly separate independent scale",
+    "In the older Egyptian school: Ushshaq is the parent, and Nahawand one of its branches",
+    "In common modern theory: it is simply grouped under Nahawand"
+  ],
+  "examples": [
+    "Dawr Kadani al-Hawa — Muhammad Uthman",
+    "Muwashshah Lamma Bada Yatathanna"
+  ],
+  "reference_recordings": [
+    {
+      "title": "Dawr Kadani al-Hawa — Muhammad Uthman",
+      "note": "AMAR explicitly describes it as Nahawand, one of the branches of Maqam Ushshaq"
+    },
+    {
+      "title": "Muwashshah Lamma Bada Yatathanna",
+      "note": "Also treated within the Egyptian Nahawand field historically linked to Ushshaq"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Nahawand family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
