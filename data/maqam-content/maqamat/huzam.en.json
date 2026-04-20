@@ -1,0 +1,70 @@
+{
+  "id": "huzam",
+  "family": "sikah",
+  "title_ar": "هزام",
+  "title_en": "Huzam",
+  "latin": "Huzam",
+  "hero_summary": "Huzam is an essential Arabic maqam of the Sikah family. It is centered on Sikah (E half-flat), and its personality appears through stabilizing that tonic and then expanding to Hijaz on Nawa (G) while the Sikah essence remains clearly present.",
+  "short_identity": "A principal branch of the Sikah family: Sikah at the tonic together with Hijaz on Nawa (G) in the most common Arabic formulation.",
+  "quick_facts": {
+    "karar": "Sikah (E half-flat)",
+    "ghammaz": "Nawa (G) as the most important upper resting tone in the most common formulation",
+    "lower_jins": "Jins Sikah on Sikah (E half-flat)",
+    "upper_jins": "Jins Hijaz on Nawa (G)",
+    "common_start": "It often begins by stabilizing Sikah at the tonic, then rises toward Nawa (G) to show the Hijaz in the jawab before returning",
+    "character": "Clearly Sikah-based in origin, charged with tension and expression when Hijaz on Nawa is brought out"
+  },
+  "sayr": {
+    "summary": "In Arabic vocal practice, the sayr of Huzam is often ascending-descending: it begins from Sikah (E half-flat) with a clear establishment of Jins Sikah, then expands upward toward Nawa (G), where Hijaz on Nawa appears, and after that gradually returns to the tonic with cadences that confirm the Sikah origin. This route is what gives the maqam its special tension: an intimate departure from Sikah, then a more emotionally charged peak at Hijaz, then a return to the tonic.",
+    "resting_tones": [
+      "Sikah (E half-flat): the tonic and auditory center of gravity of the maqam",
+      "Nawa (G): the most important upper resting tone because it is the place of the jawab Hijaz in the most common formulation",
+      "Dukah (D) and Jaharkah (F): important tones in ascent and descent depending on phrase shape, but they do not displace the centrality of Sikah"
+    ],
+    "motion_notes": [
+      "The personality of Huzam comes from the insistence on returning to Sikah (E half-flat), not merely from displaying Hijaz in the jawab",
+      "Hijaz on Nawa (G) must appear as an extension of Huzam, not as a complete move into an independent Hijaz maqam",
+      "Any disturbance in the intonation of Sikah at the tonic may push the listener toward another modal impression",
+      "Not every Sikah is Huzam, but every Huzam rests on a clearly Sikah-based logic"
+    ],
+    "common_path": [
+      "Stabilize Sikah (E half-flat) and Jins Sikah at the tonic",
+      "Ascend gradually through the middle region",
+      "Show Hijaz on Nawa (G)",
+      "Expand expressively in the jawab when needed",
+      "Return to the tonic on Sikah and confirm the Sikah foundation"
+    ]
+  },
+  "common_modulations": [
+    "Huzam is a branch of Sikah, not a maqam with an independent family",
+    "Its clearest difference from general Sikah is the crystallization of Hijaz on Nawa (G) above the Sikah base",
+    "It differs from Iraq, although both belong to the Sikah family, because Iraq in its common formulation does not rest on the same prominence of Hijaz on Nawa",
+    "There may be oral confusion between Huzam and some circulating Sikah labels, but the clearest theoretical definition remains: Sikah at the tonic plus Hijaz on Nawa",
+    "There is no sharp school disagreement over its basic identity, but rather over the extent of detailed expansions and ornaments in performance"
+  ],
+  "examples": [
+    "Dawr Imta al-Hawa",
+    "Mi‘aduna al-an ya Habibi"
+  ],
+  "reference_recordings": [
+    {
+      "title": "Dawr Imta al-Hawa",
+      "note": "Hasan Abbas cites it as an example of Maqam Huzam in Arabic modal explanation"
+    },
+    {
+      "title": "Mi‘aduna al-an ya Habibi — Muhammad ‘Abd al-Muttalib",
+      "note": "The source cites it as a composed example in Maqam Huzam within the Arabic vocal material"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Sikah family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
