@@ -1,0 +1,83 @@
+{
+  "id": "bayati_shuri",
+  "family": "bayati",
+  "title_ar": "بياتي شوري",
+  "title_en": "Bayati Shuri",
+  "latin": "Bayati Shuri",
+  "hero_summary": "Bayati Shuri is a secondary maqam of the Bayati family. It is not understood as merely Bayati with a passing Hijaz, but as a form in which Hijaz on the fourth becomes the dominant melodic route.",
+  "short_identity": "A Bayati-family branch built on Bayati on Dukah (D), with Hijaz on Jaharkah (F) as the melodically dominant jins.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Jaharkah (F)",
+    "lower_jins": "Jins Bayati on Dukah (D)",
+    "upper_jins": "Jins Hijaz on Jaharkah (F)",
+    "common_start": "It often begins by confirming the Bayati origin, then quickly turns to Hijaz on the fourth and establishes it",
+    "character": "Bayati in origin, but more tense and more explicit in the upper region because of the dominance of Hijaz on the fourth"
+  },
+  "sayr": {
+    "summary": "Bayati Shuri begins from Bayati on Dukah (D), but it does not remain long in the original Bayati field as ordinary Bayati would. Very quickly it turns to Hijaz on the fourth, on Jaharkah (F), and there the maqam’s principal character is formed. From that point the line may expand upward, and upper ajnas may appear according to the work, but the decisive sign of the maqam remains that Hijaz on the fourth is not a passing color, but the dominant jins in the sayr. At the end, it returns to Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the final tonic because it still belongs to the Bayati family",
+      "Jaharkah (F): the most important middle tone, because it carries the Hijaz jins that gives Shuri its identity",
+      "Nawa (G): it remains important within the expansion of Hijaz on the fourth and in the upper extension"
+    ],
+    "motion_notes": [
+      "In basic Bayati, Hijaz on the fourth may appear as a secondary or cadential jins, but in Bayati Shuri it is the dominant jins",
+      "The difference is not simply whether Hijaz on the fourth appears, but where it sits in the structure and how strongly it controls the route",
+      "If Hijaz on the fourth is treated as only a passing color, the ear remains in Bayati rather than Bayati Shuri",
+      "Arabic Shuri is not identical with the Turkish Karjighar, even if there may be historical overlap or classificatory ambiguity between them"
+    ],
+    "common_path": [
+      "Confirm the Bayati base on Dukah (D)",
+      "Move relatively quickly to Hijaz on the fourth at Jaharkah (F)",
+      "Stabilize Hijaz on the fourth as the melodic heart of the maqam",
+      "Expand upward according to the work and the context",
+      "Return clearly to Dukah (D)"
+    ]
+  },
+  "common_modulations": [
+    "Hijaz on Jaharkah (F) as the decisive and dominant jins",
+    "Upper ajnas such as Bayati 8 or Nahawand 7 may appear depending on the work",
+    "The mere presence of Hijaz on the fourth is not enough to identify Shuri; what matters is that it becomes melodically dominant",
+    "There is historical overlap or classificatory ambiguity with Karjighar, but Arabic Shuri is not identical with Karjighar itself"
+  ],
+  "examples": [
+    {
+      "title": "Sallamt Ruhak",
+      "artist": "Dawud Husni",
+      "note": "One of the clearest direct Arabic witnesses to Shuri as a Bayati form linked to Hijaz from the fourth"
+    },
+    {
+      "title": "Dayya‘t Mustaqbal Hayati",
+      "artist": "Sayyid Darwish",
+      "note": "Another documented Arabic example of this maqam"
+    }
+  ],
+  "reference_recordings": [
+    {
+      "title": "Sallamt Ruhak",
+      "artist": "Dawud Husni",
+      "note": "A basic reference for understanding Bayati Shuri in direct Arabic repertoire"
+    },
+    {
+      "title": "Dayya‘t Mustaqbal Hayati",
+      "artist": "Sayyid Darwish",
+      "note": "An important reference for hearing the dominance of Hijaz on the fourth inside a clear Bayati framework"
+    },
+    {
+      "title": "Analyses of Bayati Shuri",
+      "note": "They show that the maqam is not one single frozen formula through history, but has alternative routes, some of which have receded or disappeared"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Bayati family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
