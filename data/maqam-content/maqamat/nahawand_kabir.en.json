@@ -5,17 +5,17 @@
   "title_en": "Nahawand Kabir",
   "latin": "Nahawand Kabir",
   "hero_summary": "Nahawand Kabir is a branch of the Nahawand family. It is very close to Nahawand in the general lower trunk, but differs from it in the upper region, especially in the treatment of the sixth and seventh degrees.",
-  "short_identity": "A Nahawand-family branch that begins in a Nahawand way, then shows its distinction in the jawab through the wider interval between the sixth and seventh.",
+  "short_identity": "A Nahawand-family branch that begins in a Nahawand way, then shows its distinction in the upper register through the wider interval between the sixth and seventh.",
   "quick_facts": {
     "karar": "The root on which Nahawand is transposed, often Rast (C) in common teaching explanations",
     "ghammaz": "Nawa (G)",
     "lower_jins": "Jins Nahawand on the root",
     "upper_jins": "An upper region differing from small Nahawand because of the form of the sixth and seventh",
     "common_start": "It usually begins by stabilizing Nahawand on the root, then opens the upper region in its own specific form",
-    "character": "Nahawand in the beginning, but broader and more explicit in the جواب than small Nahawand"
+    "character": "Nahawand in the beginning, but broader and more explicit in the upper register than small Nahawand"
   },
   "sayr": {
-    "summary": "The nearest practical sayr of Nahawand Kabir begins from Jins Nahawand on the root, establishing the tonic and the lower trunk as in ordinary Nahawand. But when it expands upward, it does not remain in the upper form of small Nahawand. Instead, it reveals the upper difference that distinguishes Nahawand Kabir, namely the pattern in which the interval between the sixth and seventh becomes wider and gives the maqam a broader feel in the جواب. The line then returns in the end to the Nahawand tonic.",
+    "summary": "The nearest practical sayr of Nahawand Kabir begins from Jins Nahawand on the root, establishing the tonic and the lower trunk as in ordinary Nahawand. But when it expands upward, it does not remain in the upper form of small Nahawand. Instead, it reveals the upper difference that distinguishes Nahawand Kabir, namely the pattern in which the interval between the sixth and seventh becomes wider and gives the maqam a broader feel in the upper register. The line then returns in the end to the Nahawand tonic.",
     "resting_tones": [
       "The tonic on which Nahawand is transposed, often Rast (C)",
       "Nawa (G): the fifth and the main point of expansion inside the family",
@@ -23,7 +23,7 @@
     ],
     "motion_notes": [
       "Nahawand Kabir is neither Nahawand Kurdi nor Nahawand Murassa",
-      "Its decisive difference is not Kurd on the fifth nor Hijaz on the fourth, but the structure of the jawab",
+      "Its decisive difference is not Kurd on the fifth nor Hijaz on the fourth, but the structure of the upper register",
       "The real difference appears in the ascent at the sixth and seventh degrees",
       "The final tonic remains Nahawand despite the change in the upper region"
     ],
@@ -36,17 +36,17 @@
     ]
   },
   "common_modulations": [
-    "The essential difference appears in the جواب, not in the first lower trunk",
+    "The essential difference appears in the upper register, not in the first lower trunk",
     "If the upper region remains in the form of small Nahawand, the special identity of Nahawand Kabir is lost",
     "It is a branch that shares the first scale-segment with Nahawand, then differs from it in the completion of the maqam",
     "Its name comes from the fact that the interval between the sixth and seventh is larger than in the form of small Nahawand"
   ],
   "examples": [
-    "Muwashshah in Nahawand Kabir — Mustafa Bek رضا"
+    "Muwashshah in Nahawand Kabir — Mustafa Bek Rida"
   ],
   "reference_recordings": [
     {
-      "title": "Muwashshah in Nahawand Kabir — Mustafa Bek رضا",
+      "title": "Muwashshah in Nahawand Kabir — Mustafa Bek Rida",
       "note": "From the 1932 Congress of Arab Music recordings; an important witness that Nahawand Kabir was used in archived material, not merely as a theoretical name"
     }
   ],
