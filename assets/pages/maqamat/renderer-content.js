@@ -17,15 +17,20 @@
         rest: 'Resting tones',
         motion: 'Motion tones',
         mods: 'Where the maqam goes',
-        songs: 'Songs and pieces',
-        songsPlaceholder: 'Songs and instrumental examples for this maqam will be added here later.',
+        songs: 'Examples from the sheet library',
+        songsPlaceholder: 'No sheet-library examples have been linked to this maqam yet.',
         videos: 'Video examples',
         videosPlaceholder: 'Video examples for this maqam will be added here later.',
         references: 'Sources and references',
         referencesPlaceholder: 'Sources and references for this maqam will be added here later.',
         video: 'Video',
         audio: 'Audio',
-        link: 'Link'
+        link: 'Link',
+        openSheet: 'Open sheet',
+        singer: 'Singer',
+        composer: 'Composer',
+        tonics: 'Available keys',
+        instrumental: 'Instrumental'
       };
     }
     return {
@@ -35,15 +40,20 @@
       rest: 'درجات الارتكاز',
       motion: 'درجات الحركة',
       mods: 'أين يذهب المقام',
-      songs: 'أغاني وقطع',
-      songsPlaceholder: 'ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.',
+      songs: 'أمثلة من مكتبة النوتات',
+      songsPlaceholder: 'لا توجد بعد أمثلة مرتبطة من مكتبة النوتات لهذا المقام.',
       videos: 'أمثلة مرئية / فيديو',
       videosPlaceholder: 'ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.',
       references: 'مصادر ومراجع',
       referencesPlaceholder: 'ستُضاف المصادر والمراجع لهذا المقام لاحقًا.',
       video: 'فيديو',
       audio: 'صوت',
-      link: 'رابط'
+      link: 'رابط',
+      openSheet: 'فتح النوتة',
+      singer: 'المؤدي',
+      composer: 'الملحن',
+      tonics: 'الطبقات المتوفرة',
+      instrumental: 'آلة / قطعة موسيقية'
     };
   }
 
@@ -137,14 +147,115 @@
     return '';
   }
 
+  function normalizeCompareValue(v) {
+    return String(v || '')
+      .trim()
+      .toLowerCase()
+      .replace(/[_\-]+/g, ' ')
+      .replace(/\s+/g, ' ');
+  }
+
+  function getCurrentMaqamCandidates(lang) {
+    const candidates = new Set();
+    const maqamId = ns && ns.state ? ns.state.maqamId : null;
+    if (!maqamId) return candidates;
+
+    const addMaqamValues = (maqam) => {
+      if (!maqam) return;
+      [maqam.id, maqam.name, maqam.latin].forEach((value) => {
+        const normalized = normalizeCompareValue(value);
+        if (normalized) candidates.add(normalized);
+      });
+    };
+
+    if (typeof getMaqamById === 'function') {
+      addMaqamValues(getMaqamById(maqamId));
+    }
+    if (typeof getEnglishMaqamById === 'function') {
+      addMaqamValues(getEnglishMaqamById(maqamId));
+    }
+
+    if (lang === 'ar' && maqamId === 'bayati') candidates.add(normalizeCompareValue('بيات'));
+    if (lang === 'en' && maqamId === 'bayati') candidates.add(normalizeCompareValue('bayat'));
+
+    return candidates;
+  }
+
+  function getSheetField(sheet, lang, field) {
+    if (!sheet || !field) return '';
+    if (lang === 'en') {
+      const enKey = `${field}_en`;
+      if (sheet[enKey]) return sheet[enKey];
+    }
+    return sheet[field] || '';
+  }
+
+  function collectLibraryExamples() {
+    const lang = getPageLanguage();
+    const t = getUiText();
+    const allSheets = Array.isArray(window.sheets) ? window.sheets : [];
+    const maqamCandidates = getCurrentMaqamCandidates(lang);
+    if (!allSheets.length || !maqamCandidates.size) return [];
+
+    const grouped = new Map();
+
+    allSheets.forEach((sheet) => {
+      if (!sheet || sheet.system !== 'arabic') return;
+      const sheetMaqam = normalizeCompareValue(getSheetField(sheet, lang, 'maqam'));
+      if (!sheetMaqam || !maqamCandidates.has(sheetMaqam)) return;
+
+      const title = getSheetField(sheet, lang, 'title');
+      const performer = getSheetField(sheet, lang, 'performer');
+      const composer = getSheetField(sheet, lang, 'composer');
+      const tonic = getSheetField(sheet, lang, 'tonic');
+      const pdf = sheet.pdf || '';
+      const groupKey = [normalizeCompareValue(title), normalizeCompareValue(performer), normalizeCompareValue(composer)].join('|');
+
+      if (!grouped.has(groupKey)) {
+        grouped.set(groupKey, {
+          title,
+          performer,
+          composer,
+          tonics: [],
+          pdf,
+          type: sheet.type || ''
+        });
+      }
+
+      const entry = grouped.get(groupKey);
+      if (tonic && !entry.tonics.includes(tonic)) entry.tonics.push(tonic);
+      if (!entry.pdf && pdf) entry.pdf = pdf;
+    });
+
+    return Array.from(grouped.values()).map((entry) => {
+      const metaParts = [];
+      if (entry.performer) {
+        metaParts.push(`${t.singer}: ${entry.performer}`);
+      } else if (entry.type === 'instrumental') {
+        metaParts.push(t.instrumental);
+      }
+      if (entry.composer) metaParts.push(`${t.composer}: ${entry.composer}`);
+      const note = entry.tonics.length ? `${t.tonics}: ${entry.tonics.join('، ')}` : '';
+      return {
+        title: entry.title,
+        performer: metaParts.join(' — '),
+        note,
+        sheet_url: entry.pdf,
+        link_label: t.openSheet
+      };
+    });
+  }
+
   function buildExampleActions(item) {
     const t = getUiText();
     const video = pickFirstUrl(item, ['video_url', 'video', 'youtube', 'youtube_url']);
     const audio = pickFirstUrl(item, ['audio_url', 'audio', 'recording_url']);
+    const sheetUrl = pickFirstUrl(item, ['sheet_url', 'pdf']);
     const link = pickFirstUrl(item, ['url', 'link', 'href']);
     const a = [];
     if (video) a.push(`<a class="maqam-example-action" href="${escapeHtml(video)}" target="_blank" rel="noopener noreferrer">${t.video}</a>`);
     if (audio) a.push(`<a class="maqam-example-action" href="${escapeHtml(audio)}" target="_blank" rel="noopener noreferrer">${t.audio}</a>`);
+    if (sheetUrl) a.push(`<a class="maqam-example-action" href="${escapeHtml(sheetUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.link_label || t.openSheet)}</a>`);
     if (link) a.push(`<a class="maqam-example-action" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${t.link}</a>`);
     return a.join('');
   }
@@ -162,7 +273,8 @@
 
   function createExamplesCard(model) {
     const t = getUiText();
-    const items = model && (model.examples || model.listening_examples || model.repertoire_examples);
+    const libraryItems = collectLibraryExamples();
+    const items = libraryItems.length ? libraryItems : (model && (model.examples || model.listening_examples || model.repertoire_examples));
     const m = createExamplesMarkup(items);
     const body = m || createPlaceholderBody(t.songsPlaceholder);
     return createContentCard(t.songs, body, !m);
