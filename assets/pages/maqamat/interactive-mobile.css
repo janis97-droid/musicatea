@@ -1,5 +1,22 @@
 /* Mobile-only overrides for interactive maqam scale */
+.mobile-maqamat-bar {
+  display: none;
+}
+
 @media (max-width: 768px) {
+  .mobile-maqamat-bar {
+    display: block;
+    padding: 14px 16px 0;
+  }
+
+  .mobile-maqamat-bar .mobile-toggle {
+    display: inline-flex;
+  }
+
+  .nav-actions .mobile-toggle {
+    display: none;
+  }
+
   .maqam-hero {
     padding: 18px 14px 16px;
   }
@@ -121,6 +138,10 @@
 }
 
 @media (max-width: 420px) {
+  .mobile-maqamat-bar {
+    padding: 12px 12px 0;
+  }
+
   .maqam-hero {
     padding: 16px 12px 14px;
   }
