@@ -203,6 +203,10 @@
     if (mainPanel) mainPanel.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function closeSidebar() {
+    if (sidebar) sidebar.classList.remove('open');
+  }
+
   function buildNormalizedUrl() {
     const url = new URL(window.location.href);
     url.searchParams.set('family', ns.state.familyId);
@@ -252,6 +256,7 @@
     ns.state.lastAudioErrorToken = null;
     ns.renderer.renderAll();
     syncUrl();
+    closeSidebar();
     scrollMainToTop();
   }
 
