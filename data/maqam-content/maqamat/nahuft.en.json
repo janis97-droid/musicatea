@@ -1,0 +1,62 @@
+{
+  "id": "nahuft",
+  "family": "bayati",
+  "title_ar": "نهفت",
+  "title_en": "Nahuft",
+  "latin": "Nahuft",
+  "hero_summary": "Nahuft is understood here in the form built on Bayati on Husayni (A), followed by Ajam on Muhayyar (upper D). But one should note that Nahuft is one of the maqamat whose definition differs across schools and sources, and this is one documented form among several, not the only one.",
+  "short_identity": "A branch of the Bayati family built on Bayati on Husayni (A), then Ajam on Muhayyar (upper D).",
+  "quick_facts": {
+    "karar": "Husayni (A)",
+    "ghammaz": "Muhayyar (upper D)",
+    "lower_jins": "Jins Bayati on Husayni (A)",
+    "upper_jins": "Jins Ajam on Muhayyar (upper D)",
+    "common_start": "It often begins by stabilizing Bayati on Husayni (A), then rises to the Ajam of the jawab",
+    "character": "Warm and Bayati in origin, then brighter in the jawab because of the upper Ajam"
+  },
+  "sayr": {
+    "summary": "In this form, Nahuft begins from Bayati on Husayni (A) and clearly establishes the Bayati character, then rises toward Muhayyar (upper D), where the upper Ajam becomes clear. After that, the maqam may expand in the higher region, then descend again to close on Husayni (A) or to reconfirm that center. Its identity in this form therefore rests on a Bayati foundation on A together with an Ajam jawab on upper D.",
+    "resting_tones": [
+      "Husayni (A): the tonic or starting center in this form",
+      "Muhayyar (upper D): the most important secondary resting point because it is the place of the upper Ajam",
+      "The return to Husayni (A): necessary for re-establishing the color and the cadence"
+    ],
+    "motion_notes": [
+      "This form is valid within a clear school, but it is not the only circulating definition of Nahuft",
+      "Some sources mention instead of upper Ajam: Rast on Muhayyar, or Nahawand, or Hijaz above",
+      "The upper Ajam should not be introduced before the listener has heard the Bayati basis on Husayni (A)",
+      "If the upper branch turns into Rast or Hijaz, one has left this specific form of Nahuft"
+    ],
+    "common_path": [
+      "Stabilize Bayati on Husayni (A)",
+      "Ascend to Muhayyar (upper D)",
+      "Show the upper Ajam clearly",
+      "Expand in the upper region when needed",
+      "Return to Husayni (A)"
+    ]
+  },
+  "common_modulations": [
+    "Ajam on Muhayyar (upper D) as the upper branch in this form",
+    "Some schools mention Rast, Nahawand, or Hijaz in the jawab instead of Ajam",
+    "What distinguishes this form is that it is neither ordinary Bayati nor pure Husayni, but Bayati on A together with Ajam on upper D",
+    "The analytical value here lies in defining the intended form precisely, rather than assuming that the name has one fixed meaning in every school"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no strongly documented repertoire examples for this exact form",
+      "note": "The available material here is clearer in defining the structural form than in providing a set of famous Arabic works agreed upon across sources"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Bayati family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
