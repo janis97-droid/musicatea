@@ -1,0 +1,62 @@
+{
+  "id": "bayatin",
+  "family": "bayati",
+  "title_ar": "بياتين",
+  "title_en": "Bayatin",
+  "latin": "Bayatin",
+  "hero_summary": "Bayatin is a branch of the Bayati family, and the most important thing that defines it is that the maqam is built on Bayati at the root together with a second Bayati on the fifth. For that reason it is not understood from its scale alone, but from the establishment of the secondary Bayati on Nawa (G).",
+  "short_identity": "A Bayati-family branch built on Bayati on Dukah (D), with Bayati on Nawa (G) as its most important secondary jins.",
+  "quick_facts": {
+    "karar": "Dukah (D)",
+    "ghammaz": "Nawa (G)",
+    "lower_jins": "Jins Bayati on Dukah (D)",
+    "upper_jins": "Jins Bayati on Nawa (G)",
+    "common_start": "It often begins by stabilizing the original Bayati, then rises to the fifth to confirm the secondary Bayati",
+    "character": "Clearly Bayati below, and even richer in Bayati color above because of the presence of a second Bayati"
+  },
+  "sayr": {
+    "summary": "Bayatin begins from Jins Bayati on Dukah (D), clearly establishing the tonic and the sound of the lower Bayati. After that it rises to Nawa (G), but instead of opening Rast, Hijaz, or Kurd in the upper region, it establishes a second Bayati on the fifth. There the true color of the maqam is confirmed. The route may then extend into the jawab, before it finally returns to Dukah (D).",
+    "resting_tones": [
+      "Dukah (D): the final tonic because it belongs to the Bayati family",
+      "Nawa (G): the most important secondary point of repose, because the second Bayati begins there and distinguishes Bayatin",
+      "Muhayyar (upper D): a natural upper jawab summit when Bayati on the fifth expands further"
+    ],
+    "motion_notes": [
+      "The distinguishing sign of Bayatin is not merely a general Bayati color, but the actual presence of two Bayatis inside the structure",
+      "If Hijaz opens in the upper branch, the ear moves toward Bayati Shuri",
+      "If Rast is opened for a long span above, the feeling returns toward routes of basic Bayati or Husayni",
+      "The available documentation here is stronger in structural definition than in famous repertoire examples"
+    ],
+    "common_path": [
+      "Stabilize Bayati on Dukah (D)",
+      "Ascend gradually to Nawa (G)",
+      "Establish the secondary Bayati on the fifth",
+      "Expand into the jawab when needed",
+      "Return clearly to Dukah (D)"
+    ]
+  },
+  "common_modulations": [
+    "Bayati on Nawa (G) as the jins that distinguishes the maqam",
+    "If Hijaz dominates in the upper branch, the ear moves toward Bayati Shuri",
+    "If Rast dominates in the upper branch, the ear moves back toward basic Bayati or Husayni",
+    "Some practical explanations link it structurally to Bayati al-‘Ushayran or Husayni ‘Ushayran, but this is less strongly documented than the basic definition itself"
+  ],
+  "examples": [],
+  "reference_recordings": [
+    {
+      "title": "At this stage there are no strongly documented Arabic repertoire examples",
+      "note": "The available cross-checked material is clearer in theoretical structure and practical explanation than in a list of famous agreed-upon works"
+    }
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Bayati family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
