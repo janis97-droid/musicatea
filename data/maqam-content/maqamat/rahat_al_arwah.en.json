@@ -1,0 +1,85 @@
+{
+  "id": "rahat_al_arwah",
+  "family": "sikah",
+  "title_ar": "راحة الأرواح",
+  "title_en": "Rahat al-Arwah",
+  "latin": "Rahat al-Arwah",
+  "hero_summary": "Rahat al-Arwah is a branch of the Sikah family, known for widening the melodic field of the family and creating a broader upper region while the Sikah tonic remains present.",
+  "short_identity": "A Sikah-family branch that broadens the jawab and upper region while retaining the essence of the Sikah tonic.",
+  "quick_facts": {
+    "karar": "The tonic according to the chosen root",
+    "ghammaz": "Its importance varies according to the practical route",
+    "lower_jins": "Jins Sikah",
+    "upper_jins": "A broader upper region",
+    "character": "Subtle, spacious, and more open",
+    "common_start": "It begins by stabilizing the tonic, then opens the jawab"
+  },
+  "what_is_it": "This branch is understood inside the Sikah family as a maqam that preserves the essence of the Sikah tonic, but develops a broader upper region and a more open route.",
+  "jins_architecture": {
+    "lower": {
+      "name": "Jins Sikah",
+      "starts_on": "The chosen tonic",
+      "description": "The lower Sikah jins remains the basis that ties this branch to the family."
+    },
+    "upper": {
+      "name": "Broad upper region",
+      "starts_on": "After the tonic has been stabilized",
+      "description": "Its personality appears through the breadth of the upper region and the prominence of the jawab."
+    },
+    "transition_note": "The difference from basic Sikah appears when the jawab opens and the upper region widens."
+  },
+  "sayr": {
+    "summary": "It confirms the tonic first, then opens a broader upper route before returning to reaffirm family belonging.",
+    "resting_tones": [
+      "The tonic",
+      "Resting points within the lower jins",
+      "Upper stations with a broader presence"
+    ],
+    "motion_notes": [
+      "The difference from Sikah is determined through the widening of the upper region",
+      "One should listen to how the jawab is opened and how the return from it is handled"
+    ],
+    "common_path": [
+      "Stabilize the tonic",
+      "Move through the middle region",
+      "Reveal the upper expansion",
+      "Return and confirm the tonic"
+    ]
+  },
+  "transpose_explainer": "When this branch is transposed to another root, the interval logic and the functions of the tones that give it its identity inside the Sikah family must be preserved.",
+  "historical_notes": [
+    "This branch is understood through its relation to the parent maqam and its difference from it in the upper region."
+  ],
+  "school_differences": [
+    "Its explanation may differ according to school or reference."
+  ],
+  "related_maqamat": [
+    "sikah",
+    "huzam",
+    "iraq",
+    "awj_iraq",
+    "basta_nikar",
+    "mustaar",
+    "farahnak",
+    "shaar",
+    "rahat_faza"
+  ],
+  "common_confusions": [
+    "Listing note names alone is not enough to understand this branch; one must pay attention to movement and points of repose."
+  ],
+  "listening_notes": [
+    "Begin by comparing it with basic Sikah.",
+    "Notice how the jawab widens."
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Sikah family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
