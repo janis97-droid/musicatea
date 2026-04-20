@@ -1,0 +1,84 @@
+{
+  "id": "husayni",
+  "family": "bayati",
+  "title_ar": "حسيني",
+  "title_en": "Husayni",
+  "latin": "Husayni",
+  "hero_summary": "Husayni is a branch close to Bayati, and its personality appears through its points of repose and practical vocal use more than through a radical change in the lower foundation.",
+  "short_identity": "A Bayati-family branch with a clear vocal presence, whose identity is determined by points of repose and melodic route in the upper region.",
+  "quick_facts": {
+    "karar": "The tonic according to the chosen root",
+    "ghammaz": "Its importance is determined by the practical sayr",
+    "lower_jins": "Jins Bayati in the basic structure",
+    "upper_jins": "An upper coloring close to the family, but with its own special points of repose",
+    "character": "Vocal, warm, and close to Bayati while retaining its own route",
+    "common_start": "It usually begins by stabilizing the Bayati base, then shows its personality through repose and movement"
+  },
+  "what_is_it": "Husayni is read inside the Bayati family as a branch that keeps a strong connection to the parent maqam, but gains its own personality through points of repose, the jawab, and practical use in singing.",
+  "jins_architecture": {
+    "lower": {
+      "name": "Jins Bayati",
+      "starts_on": "The chosen tonic",
+      "description": "The lower Bayati jins remains the basis that ties this branch to the Bayati family."
+    },
+    "upper": {
+      "name": "An upper region with a special repose pattern",
+      "starts_on": "Usually after the lower jins has been stabilized",
+      "description": "The personality of Husayni appears through the way the upper region settles and moves more than through a radical structural alteration."
+    },
+    "transition_note": "The difference between Husayni and Bayati appears in points of repose and sayr, not in merely listing the notes."
+  },
+  "sayr": {
+    "summary": "Husayni first confirms the Bayati base, then crystallizes its identity through an upper route built around special points of repose, before returning to confirm the tonic.",
+    "resting_tones": [
+      "The tonic",
+      "Resting points inside the lower jins",
+      "Upper stations that have a special function in this branch"
+    ],
+    "motion_notes": [
+      "The difference from Bayati is determined through the points of repose in the upper region",
+      "One should listen to the jawab and to the way the return is handled"
+    ],
+    "common_path": [
+      "Stabilize the Bayati base",
+      "Move through the middle region",
+      "Reveal the upper repose pattern specific to Husayni",
+      "Return and confirm the tonic"
+    ]
+  },
+  "transpose_explainer": "When this branch is transposed to another root, the interval logic and the functions of the tones that give it its identity inside the Bayati family must be preserved. The written form, accidentals, and notational range may change, but the difference between this branch and Bayati must remain audible in repose and sayr.",
+  "historical_notes": [
+    "Bayati branches are commonly explained in modern teaching through their relation to the parent maqam and their difference from it in the upper region.",
+    "This branch is tied in practice to vocal use and to its repose pattern more than to a purely scalar description."
+  ],
+  "school_differences": [
+    "The naming and explanation of this branch may differ according to school or reference.",
+    "Some traditions emphasize practical repose, while others emphasize structural analysis."
+  ],
+  "related_maqamat": [
+    "bayati",
+    "bayati_shuri",
+    "muhayyar",
+    "bayatin",
+    "nahuft"
+  ],
+  "common_confusions": [
+    "Listing note names alone is not enough to understand this branch; one must pay attention to repose, movement, and upper coloring.",
+    "Similarity in the lower jins to Bayati does not mean complete maqamic identity."
+  ],
+  "listening_notes": [
+    "Begin by comparing it with basic Bayati.",
+    "Watch the points of stability in the upper region."
+  ],
+  "ui_notes": {
+    "hero_badge": "Branch of the Bayati family",
+    "featured_color_mode": "gold-blue",
+    "difficulty_level": "Family branch"
+  },
+  "references": [
+    "ref-cairo-1932",
+    "ref-mishaqa",
+    "ref-inside-arabic-music",
+    "ref-touma"
+  ]
+}
