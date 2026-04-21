@@ -232,15 +232,17 @@
           title,
           performer,
           composer,
-          tonics: [],
-          pdf,
+          versions: [],
           type: sheet.type || ''
         });
       }
 
       const entry = grouped.get(groupKey);
-      if (tonic && !entry.tonics.includes(tonic)) entry.tonics.push(tonic);
-      if (!entry.pdf && pdf) entry.pdf = pdf;
+      const versionKey = `${normalizeCompareValue(tonic)}|${pdf}`;
+      const exists = entry.versions.some((v) => `${normalizeCompareValue(v.tonic)}|${v.sheet_url}` === versionKey);
+      if (!exists && pdf) {
+        entry.versions.push({ tonic, sheet_url: pdf, link_label: tonic || t.openSheet });
+      }
     });
 
     return Array.from(grouped.values()).map((entry) => {
@@ -251,15 +253,15 @@
         metaParts.push(t.instrumental);
       }
       if (entry.composer) metaParts.push(`${t.composer}: ${entry.composer}`);
-      const note = entry.tonics.length
-        ? `${t.tonics}: ${entry.tonics.join(lang === 'en' ? ', ' : '، ')}`
+      const tonicNames = entry.versions.map((v) => v.tonic).filter(Boolean);
+      const note = tonicNames.length > 1
+        ? `${t.tonics}: ${tonicNames.join(lang === 'en' ? ', ' : '، ')}`
         : '';
       return {
         title: entry.title,
         performer: metaParts.join(' — '),
         note,
-        sheet_url: entry.pdf,
-        link_label: t.openSheet
+        versions: entry.versions
       };
     });
   }
@@ -268,14 +270,24 @@
     const t = getUiText();
     const video = pickFirstUrl(item, ['video_url', 'video', 'youtube', 'youtube_url']);
     const audio = pickFirstUrl(item, ['audio_url', 'audio', 'recording_url']);
-    const sheetUrl = pickFirstUrl(item, ['sheet_url', 'pdf']);
     const link = pickFirstUrl(item, ['url', 'link', 'href']);
-    const a = [];
-    if (video) a.push(`<a class="maqam-example-action" href="${escapeHtml(video)}" target="_blank" rel="noopener noreferrer">${t.video}</a>`);
-    if (audio) a.push(`<a class="maqam-example-action" href="${escapeHtml(audio)}" target="_blank" rel="noopener noreferrer">${t.audio}</a>`);
-    if (sheetUrl) a.push(`<a class="maqam-example-action" href="${escapeHtml(sheetUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.link_label || t.openSheet)}</a>`);
-    if (link) a.push(`<a class="maqam-example-action" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${t.link}</a>`);
-    return a.join('');
+    const actions = [];
+
+    if (Array.isArray(item.versions) && item.versions.length) {
+      item.versions.forEach((version) => {
+        if (!version || !version.sheet_url) return;
+        const label = version.tonic ? `${t.openSheet} (${version.tonic})` : t.openSheet;
+        actions.push(`<a class="maqam-example-action" href="${escapeHtml(version.sheet_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
+      });
+    } else {
+      const sheetUrl = pickFirstUrl(item, ['sheet_url', 'pdf']);
+      if (sheetUrl) actions.push(`<a class="maqam-example-action" href="${escapeHtml(sheetUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.link_label || t.openSheet)}</a>`);
+    }
+
+    if (video) actions.push(`<a class="maqam-example-action" href="${escapeHtml(video)}" target="_blank" rel="noopener noreferrer">${t.video}</a>`);
+    if (audio) actions.push(`<a class="maqam-example-action" href="${escapeHtml(audio)}" target="_blank" rel="noopener noreferrer">${t.audio}</a>`);
+    if (link) actions.push(`<a class="maqam-example-action" href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer">${t.link}</a>`);
+    return actions.join('');
   }
 
   function createExamplesMarkup(items) {
