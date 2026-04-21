@@ -6,11 +6,15 @@ function getHistoryUiStrings() {
   return isEnglish
     ? {
         figuresLabel: 'Figures associated with this era',
-        fallbackDescription: 'One of the figures associated with this musical era.'
+        fallbackDescription: 'One of the figures associated with this musical era.',
+        relatedSheetsLabel: 'From the sheet library',
+        openSheet: 'Open sheet'
       }
     : {
         figuresLabel: 'الشخصيات المرتبطة بهذه الحقبة',
-        fallbackDescription: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.'
+        fallbackDescription: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.',
+        relatedSheetsLabel: 'من مكتبة النوتات',
+        openSheet: 'فتح النوتة'
       };
 }
 
@@ -31,6 +35,82 @@ function normalizeHistoryFigure(figure) {
     years: figure?.years || '',
     description: figure?.description || ui.fallbackDescription
   };
+}
+
+function normalizeHistoryMatchValue(value) {
+  return String(value || '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
+    .replace(/[أإآٱ]/g, 'ا')
+    .replace(/ى/g, 'ي')
+    .replace(/ة/g, 'ه')
+    .replace(/ؤ/g, 'و')
+    .replace(/ئ/g, 'ي')
+    .replace(/طُوَيْس/g, 'طويس')
+    .replace(/[\-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function getHistoryAliasCanonical(value) {
+  if (typeof resolveHistoryAlias === 'function') {
+    return resolveHistoryAlias(value);
+  }
+  return value;
+}
+
+function getRelatedSheetLinksForFigure(figureName) {
+  const allSheets = Array.isArray(globalThis.sheets) ? globalThis.sheets : [];
+  if (!allSheets.length) return [];
+
+  const isEnglish = document.documentElement.lang === 'en' || document.body?.dir === 'ltr';
+  const requestedRaw = normalizeHistoryMatchValue(figureName);
+  const requestedCanonical = normalizeHistoryMatchValue(getHistoryAliasCanonical(figureName));
+  const seen = new Set();
+
+  return allSheets
+    .filter((sheet) => sheet && sheet.system === 'arabic')
+    .filter((sheet) => {
+      const values = [sheet.composer, sheet.composer_en, sheet.performer, sheet.performer_en].filter(Boolean);
+      return values.some((value) => {
+        const raw = normalizeHistoryMatchValue(value);
+        const canonical = normalizeHistoryMatchValue(getHistoryAliasCanonical(value));
+        return raw === requestedRaw || raw === requestedCanonical || canonical === requestedRaw || canonical === requestedCanonical;
+      });
+    })
+    .filter((sheet) => {
+      const key = `${sheet.title || ''}|${sheet.pdf || ''}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .map((sheet) => ({
+      title: isEnglish ? (sheet.title_en || sheet.title || '') : (sheet.title || sheet.title_en || ''),
+      pdf: sheet.pdf || '',
+      tonic: isEnglish ? (sheet.tonic_en || sheet.tonic || '') : (sheet.tonic || sheet.tonic_en || '')
+    }))
+    .filter((sheet) => sheet.title && sheet.pdf);
+}
+
+function createRelatedSheetTagsMarkup(figureName) {
+  const ui = getHistoryUiStrings();
+  const links = getRelatedSheetLinksForFigure(figureName);
+  if (!links.length) return '';
+
+  const tags = links.map((sheet) => {
+    const label = escapeHistoryHtml(sheet.title);
+    const hint = sheet.tonic ? `<span class="history-related-sheet-tonic">${escapeHistoryHtml(sheet.tonic)}</span>` : '';
+    return `<a class="history-related-sheet-tag" href="${escapeHistoryHtml(sheet.pdf)}" target="_blank" rel="noopener noreferrer" title="${escapeHistoryHtml(ui.openSheet)}">${label}${hint}</a>`;
+  }).join('');
+
+  return `
+    <div class="history-related-sheets-block">
+      <div class="history-related-sheets-label">${escapeHistoryHtml(ui.relatedSheetsLabel)}</div>
+      <div class="history-related-sheets-tags">${tags}</div>
+    </div>
+  `;
 }
 
 function createHistorySection(h, index) {
@@ -68,6 +148,7 @@ function createHistorySection(h, index) {
             </div>
           </div>
           <p class="history-figure-description"></p>
+          <div class="history-figure-related"></div>
         </div>
       </div>
     `
@@ -123,6 +204,7 @@ function selectHistoryFigure(btn) {
   block.querySelector('.history-figure-name').textContent = name;
   block.querySelector('.history-figure-meta').textContent = metaParts.join(' — ');
   block.querySelector('.history-figure-description').textContent = description;
+  block.querySelector('.history-figure-related').innerHTML = createRelatedSheetTagsMarkup(name);
   panel.hidden = false;
 }
 
