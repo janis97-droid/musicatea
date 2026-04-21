@@ -23,6 +23,55 @@ function getHistoryPageStrings() {
       };
 }
 
+function normalizeHistoryLookupValue(value) {
+  return String(value || '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
+    .replace(/[أإآٱ]/g, 'ا')
+    .replace(/ى/g, 'ي')
+    .replace(/ة/g, 'ه')
+    .replace(/ؤ/g, 'و')
+    .replace(/ئ/g, 'ي')
+    .replace(/طُوَيْس/g, 'طويس')
+    .replace(/[\-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function expandHistorySection(item) {
+  if (!item) return;
+  const toggle = item.querySelector('.history-toggle');
+  const content = item.querySelector('.history-content');
+  const chevron = item.querySelector('.history-chevron');
+  if (!toggle || !content) return;
+  toggle.setAttribute('aria-expanded', 'true');
+  content.hidden = false;
+  if (chevron) chevron.style.transform = 'rotate(180deg)';
+}
+
+function openHistoryFigureFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const requestedFigure = params.get('figure');
+  if (!requestedFigure) return;
+
+  const targetValue = normalizeHistoryLookupValue(requestedFigure);
+  if (!targetValue) return;
+
+  const items = Array.from(document.querySelectorAll('.history-item'));
+  for (const item of items) {
+    const chips = Array.from(item.querySelectorAll('.history-figure-chip'));
+    const match = chips.find((chip) => normalizeHistoryLookupValue(chip.dataset.figureName || chip.textContent) === targetValue);
+    if (!match) continue;
+
+    expandHistorySection(item);
+    selectHistoryFigure(match);
+    item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    break;
+  }
+}
+
 function renderHistoryPage() {
   const historyList = document.getElementById('history-list');
   if (!historyList || typeof history === 'undefined') return;
@@ -31,6 +80,7 @@ function renderHistoryPage() {
   history.forEach((h, i) => historyList.appendChild(createHistorySection(h, i)));
 
   renderHistorySourcesSection();
+  openHistoryFigureFromQuery();
 }
 
 function renderHistorySourcesSection() {
