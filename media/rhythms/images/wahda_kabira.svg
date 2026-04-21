@@ -21,28 +21,27 @@
   <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
   <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
 
-  <!-- 4/4 -->
   <text class="timesig" x="128" y="113">4</text>
   <text class="timesig" x="128" y="172">4</text>
 
-  <!-- 1/4 DOM -->
+  <!-- دم مدته ربع -->
   <ellipse class="notehead" cx="250" cy="120" rx="16" ry="11"/>
   <line class="stem" x1="265" y1="120" x2="265" y2="36"/>
 
-  <!-- 1/8 rest -->
+  <!-- سكوت مدته ثمن -->
   <text class="rest8" x="455" y="115">𝄾</text>
 
-  <!-- 1/8 TAK -->
+  <!-- تك مدته ثمن -->
   <ellipse class="notehead" cx="620" cy="120" rx="16" ry="11"/>
   <line class="stem" x1="605" y1="117" x2="605" y2="201"/>
   <path class="flag" d="M605 201 C619 197, 634 188, 645 171" />
 
-  <!-- 1/4 rest -->
+  <!-- سكوت مدته ربع -->
   <text class="rest4" x="820" y="115">𝄽</text>
 
-  <!-- 1/4 DOM -->
+  <!-- تك مدته ربع -->
   <ellipse class="notehead" cx="1020" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="1035" y1="120" x2="1035" y2="36"/>
+  <line class="stem" x1="1005" y1="117" x2="1005" y2="201"/>
 
   <line class="barthin" x1="1145" y1="45" x2="1145" y2="195"/>
 </svg>
