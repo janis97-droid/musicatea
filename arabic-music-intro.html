@@ -214,6 +214,23 @@
       font-size: .88rem;
     }
     .intro-term-card p + p { margin-top: 8px; }
+    .intro-symbol-visual {
+      width: 74px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(200,164,90,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.018));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .intro-symbol-visual svg {
+      width: 52px;
+      height: 52px;
+      overflow: visible;
+    }
     .intro-next {
       margin-top: 34px;
       display: grid;
@@ -467,29 +484,33 @@
             </button>
             <div class="intro-acc-panel" hidden>
               <div class="intro-term-grid">
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="flat">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>بيمول</h3>
                   <p>علامة تخفض النغمة بمقدار نصف صوت.</p>
                   <p><strong>الاستخدام:</strong> تظهر قبل النغمة مباشرة لتغيير ارتفاعها، وقد تدخل ضمن البنية المقامية أو التحويل العابر.</p>
                   <p><strong>الشكل:</strong> الرمز هو ♭.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="sharp">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>دييز</h3>
                   <p>علامة ترفع النغمة بمقدار نصف صوت.</p>
                   <p><strong>الاستخدام:</strong> تُستعمل لتعديل الدرجة داخل المقام أو أثناء الانتقال المقامي.</p>
                   <p><strong>الشكل:</strong> الرمز هو ♯.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="half-flat">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>نصف بيمول</h3>
                   <p>علامة تُستخدم في تدوين الموسيقى العربية للدلالة على خفض تقريبي بمقدار ربع صوت.</p>
                   <p><strong>الاستخدام:</strong> تظهر في كثير من المقامات العربية ذات البنية الميكروتونية مثل الراست والبيات والسيكاه.</p>
-                  <p><strong>الشكل:</strong> يحتاج إلى الرمز العربي أو الطباعي المعتمد في الصفحة.</p>
+                  <p><strong>الشكل:</strong> هذا هو الرمز المستخدم في عرض المقامات التفاعلي داخل الموقع.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="half-sharp">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>نصف دييز</h3>
                   <p>علامة تُستخدم للدلالة على رفع تقريبي بمقدار ربع صوت.</p>
                   <p><strong>الاستخدام:</strong> تظهر عند كتابة درجات لا تكفيها علامات الرفع والخفض الغربية المعتادة.</p>
-                  <p><strong>الشكل:</strong> يحتاج إلى الرمز العربي أو الطباعي المعتمد في الصفحة.</p>
+                  <p><strong>الشكل:</strong> هذا هو الرمز المستخدم في عرض المقامات التفاعلي داخل الموقع.</p>
                 </article>
               </div>
             </div>
@@ -573,6 +594,66 @@
         panel.hidden = isOpen;
       });
     });
+
+    (function () {
+      const SVG_NS = 'http://www.w3.org/2000/svg';
+      const color = '#f0d28a';
+
+      function svgEl(tag, attrs, parent) {
+        const e = document.createElementNS(SVG_NS, tag);
+        Object.entries(attrs || {}).forEach(([k, v]) => e.setAttribute(k, v));
+        if (parent) parent.appendChild(e);
+        return e;
+      }
+
+      function drawFlat(parent) {
+        const g = svgEl('g', { transform: 'translate(6,4) scale(0.060,0.060)' }, parent);
+        svgEl('path', {
+          d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z',
+          fill: color
+        }, g);
+      }
+
+      function drawHalfFlat(parent) {
+        const g = svgEl('g', { transform: 'translate(6,4) scale(0.060,0.060)' }, parent);
+        svgEl('path', {
+          d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z',
+          fill: color
+        }, g);
+        svgEl('rect', { x: '8', y: '10', width: '34', height: '4', rx: '2', fill: color }, parent);
+      }
+
+      function drawSharp(parent) {
+        const g = svgEl('g', { transform: 'translate(10,12) scale(0.046,0.046)' }, parent);
+        svgEl('path', {
+          d: 'M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z',
+          fill: color
+        }, g);
+      }
+
+      function drawHalfSharp(parent) {
+        const g = svgEl('g', { transform: 'translate(12,12)' }, parent);
+        svgEl('line', { x1: '0', y1: '-10', x2: '0', y2: '10', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, g);
+        svgEl('line', { x1: '-7', y1: '-4', x2: '8', y2: '-7', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, g);
+        svgEl('line', { x1: '-7', y1: '6', x2: '7', y2: '3', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, g);
+      }
+
+      const drawMap = {
+        flat: drawFlat,
+        sharp: drawSharp,
+        'half-flat': drawHalfFlat,
+        'half-sharp': drawHalfSharp
+      };
+
+      document.querySelectorAll('.intro-term-card[data-symbol]').forEach((card) => {
+        const type = card.getAttribute('data-symbol');
+        const slot = card.querySelector('.intro-symbol-visual');
+        const draw = drawMap[type];
+        if (!slot || !draw) return;
+        const svg = svgEl('svg', { viewBox: '0 0 52 52', role: 'img', 'aria-hidden': 'true' }, slot);
+        draw(svg);
+      });
+    })();
   </script>
   <script src="assets/accessibility.js"></script>
 </body>
