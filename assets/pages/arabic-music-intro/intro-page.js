@@ -24,11 +24,15 @@
 
   function renderHero() {
     const hero = el('header', 'intro-hero');
-    hero.innerHTML = `
-      <span class="intro-tag">${data.hero.tag}</span>
-      <h1>${data.hero.title}</h1>
-      <p>${data.hero.description}</p>
-    `;
+    const parts = [];
+    if (data.hero.tag) {
+      parts.push(`<span class="intro-tag">${data.hero.tag}</span>`);
+    }
+    parts.push(`<h1>${data.hero.title}</h1>`);
+    if (data.hero.description) {
+      parts.push(`<p>${data.hero.description}</p>`);
+    }
+    hero.innerHTML = parts.join('');
     root.appendChild(hero);
   }
 
@@ -45,7 +49,9 @@
   }
 
   function renderGoal() {
-    const note = el('div', 'intro-note', `<strong>${data.goal.title}</strong> ${data.goal.text}`);
+    if (!data.goal || (!data.goal.title && !data.goal.text)) return;
+    const strong = data.goal.title ? `<strong>${data.goal.title}</strong> ` : '';
+    const note = el('div', 'intro-note', `${strong}${data.goal.text || ''}`);
     root.appendChild(note);
   }
 
