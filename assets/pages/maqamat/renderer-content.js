@@ -17,6 +17,7 @@
         rest: 'Resting tones',
         motion: 'Motion tones',
         mods: 'Where the maqam goes',
+        examplesBlock: 'Examples',
         songs: 'Songs and pieces',
         songsPlaceholder: 'Songs and instrumental examples for this maqam will be added here later.',
         librarySheets: 'Examples from the sheet library',
@@ -42,6 +43,7 @@
       rest: 'درجات الارتكاز',
       motion: 'درجات الحركة',
       mods: 'أين يذهب المقام',
+      examplesBlock: 'أمثلة',
       songs: 'أغاني وقطع',
       songsPlaceholder: 'ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.',
       librarySheets: 'أمثلة من مكتبة النوتات',
@@ -277,20 +279,21 @@
     }).join('')}</ul>` : '';
   }
 
-  function createExamplesCard(model) {
+  function createExamplesAccordionCard(model) {
     const t = getUiText();
-    const items = model && (model.examples || model.listening_examples || model.repertoire_examples);
-    const m = createExamplesMarkup(items);
-    const body = m || createPlaceholderBody(t.songsPlaceholder);
-    return createContentCard(t.songs, body, !m);
-  }
+    const songsItems = model && (model.examples || model.listening_examples || model.repertoire_examples);
+    const songsMarkup = createExamplesMarkup(songsItems) || createPlaceholderBody(t.songsPlaceholder);
+    const libraryItems = collectLibraryExamples();
+    const libraryMarkup = createExamplesMarkup(libraryItems) || createPlaceholderBody(t.librarySheetsPlaceholder);
+    const hasSongs = !!createExamplesMarkup(songsItems);
+    const hasLibrary = !!createExamplesMarkup(libraryItems);
 
-  function createLibraryExamplesCard() {
-    const t = getUiText();
-    const items = collectLibraryExamples();
-    const m = createExamplesMarkup(items);
-    const body = m || createPlaceholderBody(t.librarySheetsPlaceholder);
-    return createContentCard(t.librarySheets, body, !m);
+    const body = `<div class="maqam-acc-root" data-acc-root="examples">${[
+      createAccordionItem('examples-songs', t.songs, songsMarkup, false, 'sub'),
+      createAccordionItem('examples-library', t.librarySheets, libraryMarkup, true, 'sub')
+    ].join('')}</div>`;
+
+    return `<section class="maqam-content-card ${(!hasSongs && !hasLibrary) ? 'maqam-content-card-placeholder' : ''}"><h3>${t.examplesBlock}</h3>${body}</section>`;
   }
 
   function createVideoExamplesCard(model) {
@@ -318,8 +321,7 @@
       const model = await loader.buildMaqamContentModel(ns.state.maqamId);
       c.innerHTML = [
         createDefinitionCard(model),
-        createExamplesCard(model),
-        createLibraryExamplesCard(),
+        createExamplesAccordionCard(model),
         createVideoExamplesCard(model)
       ].filter(Boolean).join('');
       f.innerHTML = createReferencesCard(model);
@@ -327,8 +329,7 @@
     } catch (e) {
       c.innerHTML = [
         createDefinitionCard(null),
-        createExamplesCard(null),
-        createLibraryExamplesCard(),
+        createExamplesAccordionCard(null),
         createVideoExamplesCard(null)
       ].filter(Boolean).join('');
       f.innerHTML = createReferencesCard(null);
