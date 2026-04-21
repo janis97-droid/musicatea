@@ -319,11 +319,11 @@
   }
 
   function createVideoExamplesCard(model) {
-    const t = getUiText();
     const items = model && (model.video_examples || model.video_listening_examples);
-    const m = createExamplesMarkup(items);
-    const body = m || createPlaceholderBody(t.videosPlaceholder);
-    return createContentCard(t.videos, body, !m);
+    const markup = createExamplesMarkup(items);
+    if (!markup) return '';
+    const t = getUiText();
+    return createContentCard(t.videos, markup, false);
   }
 
   function createReferencesCard(model) {
