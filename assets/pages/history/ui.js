@@ -61,8 +61,14 @@ function getHistoryAliasCanonical(value) {
   return value;
 }
 
+function getSharedSheetsData() {
+  if (typeof sheets !== 'undefined' && Array.isArray(sheets)) return sheets;
+  if (Array.isArray(globalThis.sheets)) return globalThis.sheets;
+  return [];
+}
+
 function getRelatedSheetLinksForFigure(figureName) {
-  const allSheets = Array.isArray(globalThis.sheets) ? globalThis.sheets : [];
+  const allSheets = getSharedSheetsData();
   if (!allSheets.length) return [];
 
   const isEnglish = document.documentElement.lang === 'en' || document.body?.dir === 'ltr';
