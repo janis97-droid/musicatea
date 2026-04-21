@@ -214,6 +214,10 @@
       font-size: .88rem;
     }
     .intro-term-card p + p { margin-top: 8px; }
+    .intro-placeholder {
+      color: var(--text-dim);
+      font-style: italic;
+    }
     .intro-symbol-visual {
       width: 74px;
       height: 74px;
@@ -336,6 +340,18 @@
                   <p>نظام كتابي من خمسة خطوط أفقية تُكتب عليه النغمات. يعمل كشبكة تنظّم الارتفاع الصوتي زمنيًا وبصريًا.</p>
                 </article>
                 <article class="intro-term-card">
+                  <h3>المازورة</h3>
+                  <p class="intro-placeholder">سيُضاف التعريف هنا.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>النبضة</h3>
+                  <p class="intro-placeholder">سيُضاف التعريف هنا.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>السرعة</h3>
+                  <p class="intro-placeholder">سيُضاف التعريف هنا.</p>
+                </article>
+                <article class="intro-term-card">
                   <h3>الجملة اللحنية</h3>
                   <p>وحدة لحنية قصيرة تحمل معنى موسيقيًا داخل السياق العام. تُفهم من اتجاهها ونقطة استقرارها وطريقة انتهائها.</p>
                   <p><strong>ملاحظة:</strong> في الموسيقى العربية، فهم الجملة لا يعتمد على أسماء الدرجات فقط، بل على السلوك اللحني أيضًا.</p>
@@ -376,6 +392,14 @@
                 <article class="intro-term-card">
                   <h3>التحويل</h3>
                   <p>الانتقال من مقام إلى مقام آخر أثناء الأداء أو التأليف. يحدث غالبًا بصورة مؤقتة ثم يعود المسار إلى المقام الأصلي أو يستقر في مقام جديد.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>المسار اللحني / السير</h3>
+                  <p class="intro-placeholder">سيُضاف التعريف هنا.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>الغمّاز</h3>
+                  <p class="intro-placeholder">سيُضاف التعريف هنا.</p>
                 </article>
                 <article class="intro-term-card">
                   <h3>الطابع المقامي</h3>
@@ -482,6 +506,11 @@
                   <p><strong>الاستخدام:</strong> تُستخدم في الكتابة الإيقاعية لتمديد القيمة الزمنية بدقة.</p>
                   <p><strong>الشكل:</strong> توضع مباشرة إلى يمين رأس النغمة.</p>
                 </article>
+                <article class="intro-term-card" data-symbol="natural">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
+                  <h3>علامة الطبيعي</h3>
+                  <p class="intro-placeholder">سيُضاف الشرح هنا.</p>
+                </article>
               </div>
             </div>
           </div>
@@ -538,12 +567,22 @@
                   <p><strong>الاستخدام:</strong> توضع في بداية القطعة لتحديد الإطار الإيقاعي العام.</p>
                   <p><strong>الشكل:</strong> يكتب غالبًا على شكل رقمين فوق بعضهما.</p>
                 </article>
+                <article class="intro-term-card" data-symbol="quarter-note">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
+                  <h3>الربع</h3>
+                  <p class="intro-placeholder">سيُضاف الشرح هنا.</p>
+                </article>
                 <article class="intro-term-card" data-symbol="eighth-note">
                   <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>الثمن</h3>
                   <p>قيمة زمنية أقصر من الربع وتُستخدم كثيرًا في الصيغ الإيقاعية السريعة أو الداخلية.</p>
                   <p><strong>الاستخدام:</strong> تظهر منفردة أو ضمن مجموعات مرتبطة بشرطات.</p>
                   <p><strong>الشكل:</strong> قد تُربط عدة أثمان بخط أفقي واحد.</p>
+                </article>
+                <article class="intro-term-card" data-symbol="quarter-rest">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
+                  <h3>سكتة الربع</h3>
+                  <p class="intro-placeholder">سيُضاف الشرح هنا.</p>
                 </article>
                 <article class="intro-term-card" data-symbol="rest">
                   <div class="intro-symbol-visual" aria-hidden="true"></div>
@@ -620,27 +659,18 @@
 
       function drawFlat(parent) {
         const g = svgEl('g', { transform: 'translate(6,4) scale(0.060,0.060)' }, parent);
-        svgEl('path', {
-          d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z',
-          fill: color
-        }, g);
+        svgEl('path', { d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z', fill: color }, g);
       }
 
       function drawHalfFlat(parent) {
         const g = svgEl('g', { transform: 'translate(6,4) scale(0.060,0.060)' }, parent);
-        svgEl('path', {
-          d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z',
-          fill: color
-        }, g);
+        svgEl('path', { d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z', fill: color }, g);
         svgEl('rect', { x: '8', y: '10', width: '34', height: '4', rx: '2', fill: color }, parent);
       }
 
       function drawSharp(parent) {
         const g = svgEl('g', { transform: 'translate(10,12) scale(0.046,0.046)' }, parent);
-        svgEl('path', {
-          d: 'M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z',
-          fill: color
-        }, g);
+        svgEl('path', { d: 'M418.562,173.34c5.999-1.291,10.281-6.582,10.281-12.724V103.86c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.425-10.912-2.6l-51.621,11.093V30.884c0-3.856-1.713-7.515-4.672-9.99c-2.964-2.475-6.869-3.507-10.662-2.816l-38.686,7.013c-6.192,1.121-10.694,6.51-10.694,12.805v78.242l-80.658,17.333V64.117c0-3.856-1.713-7.514-4.672-9.99c-2.958-2.475-6.864-3.506-10.662-2.816l-38.69,7.004c-6.192,1.12-10.693,6.511-10.693,12.806v76.25l-57.948,12.456c-5.999,1.282-10.281,6.59-10.281,12.724v56.756c0,3.927,1.776,7.649,4.834,10.124c3.062,2.466,7.07,3.426,10.917,2.601l52.478-11.281v108.39l-57.948,12.456c-5.999,1.282-10.281,6.582-10.281,12.715v56.737c0,3.928,1.776,7.649,4.834,10.125c3.062,2.466,7.07,3.425,10.917,2.6l52.478-11.281v76.492c0,3.856,1.712,7.515,4.672,9.99c2.959,2.476,6.864,3.507,10.662,2.816l38.686-6.995c6.192-1.12,10.698-6.51,10.698-12.805v-83.397l80.658-17.334v74.502c0,3.865,1.712,7.524,4.672,9.99c2.96,2.475,6.865,3.506,10.662,2.815l38.686-7.004c6.192-1.121,10.694-6.51,10.694-12.805V377.35l57.087-12.267c5.999-1.291,10.281-6.582,10.281-12.724v-56.729c0-3.927-1.775-7.649-4.834-10.124c-3.058-2.466-7.07-3.426-10.912-2.6l-51.621,11.093v-108.39L418.562,173.34z M296.761,307.906l-80.658,17.326V216.85l80.658-17.334V307.906z', fill: color }, g);
       }
 
       function drawHalfSharp(parent) {
@@ -650,22 +680,30 @@
         svgEl('line', { x1: '-7', y1: '6', x2: '7', y2: '3', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, g);
       }
 
+      function drawNatural(parent) {
+        svgEl('line', { x1: '18', y1: '9', x2: '18', y2: '39', stroke: color, 'stroke-width': '3.2', 'stroke-linecap': 'round' }, parent);
+        svgEl('line', { x1: '33', y1: '13', x2: '33', y2: '43', stroke: color, 'stroke-width': '3.2', 'stroke-linecap': 'round' }, parent);
+        svgEl('line', { x1: '18', y1: '24', x2: '33', y2: '20', stroke: color, 'stroke-width': '3.2', 'stroke-linecap': 'round' }, parent);
+        svgEl('line', { x1: '18', y1: '33', x2: '33', y2: '29', stroke: color, 'stroke-width': '3.2', 'stroke-linecap': 'round' }, parent);
+      }
+
+      function drawQuarterNote(parent) {
+        svgEl('ellipse', { cx: '23', cy: '36', rx: '8', ry: '5.8', fill: color }, parent);
+        svgEl('line', { x1: '31', y1: '36', x2: '31', y2: '10', stroke: color, 'stroke-width': '3.8', 'stroke-linecap': 'round' }, parent);
+      }
+
       function drawEighthNote(parent) {
         svgEl('ellipse', { cx: '26', cy: '36', rx: '8', ry: '5.5', fill: color }, parent);
         svgEl('line', { x1: '41', y1: '36', x2: '41', y2: '12', stroke: color, 'stroke-width': '3.8', 'stroke-linecap': 'round' }, parent);
         svgEl('path', { d: 'M41 12 C45 13, 49 16, 51 21 C47 20, 43 20, 39 22', fill: 'none', stroke: color, 'stroke-width': '3', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
       }
 
+      function drawQuarterRest(parent) {
+        svgEl('text', { x: '26', y: '27', fill: color, 'font-size': '34', 'font-family': 'Bravura, Noto Music, Segoe UI Symbol, serif', 'text-anchor': 'middle', 'dominant-baseline': 'middle' }, parent).textContent = '𝄽';
+      }
+
       function drawRest(parent) {
-        svgEl('text', {
-          x: '26',
-          y: '27',
-          fill: color,
-          'font-size': '34',
-          'font-family': 'Bravura, Noto Music, Segoe UI Symbol, serif',
-          'text-anchor': 'middle',
-          'dominant-baseline': 'middle'
-        }, parent).textContent = '𝄽';
+        drawQuarterRest(parent);
       }
 
       function drawBeamedNotes(parent) {
@@ -679,9 +717,12 @@
       const drawMap = {
         flat: drawFlat,
         sharp: drawSharp,
+        natural: drawNatural,
         'half-flat': drawHalfFlat,
         'half-sharp': drawHalfSharp,
+        'quarter-note': drawQuarterNote,
         'eighth-note': drawEighthNote,
+        'quarter-rest': drawQuarterRest,
         rest: drawRest,
         'beamed-notes': drawBeamedNotes
       };
