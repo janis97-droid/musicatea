@@ -40,6 +40,58 @@ function normalizeHistoryLookupValue(value) {
     .toLowerCase();
 }
 
+const historyFigureAliases = {
+  'اخوين رحباني': 'الأخوان رحباني',
+  'الاخوين رحباني': 'الأخوان رحباني',
+  'الاخوان رحباني': 'الأخوان رحباني',
+  'rahbani brothers': 'الأخوان رحباني',
+  'assi and mansour rahbani': 'الأخوان رحباني',
+  'assi & mansour rahbani': 'الأخوان رحباني',
+
+  'عبده داغر': 'عبده داغر',
+  'abdo dagher': 'عبده داغر',
+  'abdu dagher': 'عبده داغر',
+
+  'سيمون شاهين': 'سيمون شاهين',
+  'simon shaheen': 'سيمون شاهين',
+  'simon shahin': 'سيمون شاهين',
+
+  'عمر خيرت': 'عمر خيرت',
+  'omar khairat': 'عمر خيرت',
+  'omar kheirat': 'عمر خيرت',
+  'omar khayrat': 'عمر خيرت',
+
+  'ملحم بركات': 'ملحم بركات',
+  'melhem barakat': 'ملحم بركات',
+  'melhem barkat': 'ملحم بركات',
+
+  'ليلى مراد': 'ليلى مراد',
+  'ليلي مراد': 'ليلى مراد',
+  'layla murad': 'ليلى مراد',
+  'laila murad': 'ليلى مراد',
+
+  'جوزيف عازار': 'جوزيف عازار',
+  'يوسف عازار': 'جوزيف عازار',
+  'joseph azar': 'جوزيف عازار',
+  'josef azar': 'جوزيف عازار',
+
+  'نور الملاح': 'نور الملاح',
+  'ننور الملاح': 'نور الملاح',
+  'nour el mallah': 'نور الملاح',
+  'nour mallah': 'نور الملاح',
+
+  'عثمان الموصلي': 'عثمان الموصلي',
+  'othman el mosley': 'عثمان الموصلي',
+  'uthman al mawsili': 'عثمان الموصلي',
+  'uthman al mawsily': 'عثمان الموصلي'
+};
+
+function resolveHistoryAlias(value) {
+  const normalized = normalizeHistoryLookupValue(value);
+  if (!normalized) return '';
+  return historyFigureAliases[normalized] || value;
+}
+
 function expandHistorySection(item) {
   if (!item) return;
   const toggle = item.querySelector('.history-toggle');
@@ -56,7 +108,8 @@ function openHistoryFigureFromQuery() {
   const requestedFigure = params.get('figure');
   if (!requestedFigure) return;
 
-  const targetValue = normalizeHistoryLookupValue(requestedFigure);
+  const resolvedFigure = resolveHistoryAlias(requestedFigure);
+  const targetValue = normalizeHistoryLookupValue(resolvedFigure);
   if (!targetValue) return;
 
   const items = Array.from(document.querySelectorAll('.history-item'));
