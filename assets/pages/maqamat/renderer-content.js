@@ -187,6 +187,16 @@
     return candidates;
   }
 
+  function getAllSheets() {
+    if (typeof globalThis !== 'undefined' && Array.isArray(globalThis.sheets)) {
+      return globalThis.sheets;
+    }
+    if (typeof sheets !== 'undefined' && Array.isArray(sheets)) {
+      return sheets;
+    }
+    return [];
+  }
+
   function getSheetField(sheet, lang, field) {
     if (!sheet || !field) return '';
     if (lang === 'en') {
@@ -199,7 +209,7 @@
   function collectLibraryExamples() {
     const lang = getPageLanguage();
     const t = getUiText();
-    const allSheets = Array.isArray(window.sheets) ? window.sheets : [];
+    const allSheets = getAllSheets();
     const maqamCandidates = getCurrentMaqamCandidates(lang);
     if (!allSheets.length || !maqamCandidates.size) return [];
 
