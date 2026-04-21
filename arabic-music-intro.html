@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="المدخل إلى الموسيقى العربية — صفحة تمهيدية منظّمة للمبتدئ تشمل المصطلحات الأساسية والرموز الموسيقية وروابط الانتقال إلى المقامات والإيقاعات ومكتبة النوتات.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://musicatea.com/arabic-music-intro.html">
+  <link rel="alternate" hreflang="ar" href="https://musicatea.com/arabic-music-intro.html">
+  <link rel="alternate" hreflang="x-default" href="https://musicatea.com/arabic-music-intro.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Musicatea">
+  <meta property="og:title" content="المدخل إلى الموسيقى العربية — موسيقتي">
+  <meta property="og:description" content="صفحة تمهيدية منظّمة للمبتدئ تشمل المصطلحات الأساسية والرموز الموسيقية وروابط الانتقال إلى المقامات والإيقاعات ومكتبة النوتات.">
+  <meta property="og:url" content="https://musicatea.com/arabic-music-intro.html">
+  <meta property="og:image" content="https://musicatea.com/assets/logo-mark.jpg">
+  <meta property="og:image:alt" content="شعار موسيقتي">
+  <meta property="og:locale" content="ar_AR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="المدخل إلى الموسيقى العربية — موسيقتي">
+  <meta name="twitter:description" content="صفحة تمهيدية منظّمة للمبتدئ تشمل المصطلحات الأساسية والرموز الموسيقية وروابط الانتقال إلى المقامات والإيقاعات ومكتبة النوتات.">
+  <meta name="twitter:image" content="https://musicatea.com/assets/logo-mark.jpg">
+
+  <title>المدخل إلى الموسيقى العربية — موسيقتي</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Musicatea",
+        "alternateName": "موسيقتي",
+        "url": "https://musicatea.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://musicatea.com/assets/logo-mark.jpg"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "name": "المدخل إلى الموسيقى العربية",
+        "url": "https://musicatea.com/arabic-music-intro.html",
+        "inLanguage": "ar",
+        "description": "صفحة تمهيدية منظّمة للمبتدئ تشمل المصطلحات الأساسية والرموز الموسيقية وروابط الانتقال إلى المقامات والإيقاعات ومكتبة النوتات.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Musicatea",
+          "url": "https://musicatea.com/"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .intro-shell { max-width: 1140px; margin: 0 auto; padding: 48px 20px 88px; }
+    .intro-hero { margin-bottom: 28px; }
+    .intro-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,164,90,.18);
+      background: rgba(200,164,90,.08);
+      color: var(--gold-light);
+      font-size: .78rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+    .intro-hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.12;
+    }
+    .intro-hero p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+    .intro-quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 22px 0 34px;
+    }
+    .intro-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,164,90,.18);
+      background: rgba(255,255,255,.03);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: .84rem;
+      font-weight: 700;
+      transition: all .22s var(--ease);
+    }
+    .intro-pill:hover {
+      color: var(--gold-light);
+      border-color: rgba(200,164,90,.38);
+      background: rgba(200,164,90,.12);
+    }
+    .intro-note {
+      border: 1px solid rgba(200,164,90,.14);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.015));
+      padding: 18px 20px;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+    .intro-stack { display: grid; gap: 18px; }
+    .intro-section {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.012));
+      box-shadow: 0 16px 32px rgba(0,0,0,.14);
+      overflow: hidden;
+    }
+    .intro-section-head {
+      padding: 22px 24px 8px;
+    }
+    .intro-section-head h2 {
+      margin: 0 0 8px;
+      font-size: 1.22rem;
+    }
+    .intro-section-head p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.85;
+      font-size: .95rem;
+    }
+    .intro-subsections {
+      padding: 16px 18px 20px;
+      display: grid;
+      gap: 12px;
+    }
+    .intro-acc-item {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,.02);
+      overflow: hidden;
+    }
+    .intro-acc-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      cursor: pointer;
+      text-align: start;
+    }
+    .intro-acc-trigger span:first-child {
+      font-weight: 800;
+      font-size: .98rem;
+    }
+    .intro-acc-trigger span:last-child {
+      color: var(--text-dim);
+      transition: transform .22s ease;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .intro-acc-item.is-open .intro-acc-trigger span:last-child {
+      transform: rotate(180deg);
+    }
+    .intro-acc-panel {
+      padding: 0 18px 18px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .intro-term-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      padding-top: 14px;
+    }
+    .intro-term-card {
+      border: 1px solid rgba(200,164,90,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.018);
+      padding: 14px 14px 12px;
+    }
+    .intro-term-card h3 {
+      margin: 0 0 6px;
+      font-size: .95rem;
+      color: var(--gold-light);
+    }
+    .intro-term-card p {
+      margin: 0;
+      color: var(--text-muted);
+      line-height: 1.82;
+      font-size: .88rem;
+    }
+    .intro-next {
+      margin-top: 34px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .intro-next-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255,255,255,.02);
+    }
+    .intro-next-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+    .intro-next-card p {
+      margin: 0 0 12px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: .92rem;
+    }
+    .intro-next-card a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .intro-next-card a:hover { color: var(--gold); }
+    @media (max-width: 680px) {
+      .intro-shell { padding: 36px 16px 74px; }
+      .intro-section-head { padding: 18px 18px 8px; }
+      .intro-subsections { padding: 14px 14px 16px; }
+      .intro-acc-trigger { padding: 14px 14px; }
+      .intro-acc-panel { padding: 0 14px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top nav-top-home">
+        <div class="nav-top-right nav-main-group">
+          <a href="index.html" class="nav-logo">
+            <img src="assets/logo-mark.jpg" alt="موسيقتي" class="nav-logo-mark">
+            <span class="nav-logo-text">موسيقتي</span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html" data-home-link="true">الصفحة الرئيسية</a>
+            <a href="library.html">مكتبة النوتات</a>
+            <a href="maqamat.html" data-nav-maqamat="true">مقاماتي</a>
+            <a href="rhythms.html">إيقاعاتي</a>
+            <a href="history.html">تاريخ الموسيقى العربية</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="intro-shell">
+    <header class="intro-hero">
+      <span class="intro-tag">مدخل تعليمي</span>
+      <h1>المدخل إلى الموسيقى العربية</h1>
+      <p>هذه الصفحة تجمع في مكان واحد الأساس الذي يحتاجه المبتدئ قبل الدخول إلى المقامات أو الإيقاعات أو مكتبة النوتات. الفكرة هنا ليست تقديم كل شيء دفعة واحدة، بل تنظيم البداية بطريقة واضحة وقابلة للتوسّع لاحقًا.</p>
+    </header>
+
+    <div class="intro-quick-links" aria-label="روابط داخلية">
+      <a class="intro-pill" href="#terms-section">مصطلحات الموسيقى العربية</a>
+      <a class="intro-pill" href="#symbols-section">رموز الموسيقى العربية</a>
+      <a class="intro-pill" href="#next-section">إلى أين بعد ذلك؟</a>
+    </div>
+
+    <div class="intro-note">
+      <strong>الترتيب المقترح:</strong>
+      ابدأ بالمصطلحات، ثم انتقل إلى الرموز، وبعد ذلك افتح صفحات المقامات أو الإيقاعات أو مكتبة النوتات. بهذه الطريقة، عندما ترى كلمة أو علامة موسيقية داخل الموقع، ستكون لديك صورة أوضح عنها.
+    </div>
+
+    <div class="intro-stack">
+      <section class="intro-section" id="terms-section" aria-labelledby="terms-title">
+        <div class="intro-section-head">
+          <h2 id="terms-title">مصطلحات الموسيقى العربية</h2>
+          <p>هذا القسم يقدّم المصطلحات الأساسية التي تتكرر في الموقع. بدأنا هنا بالمصطلحات الأكثر احتياجًا، ويمكن لاحقًا إضافة مصطلحات أكثر تفصيلًا دون تغيير بنية الصفحة.</p>
+        </div>
+        <div class="intro-subsections">
+          <div class="intro-acc-item is-open">
+            <button class="intro-acc-trigger" type="button" aria-expanded="true">
+              <span>مصطلحات عامة</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel">
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>الموسيقى العربية</h3>
+                  <p>اسم شامل للتقاليد الموسيقية التي تطورت في العالم العربي، وتشمل الغناء، والعزف، والمقامات، والإيقاعات، والقوالب المختلفة عبر العصور والبيئات.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>النوتة الموسيقية</h3>
+                  <p>التمثيل المكتوب للموسيقى. من خلالها يمكن قراءة اللحن والإيقاع والزمن، وهي الوسيلة الأساسية التي يعتمد عليها قسم مكتبة النوتات في الموقع.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>السُّلَّم</h3>
+                  <p>ترتيب متدرج للدرجات الصوتية من القرار إلى الجواب. يساعد السُّلَّم على فهم المادة الصوتية التي ينطلق منها المقام أو اللحن.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>ربع الصوت</h3>
+                  <p>مسافة صوتية أصغر من نصف البعد الغربي الكامل، وهي من أهم ما يميز كثيرًا من المقامات العربية في طابعها السمعي الخاص.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-acc-item">
+            <button class="intro-acc-trigger" type="button" aria-expanded="false">
+              <span>مصطلحات في المقامات</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel" hidden>
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>مقام</h3>
+                  <p>نظام لحني يحدّد المادة الصوتية وطريقة الحركة والشعور الموسيقي العام. لا يقتصر المقام على درجاته فقط، بل يشمل أيضًا سلوكه ومساره السمعي.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>جنس</h3>
+                  <p>وحدة بنائية داخل المقام، تتكون من مجموعة درجات ذات طابع معين. كثير من المقامات تُفهم عمليًا من خلال أجناسها الأساسية والفرعية.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>قرار</h3>
+                  <p>درجة الاستقرار الأساسية التي يعود إليها المقام غالبًا، وتشكّل نقطة ارتكازه السمعية.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>غمّاز</h3>
+                  <p>درجة محورية داخل المقام تساعد على الانتقال أو التوسّع، وتُعد من أهم درجات الحركة في بنية المقام.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>سير المقام</h3>
+                  <p>الطريقة التي يتحرك بها المقام صعودًا وهبوطًا، ومواضع التوقف والمرور والتركيز داخله. فهم السير مهم أكثر من حفظ الاسم فقط.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-acc-item">
+            <button class="intro-acc-trigger" type="button" aria-expanded="false">
+              <span>مصطلحات في الإيقاعات</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel" hidden>
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>إيقاع</h3>
+                  <p>تنظيم زمني للنبضات والسكتات داخل دورة محددة. في الموسيقى العربية، للإيقاع شخصيته الخاصة كما للمقام شخصيته اللحنية.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>ميزان</h3>
+                  <p>الإطار العددي الذي ينظم عدد الوحدات الزمنية داخل المقطع الموسيقي، ويُقرأ عادة من خلال أرقام تظهر في بداية السطر الموسيقي.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>دم</h3>
+                  <p>ضربة إيقاعية ثقيلة نسبيًا، تعطي الإيقاع ثقله وارتكازه، وتُسمع عادة في المواضع الأهم داخل الدورة.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>تك</h3>
+                  <p>ضربة أخف من الدم، وتعمل مع السكتات والضربات الأخرى على تشكيل هوية الإيقاع وحركته.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>سكتة</h3>
+                  <p>فراغ زمني محسوب داخل الإيقاع. السكتة ليست غيابًا بلا معنى، بل جزء أساسي من بناء الشخصية الإيقاعية.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro-section" id="symbols-section" aria-labelledby="symbols-title">
+        <div class="intro-section-head">
+          <h2 id="symbols-title">رموز الموسيقى العربية</h2>
+          <p>هذا القسم مخصّص للعلامات والإشارات التي يراها القارئ في النوتة. الهدف هنا أن يعرف الزائر وظيفة الرمز باختصار قبل أن يطبّقه عمليًا داخل مكتبة النوتات أو الأمثلة الأخرى.</p>
+        </div>
+        <div class="intro-subsections">
+          <div class="intro-acc-item is-open">
+            <button class="intro-acc-trigger" type="button" aria-expanded="true">
+              <span>رموز عامة في النوتة</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel">
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>السكتة</h3>
+                  <p>رمز يدل على الصمت لزمن محدد. وجود السكتة في النوتة لا يقل أهمية عن وجود الصوت نفسه.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>علامات التكرار</h3>
+                  <p>إشارات تُستخدم لإعادة جزء من الجملة الموسيقية أو المقطع، وتساعد على اختصار الكتابة وتوضيح البنية.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>العلامات التحويلية</h3>
+                  <p>الرموز التي تغيّر درجة النغمة رفعًا أو خفضًا، مثل الدييز والبيمول، وهي أساسية في قراءة كثير من الألحان.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>المدد الزمنية</h3>
+                  <p>قيم النغمات والسكتات التي تحدد طول الزمن الموسيقي، مثل الربع والثمن والنصف وغيرها.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-acc-item">
+            <button class="intro-acc-trigger" type="button" aria-expanded="false">
+              <span>رموز مرتبطة بقراءة المقامات</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel" hidden>
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>نصف بيمول</h3>
+                  <p>علامة تُستخدم كثيرًا في الموسيقى العربية للدلالة على خفض النغمة بمقدار ربع صوت تقريبًا، وهي أساسية في قراءة عدد من المقامات.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>نصف دييز</h3>
+                  <p>علامة تُستخدم لرفع النغمة بمقدار ربع صوت تقريبًا. فهم هذه العلامة مهم لفهم الفروق الدقيقة بين المقامات.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>اسم المقام على النوتة</h3>
+                  <p>عندما يظهر اسم المقام في بيانات العمل، فهو يساعد القارئ على فهم الإطار اللحني العام قبل الدخول إلى تفاصيل الجملة نفسها.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-acc-item">
+            <button class="intro-acc-trigger" type="button" aria-expanded="false">
+              <span>رموز مرتبطة بقراءة الإيقاع</span>
+              <span>⌄</span>
+            </button>
+            <div class="intro-acc-panel" hidden>
+              <div class="intro-term-grid">
+                <article class="intro-term-card">
+                  <h3>إشارة الميزان</h3>
+                  <p>الأرقام التي تظهر في بداية السطر وتوضح كيفية تنظيم الزمن داخل الجملة الموسيقية.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>تقسيم الضربات</h3>
+                  <p>طريقة توزيع الأزمنة داخل المقطع، وهي التي تساعد على ربط ما تراه في النوتة بما تسمعه في الإيقاع.</p>
+                </article>
+                <article class="intro-term-card">
+                  <h3>الربط بين الصوت والسكتة</h3>
+                  <p>قراءة الإيقاع لا تعتمد على الضربات وحدها، بل على العلاقة الدقيقة بين النغمة والزمن والفراغ والسكتة.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="intro-next" id="next-section" aria-label="إلى أين بعد ذلك">
+      <article class="intro-next-card">
+        <h3>انتقل إلى المقامات</h3>
+        <p>بعد فهم المصطلحات الأساسية، يمكنك قراءة صفحات المقامات بشكل أوضح وربط النظرية بالأمثلة الموجودة في الموقع.</p>
+        <a href="maqamat.html">افتح المقامات</a>
+      </article>
+      <article class="intro-next-card">
+        <h3>انتقل إلى الإيقاعات</h3>
+        <p>إذا أردت تطبيق المصطلحات الإيقاعية مباشرة، انتقل إلى الإيقاعات وابدأ بالموازين والدورات الأساسية.</p>
+        <a href="rhythms.html">افتح الإيقاعات</a>
+      </article>
+      <article class="intro-next-card">
+        <h3>طبّق على مكتبة النوتات</h3>
+        <p>أفضل اختبار للفهم هو أن تفتح نوتة حقيقية وتقرأ بياناتها وعلاماتها بعد هذه الصفحة مباشرة.</p>
+        <a href="library.html">افتح مكتبة النوتات</a>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-logo">موسيقتي</span>
+    <div class="footer-links">
+      <a href="about.html">عن المشروع</a>
+      <a href="contact.html">تواصل معنا</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+    </div>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.intro-acc-trigger').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.intro-acc-item');
+        const panel = item.querySelector('.intro-acc-panel');
+        const isOpen = item.classList.contains('is-open');
+        item.classList.toggle('is-open', !isOpen);
+        button.setAttribute('aria-expanded', String(!isOpen));
+        panel.hidden = isOpen;
+      });
+    });
+  </script>
+  <script src="assets/accessibility.js"></script>
+</body>
+</html>
