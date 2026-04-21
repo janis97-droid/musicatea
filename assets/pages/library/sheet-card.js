@@ -1,6 +1,13 @@
 // assets/pages/library/sheet-card.js
 // Shared sheet card helper.
 
+function createHistoryFigureLink(name) {
+  const value = String(name || '').trim();
+  if (!value) return '';
+  const href = `history.html?figure=${encodeURIComponent(value)}`;
+  return `<a href="${escapeHtml(href)}" class="card-credit-link">${escapeHtml(value)}</a>`;
+}
+
 function createSheetCard(s) {
   const card = document.createElement('div');
   card.className = 'card';
@@ -21,7 +28,7 @@ function createSheetCard(s) {
     ? `
       <div class="card-credit-row">
         <span class="card-credit-label">المؤدي</span>
-        <span class="card-credit-value">${escapeHtml(s.performer)}</span>
+        <span class="card-credit-value">${createHistoryFigureLink(s.performer)}</span>
       </div>`
     : '';
 
@@ -43,7 +50,7 @@ function createSheetCard(s) {
       <div class="card-credits">
         <div class="card-credit-row">
           <span class="card-credit-label">الملحن</span>
-          <span class="card-credit-value">${escapeHtml(s.composer)}</span>
+          <span class="card-credit-value">${createHistoryFigureLink(s.composer)}</span>
         </div>
         ${performerLine}
       </div>
