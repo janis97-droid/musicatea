@@ -17,8 +17,10 @@
         rest: 'Resting tones',
         motion: 'Motion tones',
         mods: 'Where the maqam goes',
-        songs: 'Examples from the sheet library',
-        songsPlaceholder: 'No sheet-library examples have been linked to this maqam yet.',
+        songs: 'Songs and pieces',
+        songsPlaceholder: 'Songs and instrumental examples for this maqam will be added here later.',
+        librarySheets: 'Examples from the sheet library',
+        librarySheetsPlaceholder: 'No sheet-library examples have been linked to this maqam yet.',
         videos: 'Video examples',
         videosPlaceholder: 'Video examples for this maqam will be added here later.',
         references: 'Sources and references',
@@ -40,8 +42,10 @@
       rest: 'درجات الارتكاز',
       motion: 'درجات الحركة',
       mods: 'أين يذهب المقام',
-      songs: 'أمثلة من مكتبة النوتات',
-      songsPlaceholder: 'لا توجد بعد أمثلة مرتبطة من مكتبة النوتات لهذا المقام.',
+      songs: 'أغاني وقطع',
+      songsPlaceholder: 'ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.',
+      librarySheets: 'أمثلة من مكتبة النوتات',
+      librarySheetsPlaceholder: 'لا توجد بعد أمثلة مرتبطة من مكتبة النوتات لهذا المقام.',
       videos: 'أمثلة مرئية / فيديو',
       videosPlaceholder: 'ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.',
       references: 'مصادر ومراجع',
@@ -235,7 +239,9 @@
         metaParts.push(t.instrumental);
       }
       if (entry.composer) metaParts.push(`${t.composer}: ${entry.composer}`);
-      const note = entry.tonics.length ? `${t.tonics}: ${entry.tonics.join('، ')}` : '';
+      const note = entry.tonics.length
+        ? `${t.tonics}: ${entry.tonics.join(lang === 'en' ? ', ' : '، ')}`
+        : '';
       return {
         title: entry.title,
         performer: metaParts.join(' — '),
@@ -273,11 +279,18 @@
 
   function createExamplesCard(model) {
     const t = getUiText();
-    const libraryItems = collectLibraryExamples();
-    const items = libraryItems.length ? libraryItems : (model && (model.examples || model.listening_examples || model.repertoire_examples));
+    const items = model && (model.examples || model.listening_examples || model.repertoire_examples);
     const m = createExamplesMarkup(items);
     const body = m || createPlaceholderBody(t.songsPlaceholder);
     return createContentCard(t.songs, body, !m);
+  }
+
+  function createLibraryExamplesCard() {
+    const t = getUiText();
+    const items = collectLibraryExamples();
+    const m = createExamplesMarkup(items);
+    const body = m || createPlaceholderBody(t.librarySheetsPlaceholder);
+    return createContentCard(t.librarySheets, body, !m);
   }
 
   function createVideoExamplesCard(model) {
@@ -303,11 +316,21 @@
 
     try {
       const model = await loader.buildMaqamContentModel(ns.state.maqamId);
-      c.innerHTML = [createDefinitionCard(model), createExamplesCard(model), createVideoExamplesCard(model)].filter(Boolean).join('');
+      c.innerHTML = [
+        createDefinitionCard(model),
+        createExamplesCard(model),
+        createLibraryExamplesCard(),
+        createVideoExamplesCard(model)
+      ].filter(Boolean).join('');
       f.innerHTML = createReferencesCard(model);
       bindExclusiveAccordions(c);
     } catch (e) {
-      c.innerHTML = [createDefinitionCard(null), createExamplesCard(null), createVideoExamplesCard(null)].filter(Boolean).join('');
+      c.innerHTML = [
+        createDefinitionCard(null),
+        createExamplesCard(null),
+        createLibraryExamplesCard(),
+        createVideoExamplesCard(null)
+      ].filter(Boolean).join('');
       f.innerHTML = createReferencesCard(null);
       bindExclusiveAccordions(c);
     }
