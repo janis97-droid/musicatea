@@ -523,25 +523,29 @@
             </button>
             <div class="intro-acc-panel" hidden>
               <div class="intro-term-grid">
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="eighth-note">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>الثمن</h3>
                   <p>قيمة زمنية قصيرة تُستخدم كثيرًا في بناء التفاصيل الإيقاعية.</p>
                   <p><strong>الاستخدام:</strong> تظهر منفردة أو مجمّعة بشرطات لتمثيل الحركات السريعة داخل النمط الإيقاعي.</p>
                   <p><strong>الشكل:</strong> غالبًا تُربط عدة أثمان بخط أفقي واحد أو أكثر.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="rest">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>السكتة الإيقاعية</h3>
                   <p>رمز صمت يدخل مباشرة في تشكيل النمط الإيقاعي.</p>
                   <p><strong>الاستخدام:</strong> يُستخدم لإظهار الفراغات المقصودة داخل الدورة الإيقاعية، وهو مهم بقدر الضربة نفسها.</p>
                   <p><strong>الشكل:</strong> يختلف شكله بحسب المدة الزمنية المطلوبة.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="dotted-note">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>النقطة الإضافية</h3>
                   <p>نقطة تُضاف إلى النغمة أو السكتة لزيادة مدتها بمقدار نصف قيمتها الأصلية.</p>
                   <p><strong>الاستخدام:</strong> مفيدة في كتابة الصيغ الإيقاعية المركبة أو الممدودة داخل بعض الجمل.</p>
                   <p><strong>الشكل:</strong> توضع مباشرة بعد الرمز الزمني.</p>
                 </article>
-                <article class="intro-term-card">
+                <article class="intro-term-card" data-symbol="beamed-notes">
+                  <div class="intro-symbol-visual" aria-hidden="true"></div>
                   <h3>التجميع بالشرطات</h3>
                   <p>ربط بصري بين نغمات قصيرة متتالية لإظهار تنظيمها الزمني.</p>
                   <p><strong>الاستخدام:</strong> يساعد على قراءة المجموعات الإيقاعية بسرعة ووضوح، خاصة في القيم السريعة.</p>
@@ -638,11 +642,40 @@
         svgEl('line', { x1: '-7', y1: '6', x2: '7', y2: '3', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, g);
       }
 
+      function drawEighthNote(parent) {
+        svgEl('ellipse', { cx: '19', cy: '35', rx: '9', ry: '7', fill: color, transform: 'rotate(-20 19 35)' }, parent);
+        svgEl('line', { x1: '25', y1: '35', x2: '25', y2: '10', stroke: color, 'stroke-width': '3.3', 'stroke-linecap': 'round' }, parent);
+        svgEl('path', { d: 'M25 10 C33 12, 37 18, 34 26 C31 22, 28 20, 25 19', fill: 'none', stroke: color, 'stroke-width': '3.3', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
+      }
+
+      function drawRest(parent) {
+        svgEl('path', { d: 'M26 8 C19 13, 20 19, 28 21 C22 24, 21 29, 26 34 C23 36, 22 39, 24 43', fill: 'none', stroke: color, 'stroke-width': '3.4', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
+        svgEl('circle', { cx: '27', cy: '44', r: '2.5', fill: color }, parent);
+      }
+
+      function drawDottedNote(parent) {
+        svgEl('ellipse', { cx: '17', cy: '35', rx: '9', ry: '7', fill: color, transform: 'rotate(-20 17 35)' }, parent);
+        svgEl('line', { x1: '23', y1: '35', x2: '23', y2: '11', stroke: color, 'stroke-width': '3.3', 'stroke-linecap': 'round' }, parent);
+        svgEl('circle', { cx: '37', cy: '30', r: '3.2', fill: color }, parent);
+      }
+
+      function drawBeamedNotes(parent) {
+        svgEl('ellipse', { cx: '15', cy: '36', rx: '7.5', ry: '6.2', fill: color, transform: 'rotate(-20 15 36)' }, parent);
+        svgEl('ellipse', { cx: '33', cy: '36', rx: '7.5', ry: '6.2', fill: color, transform: 'rotate(-20 33 36)' }, parent);
+        svgEl('line', { x1: '20', y1: '35', x2: '20', y2: '14', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, parent);
+        svgEl('line', { x1: '38', y1: '35', x2: '38', y2: '14', stroke: color, 'stroke-width': '3.1', 'stroke-linecap': 'round' }, parent);
+        svgEl('rect', { x: '20', y: '12', width: '18', height: '4.5', rx: '2', fill: color }, parent);
+      }
+
       const drawMap = {
         flat: drawFlat,
         sharp: drawSharp,
         'half-flat': drawHalfFlat,
-        'half-sharp': drawHalfSharp
+        'half-sharp': drawHalfSharp,
+        'eighth-note': drawEighthNote,
+        rest: drawRest,
+        'dotted-note': drawDottedNote,
+        'beamed-notes': drawBeamedNotes
       };
 
       document.querySelectorAll('.intro-term-card[data-symbol]').forEach((card) => {
