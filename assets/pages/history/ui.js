@@ -8,13 +8,17 @@ function getHistoryUiStrings() {
         figuresLabel: 'Figures associated with this era',
         fallbackDescription: 'One of the figures associated with this musical era.',
         relatedSheetsLabel: 'From the sheet library',
-        openSheet: 'Open sheet'
+        openSheet: 'Open sheet',
+        openEraPage: 'Read the full era page',
+        eraPageHref: 'history-era-en.html'
       }
     : {
         figuresLabel: 'الشخصيات المرتبطة بهذه الحقبة',
         fallbackDescription: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.',
         relatedSheetsLabel: 'من مكتبة النوتات',
-        openSheet: 'فتح النوتة'
+        openSheet: 'فتح النوتة',
+        openEraPage: 'افتح صفحة الحقبة الكاملة',
+        eraPageHref: 'history-era.html'
       };
 }
 
@@ -129,6 +133,12 @@ function createHistorySection(h, index) {
     `<span class="history-highlight">${escapeHistoryHtml(hl)}</span>`
   ).join('');
 
+  const eraPageLink = `
+    <div class="history-era-link-wrap">
+      <a class="history-era-link" href="${escapeHistoryHtml(ui.eraPageHref)}?era=${encodeURIComponent(h.id)}">${escapeHistoryHtml(ui.openEraPage)}</a>
+    </div>
+  `;
+
   const figures = Array.isArray(h.figures) ? h.figures.map(normalizeHistoryFigure) : [];
   const figuresMarkup = figures.length
     ? `
@@ -179,6 +189,7 @@ function createHistorySection(h, index) {
     <div class="history-content" hidden>
       <p class="history-text">${escapeHistoryHtml(h.content)}</p>
       <div class="history-highlights">${highlights}</div>
+      ${eraPageLink}
       ${figuresMarkup}
     </div>`;
 
