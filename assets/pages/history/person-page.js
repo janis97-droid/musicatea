@@ -280,17 +280,19 @@
   }
 
   try {
-    const [historyData, sheetsData, characterDataMain, characterDataLebanon, characterDataSyria] = await Promise.all([
+    const [historyData, sheetsData, characterDataMain, characterDataLebanon, characterDataLebanonGroups, characterDataSyria] = await Promise.all([
       loadData(isEnglish ? 'data/history-en.js' : 'data/history.js', 'history'),
       loadData('data/sheets.js', 'sheets'),
       loadData('data/characters.js', 'characters'),
       loadData('data/characters-lebanon.js', 'charactersLebanon'),
+      loadData('data/characters-lebanon-groups.js', 'charactersLebanonGroups'),
       loadData('data/characters-syria.js', 'charactersSyria')
     ]);
 
     const characterData = [
       ...(Array.isArray(characterDataMain) ? characterDataMain : []),
       ...(Array.isArray(characterDataLebanon) ? characterDataLebanon : []),
+      ...(Array.isArray(characterDataLebanonGroups) ? characterDataLebanonGroups : []),
       ...(Array.isArray(characterDataSyria) ? characterDataSyria : [])
     ];
 
