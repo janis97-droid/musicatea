@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="شرح مبسّط وواضح للمبتدئ يبيّن الفرق بين المقام والسلم في الموسيقى العربية، ولماذا لا يكفي حفظ الدرجات وحده لفهم المقام.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://musicatea.com/maqam-vs-scale.html">
+  <link rel="alternate" hreflang="ar" href="https://musicatea.com/maqam-vs-scale.html">
+  <link rel="alternate" hreflang="x-default" href="https://musicatea.com/maqam-vs-scale.html">
+  <title>ما الفرق بين المقام والسلم؟ — موسيقتي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .lesson-shell{max-width:1040px;margin:0 auto;padding:48px 20px 88px}
+    .lesson-breadcrumbs{display:flex;gap:10px;align-items:center;color:var(--text-dim);font-size:.9rem;margin-bottom:18px}
+    .lesson-breadcrumbs a{color:var(--text-dim);text-decoration:none}.lesson-breadcrumbs a:hover{color:var(--gold-light)}
+    .lesson-hero,.lesson-block{border:1px solid rgba(200,164,90,.14);border-radius:24px;background:linear-gradient(180deg, rgba(14,14,18,.96), rgba(10,10,14,.98));box-shadow:0 18px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03)}
+    .lesson-hero{padding:28px 28px 24px;margin-bottom:22px}
+    .lesson-kicker{display:inline-flex;align-items:center;min-height:32px;padding:6px 12px;border-radius:999px;border:1px solid rgba(200,164,90,.18);color:var(--gold-light);background:rgba(200,164,90,.07);font-size:.84rem;font-weight:800;margin-bottom:14px}
+    .lesson-hero h1{margin:0 0 12px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08}
+    .lesson-hero p{margin:0;color:rgba(255,255,255,.75);line-height:1.9;max-width:860px}
+    .lesson-grid{display:grid;gap:22px}
+    .lesson-block{padding:22px}
+    .lesson-block h2{margin:0 0 12px;color:var(--gold-light);font-size:1.14rem}
+    .lesson-block p{margin:0;color:rgba(255,255,255,.75);line-height:1.92}.lesson-block p+p{margin-top:12px}
+    .lesson-compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .lesson-card{border:1px solid rgba(255,255,255,.06);border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.014));padding:16px}
+    .lesson-card h3{margin:0 0 10px;font-size:1rem}.lesson-card p{font-size:.92rem}
+    .lesson-list{margin:0;padding:0 18px 0 0;color:rgba(255,255,255,.75);line-height:1.95}.lesson-list li+li{margin-top:8px}
+    .lesson-note{border-right:3px solid rgba(200,164,90,.45);padding:10px 14px;background:rgba(200,164,90,.06);border-radius:14px;color:rgba(255,255,255,.8)}
+    .lesson-next{display:flex;flex-wrap:wrap;gap:10px}.lesson-next a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 14px;border-radius:999px;border:1px solid rgba(200,164,90,.16);background:rgba(255,255,255,.03);color:var(--text);text-decoration:none;font-weight:800;font-size:.84rem}.lesson-next a:hover{color:var(--gold-light);border-color:rgba(200,164,90,.34)}
+    @media (max-width:680px){.lesson-shell{padding:28px 14px 70px}.lesson-hero,.lesson-block{border-radius:18px}.lesson-hero{padding:22px 18px 18px}.lesson-block{padding:18px 16px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top nav-top-home">
+        <div class="nav-top-right nav-main-group">
+          <a href="index.html" class="nav-logo">
+            <img src="assets/logo-mark.jpg" alt="موسيقتي" class="nav-logo-mark">
+            <span class="nav-logo-text">موسيقتي</span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html" data-home-link="true">الصفحة الرئيسية</a>
+            <a href="arabic-music-intro.html" class="active">المدخل إلى الموسيقى العربية</a>
+            <a href="library.html">مكتبة النوتات</a>
+            <a href="maqamat.html" data-nav-maqamat="true">مقاماتي</a>
+            <a href="rhythms.html">إيقاعاتي</a>
+            <a href="history.html">تاريخ الموسيقى العربية</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="lesson-shell">
+    <nav class="lesson-breadcrumbs" aria-label="مسار الصفحة">
+      <a href="arabic-music-intro.html">المدخل إلى الموسيقى العربية</a>
+      <span>›</span>
+      <span>ما الفرق بين المقام والسلم؟</span>
+    </nav>
+
+    <header class="lesson-hero">
+      <div class="lesson-kicker">درس للمبتدئ</div>
+      <h1>ما الفرق بين المقام والسلم؟</h1>
+      <p>هذا من أكثر الأسئلة الأساسية في الموسيقى العربية. كثير من المبتدئين يحفظون درجات المقام ثم يظنون أن هذا يكفي. لكنه لا يكفي. السلم يعرّفك على ترتيب النغمات، أما المقام فيعرّفك على طريقة عيش هذه النغمات في السمع والجملة والانتقال والركوز.</p>
+    </header>
+
+    <div class="lesson-grid">
+      <section class="lesson-block">
+        <h2>الجواب المباشر</h2>
+        <div class="lesson-compare">
+          <article class="lesson-card">
+            <h3>السلم</h3>
+            <p>السلم هو ترتيب للنغمات داخل مجال صوتي معيّن. يبيّن لك ما هي الدرجات الموجودة، وما علاقتها الصاعدة والهابطة من حيث الترتيب.</p>
+          </article>
+          <article class="lesson-card">
+            <h3>المقام</h3>
+            <p>المقام أوسع من ذلك. هو نظام لحني له نغمات محددة فعلًا، لكنه يشمل أيضًا القرار، والغمّاز، والأجناس، والمسار اللحني، ومواضع الاستقرار، وطريقة الانتقال، والطابع السمعي الخاص.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-block">
+        <h2>لماذا لا يكفي السلم وحده؟</h2>
+        <ul class="lesson-list">
+          <li>لأن مقامين مختلفين قد يتقاربان في بعض الدرجات، لكن يختلفان في السير والركوز والطابع.</li>
+          <li>لأن السلم لا يشرح لك أين تشعر الجملة بالاستقرار، وأين تميل إلى الحركة أو التعليق.</li>
+          <li>لأن المقام في الموسيقى العربية ليس قائمة درجات فقط، بل سلوك لحني متوارث في الأداء والتأليف.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>مثال بسيط</h2>
+        <p>حين تقول: هذا العمل في نهاوند، فأنت لا تقول فقط إن درجاته تشبه سلمًا معيّنًا. أنت تقول أيضًا إن فيه طريقة معيّنة في بناء الجملة، ونقاطًا معروفة للركوز، ومسارات شائعة للصعود والهبوط، وإمكانات مخصوصة للتحويل.</p>
+        <p class="lesson-note">بكلمات أبسط: السلم يجيب عن سؤال <strong>ما النغمات؟</strong>، أما المقام فيجيب عن سؤال <strong>كيف تتحرك هذه النغمات وتُسمَع وتُعاش؟</strong></p>
+      </section>
+
+      <section class="lesson-block">
+        <h2>ما الذي يجب أن يتعلمه المبتدئ بعد هذا الفرق؟</h2>
+        <ul class="lesson-list">
+          <li>أن يسمع القرار بوصفه نقطة استقرار أساسية.</li>
+          <li>أن يميّز الجنس الأدنى والجنس الأعلى.</li>
+          <li>أن يلاحظ السير: من أين تبدأ الجملة، وأين تستقر، وكيف تنتقل.</li>
+          <li>أن يربط المقام بأمثلة مسموعة ومدونة، لا بالتعريف النظري وحده.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>إلى أين بعد ذلك؟</h2>
+        <div class="lesson-next">
+          <a href="maqamat.html">افتح صفحات المقامات</a>
+          <a href="library.html">شاهد النوتات المرتبطة بالمقامات</a>
+          <a href="arabic-music-intro.html">العودة إلى المدخل</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-logo">موسيقتي</span>
+    <div class="footer-links">
+      <a href="about.html">عن المشروع</a>
+      <a href="contact.html">تواصل معنا</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+    </div>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+  <script src="assets/accessibility.js"></script>
+</body>
+</html>
