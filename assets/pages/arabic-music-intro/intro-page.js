@@ -64,7 +64,7 @@
       sectionEl.setAttribute('aria-labelledby', `${section.id}-title`);
 
       const head = el('div', 'intro-section-head');
-      head.innerHTML = `<h2 id="${section.id}-title">${section.title}</h2><p>${section.description}</p>`;
+      head.innerHTML = `<h2 id="${section.id}-title" style="color: var(--gold-light);">${section.title}</h2><p>${section.description}</p>`;
       sectionEl.appendChild(head);
 
       const sub = el('div', 'intro-subsections');
