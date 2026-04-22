@@ -107,14 +107,16 @@
 }
 
 .history-person-sheet-tags,
-.history-person-nav {
+.history-person-nav,
+.history-person-link-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
 
 .history-person-sheet-tag,
-.history-person-nav a {
+.history-person-nav a,
+.history-person-link-tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +132,8 @@
 }
 
 .history-person-sheet-tag:hover,
-.history-person-nav a:hover {
+.history-person-nav a:hover,
+.history-person-link-tag:hover {
   color: var(--gold-light);
   border-color: rgba(200,164,90,.32);
 }
