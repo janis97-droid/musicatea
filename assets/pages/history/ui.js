@@ -9,8 +9,10 @@ function getHistoryUiStrings() {
         fallbackDescription: 'One of the figures associated with this musical era.',
         relatedSheetsLabel: 'From the sheet library',
         openSheet: 'Open sheet',
-        openEraPage: 'Read the full era page',
-        eraPageHref: 'history-era-en.html'
+        openEraPage: 'Open the full era page',
+        eraPageHref: 'history-era-en.html',
+        openPersonPage: 'Open full profile',
+        personPageHref: 'person-en.html'
       }
     : {
         figuresLabel: 'الشخصيات المرتبطة بهذه الحقبة',
@@ -18,7 +20,9 @@ function getHistoryUiStrings() {
         relatedSheetsLabel: 'من مكتبة النوتات',
         openSheet: 'فتح النوتة',
         openEraPage: 'افتح صفحة الحقبة الكاملة',
-        eraPageHref: 'history-era.html'
+        eraPageHref: 'history-era.html',
+        openPersonPage: 'افتح الصفحة الكاملة للشخصية',
+        personPageHref: 'person.html'
       };
 }
 
@@ -145,8 +149,10 @@ function createHistorySection(h, index) {
       <div class="history-figures-block">
         <div class="history-figures-label">${escapeHistoryHtml(ui.figuresLabel)}</div>
         <div class="history-figures">
-          ${figures.map(figure => `
+          ${figures.map((figure, figureIndex) => `
             <button class="history-figure-chip" type="button"
+              data-era-id="${escapeHistoryHtml(h.id)}"
+              data-figure-index="${figureIndex}"
               data-figure-name="${escapeHistoryHtml(figure.name)}"
               data-figure-role="${escapeHistoryHtml(figure.role)}"
               data-figure-years="${escapeHistoryHtml(figure.years)}"
@@ -164,6 +170,7 @@ function createHistorySection(h, index) {
             </div>
           </div>
           <p class="history-figure-description"></p>
+          <div class="history-figure-actions"></div>
           <div class="history-figure-related"></div>
         </div>
       </div>
@@ -205,6 +212,7 @@ function toggleHistory(btn) {
 }
 
 function selectHistoryFigure(btn) {
+  const ui = getHistoryUiStrings();
   const block = btn.closest('.history-figures-block');
   if (!block) return;
 
@@ -216,11 +224,16 @@ function selectHistoryFigure(btn) {
   const role = btn.dataset.figureRole || '';
   const years = btn.dataset.figureYears || '';
   const description = btn.dataset.figureDescription || '';
+  const eraId = btn.dataset.eraId || '';
+  const figureIndex = btn.dataset.figureIndex || '0';
 
   const metaParts = [role, years].filter(Boolean);
   block.querySelector('.history-figure-name').textContent = name;
   block.querySelector('.history-figure-meta').textContent = metaParts.join(' — ');
   block.querySelector('.history-figure-description').textContent = description;
+  block.querySelector('.history-figure-actions').innerHTML = `
+    <a class="history-figure-action" href="${escapeHistoryHtml(ui.personPageHref)}?era=${encodeURIComponent(eraId)}&figure=${encodeURIComponent(figureIndex)}">${escapeHistoryHtml(ui.openPersonPage)}</a>
+  `;
   block.querySelector('.history-figure-related').innerHTML = createRelatedSheetTagsMarkup(name);
   panel.hidden = false;
 }
