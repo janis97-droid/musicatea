@@ -12,6 +12,10 @@
         figurePage: 'Figure page',
         overview: 'Profile overview',
         context: 'Historical context',
+        fullBiography: 'Extended profile',
+        keyContributions: 'Key contributions',
+        selectedWorks: 'Selected related works',
+        connectedFigures: 'Related figures',
         relatedSheets: 'Related sheets from the library',
         relatedCollaborators: 'Related collaborators',
         relatedMaqamat: 'Related maqamat in the linked works',
@@ -19,10 +23,14 @@
         role: 'Role',
         years: 'Years',
         era: 'Era',
+        relation: 'Relation',
         noFigure: 'The requested figure was not found.',
         noSheets: 'No directly linked sheets were found for this figure yet.',
         noCollaborators: 'No collaborators were inferred from the current sheet data yet.',
         noMaqamat: 'No maqamat were inferred from the linked works yet.',
+        noWorks: 'No curated related works were added for this figure yet.',
+        noContributions: 'No structured contributions were added for this figure yet.',
+        noConnectedFigures: 'No manually linked related figures were added for this figure yet.',
         backToEra: 'Back to era page',
         backToHistory: 'Back to history page',
         intro: 'Arabic Music Intro',
@@ -40,6 +48,10 @@
         figurePage: 'صفحة الشخصية',
         overview: 'نظرة عامة على الشخصية',
         context: 'السياق التاريخي',
+        fullBiography: 'نبذة موسعة',
+        keyContributions: 'إسهامات أساسية',
+        selectedWorks: 'أعمال مرتبطة',
+        connectedFigures: 'شخصيات مرتبطة',
         relatedSheets: 'نوتات مرتبطة من مكتبة النوتات',
         relatedCollaborators: 'شخصيات مرتبطة في الأعمال نفسها',
         relatedMaqamat: 'مقامات مرتبطة في الأعمال الموصولة',
@@ -47,10 +59,14 @@
         role: 'الدور',
         years: 'السنوات',
         era: 'الحقبة',
+        relation: 'العلاقة',
         noFigure: 'لم يتم العثور على الشخصية المطلوبة.',
         noSheets: 'لا توجد بعد نوتات مرتبطة مباشرة بهذه الشخصية.',
         noCollaborators: 'لم تُستنتج بعد شخصيات متعاونة من بيانات النوتات الحالية.',
         noMaqamat: 'لم تُستنتج بعد مقامات مرتبطة من الأعمال الموصولة.',
+        noWorks: 'لا توجد بعد أعمال مرتبطة مضافة لهذه الشخصية.',
+        noContributions: 'لا توجد بعد إسهامات مهيكلة مضافة لهذه الشخصية.',
+        noConnectedFigures: 'لا توجد بعد شخصيات مرتبطة مضافة لهذه الشخصية.',
         backToEra: 'العودة إلى صفحة الحقبة',
         backToHistory: 'العودة إلى صفحة التاريخ',
         intro: 'المدخل إلى الموسيقى العربية',
@@ -102,8 +118,16 @@
 
   async function loadData(filePath, variableName) {
     const response = await fetch(filePath, { cache: 'no-store' });
+    if (!response.ok) return [];
     const source = await response.text();
     return new Function(`${source}; return typeof ${variableName} !== 'undefined' ? ${variableName} : [];`)();
+  }
+
+  function findCharacterDetails(allCharacters, figure) {
+    const wanted = normalize(figure?.name || '');
+    return (Array.isArray(allCharacters) ? allCharacters : []).find((item) => {
+      return [item?.name_ar, item?.name_en, item?.slug, item?.id].some((value) => normalize(value) === wanted);
+    }) || null;
   }
 
   function collectRelatedSheets(allSheets, figureName) {
@@ -217,10 +241,49 @@
     `;
   }
 
+  function buildContributionList(items) {
+    const values = Array.isArray(items) ? items.filter(Boolean) : [];
+    if (!values.length) {
+      return `<p class="history-person-empty">${escapeHtml(strings.noContributions)}</p>`;
+    }
+    return `<ul class="history-person-bullets">${values.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  }
+
+  function buildWorks(items) {
+    const values = Array.isArray(items) ? items.filter(Boolean) : [];
+    if (!values.length) {
+      return `<p class="history-person-empty">${escapeHtml(strings.noWorks)}</p>`;
+    }
+    return `
+      <div class="history-person-work-grid">
+        ${values.map((item) => `
+          <article class="history-person-work-card">
+            <h3>${escapeHtml(item.title || '')}</h3>
+            ${item.relation ? `<div class="history-person-work-meta"><strong>${escapeHtml(strings.relation)}:</strong> ${escapeHtml(item.relation)}</div>` : ''}
+            ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}
+          </article>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function buildManualRelatedFigures(names) {
+    const values = Array.isArray(names) ? names.filter(Boolean) : [];
+    if (!values.length) {
+      return `<p class="history-person-empty">${escapeHtml(strings.noConnectedFigures)}</p>`;
+    }
+    return `
+      <div class="history-person-link-tags">
+        ${values.map((name) => `<a class="history-person-link-tag" href="${escapeHtml(strings.collaboratorHref)}?name=${encodeURIComponent(name)}">${escapeHtml(name)}</a>`).join('')}
+      </div>
+    `;
+  }
+
   try {
-    const [historyData, sheetsData] = await Promise.all([
+    const [historyData, sheetsData, characterData] = await Promise.all([
       loadData(isEnglish ? 'data/history-en.js' : 'data/history.js', 'history'),
-      loadData('data/sheets.js', 'sheets')
+      loadData('data/sheets.js', 'sheets'),
+      loadData('data/characters.js', 'characters')
     ]);
 
     const fallbackDescription = isEnglish ? 'A figure associated with this musical era.' : 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.';
@@ -249,8 +312,14 @@
       return;
     }
 
-    const relatedSheets = collectRelatedSheets(sheetsData, figure.name);
-    const collaborators = collectCollaborators(relatedSheets, figure.name);
+    const character = findCharacterDetails(characterData, figure);
+    const displayName = character ? (isEnglish ? (character.name_en || character.name_ar || figure.name) : (character.name_ar || character.name_en || figure.name)) : figure.name;
+    const displayRole = character?.role || figure.role || '';
+    const displayYears = character?.years || figure.years || '';
+    const shortIntro = character?.intro_short || figure.description || fallbackDescription;
+    const fullBio = character?.intro_long || '';
+    const relatedSheets = collectRelatedSheets(sheetsData, displayName);
+    const collaborators = collectCollaborators(relatedSheets, displayName);
     const relatedMaqamat = collectRelatedMaqamat(relatedSheets);
 
     document.getElementById('person-page-root').innerHTML = `
@@ -259,24 +328,47 @@
         <span>›</span>
         <a href="${escapeHtml(strings.eraHref)}?era=${encodeURIComponent(era.id)}">${escapeHtml(era.title)}</a>
         <span>›</span>
-        <span>${escapeHtml(figure.name)}</span>
+        <span>${escapeHtml(displayName)}</span>
       </nav>
 
       <div class="history-person-shell">
         <header class="history-person-hero">
-          ${figure.role ? `<div class="history-person-role">${escapeHtml(figure.role)}</div>` : ''}
-          <h1>${escapeHtml(figure.name)}</h1>
-          ${figure.years ? `<p class="history-person-years">${escapeHtml(figure.years)}</p>` : ''}
-          <p class="history-person-description">${escapeHtml(figure.description)}</p>
+          ${displayRole ? `<div class="history-person-role">${escapeHtml(displayRole)}</div>` : ''}
+          <h1>${escapeHtml(displayName)}</h1>
+          ${displayYears ? `<p class="history-person-years">${escapeHtml(displayYears)}</p>` : ''}
+          <p class="history-person-description">${escapeHtml(shortIntro)}</p>
         </header>
 
         <section class="history-person-block">
           <h2>${escapeHtml(strings.overview)}</h2>
           <div class="history-person-meta-list">
-            ${figure.role ? `<div class="history-person-meta-item"><strong>${escapeHtml(strings.role)}:</strong> ${escapeHtml(figure.role)}</div>` : ''}
-            ${figure.years ? `<div class="history-person-meta-item"><strong>${escapeHtml(strings.years)}:</strong> ${escapeHtml(figure.years)}</div>` : ''}
+            ${displayRole ? `<div class="history-person-meta-item"><strong>${escapeHtml(strings.role)}:</strong> ${escapeHtml(displayRole)}</div>` : ''}
+            ${displayYears ? `<div class="history-person-meta-item"><strong>${escapeHtml(strings.years)}:</strong> ${escapeHtml(displayYears)}</div>` : ''}
             <div class="history-person-meta-item"><strong>${escapeHtml(strings.era)}:</strong> ${escapeHtml(era.title)}</div>
+            ${character?.era_note ? `<div class="history-person-meta-item">${escapeHtml(character.era_note)}</div>` : ''}
           </div>
+        </section>
+
+        ${fullBio ? `
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.fullBiography)}</h2>
+          <p>${escapeHtml(fullBio)}</p>
+        </section>
+        ` : ''}
+
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.keyContributions)}</h2>
+          ${buildContributionList(character?.key_contributions)}
+        </section>
+
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.selectedWorks)}</h2>
+          ${buildWorks(character?.related_works)}
+        </section>
+
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.connectedFigures)}</h2>
+          ${buildManualRelatedFigures(character?.related_figures)}
         </section>
 
         <section class="history-person-block">
@@ -311,16 +403,16 @@
       </div>
     `;
 
-    document.title = `${figure.name} | ${strings.history}`;
+    document.title = `${displayName} | ${strings.history}`;
 
     const langToggle = document.getElementById('person-lang-toggle');
     if (langToggle) {
-      langToggle.href = `${strings.counterpart}?name=${encodeURIComponent(figure.name)}`;
+      langToggle.href = `${strings.counterpart}?name=${encodeURIComponent(displayName)}`;
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?name=${encodeURIComponent(figure.name)}`;
+      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?name=${encodeURIComponent(displayName)}`;
     }
   } catch (error) {
     document.getElementById('person-page-root').innerHTML = `<p class="history-person-empty">${escapeHtml(strings.noFigure)}</p>`;
