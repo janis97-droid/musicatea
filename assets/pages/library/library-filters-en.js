@@ -69,6 +69,12 @@
     };
   });
 
+  function createPersonPageLink(name) {
+    const value = String(name || '').trim();
+    if (!value) return '';
+    return `<a href="person-en.html?name=${encodeURIComponent(value)}" class="card-credit-link">${escapeHtml(value)}</a>`;
+  }
+
   function createCard(sheet) {
     const card = document.createElement('div');
     card.className = 'card';
@@ -103,7 +109,7 @@
 
     const composerValue = document.createElement('span');
     composerValue.className = 'card-credit-value';
-    composerValue.textContent = sheet._composerDisplay;
+    composerValue.innerHTML = createPersonPageLink(sheet._composerDisplay);
 
     composerRow.appendChild(composerLabel);
     composerRow.appendChild(composerValue);
@@ -119,7 +125,7 @@
 
       const performerValue = document.createElement('span');
       performerValue.className = 'card-credit-value';
-      performerValue.textContent = sheet._performerDisplay;
+      performerValue.innerHTML = createPersonPageLink(sheet._performerDisplay);
 
       performerRow.appendChild(performerLabel);
       performerRow.appendChild(performerValue);
