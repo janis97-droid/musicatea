@@ -1,0 +1,160 @@
+.history-person-page {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 28px 20px 72px;
+}
+
+.history-person-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: .92rem;
+  margin-bottom: 18px;
+}
+
+.history-person-breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.history-person-breadcrumbs a:hover {
+  color: var(--gold-light);
+}
+
+.history-person-shell {
+  display: grid;
+  gap: 22px;
+}
+
+.history-person-hero,
+.history-person-block {
+  border: 1px solid rgba(200,164,90,.14);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(14,14,18,.96), rgba(10,10,14,.98));
+  box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.history-person-hero {
+  padding: 26px 26px 22px;
+}
+
+.history-person-role {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.18);
+  color: var(--gold-light);
+  background: rgba(200,164,90,.07);
+  font-size: .84rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.history-person-hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+.history-person-years {
+  margin: 0 0 12px;
+  color: var(--text-dim);
+  font-size: .95rem;
+  font-weight: 700;
+}
+
+.history-person-description {
+  margin: 0;
+  color: rgba(255,255,255,.76);
+  line-height: 1.9;
+  font-size: 1rem;
+  max-width: 900px;
+}
+
+.history-person-block {
+  padding: 22px 22px 20px;
+}
+
+.history-person-block h2 {
+  margin: 0 0 12px;
+  color: var(--gold-light);
+  font-size: 1.12rem;
+}
+
+.history-person-block p {
+  margin: 0;
+  color: rgba(255,255,255,.76);
+  line-height: 1.9;
+}
+
+.history-person-meta-list {
+  display: grid;
+  gap: 10px;
+}
+
+.history-person-meta-item {
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.014));
+  padding: 14px 16px;
+}
+
+.history-person-meta-item strong {
+  color: var(--gold-light);
+}
+
+.history-person-sheet-tags,
+.history-person-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.history-person-sheet-tag,
+.history-person-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.16);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.history-person-sheet-tag:hover,
+.history-person-nav a:hover {
+  color: var(--gold-light);
+  border-color: rgba(200,164,90,.32);
+}
+
+.history-person-empty {
+  color: var(--text-muted);
+  font-size: .94rem;
+}
+
+@media (max-width: 680px) {
+  .history-person-page {
+    padding: 18px 14px 56px;
+  }
+
+  .history-person-hero,
+  .history-person-block {
+    border-radius: 18px;
+  }
+
+  .history-person-hero {
+    padding: 20px 18px 18px;
+  }
+
+  .history-person-block {
+    padding: 18px 16px 16px;
+  }
+}
