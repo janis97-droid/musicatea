@@ -13,12 +13,16 @@
         overview: 'Profile overview',
         context: 'Historical context',
         relatedSheets: 'Related sheets from the library',
+        relatedCollaborators: 'Related collaborators',
+        relatedMaqamat: 'Related maqamat in the linked works',
         continueExploring: 'Continue exploring',
         role: 'Role',
         years: 'Years',
         era: 'Era',
         noFigure: 'The requested figure was not found.',
         noSheets: 'No directly linked sheets were found for this figure yet.',
+        noCollaborators: 'No collaborators were inferred from the current sheet data yet.',
+        noMaqamat: 'No maqamat were inferred from the linked works yet.',
         backToEra: 'Back to era page',
         backToHistory: 'Back to history page',
         intro: 'Arabic Music Intro',
@@ -27,6 +31,7 @@
         eraHref: 'history-era-en.html',
         introHref: 'arabic-music-intro.html',
         libraryHref: 'library-en.html',
+        collaboratorHref: 'person-en.html',
         counterpart: 'person.html'
       }
     : {
@@ -36,12 +41,16 @@
         overview: 'نظرة عامة على الشخصية',
         context: 'السياق التاريخي',
         relatedSheets: 'نوتات مرتبطة من مكتبة النوتات',
+        relatedCollaborators: 'شخصيات مرتبطة في الأعمال نفسها',
+        relatedMaqamat: 'مقامات مرتبطة في الأعمال الموصولة',
         continueExploring: 'تابع التعلّم من هنا',
         role: 'الدور',
         years: 'السنوات',
         era: 'الحقبة',
         noFigure: 'لم يتم العثور على الشخصية المطلوبة.',
         noSheets: 'لا توجد بعد نوتات مرتبطة مباشرة بهذه الشخصية.',
+        noCollaborators: 'لم تُستنتج بعد شخصيات متعاونة من بيانات النوتات الحالية.',
+        noMaqamat: 'لم تُستنتج بعد مقامات مرتبطة من الأعمال الموصولة.',
         backToEra: 'العودة إلى صفحة الحقبة',
         backToHistory: 'العودة إلى صفحة التاريخ',
         intro: 'المدخل إلى الموسيقى العربية',
@@ -50,6 +59,7 @@
         eraHref: 'history-era.html',
         introHref: 'arabic-music-intro.html',
         libraryHref: 'library.html',
+        collaboratorHref: 'person.html',
         counterpart: 'person-en.html'
       };
 
@@ -112,7 +122,49 @@
         seen.add(key);
         return true;
       })
-      .slice(0, 14);
+      .slice(0, 18);
+  }
+
+  function collectCollaborators(sheets, figureName) {
+    const wanted = normalize(figureName);
+    const map = new Map();
+
+    sheets.forEach((sheet) => {
+      const pairs = [
+        { ar: sheet.composer, en: sheet.composer_en },
+        { ar: sheet.performer, en: sheet.performer_en }
+      ].filter((entry) => entry.ar || entry.en);
+
+      pairs.forEach((entry) => {
+        const baseName = entry.ar || entry.en || '';
+        if (!baseName || normalize(baseName) === wanted) return;
+        const key = normalize(baseName);
+        if (!map.has(key)) {
+          map.set(key, isEnglish ? (entry.en || entry.ar || '') : (entry.ar || entry.en || ''));
+        }
+      });
+    });
+
+    return [...map.values()].filter(Boolean).slice(0, 14);
+  }
+
+  function collectRelatedMaqamat(sheets) {
+    const map = new Map();
+
+    sheets.forEach((sheet) => {
+      if (!sheet.maqam) return;
+      const key = `${sheet.maqam}|${sheet.tonic || ''}`;
+      if (!map.has(key)) {
+        map.set(key, {
+          maqamAr: sheet.maqam || '',
+          maqamEn: sheet.maqam_en || sheet.maqam || '',
+          tonicAr: sheet.tonic || '',
+          tonicEn: sheet.tonic_en || sheet.tonic || ''
+        });
+      }
+    });
+
+    return [...map.values()].slice(0, 10);
   }
 
   function buildSheetTags(sheets) {
@@ -129,6 +181,41 @@
     `;
   }
 
+  function buildCollaboratorTags(names) {
+    if (!names.length) {
+      return `<p class="history-person-empty">${escapeHtml(strings.noCollaborators)}</p>`;
+    }
+
+    return `
+      <div class="history-person-link-tags">
+        ${names.map((name) => `<a class="history-person-link-tag" href="${escapeHtml(strings.collaboratorHref)}?name=${encodeURIComponent(name)}">${escapeHtml(name)}</a>`).join('')}
+      </div>
+    `;
+  }
+
+  function buildMaqamTags(items) {
+    if (!items.length) {
+      return `<p class="history-person-empty">${escapeHtml(strings.noMaqamat)}</p>`;
+    }
+
+    return `
+      <div class="history-person-link-tags">
+        ${items.map((item) => {
+          const label = isEnglish
+            ? [item.maqamEn, item.tonicEn].filter(Boolean).join(' · ')
+            : [item.maqamAr, item.tonicAr].filter(Boolean).join(' · ');
+
+          let href = isEnglish ? 'maqamat-en.html' : 'maqamat.html';
+          if (typeof getMaqamRoute === 'function' && item.maqamAr) {
+            href = getMaqamRoute(item.maqamAr, item.tonicAr) || href;
+          }
+
+          return `<a class="history-person-link-tag" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
   try {
     const [historyData, sheetsData] = await Promise.all([
       loadData(isEnglish ? 'data/history-en.js' : 'data/history.js', 'history'),
@@ -139,7 +226,6 @@
 
     let era = historyData.find((item) => item.id === eraId) || null;
     let figure = era && Array.isArray(era.figures) ? normalizeFigure(era.figures[figureIndex], fallbackDescription) : null;
-    let resolvedFigureIndex = figureIndex;
 
     if (requestedName) {
       const wanted = normalize(requestedName);
@@ -151,7 +237,6 @@
           if (normalize(candidate.name) === wanted) {
             era = eraItem;
             figure = candidate;
-            resolvedFigureIndex = i;
             break outer;
           }
         }
@@ -164,6 +249,8 @@
     }
 
     const relatedSheets = collectRelatedSheets(sheetsData, figure.name);
+    const collaborators = collectCollaborators(relatedSheets, figure.name);
+    const relatedMaqamat = collectRelatedMaqamat(relatedSheets);
 
     document.getElementById('person-page-root').innerHTML = `
       <nav class="history-person-breadcrumbs" aria-label="${escapeHtml(strings.figurePage)}">
@@ -199,6 +286,16 @@
         <section class="history-person-block">
           <h2>${escapeHtml(strings.relatedSheets)}</h2>
           ${buildSheetTags(relatedSheets)}
+        </section>
+
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.relatedCollaborators)}</h2>
+          ${buildCollaboratorTags(collaborators)}
+        </section>
+
+        <section class="history-person-block">
+          <h2>${escapeHtml(strings.relatedMaqamat)}</h2>
+          ${buildMaqamTags(relatedMaqamat)}
         </section>
 
         <section class="history-person-block">
