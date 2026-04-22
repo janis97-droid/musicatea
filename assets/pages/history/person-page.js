@@ -280,11 +280,19 @@
   }
 
   try {
-    const [historyData, sheetsData, characterData] = await Promise.all([
+    const [historyData, sheetsData, characterDataMain, characterDataLebanon, characterDataSyria] = await Promise.all([
       loadData(isEnglish ? 'data/history-en.js' : 'data/history.js', 'history'),
       loadData('data/sheets.js', 'sheets'),
-      loadData('data/characters.js', 'characters')
+      loadData('data/characters.js', 'characters'),
+      loadData('data/characters-lebanon.js', 'charactersLebanon'),
+      loadData('data/characters-syria.js', 'charactersSyria')
     ]);
+
+    const characterData = [
+      ...(Array.isArray(characterDataMain) ? characterDataMain : []),
+      ...(Array.isArray(characterDataLebanon) ? characterDataLebanon : []),
+      ...(Array.isArray(characterDataSyria) ? characterDataSyria : [])
+    ];
 
     const fallbackDescription = isEnglish ? 'A figure associated with this musical era.' : 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.';
 
