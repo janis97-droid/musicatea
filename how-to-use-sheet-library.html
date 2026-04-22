@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="شرح عملي للمبتدئ يوضح كيف يستخدم مكتبة النوتات في موسيقتي للتعلّم: اختيار القطعة، الربط بين النوتة والمقام والإيقاع، ومقارنة الأعمال بدل التصفح العشوائي.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="canonical" href="https://musicatea.com/how-to-use-sheet-library.html">
+  <link rel="alternate" hreflang="ar" href="https://musicatea.com/how-to-use-sheet-library.html">
+  <link rel="alternate" hreflang="x-default" href="https://musicatea.com/how-to-use-sheet-library.html">
+  <title>كيف أستخدم مكتبة النوتات للتعلّم؟ — موسيقتي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .lesson-shell{max-width:1040px;margin:0 auto;padding:48px 20px 88px}
+    .lesson-breadcrumbs{display:flex;gap:10px;align-items:center;color:var(--text-dim);font-size:.9rem;margin-bottom:18px}
+    .lesson-breadcrumbs a{color:var(--text-dim);text-decoration:none}.lesson-breadcrumbs a:hover{color:var(--gold-light)}
+    .lesson-hero,.lesson-block{border:1px solid rgba(200,164,90,.14);border-radius:24px;background:linear-gradient(180deg, rgba(14,14,18,.96), rgba(10,10,14,.98));box-shadow:0 18px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03)}
+    .lesson-hero{padding:28px 28px 24px;margin-bottom:22px}
+    .lesson-kicker{display:inline-flex;align-items:center;min-height:32px;padding:6px 12px;border-radius:999px;border:1px solid rgba(200,164,90,.18);color:var(--gold-light);background:rgba(200,164,90,.07);font-size:.84rem;font-weight:800;margin-bottom:14px}
+    .lesson-hero h1{margin:0 0 12px;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.08}
+    .lesson-hero p{margin:0;color:rgba(255,255,255,.75);line-height:1.9;max-width:860px}
+    .lesson-grid{display:grid;gap:22px}
+    .lesson-block{padding:22px}
+    .lesson-block h2{margin:0 0 12px;color:var(--gold-light);font-size:1.14rem}
+    .lesson-block p{margin:0;color:rgba(255,255,255,.75);line-height:1.92}.lesson-block p+p{margin-top:12px}
+    .lesson-list{margin:0;padding:0 18px 0 0;color:rgba(255,255,255,.75);line-height:1.95}.lesson-list li+li{margin-top:8px}
+    .lesson-steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .lesson-step{border:1px solid rgba(255,255,255,.06);border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.014));padding:16px}
+    .lesson-step h3{margin:0 0 10px;font-size:1rem}.lesson-step p{font-size:.92rem}
+    .lesson-note{border-right:3px solid rgba(200,164,90,.45);padding:10px 14px;background:rgba(200,164,90,.06);border-radius:14px;color:rgba(255,255,255,.8)}
+    .lesson-next{display:flex;flex-wrap:wrap;gap:10px}.lesson-next a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 14px;border-radius:999px;border:1px solid rgba(200,164,90,.16);background:rgba(255,255,255,.03);color:var(--text);text-decoration:none;font-weight:800;font-size:.84rem}.lesson-next a:hover{color:var(--gold-light);border-color:rgba(200,164,90,.34)}
+    @media (max-width:680px){.lesson-shell{padding:28px 14px 70px}.lesson-hero,.lesson-block{border-radius:18px}.lesson-hero{padding:22px 18px 18px}.lesson-block{padding:18px 16px}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+
+  <nav class="site-nav">
+    <div class="nav-shell">
+      <div class="nav-top nav-top-home">
+        <div class="nav-top-right nav-main-group">
+          <a href="index.html" class="nav-logo">
+            <img src="assets/logo-mark.jpg" alt="موسيقتي" class="nav-logo-mark">
+            <span class="nav-logo-text">موسيقتي</span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html" data-home-link="true">الصفحة الرئيسية</a>
+            <a href="arabic-music-intro.html" class="active">المدخل إلى الموسيقى العربية</a>
+            <a href="library.html">مكتبة النوتات</a>
+            <a href="maqamat.html" data-nav-maqamat="true">مقاماتي</a>
+            <a href="rhythms.html">إيقاعاتي</a>
+            <a href="history.html">تاريخ الموسيقى العربية</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="lesson-shell">
+    <nav class="lesson-breadcrumbs" aria-label="مسار الصفحة">
+      <a href="arabic-music-intro.html">المدخل إلى الموسيقى العربية</a>
+      <span>›</span>
+      <span>كيف أستخدم مكتبة النوتات للتعلّم؟</span>
+    </nav>
+
+    <header class="lesson-hero">
+      <div class="lesson-kicker">درس للمبتدئ</div>
+      <h1>كيف أستخدم مكتبة النوتات للتعلّم؟</h1>
+      <p>مكتبة النوتات ليست مكانًا لتحميل ملفات فقط. إذا استعملتها بشكل صحيح، تصبح أداة تعليمية حقيقية تربط بين القراءة، والسماع، والمقام، والإيقاع، وأسلوب الأداء. المشكلة ليست في كثرة النوتات، بل في التصفح العشوائي لها من غير خطة.</p>
+    </header>
+
+    <div class="lesson-grid">
+      <section class="lesson-block">
+        <h2>ابدأ من سؤال واحد، لا من مئة ملف</h2>
+        <p>أغلب المبتدئين يفتحون المكتبة ثم يتنقلون بين الأعمال بلا هدف. هذا يضيّع الفائدة. الأفضل أن تبدأ بسؤال واضح مثل: أريد أن أفهم مقام نهاوند، أو أريد أن أتدرّب على قراءة الإيقاع، أو أريد أن أقارن بين أكثر من عمل في المقام نفسه.</p>
+      </section>
+
+      <section class="lesson-block">
+        <h2>أفضل طريقة عملية للاستعمال</h2>
+        <div class="lesson-steps">
+          <article class="lesson-step">
+            <h3>1) اختر هدفًا صغيرًا</h3>
+            <p>لا تقل: سأتعلم كل شيء من المكتبة. قل: سأدرس عملين في مقام واحد، أو سأركز اليوم على قراءة الجملة الأولى فقط.</p>
+          </article>
+          <article class="lesson-step">
+            <h3>2) اربط العمل بصفحته النظرية</h3>
+            <p>إذا كانت النوتة في مقام معيّن، افتح أيضًا صفحة ذلك المقام. وإذا كان فيها إيقاع واضح، افتح صفحة الإيقاع المرتبط به.</p>
+          </article>
+          <article class="lesson-step">
+            <h3>3) قارن بدل أن تحفظ</h3>
+            <p>قارن بين عملين في المقام نفسه أو الإيقاع نفسه. هنا تبدأ تلاحظ السلوك المشترك والطابع بدل الاكتفاء بحفظ أسماء.</p>
+          </article>
+          <article class="lesson-step">
+            <h3>4) استعمل السماع مع القراءة</h3>
+            <p>النوتة وحدها لا تكفي، والسماع وحده لا يكفي. الفائدة الحقيقية تأتي عندما تقرأ الجملة ثم تسمعها أو تعزفها وتعود إليها.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-block">
+        <h2>ثلاث طرق مفيدة للدراسة من المكتبة</h2>
+        <ul class="lesson-list">
+          <li><strong>حسب المقام:</strong> افتح عدة أعمال في مقام واحد لترى كيف يظهر الطابع نفسه بأشكال مختلفة.</li>
+          <li><strong>حسب الإيقاع:</strong> اختر أعمالًا ضمن دورة إيقاعية واحدة لتلاحظ كيف تبقى البنية الزمنية حاضرة رغم اختلاف الجملة.</li>
+          <li><strong>حسب الشخصيات:</strong> قارن بين أعمال مرتبطة بملحن أو مؤدٍ معيّن لتلاحظ الأسلوب والاختيارات المتكررة.</li>
+        </ul>
+      </section>
+
+      <section class="lesson-block">
+        <h2>ما الذي ألاحظه داخل النوتة؟</h2>
+        <ul class="lesson-list">
+          <li>أين يبدأ اللحن وأين يستقر؟</li>
+          <li>ما المقام أو الجنس الظاهر بوضوح في الجملة؟</li>
+          <li>كيف يتوزع الإيقاع بين الضربات والسكتات؟</li>
+          <li>هل توجد أماكن تتكرر فيها حركة لحنية أو إيقاعية معيّنة؟</li>
+        </ul>
+        <p class="lesson-note">الفكرة ليست أن تجمع ملفات كثيرة، بل أن تجعل كل نوتة تشرح لك شيئًا محددًا. عندما تنجح في ذلك، تتحول المكتبة من أرشيف إلى طريقة دراسة.</p>
+      </section>
+
+      <section class="lesson-block">
+        <h2>خطة بسيطة جدًا للمبتدئ</h2>
+        <p>اختر عملًا واحدًا فقط. اقرأ سطرًا أو جملة قصيرة. حدّد المقام أو الإيقاع الظاهر قدر الإمكان. ثم افتح صفحة المقام أو الإيقاع المرتبط. بعد ذلك ارجع إلى النوتة واقرأها مرة ثانية. هذه الدورة القصيرة أفضل بكثير من تنزيل عشرات الأعمال بلا قراءة فعلية.</p>
+      </section>
+
+      <section class="lesson-block">
+        <h2>إلى أين بعد ذلك؟</h2>
+        <div class="lesson-next">
+          <a href="library.html">افتح مكتبة النوتات</a>
+          <a href="maqamat.html">انتقل إلى المقامات</a>
+          <a href="rhythms.html">انتقل إلى الإيقاعات</a>
+          <a href="arabic-music-intro.html">العودة إلى المدخل</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span class="footer-logo">موسيقتي</span>
+    <div class="footer-links">
+      <a href="about.html">عن المشروع</a>
+      <a href="contact.html">تواصل معنا</a>
+      <a href="privacy.html">سياسة الخصوصية</a>
+    </div>
+    <span>© 2025 Musicatea</span>
+  </footer>
+
+  <script src="assets/accessibility.js"></script>
+</body>
+</html>
