@@ -22,6 +22,8 @@
         songsPlaceholder: 'Songs and instrumental examples for this maqam will be added here later.',
         librarySheets: 'Examples from the sheet library',
         librarySheetsPlaceholder: 'No sheet-library examples have been linked to this maqam yet.',
+        relatedFigures: 'Related figures from the linked works',
+        relatedFiguresPlaceholder: 'No related figures have been inferred from the linked sheet-library works yet.',
         videos: 'Video examples',
         videosPlaceholder: 'Video examples for this maqam will be added here later.',
         references: 'Sources and references',
@@ -30,6 +32,7 @@
         audio: 'Audio',
         link: 'Link',
         openSheet: 'Open sheet',
+        openProfile: 'Open profile',
         singer: 'Singer',
         composer: 'Composer',
         tonics: 'Available keys',
@@ -48,6 +51,8 @@
       songsPlaceholder: 'ستُضاف أمثلة الأغاني والقطع لهذا المقام لاحقًا.',
       librarySheets: 'أمثلة من مكتبة النوتات',
       librarySheetsPlaceholder: 'لا توجد بعد أمثلة مرتبطة من مكتبة النوتات لهذا المقام.',
+      relatedFigures: 'شخصيات مرتبطة من الأعمال الموصولة',
+      relatedFiguresPlaceholder: 'لم تُستنتج بعد شخصيات مرتبطة من الأعمال الموصولة في مكتبة النوتات.',
       videos: 'أمثلة مرئية / فيديو',
       videosPlaceholder: 'ستُضاف أمثلة الفيديو لهذا المقام لاحقًا.',
       references: 'مصادر ومراجع',
@@ -56,6 +61,7 @@
       audio: 'صوت',
       link: 'رابط',
       openSheet: 'فتح النوتة',
+      openProfile: 'افتح الصفحة الكاملة',
       singer: 'المؤدي',
       composer: 'الملحن',
       tonics: 'الطبقات المتوفرة',
@@ -266,6 +272,35 @@
     });
   }
 
+  function collectRelatedFigures() {
+    const lang = getPageLanguage();
+    const allSheets = getAllSheets();
+    const maqamCandidates = getCurrentMaqamCandidates(lang);
+    if (!allSheets.length || !maqamCandidates.size) return [];
+
+    const figures = new Map();
+
+    allSheets.forEach((sheet) => {
+      if (!sheet || sheet.system !== 'arabic') return;
+      const sheetMaqam = normalizeCompareValue(getSheetField(sheet, lang, 'maqam'));
+      if (!sheetMaqam || !maqamCandidates.has(sheetMaqam)) return;
+
+      [
+        { name: getSheetField(sheet, lang, 'composer') || getSheetField(sheet, lang === 'en' ? 'ar' : 'en', 'composer'), role: getUiText().composer },
+        { name: getSheetField(sheet, lang, 'performer') || getSheetField(sheet, lang === 'en' ? 'ar' : 'en', 'performer'), role: getUiText().singer }
+      ].forEach((entry) => {
+        const name = String(entry.name || '').trim();
+        if (!name) return;
+        const key = normalizeCompareValue(name);
+        if (!figures.has(key)) {
+          figures.set(key, { name, role: entry.role });
+        }
+      });
+    });
+
+    return Array.from(figures.values()).slice(0, 16);
+  }
+
   function buildExampleActions(item) {
     const t = getUiText();
     const video = pickFirstUrl(item, ['video_url', 'video', 'youtube', 'youtube_url']);
@@ -301,18 +336,31 @@
     }).join('')}</ul>` : '';
   }
 
+  function createRelatedFiguresMarkup(items) {
+    const t = getUiText();
+    const v = Array.isArray(items) ? items.filter(Boolean) : [];
+    if (!v.length) return createPlaceholderBody(t.relatedFiguresPlaceholder);
+    const hrefBase = getPageLanguage() === 'en' ? 'person-en.html' : 'person.html';
+    return `<div class="maqam-example-actions">${v.map((item) => {
+      const label = item.role ? `${item.name} — ${item.role}` : item.name;
+      return `<a class="maqam-example-action" href="${escapeHtml(hrefBase)}?name=${encodeURIComponent(item.name)}">${escapeHtml(label)}</a>`;
+    }).join('')}</div>`;
+  }
+
   function createExamplesAccordionCard(model) {
     const t = getUiText();
     const songsItems = model && (model.examples || model.listening_examples || model.repertoire_examples);
     const songsMarkup = createExamplesMarkup(songsItems) || createPlaceholderBody(t.songsPlaceholder);
     const libraryItems = collectLibraryExamples();
     const libraryMarkup = createExamplesMarkup(libraryItems) || createPlaceholderBody(t.librarySheetsPlaceholder);
+    const figuresMarkup = createRelatedFiguresMarkup(collectRelatedFigures());
     const hasSongs = !!createExamplesMarkup(songsItems);
     const hasLibrary = !!createExamplesMarkup(libraryItems);
 
     const body = `<div class="maqam-acc-root" data-acc-root="examples">${[
       createAccordionItem('examples-songs', t.songs, songsMarkup, false, 'sub'),
-      createAccordionItem('examples-library', t.librarySheets, libraryMarkup, true, 'sub')
+      createAccordionItem('examples-library', t.librarySheets, libraryMarkup, true, 'sub'),
+      createAccordionItem('examples-figures', t.relatedFigures, figuresMarkup, false, 'sub')
     ].join('')}</div>`;
 
     return `<section class="maqam-content-card ${(!hasSongs && !hasLibrary) ? 'maqam-content-card-placeholder' : ''}"><h3>${t.examplesBlock}</h3>${body}</section>`;
