@@ -3,6 +3,7 @@
   const params = new URLSearchParams(window.location.search);
   const eraId = params.get('era') || '';
   const figureIndex = Number(params.get('figure') || 0);
+  const requestedName = params.get('name') || '';
 
   const strings = isEnglish
     ? {
@@ -134,9 +135,28 @@
       loadData('data/sheets.js', 'sheets')
     ]);
 
-    const era = historyData.find((item) => item.id === eraId);
     const fallbackDescription = isEnglish ? 'A figure associated with this musical era.' : 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.';
-    const figure = era && Array.isArray(era.figures) ? normalizeFigure(era.figures[figureIndex], fallbackDescription) : null;
+
+    let era = historyData.find((item) => item.id === eraId) || null;
+    let figure = era && Array.isArray(era.figures) ? normalizeFigure(era.figures[figureIndex], fallbackDescription) : null;
+    let resolvedFigureIndex = figureIndex;
+
+    if (requestedName) {
+      const wanted = normalize(requestedName);
+      outer:
+      for (const eraItem of historyData) {
+        const figures = Array.isArray(eraItem.figures) ? eraItem.figures : [];
+        for (let i = 0; i < figures.length; i += 1) {
+          const candidate = normalizeFigure(figures[i], fallbackDescription);
+          if (normalize(candidate.name) === wanted) {
+            era = eraItem;
+            figure = candidate;
+            resolvedFigureIndex = i;
+            break outer;
+          }
+        }
+      }
+    }
 
     if (!era || !figure || !figure.name) {
       document.getElementById('person-page-root').innerHTML = `<p class="history-person-empty">${escapeHtml(strings.noFigure)}</p>`;
@@ -197,12 +217,12 @@
 
     const langToggle = document.getElementById('person-lang-toggle');
     if (langToggle) {
-      langToggle.href = `${strings.counterpart}?era=${encodeURIComponent(era.id)}&figure=${encodeURIComponent(String(figureIndex))}`;
+      langToggle.href = `${strings.counterpart}?name=${encodeURIComponent(figure.name)}`;
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?era=${encodeURIComponent(era.id)}&figure=${encodeURIComponent(String(figureIndex))}`;
+      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?name=${encodeURIComponent(figure.name)}`;
     }
   } catch (error) {
     document.getElementById('person-page-root').innerHTML = `<p class="history-person-empty">${escapeHtml(strings.noFigure)}</p>`;
