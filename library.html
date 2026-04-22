@@ -145,30 +145,57 @@
     <div id="list" class="grid"></div>
 <section id="sheet-requests" class="request-sheet-section" aria-labelledby="request-sheet-title">
   <div class="request-sheet-card">
-    <div class="request-sheet-copy">
-      <h2 id="request-sheet-title">اطلب نوتة</h2>
-      <p>إذا لم تجد النوتة التي تبحث عنها، أرسل طلبك وسنعمل على إضافتها إلى المكتبة.</p>
+    <div class="request-sheet-panel request-sheet-panel-form">
+      <div class="request-sheet-copy">
+        <h2 id="request-sheet-title">اطلب نوتة</h2>
+        <p>إذا لم تجد النوتة التي تبحث عنها، أرسل طلبك وسنعمل على إضافتها إلى المكتبة.</p>
+      </div>
+
+      <form
+        class="request-sheet-form"
+        action="https://formspree.io/f/xkopqjok"
+        method="POST"
+        onsubmit="setTimeout(function(){document.getElementById('request-sheet-success').style.display='block';}, 200);"
+      >
+        <label>
+          <span>البريد الإلكتروني</span>
+          <input type="email" name="email" placeholder="name@example.com" required>
+        </label>
+
+        <label>
+          <span>اسم الأغنية والمطرب</span>
+          <textarea name="message" rows="4" placeholder="اكتب اسم النوتة، الفنان، أو أي تفاصيل تساعدنا" required></textarea>
+        </label>
+
+        <button type="submit" class="request-sheet-btn">إرسال الطلب</button>
+        <p id="request-sheet-success" class="request-sheet-success" style="display:none;">شكرا على إرسال الطلب, تابع محتوى المكتبة بإستمرار حتى يتم إضافة النوتة</p>
+      </form>
     </div>
 
-    <form
-      class="request-sheet-form"
-      action="https://formspree.io/f/xkopqjok"
-      method="POST"
-      onsubmit="setTimeout(function(){document.getElementById('request-sheet-success').style.display='block';}, 200);"
-    >
-      <label>
-        <span>البريد الإلكتروني</span>
-        <input type="email" name="email" placeholder="name@example.com" required>
-      </label>
-
-      <label>
-        <span>اسم الأغنية والمطرب</span>
-        <textarea name="message" rows="4" placeholder="اكتب اسم النوتة، الفنان، أو أي تفاصيل تساعدنا" required></textarea>
-      </label>
-
-      <button type="submit" class="request-sheet-btn">إرسال الطلب</button>
-      <p id="request-sheet-success" class="request-sheet-success" style="display:none;">شكرا على إرسال الطلب, تابع محتوى المكتبة بإستمرار حتى يتم إضافة النوتة</p>
-    </form>
+    <aside class="request-sheet-panel request-sheet-panel-latest" aria-labelledby="latest-sheet-requests-title">
+      <div class="latest-sheet-requests-head">
+        <h3 id="latest-sheet-requests-title">اخر طلبات النوتة</h3>
+        <span class="latest-sheet-requests-meta">تظهر 4 طلبات في كل مرة</span>
+      </div>
+      <div class="latest-sheet-requests-viewport">
+        <ul class="latest-sheet-requests-list" id="latest-sheet-requests-list">
+          <li class="latest-sheet-request-item"><strong>بعيد عنك</strong><span>أم كلثوم</span></li>
+          <li class="latest-sheet-request-item"><strong>الحب الكبير</strong><span>جورج وسوف</span></li>
+          <li class="latest-sheet-request-item"><strong>انا قلبي ليك ميال</strong><span>فايزة أحمد</span></li>
+          <li class="latest-sheet-request-item"><strong>من هنا ورايح</strong><span>جورج وسوف</span></li>
+          <li class="latest-sheet-request-item"><strong>الهوى سلطان</strong><span>جورج وسوف</span></li>
+          <li class="latest-sheet-request-item"><strong>حبيبي انت</strong><span>ملحم بركات</span></li>
+          <li class="latest-sheet-request-item"><strong>رباعيات الخيام</strong><span>أم كلثوم</span></li>
+          <li class="latest-sheet-request-item"><strong>لا انت حبيبي</strong><span>فيروز</span></li>
+          <li class="latest-sheet-request-item"><strong>مين دا اللي نسيك</strong><span>نانسي عجرم</span></li>
+          <li class="latest-sheet-request-item"><strong>طمني عليك</strong><span>محمد فؤاد</span></li>
+          <li class="latest-sheet-request-item"><strong>اول حب</strong><span>مهى فتوني</span></li>
+          <li class="latest-sheet-request-item"><strong>انا قلت بترجع</strong><span>عبير نعمه</span></li>
+          <li class="latest-sheet-request-item"><strong>بيحن</strong><span>وائل كفوري</span></li>
+          <li class="latest-sheet-request-item"><strong>بكرا شي نهار</strong><span>جوليا بطرس</span></li>
+        </ul>
+      </div>
+    </aside>
   </div>
 </section>
   </main>
@@ -192,6 +219,36 @@
   <script src="assets/pages/library/library-filters-ar.js"></script>
   <script src="assets/pages/maqamat/mega-menu.js"></script>
   <script src="assets/accessibility.js"></script>
+  <script>
+    (function () {
+      const list = document.getElementById('latest-sheet-requests-list');
+      if (!list) return;
+
+      const items = Array.from(list.children);
+      if (items.length <= 4) return;
+
+      let startIndex = 0;
+      const visibleCount = window.innerWidth <= 640 ? 3 : 4;
+
+      function renderWindow() {
+        items.forEach((item, index) => {
+          const endIndex = startIndex + visibleCount;
+          const isVisible = index >= startIndex && index < endIndex;
+          item.hidden = !isVisible;
+        });
+      }
+
+      renderWindow();
+
+      setInterval(function () {
+        startIndex = (startIndex + 1) % items.length;
+        if (startIndex > items.length - visibleCount) {
+          startIndex = 0;
+        }
+        renderWindow();
+      }, 2600);
+    })();
+  </script>
 
 </body>
 </html>
