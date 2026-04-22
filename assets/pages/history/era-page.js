@@ -19,6 +19,7 @@
         previousEra: 'Previous era',
         nextEra: 'Next era',
         openSheet: 'Open sheet',
+        openPerson: 'Open full profile',
         intro: 'Arabic Music Intro',
         maqamat: 'Maqamat',
         rhythms: 'Rhythms',
@@ -28,6 +29,7 @@
         maqamatHref: 'maqamat-en.html',
         rhythmsHref: 'rhythms-en.html',
         libraryHref: 'library-en.html',
+        personHref: 'person-en.html',
         counterpart: 'history-era.html'
       }
     : {
@@ -45,6 +47,7 @@
         previousEra: 'الحقبة السابقة',
         nextEra: 'الحقبة التالية',
         openSheet: 'فتح النوتة',
+        openPerson: 'افتح الصفحة الكاملة للشخصية',
         intro: 'المدخل إلى الموسيقى العربية',
         maqamat: 'المقامات',
         rhythms: 'الإيقاعات',
@@ -54,6 +57,7 @@
         maqamatHref: 'maqamat.html',
         rhythmsHref: 'rhythms.html',
         libraryHref: 'library.html',
+        personHref: 'person.html',
         counterpart: 'history-era-en.html'
       };
 
@@ -128,14 +132,17 @@
     });
   }
 
-  function buildFigureCards(figures) {
-    return figures.map((figure) => {
+  function buildFigureCards(figures, era) {
+    return figures.map((figure, figureIndex) => {
       const meta = [figure.role, figure.years].filter(Boolean).join(' — ');
       return `
         <article class="history-era-figure-card">
           <h3>${escapeHtml(figure.name)}</h3>
           ${meta ? `<div class="history-era-figure-meta">${escapeHtml(meta)}</div>` : ''}
           ${figure.description ? `<p>${escapeHtml(figure.description)}</p>` : ''}
+          <div class="history-era-nav">
+            <a href="${escapeHtml(strings.personHref)}?era=${encodeURIComponent(era.id)}&figure=${encodeURIComponent(String(figureIndex))}">${escapeHtml(strings.openPerson)}</a>
+          </div>
         </article>
       `;
     }).join('');
@@ -245,7 +252,7 @@
         <section class="history-era-block">
           <h2>${escapeHtml(strings.figures)}</h2>
           <div class="history-era-figures-grid">
-            ${buildFigureCards(figures)}
+            ${buildFigureCards(figures, era)}
           </div>
         </section>
 
