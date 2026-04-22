@@ -9,6 +9,14 @@
   const CONTENT_ROOT = "data/maqam-content";
   const cache = new Map();
 
+  const MAQAM_ID_ALIASES = {
+    bayat: "bayati"
+  };
+
+  const FAMILY_ID_ALIASES = {
+    bayat: "bayati"
+  };
+
   function getPageLanguage() {
     const lang = (document.documentElement.getAttribute("lang") || "ar").toLowerCase();
     return lang.startsWith("en") ? "en" : "ar";
@@ -67,6 +75,14 @@
     ];
   }
 
+  function resolveMaqamContentId(maqamId) {
+    return MAQAM_ID_ALIASES[maqamId] || maqamId;
+  }
+
+  function resolveFamilyContentId(familyId) {
+    return FAMILY_ID_ALIASES[familyId] || familyId;
+  }
+
   function deepClone(value) {
     return JSON.parse(JSON.stringify(value));
   }
@@ -87,14 +103,16 @@
     if (!familyId) {
       throw new Error("Missing familyId.");
     }
-    return fetchJsonWithFallback(buildLocalizedCandidates(`families/${familyId}`));
+    const resolvedFamilyId = resolveFamilyContentId(familyId);
+    return fetchJsonWithFallback(buildLocalizedCandidates(`families/${resolvedFamilyId}`));
   }
 
   async function loadMaqamContent(maqamId) {
     if (!maqamId) {
       throw new Error("Missing maqamId.");
     }
-    return fetchJsonWithFallback(buildLocalizedCandidates(`maqamat/${maqamId}`));
+    const resolvedMaqamId = resolveMaqamContentId(maqamId);
+    return fetchJsonWithFallback(buildLocalizedCandidates(`maqamat/${resolvedMaqamId}`));
   }
 
   async function getReferenceById(referenceId) {
@@ -165,6 +183,8 @@
     buildFamilyContentModel,
     buildMaqamContentModel,
     clearContentCache,
-    getPageLanguage
+    getPageLanguage,
+    resolveMaqamContentId,
+    resolveFamilyContentId
   };
 })();
