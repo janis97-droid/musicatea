@@ -1,0 +1,213 @@
+.history-era-page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 20px 72px;
+}
+
+.history-era-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: .92rem;
+  margin-bottom: 18px;
+}
+
+.history-era-breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.history-era-breadcrumbs a:hover {
+  color: var(--gold-light);
+}
+
+.history-era-shell {
+  display: grid;
+  gap: 22px;
+}
+
+.history-era-hero,
+.history-era-block {
+  border: 1px solid rgba(200,164,90,.14);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(14,14,18,.96), rgba(10,10,14,.98));
+  box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.history-era-hero {
+  padding: 26px 26px 22px;
+}
+
+.history-era-period {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.18);
+  color: var(--gold-light);
+  background: rgba(200,164,90,.07);
+  font-size: .84rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.history-era-hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+.history-era-subtitle {
+  margin: 0 0 14px;
+  color: var(--gold-light);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.history-era-description {
+  margin: 0;
+  color: rgba(255,255,255,.76);
+  line-height: 1.9;
+  font-size: 1rem;
+  max-width: 900px;
+}
+
+.history-era-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.history-era-highlight {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.16);
+  background: rgba(255,255,255,.03);
+  color: var(--text-muted);
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.history-era-block {
+  padding: 22px 22px 20px;
+}
+
+.history-era-block h2 {
+  margin: 0 0 12px;
+  color: var(--gold-light);
+  font-size: 1.12rem;
+}
+
+.history-era-block p {
+  margin: 0;
+  color: rgba(255,255,255,.76);
+  line-height: 1.9;
+}
+
+.history-era-figures-grid,
+.history-era-links-grid,
+.history-era-sources-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.history-era-figure-card,
+.history-era-link-card,
+.history-era-source-card {
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.014));
+  padding: 16px;
+}
+
+.history-era-figure-card h3,
+.history-era-link-card h3,
+.history-era-source-card h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+}
+
+.history-era-figure-meta {
+  color: var(--gold-light);
+  font-size: .88rem;
+  margin-bottom: 8px;
+}
+
+.history-era-figure-card p,
+.history-era-link-card p,
+.history-era-source-card p {
+  font-size: .92rem;
+}
+
+.history-era-sheet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.history-era-sheet-tag,
+.history-era-link-card a,
+.history-era-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.16);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 700;
+}
+
+.history-era-sheet-tag:hover,
+.history-era-link-card a:hover,
+.history-era-nav a:hover {
+  color: var(--gold-light);
+  border-color: rgba(200,164,90,.32);
+}
+
+.history-era-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.history-era-empty {
+  color: var(--text-muted);
+  font-size: .94rem;
+}
+
+@media (max-width: 680px) {
+  .history-era-page {
+    padding: 18px 14px 56px;
+  }
+
+  .history-era-hero,
+  .history-era-block {
+    border-radius: 18px;
+  }
+
+  .history-era-hero {
+    padding: 20px 18px 18px;
+  }
+
+  .history-era-block {
+    padding: 18px 16px 16px;
+  }
+
+  .history-era-figures-grid,
+  .history-era-links-grid,
+  .history-era-sources-grid {
+    grid-template-columns: 1fr;
+  }
+}
