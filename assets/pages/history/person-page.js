@@ -208,6 +208,7 @@
           let href = isEnglish ? 'maqamat-en.html' : 'maqamat.html';
           if (typeof getMaqamRoute === 'function' && item.maqamAr) {
             href = getMaqamRoute(item.maqamAr, item.tonicAr) || href;
+            if (isEnglish) href = href.replace('interactive-scale.html', 'interactive-scale-en.html');
           }
 
           return `<a class="history-person-link-tag" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
