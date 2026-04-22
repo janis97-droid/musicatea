@@ -84,6 +84,11 @@
   font-size: 1.12rem;
 }
 
+.history-person-block h3 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
 .history-person-block p {
   margin: 0;
   color: rgba(255,255,255,.76);
@@ -102,7 +107,8 @@
   padding: 14px 16px;
 }
 
-.history-person-meta-item strong {
+.history-person-meta-item strong,
+.history-person-work-meta strong {
   color: var(--gold-light);
 }
 
@@ -138,6 +144,38 @@
   border-color: rgba(200,164,90,.32);
 }
 
+.history-person-bullets {
+  margin: 0;
+  padding: 0 20px 0 0;
+  display: grid;
+  gap: 10px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.9;
+}
+
+.history-person-bullets li::marker {
+  color: var(--gold-light);
+}
+
+.history-person-work-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.history-person-work-card {
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.014));
+  padding: 16px;
+}
+
+.history-person-work-meta {
+  margin-bottom: 8px;
+  color: var(--text-dim);
+  font-size: .9rem;
+}
+
 .history-person-empty {
   color: var(--text-muted);
   font-size: .94rem;
@@ -159,5 +197,9 @@
 
   .history-person-block {
     padding: 18px 16px 16px;
+  }
+
+  .history-person-work-grid {
+    grid-template-columns: 1fr;
   }
 }
