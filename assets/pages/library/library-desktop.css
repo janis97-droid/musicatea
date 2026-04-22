@@ -60,13 +60,40 @@
 }
 
 .latest-sheet-requests-meta {
+  display: block;
+  margin-top: 4px;
   color: var(--text-dim);
   font-size: 0.76rem;
-  white-space: nowrap;
+}
+
+.latest-sheet-requests-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.latest-sheet-requests-control {
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,0.16);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+
+.latest-sheet-requests-control:hover {
+  color: var(--gold-light);
+  border-color: rgba(200,164,90,0.3);
+  background: rgba(200,164,90,0.08);
 }
 
 .latest-sheet-requests-viewport {
-  min-height: 288px;
+  min-height: 252px;
 }
 
 .latest-sheet-requests-list {
@@ -186,6 +213,15 @@
 
   .request-sheet-card {
     padding: 18px;
+  }
+
+  .latest-sheet-requests-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .latest-sheet-requests-controls {
+    justify-content: flex-start;
   }
 
   .request-sheet-btn {
