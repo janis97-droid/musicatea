@@ -174,8 +174,14 @@
 
     <aside class="request-sheet-panel request-sheet-panel-latest" aria-labelledby="latest-sheet-requests-title">
       <div class="latest-sheet-requests-head">
-        <h3 id="latest-sheet-requests-title">اخر طلبات النوتة</h3>
-        <span class="latest-sheet-requests-meta">تظهر 4 طلبات في كل مرة</span>
+        <div>
+          <h3 id="latest-sheet-requests-title">اخر طلبات النوتة</h3>
+          <span class="latest-sheet-requests-meta">تظهر 4 طلبات في كل مرة</span>
+        </div>
+        <div class="latest-sheet-requests-controls" aria-label="التنقل بين الطلبات">
+          <button type="button" class="latest-sheet-requests-control" id="latest-sheet-prev">السابق</button>
+          <button type="button" class="latest-sheet-requests-control" id="latest-sheet-next">التالي</button>
+        </div>
       </div>
       <div class="latest-sheet-requests-viewport">
         <ul class="latest-sheet-requests-list" id="latest-sheet-requests-list">
@@ -222,31 +228,70 @@
   <script>
     (function () {
       const list = document.getElementById('latest-sheet-requests-list');
+      const prevButton = document.getElementById('latest-sheet-prev');
+      const nextButton = document.getElementById('latest-sheet-next');
       if (!list) return;
 
       const items = Array.from(list.children);
-      if (items.length <= 4) return;
-
+      const getVisibleCount = () => (window.innerWidth <= 640 ? 3 : 4);
+      let visibleCount = getVisibleCount();
       let startIndex = 0;
-      const visibleCount = window.innerWidth <= 640 ? 3 : 4;
+      let autoTimer = null;
+      let resumeTimer = null;
 
       function renderWindow() {
+        const count = Math.min(visibleCount, items.length);
         items.forEach((item, index) => {
-          const endIndex = startIndex + visibleCount;
-          const isVisible = index >= startIndex && index < endIndex;
-          item.hidden = !isVisible;
+          let normalized = index - startIndex;
+          if (normalized < 0) normalized += items.length;
+          item.hidden = normalized >= count;
         });
       }
 
-      renderWindow();
+      function restartAuto() {
+        clearInterval(autoTimer);
+        if (items.length <= visibleCount) return;
+        autoTimer = setInterval(function () {
+          startIndex = (startIndex + 1) % items.length;
+          renderWindow();
+        }, 2800);
+      }
 
-      setInterval(function () {
+      function pauseAndResumeAuto() {
+        clearInterval(autoTimer);
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(restartAuto, 5000);
+      }
+
+      function goNext() {
         startIndex = (startIndex + 1) % items.length;
-        if (startIndex > items.length - visibleCount) {
-          startIndex = 0;
-        }
         renderWindow();
-      }, 2600);
+        pauseAndResumeAuto();
+      }
+
+      function goPrev() {
+        startIndex = (startIndex - 1 + items.length) % items.length;
+        renderWindow();
+        pauseAndResumeAuto();
+      }
+
+      function handleResize() {
+        const nextVisibleCount = getVisibleCount();
+        if (nextVisibleCount !== visibleCount) {
+          visibleCount = nextVisibleCount;
+          renderWindow();
+          restartAuto();
+        }
+      }
+
+      if (prevButton) prevButton.addEventListener('click', goPrev);
+      if (nextButton) nextButton.addEventListener('click', goNext);
+      list.addEventListener('mouseenter', () => clearInterval(autoTimer));
+      list.addEventListener('mouseleave', restartAuto);
+      window.addEventListener('resize', handleResize);
+
+      renderWindow();
+      restartAuto();
     })();
   </script>
 
