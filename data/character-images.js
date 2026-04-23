@@ -8,5 +8,10 @@ const characterImages = {
         caption: "أم كلثوم في أداء حي على المسرح."
       }
     ]
+  },
+  "sayyed-darwish": {
+    main_image: "assets/history/characters/sayyed-darwish/images.webp",
+    main_image_caption: "سيد درويش في صورة بورتريه أرشيفية.",
+    extra_images: []
   }
 };
