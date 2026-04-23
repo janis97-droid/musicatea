@@ -8,6 +8,20 @@ function createPersonPageLink(name) {
   return `<a href="${escapeHtml(href)}" class="card-credit-link">${escapeHtml(value)}</a>`;
 }
 
+function createRhythmTags(sheet) {
+  const rhythmIds = Array.isArray(sheet.rhythm_ids) ? sheet.rhythm_ids : [];
+  const rhythmNames = Array.isArray(sheet.rhythms) ? sheet.rhythms : [];
+
+  if (!rhythmIds.length || !rhythmNames.length) return '';
+
+  return rhythmIds.map((id, index) => {
+    const label = rhythmNames[index] || rhythmNames[0] || '';
+    if (!id || !label) return '';
+    const href = `rhythm.html?id=${encodeURIComponent(id)}`;
+    return `<a href="${escapeHtml(href)}" class="card-tag card-tag-clickable" onclick="event.stopPropagation()">${escapeHtml(label)}</a>`;
+  }).join('');
+}
+
 function createSheetCard(s) {
   const card = document.createElement('div');
   card.className = 'card';
@@ -23,6 +37,8 @@ function createSheetCard(s) {
   const maqamDisplay = maqamRoute
     ? `<a href="${escapeHtml(maqamRoute)}" class="maqam-link card-tag card-tag-clickable" onclick="event.stopPropagation()">${escapeHtml(maqamTagLabel)}</a>`
     : `<span class="card-tag">${escapeHtml(s.system === 'arabic' ? maqamTagLabel : (s.scale || ''))}</span>`;
+
+  const rhythmTags = createRhythmTags(s);
 
   const performerLine = s.performer
     ? `
@@ -60,6 +76,7 @@ function createSheetCard(s) {
       <div class="card-tags-row">
         ${maqamDisplay}
         ${secondaryMeta}
+        ${rhythmTags}
       </div>
     </div>
 
