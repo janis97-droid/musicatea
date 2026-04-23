@@ -15,10 +15,8 @@
         fullBiography: 'Extended profile',
         keyContributions: 'Key contributions',
         selectedWorks: 'Selected related works',
-        connectedFigures: 'Related figures',
         relatedSheets: 'Related sheets from the library',
         relatedCollaborators: 'Related collaborators',
-        relatedMaqamat: 'Related maqamat in the linked works',
         continueExploring: 'Continue exploring',
         role: 'Role',
         years: 'Years',
@@ -28,10 +26,8 @@
         noFigure: 'The requested figure was not found.',
         noSheets: 'No directly linked sheets were found for this figure yet.',
         noCollaborators: 'No collaborators were inferred from the current sheet data yet.',
-        noMaqamat: 'No maqamat were inferred from the linked works yet.',
         noWorks: 'No curated related works were added for this figure yet.',
         noContributions: 'No structured contributions were added for this figure yet.',
-        noConnectedFigures: 'No manually linked related figures were added for this figure yet.',
         backToEra: 'Back to era page',
         backToHistory: 'Back to history page',
         intro: 'Arabic Music Intro',
@@ -52,10 +48,8 @@
         fullBiography: 'نبذة موسعة',
         keyContributions: 'إسهامات أساسية',
         selectedWorks: 'أعمال مرتبطة',
-        connectedFigures: 'شخصيات مرتبطة',
         relatedSheets: 'نوتات مرتبطة من مكتبة النوتات',
         relatedCollaborators: 'شخصيات مرتبطة في الأعمال نفسها',
-        relatedMaqamat: 'مقامات مرتبطة في الأعمال الموصولة',
         continueExploring: 'تابع التعلّم من هنا',
         role: 'الدور',
         years: 'السنوات',
@@ -65,10 +59,8 @@
         noFigure: 'لم يتم العثور على الشخصية المطلوبة.',
         noSheets: 'لا توجد بعد نوتات مرتبطة مباشرة بهذه الشخصية.',
         noCollaborators: 'لم تُستنتج بعد شخصيات متعاونة من بيانات النوتات الحالية.',
-        noMaqamat: 'لم تُستنتج بعد مقامات مرتبطة من الأعمال الموصولة.',
         noWorks: 'لا توجد بعد أعمال مرتبطة مضافة لهذه الشخصية.',
         noContributions: 'لا توجد بعد إسهامات مهيكلة مضافة لهذه الشخصية.',
-        noConnectedFigures: 'لا توجد بعد شخصيات مرتبطة مضافة لهذه الشخصية.',
         backToEra: 'العودة إلى صفحة الحقبة',
         backToHistory: 'العودة إلى صفحة التاريخ',
         intro: 'المدخل إلى الموسيقى العربية',
@@ -174,25 +166,6 @@
     return [...map.values()].filter(Boolean).slice(0, 14);
   }
 
-  function collectRelatedMaqamat(sheets) {
-    const map = new Map();
-
-    sheets.forEach((sheet) => {
-      if (!sheet.maqam) return;
-      const key = `${sheet.maqam}|${sheet.tonic || ''}`;
-      if (!map.has(key)) {
-        map.set(key, {
-          maqamAr: sheet.maqam || '',
-          maqamEn: sheet.maqam_en || sheet.maqam || '',
-          tonicAr: sheet.tonic || '',
-          tonicEn: sheet.tonic_en || sheet.tonic || ''
-        });
-      }
-    });
-
-    return [...map.values()].slice(0, 10);
-  }
-
   function buildSheetTags(sheets) {
     if (!sheets.length) {
       return `<p class="history-person-empty">${escapeHtml(strings.noSheets)}</p>`;
@@ -219,30 +192,6 @@
     `;
   }
 
-  function buildMaqamTags(items) {
-    if (!items.length) {
-      return `<p class="history-person-empty">${escapeHtml(strings.noMaqamat)}</p>`;
-    }
-
-    return `
-      <div class="history-person-link-tags">
-        ${items.map((item) => {
-          const label = isEnglish
-            ? [item.maqamEn, item.tonicEn].filter(Boolean).join(' · ')
-            : [item.maqamAr, item.tonicAr].filter(Boolean).join(' · ');
-
-          let href = isEnglish ? 'maqamat-en.html' : 'maqamat.html';
-          if (typeof getMaqamRoute === 'function' && item.maqamAr) {
-            href = getMaqamRoute(item.maqamAr, item.tonicAr) || href;
-            if (isEnglish) href = href.replace('interactive-scale.html', 'interactive-scale-en.html');
-          }
-
-          return `<a class="history-person-link-tag" href="${escapeHtml(href)}">${escapeHtml(label)}</a>`;
-        }).join('')}
-      </div>
-    `;
-  }
-
   function buildContributionList(items) {
     const values = Array.isArray(items) ? items.filter(Boolean) : [];
     if (!values.length) {
@@ -265,18 +214,6 @@
             ${item.note ? `<p>${escapeHtml(item.note)}</p>` : ''}
           </article>
         `).join('')}
-      </div>
-    `;
-  }
-
-  function buildManualRelatedFigures(names) {
-    const values = Array.isArray(names) ? names.filter(Boolean) : [];
-    if (!values.length) {
-      return `<p class="history-person-empty">${escapeHtml(strings.noConnectedFigures)}</p>`;
-    }
-    return `
-      <div class="history-person-link-tags">
-        ${values.map((name) => `<a class="history-person-link-tag" href="${escapeHtml(strings.collaboratorHref)}?name=${encodeURIComponent(name)}">${escapeHtml(name)}</a>`).join('')}
       </div>
     `;
   }
@@ -382,7 +319,6 @@
     const fullBio = character?.intro_long || '';
     const relatedSheets = collectRelatedSheets(sheetsData, displayName);
     const collaborators = collectCollaborators(relatedSheets, displayName);
-    const relatedMaqamat = collectRelatedMaqamat(relatedSheets);
 
     document.getElementById('person-page-root').innerHTML = `
       <nav class="history-person-breadcrumbs" aria-label="${escapeHtml(strings.figurePage)}">
@@ -431,11 +367,6 @@
         </section>
 
         <section class="history-person-block">
-          <h2>${escapeHtml(strings.connectedFigures)}</h2>
-          ${buildManualRelatedFigures(character?.related_figures)}
-        </section>
-
-        <section class="history-person-block">
           <h2>${escapeHtml(strings.context)}</h2>
           <p>${escapeHtml(era.content || '')}</p>
         </section>
@@ -448,11 +379,6 @@
         <section class="history-person-block">
           <h2>${escapeHtml(strings.relatedCollaborators)}</h2>
           ${buildCollaboratorTags(collaborators)}
-        </section>
-
-        <section class="history-person-block">
-          <h2>${escapeHtml(strings.relatedMaqamat)}</h2>
-          ${buildMaqamTags(relatedMaqamat)}
         </section>
 
         <section class="history-person-block">
