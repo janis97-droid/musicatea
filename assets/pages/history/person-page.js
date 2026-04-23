@@ -24,6 +24,7 @@
         years: 'Years',
         era: 'Era',
         relation: 'Relation',
+        gallery: 'Selected images',
         noFigure: 'The requested figure was not found.',
         noSheets: 'No directly linked sheets were found for this figure yet.',
         noCollaborators: 'No collaborators were inferred from the current sheet data yet.',
@@ -60,6 +61,7 @@
         years: 'السنوات',
         era: 'الحقبة',
         relation: 'العلاقة',
+        gallery: 'صور مختارة',
         noFigure: 'لم يتم العثور على الشخصية المطلوبة.',
         noSheets: 'لا توجد بعد نوتات مرتبطة مباشرة بهذه الشخصية.',
         noCollaborators: 'لم تُستنتج بعد شخصيات متعاونة من بيانات النوتات الحالية.',
@@ -279,14 +281,63 @@
     `;
   }
 
+  function mergeCharacterImages(character, imageMap) {
+    if (!character || !imageMap || typeof imageMap !== 'object') return character;
+    const key = character.slug || character.id;
+    const imageData = key ? imageMap[key] : null;
+    if (!imageData) return character;
+
+    return {
+      ...character,
+      main_image: imageData.main_image || character.main_image || '',
+      main_image_caption: imageData.main_image_caption || character.main_image_caption || '',
+      extra_images: Array.isArray(imageData.extra_images) && imageData.extra_images.length
+        ? imageData.extra_images
+        : (character.extra_images || [])
+    };
+  }
+
+  function buildImageGallery(character) {
+    const mainImage = character?.main_image || '';
+    const mainCaption = character?.main_image_caption || '';
+    const extraImages = Array.isArray(character?.extra_images) ? character.extra_images.filter((item) => item && item.file) : [];
+
+    if (!mainImage && !extraImages.length) return '';
+
+    return `
+      <section class="history-person-block history-person-gallery-block">
+        <h2>${escapeHtml(strings.gallery)}</h2>
+        <div class="history-person-gallery ${extraImages.length ? 'has-extra' : ''}">
+          ${mainImage ? `
+            <figure class="history-person-gallery-main">
+              <img src="${escapeHtml(mainImage)}" alt="${escapeHtml(character?.name_ar || character?.name_en || '')}" loading="lazy">
+              ${mainCaption ? `<figcaption>${escapeHtml(mainCaption)}</figcaption>` : ''}
+            </figure>
+          ` : ''}
+          ${extraImages.length ? `
+            <div class="history-person-gallery-side">
+              ${extraImages.map((item) => `
+                <figure class="history-person-gallery-item">
+                  <img src="${escapeHtml(item.file)}" alt="${escapeHtml(item.caption || character?.name_ar || character?.name_en || '')}" loading="lazy">
+                  ${item.caption ? `<figcaption>${escapeHtml(item.caption)}</figcaption>` : ''}
+                </figure>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+      </section>
+    `;
+  }
+
   try {
-    const [historyData, sheetsData, characterDataMain, characterDataLebanon, characterDataLebanonGroups, characterDataSyria] = await Promise.all([
+    const [historyData, sheetsData, characterDataMain, characterDataLebanon, characterDataLebanonGroups, characterDataSyria, imageMap] = await Promise.all([
       loadData(isEnglish ? 'data/history-en.js' : 'data/history.js', 'history'),
       loadData('data/sheets.js', 'sheets'),
       loadData('data/characters.js', 'characters'),
       loadData('data/characters-lebanon.js', 'charactersLebanon'),
       loadData('data/characters-lebanon-groups.js', 'charactersLebanonGroups'),
-      loadData('data/characters-syria.js', 'charactersSyria')
+      loadData('data/characters-syria.js', 'charactersSyria'),
+      loadData('data/character-images.js', 'characterImages')
     ]);
 
     const characterData = [
@@ -322,7 +373,8 @@
       return;
     }
 
-    const character = findCharacterDetails(characterData, figure);
+    let character = findCharacterDetails(characterData, figure);
+    character = mergeCharacterImages(character, imageMap);
     const displayName = character ? (isEnglish ? (character.name_en || character.name_ar || figure.name) : (character.name_ar || character.name_en || figure.name)) : figure.name;
     const displayRole = character?.role || figure.role || '';
     const displayYears = character?.years || figure.years || '';
@@ -348,6 +400,8 @@
           ${displayYears ? `<p class="history-person-years">${escapeHtml(displayYears)}</p>` : ''}
           <p class="history-person-description">${escapeHtml(shortIntro)}</p>
         </header>
+
+        ${buildImageGallery(character)}
 
         <section class="history-person-block">
           <h2>${escapeHtml(strings.overview)}</h2>
