@@ -19,6 +19,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["وحدة كبيرة", "مقسوم"],
+    rhythms_en: ["Wahda Kabira", "Maqsum"],
+    rhythm_ids: ["wahda_kabira", "maqsum"],
     pdf: "pdfs/Ana Qalby Lek Mayyal.pdf"
   },
  
