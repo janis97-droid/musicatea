@@ -168,6 +168,7 @@
         </label>
 
         <button type="submit" class="request-sheet-btn">إرسال الطلب</button>
+        <p class="request-sheet-note">نراجع الطلبات الجديدة ونضيف المتاح منها إلى المكتبة.</p>
         <p id="request-sheet-success" class="request-sheet-success" style="display:none;">شكرا على إرسال الطلب, تابع محتوى المكتبة بإستمرار حتى يتم إضافة النوتة</p>
       </form>
     </div>
@@ -230,6 +231,7 @@
       const list = document.getElementById('latest-sheet-requests-list');
       const prevButton = document.getElementById('latest-sheet-prev');
       const nextButton = document.getElementById('latest-sheet-next');
+      const meta = document.querySelector('.latest-sheet-requests-meta');
       if (!list) return;
 
       const items = Array.from(list.children);
@@ -246,6 +248,9 @@
           if (normalized < 0) normalized += items.length;
           item.hidden = normalized >= count;
         });
+        if (meta) {
+          meta.textContent = `تظهر ${count} طلبات في كل مرة`;
+        }
       }
 
       function restartAuto() {
@@ -254,7 +259,7 @@
         autoTimer = setInterval(function () {
           startIndex = (startIndex + 1) % items.length;
           renderWindow();
-        }, 2800);
+        }, 3200);
       }
 
       function pauseAndResumeAuto() {
