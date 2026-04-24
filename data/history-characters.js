@@ -1,9 +1,16 @@
 // data/history-characters.js
 // Central registry helpers for figures used by the Arabic music history pages.
-// The registry intentionally supports both older inline `figures` entries in
-// data/history*.js and newer data-driven `figure_ids` entries.
+// Character data is intentionally split into smaller files under data/history-characters/.
+// Load those files before this one, then this file builds a single resolver.
 
-const historyCharacterOverrides = [
+const historyCharacterDataGroups = [
+  globalThis.historyCharactersClassicalMedieval,
+  globalThis.historyCharactersTheoryAndCongress,
+  globalThis.historyCharactersEgyptModern,
+  globalThis.historyCharactersLevantModern
+].filter(Array.isArray);
+
+const historyCharacterFallbackOverrides = [
   {
     id: "umm-kulthum",
     name: { ar: "أم كلثوم", en: "Umm Kulthum" },
@@ -12,12 +19,7 @@ const historyCharacterOverrides = [
   {
     id: "mohamed-el-qasabgi",
     name: { ar: "محمد القصبجي", en: "Mohamed El Qasabgi" },
-    aliases: ["محمد القصبجي", "محمد القصبجي", "Mohamed El Qasabgi", "Muhammad al-Qasabji", "Muhammad al-Qasabgi"]
-  },
-  {
-    id: "farid-al-atrash",
-    name: { ar: "فريد الأطرش", en: "Farid al-Atrash" },
-    aliases: ["فريد الاطرش", "Farid al-Atrash", "Farid Al Atrash"]
+    aliases: ["محمد القصبجي", "Mohamed El Qasabgi", "Muhammad al-Qasabji", "Muhammad al-Qasabgi"]
   },
   {
     id: "mohamed-abdel-wahab",
@@ -27,7 +29,7 @@ const historyCharacterOverrides = [
   {
     id: "riyad-al-sunbati",
     name: { ar: "رياض السنباطي", en: "Riyad al-Sunbati" },
-    aliases: ["رياض السنباطي", "رياض السنباطى", "Riad al-Sunbati", "Riyad al-Sunbati", "Riad Sombati"]
+    aliases: ["رياض السنباطي", "رياض السنباطى", "Riyad al-Sunbati", "Riad al-Sunbati"]
   },
   {
     id: "fairuz",
@@ -37,97 +39,12 @@ const historyCharacterOverrides = [
   {
     id: "rahbani-brothers",
     name: { ar: "الأخوان رحباني", en: "Rahbani Brothers" },
-    aliases: ["الأخوين رحباني", "اخوين رحباني", "الاخوان رحباني", "الرحابنة", "الرحابنه", "Rahbani Brothers", "Assi and Mansour Rahbani", "Asi Rahbani", "Mansour Rahbani"]
-  },
-  {
-    id: "wadih-al-safi",
-    name: { ar: "وديع الصافي", en: "Wadih al-Safi" },
-    aliases: ["وديع الصافي", "Wadih El Safi", "Wadih al-Safi"]
-  },
-  {
-    id: "melhem-barakat",
-    name: { ar: "ملحم بركات", en: "Melhem Barakat" },
-    aliases: ["ملحم بركات", "Melhem Barakat", "Melhem Barkat"]
-  },
-  {
-    id: "sabah-fakhri",
-    name: { ar: "صباح فخري", en: "Sabah Fakhri" },
-    aliases: ["صباح فخري", "Sabah Fakhri"]
-  },
-  {
-    id: "george-wassouf",
-    name: { ar: "جورج وسوف", en: "George Wassouf" },
-    aliases: ["جورج وسوف", "George Wassouf", "Georges Wassouf"]
-  },
-  {
-    id: "sayed-darwish",
-    name: { ar: "سيد درويش", en: "Sayyid Darwish" },
-    aliases: ["سيد درويش", "سيد درويش", "Sayyid Darwish", "Sayed Darwish"]
-  },
-  {
-    id: "zakariyya-ahmad",
-    name: { ar: "زكريا أحمد", en: "Zakariyya Ahmad" },
-    aliases: ["زكريا احمد", "Zakariyya Ahmad", "Zakaria Ahmed"]
-  },
-  {
-    id: "asmahan",
-    name: { ar: "أسمهان", en: "Asmahan" },
-    aliases: ["اسمهان", "أسمهان", "Asmahan"]
-  },
-  {
-    id: "layla-murad",
-    name: { ar: "ليلى مراد", en: "Layla Murad" },
-    aliases: ["ليلى مراد", "ليلي مراد", "Layla Murad", "Laila Murad"]
-  },
-  {
-    id: "abdel-halim-hafez",
-    name: { ar: "عبد الحليم حافظ", en: "Abd al-Halim Hafiz" },
-    aliases: ["عبد الحليم حافظ", "Abdel Halim Hafez", "Abd al-Halim Hafiz"]
-  },
-  {
-    id: "othman-al-mawsili",
-    name: { ar: "عثمان الموصلي", en: "Othman al-Mawsili" },
-    aliases: ["عثمان الموصلي", "Othman el Mosley", "Uthman al-Mawsili", "Othman al-Mawsili"]
-  },
-  {
-    id: "safi-al-din-al-urmawi",
-    name: { ar: "صفي الدين الأرموي", en: "Safi al-Din al-Urmawi" },
-    aliases: ["صفي الدين الأرموي", "صفي الدين الارموي", "Safi al-Din al-Urmawi"]
-  },
-  {
-    id: "mikhail-mishaqa",
-    name: { ar: "ميخائيل مشاقة", en: "Mikhail Mishaqa" },
-    aliases: ["ميخائيل مشاقة", "Mikhail Mishaqa", "Mikha'il Mishaqa"]
+    aliases: ["الأخوين رحباني", "اخوين رحباني", "الاخوان رحباني", "الرحابنة", "Rahbani Brothers", "Assi and Mansour Rahbani"]
   },
   {
     id: "ziryab",
     name: { ar: "أبو الحسن علي بن نافع زرياب", en: "Abu al-Hasan Ali ibn Nafi' Ziryab" },
-    aliases: ["زرياب", "أبو الحسن علي بن نافع زرياب", "Abu al-Hasan Ali ibn Nafi' Ziryab", "Ziryab"]
-  },
-  {
-    id: "ibrahim-al-mawsili",
-    name: { ar: "إبراهيم الموصلي", en: "Ibrahim al-Mawsili" },
-    aliases: ["ابراهيم الموصلي", "إبراهيم الموصلي", "Ibrahim al-Mawsili"]
-  },
-  {
-    id: "ishaq-al-mawsili",
-    name: { ar: "إسحاق الموصلي", en: "Ishaq al-Mawsili" },
-    aliases: ["اسحاق الموصلي", "إسحاق الموصلي", "Ishaq al-Mawsili"]
-  },
-  {
-    id: "al-farabi",
-    name: { ar: "أبو نصر الفارابي", en: "Abu Nasr al-Farabi" },
-    aliases: ["ابو نصر الفارابي", "أبو نصر الفارابي", "Al-Farabi", "Abu Nasr al-Farabi"]
-  },
-  {
-    id: "ibn-sina",
-    name: { ar: "الحسين بن عبد الله ابن سينا", en: "Al-Husayn ibn Abd Allah Ibn Sina" },
-    aliases: ["ابن سينا", "Ibn Sina", "Avicenna", "Al-Husayn ibn Abd Allah Ibn Sina"]
-  },
-  {
-    id: "abu-al-faraj-al-isfahani",
-    name: { ar: "أبو الفرج الأصفهاني", en: "Abu al-Faraj al-Isfahani" },
-    aliases: ["ابو الفرج الاصفهاني", "أبو الفرج الأصفهاني", "Abu al-Faraj al-Isfahani"]
+    aliases: ["زرياب", "Ziryab", "Abu al-Hasan Ali ibn Nafi' Ziryab"]
   },
   {
     id: "cairo-congress-1932",
@@ -135,6 +52,10 @@ const historyCharacterOverrides = [
     aliases: ["مؤتمر القاهرة 1932", "Cairo Congress of Arab Music", "Cairo Congress 1932"]
   }
 ];
+
+const historyCharacterOverrides = historyCharacterDataGroups.length
+  ? historyCharacterDataGroups.flat()
+  : historyCharacterFallbackOverrides;
 
 function normalizeHistoryCharacterValue(value) {
   return String(value || '')
@@ -216,6 +137,9 @@ function createHistoryCharacterRegistry(historyData, options = {}) {
     merged.role = incoming.role || merged.role || '';
     merged.years = incoming.years || merged.years || '';
     merged.description = incoming.description || merged.description || fallbackDescription;
+    merged.group = incoming.group || merged.group || '';
+    merged.geography = incoming.geography || merged.geography || '';
+    merged.era_hint = incoming.era_hint || merged.era_hint || '';
     merged.aliases = [...new Set([...(merged.aliases || []), ...(incoming.aliases || [])].filter(Boolean))];
     merged.era_ids = [...new Set([...(merged.era_ids || []), ...(incoming.era_ids || [])].filter(Boolean))];
     merged.era_entries = [...(merged.era_entries || []), ...(incoming.era_entries || [])];
@@ -238,7 +162,10 @@ function createHistoryCharacterRegistry(historyData, options = {}) {
       slug: override.slug || override.id,
       name_ar: override.name?.ar || override.name_ar || '',
       name_en: override.name?.en || override.name_en || '',
-      aliases: override.aliases || []
+      aliases: override.aliases || [],
+      group: override.group || '',
+      geography: override.geography || '',
+      era_hint: override.era_hint || ''
     });
   });
 
@@ -269,6 +196,9 @@ function createHistoryCharacterRegistry(historyData, options = {}) {
         years: typeof figure === 'string' ? '' : (figure?.years || ''),
         description: typeof figure === 'string' ? fallbackDescription : (figure?.description || fallbackDescription),
         aliases: [rawName, ...(override?.aliases || [])].filter(Boolean),
+        group: override?.group || '',
+        geography: override?.geography || '',
+        era_hint: override?.era_hint || '',
         era_ids: era?.id ? [era.id] : [],
         era_entries: era?.id ? [{ era_id: era.id, era_title: era.title, era_period: era.period, figure_index: index }] : []
       });
@@ -304,6 +234,8 @@ function displayHistoryCharacter(character, isEnglish) {
     years: character.years || '',
     description: character.description || '',
     aliases: character.aliases || [],
+    group: character.group || '',
+    geography: character.geography || '',
     source_era_id: character.era_entries?.[0]?.era_id || '',
     source_figure_index: character.era_entries?.[0]?.figure_index ?? 0
   };
