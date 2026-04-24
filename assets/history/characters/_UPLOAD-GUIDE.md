@@ -2,22 +2,36 @@
 
 Use one folder per character under `assets/history/characters/`.
 
-Recommended file names:
+You do **not** need to rename uploaded images. You can upload each image with its original filename.
 
-- `portrait.webp` or `portrait.jpg` — main portrait image.
-- `stage-1.webp` / `stage-1.jpg` — optional performance image.
-- `archive-1.webp` / `archive-1.jpg` — optional archive image.
+The important rule is this:
 
-After uploading images, update `data/character-images.js` so each character slug points to the uploaded file.
+- Put each image inside the correct character folder.
+- After upload, I will scan the repo tree, read the actual filenames, and connect each file path manually in `data/character-images.js`.
 
-Preferred path format:
+Examples:
+
+- If you upload `IMG_4938.jpeg` inside `assets/history/characters/fairuz/`, I will connect that exact file path to `fairuz`.
+- If you upload `download (3).webp` inside `assets/history/characters/mohamed-abdel-wahab/`, I will connect that exact file path to `mohamed-abdel-wahab`.
+
+Recommended names like `portrait.webp`, `stage-1.webp`, or `archive-1.webp` are cleaner, but they are **not required**.
+
+After uploading images, tell me:
+
+`connect the uploaded character images`
+
+Then I will update:
+
+`data/character-images.js`
+
+Preferred mapping format:
 
 ```js
 "character-slug": {
-  main_image: "assets/history/characters/character-slug/portrait.webp",
+  main_image: "assets/history/characters/character-slug/original-file-name.jpg",
   main_image_caption: "...",
   extra_images: []
 }
 ```
 
-Keep image names in English lowercase, with hyphens instead of spaces. Avoid Arabic filenames and avoid spaces.
+If a folder contains more than one image, I will usually use the clearest portrait-looking image as `main_image` and put the rest in `extra_images` when appropriate.
