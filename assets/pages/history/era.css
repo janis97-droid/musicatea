@@ -110,7 +110,12 @@
   line-height: 1.9;
 }
 
-.history-era-figures-grid,
+.history-era-figures-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
 .history-era-links-grid,
 .history-era-sources-grid {
   display: grid;
@@ -118,7 +123,31 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
-.history-era-figure-card,
+.history-era-figure-capsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(200,164,90,.32);
+  background: linear-gradient(180deg, rgba(200,164,90,.18), rgba(200,164,90,.09));
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: .94rem;
+  line-height: 1.35;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,.14), inset 0 1px 0 rgba(255,255,255,.04);
+  transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
+}
+
+.history-era-figure-capsule:hover {
+  transform: translateY(-1px);
+  border-color: rgba(200,164,90,.55);
+  background: linear-gradient(180deg, rgba(200,164,90,.25), rgba(200,164,90,.13));
+}
+
 .history-era-link-card,
 .history-era-source-card {
   border: 1px solid rgba(255,255,255,.06);
@@ -127,20 +156,12 @@
   padding: 16px;
 }
 
-.history-era-figure-card h3,
 .history-era-link-card h3,
 .history-era-source-card h3 {
   margin: 0 0 8px;
   font-size: 1rem;
 }
 
-.history-era-figure-meta {
-  color: var(--gold-light);
-  font-size: .88rem;
-  margin-bottom: 8px;
-}
-
-.history-era-figure-card p,
 .history-era-link-card p,
 .history-era-source-card p {
   font-size: .92rem;
@@ -205,7 +226,17 @@
     padding: 18px 16px 16px;
   }
 
-  .history-era-figures-grid,
+  .history-era-figures-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .history-era-figure-capsule {
+    min-height: 38px;
+    padding: 7px 9px;
+    font-size: .86rem;
+  }
+
   .history-era-links-grid,
   .history-era-sources-grid {
     grid-template-columns: 1fr;
