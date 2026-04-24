@@ -120,6 +120,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["وحدة", "مقسوم", "رومبا مصري"],
+    rhythms_en: ["Wahda", "Maqsum", "Egyptian Rumba"],
+    rhythm_ids: ["wahda", "maqsum", "egyptian_rumba"],
     pdf: "pdfs/helef-elqamar-Do.pdf"
   },
 
@@ -138,6 +141,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["وحدة", "مقسوم", "رومبا مصري"],
+    rhythms_en: ["Wahda", "Maqsum", "Egyptian Rumba"],
+    rhythm_ids: ["wahda", "maqsum", "egyptian_rumba"],
     pdf: "pdfs/helef-elqamar-Sol.pdf"
   },
  
@@ -156,6 +162,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["2/4"],
+    rhythms_en: ["2/4"],
+    rhythm_ids: ["two_four"],
     pdf: "pdfs/Longa-Ajam.pdf"
   },
 
@@ -174,6 +183,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["فالس"],
+    rhythms_en: ["Waltz"],
+    rhythm_ids: ["waltz"],
     pdf: "pdfs/Layali-Eluns-Fi-Viena.pdf"
   },
 
@@ -192,6 +204,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
+    rhythms: ["مقسوم"],
+    rhythms_en: ["Maqsum"],
+    rhythm_ids: ["maqsum"],
     pdf: "pdfs/LawAlaQalbi.pdf"
   },
 
@@ -228,6 +243,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["سماعي ثقيل"],
+    rhythms_en: ["Samai Thaqil"],
+    rhythm_ids: ["samai_thaqil"],
     pdf: "pdfs/samai-nahawand-do.pdf"
   },
 
@@ -300,6 +318,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
+    rhythms: ["سماعي ثقيل"],
+    rhythms_en: ["Samai Thaqil"],
+    rhythm_ids: ["samai_thaqil"],
     pdf: "pdfs/samai-nahawand-re.pdf"
   },
 
@@ -393,6 +414,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["فالس"],
+    rhythms_en: ["Waltz"],
+    rhythm_ids: ["waltz"],
     pdf: "pdfs/ana-qalbi-do.pdf"
   },
 
@@ -411,6 +435,9 @@ const sheets = [
     scale_en: null,
     tonic: "فا",
     tonic_en: "F",
+    rhythms: ["فالس"],
+    rhythms_en: ["Waltz"],
+    rhythm_ids: ["waltz"],
     pdf: "pdfs/ana-qalbi-fa.pdf"
   },
 
@@ -483,6 +510,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["رومبا", "مقسوم"],
+    rhythms_en: ["Rumba", "Maqsum"],
+    rhythm_ids: ["rumba", "maqsum"],
     pdf: "pdfs/khsert.pdf"
   },
 
@@ -501,6 +531,9 @@ const sheets = [
     scale_en: null,
     tonic: "لا",
     tonic_en: "A",
+    rhythms: ["رومبا"],
+    rhythms_en: ["Rumba"],
+    rhythm_ids: ["rumba"],
     pdf: "pdfs/ma-fi-ward.pdf"
   },
 
@@ -519,6 +552,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
+    rhythms: ["2/4"],
+    rhythms_en: ["2/4"],
+    rhythm_ids: ["two_four"],
     pdf: "pdfs/mneen-re.pdf"
   },
 
@@ -537,6 +573,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["2/4"],
+    rhythms_en: ["2/4"],
+    rhythm_ids: ["two_four"],
     pdf: "pdfs/mneen-sol.pdf"
   },
 
@@ -663,6 +702,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
+    rhythms: ["فوكس"],
+    rhythms_en: ["Fox"],
+    rhythm_ids: ["fox"],
     pdf: "pdfs/touba.pdf"
   }
 
