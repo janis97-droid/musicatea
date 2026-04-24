@@ -61,7 +61,9 @@
         scaleDisplay,
         sheet.tonic,
         sheet.tonic_en,
-        tonicDisplay
+        tonicDisplay,
+        ...(Array.isArray(sheet.rhythms) ? sheet.rhythms : []),
+        ...(Array.isArray(sheet.rhythms_en) ? sheet.rhythms_en : [])
       ]
         .map(value => normalize(value))
         .filter(Boolean)
@@ -73,6 +75,19 @@
     const value = String(name || '').trim();
     if (!value) return '';
     return `<a href="person-en.html?name=${encodeURIComponent(value)}" class="card-credit-link">${escapeHtml(value)}</a>`;
+  }
+
+  function createRhythmTags(sheet) {
+    const rhythmIds = Array.isArray(sheet.rhythm_ids) ? sheet.rhythm_ids : [];
+    const rhythmNames = Array.isArray(sheet.rhythms_en) ? sheet.rhythms_en : [];
+
+    if (!rhythmIds.length || !rhythmNames.length) return [];
+
+    return rhythmIds.map((id, index) => {
+      const label = rhythmNames[index] || rhythmNames[0] || '';
+      if (!id || !label) return '';
+      return `<a href="rhythm-en.html?id=${encodeURIComponent(id)}" class="card-tag card-tag-clickable">${escapeHtml(label)}</a>`;
+    }).filter(Boolean);
   }
 
   function createCard(sheet) {
@@ -153,6 +168,12 @@
       tonicTag.textContent = sheet._tonicDisplay;
       tagsRow.appendChild(tonicTag);
     }
+
+    createRhythmTags(sheet).forEach(tagHtml => {
+      const wrapper = document.createElement('span');
+      wrapper.innerHTML = tagHtml;
+      tagsRow.appendChild(wrapper.firstElementChild);
+    });
 
     meta.appendChild(tagsRow);
 
