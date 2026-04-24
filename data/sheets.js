@@ -59,6 +59,9 @@ const sheets = [
     scale_en: null,
     tonic: "دو",
     tonic_en: "C",
+    rhythms: ["فوكس"],
+    rhythms_en: ["Fox"],
+    rhythm_ids: ["fox"],
     pdf: "pdfs/Longa-Nahawand-dagher.pdf"
   },
 
