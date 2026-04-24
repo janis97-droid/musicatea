@@ -23,122 +23,25 @@ function getHistoryPageStrings() {
       };
 }
 
-function normalizeHistoryLookupValue(value) {
-  return String(value || '')
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]/g, '')
-    .replace(/[أإآٱ]/g, 'ا')
-    .replace(/ى/g, 'ي')
-    .replace(/ة/g, 'ه')
-    .replace(/ؤ/g, 'و')
-    .replace(/ئ/g, 'ي')
-    .replace(/طُوَيْس/g, 'طويس')
-    .replace(/[\-_]+/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .toLowerCase();
-}
-
-const historyFigureAliases = {
-  'اخوين رحباني': 'الأخوان رحباني',
-  'الاخوين رحباني': 'الأخوان رحباني',
-  'الاخوان رحباني': 'الأخوان رحباني',
-  'الرحابنه': 'الأخوان رحباني',
-  'الرحابنة': 'الأخوان رحباني',
-  'rahbani brothers': 'الأخوان رحباني',
-  'assi and mansour rahbani': 'الأخوان رحباني',
-  'assi & mansour rahbani': 'الأخوان رحباني',
-
-  'عبده داغر': 'عبده داغر',
-  'abdo dagher': 'عبده داغر',
-  'abdu dagher': 'عبده داغر',
-
-  'سيمون شاهين': 'سيمون شاهين',
-  'simon shaheen': 'سيمون شاهين',
-  'simon shahin': 'سيمون شاهين',
-
-  'عمر خيرت': 'عمر خيرت',
-  'omar khairat': 'عمر خيرت',
-  'omar kheirat': 'عمر خيرت',
-  'omar khayrat': 'عمر خيرت',
-
-  'ملحم بركات': 'ملحم بركات',
-  'melhem barakat': 'ملحم بركات',
-  'melhem barkat': 'ملحم بركات',
-
-  'ليلى مراد': 'ليلى مراد',
-  'ليلي مراد': 'ليلى مراد',
-  'layla murad': 'ليلى مراد',
-  'laila murad': 'ليلى مراد',
-
-  'جوزيف عازار': 'جوزيف عازار',
-  'جوزيف عازر': 'جوزيف عازار',
-  'يوسف عازار': 'جوزيف عازار',
-  'joseph azar': 'جوزيف عازار',
-  'josef azar': 'جوزيف عازار',
-  'joseph azer': 'جوزيف عازار',
-  'josef azer': 'جوزيف عازار',
-
-  'نور الملاح': 'نور الملاح',
-  'ننور الملاح': 'نور الملاح',
-  'nour el mallah': 'نور الملاح',
-  'nour mallah': 'نور الملاح',
-
-  'عثمان الموصلي': 'عثمان الموصلي',
-  'othman el mosley': 'عثمان الموصلي',
-  'uthman al mawsili': 'عثمان الموصلي',
-  'uthman al mawsily': 'عثمان الموصلي'
-};
-
-function resolveHistoryAlias(value) {
-  const normalized = normalizeHistoryLookupValue(value);
-  if (!normalized) return '';
-  return historyFigureAliases[normalized] || value;
-}
-
-function expandHistorySection(item) {
-  if (!item) return;
-  const toggle = item.querySelector('.history-toggle');
-  const content = item.querySelector('.history-content');
-  const chevron = item.querySelector('.history-chevron');
-  if (!toggle || !content) return;
-  toggle.setAttribute('aria-expanded', 'true');
-  content.hidden = false;
-  if (chevron) chevron.style.transform = 'rotate(180deg)';
-}
-
-function openHistoryFigureFromQuery() {
-  const params = new URLSearchParams(window.location.search);
-  const requestedFigure = params.get('figure');
-  if (!requestedFigure) return;
-
-  const resolvedFigure = resolveHistoryAlias(requestedFigure);
-  const targetValue = normalizeHistoryLookupValue(resolvedFigure);
-  if (!targetValue) return;
-
-  const items = Array.from(document.querySelectorAll('.history-item'));
-  for (const item of items) {
-    const chips = Array.from(item.querySelectorAll('.history-figure-chip'));
-    const match = chips.find((chip) => normalizeHistoryLookupValue(chip.dataset.figureName || chip.textContent) === targetValue);
-    if (!match) continue;
-
-    expandHistorySection(item);
-    selectHistoryFigure(match);
-    item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    break;
-  }
-}
-
 function renderHistoryPage() {
   const historyList = document.getElementById('history-list');
   if (!historyList || typeof history === 'undefined') return;
 
-  historyList.innerHTML = '';
-  history.forEach((h, i) => historyList.appendChild(createHistorySection(h, i)));
+  if (typeof createHistoryCharacterRegistry === 'function') {
+    globalThis.historyCharacters = createHistoryCharacterRegistry(history, {
+      isEnglish: document.documentElement.lang === 'en' || document.body?.dir === 'ltr'
+    });
+  }
+
+  if (typeof createHistoryVisibleIndexMarkup === 'function') {
+    historyList.innerHTML = createHistoryVisibleIndexMarkup(history);
+  } else {
+    historyList.innerHTML = '';
+    history.forEach((h, i) => historyList.appendChild(createHistorySection(h, i)));
+  }
 
   renderHistorySourcesSection();
-  openHistoryFigureFromQuery();
+  if (typeof openHistoryFigureFromQuery === 'function') openHistoryFigureFromQuery();
 }
 
 function renderHistorySourcesSection() {
