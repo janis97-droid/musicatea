@@ -318,6 +318,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["نواري"],
+    rhythms_en: ["Nawari"],
+    rhythm_ids: ["nawari"],
     pdf: "pdfs/shukran.pdf"
   },
 
