@@ -162,9 +162,6 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
-    rhythms: ["2/4"],
-    rhythms_en: ["2/4"],
-    rhythm_ids: ["two_four"],
     pdf: "pdfs/Longa-Ajam.pdf"
   },
 
@@ -552,9 +549,6 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
-    rhythms: ["2/4"],
-    rhythms_en: ["2/4"],
-    rhythm_ids: ["two_four"],
     pdf: "pdfs/mneen-re.pdf"
   },
 
@@ -573,9 +567,6 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
-    rhythms: ["2/4"],
-    rhythms_en: ["2/4"],
-    rhythm_ids: ["two_four"],
     pdf: "pdfs/mneen-sol.pdf"
   },
 
