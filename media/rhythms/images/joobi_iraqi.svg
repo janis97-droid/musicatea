@@ -14,41 +14,62 @@
       .rest16 { font-size:104px; fill:#111; font-family:"Bravura","Noto Music","Segoe UI Symbol",serif; text-anchor:middle; dominant-baseline:middle; }
     </style>
   </defs>
+
   <rect width="100%" height="100%" fill="white"/>
+
+  <!-- Staff line -->
   <line class="staff" x1="40" y1="120" x2="1660" y2="120"/>
+
+  <!-- Opening bar -->
   <line class="barthick" x1="68" y1="45" x2="68" y2="195"/>
   <line class="barthin" x1="84" y1="45" x2="84" y2="195"/>
+
+  <!-- Time signature 8/8 -->
   <text class="timesig" x="128" y="113">8</text>
   <text class="timesig" x="128" y="172">8</text>
 
+  <!-- 1) Dom - 1/8 -->
   <ellipse class="notehead" cx="240" cy="120" rx="16" ry="11"/>
   <line class="stem" x1="255" y1="120" x2="255" y2="36"/>
   <path class="flag" d="M255 36 C269 38, 283 47, 292 64"/>
 
-  <ellipse class="notehead" cx="380" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="395" y1="120" x2="395" y2="36"/>
-  <path class="flag" d="M395 36 C409 38, 423 47, 432 64"/>
+  <!-- 2) Dom - 1/8 -->
+  <ellipse class="notehead" cx="360" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="375" y1="120" x2="375" y2="36"/>
+  <path class="flag" d="M375 36 C389 38, 403 47, 412 64"/>
 
-  <ellipse class="notehead" cx="520" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="535" y1="120" x2="535" y2="36"/>
-  <path class="flag" d="M535 36 C549 38, 563 47, 572 64"/>
+  <!-- 3) Dom - 1/8 -->
+  <ellipse class="notehead" cx="480" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="495" y1="120" x2="495" y2="36"/>
+  <path class="flag" d="M495 36 C509 38, 523 47, 532 64"/>
 
-  <ellipse class="notehead" cx="680" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="665" y1="117" x2="665" y2="201"/>
-  <path class="flag" d="M665 201 C679 197, 694 188, 705 171"/>
+  <!-- 4) Tak - 1/8 -->
+  <ellipse class="notehead" cx="620" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="605" y1="117" x2="605" y2="201"/>
+  <path class="flag" d="M605 201 C619 197, 634 188, 645 171"/>
 
-  <text class="rest16" x="820" y="115">𝄿</text>
+  <!-- 5) Dom - 1/8 -->
+  <ellipse class="notehead" cx="760" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="775" y1="120" x2="775" y2="36"/>
+  <path class="flag" d="M775 36 C789 38, 803 47, 812 64"/>
 
-  <ellipse class="notehead" cx="940" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="925" y1="117" x2="925" y2="201"/>
-  <path class="flag" d="M925 201 C939 197, 954 188, 965 171"/>
-  <path class="flag" d="M925 184 C938 180, 952 171, 962 155"/>
+  <!-- 6) Rest - 1/16 -->
+  <text class="rest16" x="900" y="115">𝄿</text>
 
-  <text class="rest8" x="1080" y="115">𝄾</text>
+  <!-- 7) Tak - 1/16 -->
+  <ellipse class="notehead" cx="1040" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1025" y1="117" x2="1025" y2="201"/>
+  <path class="flag" d="M1025 201 C1039 197, 1054 188, 1065 171"/>
+  <path class="flag" d="M1025 184 C1038 180, 1052 171, 1062 155"/>
 
-  <ellipse class="notehead" cx="1220" cy="120" rx="16" ry="11"/>
-  <line class="stem" x1="1205" y1="117" x2="1205" y2="201"/>
-  <path class="flag" d="M1205 201 C1219 197, 1234 188, 1245 171"/>
+  <!-- 8) Rest - 1/8 -->
+  <text class="rest8" x="1180" y="115">𝄾</text>
 
-  <line class="barthin" x1="1350" y1="45" x2="1350" y2="195"/>
+  <!-- 9) Tak - 1/8 -->
+  <ellipse class="notehead" cx="1360" cy="120" rx="16" ry="11"/>
+  <line class="stem" x1="1345" y1="117" x2="1345" y2="201"/>
+  <path class="flag" d="M1345 201 C1359 197, 1374 188, 1385 171"/>
+
+  <!-- Closing bar -->
+  <line class="barthin" x1="1500" y1="45" x2="1500" y2="195"/>
 </svg>
