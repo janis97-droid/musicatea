@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://musicatea.com/sitemap.xml
+Sitemap: https://musicatea.com/sitemap-history.xml
