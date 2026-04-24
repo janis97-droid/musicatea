@@ -585,6 +585,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
+    rhythms: ["جوبي عراقي"],
+    rhythms_en: ["Joobi Iraqi"],
+    rhythm_ids: ["joobi_iraqi"],
     pdf: "pdfs/modak-re.pdf"
   },
 
@@ -603,6 +606,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
+    rhythms: ["جوبي عراقي"],
+    rhythms_en: ["Joobi Iraqi"],
+    rhythm_ids: ["joobi_iraqi"],
     pdf: "pdfs/modak-sol.pdf"
   },
 
