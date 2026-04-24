@@ -3,6 +3,9 @@
 
 @media (max-width: 700px) {
   .filters {
+    position: static !important;
+    top: auto !important;
+    z-index: 1 !important;
     grid-template-columns: 1fr;
     padding: 24px 4% 18px;
   }
