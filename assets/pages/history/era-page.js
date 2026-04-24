@@ -168,7 +168,6 @@
 
   function buildFigureCards(figures, era) {
     return figures.map((figure) => {
-      const meta = [figure.role, figure.years].filter(Boolean).join(' — ');
       const personParams = new URLSearchParams();
       if (figure.id) personParams.set('id', figure.id);
       personParams.set('name', figure.name || '');
@@ -176,16 +175,23 @@
       personParams.set('figure', String(figure.figureIndex ?? 0));
 
       return `
-        <article class="history-era-figure-card">
-          <h3>${escapeHtml(figure.name)}</h3>
-          ${meta ? `<div class="history-era-figure-meta">${escapeHtml(meta)}</div>` : ''}
-          ${figure.description ? `<p>${escapeHtml(figure.description)}</p>` : ''}
-          <div class="history-era-nav">
-            <a href="${escapeHtml(strings.personHref)}?${personParams.toString()}">${escapeHtml(strings.openPerson)}</a>
-          </div>
-        </article>
+        <a class="history-era-figure-capsule" href="${escapeHtml(strings.personHref)}?${personParams.toString()}" aria-label="${escapeHtml(strings.openPerson)}: ${escapeHtml(figure.name)}">
+          ${escapeHtml(figure.name)}
+        </a>
       `;
     }).join('');
+  }
+
+  function buildFigureSection(figures, era) {
+    if (!figures.length) return '';
+    return `
+      <section class="history-era-block history-era-figures-block">
+        <h2>${escapeHtml(strings.figures)}</h2>
+        <div class="history-era-figures-grid">
+          ${buildFigureCards(figures, era)}
+        </div>
+      </section>
+    `;
   }
 
   function buildSheetTags(sheets) {
@@ -265,7 +271,7 @@
     const registry = makeRegistry(historyData);
     const eraIndex = historyData.findIndex((item) => item.id === eraId);
     const era = eraIndex >= 0 ? historyData[eraIndex] : historyData[0];
-    const figures = getEraFigures(era, registry);
+    const figures = getEraFigures(era, registry).filter((figure) => figure && figure.name);
     const relatedSheets = collectRelatedSheets(sheetsData, figures);
     const relevantSources = collectRelevantSources(historySources, figures);
 
@@ -290,12 +296,7 @@
           <p>${escapeHtml(era.content || '')}</p>
         </section>
 
-        <section class="history-era-block">
-          <h2>${escapeHtml(strings.figures)}</h2>
-          <div class="history-era-figures-grid">
-            ${buildFigureCards(figures, era)}
-          </div>
-        </section>
+        ${buildFigureSection(figures, era)}
 
         <section class="history-era-block">
           <h2>${escapeHtml(strings.relatedSheets)}</h2>
