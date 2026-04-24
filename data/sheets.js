@@ -507,9 +507,9 @@ const sheets = [
     scale_en: null,
     tonic: "صول",
     tonic_en: "G",
-    rhythms: ["رومبا", "مقسوم"],
-    rhythms_en: ["Rumba", "Maqsum"],
-    rhythm_ids: ["rumba", "maqsum"],
+    rhythms: ["مقسوم"],
+    rhythms_en: ["Maqsum"],
+    rhythm_ids: ["maqsum"],
     pdf: "pdfs/khsert.pdf"
   },
 
