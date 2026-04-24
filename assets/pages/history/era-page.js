@@ -71,6 +71,7 @@
   }
 
   function normalize(value) {
+    if (typeof normalizeHistoryCharacterValue === 'function') return normalizeHistoryCharacterValue(value);
     return String(value || '')
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
@@ -88,14 +89,47 @@
 
   function normalizeFigure(figure) {
     if (typeof figure === 'string') {
-      return { name: figure, role: '', years: '', description: '' };
+      return { name: figure, role: '', years: '', description: '', id: '' };
     }
     return {
+      id: figure?.id || '',
       name: figure?.name || '',
       role: figure?.role || '',
       years: figure?.years || '',
       description: figure?.description || ''
     };
+  }
+
+  function makeRegistry(historyData) {
+    if (typeof createHistoryCharacterRegistry !== 'function') return null;
+    return createHistoryCharacterRegistry(historyData, { isEnglish });
+  }
+
+  function getEraFigures(era, registry) {
+    if (registry && typeof getHistoryCharactersForEra === 'function' && typeof displayHistoryCharacter === 'function') {
+      const characters = getHistoryCharactersForEra(registry, era);
+      if (characters.length) {
+        return characters.map((character) => {
+          const display = displayHistoryCharacter(character, isEnglish);
+          const sourceEntry = (character.era_entries || []).find((entry) => entry.era_id === era.id) || character.era_entries?.[0] || null;
+          return {
+            id: display.id,
+            name: display.name,
+            role: display.role,
+            years: display.years,
+            description: display.description,
+            figureIndex: sourceEntry?.figure_index ?? 0,
+            eraId: sourceEntry?.era_id || era.id
+          };
+        });
+      }
+    }
+
+    return (era?.figures || []).map((figure, figureIndex) => ({
+      ...normalizeFigure(figure),
+      figureIndex,
+      eraId: era.id
+    }));
   }
 
   async function loadData(filePath, variableName) {
@@ -104,8 +138,8 @@
     return new Function(`${source}; return typeof ${variableName} !== 'undefined' ? ${variableName} : [];`)();
   }
 
-  function collectRelatedSheets(allSheets, era) {
-    const names = (era.figures || []).map(normalizeFigure).map((f) => f.name).filter(Boolean);
+  function collectRelatedSheets(allSheets, figures) {
+    const names = (figures || []).map((f) => f.name).filter(Boolean);
     const wanted = new Set(names.map(normalize));
     const seen = new Set();
 
@@ -124,8 +158,8 @@
       .slice(0, 14);
   }
 
-  function collectRelevantSources(allSources, era) {
-    const names = (era.figures || []).map(normalizeFigure).map((f) => normalize(f.name));
+  function collectRelevantSources(allSources, figures) {
+    const names = (figures || []).map((f) => normalize(f.name));
     return allSources.filter((source) => {
       const usedFor = Array.isArray(source.usedFor) ? source.usedFor.map(normalize) : [];
       return usedFor.some((name) => names.includes(name));
@@ -133,15 +167,21 @@
   }
 
   function buildFigureCards(figures, era) {
-    return figures.map((figure, figureIndex) => {
+    return figures.map((figure) => {
       const meta = [figure.role, figure.years].filter(Boolean).join(' — ');
+      const personParams = new URLSearchParams();
+      if (figure.id) personParams.set('id', figure.id);
+      personParams.set('name', figure.name || '');
+      personParams.set('era', figure.eraId || era.id);
+      personParams.set('figure', String(figure.figureIndex ?? 0));
+
       return `
         <article class="history-era-figure-card">
           <h3>${escapeHtml(figure.name)}</h3>
           ${meta ? `<div class="history-era-figure-meta">${escapeHtml(meta)}</div>` : ''}
           ${figure.description ? `<p>${escapeHtml(figure.description)}</p>` : ''}
           <div class="history-era-nav">
-            <a href="${escapeHtml(strings.personHref)}?era=${encodeURIComponent(era.id)}&figure=${encodeURIComponent(String(figureIndex))}">${escapeHtml(strings.openPerson)}</a>
+            <a href="${escapeHtml(strings.personHref)}?${personParams.toString()}">${escapeHtml(strings.openPerson)}</a>
           </div>
         </article>
       `;
@@ -222,11 +262,12 @@
       loadData('data/sheets.js', 'sheets')
     ]);
 
+    const registry = makeRegistry(historyData);
     const eraIndex = historyData.findIndex((item) => item.id === eraId);
     const era = eraIndex >= 0 ? historyData[eraIndex] : historyData[0];
-    const figures = (era?.figures || []).map(normalizeFigure);
-    const relatedSheets = collectRelatedSheets(sheetsData, era);
-    const relevantSources = collectRelevantSources(historySources, era);
+    const figures = getEraFigures(era, registry);
+    const relatedSheets = collectRelatedSheets(sheetsData, figures);
+    const relevantSources = collectRelevantSources(historySources, figures);
 
     document.getElementById('history-era-root').innerHTML = era ? `
       <nav class="history-era-breadcrumbs" aria-label="${escapeHtml(strings.history)}">
