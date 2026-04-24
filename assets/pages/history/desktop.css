@@ -1,32 +1,33 @@
 /* Shared history page desktop styles */
 .history-hero {
-  padding: 60px 5% 48px;
+  padding: 48px 5% 38px;
   border-bottom: 1px solid var(--border);
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
 }
 
 .history-hero-tag {
-  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-  letter-spacing: 0.08em;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  letter-spacing: 0.04em;
   color: var(--gold);
   text-transform: uppercase;
   font-weight: 900;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: block;
 }
 
 .history-hero h1 {
   font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 900;
-  margin-bottom: 12px;
-  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.16;
 }
 
 .history-hero p {
   color: var(--text-muted);
   font-size: 1rem;
+  font-weight: 400;
   max-width: 640px;
-  line-height: 1.8;
+  line-height: 1.65;
   margin: 0;
 }
 
