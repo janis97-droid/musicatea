@@ -3,6 +3,8 @@
   <url><loc>https://musicatea.com/</loc></url>
   <url><loc>https://musicatea.com/index-en.html</loc></url>
 
+  <url><loc>https://musicatea.com/arabic-music-intro.html</loc></url>
+
   <url><loc>https://musicatea.com/library.html</loc></url>
   <url><loc>https://musicatea.com/library-en.html</loc></url>
 
@@ -116,6 +118,88 @@
 
   <url><loc>https://musicatea.com/history.html</loc></url>
   <url><loc>https://musicatea.com/history-en.html</loc></url>
+
+  <url><loc>https://musicatea.com/history-era.html?era=pre-610</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=pre-610</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=7th-century-early-islam</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=7th-century-early-islam</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=umayyad-era</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=umayyad-era</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=abbasid-era</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=abbasid-era</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=andalusia</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=andalusia</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=ottoman-post-classical</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=ottoman-post-classical</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=nahda-modern-beginnings</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=nahda-modern-beginnings</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=cairo-congress-1932</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=cairo-congress-1932</loc></url>
+  <url><loc>https://musicatea.com/history-era.html?era=golden-age</loc></url>
+  <url><loc>https://musicatea.com/history-era-en.html?era=golden-age</loc></url>
+
+  <url><loc>https://musicatea.com/person.html?id=umm-kulthum</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=umm-kulthum</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=mohamed-el-qasabgi</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=mohamed-el-qasabgi</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=mohamed-abdel-wahab</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=mohamed-abdel-wahab</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=riyad-al-sunbati</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=riyad-al-sunbati</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=farid-al-atrash</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=farid-al-atrash</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=asmahan</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=asmahan</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=sayed-darwish</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=sayed-darwish</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=zakariyya-ahmad</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=zakariyya-ahmad</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=layla-murad</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=layla-murad</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=abdel-halim-hafez</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=abdel-halim-hafez</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=fairuz</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=fairuz</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=rahbani-brothers</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=rahbani-brothers</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=wadih-al-safi</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=wadih-al-safi</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=melhem-barakat</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=melhem-barakat</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=sabah-fakhri</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=sabah-fakhri</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=george-wassouf</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=george-wassouf</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=ibrahim-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=ibrahim-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=ishaq-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=ishaq-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=al-farabi</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=al-farabi</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=ibn-sina</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=ibn-sina</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=abu-al-faraj-al-isfahani</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=abu-al-faraj-al-isfahani</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=ziryab</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=ziryab</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=safi-al-din-al-urmawi</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=safi-al-din-al-urmawi</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=othman-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=othman-al-mawsili</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=mikhail-mishaqa</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=mikhail-mishaqa</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=cairo-congress-1932</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=cairo-congress-1932</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=king-fuad-i</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=king-fuad-i</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=rodolphe-derlanger</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=rodolphe-derlanger</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=mahmud-ahmad-al-hifni</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=mahmud-ahmad-al-hifni</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=ali-al-darwish</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=ali-al-darwish</loc></url>
+  <url><loc>https://musicatea.com/person.html?id=muhammad-al-qubbanchi</loc></url>
+  <url><loc>https://musicatea.com/person-en.html?id=muhammad-al-qubbanchi</loc></url>
 
   <url><loc>https://musicatea.com/ensemble.html</loc></url>
   <url><loc>https://musicatea.com/ensemble-en.html</loc></url>
