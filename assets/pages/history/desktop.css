@@ -6,12 +6,12 @@
 }
 
 .history-hero-tag {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  letter-spacing: 0.08em;
   color: var(--gold);
   text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-weight: 900;
+  margin-bottom: 12px;
   display: block;
 }
 
