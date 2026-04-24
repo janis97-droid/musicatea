@@ -1,28 +1,46 @@
 // assets/pages/history/ui.js
-// Shared history accordion helpers.
+// Shared history page helpers.
 
 function getHistoryUiStrings() {
   const isEnglish = document.documentElement.lang === 'en' || document.body?.dir === 'ltr';
   return isEnglish
     ? {
-        figuresLabel: 'Figures associated with this era',
+        figuresLabel: 'Figures in this era',
         fallbackDescription: 'One of the figures associated with this musical era.',
         relatedSheetsLabel: 'From the sheet library',
         openSheet: 'Open sheet',
-        openEraPage: 'Open the full era page',
+        openEraPage: 'Explore this era',
         eraPageHref: 'history-era-en.html',
         openPersonPage: 'Open full profile',
-        personPageHref: 'person-en.html'
+        personPageHref: 'person-en.html',
+        shortIntro: 'Below you can see a brief overview of each era; inside each one you can explore the era and open detailed pages for its figures.',
+        groupLabels: {
+          roots: 'Roots and early formations',
+          classical: 'Classical theory and urban music',
+          andalusia: 'Al-Andalus and later traditions',
+          modern: 'Nahda, documentation, and modernity',
+          golden: 'Golden age and major figures',
+          other: 'Other eras'
+        }
       }
     : {
-        figuresLabel: 'الشخصيات المرتبطة بهذه الحقبة',
+        figuresLabel: 'شخصيات هذه الحقبة',
         fallbackDescription: 'من الشخصيات المرتبطة بهذه الحقبة الموسيقية.',
         relatedSheetsLabel: 'من مكتبة النوتات',
         openSheet: 'فتح النوتة',
-        openEraPage: 'افتح صفحة الحقبة الكاملة',
+        openEraPage: 'استكشاف الحقبة',
         eraPageHref: 'history-era.html',
-        openPersonPage: 'افتح الصفحة الكاملة للشخصية',
-        personPageHref: 'person.html'
+        openPersonPage: 'افتح صفحة الشخصية',
+        personPageHref: 'person.html',
+        shortIntro: 'هنا ترى لمحة مختصرة عن كل حقبة، وداخل كل حقبة يمكنك استكشاف تفاصيلها وفتح الصفحات الكاملة لشخصياتها.',
+        groupLabels: {
+          roots: 'الجذور والبدايات',
+          classical: 'العصر الكلاسيكي والتدوين',
+          andalusia: 'الأندلس والتقاليد اللاحقة',
+          modern: 'النهضة والتوثيق والحداثة',
+          golden: 'العصر الذهبي والشخصيات الكبرى',
+          other: 'حقب أخرى'
+        }
       };
 }
 
@@ -140,42 +158,6 @@ const historyFigureAliases = {
   'rahbani brothers': 'الأخوان رحباني',
   'assi and mansour rahbani': 'الأخوان رحباني',
   'assi & mansour rahbani': 'الأخوان رحباني',
-
-  'عبده داغر': 'عبده داغر',
-  'abdo dagher': 'عبده داغر',
-  'abdu dagher': 'عبده داغر',
-
-  'سيمون شاهين': 'سيمون شاهين',
-  'simon shaheen': 'سيمون شاهين',
-  'simon shahin': 'سيمون شاهين',
-
-  'عمر خيرت': 'عمر خيرت',
-  'omar khairat': 'عمر خيرت',
-  'omar kheirat': 'عمر خيرت',
-  'omar khayrat': 'عمر خيرت',
-
-  'ملحم بركات': 'ملحم بركات',
-  'melhem barakat': 'ملحم بركات',
-  'melhem barkat': 'ملحم بركات',
-
-  'ليلى مراد': 'ليلى مراد',
-  'ليلي مراد': 'ليلى مراد',
-  'layla murad': 'ليلى مراد',
-  'laila murad': 'ليلى مراد',
-
-  'جوزيف عازار': 'جوزيف عازار',
-  'جوزيف عازر': 'جوزيف عازار',
-  'يوسف عازار': 'جوزيف عازار',
-  'joseph azar': 'جوزيف عازار',
-  'josef azar': 'جوزيف عازار',
-  'joseph azer': 'جوزيف عازار',
-  'josef azer': 'جوزيف عازار',
-
-  'نور الملاح': 'نور الملاح',
-  'ننور الملاح': 'نور الملاح',
-  'nour el mallah': 'نور الملاح',
-  'nour mallah': 'نور الملاح',
-
   'عثمان الموصلي': 'عثمان الموصلي',
   'othman el mosley': 'عثمان الموصلي',
   'uthman al mawsili': 'عثمان الموصلي',
@@ -195,15 +177,127 @@ function resolveHistoryAlias(value) {
   return historyFigureAliases[normalized] || value;
 }
 
-function expandHistorySection(item) {
-  if (!item) return;
-  const toggle = item.querySelector('.history-toggle');
-  const content = item.querySelector('.history-content');
-  const chevron = item.querySelector('.history-chevron');
-  if (!toggle || !content) return;
-  toggle.setAttribute('aria-expanded', 'true');
-  content.hidden = false;
-  if (chevron) chevron.style.transform = 'rotate(180deg)';
+function getHistoryEraGroupId(era) {
+  const id = era?.id || '';
+  if (['pre-610', '7th-century-early-islam', 'umayyad-era'].includes(id)) return 'roots';
+  if (['abbasid-era'].includes(id)) return 'classical';
+  if (['andalusia', 'ottoman-post-classical'].includes(id)) return 'andalusia';
+  if (['nahda-modern-beginnings', 'cairo-congress-1932'].includes(id)) return 'modern';
+  if (['golden-age', 'modern-pop-transition', 'post-golden-age'].includes(id)) return 'golden';
+  return 'other';
+}
+
+function renderHistoryPage() {
+  const historyList = document.getElementById('history-list');
+  if (!historyList || typeof history === 'undefined') return;
+
+  if (typeof createHistoryCharacterRegistry === 'function') {
+    globalThis.historyCharacters = createHistoryCharacterRegistry(history, { isEnglish: getHistoryIsEnglish() });
+  }
+
+  historyList.innerHTML = createHistoryVisibleIndexMarkup(history);
+
+  renderHistorySourcesSection();
+  openHistoryFigureFromQuery();
+}
+
+function createHistoryVisibleIndexMarkup(historyItems) {
+  const ui = getHistoryUiStrings();
+  const order = ['roots', 'classical', 'andalusia', 'modern', 'golden', 'other'];
+  const groups = new Map(order.map((id) => [id, []]));
+
+  historyItems.forEach((era, index) => {
+    const groupId = getHistoryEraGroupId(era);
+    if (!groups.has(groupId)) groups.set(groupId, []);
+    groups.get(groupId).push({ era, index });
+  });
+
+  const intro = `
+    <section class="history-index-intro" aria-label="${escapeHistoryHtml(getHistoryIsEnglish() ? 'History overview' : 'مقدمة صفحة التاريخ')}">
+      <p>${escapeHistoryHtml(ui.shortIntro)}</p>
+    </section>
+  `;
+
+  const groupMarkup = order
+    .filter((groupId) => groups.get(groupId)?.length)
+    .map((groupId) => `
+      <section class="history-era-group" aria-labelledby="history-group-${groupId}">
+        <h2 id="history-group-${groupId}" class="history-era-group-title">${escapeHistoryHtml(ui.groupLabels[groupId] || ui.groupLabels.other)}</h2>
+        <div class="history-era-grid">
+          ${groups.get(groupId).map(({ era, index }) => createHistorySectionMarkup(era, index)).join('')}
+        </div>
+      </section>
+    `).join('');
+
+  return intro + groupMarkup;
+}
+
+function createHistorySection(h, index) {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = createHistorySectionMarkup(h, index).trim();
+  return wrapper.firstElementChild;
+}
+
+function createHistorySectionMarkup(h, index) {
+  const ui = getHistoryUiStrings();
+  const figures = getHistoryFiguresForEra(h);
+  const eraHref = `${ui.eraPageHref}?era=${encodeURIComponent(h.id)}`;
+  const highlights = (h.highlights || []).slice(0, 5).map((hl) =>
+    `<span class="history-highlight">${escapeHistoryHtml(hl)}</span>`
+  ).join('');
+
+  const figuresMarkup = figures.length
+    ? `
+      <div class="history-figures-block">
+        <div class="history-figures-label">${escapeHistoryHtml(ui.figuresLabel)}</div>
+        <div class="history-figures">
+          ${figures.map((figure) => createHistoryFigureLinkMarkup(figure, h, ui)).join('')}
+        </div>
+      </div>
+    `
+    : '';
+
+  return `
+    <article class="history-item history-era-card" data-id="${escapeHistoryHtml(h.id)}">
+      <a class="history-era-card-main" href="${escapeHistoryHtml(eraHref)}" aria-label="${escapeHistoryHtml(ui.openEraPage)}: ${escapeHistoryHtml(h.title)}">
+        <div class="history-era-card-head">
+          <span class="history-index">${String(index + 1).padStart(2, '0')}</span>
+          <div class="history-titles">
+            <h3 class="history-title">${escapeHistoryHtml(h.title)}</h3>
+            <span class="history-subtitle">${escapeHistoryHtml(h.subtitle || '')}</span>
+          </div>
+          <span class="history-period">${escapeHistoryHtml(h.period || '')}</span>
+        </div>
+        <p class="history-text">${escapeHistoryHtml(h.content || '')}</p>
+        ${highlights ? `<div class="history-highlights">${highlights}</div>` : ''}
+      </a>
+      ${figuresMarkup}
+      <div class="history-era-link-wrap">
+        <a class="history-era-link" href="${escapeHistoryHtml(eraHref)}">${escapeHistoryHtml(ui.openEraPage)}</a>
+      </div>
+    </article>
+  `;
+}
+
+function createHistoryFigureLinkMarkup(figure, era, ui) {
+  const params = new URLSearchParams();
+  if (figure.id) params.set('id', figure.id);
+  params.set('name', figure.name || '');
+  if (figure.eraId || era.id) params.set('era', figure.eraId || era.id);
+  params.set('figure', String(figure.figureIndex ?? 0));
+
+  const href = `${ui.personPageHref}?${params.toString()}`;
+  const meta = [figure.role, figure.years].filter(Boolean).join(' — ');
+
+  return `
+    <a class="history-figure-chip" href="${escapeHistoryHtml(href)}"
+      data-era-id="${escapeHistoryHtml(figure.eraId || era.id)}"
+      data-figure-id="${escapeHistoryHtml(figure.id || '')}"
+      data-figure-name="${escapeHistoryHtml(figure.name || '')}"
+      title="${escapeHistoryHtml(meta || ui.openPersonPage)}">
+      ${escapeHistoryHtml(figure.name || '')}
+    </a>
+  `;
 }
 
 function openHistoryFigureFromQuery() {
@@ -215,32 +309,9 @@ function openHistoryFigureFromQuery() {
   const targetValue = normalizeHistoryMatchValue(resolvedFigure);
   if (!targetValue) return;
 
-  const items = Array.from(document.querySelectorAll('.history-item'));
-  for (const item of items) {
-    const chips = Array.from(item.querySelectorAll('.history-figure-chip'));
-    const match = chips.find((chip) => normalizeHistoryMatchValue(chip.dataset.figureName || chip.dataset.figureId || chip.textContent) === targetValue);
-    if (!match) continue;
-
-    expandHistorySection(item);
-    selectHistoryFigure(match);
-    item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    break;
-  }
-}
-
-function renderHistoryPage() {
-  const historyList = document.getElementById('history-list');
-  if (!historyList || typeof history === 'undefined') return;
-
-  if (typeof createHistoryCharacterRegistry === 'function') {
-    globalThis.historyCharacters = createHistoryCharacterRegistry(history, { isEnglish: getHistoryIsEnglish() });
-  }
-
-  historyList.innerHTML = '';
-  history.forEach((h, i) => historyList.appendChild(createHistorySection(h, i)));
-
-  renderHistorySourcesSection();
-  openHistoryFigureFromQuery();
+  const chips = Array.from(document.querySelectorAll('.history-figure-chip'));
+  const match = chips.find((chip) => normalizeHistoryMatchValue(chip.dataset.figureName || chip.dataset.figureId || chip.textContent) === targetValue);
+  if (match) match.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function renderHistorySourcesSection() {
@@ -386,183 +457,6 @@ function getHistoryPageStrings() {
       };
 }
 
-function getSharedSheetsData() {
-  if (typeof sheets !== 'undefined' && Array.isArray(sheets)) return sheets;
-  if (Array.isArray(globalThis.sheets)) return globalThis.sheets;
-  return [];
-}
-
-function getRelatedSheetLinksForFigure(figureName) {
-  const allSheets = getSharedSheetsData();
-  if (!allSheets.length) return [];
-
-  const isEnglish = getHistoryIsEnglish();
-  const requestedRaw = normalizeHistoryMatchValue(figureName);
-  const requestedCanonical = normalizeHistoryMatchValue(resolveHistoryAlias(figureName));
-  const seen = new Set();
-
-  return allSheets
-    .filter((sheet) => sheet && sheet.system === 'arabic')
-    .filter((sheet) => {
-      const values = [sheet.composer, sheet.composer_en, sheet.performer, sheet.performer_en].filter(Boolean);
-      return values.some((value) => {
-        const raw = normalizeHistoryMatchValue(value);
-        const canonical = normalizeHistoryMatchValue(resolveHistoryAlias(value));
-        return raw === requestedRaw || raw === requestedCanonical || canonical === requestedRaw || canonical === requestedCanonical;
-      });
-    })
-    .filter((sheet) => {
-      const key = `${sheet.title || ''}|${sheet.pdf || ''}`;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    })
-    .map((sheet) => ({
-      title: isEnglish ? (sheet.title_en || sheet.title || '') : (sheet.title || sheet.title_en || ''),
-      pdf: sheet.pdf || '',
-      tonic: isEnglish ? (sheet.tonic_en || sheet.tonic || '') : (sheet.tonic || sheet.tonic_en || '')
-    }))
-    .filter((sheet) => sheet.title && sheet.pdf);
-}
-
-function createRelatedSheetTagsMarkup(figureName) {
-  const ui = getHistoryUiStrings();
-  const links = getRelatedSheetLinksForFigure(figureName);
-  if (!links.length) return '';
-
-  const tags = links.map((sheet) => {
-    const label = escapeHistoryHtml(sheet.title);
-    const hint = sheet.tonic ? `<span class="history-related-sheet-tonic">${escapeHistoryHtml(sheet.tonic)}</span>` : '';
-    return `<a class="history-related-sheet-tag" href="${escapeHistoryHtml(sheet.pdf)}" target="_blank" rel="noopener noreferrer" title="${escapeHistoryHtml(ui.openSheet)}">${label}${hint}</a>`;
-  }).join('');
-
-  return `
-    <div class="history-related-sheets-block">
-      <div class="history-related-sheets-label">${escapeHistoryHtml(ui.relatedSheetsLabel)}</div>
-      <div class="history-related-sheets-tags">${tags}</div>
-    </div>
-  `;
-}
-
-function createHistorySection(h, index) {
-  const ui = getHistoryUiStrings();
-  const section = document.createElement('div');
-  section.className = 'history-item';
-  section.dataset.id = h.id;
-
-  const highlights = (h.highlights || []).map(hl =>
-    `<span class="history-highlight">${escapeHistoryHtml(hl)}</span>`
-  ).join('');
-
-  const eraPageLink = `
-    <div class="history-era-link-wrap">
-      <a class="history-era-link" href="${escapeHistoryHtml(ui.eraPageHref)}?era=${encodeURIComponent(h.id)}">${escapeHistoryHtml(ui.openEraPage)}</a>
-    </div>
-  `;
-
-  const figures = getHistoryFiguresForEra(h);
-  const figuresMarkup = figures.length
-    ? `
-      <div class="history-figures-block">
-        <div class="history-figures-label">${escapeHistoryHtml(ui.figuresLabel)}</div>
-        <div class="history-figures">
-          ${figures.map((figure) => `
-            <button class="history-figure-chip" type="button"
-              data-era-id="${escapeHistoryHtml(figure.eraId || h.id)}"
-              data-figure-id="${escapeHistoryHtml(figure.id || '')}"
-              data-figure-index="${Number.isFinite(Number(figure.figureIndex)) ? Number(figure.figureIndex) : 0}"
-              data-figure-name="${escapeHistoryHtml(figure.name)}"
-              data-figure-role="${escapeHistoryHtml(figure.role)}"
-              data-figure-years="${escapeHistoryHtml(figure.years)}"
-              data-figure-description="${escapeHistoryHtml(figure.description)}"
-              onclick="selectHistoryFigure(this)">
-              ${escapeHistoryHtml(figure.name)}
-            </button>
-          `).join('')}
-        </div>
-        <div class="history-figure-panel" hidden>
-          <div class="history-figure-panel-head">
-            <div>
-              <div class="history-figure-name"></div>
-              <div class="history-figure-meta"></div>
-            </div>
-          </div>
-          <p class="history-figure-description"></p>
-          <div class="history-figure-actions"></div>
-          <div class="history-figure-related"></div>
-        </div>
-      </div>
-    `
-    : '';
-
-  section.innerHTML = `
-    <button class="history-toggle" aria-expanded="false" onclick="toggleHistory(this)">
-      <div class="history-toggle-left">
-        <span class="history-index">${String(index + 1).padStart(2, '0')}</span>
-        <div class="history-titles">
-          <span class="history-title">${escapeHistoryHtml(h.title)}</span>
-          <span class="history-subtitle">${escapeHistoryHtml(h.subtitle)}</span>
-        </div>
-      </div>
-      <div class="history-toggle-right">
-        <span class="history-period">${escapeHistoryHtml(h.period)}</span>
-        <svg class="history-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-    </button>
-    <div class="history-content" hidden>
-      <p class="history-text">${escapeHistoryHtml(h.content)}</p>
-      <div class="history-highlights">${highlights}</div>
-      ${eraPageLink}
-      ${figuresMarkup}
-    </div>`;
-
-  return section;
-}
-
-function toggleHistory(btn) {
-  const content = btn.nextElementSibling;
-  const isOpen = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', String(!isOpen));
-  content.hidden = isOpen;
-  btn.querySelector('.history-chevron').style.transform = isOpen ? '' : 'rotate(180deg)';
-}
-
-function selectHistoryFigure(btn) {
-  const ui = getHistoryUiStrings();
-  const block = btn.closest('.history-figures-block');
-  if (!block) return;
-
-  block.querySelectorAll('.history-figure-chip').forEach(chip => chip.classList.remove('active'));
-  btn.classList.add('active');
-
-  const panel = block.querySelector('.history-figure-panel');
-  const name = btn.dataset.figureName || '';
-  const figureId = btn.dataset.figureId || '';
-  const role = btn.dataset.figureRole || '';
-  const years = btn.dataset.figureYears || '';
-  const description = btn.dataset.figureDescription || '';
-  const eraId = btn.dataset.eraId || '';
-  const figureIndex = btn.dataset.figureIndex || '0';
-
-  const metaParts = [role, years].filter(Boolean);
-  block.querySelector('.history-figure-name').textContent = name;
-  block.querySelector('.history-figure-meta').textContent = metaParts.join(' — ');
-  block.querySelector('.history-figure-description').textContent = description;
-  const params = new URLSearchParams();
-  if (figureId) params.set('id', figureId);
-  params.set('name', name);
-  if (eraId) params.set('era', eraId);
-  params.set('figure', figureIndex);
-
-  block.querySelector('.history-figure-actions').innerHTML = `
-    <a class="history-figure-action" href="${escapeHistoryHtml(ui.personPageHref)}?${params.toString()}">${escapeHistoryHtml(ui.openPersonPage)}</a>
-  `;
-  block.querySelector('.history-figure-related').innerHTML = createRelatedSheetTagsMarkup(name);
-  panel.hidden = false;
-}
-
 function escapeHistoryHtml(value) {
   return String(value || '')
     .replaceAll('&', '&amp;')
@@ -570,6 +464,14 @@ function escapeHistoryHtml(value) {
     .replaceAll('>', '&gt;')
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
+}
+
+function selectHistoryFigure() {
+  return null;
+}
+
+function toggleHistory() {
+  return null;
 }
 
 renderHistoryPage();
