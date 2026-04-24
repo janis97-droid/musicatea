@@ -45,11 +45,12 @@
         }
       },
       {
-        "@type": "WebPage",
+        "@type": "LearningResource",
         "name": "المدخل إلى الموسيقى العربية",
         "url": "https://musicatea.com/arabic-music-intro.html",
         "inLanguage": "ar",
-        "description": "صفحة تمهيدية منظّمة للمبتدئ تشمل المصطلحات الأساسية والرموز الموسيقية وروابط الانتقال إلى المقامات والإيقاعات ومكتبة النوتات.",
+        "learningResourceType": "تعليم موسيقي",
+        "description": "مدخل منظّم للمبتدئ في الموسيقى العربية يشمل المصطلحات الأساسية، رموز التدوين، المقامات، الإيقاعات، وطريقة الانتقال إلى مكتبة النوتات.",
         "isPartOf": {
           "@type": "WebSite",
           "name": "Musicatea",
@@ -65,254 +66,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <style>
-    .intro-shell {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 54px 20px 96px;
-    }
-    .intro-hero {
-      position: relative;
-      text-align: center;
-      margin: 0 auto 30px;
-      padding: 20px 16px 8px;
-      max-width: 860px;
-    }
-    .intro-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0 auto auto 50%;
-      transform: translateX(-50%);
-      width: min(360px, 74vw);
-      height: 1px;
-      background: linear-gradient(90deg, rgba(200,164,90,0), rgba(200,164,90,.55), rgba(200,164,90,0));
-      opacity: .75;
-    }
-    .intro-hero h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2.15rem, 4.4vw, 3.35rem);
-      line-height: 1.08;
-      letter-spacing: -.02em;
-    }
-    .intro-hero p {
-      max-width: 640px;
-      margin: 0 auto;
-      color: rgba(255,255,255,.72);
-      line-height: 1.85;
-      font-size: 1.02rem;
-    }
-    .intro-quick-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 34px;
-    }
-    .intro-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 8px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(200,164,90,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: .84rem;
-      font-weight: 800;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
-      transition: all .22s var(--ease);
-    }
-    .intro-pill:hover {
-      color: var(--gold-light);
-      border-color: rgba(200,164,90,.34);
-      background: linear-gradient(180deg, rgba(200,164,90,.16), rgba(200,164,90,.08));
-      transform: translateY(-1px);
-    }
-    .intro-stack { display: grid; gap: 22px; }
-    .intro-section {
-      position: relative;
-      border: 1px solid rgba(200,164,90,.12);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(14,14,18,.96), rgba(10,10,14,.98));
-      box-shadow: 0 18px 42px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.03);
-      overflow: hidden;
-    }
-    .intro-section::before {
-      content: '';
-      position: absolute;
-      inset: 0 0 auto;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(200,164,90,0), rgba(200,164,90,.42), rgba(200,164,90,0));
-      opacity: .9;
-    }
-    .intro-section-head {
-      padding: 24px 26px 10px;
-    }
-    .intro-section-head h2 {
-      margin: 0 0 9px;
-      font-size: 1.28rem;
-      color: var(--text);
-    }
-    .intro-section-head p {
-      margin: 0;
-      color: rgba(255,255,255,.68);
-      line-height: 1.88;
-      font-size: .95rem;
-      max-width: 900px;
-    }
-    .intro-subsections {
-      padding: 16px 18px 20px;
-      display: grid;
-      gap: 14px;
-    }
-    .intro-acc-item {
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.022), rgba(255,255,255,.015));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
-      overflow: hidden;
-      transition: border-color .22s ease, background .22s ease, transform .22s ease;
-    }
-    .intro-acc-item:hover {
-      border-color: rgba(200,164,90,.18);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.018));
-    }
-    .intro-acc-item.is-open {
-      border-color: rgba(200,164,90,.22);
-      background: linear-gradient(180deg, rgba(200,164,90,.06), rgba(255,255,255,.018));
-    }
-    .intro-acc-trigger {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 17px 18px;
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      font: inherit;
-      cursor: pointer;
-      text-align: start;
-    }
-    .intro-acc-trigger span:first-child {
-      font-weight: 800;
-      font-size: .99rem;
-    }
-    .intro-acc-trigger span:last-child {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(200,164,90,.14);
-      background: rgba(255,255,255,.03);
-      color: var(--gold-light);
-      transition: transform .22s ease, background .22s ease, border-color .22s ease;
-      font-size: .95rem;
-      line-height: 1;
-      flex: 0 0 auto;
-    }
-    .intro-acc-item.is-open .intro-acc-trigger span:last-child {
-      transform: rotate(180deg);
-      background: rgba(200,164,90,.12);
-      border-color: rgba(200,164,90,.26);
-    }
-    .intro-acc-panel {
-      padding: 0 18px 18px;
-      border-top: 1px solid rgba(255,255,255,.05);
-    }
-    .intro-term-grid {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      padding-top: 15px;
-    }
-    .intro-term-card {
-      border: 1px solid rgba(200,164,90,.10);
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.014));
-      padding: 15px 15px 13px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.025);
-      min-height: 100%;
-    }
-    .intro-term-card h3 {
-      margin: 0 0 8px;
-      font-size: .96rem;
-      color: var(--gold-light);
-    }
-    .intro-term-card p {
-      margin: 0;
-      color: rgba(255,255,255,.72);
-      line-height: 1.82;
-      font-size: .885rem;
-    }
-    .intro-term-card p + p { margin-top: 8px; }
-    .intro-term-card strong { color: rgba(255,255,255,.9); }
-    .intro-symbol-visual {
-      width: 76px;
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(200,164,90,.14);
-      background: radial-gradient(circle at 50% 35%, rgba(200,164,90,.12), rgba(255,255,255,.02) 56%, rgba(255,255,255,.015) 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .intro-symbol-visual svg {
-      width: 52px;
-      height: 52px;
-      overflow: visible;
-    }
-    .intro-next {
-      margin-top: 38px;
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-    .intro-next-card {
-      border: 1px solid rgba(200,164,90,.12);
-      border-radius: 20px;
-      padding: 20px;
-      background: linear-gradient(180deg, rgba(14,14,18,.98), rgba(10,10,14,.98));
-      box-shadow: 0 14px 30px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.03);
-    }
-    .intro-next-card h3 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-      color: var(--text);
-    }
-    .intro-next-card p {
-      margin: 0 0 14px;
-      color: rgba(255,255,255,.68);
-      line-height: 1.82;
-      font-size: .92rem;
-    }
-    .intro-next-card a {
-      color: var(--gold-light);
-      text-decoration: none;
-      font-weight: 800;
-    }
-    .intro-next-card a:hover { color: var(--gold); }
-
-    @media (max-width: 680px) {
-      .intro-shell { padding: 34px 14px 74px; }
-      .intro-hero { padding: 14px 4px 4px; margin-bottom: 22px; }
-      .intro-hero h1 { font-size: clamp(1.9rem, 9vw, 2.8rem); }
-      .intro-hero p { font-size: .94rem; }
-      .intro-quick-links { margin: 16px 0 26px; gap: 8px; }
-      .intro-pill { min-height: 34px; padding: 7px 12px; font-size: .78rem; }
-      .intro-section-head { padding: 18px 18px 10px; }
-      .intro-subsections { padding: 12px 12px 14px; }
-      .intro-acc-trigger { padding: 14px 14px; }
-      .intro-acc-panel { padding: 0 12px 14px; }
-      .intro-term-grid { grid-template-columns: 1fr; }
-      .intro-next { margin-top: 28px; }
-    }
+    .intro-shell{max-width:1180px;margin:0 auto;padding:54px 20px 96px}.intro-hero{text-align:center;margin:0 auto 30px;max-width:860px}.intro-hero h1{margin:0 0 12px;font-size:clamp(2.15rem,4.4vw,3.35rem);line-height:1.08}.intro-hero p{max-width:680px;margin:0 auto;color:rgba(255,255,255,.72);line-height:1.85;font-size:1.02rem}.intro-quick-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin:20px 0 34px}.intro-pill{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:8px 15px;border-radius:999px;border:1px solid rgba(200,164,90,.16);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));color:var(--text-muted);text-decoration:none;font-size:.84rem;font-weight:800}.intro-stack{display:grid;gap:22px}.intro-section,.intro-static-section{border:1px solid rgba(200,164,90,.12);border-radius:24px;background:linear-gradient(180deg,rgba(14,14,18,.96),rgba(10,10,14,.98));box-shadow:0 18px 42px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.03);overflow:hidden}.intro-section-head{padding:24px 26px 10px}.intro-section-head h2,.intro-static-section h2{margin:0 0 9px;font-size:1.28rem;color:var(--text)}.intro-section-head p,.intro-static-section p{margin:0;color:rgba(255,255,255,.68);line-height:1.88;font-size:.95rem}.intro-static-section{padding:24px 26px}.intro-static-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}.intro-static-card{border:1px solid rgba(255,255,255,.07);border-radius:18px;background:rgba(255,255,255,.025);padding:16px}.intro-static-card h3{margin:0 0 8px;color:var(--gold-light);font-size:1rem}.intro-static-card p{font-size:.9rem}.intro-next{margin-top:30px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.intro-next-card{border:1px solid rgba(200,164,90,.12);border-radius:20px;padding:20px;background:linear-gradient(180deg,rgba(14,14,18,.98),rgba(10,10,14,.98));box-shadow:0 14px 30px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.03)}.intro-next-card h3{margin:0 0 10px;font-size:1rem;color:var(--text)}.intro-next-card p{margin:0 0 14px;color:rgba(255,255,255,.68);line-height:1.82;font-size:.92rem}.intro-next-card a{color:var(--gold-light);text-decoration:none;font-weight:800}@media(max-width:680px){.intro-shell{padding:34px 14px 74px}.intro-hero h1{font-size:clamp(1.9rem,9vw,2.8rem)}.intro-static-section{padding:18px}.intro-static-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -340,7 +94,60 @@
   </nav>
 
   <main id="main-content" class="intro-shell">
-    <div id="intro-page-root"></div>
+    <div id="intro-page-root">
+      <header class="intro-hero">
+        <h1>المدخل إلى الموسيقى العربية</h1>
+        <p>ابدأ من هنا لتفهم المصطلحات والرموز الأساسية قبل الدخول في المقامات والإيقاعات والنوتات. هذه الصفحة مصممة كمدخل تعليمي منظّم لا كقائمة روابط فقط.</p>
+      </header>
+
+      <nav class="intro-quick-links" aria-label="روابط سريعة داخل المدخل">
+        <a class="intro-pill" href="#intro-static-terms">مصطلحات أساسية</a>
+        <a class="intro-pill" href="#intro-static-maqam">فهم المقام</a>
+        <a class="intro-pill" href="#intro-static-rhythm">فهم الإيقاع</a>
+        <a class="intro-pill" href="#intro-static-next">إلى أين بعد ذلك؟</a>
+      </nav>
+
+      <section class="intro-static-section" id="intro-static-terms" aria-labelledby="intro-static-terms-title">
+        <h2 id="intro-static-terms-title">لماذا يحتاج المبتدئ إلى مدخل منظّم؟</h2>
+        <p>الموسيقى العربية تحمل مصطلحات كثيرة قد تبدو متفرقة في البداية: مقام، جنس، قرار، غمّاز، إيقاع، دورة، دم، تك، تقسيم، تحويل، ومازورة. فهم هذه الكلمات لا يعني حفظ تعريفات جامدة، بل بناء طريقة سماع وقراءة تساعد المتعلم على ربط النوتة بالصوت وبالأداء الحي.</p>
+        <div class="intro-static-grid">
+          <article class="intro-static-card">
+            <h3>التدوين والنوتة</h3>
+            <p>النوتة وسيلة لتنظيم الصوت بصريًا. المدرج، المفتاح، المازورة، النغمة والسكتة تساعد الطالب على قراءة الزمن والطبقة، لكنها لا تكفي وحدها لفهم الطابع العربي دون سماع وتحليل.</p>
+          </article>
+          <article class="intro-static-card" id="intro-static-maqam">
+            <h3>المقام والسير اللحني</h3>
+            <p>المقام ليس سلّمًا فقط. هو إطار لحني له درجات استقرار، أجناس، مسار صعود وهبوط، وإحساس خاص. لذلك يجب فهم القرار، الغمّاز، الجملة اللحنية، والتحويل بين المقامات.</p>
+          </article>
+          <article class="intro-static-card" id="intro-static-rhythm">
+            <h3>الإيقاع والدورة</h3>
+            <p>الإيقاع العربي يقوم على أنماط دورية تتكوّن من ضربات ثقيلة وخفيفة وسكتات. مصطلحات مثل الدم والتك والدورة الإيقاعية تساعد المتعلم على سماع البنية لا مجرد عدّ الأرقام.</p>
+          </article>
+          <article class="intro-static-card">
+            <h3>الارتجال والتقسيم</h3>
+            <p>التقسيم من أهم أشكال التعبير الآلي في الموسيقى العربية. يوضح كيف يتحرك العازف داخل المقام، وكيف ينتقل مؤقتًا إلى مقامات قريبة ثم يعود إلى مركز الاستقرار.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="intro-next" id="intro-static-next" aria-label="خطوات متابعة التعلم">
+        <article class="intro-next-card">
+          <h3>تابع إلى المقامات</h3>
+          <p>بعد فهم المصطلحات الأساسية، انتقل إلى صفحات المقامات لتتعرف على الراست، البياتي، النهاوند، الكرد، الحجاز وغيرها.</p>
+          <a href="maqamat.html">افتح المقامات</a>
+        </article>
+        <article class="intro-next-card">
+          <h3>تابع إلى الإيقاعات</h3>
+          <p>ادرس المقسوم، الملفوف، الوحدة، السماعي الثقيل وغيرها من الإيقاعات التي تظهر في الأعمال العربية.</p>
+          <a href="rhythms.html">افتح الإيقاعات</a>
+        </article>
+        <article class="intro-next-card">
+          <h3>طبّق في مكتبة النوتات</h3>
+          <p>اربط المفاهيم النظرية بأعمال حقيقية من خلال النوتات، أسماء الملحنين، المقامات، والإيقاعات المرتبطة بكل عمل.</p>
+          <a href="library.html">افتح مكتبة النوتات</a>
+        </article>
+      </section>
+    </div>
   </main>
 
   <footer class="site-footer">
