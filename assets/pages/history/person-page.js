@@ -4,6 +4,7 @@
   const eraId = params.get('era') || '';
   const figureIndex = Number(params.get('figure') || 0);
   const requestedName = params.get('name') || '';
+  const requestedId = params.get('id') || '';
 
   const strings = isEnglish
     ? {
@@ -83,6 +84,7 @@
   }
 
   function normalize(value) {
+    if (typeof normalizeHistoryCharacterValue === 'function') return normalizeHistoryCharacterValue(value);
     return String(value || '')
       .normalize('NFKD')
       .replace(/[\u0300-\u036f]/g, '')
@@ -100,9 +102,10 @@
 
   function normalizeFigure(figure, fallbackDescription) {
     if (typeof figure === 'string') {
-      return { name: figure, role: '', years: '', description: fallbackDescription };
+      return { id: '', name: figure, role: '', years: '', description: fallbackDescription };
     }
     return {
+      id: figure?.id || '',
       name: figure?.name || '',
       role: figure?.role || '',
       years: figure?.years || '',
@@ -118,21 +121,42 @@
   }
 
   function findCharacterDetails(allCharacters, figure) {
-    const wanted = normalize(figure?.name || '');
+    const wanted = normalize(figure?.id || figure?.name || '');
     return (Array.isArray(allCharacters) ? allCharacters : []).find((item) => {
       return [item?.name_ar, item?.name_en, item?.slug, item?.id].some((value) => normalize(value) === wanted);
     }) || null;
   }
 
-  function collectRelatedSheets(allSheets, figureName) {
-    const wanted = normalize(figureName);
+  function findHistoryRegistryCharacter(registry, id, name) {
+    if (!registry) return null;
+    if (id && registry.byId?.get(id)) return registry.byId.get(id);
+    if (typeof findHistoryCharacter === 'function') {
+      return findHistoryCharacter(registry, id) || findHistoryCharacter(registry, name) || null;
+    }
+    return null;
+  }
+
+  function registryDisplayToFigure(character, fallbackDescription) {
+    if (!character || typeof displayHistoryCharacter !== 'function') return null;
+    const display = displayHistoryCharacter(character, isEnglish);
+    return {
+      id: display.id,
+      name: display.name,
+      role: display.role,
+      years: display.years,
+      description: display.description || fallbackDescription
+    };
+  }
+
+  function collectRelatedSheets(allSheets, figureName, aliases = []) {
+    const wanted = new Set([figureName, ...aliases].filter(Boolean).map(normalize));
     const seen = new Set();
 
     return allSheets
       .filter((sheet) => sheet && sheet.system === 'arabic')
       .filter((sheet) => {
         const values = [sheet.composer, sheet.composer_en, sheet.performer, sheet.performer_en].filter(Boolean);
-        return values.some((value) => normalize(value) === wanted);
+        return values.some((value) => wanted.has(normalize(value)));
       })
       .filter((sheet) => {
         const key = `${sheet.title || ''}|${sheet.pdf || ''}`;
@@ -277,6 +301,10 @@
       loadData('data/character-images.js', 'characterImages')
     ]);
 
+    const registry = typeof createHistoryCharacterRegistry === 'function'
+      ? createHistoryCharacterRegistry(historyData, { isEnglish })
+      : null;
+
     const characterData = [
       ...(Array.isArray(characterDataMain) ? characterDataMain : []),
       ...(Array.isArray(characterDataLebanon) ? characterDataLebanon : []),
@@ -288,8 +316,15 @@
 
     let era = historyData.find((item) => item.id === eraId) || null;
     let figure = era && Array.isArray(era.figures) ? normalizeFigure(era.figures[figureIndex], fallbackDescription) : null;
+    let registryCharacter = findHistoryRegistryCharacter(registry, requestedId, requestedName);
 
-    if (requestedName) {
+    if (registryCharacter) {
+      figure = registryDisplayToFigure(registryCharacter, fallbackDescription);
+      const firstEraEntry = (registryCharacter.era_entries || []).find((entry) => !eraId || entry.era_id === eraId) || registryCharacter.era_entries?.[0] || null;
+      era = historyData.find((item) => item.id === firstEraEntry?.era_id) || era || historyData.find((item) => item.id === registryCharacter.era_ids?.[0]) || null;
+    }
+
+    if (!registryCharacter && requestedName) {
       const wanted = normalize(requestedName);
       outer:
       for (const eraItem of historyData) {
@@ -299,6 +334,7 @@
           if (normalize(candidate.name) === wanted) {
             era = eraItem;
             figure = candidate;
+            registryCharacter = findHistoryRegistryCharacter(registry, candidate.id, candidate.name);
             break outer;
           }
         }
@@ -310,14 +346,15 @@
       return;
     }
 
-    let character = findCharacterDetails(characterData, figure);
+    let character = findCharacterDetails(characterData, { id: registryCharacter?.id || figure.id, name: figure.name });
     character = mergeCharacterImages(character, imageMap);
     const displayName = character ? (isEnglish ? (character.name_en || character.name_ar || figure.name) : (character.name_ar || character.name_en || figure.name)) : figure.name;
     const displayRole = character?.role || figure.role || '';
     const displayYears = character?.years || figure.years || '';
     const shortIntro = character?.intro_short || figure.description || fallbackDescription;
     const fullBio = character?.intro_long || '';
-    const relatedSheets = collectRelatedSheets(sheetsData, displayName);
+    const aliases = registryCharacter?.aliases || [];
+    const relatedSheets = collectRelatedSheets(sheetsData, displayName, aliases);
     const collaborators = collectCollaborators(relatedSheets, displayName);
 
     document.getElementById('person-page-root').innerHTML = `
@@ -397,12 +434,19 @@
 
     const langToggle = document.getElementById('person-lang-toggle');
     if (langToggle) {
-      langToggle.href = `${strings.counterpart}?name=${encodeURIComponent(displayName)}`;
+      const counterpartParams = new URLSearchParams();
+      if (registryCharacter?.id) counterpartParams.set('id', registryCharacter.id);
+      counterpartParams.set('name', displayName);
+      if (era?.id) counterpartParams.set('era', era.id);
+      langToggle.href = `${strings.counterpart}?${counterpartParams.toString()}`;
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?name=${encodeURIComponent(displayName)}`;
+      const canonicalParams = new URLSearchParams();
+      if (registryCharacter?.id) canonicalParams.set('id', registryCharacter.id);
+      canonicalParams.set('name', displayName);
+      canonical.href = `${window.location.origin}/${isEnglish ? 'person-en.html' : 'person.html'}?${canonicalParams.toString()}`;
     }
   } catch (error) {
     document.getElementById('person-page-root').innerHTML = `<p class="history-person-empty">${escapeHtml(strings.noFigure)}</p>`;
