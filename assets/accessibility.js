@@ -66,6 +66,8 @@
     const map = {
       'index.html': isArabic ? 'index-en.html' : 'index.html',
       '': isArabic ? 'index-en.html' : 'index.html',
+      'arabic-music-intro.html': 'arabic-music-intro-en.html',
+      'arabic-music-intro-en.html': 'arabic-music-intro.html',
       'library.html': 'library-en.html',
       'library-en.html': 'library.html',
       'maqamat.html': 'maqamat-en.html',
