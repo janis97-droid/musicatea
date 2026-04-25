@@ -168,6 +168,24 @@
     return focus;
   }
 
+  function renderExercise(section) {
+    const exercise = section.exercise;
+    if (!exercise || !Array.isArray(exercise.steps) || !exercise.steps.length) return null;
+
+    const box = el('aside', 'intro-exercise-box');
+    const steps = exercise.steps.map((step, index) => `<li><span>${String(index + 1).padStart(2, '0')}</span><p>${step}</p></li>`).join('');
+    box.innerHTML = `
+      <div class="intro-exercise-head">
+        <span>تمرين قصير</span>
+        <h3>${exercise.title}</h3>
+        <p>${exercise.intro || ''}</p>
+      </div>
+      <ol>${steps}</ol>
+      ${exercise.result ? `<p class="intro-exercise-result"><strong>النتيجة:</strong> ${exercise.result}</p>` : ''}
+    `;
+    return box;
+  }
+
   function renderBody() {
     if (!Array.isArray(data.sections) || !data.sections.length) return;
 
@@ -215,6 +233,10 @@
       });
 
       sectionEl.appendChild(sub);
+
+      const exercise = renderExercise(section);
+      if (exercise) sectionEl.appendChild(exercise);
+
       stack.appendChild(sectionEl);
     });
 
