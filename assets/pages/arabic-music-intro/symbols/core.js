@@ -20,7 +20,7 @@ window.MUSICATEA_INTRO_SYMBOLS = window.MUSICATEA_INTRO_SYMBOLS || {};
   };
 
   registry.drawAll = function drawAll() {
-    document.querySelectorAll('.intro-term-card[data-symbol]').forEach((card) => {
+    document.querySelectorAll('[data-symbol]').forEach((card) => {
       const slot = card.querySelector('.intro-symbol-visual');
       const type = card.dataset.symbol;
       const drawer = registry.drawers[type];
