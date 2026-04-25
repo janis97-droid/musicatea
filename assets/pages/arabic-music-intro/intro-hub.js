@@ -25,7 +25,7 @@
       <p>ابدأ من صفحة واضحة واحدة، ثم انتقل إلى مسار قصير حسب حاجتك: قراءة النوتة، فهم المقام، أو قراءة الإيقاع. كل مسار يحتوي على مصطلحات، رموز، ومثال من الموقع.</p>
     </header>
 
-    <section class="intro-section-map" aria-labelledby="intro-section-map-title">
+    <section class="intro-section-map intro-primary-choices" aria-labelledby="intro-section-map-title">
       <div class="intro-map-head">
         <h2 id="intro-section-map-title">اختر مسارك التعليمي</h2>
         <p>لا تقرأ كل شيء دفعة واحدة. اختر الباب الذي تحتاجه الآن، ثم طبّق مباشرة على صفحات Musicatea.</p>
@@ -46,7 +46,7 @@
       </div>
     </section>
 
-    <section class="intro-learning-path" aria-labelledby="intro-after-title">
+    <section class="intro-learning-path intro-apply-links" aria-labelledby="intro-after-title">
       <div class="intro-learning-head">
         <span class="intro-kicker">بعد المسارات</span>
         <h2 id="intro-after-title">طبّق داخل الموقع</h2>
