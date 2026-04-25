@@ -261,30 +261,33 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
+  align-items: start;
 }
 
-.card-credit-row {
+.card-credit-row,
+html[dir="rtl"] .card-credit-row {
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  align-items: start;
   gap: 6px;
   text-align: center;
 }
 
-html[dir="rtl"] .card-credit-row {
-  align-items: center;
-}
-
 .card-credit-row-empty {
-  display: none;
+  visibility: hidden;
+  display: grid;
 }
 
 .card-credit-label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  justify-self: center;
+  width: fit-content;
+  max-width: 100%;
   min-height: 25px;
   padding: 4px 9px;
   border-radius: 999px;
@@ -300,8 +303,10 @@ html[dir="rtl"] .card-credit-row {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 29px;
+  justify-self: center;
+  width: fit-content;
   max-width: 100%;
+  min-height: 29px;
   padding: 5px 11px;
   border-radius: 999px;
   background: rgba(200,164,90,0.08);
