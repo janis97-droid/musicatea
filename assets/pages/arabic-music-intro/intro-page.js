@@ -169,6 +169,8 @@
   }
 
   function renderExercise(section) {
+    if (!data.showExercises) return null;
+
     const exercise = section.exercise;
     if (!exercise || !Array.isArray(exercise.steps) || !exercise.steps.length) return null;
 
