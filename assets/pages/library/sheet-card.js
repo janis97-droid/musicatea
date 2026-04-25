@@ -35,10 +35,13 @@ function createSheetCard(s) {
   const maqamTagLabel = buildInteractiveMaqamTagLabel(s.maqam, s.tonic);
 
   const maqamDisplay = maqamRoute
-    ? `<a href="${escapeHtml(maqamRoute)}" class="maqam-link card-tag card-tag-clickable" onclick="event.stopPropagation()">${escapeHtml(maqamTagLabel)}</a>`
-    : `<span class="card-tag">${escapeHtml(s.system === 'arabic' ? maqamTagLabel : (s.scale || ''))}</span>`;
+    ? `<a href="${escapeHtml(maqamRoute)}" class="card-credit-link card-maqam-credit" onclick="event.stopPropagation()">${escapeHtml(maqamTagLabel)}</a>`
+    : `<span class="card-credit-link card-maqam-credit">${escapeHtml(s.system === 'arabic' ? maqamTagLabel : (s.scale || s.tonic || ''))}</span>`;
 
   const rhythmTags = createRhythmTags(s);
+  const rhythmLine = rhythmTags
+    ? `<div class="card-rhythm-row" aria-label="الإيقاعات">${rhythmTags}</div>`
+    : '';
 
   const performerLine = s.performer
     ? `
@@ -46,7 +49,7 @@ function createSheetCard(s) {
         <span class="card-credit-label">المؤدي</span>
         ${createPersonPageLink(s.performer)}
       </div>`
-    : '';
+    : '<div class="card-credit-row card-credit-row-empty" aria-hidden="true"></div>';
 
   const composerLine = s.composer
     ? `
@@ -54,15 +57,19 @@ function createSheetCard(s) {
         <span class="card-credit-label">الملحن</span>
         ${createPersonPageLink(s.composer)}
       </div>`
-    : '';
+    : '<div class="card-credit-row card-credit-row-empty" aria-hidden="true"></div>';
+
+  const maqamLine = (s.maqam || s.scale || s.tonic)
+    ? `
+      <div class="card-credit-row">
+        <span class="card-credit-label">المقام</span>
+        ${maqamDisplay}
+      </div>`
+    : '<div class="card-credit-row card-credit-row-empty" aria-hidden="true"></div>';
 
   const badge = s.type === 'song'
     ? `<span class="badge badge-song">أغنية</span>`
     : `<span class="badge badge-inst">معزوفة</span>`;
-
-  const secondaryMeta = s.system === 'arabic'
-    ? ''
-    : (s.tonic ? `<span class="card-tag card-tag-muted">${escapeHtml(s.tonic)}</span>` : '');
 
   card.innerHTML = `
     <div class="card-header">
@@ -71,16 +78,13 @@ function createSheetCard(s) {
         ${badge}
       </div>
 
-      <div class="card-meta card-meta-primary">
-        ${maqamDisplay}
-        ${secondaryMeta}
-        ${rhythmTags}
-      </div>
-
       <div class="card-credits">
         ${composerLine}
         ${performerLine}
+        ${maqamLine}
       </div>
+
+      ${rhythmLine}
     </div>
 
     <a href="${escapeHtml(s.pdf)}" target="_blank" rel="noopener" class="download-btn">
