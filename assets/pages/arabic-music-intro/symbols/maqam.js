@@ -3,6 +3,41 @@
   const r = window.MUSICATEA_INTRO_SYMBOLS;
   if (!r) return;
 
+  function drawCurve(svg, { svgEl, GOLD }) {
+    svgEl('path', { d: 'M8 39 C16 20, 27 32, 33 17 C38 5, 47 16, 49 8', fill: 'none', stroke: GOLD, 'stroke-width': '3.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    svgEl('circle', { cx: '8', cy: '39', r: '3.4', fill: GOLD }, svg);
+    svgEl('circle', { cx: '33', cy: '17', r: '3.4', fill: GOLD, opacity: '0.82' }, svg);
+    svgEl('circle', { cx: '49', cy: '8', r: '3.4', fill: GOLD, opacity: '0.7' }, svg);
+  }
+
+  r.register('maqam', drawCurve);
+
+  r.register('jins', (svg, { svgEl, GOLD }) => {
+    [12, 18, 24, 30, 36].forEach((y) => svgEl('line', { x1: '7', y1: String(y), x2: '45', y2: String(y), stroke: GOLD, 'stroke-width': '1.35', opacity: '0.42', 'stroke-linecap': 'round' }, svg));
+    [13, 22, 31, 40].forEach((x, index) => {
+      svgEl('circle', { cx: String(x), cy: String(34 - index * 5), r: '3.8', fill: GOLD, opacity: index === 0 ? '1' : '0.78' }, svg);
+    });
+    svgEl('path', { d: 'M12 42 L42 42', stroke: GOLD, 'stroke-width': '2.4', 'stroke-linecap': 'round', opacity: '0.75' }, svg);
+  });
+
+  r.register('qarar', (svg, { svgEl, GOLD }) => {
+    [13, 20, 27, 34, 41].forEach((x) => svgEl('circle', { cx: String(x), cy: '27', r: '2.8', fill: GOLD, opacity: '0.38' }, svg));
+    svgEl('circle', { cx: '13', cy: '27', r: '7', fill: 'rgba(240,210,138,0.18)', stroke: GOLD, 'stroke-width': '3' }, svg);
+    svgEl('path', { d: 'M13 27 C24 12, 35 37, 43 20', fill: 'none', stroke: GOLD, 'stroke-width': '2.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+  });
+
+  r.register('ghammaz', (svg, { svgEl, GOLD }) => {
+    [10, 18, 26, 34, 42].forEach((x) => svgEl('circle', { cx: String(x), cy: '30', r: '2.8', fill: GOLD, opacity: '0.38' }, svg));
+    svgEl('circle', { cx: '34', cy: '30', r: '7', fill: 'rgba(240,210,138,0.18)', stroke: GOLD, 'stroke-width': '3' }, svg);
+    svgEl('path', { d: 'M11 39 C20 28, 27 22, 34 30 C40 37, 44 28, 47 20', fill: 'none', stroke: GOLD, 'stroke-width': '2.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+  });
+
+  r.register('sayr', (svg, { svgEl, GOLD }) => {
+    svgEl('path', { d: 'M8 38 C14 20, 22 22, 27 30 C32 38, 41 33, 46 13', fill: 'none', stroke: GOLD, 'stroke-width': '3.4', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    svgEl('path', { d: 'M46 13 L47 22 L39 18', fill: 'none', stroke: GOLD, 'stroke-width': '3', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    svgEl('path', { d: 'M9 42 L44 42', stroke: GOLD, 'stroke-width': '2', 'stroke-linecap': 'round', opacity: '0.36' }, svg);
+  });
+
   function drawFlat(svg, { svgEl, GOLD }) {
     const g = svgEl('g', { transform: 'translate(6,4) scale(0.060,0.060)' }, svg);
     svgEl('path', { d: 'M200.438,214.712V0h-71.18v512c0,0,170.389-50.606,236.182-162.99C424.052,248.893,324.927,139.024,200.438,214.712z M300.508,302.609c-6.37,82.823-100.117,126.984-100.117,126.984v-156.27C239.449,239.14,305.394,239.14,300.508,302.609z', fill: GOLD }, g);
