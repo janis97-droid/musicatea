@@ -229,6 +229,7 @@
 .card-tag-muted {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 5px 10px;
   border-radius: 999px;
   background: rgba(255,255,255,0.035);
@@ -238,6 +239,7 @@
   font-weight: 800;
   text-decoration: none;
   line-height: 1.25;
+  text-align: center;
 }
 
 .card-tag-clickable,
@@ -255,6 +257,7 @@
 }
 
 .card-credits {
+  direction: rtl;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 7px;
@@ -264,12 +267,14 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   gap: 6px;
+  text-align: center;
 }
 
 html[dir="rtl"] .card-credit-row {
-  align-items: flex-end;
+  align-items: center;
 }
 
 .card-credit-row-empty {
@@ -279,6 +284,7 @@ html[dir="rtl"] .card-credit-row {
 .card-credit-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 25px;
   padding: 4px 9px;
   border-radius: 999px;
@@ -287,11 +293,13 @@ html[dir="rtl"] .card-credit-row {
   color: var(--text-dim);
   font-size: 0.7rem;
   font-weight: 900;
+  text-align: center;
 }
 
 .card-credit-link {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   min-height: 29px;
   max-width: 100%;
   padding: 5px 11px;
@@ -303,6 +311,7 @@ html[dir="rtl"] .card-credit-row {
   font-weight: 900;
   line-height: 1.25;
   text-decoration: none;
+  text-align: center;
   overflow-wrap: anywhere;
 }
 
@@ -319,10 +328,13 @@ html[dir="rtl"] .card-credit-row {
 .card-rhythm-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 7px;
-  padding-top: 2px;
-  padding-bottom: 9px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-top: 2px;
+  padding-top: 12px;
+  padding-bottom: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 0;
 }
 
 .download-btn {
