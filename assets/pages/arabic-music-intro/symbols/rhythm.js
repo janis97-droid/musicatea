@@ -3,6 +3,14 @@
   const r = window.MUSICATEA_INTRO_SYMBOLS;
   if (!r) return;
 
+  function drawMeter44(svg, { svgEl, GOLD }) {
+    [13, 19, 25, 31, 37].forEach((y) => {
+      svgEl('line', { x1: '8', y1: String(y), x2: '44', y2: String(y), stroke: GOLD, 'stroke-width': '1.15', opacity: '0.22', 'stroke-linecap': 'round' }, svg);
+    });
+    svgEl('text', { x: '26', y: '24', fill: GOLD, 'font-size': '17', 'font-weight': '900', 'font-family': 'Cairo, sans-serif', 'text-anchor': 'middle' }, svg).textContent = '4';
+    svgEl('text', { x: '26', y: '41', fill: GOLD, 'font-size': '17', 'font-weight': '900', 'font-family': 'Cairo, sans-serif', 'text-anchor': 'middle' }, svg).textContent = '4';
+  }
+
   r.register('dum', (svg, { svgEl, GOLD }) => {
     svgEl('circle', { cx: '26', cy: '26', r: '16', fill: 'none', stroke: GOLD, 'stroke-width': '4' }, svg);
     svgEl('circle', { cx: '26', cy: '26', r: '6', fill: GOLD, opacity: '0.88' }, svg);
@@ -22,12 +30,9 @@
     svgEl('path', { d: 'M8 43 H44', stroke: GOLD, 'stroke-width': '2', 'stroke-linecap': 'round', opacity: '0.38' }, svg);
   });
 
-  r.register('meter', (svg, { svgEl, GOLD }) => {
-    svgEl('rect', { x: '10', y: '8', width: '32', height: '36', rx: '7', fill: 'none', stroke: GOLD, 'stroke-width': '2.4', opacity: '0.85' }, svg);
-    svgEl('text', { x: '26', y: '22', fill: GOLD, 'font-size': '13', 'font-weight': '900', 'font-family': 'Cairo, sans-serif', 'text-anchor': 'middle' }, svg).textContent = '4';
-    svgEl('line', { x1: '17', y1: '26', x2: '35', y2: '26', stroke: GOLD, 'stroke-width': '2', 'stroke-linecap': 'round', opacity: '0.78' }, svg);
-    svgEl('text', { x: '26', y: '40', fill: GOLD, 'font-size': '13', 'font-weight': '900', 'font-family': 'Cairo, sans-serif', 'text-anchor': 'middle' }, svg).textContent = '4';
-  });
+  r.register('meter', drawMeter44);
+  r.register('meter-44', drawMeter44);
+  r.register('rhythm', drawMeter44);
 
   r.register('rhythm-cycle', (svg, { svgEl, GOLD }) => {
     svgEl('path', { d: 'M15 18 C22 9, 37 11, 41 22', fill: 'none', stroke: GOLD, 'stroke-width': '3', 'stroke-linecap': 'round' }, svg);
