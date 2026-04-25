@@ -9,6 +9,21 @@
     });
   }
 
+  function drawFlat(svg, { svgEl, GOLD }, dx = 0, dy = 0, scale = 1) {
+    const group = svgEl('g', { transform: `translate(${dx} ${dy}) scale(${scale})` }, svg);
+    svgEl('path', { d: 'M22 8 V42', fill: 'none', stroke: GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round' }, group);
+    svgEl('path', { d: 'M22 28 C30 19, 42 23, 40 33 C38 43, 27 44, 22 42', fill: 'none', stroke: GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, group);
+    return group;
+  }
+
+  function drawHalfFlat(svg, helpers, dx = 0, dy = 0, scale = 1) {
+    const group = helpers.svgEl('g', { transform: `translate(${dx} ${dy}) scale(${scale})` }, svg);
+    helpers.svgEl('path', { d: 'M22 8 V42', fill: 'none', stroke: helpers.GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round' }, group);
+    helpers.svgEl('path', { d: 'M22 28 C30 19, 42 23, 40 33 C38 43, 27 44, 22 42', fill: 'none', stroke: helpers.GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, group);
+    helpers.svgEl('path', { d: 'M12 17 H35', stroke: helpers.GOLD, 'stroke-width': '4', 'stroke-linecap': 'round' }, group);
+    return group;
+  }
+
   function drawCurve(svg, { svgEl, GOLD }) {
     drawGuide(svg, svgEl, GOLD);
     svgEl('path', { d: 'M8 39 C15 21, 25 33, 32 18 C38 5, 45 17, 49 9', fill: 'none', stroke: GOLD, 'stroke-width': '3.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
@@ -18,6 +33,14 @@
   }
 
   r.register('maqam', drawCurve);
+
+  r.register('maqam-signature', (svg, helpers) => {
+    const { svgEl, GOLD } = helpers;
+    drawGuide(svg, svgEl, GOLD);
+    svgEl('path', { d: 'M11 9 C6 15, 7 24, 15 27 C24 30, 24 40, 15 42 C7 44, 5 36, 11 32 C16 29, 21 33, 20 37 C19 41, 12 40, 13 36 M11 9 C17 17, 10 21, 10 31 C10 39, 14 44, 10 47', fill: 'none', stroke: GOLD, 'stroke-width': '2.1', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    drawHalfFlat(svg, helpers, 12, 1, 0.82);
+    svgEl('path', { d: 'M37 12 V42', stroke: GOLD, 'stroke-width': '2.6', 'stroke-linecap': 'round', opacity: '0.6' }, svg);
+  });
 
   r.register('jins', (svg, { svgEl, GOLD }) => {
     drawGuide(svg, svgEl, GOLD);
@@ -51,16 +74,12 @@
     svgEl('path', { d: 'M9 43 L44 43', stroke: GOLD, 'stroke-width': '2', 'stroke-linecap': 'round', opacity: '0.32' }, svg);
   });
 
-  function drawFlat(svg, { svgEl, GOLD }) {
-    svgEl('path', { d: 'M22 8 V42', fill: 'none', stroke: GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round' }, svg);
-    svgEl('path', { d: 'M22 28 C30 19, 42 23, 40 33 C38 43, 27 44, 22 42', fill: 'none', stroke: GOLD, 'stroke-width': '4.2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
-  }
-
-  r.register('flat', drawFlat);
+  r.register('flat', (svg, helpers) => {
+    drawFlat(svg, helpers);
+  });
 
   r.register('half-flat', (svg, helpers) => {
-    drawFlat(svg, helpers);
-    helpers.svgEl('path', { d: 'M12 17 H35', stroke: helpers.GOLD, 'stroke-width': '4', 'stroke-linecap': 'round' }, svg);
+    drawHalfFlat(svg, helpers);
   });
 
   r.register('sharp', (svg, { svgEl, GOLD }) => {
