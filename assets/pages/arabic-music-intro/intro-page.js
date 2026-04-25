@@ -22,6 +22,32 @@
     return node;
   }
 
+  function renderIcon(type) {
+    const icon = el('span', 'intro-ui-icon');
+    const svg = svgEl('svg', { viewBox: '0 0 64 64', role: 'img', 'aria-hidden': 'true' }, icon);
+    if (type === 'notation') {
+      [16, 24, 32, 40, 48].forEach((y) => svgEl('line', { x1: '10', y1: String(y), x2: '54', y2: String(y), stroke: SYMBOL_COLOR, 'stroke-width': '2', opacity: '0.72' }, svg));
+      svgEl('ellipse', { cx: '26', cy: '40', rx: '7', ry: '5', fill: SYMBOL_COLOR, transform: 'rotate(-18 26 40)' }, svg);
+      svgEl('line', { x1: '32', y1: '39', x2: '32', y2: '16', stroke: SYMBOL_COLOR, 'stroke-width': '3.2', 'stroke-linecap': 'round' }, svg);
+    } else if (type === 'maqam') {
+      svgEl('path', { d: 'M11 46 C18 28, 27 39, 32 23 C37 8, 47 19, 53 10', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '4', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+      [11, 32, 53].forEach((x, i) => svgEl('circle', { cx: String(x), cy: String([46,23,10][i]), r: '3.8', fill: SYMBOL_COLOR }, svg));
+    } else if (type === 'rhythm') {
+      svgEl('circle', { cx: '20', cy: '33', r: '10', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '4' }, svg);
+      svgEl('circle', { cx: '44', cy: '33', r: '10', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '4', opacity: '0.72' }, svg);
+      svgEl('path', { d: 'M18 33 L22 33 M42 33 L46 33', stroke: SYMBOL_COLOR, 'stroke-width': '4', 'stroke-linecap': 'round' }, svg);
+    } else if (type === 'apply') {
+      svgEl('rect', { x: '14', y: '12', width: '36', height: '44', rx: '5', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '3' }, svg);
+      svgEl('line', { x1: '22', y1: '24', x2: '42', y2: '24', stroke: SYMBOL_COLOR, 'stroke-width': '3', 'stroke-linecap': 'round' }, svg);
+      svgEl('line', { x1: '22', y1: '34', x2: '42', y2: '34', stroke: SYMBOL_COLOR, 'stroke-width': '3', 'stroke-linecap': 'round', opacity: '0.72' }, svg);
+      svgEl('line', { x1: '22', y1: '44', x2: '34', y2: '44', stroke: SYMBOL_COLOR, 'stroke-width': '3', 'stroke-linecap': 'round', opacity: '0.72' }, svg);
+    } else {
+      svgEl('circle', { cx: '32', cy: '32', r: '20', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '3' }, svg);
+      svgEl('path', { d: 'M25 32 L31 38 L42 25', fill: 'none', stroke: SYMBOL_COLOR, 'stroke-width': '4', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+    }
+    return icon.outerHTML;
+  }
+
   function renderHero() {
     const hero = el('header', 'intro-hero');
     const parts = [];
@@ -48,6 +74,69 @@
     root.appendChild(wrap);
   }
 
+  function renderBeginnerPath() {
+    const section = el('section', 'intro-learning-path');
+    section.setAttribute('aria-labelledby', 'intro-learning-path-title');
+    section.innerHTML = `
+      <div class="intro-learning-head">
+        <span class="intro-kicker">خريطة للمبتدئ</span>
+        <h2 id="intro-learning-path-title">كيف تستخدم هذا المدخل؟</h2>
+        <p>لا تبدأ بحفظ كل المصطلحات. اتبع هذا المسار: افهم الرمز، ثم معنى المقام، ثم الإيقاع، ثم طبّق ذلك على نوتة حقيقية.</p>
+      </div>
+      <div class="intro-path-grid">
+        <a class="intro-path-card" href="#symbols-section">
+          ${renderIcon('notation')}
+          <span class="intro-step">01</span>
+          <h3>ابدأ من الرموز</h3>
+          <p>تعرّف على المدرج، المفتاح، النغمة، السكتة، وعلامات الرفع والخفض.</p>
+        </a>
+        <a class="intro-path-card" href="#terms-section">
+          ${renderIcon('maqam')}
+          <span class="intro-step">02</span>
+          <h3>افهم لغة المقام</h3>
+          <p>اقرأ معنى القرار، الجنس، الغمّاز، السير، والتحويل قبل الدخول إلى صفحات المقامات.</p>
+        </a>
+        <a class="intro-path-card" href="#terms-section">
+          ${renderIcon('rhythm')}
+          <span class="intro-step">03</span>
+          <h3>اسمع الإيقاع كدورة</h3>
+          <p>فرّق بين الدم، التك، السكتة، النبض، والدورة الإيقاعية.</p>
+        </a>
+        <a class="intro-path-card" href="library.html">
+          ${renderIcon('apply')}
+          <span class="intro-step">04</span>
+          <h3>طبّق على نوتة</h3>
+          <p>افتح عملًا من المكتبة ولاحظ المقام والإيقاع واسم الملحن والمؤدي.</p>
+        </a>
+      </div>`;
+    root.appendChild(section);
+  }
+
+  function renderSectionMap() {
+    const section = el('section', 'intro-section-map');
+    section.setAttribute('aria-labelledby', 'intro-section-map-title');
+    section.innerHTML = `
+      <div class="intro-map-head">
+        <h2 id="intro-section-map-title">اختر ما تريد فهمه الآن</h2>
+        <p>هذه الصفحة طويلة بطبيعتها. استخدم هذه البطاقات كمدخل سريع، ثم افتح التفاصيل حسب حاجتك.</p>
+      </div>
+      <div class="intro-map-grid">
+        <a href="#terms-section" class="intro-map-card">
+          ${renderIcon('maqam')}
+          <div><strong>مصطلحات أساسية</strong><span>قاموس عملي للمقام، الجملة، الإيقاع، والتقسيم.</span></div>
+        </a>
+        <a href="#symbols-section" class="intro-map-card">
+          ${renderIcon('notation')}
+          <div><strong>رموز النوتة</strong><span>علامات القراءة الموسيقية والرموز الشرقية مثل نصف بيمول ونصف دييز.</span></div>
+        </a>
+        <a href="#next-section" class="intro-map-card">
+          ${renderIcon('apply')}
+          <div><strong>بعد هذه الصفحة</strong><span>انتقل إلى المقامات، الإيقاعات، أو مكتبة النوتات للتطبيق.</span></div>
+        </a>
+      </div>`;
+    root.appendChild(section);
+  }
+
   function renderGoal() {
     if (!data.goal || (!data.goal.title && !data.goal.text)) return;
     const strong = data.goal.title ? `<strong>${data.goal.title}</strong> ` : '';
@@ -58,7 +147,7 @@
   function renderBody() {
     const stack = el('div', 'intro-stack');
 
-    data.sections.forEach((section) => {
+    data.sections.forEach((section, sectionIndex) => {
       const sectionEl = el('section', 'intro-section');
       sectionEl.id = section.id;
       sectionEl.setAttribute('aria-labelledby', `${section.id}-title`);
@@ -69,15 +158,16 @@
 
       const sub = el('div', 'intro-subsections');
 
-      section.groups.forEach((group) => {
-        const item = el('div', `intro-acc-item${group.open ? ' is-open' : ''}`);
+      section.groups.forEach((group, groupIndex) => {
+        const shouldOpen = !!group.open || (sectionIndex === 0 && groupIndex === 0);
+        const item = el('div', `intro-acc-item${shouldOpen ? ' is-open' : ''}`);
         const trigger = el('button', 'intro-acc-trigger');
         trigger.type = 'button';
-        trigger.setAttribute('aria-expanded', group.open ? 'true' : 'false');
+        trigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
         trigger.innerHTML = `<span>${group.title}</span><span>⌄</span>`;
 
         const panel = el('div', 'intro-acc-panel');
-        if (!group.open) panel.hidden = true;
+        if (!shouldOpen) panel.hidden = true;
 
         const grid = el('div', 'intro-term-grid');
         group.items.forEach((entry) => grid.appendChild(renderCard(entry)));
@@ -240,6 +330,8 @@
 
   renderHero();
   renderQuickLinks();
+  renderBeginnerPath();
+  renderSectionMap();
   renderGoal();
   renderBody();
   renderNextCards();
