@@ -62,6 +62,22 @@
     root.appendChild(wrap);
   }
 
+  function renderMobileMiniNav() {
+    if (!Array.isArray(data.quickLinks) || !data.quickLinks.length) return;
+
+    const nav = el('nav', 'intro-mini-nav');
+    nav.setAttribute('aria-label', 'تنقل سريع في صفحة المدخل');
+
+    data.quickLinks.forEach((link) => {
+      const a = el('a');
+      a.href = link.href;
+      a.textContent = link.label.replace('مسار التعلّم', 'المسار').replace('رموز النوتة', 'الرموز');
+      nav.appendChild(a);
+    });
+
+    root.appendChild(nav);
+  }
+
   function renderLearningPath() {
     if (!Array.isArray(data.learningPath) || !data.learningPath.length) return;
 
@@ -143,6 +159,15 @@
     return card;
   }
 
+  function renderFocusNotes(section) {
+    if (!Array.isArray(section.focus) || !section.focus.length) return null;
+
+    const focus = el('aside', 'intro-focus-box');
+    const items = section.focus.map((item) => `<li>${item}</li>`).join('');
+    focus.innerHTML = `<strong>ركّز هنا</strong><ul>${items}</ul>`;
+    return focus;
+  }
+
   function renderBody() {
     if (!Array.isArray(data.sections) || !data.sections.length) return;
 
@@ -156,6 +181,9 @@
       const head = el('div', 'intro-section-head');
       head.innerHTML = `<h2 id="${section.id}-title">${section.title}</h2><p>${section.description}</p>`;
       sectionEl.appendChild(head);
+
+      const focus = renderFocusNotes(section);
+      if (focus) sectionEl.appendChild(focus);
 
       const sub = el('div', 'intro-subsections');
 
@@ -211,6 +239,7 @@
 
   renderHero();
   renderQuickLinks();
+  renderMobileMiniNav();
   renderLearningPath();
   renderSectionMap();
   renderGoal();
