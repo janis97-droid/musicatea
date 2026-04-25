@@ -5,7 +5,7 @@ function createPersonPageLink(name) {
   const value = String(name || '').trim();
   if (!value) return '';
   const href = `person.html?name=${encodeURIComponent(value)}`;
-  return `<a href="${escapeHtml(href)}" class="card-credit-link">${escapeHtml(value)}</a>`;
+  return `<a href="${escapeHtml(href)}" class="card-credit-link" onclick="event.stopPropagation()">${escapeHtml(value)}</a>`;
 }
 
 function createRhythmTags(sheet) {
@@ -44,7 +44,15 @@ function createSheetCard(s) {
     ? `
       <div class="card-credit-row">
         <span class="card-credit-label">المؤدي</span>
-        <span class="card-credit-value">${createPersonPageLink(s.performer)}</span>
+        ${createPersonPageLink(s.performer)}
+      </div>`
+    : '';
+
+  const composerLine = s.composer
+    ? `
+      <div class="card-credit-row">
+        <span class="card-credit-label">الملحن</span>
+        ${createPersonPageLink(s.composer)}
       </div>`
     : '';
 
@@ -63,20 +71,15 @@ function createSheetCard(s) {
         ${badge}
       </div>
 
-      <div class="card-credits">
-        <div class="card-credit-row">
-          <span class="card-credit-label">الملحن</span>
-          <span class="card-credit-value">${createPersonPageLink(s.composer)}</span>
-        </div>
-        ${performerLine}
-      </div>
-    </div>
-
-    <div class="card-meta">
-      <div class="card-tags-row">
+      <div class="card-meta card-meta-primary">
         ${maqamDisplay}
         ${secondaryMeta}
         ${rhythmTags}
+      </div>
+
+      <div class="card-credits">
+        ${composerLine}
+        ${performerLine}
       </div>
     </div>
 
