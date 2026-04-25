@@ -72,10 +72,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/islamic-pattern.css?v=1">
-  <link rel="stylesheet" href="assets/pages/library/library-base.css?v=4">
-  <link rel="stylesheet" href="assets/pages/library/library-desktop.css?v=4">
-  <link rel="stylesheet" href="assets/pages/library/library-mobile.css?v=4">
-  <link rel="stylesheet" href="assets/pages/library/library-ar.css?v=4">
+  <link rel="stylesheet" href="assets/pages/library/library-base.css?v=5">
+  <link rel="stylesheet" href="assets/pages/library/library-desktop.css?v=5">
+  <link rel="stylesheet" href="assets/pages/library/library-mobile.css?v=5">
+  <link rel="stylesheet" href="assets/pages/library/library-ar.css?v=5">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6752481524764690" crossorigin="anonymous"></script>
 </head>
@@ -142,6 +142,36 @@
       <a class="filters-jump" href="#sheet-requests">لطلب النوتة</a>
     </div>
 
+    <section class="latest-sheet-requests-section" aria-labelledby="latest-sheet-requests-title">
+      <aside class="request-sheet-panel request-sheet-panel-latest latest-sheet-requests-inline">
+        <div class="latest-sheet-requests-head">
+          <h3 id="latest-sheet-requests-title">اخر طلبات النوتة</h3>
+          <div class="latest-sheet-requests-controls" aria-label="التنقل بين الطلبات">
+            <button type="button" class="latest-sheet-requests-control latest-sheet-requests-arrow" id="latest-sheet-prev" aria-label="السابق">‹</button>
+            <button type="button" class="latest-sheet-requests-control latest-sheet-requests-arrow" id="latest-sheet-next" aria-label="التالي">›</button>
+          </div>
+        </div>
+        <div class="latest-sheet-requests-viewport">
+          <ul class="latest-sheet-requests-list" id="latest-sheet-requests-list">
+            <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>بعيد عنك</strong><span>أم كلثوم</span></li>
+            <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>الحب الكبير</strong><span>جورج وسوف</span></li>
+            <li class="latest-sheet-request-item latest-sheet-request-item-added"><strong><span class="latest-sheet-request-status latest-sheet-request-check" aria-label="تمت الإضافة">✓</span>انا قلبي ليك ميال</strong><span>فايزة أحمد</span></li>
+            <li class="latest-sheet-request-item"><strong>من هنا ورايح</strong><span>جورج وسوف</span></li>
+            <li class="latest-sheet-request-item"><strong>الهوى سلطان</strong><span>جورج وسوف</span></li>
+            <li class="latest-sheet-request-item"><strong>حبيبي انت</strong><span>ملحم بركات</span></li>
+            <li class="latest-sheet-request-item"><strong>رباعيات الخيام</strong><span>أم كلثوم</span></li>
+            <li class="latest-sheet-request-item"><strong>لا انت حبيبي</strong><span>فيروز</span></li>
+            <li class="latest-sheet-request-item"><strong>مين دا اللي نسيك</strong><span>نانسي عجرم</span></li>
+            <li class="latest-sheet-request-item"><strong>طمني عليك</strong><span>محمد فؤاد</span></li>
+            <li class="latest-sheet-request-item"><strong>اول حب</strong><span>مهى فتوني</span></li>
+            <li class="latest-sheet-request-item"><strong>انا قلت بترجع</strong><span>عبير نعمه</span></li>
+            <li class="latest-sheet-request-item"><strong>بيحن</strong><span>وائل كفوري</span></li>
+            <li class="latest-sheet-request-item"><strong>بكرا شي نهار</strong><span>جوليا بطرس</span></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
     <div id="list" class="grid"></div>
 <section id="sheet-requests" class="request-sheet-section" aria-labelledby="request-sheet-title">
   <div class="request-sheet-card">
@@ -172,37 +202,6 @@
         <p id="request-sheet-success" class="request-sheet-success" style="display:none;">شكرا على إرسال الطلب, تابع محتوى المكتبة بإستمرار حتى يتم إضافة النوتة</p>
       </form>
     </div>
-
-    <aside class="request-sheet-panel request-sheet-panel-latest" aria-labelledby="latest-sheet-requests-title">
-      <div class="latest-sheet-requests-head">
-        <div>
-          <h3 id="latest-sheet-requests-title">اخر طلبات النوتة</h3>
-          <span class="latest-sheet-requests-meta">تظهر 4 طلبات في كل مرة</span>
-        </div>
-        <div class="latest-sheet-requests-controls" aria-label="التنقل بين الطلبات">
-          <button type="button" class="latest-sheet-requests-control" id="latest-sheet-prev">السابق</button>
-          <button type="button" class="latest-sheet-requests-control" id="latest-sheet-next">التالي</button>
-        </div>
-      </div>
-      <div class="latest-sheet-requests-viewport">
-        <ul class="latest-sheet-requests-list" id="latest-sheet-requests-list">
-          <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>بعيد عنك</strong><span>أم كلثوم</span></li>
-          <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>الحب الكبير</strong><span>جورج وسوف</span></li>
-          <li class="latest-sheet-request-item latest-sheet-request-item-added"><strong><span class="latest-sheet-request-status latest-sheet-request-check" aria-label="تمت الإضافة">✓</span>انا قلبي ليك ميال</strong><span>فايزة أحمد</span></li>
-          <li class="latest-sheet-request-item"><strong>من هنا ورايح</strong><span>جورج وسوف</span></li>
-          <li class="latest-sheet-request-item"><strong>الهوى سلطان</strong><span>جورج وسوف</span></li>
-          <li class="latest-sheet-request-item"><strong>حبيبي انت</strong><span>ملحم بركات</span></li>
-          <li class="latest-sheet-request-item"><strong>رباعيات الخيام</strong><span>أم كلثوم</span></li>
-          <li class="latest-sheet-request-item"><strong>لا انت حبيبي</strong><span>فيروز</span></li>
-          <li class="latest-sheet-request-item"><strong>مين دا اللي نسيك</strong><span>نانسي عجرم</span></li>
-          <li class="latest-sheet-request-item"><strong>طمني عليك</strong><span>محمد فؤاد</span></li>
-          <li class="latest-sheet-request-item"><strong>اول حب</strong><span>مهى فتوني</span></li>
-          <li class="latest-sheet-request-item"><strong>انا قلت بترجع</strong><span>عبير نعمه</span></li>
-          <li class="latest-sheet-request-item"><strong>بيحن</strong><span>وائل كفوري</span></li>
-          <li class="latest-sheet-request-item"><strong>بكرا شي نهار</strong><span>جوليا بطرس</span></li>
-        </ul>
-      </div>
-    </aside>
   </div>
 </section>
   </main>
@@ -222,8 +221,8 @@
   <script src="data/maqamat.js"></script>
   <script src="assets/pages/maqamat/name-overrides.js"></script>
   <script src="assets/shared-utils.js"></script>
-  <script src="assets/pages/library/sheet-card.js?v=4"></script>
-  <script src="assets/pages/library/library-filters-ar.js?v=4"></script>
+  <script src="assets/pages/library/sheet-card.js?v=5"></script>
+  <script src="assets/pages/library/library-filters-ar.js?v=5"></script>
   <script src="assets/pages/maqamat/mega-menu.js"></script>
   <script src="assets/accessibility.js?v=4"></script>
   <script>
@@ -231,7 +230,6 @@
       const list = document.getElementById('latest-sheet-requests-list');
       const prevButton = document.getElementById('latest-sheet-prev');
       const nextButton = document.getElementById('latest-sheet-next');
-      const meta = document.querySelector('.latest-sheet-requests-meta');
       if (!list) return;
 
       const items = Array.from(list.children);
@@ -240,6 +238,8 @@
       let startIndex = 0;
       let autoTimer = null;
       let resumeTimer = null;
+      let touchStartX = 0;
+      let touchStartY = 0;
 
       function renderWindow() {
         const count = Math.min(visibleCount, items.length);
@@ -248,9 +248,6 @@
           if (normalized < 0) normalized += items.length;
           item.hidden = normalized >= count;
         });
-        if (meta) {
-          meta.textContent = `تظهر ${count} طلبات في كل مرة`;
-        }
       }
 
       function restartAuto() {
@@ -289,10 +286,26 @@
         }
       }
 
+      function handleTouchStart(event) {
+        const touch = event.changedTouches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }
+
+      function handleTouchEnd(event) {
+        const touch = event.changedTouches[0];
+        const dx = touch.clientX - touchStartX;
+        const dy = touch.clientY - touchStartY;
+        if (Math.abs(dx) < 38 || Math.abs(dx) < Math.abs(dy)) return;
+        if (dx > 0) goPrev(); else goNext();
+      }
+
       if (prevButton) prevButton.addEventListener('click', goPrev);
       if (nextButton) nextButton.addEventListener('click', goNext);
       list.addEventListener('mouseenter', () => clearInterval(autoTimer));
       list.addEventListener('mouseleave', restartAuto);
+      list.addEventListener('touchstart', handleTouchStart, { passive: true });
+      list.addEventListener('touchend', handleTouchEnd, { passive: true });
       window.addEventListener('resize', handleResize);
 
       renderWindow();
