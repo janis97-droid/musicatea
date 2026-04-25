@@ -1,6 +1,7 @@
 // data/arabic-music-intro/index.js
 // Modular data entry point for the beginner Arabic music intro page.
 window.ARABIC_MUSIC_INTRO_DATA = {
+  showExercises: false,
   hero: {
     tag: 'مدخل تعليمي',
     title: 'المدخل إلى الموسيقى العربية',
