@@ -308,6 +308,110 @@
   font-size: .84rem;
 }
 
+.intro-primary-choices {
+  max-width: 980px;
+  padding: 28px;
+  border-color: rgba(200,164,90,.2);
+  background:
+    radial-gradient(circle at top, rgba(200,164,90,.1), transparent 42%),
+    linear-gradient(180deg, rgba(14,14,18,.99), rgba(9,9,12,.99));
+}
+
+.intro-primary-choices .intro-map-head h2 {
+  font-size: clamp(1.8rem, 4vw, 2.55rem);
+}
+
+.intro-primary-choices .intro-map-head p {
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+.intro-map-grid-primary {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin: 0 auto;
+  gap: 14px;
+}
+
+.intro-map-grid-primary .intro-map-card {
+  min-height: 118px;
+  padding: 20px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+}
+
+.intro-map-grid-primary .intro-map-card .intro-ui-icon {
+  width: 66px;
+  height: 66px;
+  border-radius: 20px;
+}
+
+.intro-map-grid-primary .intro-map-card .intro-ui-icon svg {
+  width: 54px;
+  height: 54px;
+}
+
+.intro-map-grid-primary .intro-map-card strong {
+  font-size: 1.18rem;
+  margin-bottom: 7px;
+}
+
+.intro-map-grid-primary .intro-map-card span:not(.intro-ui-icon) {
+  font-size: .94rem;
+  line-height: 1.75;
+}
+
+.intro-apply-links {
+  max-width: 980px;
+  padding: 18px;
+  opacity: .95;
+}
+
+.intro-apply-links .intro-learning-head {
+  margin-bottom: 12px;
+}
+
+.intro-apply-links .intro-learning-head h2 {
+  font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+}
+
+.intro-apply-links .intro-learning-head p {
+  font-size: .86rem;
+  line-height: 1.7;
+}
+
+.intro-apply-links .intro-path-card {
+  min-height: 148px;
+  padding: 13px;
+  border-radius: 17px;
+}
+
+.intro-apply-links .intro-path-card .intro-ui-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+
+.intro-apply-links .intro-path-card .intro-ui-icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+.intro-apply-links .intro-step {
+  font-size: .82rem;
+  top: 12px;
+  inset-inline-end: 12px;
+}
+
+.intro-apply-links .intro-path-card h3 {
+  font-size: .92rem;
+}
+
+.intro-apply-links .intro-path-card p {
+  font-size: .78rem;
+  line-height: 1.6;
+}
+
 .intro-stack {
   display: grid;
   gap: 22px;
@@ -594,6 +698,71 @@
     font-size: 1.25rem;
   }
 
+  .intro-primary-choices {
+    padding: 18px 14px;
+  }
+
+  .intro-primary-choices .intro-map-head {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .intro-primary-choices .intro-map-head h2 {
+    font-size: clamp(1.7rem, 7vw, 2.35rem);
+  }
+
+  .intro-primary-choices .intro-map-head p {
+    font-size: .9rem;
+  }
+
+  .intro-map-grid-primary {
+    gap: 12px;
+  }
+
+  .intro-map-grid-primary .intro-map-card {
+    min-height: 122px;
+    padding: 16px;
+    border-radius: 19px;
+    align-items: center;
+  }
+
+  .intro-map-grid-primary .intro-map-card .intro-ui-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+  }
+
+  .intro-map-grid-primary .intro-map-card .intro-ui-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .intro-map-grid-primary .intro-map-card strong {
+    font-size: 1.06rem;
+  }
+
+  .intro-map-grid-primary .intro-map-card span:not(.intro-ui-icon) {
+    font-size: .86rem;
+  }
+
+  .intro-apply-links {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .intro-apply-links .intro-learning-head {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .intro-apply-links .intro-learning-head h2 {
+    font-size: 1.15rem;
+  }
+
+  .intro-apply-links .intro-learning-head p {
+    font-size: .8rem;
+  }
+
   .intro-path-grid {
     grid-template-columns: 1fr;
     gap: 9px;
@@ -617,6 +786,34 @@
   .intro-path-card .intro-ui-icon svg {
     width: 40px;
     height: 40px;
+  }
+
+  .intro-apply-links .intro-path-grid {
+    gap: 7px;
+  }
+
+  .intro-apply-links .intro-path-card {
+    min-height: auto;
+    padding: 10px 11px;
+  }
+
+  .intro-apply-links .intro-path-card .intro-ui-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .intro-apply-links .intro-path-card .intro-ui-icon svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .intro-apply-links .intro-path-card h3 {
+    font-size: .86rem;
+  }
+
+  .intro-apply-links .intro-path-card p {
+    font-size: .76rem;
   }
 
   .intro-step {
