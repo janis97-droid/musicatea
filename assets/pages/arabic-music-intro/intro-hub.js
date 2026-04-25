@@ -36,11 +36,11 @@
           <div><strong>تعلّم قراءة النوتة</strong><span>المدرج، مفتاح صول، الميزان، النغمات، السكتات، والرموز الأساسية.</span></div>
         </a>
         <a href="learn-maqam.html" class="intro-map-card">
-          ${icon('maqam')}
+          ${icon('maqam-signature')}
           <div><strong>تعلّم ما هو المقام</strong><span>المقام، الجنس، القرار، الغمّاز، السير، وعلامات الربع صوت.</span></div>
         </a>
         <a href="learn-rhythm.html" class="intro-map-card">
-          ${icon('rhythm')}
+          ${icon('meter-44')}
           <div><strong>تعلّم قراءة الإيقاع</strong><span>الدوم، التك، السكتة، النبض، الميزان، والدورة الإيقاعية.</span></div>
         </a>
       </div>
@@ -54,8 +54,8 @@
       </div>
       <div class="intro-path-grid">
         <a class="intro-path-card" href="library.html">${icon('apply')}<span class="intro-step">01</span><h3>مكتبة النوتات</h3><p>طبّق القراءة على أعمال حقيقية من خلال البطاقات والملفات.</p></a>
-        <a class="intro-path-card" href="maqamat.html">${icon('maqam')}<span class="intro-step">02</span><h3>المقامات</h3><p>انتقل من التعريف المختصر إلى صفحات المقامات التفصيلية.</p></a>
-        <a class="intro-path-card" href="rhythms.html">${icon('rhythm')}<span class="intro-step">03</span><h3>الإيقاعات</h3><p>اقرأ الإيقاعات كدورات من الدوم والتك والسكتات.</p></a>
+        <a class="intro-path-card" href="maqamat.html">${icon('maqam-signature')}<span class="intro-step">02</span><h3>المقامات</h3><p>انتقل من التعريف المختصر إلى صفحات المقامات التفصيلية.</p></a>
+        <a class="intro-path-card" href="rhythms.html">${icon('meter-44')}<span class="intro-step">03</span><h3>الإيقاعات</h3><p>اقرأ الإيقاعات كدورات من الدوم والتك والسكتات.</p></a>
         <a class="intro-path-card" href="history.html">${icon('card-reading')}<span class="intro-step">04</span><h3>تاريخ الموسيقى</h3><p>اربط المفاهيم بالسياق التاريخي والشخصيات والمدارس.</p></a>
       </div>
     </section>
