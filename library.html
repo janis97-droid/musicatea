@@ -153,9 +153,9 @@
         </div>
         <div class="latest-sheet-requests-viewport">
           <ul class="latest-sheet-requests-list" id="latest-sheet-requests-list">
+            <li class="latest-sheet-request-item latest-sheet-request-item-added"><strong><span class="latest-sheet-request-status latest-sheet-request-check" aria-label="تمت الإضافة">✓</span>انا قلبي ليك ميال</strong><span>فايزة أحمد</span></li>
             <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>بعيد عنك</strong><span>أم كلثوم</span></li>
             <li class="latest-sheet-request-item latest-sheet-request-item-pending"><strong><span class="latest-sheet-request-status latest-sheet-request-hourglass" aria-label="قيد الانتظار">⌛</span>الحب الكبير</strong><span>جورج وسوف</span></li>
-            <li class="latest-sheet-request-item latest-sheet-request-item-added"><strong><span class="latest-sheet-request-status latest-sheet-request-check" aria-label="تمت الإضافة">✓</span>انا قلبي ليك ميال</strong><span>فايزة أحمد</span></li>
             <li class="latest-sheet-request-item"><strong>من هنا ورايح</strong><span>جورج وسوف</span></li>
             <li class="latest-sheet-request-item"><strong>الهوى سلطان</strong><span>جورج وسوف</span></li>
             <li class="latest-sheet-request-item"><strong>حبيبي انت</strong><span>ملحم بركات</span></li>
@@ -241,6 +241,10 @@
       let touchStartX = 0;
       let touchStartY = 0;
 
+      function getStep() {
+        return Math.max(1, Math.min(visibleCount, items.length));
+      }
+
       function renderWindow() {
         const count = Math.min(visibleCount, items.length);
         items.forEach((item, index) => {
@@ -254,9 +258,9 @@
         clearInterval(autoTimer);
         if (items.length <= visibleCount) return;
         autoTimer = setInterval(function () {
-          startIndex = (startIndex + 1) % items.length;
+          startIndex = (startIndex + getStep()) % items.length;
           renderWindow();
-        }, 3200);
+        }, 4200);
       }
 
       function pauseAndResumeAuto() {
@@ -266,13 +270,13 @@
       }
 
       function goNext() {
-        startIndex = (startIndex + 1) % items.length;
+        startIndex = (startIndex + getStep()) % items.length;
         renderWindow();
         pauseAndResumeAuto();
       }
 
       function goPrev() {
-        startIndex = (startIndex - 1 + items.length) % items.length;
+        startIndex = (startIndex - getStep() + items.length) % items.length;
         renderWindow();
         pauseAndResumeAuto();
       }
@@ -281,6 +285,7 @@
         const nextVisibleCount = getVisibleCount();
         if (nextVisibleCount !== visibleCount) {
           visibleCount = nextVisibleCount;
+          startIndex = Math.floor(startIndex / getStep()) * getStep();
           renderWindow();
           restartAuto();
         }
