@@ -119,6 +119,11 @@
   background: linear-gradient(180deg, rgba(255,255,255,0.024), rgba(255,255,255,0.015));
 }
 
+.latest-sheet-request-item-added {
+  border-color: rgba(67, 185, 120, 0.42);
+  background: linear-gradient(180deg, rgba(67, 185, 120, 0.13), rgba(67, 185, 120, 0.055));
+}
+
 .latest-sheet-request-item strong {
   font-size: 0.88rem;
   color: var(--text);
@@ -126,10 +131,34 @@
   line-height: 1.45;
 }
 
+.latest-sheet-request-item-added strong {
+  color: #74d99b;
+}
+
+.latest-sheet-request-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 6px;
+  border-radius: 999px;
+  background: rgba(67, 185, 120, 0.22);
+  border: 1px solid rgba(67, 185, 120, 0.42);
+  color: #8ff0b0;
+  font-size: 0.76rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
 .latest-sheet-request-item span {
   font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.35;
+}
+
+.latest-sheet-request-item-added > span {
+  color: rgba(143, 240, 176, 0.82);
 }
 
 .request-sheet-copy h2 {
