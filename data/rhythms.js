@@ -21,7 +21,7 @@ const rhythms = [
     time_signature: "8/4",
     examples: [],
     audio: "",
-    image: ""
+    image: "media/rhythms/images/masmoudi_kabir.svg"
   },
   {
     id: "saidi",
