@@ -81,9 +81,9 @@ const sheets = [
     scale_en: null,
     tonic: "ري",
     tonic_en: "D",
-    rhythms: ["فوكس", "لفّ", "مقسوم"],
-    rhythms_en: ["Fox", "Malfuf", "Maqsum"],
-    rhythm_ids: ["fox", "malfuf", "maqsum"],
+    rhythms: ["فوكس", "لفّ", "مصمودي كبير"],
+    rhythms_en: ["Fox", "Malfuf", "Masmoudi Kabir"],
+    rhythm_ids: ["fox", "malfuf", "masmoudi_kabir"],
     pdf: "pdfs/Breeze-In-Bisaan.pdf"
   },
 
