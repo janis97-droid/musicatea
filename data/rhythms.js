@@ -24,6 +24,86 @@ const rhythms = [
     image: "media/rhythms/images/masmoudi_kabir.svg"
   },
   {
+    id: "wahda_saira_mukallafa",
+    name: { ar: "الوحدة السائرة / المكلفة", en: "Wahda Saira / Mukallafa" },
+    time_signature: "2/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/wahda_saira_mukallafa.svg"
+  },
+  {
+    id: "saudi",
+    name: { ar: "سعودي", en: "Saudi" },
+    time_signature: "2/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/saudi.svg"
+  },
+  {
+    id: "samai_saraband_tair",
+    name: { ar: "سماعي سربند / طائر", en: "Sama'i Saraband / Tair" },
+    time_signature: "3/8",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/samai_saraband_tair.svg"
+  },
+  {
+    id: "darij_kabir",
+    name: { ar: "الدارج الكبير", en: "Darij Kabir" },
+    time_signature: "6/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/darij_kabir.svg"
+  },
+  {
+    id: "wahda_mutawassita_diniya",
+    name: { ar: "وحدة متوسطة / دينية", en: "Wahda Mutawassita / Diniya" },
+    time_signature: "4/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/wahda_mutawassita_diniya.svg"
+  },
+  {
+    id: "jirk",
+    name: { ar: "جيرك", en: "Jirk" },
+    time_signature: "4/8",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/jirk.svg"
+  },
+  {
+    id: "sankin_samai",
+    name: { ar: "سنكين سماعي", en: "Sankin Sama'i" },
+    time_signature: "6/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/sankin_samai.svg"
+  },
+  {
+    id: "sankin_samai_masri",
+    name: { ar: "سنكين سماعي مصري", en: "Sankin Sama'i Masri" },
+    time_signature: "6/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/sankin_samai_masri.svg"
+  },
+  {
+    id: "nawakht",
+    name: { ar: "نواخت", en: "Nawakht" },
+    time_signature: "7/4",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/nawakht.svg"
+  },
+  {
+    id: "dawr_tarwan",
+    name: { ar: "دور تروان", en: "Dawr Tarwan" },
+    time_signature: "7/8",
+    examples: [],
+    audio: "",
+    image: "media/rhythms/images/dawr_tarwan.svg"
+  },
+  {
     id: "saidi",
     name: { ar: "صعيدي", en: "Sa'idi" },
     time_signature: "4/4",
