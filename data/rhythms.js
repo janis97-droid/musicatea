@@ -16,6 +16,14 @@ const rhythms = [
     image: "media/rhythms/images/baladi_masmoudi_saghir.svg"
   },
   {
+    id: "masmoudi_kabir",
+    name: { ar: "مصمودي كبير", en: "Masmoudi Kabir" },
+    time_signature: "8/4",
+    examples: [],
+    audio: "",
+    image: ""
+  },
+  {
     id: "saidi",
     name: { ar: "صعيدي", en: "Sa'idi" },
     time_signature: "4/4",
