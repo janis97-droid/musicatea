@@ -1,0 +1,16 @@
+{
+  "id": "darij_kabir",
+  "source_context_or_origin": {
+    "ar": "هذه صفحة معلومات أولية لإيقاع الدارج الكبير. أُضيف الإيقاع إلى الموقع مع صورته الإيقاعية الأساسية اعتمادًا على ملف الإيقاعات المرجعي، وتحتاج هذه الصفحة إلى نص موسيقي تفصيلي عن الأصل، الاستعمال، الصيغة، والأمثلة.",
+    "en": "This is an initial information page for Darij Kabir. The rhythm has been added to the site with its basic visual pattern based on the reference rhythm sheet. This page still needs detailed musical information about origin, usage, formula, and examples."
+  },
+  "other_names": {
+    "ar": [],
+    "en": ["Darij Kabir"]
+  },
+  "examples": {
+    "ar": [],
+    "en": []
+  },
+  "related_rhythms": ["samai_darij", "sudasi"]
+}
