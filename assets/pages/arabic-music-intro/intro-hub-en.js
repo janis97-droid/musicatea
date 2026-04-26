@@ -31,15 +31,15 @@
         <p>Do not read everything at once. Choose the topic you need now, then apply it directly inside Musicatea.</p>
       </div>
       <div class="intro-map-grid intro-map-grid-primary">
-        <a href="learn-notation.html" class="intro-map-card">
+        <a href="learn-notation-en.html" class="intro-map-card">
           ${icon('treble-clef')}
           <div><strong>Learn to read notation</strong><span>Staff, G clef, meter, note values, rests, and basic notation symbols.</span></div>
         </a>
-        <a href="learn-maqam.html" class="intro-map-card">
+        <a href="learn-maqam-en.html" class="intro-map-card">
           ${icon('notation')}
           <div><strong>Learn what maqam is</strong><span>Maqam, jins, tonic, ghammaz, melodic path, and quarter-tone notation.</span></div>
         </a>
-        <a href="learn-rhythm.html" class="intro-map-card">
+        <a href="learn-rhythm-en.html" class="intro-map-card">
           ${icon('meter-44')}
           <div><strong>Learn to read rhythm</strong><span>Dum, tak, rests, pulse, meter, and rhythmic cycles.</span></div>
         </a>
