@@ -25,7 +25,7 @@ const rhythms = [
   },
   {
     id: "malfuf",
-    name: { ar: "ملفوف", en: "Malfuf" },
+    name: { ar: "لفّ", en: "Malfuf" },
     time_signature: "2/4",
     examples: [],
     audio: "media/rhythms/malfuf.mp3",
@@ -169,7 +169,7 @@ const rhythms = [
   },
   {
     id: "nawari",
-    name: { ar: "نواري", en: "Nawari" },
+    name: { ar: "نَوَري", en: "Nawari" },
     time_signature: "4/4",
     examples: [],
     audio: "media/rhythms/nawari.mp3",
